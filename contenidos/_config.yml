@@ -1,8 +1,8 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: Apuntes de Algoritmos y Programación II
-author: Cátedra de Algoritmos y Programación II
+title: Apuntes de Estructuras de Datos
+author: Cátedra de Estructuras de Datos
 copyright: "2025"
 logo: assets/images/untref-logo.svg
 only_build_toc_files: true
@@ -46,7 +46,7 @@ latex:
     targetname: apunte.tex
 
 repository:
-  url: https://github.com/untref-ayp2/apuntes
+  url: https://github.com/untref-edd/apuntes
   path_to_book: contenidos
   branch: main
 
