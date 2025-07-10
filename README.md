@@ -5,7 +5,7 @@
 Si deseas desarrollar y/o compilar el apunte de Estructuras de Datos, debes:
 
 > [!TIP]
-> Para esta guía se asume que Python y Go instalados en el sistema.
+> Para esta guía se asume que Python.
 >
 > Se recomienda crear un entorno virtual de Python para trabajar con este proyecto.
 
