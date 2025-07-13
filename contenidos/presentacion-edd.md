@@ -41,9 +41,9 @@ Para aprobar la materia además hay que aprobar un examen final, para poder rend
 
 ## Herramientas para cursar
 
-- [Google Classroom](https://classroom.google.com/c/NzAwMzMxODY0NzIx)
-- [Slack](https://untref-edd.slack.com/)
-- [Github Classroom](https://classroom.github.com/classrooms/220222794-untref-edd-2025)
-- [Meet para Encuentros Virtuales](https://meet.google.com/rzj-hjek-npx)
+- <a href="https://classroom.google.com/c/NzAwMzMxODY0NzIx" target="_blank">Google Classroom</a>
+- <a href="https://untref-edd.slack.com/" target="_blank">Slack</a>
+- <a href="https://classroom.github.com/classrooms/220222794-untref-edd-2025" target="_blank">Github Classroom</a>
+- <a href="https://meet.google.com/rzj-hjek-npx" target="_blank">Meet para Encuentros Virtuales</a>
 
 <h1 class="align-center">¡Bienvenidos a Estructuras de Datos!</h1>
