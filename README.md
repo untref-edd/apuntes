@@ -1,3 +1,4 @@
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/untref-edd/apuntes/main)
 # Apuntes de Estructuras de Datos
 
 ## Instalación y configuración del entorno
@@ -16,12 +17,6 @@ Si deseas desarrollar y/o compilar el apunte de Estructuras de Datos, debes:
    ```sh
    pip install -r requirements.txt
    ```
-
-   - Una vez instaladas las dependencias de Python (principalmente `jupyter-book`), debemos instalar el kernel de Go para Jupyter: en nuestro caso utilizamos `gophernotes`.
-
-     Ya que las instrucciones de instalación dependen de cada sistema operativo y entorno dejamos el link al repositorio del módulo Go que explica como instalar y probar ese kernel:
-
-     <https://github.com/gopherdata/gophernotes>
 
 3. (Opcional) Edita los archivos fuente del libro ubicados en el directorio `contenidos`
 

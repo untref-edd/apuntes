@@ -50,6 +50,11 @@ repository:
   path_to_book: contenidos
   branch: main
 
+#launch_buttons:
+#  binderhub_url: https://mybinder.org/v2/gh/untref-edd/apuntes/HEAD
+#  notebook_interface: jupyterlab
+#  thebe: true
+
 # Add a bibtex file so that we can create citations
 bibtex_bibfiles:
   - references.bib
