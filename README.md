@@ -1,4 +1,3 @@
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/untref-edd/apuntes/main)
 # Apuntes de Estructuras de Datos
 
 ## Instalación y configuración del entorno
