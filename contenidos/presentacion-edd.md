@@ -7,11 +7,12 @@ kernelspec:
 
 ## De que va la materia
 
-En esta asignatura estudiaremos como buscar y recuperar información, así como en las estructuras de datos necesarias para almacenarla y manipularla. La principal motiviación para incursionar en esta disciplicna es el constante y creciente volumen de información publicada en internet y en redes sociales, junto con la necesidad de procesarla y analizarla para extraer conocimiento valioso. Se considera que esta disciplina es precursora de la ciencia de datos y base fundamental para el desarrollo de aplicaciones inteligentes y sistemas de toma de decisiones basados en datos y nos permitirá entender como funcionan una amplia gama de aplicaciones, desde sistemas de bases de datos y motores de búsqueda, hasta redes sociales y plataformas de comercio electrónico. 
+En esta asignatura estudiaremos como buscar y recuperar información, así como en las estructuras de datos necesarias para almacenarla y manipularla. La principal motiviación para incursionar en esta disciplina es el constante y creciente volumen de información publicada en internet y en redes sociales, junto con la necesidad de procesarla y analizarla para extraer conocimiento valioso. Se considera que esta disciplina es precursora de la ciencia de datos y base fundamental para el desarrollo de aplicaciones inteligentes y sistemas de toma de decisiones basados en datos y nos permitirá entender como funcionan una amplia gama de aplicaciones, desde sistemas de bases de datos y motores de búsqueda, hasta redes sociales y plataformas de comercio electrónico. 
 
 ## Objetivos
 
 Al finalizar la materia seremos capaces de:
+
 - Reconocer la problemática del manejo de grandes volúmenes de información y la necesidad de estructuras de datos y algoritmos eficientes para su procesamiento y análisis.
 - Estudiar, implementar y comparar el rendimiento de diferentes estructuras de datos relevantes para la búsqueda y recuperación de información.
 - Comprender cómo las estructuras de datos y los algoritmos estudiados son fundamentales para el desarrollo de aplicaciones de ciencia de datos, como motores de búsqueda, sistemas de recomendación y análisis de redes sociales.
@@ -25,6 +26,10 @@ Las clases se organizan alrededor de la práctica, por lo que es necesario que l
 Antes de iniciar cada clase deberán responder un cuestionario de repaso, que les permitirá evaluar sus conocimientos y comprensión de los temas del día. Estos cuestionarios son obligatorios.
 
 Como lenguaje de programación utilizaremos Python.
+
+## Aprender haciendo (Learning by doing)
+
+La metodología de enseñanza se basa en el aprendizaje práctico, donde los estudiantes aplicarán los conceptos teóricos a través de ejercicios y proyectos. Se fomentará la experimentación y la resolución de problemas en entornos reales, promoviendo un aprendizaje activo y colaborativo.
 
 ## Evaluaciones
 

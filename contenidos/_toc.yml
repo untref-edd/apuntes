@@ -16,19 +16,20 @@ parts:
     - file: 1-taller-de-python/1-8-instrospeccion
     - file: 1-taller-de-python/1-9-archivos
     - file: 1-taller-de-python/1-10-persistencia
-  - caption: Estructuras de Datos
+  - caption: Grafos
     chapters:
     - file: 2-estructuras-de-datos/2-1-grafos-introduccion
-      sections:
-      - file: 2-estructuras-de-datos/2-2-grafos-orden-topologico
-      - file: 2-estructuras-de-datos/2-3-grafos-caminos-minimos
-      - file: 2-estructuras-de-datos/2-4-grafos-recorridos
-    - file: 2-estructuras-de-datos/2-5-arboles-b
-    - file: 2-estructuras-de-datos/2-6-registros
+    - file: 2-estructuras-de-datos/2-2-grafos-orden-topologico
+    - file: 2-estructuras-de-datos/2-3-grafos-caminos-minimos
+    - file: 2-estructuras-de-datos/2-4-grafos-recorridos
   - caption: Recuperación de la Información
     chapters:
-    - file: 3-recuperacion-de-la-informacion/3-1-xml-y-json
-    - file: 3-recuperacion-de-la-informacion/3-2-regex
-    - file: 3-recuperacion-de-la-informacion/3-3-web-scraping
-    - file: 3-recuperacion-de-la-informacion/3-4-indices-invertidos
+    - file: 3-recuperacion-de-la-informacion/3-0-registros
+    - file: 3-recuperacion-de-la-informacion/3-1-json
+    - file: 3-recuperacion-de-la-informacion/3-2-xml
+    - file: 3-recuperacion-de-la-informacion/3-3-regex
+    - file: 3-recuperacion-de-la-informacion/3-4-web-scraping
+    - file: 3-recuperacion-de-la-informacion/3-5-redes-sociales
+    - file: 3-recuperacion-de-la-informacion/3-6-indices-invertidos
+    - file: 3-recuperacion-de-la-informacion/3-7-indices-arboles-b
 
