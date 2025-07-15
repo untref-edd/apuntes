@@ -15,6 +15,9 @@ execute:
   stderr_output: show
   nb_merge_streams: true
 
+launch_buttons:
+  thebe: true
+
 parse:
   myst_enable_extensions:
     - amsmath
@@ -57,6 +60,7 @@ bibtex_bibfiles:
 sphinx:
   extra_extensions:
     - sphinx_proof
+    - sphinx_thebe
     - bokeh.sphinxext.bokeh_plot
   config:
     language: es
