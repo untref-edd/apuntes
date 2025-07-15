@@ -106,6 +106,6 @@ python --version
 Esto debería mostrar la versión de Python instalada en tu sistema. 
 
 ## Recursos adicionales
-
+i
 - <a href="https://docs.python.org/3/" target="_blank">Documentación Oficial de Python</a>.
 - <a href="https://docs.python.org/es/3.13/tutorial/index.html" target="_blank">Tutorial Oficial de Python</a>.
