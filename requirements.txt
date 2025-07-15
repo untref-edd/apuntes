@@ -1,3 +1,9 @@
 bokeh
 jupyter-book
+matplotlib
+networkx
+pandas
+jupyterlab
+ipykernel
+thebe
 sphinx-proof

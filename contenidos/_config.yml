@@ -10,10 +10,11 @@ only_build_toc_files: true
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 execute:
-  execute_notebooks: force
-  allow_errors: true
-  stderr_output: show
-  nb_merge_streams: true
+  execute_notebooks: off
+#  execute_notebooks: force
+#  allow_errors: true
+#  stderr_output: show
+#  nb_merge_streams: true
 
 parse:
   myst_enable_extensions:
@@ -34,7 +35,7 @@ parse:
     - tasklist
 
 html:
-  use_edit_page_button: true
+  use_edit_page_button: false
   use_repository_button: true
   use_issues_button: true
   comments:
@@ -50,10 +51,17 @@ repository:
   path_to_book: contenidos
   branch: main
 
-#launch_buttons:
-#  binderhub_url: https://mybinder.org/v2/gh/untref-edd/apuntes/HEAD
-#  notebook_interface: jupyterlab
-#  thebe: true
+launch_buttons:
+  binderhub_url: https://mybinder.org
+
+thebe:
+  enabled: true
+  binder_options:
+    repo: untref-edd/apuntes
+    branch: main
+    ref: main
+    binderhub_url: https://mybinder.org
+
 
 # Add a bibtex file so that we can create citations
 bibtex_bibfiles:
