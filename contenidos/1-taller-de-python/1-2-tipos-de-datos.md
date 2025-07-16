@@ -1,6 +1,12 @@
 ---
-file_format: mystnb
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
 kernelspec:
+  display_name: Python 3
+  language: python
   name: python3
 ---
 # Tipos de Datos
@@ -44,29 +50,29 @@ z3 = 1j             # Representación alternativa de un número complejo
 
 En python los tipos númericos se pueden convertir entre sí, ya sea de forma explícita o implícita. 
 
-```{code-cell} python
+```{code-cell}
 float(5)
 ```
 
-```{code-cell} python
+```{code-cell}
 int(3.7)
 ```
 
-```{code-cell} python
+```{code-cell}
 x = 10 + 5.5 # Implicitamente convierte el int a float
 print(x)
 ```
 
 Un operador útil para verificar el tipo de una variable es `type()`:
 
-```{code-cell} python
+```{code-cell}
 y = 10 + (2-3j)  # (12-3j)
 print(type(y))
 ```
 
 No hay que confundir la conversión implícita de tipos con tipado dinámico. En Python, el tipo de una variable se determina en tiempo de ejecución, pero las operaciones entre tipos incompatibles generarán un error.
 
-```{code-cell} python
+```{code-cell}
 # Esto generará un error de tipo
 x = 5 + "10"
 ```
@@ -78,14 +84,14 @@ Una cadena es una secuencia **inmutable** de caracteres.
 Inmutable
 : Un objeto inmutable es aquel cuyo contenido no puede ser modificado una vez creado. En el caso de las cadenas, esto significa que no se pueden cambiar los caracteres individuales de una cadena después de su creación.
 
-```{code-cell} python
+```{code-cell}
 mensaje = 'Hola, mundo'
 mensaje[0] = 'h'  # Esto generará un error
 ```
 
 Si quiero modificar una cadena, debo crear una nueva cadena con el contenido deseado:
 
-```{code-cell} python
+```{code-cell}
 mensaje = 'Hola, mundo'
 mensaje = 'h' + mensaje[1:]  # Crea una nueva cadena
 print(mensaje)
@@ -95,77 +101,77 @@ print(mensaje)
 
 Las cadenas de caracteres están indexadas, es decir, que se puede manipular cada carácter por su posición. El primer carácter tiene índice 0, el segundo 1, y así sucesivamente. También se pueden usar índices negativos para acceder a los caracteres desde el final de la cadena y tajadas o slicing para obtener subcadenas. En las tajadas, el primer parámetro es el índice inicial y el segundo es el índice final (no incluido), similar a Go.
 
-```{code-cell} python
+```{code-cell}
 nombre = "Python"
 print(nombre[0])
 ```
 
-```{code-cell} python
+```{code-cell}
 nombre = "Python"
 print(nombre[-1])
 ```
 
-```{code-cell} python
+```{code-cell}
 nombre = "Python"
 print(nombre[1:4])
 ```
 
-```{code-cell} python
+```{code-cell}
 nombre = "Python"
 print(nombre[:2])
 ```
 
-```{code-cell} python
+```{code-cell}
 nombre = "Python"
 print(nombre[2:])
 ```
 
-```{code-cell} python
+```{code-cell}
 nombre = "Python"
 print(nombre[-3:])    
 ```
 
 Las tajadas o slices en python tienen un tercer parámetro opcional que indica el paso entre los índices. Por ejemplo, `nombre[::2]` devuelve cada segundo carácter de la cadena.
 
-```{code-cell} python
+```{code-cell}
 nombre = "Python"
 print(nombre[::2])       # cadena con paso 2
 ```
 
-```{code-cell} python
+```{code-cell}
 nombre = "Python"
 print(nombre[::-1])      # invierte la cadena
 ```
 
 ### Métodos útiles para manipular cadenas
 
-```{code-cell} python
+```{code-cell}
 texto = "Hola mundo"
 print(texto.upper()) # Convierte a mayúsculas
 ```
 
-```{code-cell} python
+```{code-cell}
 texto = "Hola mundo"
 print(texto.lower()) # Convierte a minúsculas
 ```
 
-```{code-cell} python
+```{code-cell}
 texto = "Hola mundo"
 print(texto.replace("mundo", "Python")) # Reemplaza las apariciones de "mundo"
                                         # por "Python"
 ```
 
-```{code-cell} python
+```{code-cell}
 texto = "Hola mundo"
 print(texto.split())  # Divide la cadena en una lista de palabras, separando por espacios
 ```
 
-```{code-cell} python
+```{code-cell}
 texto = "Hola mundo"
 print("Python" in texto)  # verifica si 'Python' está en texto
 ```
 
-```{code-cell} python
+```{code-cell}
 texto = "Hola mundo"
 len(texto)  # devuelve la longitud de la cadena
 ```
@@ -174,18 +180,18 @@ len(texto)  # devuelve la longitud de la cadena
 
 Las cadenas se pueden concatenar usando el operador `+` o multiplicar por un número entero para repetirlas.
 
-```{code-cell} python
+```{code-cell}
 saludo = "Hola " + "mundo"
 print(saludo)
 ```
 
-```{code-cell} python
+```{code-cell}
 saludo = "Hola mundo"
 saludo2 = saludo*3    # saludo+saludo+saludo
 print(saludo2)
 ```
 
-```{code-cell} python
+```{code-cell}
 saludo = "Hola mundo"
 saludo3 = (saludo + ". ") * 3  # Agrega un punto y un espacio al final
 print(saludo3)
@@ -195,7 +201,7 @@ print(saludo3)
 
 Las cadenas de caracteres son iterables, lo que significa que se pueden recorrer carácter por carácter usando un bucle `for`.
 
-```{code-cell} python
+```{code-cell}
 for caracter in "Python":
   print(caracter)
 ```
@@ -206,7 +212,7 @@ El formateo de cadenas permite insertar valores en una cadena de texto de manera
 
 - Usando el método `format()`
 
-```{code-cell} python
+```{code-cell}
 nombre = "Juan"
 edad = 30
 mensaje = "Hola, mi nombre es {} y tengo {} años.".format(nombre, edad)
@@ -215,7 +221,7 @@ print(mensaje)
 
 - Usando f-strings (Python 3.6+)
 
-```{code-cell} python
+```{code-cell}
 nombre = "Ana"
 edad = 32
 mensaje = f"Hola, mi nombre es {nombre} y tengo {edad} años."
@@ -226,7 +232,7 @@ La letra `f` antes de la cadena indica que es una f-string, lo que permite inser
 
 - Usando el operador `%` (menos recomendado)
 
-```{code-cell} python
+```{code-cell}
 nombre = "Eva"
 edad = 28
 mensaje = "Hola, mi nombre es %s y tengo %d años." % (nombre, edad)
@@ -237,7 +243,7 @@ El caracter `%` se usa para formatear cadenas, donde `%s` es un marcador de posi
 
 El caracter de escape `\` se utiliza para insertar caracteres especiales en una cadena, como comillas, saltos de línea o tabulaciones.
 
-```{code-cell} python
+```{code-cell}
 mensaje = "Hola, \"mundo\".\n¿Cómo estás?"
 print(mensaje)
 ```
@@ -245,12 +251,12 @@ print(mensaje)
 
 Otra forma de usar comillas dobles en una cadena es usar comillas simples para delimitar la cadena:
 
-```{code-cell} python
+```{code-cell}
 mensaje = 'Hola, "mundo".\n¿Cómo estás?'
 print(mensaje)
 ```
 
-```{code-cell} python
+```{code-cell}
 mensaje = "Hola, \tmundo."  # \t inserta una tabulación
 print(mensaje)
 ```
@@ -270,42 +276,42 @@ Mutables
 
 ### Operaciones básicas
 
-```{code-cell} python
+```{code-cell}
 numeros = [1, 2, 3, 4]  # Lista de números
 numeros.append(5)       # Añade un elemento al final
 print(numeros)
 ```
 
-```{code-cell} python
+```{code-cell}
 numeros = [1, 2, 3, 4]  # Lista de números
 print(numeros[0])
 ```
 
-```{code-cell} python
+```{code-cell}
 numeros = [1, 2, 3, 4]  # Lista de números
 print(numeros[1:3])
 ```
 
-```{code-cell} python
+```{code-cell}
 numeros = [1, 2, 3, 4]  # Lista de números
 numeros.remove(3)       # Elimina el primer elemento que coincida con el valor
 print(numeros)
 ```
 
-```{code-cell} python
+```{code-cell}
 mezcla = [1, "dos", 3.0, True]  # Lista con diferentes tipos de datos
 mezcla[0] = "uno"  # Modifica el primer elemento
 print(mezcla)
 ```
 
-```{code-cell} python
+```{code-cell}
 numeros = [1, 2, 3, 4]  # Lista de números
 mezcla = [1, "dos", 3.0, True]  # Lista con diferentes tipos de datos
 mezcla = mezcla + numeros  # Concatenación de listas
 print(mezcla)
 ```
 
-```{code-cell} python
+```{code-cell}
 numeros = [1, 2, 3, 4]  # Lista de números
 numeros = numeros * 2  # Repite la lista
 print(numeros)
@@ -313,19 +319,19 @@ print(numeros)
 
 La lista vacía se puede definir con corchetes vacíos `[]` o con la función `list()`:
 
-```{code-cell} python
+```{code-cell}
 lista_vacia = []  # Lista vacía
 print(lista_vacia)
 ```
 
-```{code-cell} python
+```{code-cell}
 lista_vacia2 = list()  # Otra forma de crear una lista vacía
 print(lista_vacia2)
 ```
 
 ### Iteración
 
-```{code-cell} python
+```{code-cell}
 numeros = [1, 2, 3, 4]  # Lista de números
 for n in numeros:
   print(n)
@@ -335,7 +341,7 @@ for n in numeros:
 
 Son similares a las listas, **ordenadas** y **polimórficas**, pero **inmutables**, es decir, una vez creada no se puede modificar.
 
-```{code-cell} python
+```{code-cell}
 coordenadas = (10.0, 20.5, 1)
 print(type(coordenadas))
 ```
@@ -344,17 +350,17 @@ Se definen con paréntesis y pueden contener diferentes tipos de datos, mientras
 
 ### Acceso
 
-```{code-cell} python
+```{code-cell}
 coordenadas = (10.0, 20.5, 1)
 print(coordenadas[0])     
 ```
 
-```{code-cell} python
+```{code-cell}
 coordenadas = (10.0, 20.5, 1)
 print(coordenadas[-1])     
 ```
 
-```{code-cell} python
+```{code-cell}
 coordenadas = (10.0, 20.5, 1)
 print(coordenadas[1:])
 ```
@@ -366,7 +372,7 @@ print(coordenadas[1:])
 
 La forma de empaquetar y desempaquetar tuplas es similar a las listas:
 
-```{code-cell} python
+```{code-cell}
 coordenadas = (10.0, 20.5, 1)
 a, b, c = coordenadas  # Desempaquetado
 print("a = ", a)
@@ -374,7 +380,7 @@ print("b = ", b)
 print("c = ", c)
 ```
 
-```{code-cell} python
+```{code-cell}
 a = 10.0
 b = 20.5
 c = 1
@@ -384,12 +390,12 @@ print(tupla2)
 
 La tupla vacía se puede definir con paréntesis vacíos `()` o con la función `tuple()`:
 
-```{code-cell} python
+```{code-cell}
 tupla_vacia = ()  # Tupla vacía
 print(tupla_vacia)
 ```
 
-```{code-cell} python
+```{code-cell}
 tupla_vacia2 = tuple()  # Otra forma de crear una tupla vacía
 print(tupla_vacia2)
 ```
@@ -398,18 +404,18 @@ print(tupla_vacia2)
 
 Tanto las listas como las tuplas se pueden anidar, es decir, se pueden incluir dentro de otras listas o tuplas.
 
-```{code-cell} python
+```{code-cell}
 tupla_anidada = (1, 2, (3, 4), [5, 6])
 for elemento in tupla_anidada:
     print(elemento)
 ```
 
-```{code-cell} python
+```{code-cell}
 tupla_anidada = (1, 2, (3, 4), [5, 6])
 print(tupla_anidada[3][0]) # Accede al primer elemento de la lista anidada
 ```
 
-```{code-cell} python
+```{code-cell}
 tupla_anidada = (1, 2, (3, 4), [5, 6])
 tupla_anidada[3].append(7)  # Modifica la lista anidada
 print(tupla_anidada)
@@ -424,7 +430,7 @@ Las tuplas se pueden iterar de la misma manera que las listas.
 Almacenan pares clave-valor. Las claves deben ser únicas e inmutables (por ejemplo, strings, números o tuplas).
 
 
-```{code-cell} python
+```{code-cell}
 d = dict()  # Crear un diccionario vacío
 d["clave1"] = "valor1"  # Añadir un par clave-valor
 d[25] = "valor2"
@@ -434,7 +440,7 @@ print(d)
 
 También se pueden crear diccionarios, de forma explícita, usando llaves `{}`:
 
-```{code-cell} python
+```{code-cell}
 persona = {"nombre": "Ana", "edad": 30}
 print(persona)
 ```
@@ -443,24 +449,24 @@ print(persona)
 
 Los diccionarios permiten acceder a los valores mediante sus claves. También se pueden modificar, añadir o eliminar pares clave-valor. La sintáxis es similar a las listas o tuplas, pero en lugar de índices, se utilizan claves.
 
-```{code-cell} python
+```{code-cell}
 persona = {"nombre": "Ana", "edad": 30}
 print(persona["nombre"])
 ```
 
-```{code-cell} python
+```{code-cell}
 persona = {"nombre": "Ana", "edad": 30}
 persona["edad"] = 31 # Modifica el valor asociado a la clave "edad"
 print(persona)
 ```
 
-```{code-cell} python
+```{code-cell}
 persona = {"nombre": "Ana", "edad": 30}
 persona["email"] = "ana@mail.com" # Añade una nueva clave-valor
 print(persona)
 ```
 
-```{code-cell} python
+```{code-cell}
 persona = {"nombre": "Ana", "edad": 30, "email": "ana@mail.com"}
 del persona["edad"]  # Elimina la clave "edad"
 print(persona)
@@ -468,24 +474,24 @@ print(persona)
 
 ### Métodos útiles:
 
-```{code-cell} python
+```{code-cell}
 persona = {"nombre": "Ana", "email": "ana@mail.com"}
 print(persona.keys()) # Devuelve una lista con las claves del diccionario
 ```
 
-```{code-cell} python
+```{code-cell}
 persona = {"nombre": "Ana", "email": "ana@mail.com"}
 print(persona.values()) # Devuelve una lista con los valores del diccionario
 ```
 
-```{code-cell} python
+```{code-cell}
 persona = {"nombre": "Ana", "email": "ana@mail.com"}
 print(persona.items()) # Devuelve una lista de tuplas con los pares clave-valor
 ```
 
 Un método muy útil es `get()`, que permite acceder a un valor sin generar un error si la clave no existe:
 
-```{code-cell} python
+```{code-cell}
 persona = {"nombre": "Ana", "email": "ana@mail.com"}
 print(persona.get("nombre", "No encontrado"))  # Devuelve "Ana"
 print(persona.get("edad", "No encontrado"))    # Devuelve "No encontrado"
@@ -493,13 +499,13 @@ print(persona.get("edad", "No encontrado"))    # Devuelve "No encontrado"
 
 `setdefault()` es otro método que permite acceder a un valor y, si la clave no existe, añadirla con un valor por defecto:
 
-```{code-cell} python
+```{code-cell}
 persona = {"nombre": "Ana", "email": "ana@mail.com"}
 print(persona.setdefault("edad", 30)) # Devuelve 30 y añade la clave "edad" con valor 30
 print(persona)
 ```
 
-```{code-cell} python
+```{code-cell}
 persona = {"nombre": "Ana", "edad": 30, "email": "ana@mail.com"}
 lista=persona.setdefault("telefonos",[]) # Añade la clave "telefonos" con una lista vacía
 lista.append("123-456-7890")  # Añade un teléfono a la lista
@@ -510,7 +516,7 @@ print(persona)
 
 Los diccionarios se pueden iterar para acceder a las claves y valores.
 
-```{code-cell} python
+```{code-cell}
 for clave, valor in persona.items():  # Itera sobre los pares clave-valor
   print(f"{clave}: {valor}")
 ```
@@ -520,26 +526,26 @@ for clave, valor in persona.items():  # Itera sobre los pares clave-valor
 ## Conjuntos (`set`)
 Los conjuntos son colecciones **no ordenadas** de elementos únicos. No permiten duplicados y no tienen un índice asociado a sus elementos.
 
-```{code-cell} python
+```{code-cell}
 conjunto = {1, 2, 3, 4, 5}
 print(conjunto)
 ```
 
 El conjunto vacío se puede definir con la función `set()`:
 
-```{code-cell} python
+```{code-cell}
 conjunto_vacio = set()  # Conjunto vacío
 print(type(conjunto_vacio))
 ```
 
-```{code-cell} python
+```{code-cell}
 conjunto_vacio2 = {}  # Esto crea un diccionario vacío, no un conjunto
 print(type(conjunto_vacio2))
 ``` 
 
 Para agregar un elemento a un conjunto, se utiliza el método `add()`:
 
-```{code-cell} python
+```{code-cell}
 conjunto = {1, 2, 3, 4, 5}
 conjunto.add(6)  # Añade el elemento 6 al conjunto
 print(conjunto)
@@ -547,7 +553,7 @@ print(conjunto)
 
 Si intentamos agregar un elemento que ya existe, no se producirá un error, pero el conjunto no cambiará:
 
-```{code-cell} python
+```{code-cell}
 conjunto = {1, 2, 3, 4, 5, 6}
 conjunto.add(6)  # No se añade, ya que 6 ya está en el conjunto
 print(conjunto)
@@ -555,7 +561,7 @@ print(conjunto)
 
 Se puede crear un conjunto a partir de una lista o tupla usando la función `set()`:
 
-```{code-cell} python
+```{code-cell}
 lista = [1, 2, 3, 4, 5, 5]
 conjunto_desde_lista = set(lista)  # Crea un conjunto a partir de una lista
 print(conjunto_desde_lista)  # Elimina duplicados automáticamente
@@ -563,13 +569,13 @@ print(conjunto_desde_lista)  # Elimina duplicados automáticamente
 
 Para eliminar un elemento de un conjunto, se utiliza el método `remove()` o `discard()`. La diferencia es que `remove()` genera un error si el elemento no existe, mientras que `discard()` no lo hace:
 
-```{code-cell} python
+```{code-cell}
 conjunto = {1, 2, 3, 4, 5, 6}
 conjunto.remove(7) # Genera un error, ya que 7 no está en el conjunto
 print(conjunto)
 ```
 
-```{code-cell} python
+```{code-cell}
 conjunto = {1, 2, 3, 4, 5, 6}
 conjunto.discard(7)  # No genera error
 print(conjunto)
@@ -577,14 +583,14 @@ print(conjunto)
 
 el operador `in` se puede usar para verificar si un elemento está en un conjunto:
 
-```{code-cell} python
+```{code-cell}
 conjunto = {1, 2, 3, 4, 5, 6}
 print(3 in conjunto)
 ```
 
 No se puede acceder a los elementos de un conjunto por índice, ya que no están ordenados. Sin embargo, se pueden iterar:
 
-```{code-cell} python
+```{code-cell}
 conjunto = {1, 2, 3, 4, 5, 6}
 for elemento in conjunto:
   print(elemento)
@@ -593,21 +599,21 @@ for elemento in conjunto:
 Los conjuntos son útiles para realizar operaciones matemáticas como unión, intersección, diferencia y diferencia simétrica.
 
 ### Operaciones con conjuntos
-```{code-cell} python
+```{code-cell}
 # Unión
 conjunto1 = {1, 2, 3, 4, 5, 6}
 conjunto2 = {4, 5, 6, 7}
 print (conjunto1, " union ", conjunto2, "=", conjunto1 | conjunto2)
 ```
 
-```{code-cell} python
+```{code-cell}
 # Intersección
 conjunto1 = {1, 2, 3, 4, 5, 6}
 conjunto2 = {4, 5, 6, 7}
 print(conjunto1, " interseccion ", conjunto2, "=", conjunto1 & conjunto2)
 ```
 
-```{code-cell} python
+```{code-cell}
 # Diferencia
 conjunto1 = {1, 2, 3, 4, 5, 6}
 conjunto2 = {4, 5, 6, 7}
@@ -615,7 +621,7 @@ print(conjunto1, " diferencia ", conjunto2, "=", conjunto1 - conjunto2)
 print(conjunto2, " diferencia ", conjunto1, "=", conjunto2 - conjunto1)
 ```
 
-```{code-cell} python
+```{code-cell}
 # Diferencia simétrica
 conjunto1 = {1, 2, 3, 4, 5, 6}
 conjunto2 = {4, 5, 6, 7}
@@ -623,14 +629,14 @@ print(conjunto1, " diferencia simetrica ", conjunto2, "=", conjunto1 ^ conjunto2
 print(conjunto2, " diferencia simetrica ", conjunto1, "=", conjunto2 ^ conjunto1)
 ```
 
-```{code-cell} python
+```{code-cell}
 conjunto = {1, 2, 3, 4, 5, 6}
 # Subconjunto
 es_subconjunto = {1, 2} <= conjunto
 print("{1, 2} es subconjunto de", conjunto, "?: ", es_subconjunto)
 ```
 
-```{code-cell} python
+```{code-cell}
 conjunto = {1, 2, 3, 4, 5, 6}
 # Superconjunto
 es_superconjunto = {1, 2} >= conjunto

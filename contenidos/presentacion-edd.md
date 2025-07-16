@@ -1,6 +1,12 @@
 ---
-file_format: mystnb
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
 kernelspec:
+  display_name: Python 3
+  language: python
   name: python3
 ---
 # Estructuras de Datos
@@ -29,7 +35,7 @@ Como lenguaje de programación utilizaremos Python.
 
 ## Aprender haciendo (Learning by doing)
 
-La metodología de enseñanza se basa en el aprendizaje práctico, donde los estudiantes aplicarán los conceptos teóricos a través de ejercicios y proyectos. Se fomentará la experimentación y la resolución de problemas en entornos reales, promoviendo un aprendizaje activo y colaborativo.
+La metodología de enseñanza se basa en el aprendizaje práctico, donde los estudiantes tienen que aplicar los conceptos teóricos a través de ejercicios y proyectos. Se fomenta la experimentación y la resolución de problemas en entornos reales, promoviendo un aprendizaje activo y colaborativo.
 
 ## Evaluaciones
 

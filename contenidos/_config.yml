@@ -10,7 +10,7 @@ only_build_toc_files: true
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 execute:
-  execute_notebooks: force
+  execute_notebooks: auto
   allow_errors: true
   stderr_output: show
   nb_merge_streams: true
@@ -62,8 +62,12 @@ sphinx:
     - sphinx_proof
     - sphinx_thebe
     - bokeh.sphinxext.bokeh_plot
+    - sphinxcontrib.bibtex
   config:
     language: es
+    bibtex_bibfiles:
+      - references.bib
+    bibtex_default_style: plain
     bibtex_reference_style: author_year
     proof_minimal_theme: true
     html_static_path:
