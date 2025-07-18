@@ -642,3 +642,26 @@ conjunto = {1, 2, 3, 4, 5, 6}
 es_superconjunto = {1, 2} >= conjunto
 print("{1, 2} es superconjunto de", conjunto, "?: ", es_superconjunto)
 ```
+
+Existen otros tipos de conjuntos que permiten almacenar elementos únicos, pero que una vez creados no se pueden modificar, se llaman **conjuntos inmutables** o **frozensets**. Se crean usando la función `frozenset()`:
+
+```{code-cell}
+conjunto_inmutable = frozenset([1, 2, 3, 4, 5])
+print(conjunto_inmutable)
+``` 
+
+Los conjuntos inmutables son útiles cuando se necesita un conjunto que no cambie a lo largo del tiempo, por ejemplo, como claves en un diccionario o elementos en otro conjunto.
+
+Los métodos de los conjuntos inmutables son limitados, ya que no se pueden modificar. Por ejemplo, no se pueden usar `add()` o `remove()`, pero sí se pueden usar operaciones como unión, intersección y diferencia.
+
+```{code-cell}
+conjunto_inmutable = frozenset([1, 2, 3, 4, 5])
+conjunto2 = frozenset([4, 5, 6, 7])
+print(conjunto_inmutable | conjunto2)  # Unión
+print(conjunto_inmutable & conjunto2)  # Intersección
+print(conjunto_inmutable - conjunto2)  # Diferencia
+print(conjunto2 - conjunto_inmutable)  # Diferencia
+print(conjunto_inmutable ^ conjunto2)  # Diferencia simétrica
+```
+
+El resultado de estas operaciones es un nuevo conjunto inmutable, ya que el conjunto original no se modifica.
