@@ -238,7 +238,7 @@ print(math.nan)  # Imprime el valor de NaN (Not a Number)
 
 Para definir un módulo propio se crea un archivo con extensión `.py` y se pueden definir variables y funciones que serán accesibles desde otros módulos al importarlos. El nombre del módulo es el nombre del archivo sin la extensión `.py`.
 
-A modo de ejemplo, se muestra un módulo simple que implementa una pila (_stack_) utilizando una lista y Objetos. Más adelante veremos en detalle la [Programación Orientada a Objetos (POO)]{#Programación Orientada a Objetos (POO)} en Python, pero aquí se muestra un ejemplo de un módulo y como se documenta cada parte del código.
+A modo de ejemplo, se muestra un módulo simple que implementa una pila (_stack_) utilizando una lista y Objetos. Más adelante veremos en detalle la [Programación Orientada a Objetos (POO)](1-6-poo.md) en Python, pero aquí se muestra un ejemplo de un módulo y como se documenta cada parte del código.
 
 ```{literalinclude} ../_static/code/stack/stack.py
 :lineno-match:
