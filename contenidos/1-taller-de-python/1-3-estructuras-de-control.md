@@ -36,10 +36,8 @@ print(f"Categoría: {categoria}")
 ### Operadores lógicos y comparación
 
 ```{code-cell}
-# Python usa palabras en lugar de símbolos
 x, y, z = 5, 10, 15 
 
-# Equivalentes a && || ! en otros lenguajes
 if x < y and y < z:          # and = && en Java/Go
     print("Orden ascendente")
 

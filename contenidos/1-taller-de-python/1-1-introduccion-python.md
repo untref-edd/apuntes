@@ -11,15 +11,13 @@ kernelspec:
 ---
 # Introducción a Python
 
-Python es un lenguaje de programación multipropósito, creado a fines de los años 80 por <a href="https://es.wikipedia.org/wiki/Guido_van_Rossum" target="_blank">Guido van Rossum</a>.
+Python es un lenguaje de programación multipropósito, creado a fines de los años 80 por [Guido van Rossum](https://es.wikipedia.org/wiki/Guido_van_Rossum){target="_blank"}.
 
-```{figure} ../assets/images/python-logo-generic.svg
-:alt: Logo de Python
-:width: 200px
-:align: center
+<div align="center">
 
-Logo oficial de Python
-```
+[![Logo de Python](../assets/images/python-logo-generic.svg){width=200px}](https://python.org){target="_blank"}
+
+</div>
 
 ## Historia y filosofía
 
