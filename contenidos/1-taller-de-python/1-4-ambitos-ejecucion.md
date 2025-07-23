@@ -187,8 +187,8 @@ Esta versatilidad de poder definir una función dentro de otra lleva a las claus
 
 Para que una función sea una clausura, debe cumplir dos condiciones: 
  
- - Debe ser una función anidada (una función definida dentro de otra función).
- - Debe referenciar variables de su ámbito externo (no global, no local a ella misma). Estas variables se conocen como **referencias externas**.
+- Debe ser una función anidada (una función definida dentro de otra función).
+- Debe referenciar variables de su ámbito externo (no global, no local a ella misma). Estas variables se conocen como **referencias externas**.
   
 ```{code-cell}
 ---

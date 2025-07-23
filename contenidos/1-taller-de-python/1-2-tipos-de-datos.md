@@ -445,7 +445,7 @@ persona = {"nombre": "Ana", "edad": 30}
 print(persona)
 ```
 
-### Acceso y modificación:
+### Acceso y modificación
 
 Los diccionarios permiten acceder a los valores mediante sus claves. También se pueden modificar, añadir o eliminar pares clave-valor. La sintáxis es similar a las listas o tuplas, pero en lugar de índices, se utilizan claves.
 
@@ -524,6 +524,7 @@ for clave, valor in persona.items():  # Itera sobre los pares clave-valor
 
 
 ## Conjuntos (`set`)
+
 Los conjuntos son colecciones **no ordenadas** de elementos únicos. No permiten duplicados y no tienen un índice asociado a sus elementos.
 
 ```{code-cell}
@@ -599,6 +600,7 @@ for elemento in conjunto:
 Los conjuntos son útiles para realizar operaciones matemáticas como unión, intersección, diferencia y diferencia simétrica.
 
 ### Operaciones con conjuntos
+
 ```{code-cell}
 # Unión
 conjunto1 = {1, 2, 3, 4, 5, 6}
