@@ -665,3 +665,43 @@ print(conjunto_inmutable ^ conjunto2)  # Diferencia simétrica
 ```
 
 El resultado de estas operaciones es un nuevo conjunto inmutable, ya que el conjunto original no se modifica.
+
+## Generación de colecciones de datos por comprensión (_comprehension_)
+
+Las comprensiones de listas, tuplas y diccionarios son una forma concisa de crear colecciones en Python. Permiten aplicar una expresión a cada elemento de una colección existente, filtrando o transformando los elementos según sea necesario.
+
+```{code-cell}
+numeros = [x for x in range(1, 6)]  # Lista de números del 1 al 5
+cuadrados = [x**2 for x in numeros]
+print(cuadrados)  # Salida: [1, 4, 9, 16, 25]
+```
+
+Si en lugar de corchetes `[]` se usan paréntesis `()`, se crea una tupla en lugar de una lista:
+
+```{code-cell}
+numeros = (x for x in range(1, 6))  # Tupla de números del 1 al 5
+cuadrados = (x**2 for x in numeros)
+print(cuadrados)  # Salida: (1, 4, 9, 16, 25)
+```
+
+Si se usan llaves `{}`, se crea un conjunto o un diccionario, dependiendo de si se especifica una clave o un par clave-valor:
+
+```{code-cell}
+numeros = {x for x in range(1, 6)}  # Conjunto de números del 1 al 5
+cuadrados = {x**2 for x in numeros}
+print(cuadrados)  # Salida: {1, 4, 9, 16, 25}
+```
+
+```{code-cell}
+numeros = {'uno': 1, 'dos': 2, 'tres': 3}
+cuadrados = {clave: valor**2 for clave, valor in numeros.items()}
+print(cuadrados)  # Salida: {'uno': 1, 'dos': 4, 'tres': 9}
+```
+
+```{code-cell}
+diccionario = {'nombre': 'Ana', 'edad': 30, 'email': 'ana@example.com'}
+tuplas = [(clave, valor) for clave, valor in diccionario.items()]
+print(tuplas)
+```
+
+La comprensión es una característica funcional de Python muy poderosa.
