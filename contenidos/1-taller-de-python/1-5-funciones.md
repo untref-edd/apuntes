@@ -74,7 +74,7 @@ def sumar(*numeros):
 
 print(sumar(1, 2, 3))  # Salida: 6
 print(sumar(4, 5, 6, 7, 8))  # Salida: 30
-``` 
+```  
 
 ### Parámetros Nombrados Variables
 
@@ -109,6 +109,7 @@ Si en una misma función se utilizan parámetros posicionnales, nombreados, posi
 3. Parámetros posicionales variables (`*args`)
 4. Parámetros nombrados variables (`**kwargs`)
 ```
+
 Por ejemplo:
 
 ```{code-cell}
@@ -174,9 +175,10 @@ La **programación funcional** es un paradigma de programación declarativo basa
 
 Funciones de orden superior
 : Son aquellas que pueden:
-  - Recibir otras funciones como argumentos.
-  - Retornar una función como resultado.
-  - Ser asignadas a variables.
+
+- Recibir otras funciones como argumentos.
+- Retornar una función como resultado.
+- Ser asignadas a variables.
 
 En el paradigma funcional en general y a diferencia del imperativo, la programación consiste en especificar el **Qué** y no el **Cómo** se resuelve un problema.
 
@@ -225,7 +227,7 @@ Las funciones de orden superior, las funciones anónimas, la generación de dato
 Mapeo
 : Aplicar una función a cada elemento de una colección.
 
-La función que mapea los elementos de una colección a otra debe ser una **función que toma un solo argumento y devuelve un valor**. 
+La función que mapea los elementos de una colección a otra debe ser una **función que toma un solo argumento y devuelve un valor**.
 
 ```{code-cell}
 def mapear(func, iterable):
@@ -253,7 +255,7 @@ print(f"Cuadrados: {tupla}")
 Filtrado
 : Seleccionar elementos de una colección que cumplen con una condición.
 
-La función que filtra los elementos de una colección debe ser una **función que toma un solo argumento y devuelve un valor booleano**. 
+La función que filtra los elementos de una colección debe ser una **función que toma un solo argumento y devuelve un valor booleano**.
 
 ```{code-cell}
 def filtrar(func, iterable):
@@ -270,7 +272,7 @@ print(f"Números pares: {pares}")
 
 En este caso la función de filtrado es una función anónima `lambda x: x % 2 == 0`. Las funciones anónimas siempre devuelven el resultado de la última expresión evaluada, por lo que no es necesario utilizar `return`.
 
-Python también proporciona la función `filter` para realizar filtrado de manera más concisa. `filter` devuelve un iterador que contiene los elementos de la colección que cumplen con la condición especificada por la función de filtrado. 
+Python también proporciona la función `filter` para realizar filtrado de manera más concisa. `filter` devuelve un iterador que contiene los elementos de la colección que cumplen con la condición especificada por la función de filtrado.
 
 ```{code-cell}
 numeros = [x for x in range(10)]
@@ -354,7 +356,7 @@ funcion_decorada = decorador(funcion_original)
 funcion_decorada(5)  
 ```
 
-La función `decorador` toma una función `func` como argumento y devuelve una nueva función, `funcion_decorada` que agrega el mensaje _"El resultado de la operación es : "_ al resultado de la función original.
+La función `decorador` toma una función `func` como argumento y devuelve una nueva función, `funcion_decorada` que agrega el mensaje *El resultado de la operación es : "* al resultado de la función original.
 
 ```{Note}
 En este ejemplo se ultiliza `*args` y `**kwargs` para permitir que la función decorada acepte cualquier número de argumentos posicionales y nombrados, lo que la hace más flexible. En la línea 7, la expresión `func(*args, **kwargs)` invoca a la función original con los argumentos que le pasaron a la función decorada.

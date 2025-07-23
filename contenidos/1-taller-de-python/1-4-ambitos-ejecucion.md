@@ -10,6 +10,7 @@ kernelspec:
   name: python3
 ---
 # Ámbitos de Ejecución
+
 Este capítulo profundizaremos sobre el manejo de variables en Python, contrastándolo con lo que ya conocemos de Go y Java. Aunque los conceptos fundamentales de variables son universales, Python introduce matices importantes en su gestión, especialmente en lo que respecta a la inmutabilidad de ciertos tipos de datos, los ámbitos de ejecución y la poderosa característica de las clausuras.
 
 ## Variables y Asignación
@@ -37,14 +38,13 @@ Si la variable ya tenía una referencia a otro objeto, esa referencia se pierde 
     webkitallowfullscreen="true">
 </iframe>
 
-
 Esto contrasta con Go y Java, donde la asignación de una variable puede implicar la creación de una copia del valor (especialmente para tipos primitivos).
 
 ## Tipos de Datos y Mutabilidad
 
 En Python **todo es un objeto**, por lo tanto tanto podemos pensar que todas las variables son referencias a objetos en el _heap_. La distinción importante es si un objeto es mutable o inmutable.
 
-### Tipos Inmutables (como los "primitivos" en Java/Go):
+### Tipos Inmutables (como los "primitivos" en Java/Go)
 
 - Booleanos (`bool`)
 - Números (`int`, `float`, `complex`)
@@ -74,14 +74,13 @@ print(f"s1: {s1}, s2: {s2}") # Salida: s1: hola mundo, s2: hola
 
 En este fragmento, `s1` y `s2` inicialmente referencian al mismo objeto, la cadena "hola". Al modificar `s1`, se crea un nuevo objeto cadena "hola mundo", y `s1` ahora apunta a este nuevo objeto, mientras que `s2` sigue apuntando al antiguo objeto "hola".
 
-
-### Tipos Mutables (como los objetos en Java/Go):
+### Tipos Mutables (como los objetos en Java/Go)
 
 - Listas (list)
 - Diccionarios (dict)
 - Conjuntos (set)
 - Objetos de clases personalizadas
- 
+
 Cuando se modifica un objeto mutable, se altera el objeto en su lugar. Si múltiples variables referencian al mismo objeto mutable, todas verán los cambios.
 
 ```{code-cell}
@@ -90,6 +89,7 @@ lista2 = lista1 # lista1 y lista2 referencian a la misma lista
 lista1.append(4) # Modifica la lista original
 print(f"lista1: {lista1}, lista2: {lista2}") 
 ```
+
 <iframe
     src="../_static/ppts/3-DatosMutables.pdf#page=1&toolbar=0&navpanes=0&scrollbar=0&view=FitH"
     frameborder="0"
@@ -121,6 +121,7 @@ Variables especiales
 ```{Warning}
 Todas las variables en Python son accesibles desde fuera del módulo o clase, incluso las privadas. La convención de nomenclatura es solo una guía para los desarrolladores y no impide el acceso a las variables.
 ```
+
 ## Ámbitos de Ejecución (Scopes): La Regla LEGB
 
 Python define un sistema de ámbitos para resolver nombres (variables, funciones, clases, etc.). Este sistema se conoce comúnmente como la regla LEGB:
@@ -147,6 +148,7 @@ name: ambitos
 ```
 
 ### Ámbito Local (L)
+
 Las variables definidas dentro de una función son locales a esa función. Esto significa que solo son accesibles dentro de la función y no pueden ser accedidas desde fuera de ella. Una vez que la función termina su ejecución, las variables locales se eliminan de la memoria.
 
 Si hay variables globales definidas con el mismo nombre de las variables locales, entonces las locales **ocultan** las globales. Esto se conoce como **Ocultamiento** de variables (_shadowing_).
@@ -185,8 +187,8 @@ En Python, las funciones son ciudadanos de primera clase, lo que significa que P
 
 Esta versatilidad de poder definir una función dentro de otra lleva a las clausuras, que son una característica poderosa y distintiva de Python. Las clausuras permiten que una función anidada acceda a variables del ámbito de su función envolvente, incluso después de que la función envolvente haya terminado su ejecución.
 
-Para que una función sea una clausura, debe cumplir dos condiciones: 
- 
+Para que una función sea una clausura, debe cumplir dos condiciones:
+
 - Debe ser una función anidada (una función definida dentro de otra función).
 - Debe referenciar variables de su ámbito externo (no global, no local a ella misma). Estas variables se conocen como **referencias externas**.
   
@@ -208,7 +210,7 @@ Al ejecutar el fragmento anterior ocurre lo siguiente:
 
 1. En la línea 1 se define la función `fabrica_incrementos` que recibe un parámetro `y`. El código de la función (hasta la línea 4) se guarda en memoria. Es un valor más. El nombre de la función `fabrica_incrementos` se guarda en el ámbito global y es la referencia que permite acceder al objeto función.
 
-2. En la línea 6 se llama a `fabrica_incrementos(2)` y el resultado de esa operación (la función interna `incrementar`) se va a asignar a la variable `incrementar_2`. En este momento, `y` tiene el valor 2 y se guarda en la clausura de la función interna `incrementar`. 
+2. En la línea 6 se llama a `fabrica_incrementos(2)` y el resultado de esa operación (la función interna `incrementar`) se va a asignar a la variable `incrementar_2`. En este momento, `y` tiene el valor 2 y se guarda en la clausura de la función interna `incrementar`.
 
 3. El valor devuelto por `fabrica_incrementos` es una función que queda ligada a la variable `incrementar_2`. `incrementar_2` contiene el valor de `y`, al momento de su creación, en su clausura. Esto significa que `incrementar_2` "recuerda" el valor de `y` aunque `fabrica_incrementos` ya haya terminado su ejecución.
 
@@ -222,7 +224,7 @@ Para Python todas las variables son referencias, incluido los nombres de las fun
 
 ### Ámbito Global (G)
 
-El ámbito global se refiere a las variables definidas en el nivel superior de un módulo. Estas variables son accesibles desde cualquier parte del módulo, incluidas las funciones. 
+El ámbito global se refiere a las variables definidas en el nivel superior de un módulo. Estas variables son accesibles desde cualquier parte del módulo, incluidas las funciones.
 
 Al declarar un módulo se puede incluir variables y constantes globales que pueden ser utilizadas en todo el código del módulo. A modo de ejemplo podemos ver las constantes matemáticas definidas en el módulo `math`, como `math.pi` o `math.e`.
 
@@ -245,7 +247,7 @@ A modo de ejemplo, se muestra un módulo simple que implementa una pila (_stack_
 :linenos:
 ```
 
-A partir de la línea 246, donde se define la función `demo_stack`, se muestra cómo se puede utilizar el módulo `stack` para crear una pila, agregar elementos y eliminarlos. 
+A partir de la línea 246, donde se define la función `demo_stack`, se muestra cómo se puede utilizar el módulo `stack` para crear una pila, agregar elementos y eliminarlos.
 
 Es común que los módulos tengan un bloque de código al final que se ejecuta solo si el módulo se ejecuta directamente, no cuando se importa. Esto se logra utilizando la siguiente estructura:
 
@@ -272,4 +274,4 @@ def mi_funcion():
     len = 4
     print(len("Mundo"))  # Error
 mi_funcion()  # Llama a la función que imprime la longitud de "Mundo"
-```     
+```

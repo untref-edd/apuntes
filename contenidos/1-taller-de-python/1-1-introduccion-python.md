@@ -24,8 +24,8 @@ Python es un lenguaje de programación multipropósito, creado a fines de los a�
 > *Guido Van Rossum es el principal autor de Python, y su continuo rol central en decidir la dirección de Python es reconocido, refiriéndose a él como Benevolente Dictador Vitalicio (en inglés: Benevolent Dictator for Life, BDFL); sin embargo el 12 de julio de 2018 declinó de dicha situación de honor sin dejar un sucesor o sucesora y con una declaración altisonante:*
 >
 > > ***"Entonces, ¿qué van a hacer todos ustedes? ¿Crear una democracia? ¿Anarquía? ¿Una dictadura? ¿Una federación?"***
-> 
-> Fuente: <a href="https://es.wikipedia.org/wiki/Python" target="_blank">Wikipedia</a>
+>
+> [Fuente Wikipedia](https://es.wikipedia.org/wiki/Python){target="_blank"}
 
 ### El Zen de Python
 
@@ -41,11 +41,11 @@ Estos principios enfatizan la importancia de escribir código claro, legible y e
 
 ### Multiparadigma
 
-Python es un lenguaje de programación **orientado a objetos, introspectivo y reflexivo, imperativo y funcional**. 
+Python es un lenguaje de programación **orientado a objetos, introspectivo y reflexivo, imperativo y funcional**.
 
 Permite usar diferentes estilos de programación según las necesidades del proyecto, incluso combinando varios estilos en un mismo proyecto.
 
-La programación imperativa se basa en la ejecución secuencial de instrucciones. Para realizar una tarea se debe programar paso a paso especificando _**como**_ se debe hacer.
+La programación imperativa se basa en la ejecución secuencial de instrucciones. Para realizar una tarea se debe programar paso a paso especificando ***como*** se debe hacer.
 
 ```{code-cell}
 # Programación imperativa
@@ -58,7 +58,7 @@ def factorial(n):
 print(f"Factorial de 5: {factorial(5)}")
 ```
 
-La programación funcional se basa en el uso de funciones puras y evita el estado mutable. Se enfoca en _**que**_ se debe hacer, utilizando funciones de orden superior y evitando efectos secundarios. En el capítulo de funciones profundizaremos un poco más en este paradigma.
+La programación funcional se basa en el uso de funciones puras y evita el estado mutable. Se enfoca en ***que*** se debe hacer, utilizando funciones de orden superior y evitando efectos secundarios. En el capítulo de funciones profundizaremos un poco más en este paradigma.
 
 ```{code-cell}
 # Quicksort en una línea (programación funcional)
@@ -231,7 +231,6 @@ pip3 --version
 ````
 `````
 
-
 ## Recursos adicionales
 
 Para profundizar en el aprendizaje de Python, se recomienda consultar la documentación oficial, especialmente {cite}`python_tutorial_es`, que proporciona una introducción completa y detallada al lenguaje.
@@ -249,5 +248,3 @@ Para profundizar en el aprendizaje de Python, se recomienda consultar la documen
 - <a href="https://wiki.python.org/moin/BeginnersGuide" target="_blank">Python.org Beginner's Guide</a>
 - <a href="https://automatetheboringstuff.com/" target="_blank">Automate the Boring Stuff</a> - Libro gratuito
 ```
-````
-

@@ -48,7 +48,7 @@ z3 = 1j             # Representación alternativa de un número complejo
 
 ### Conversión de tipos
 
-En python los tipos númericos se pueden convertir entre sí, ya sea de forma explícita o implícita. 
+En python los tipos númericos se pueden convertir entre sí, ya sea de forma explícita o implícita.
 
 ```{code-cell}
 float(5)
@@ -197,7 +197,7 @@ saludo3 = (saludo + ". ") * 3  # Agrega un punto y un espacio al final
 print(saludo3)
 ```
 
-### Iteración
+### Iteración sobre cadenas de caracteres
 
 Las cadenas de caracteres son iterables, lo que significa que se pueden recorrer carácter por carácter usando un bucle `for`.
 
@@ -247,6 +247,7 @@ El caracter de escape `\` se utiliza para insertar caracteres especiales en una 
 mensaje = "Hola, \"mundo\".\n¿Cómo estás?"
 print(mensaje)
 ```
+
 `\n` inserta un salto de línea, y `\"` permite incluir comillas dobles dentro de una cadena delimitada por comillas dobles.
 
 Otra forma de usar comillas dobles en una cadena es usar comillas simples para delimitar la cadena:
@@ -329,7 +330,7 @@ lista_vacia2 = list()  # Otra forma de crear una lista vacía
 print(lista_vacia2)
 ```
 
-### Iteración
+### Iteración sobre listas
 
 ```{code-cell}
 numeros = [1, 2, 3, 4]  # Lista de números
@@ -365,7 +366,7 @@ coordenadas = (10.0, 20.5, 1)
 print(coordenadas[1:])
 ```
 
-### Ventajas:
+### Ventajas
 
 - Más livianas que las listas.
 - Se pueden usar como claves en diccionarios y se pueden empaquetar varios valores en una sola variable, lo que permite que las funciones puedan devolver múltiples valores, o usar tuplas como claves en diccionarios, entre otros usos.
@@ -429,7 +430,6 @@ Las tuplas se pueden iterar de la misma manera que las listas.
 
 Almacenan pares clave-valor. Las claves deben ser únicas e inmutables (por ejemplo, strings, números o tuplas).
 
-
 ```{code-cell}
 d = dict()  # Crear un diccionario vacío
 d["clave1"] = "valor1"  # Añadir un par clave-valor
@@ -472,7 +472,7 @@ del persona["edad"]  # Elimina la clave "edad"
 print(persona)
 ```
 
-### Métodos útiles:
+### Métodos útiles
 
 ```{code-cell}
 persona = {"nombre": "Ana", "email": "ana@mail.com"}
@@ -512,7 +512,7 @@ lista.append("123-456-7890")  # Añade un teléfono a la lista
 print(persona)
 ```
 
-### Iteración
+### Iteración sobre diccionarios
 
 Los diccionarios se pueden iterar para acceder a las claves y valores.
 
@@ -520,8 +520,6 @@ Los diccionarios se pueden iterar para acceder a las claves y valores.
 for clave, valor in persona.items():  # Itera sobre los pares clave-valor
   print(f"{clave}: {valor}")
 ```
-
-
 
 ## Conjuntos (`set`)
 
@@ -542,7 +540,7 @@ print(type(conjunto_vacio))
 ```{code-cell}
 conjunto_vacio2 = {}  # Esto crea un diccionario vacío, no un conjunto
 print(type(conjunto_vacio2))
-``` 
+```
 
 Para agregar un elemento a un conjunto, se utiliza el método `add()`:
 
@@ -650,7 +648,7 @@ Existen otros tipos de conjuntos que permiten almacenar elementos únicos, pero 
 ```{code-cell}
 conjunto_inmutable = frozenset([1, 2, 3, 4, 5])
 print(conjunto_inmutable)
-``` 
+```
 
 Los conjuntos inmutables son útiles cuando se necesita un conjunto que no cambie a lo largo del tiempo, por ejemplo, como claves en un diccionario o elementos en otro conjunto.
 

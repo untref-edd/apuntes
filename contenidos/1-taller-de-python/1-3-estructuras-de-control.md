@@ -237,7 +237,7 @@ for i, (x, y) in enumerate(puntos):
   print(f"Punto {i}: ({x}, {y})")
 ```
 
-## No hay `switch` 
+## No hay `switch`
 
 Python 3.10+ tiene match-case, pero la siguiente construcción usando `if-elif` es más común.
 
