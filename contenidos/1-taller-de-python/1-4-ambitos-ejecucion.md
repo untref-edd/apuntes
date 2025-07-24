@@ -275,3 +275,10 @@ def mi_funcion():
     print(len("Mundo"))  # Error
 mi_funcion()  # Llama a la función que imprime la longitud de "Mundo"
 ```
+
+## Recursos para profundizar
+
+- [Tutorial de Python - Ámbitos de ejecución](https://docs.python.org/es/3/tutorial/classes.html#scopes-and-namespaces){target="_blank"}
+- [Python Scopes and Namespaces (W3Schools)](https://www.w3schools.com/python/python_scope.asp){target="_blank"}
+- [Python Built-in Functions (W3Schools)](https://www.w3schools.com/python/python_ref_functions.asp){target="_blank"}
+  

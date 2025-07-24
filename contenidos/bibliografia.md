@@ -1,4 +1,5 @@
 # Bibliografía
 
 ```{bibliography}
+:all:
 ```

@@ -231,20 +231,14 @@ pip3 --version
 ````
 `````
 
-## Recursos adicionales
+## Recursos para aprender Python
 
-Para profundizar en el aprendizaje de Python, se recomienda consultar la documentación oficial, especialmente {cite}`python_tutorial_es`, que proporciona una introducción completa y detallada al lenguaje.
+Para profundizar en Python, puedes consultar los siguientes recursos:
 
-```{important}
-**Documentación esencial:**
-- <a href="https://docs.python.org/3/" target="_blank">Documentación oficial de Python</a>
-- <a href="https://docs.python.org/es/3.13/tutorial/index.html" target="_blank">Tutorial oficial en español</a>
-- <a href="https://peps.python.org/pep-0008/" target="_blank">PEP 8 - Guía de estilo</a>
-```
-
-```{seealso}
-**Recursos para aprender:**
-- <a href="https://realpython.com/" target="_blank">Real Python</a> - Tutoriales avanzados
-- <a href="https://wiki.python.org/moin/BeginnersGuide" target="_blank">Python.org Beginner's Guide</a>
-- <a href="https://automatetheboringstuff.com/" target="_blank">Automate the Boring Stuff</a> - Libro gratuito
-```
+- [Documentación oficial de Python](https://docs.python.org/es/3/){target="_blank"}
+- [Tutorial de Python](https://docs.python.org/es/3/tutorial/index.html){target="_blank"}
+- [Tutorial de Python en Inglés (W3Schools)](https://www.w3schools.com/python/){target="_blank"}
+- [Guía de estilo PEP 8](https://www.python.org/dev/peps/pep-0008/){target="_blank"}
+- [Dive Into Python 3 (libro gratuito)](https://diveintopython3.net/){target="_blank"}
+- [Comunidad Python en Argentina](https://python.org.ar/){target="_blank"}
+- [Apuntes del curso de Python - HEKTOR DOCS](https://hektorprofe.github.io/python/){target="_blank"}

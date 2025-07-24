@@ -419,3 +419,15 @@ print(siguiente())  # Salida: 2
 ```
 
 La clave está en utilizar `nonlocal` para modificar la variable `i` dentro de la función interna `siguiente`, permitiendo que se mantenga el estado entre llamadas. `i` se almacena en la clausura de siguiente, lo que permite que su valor persista entre invocaciones.
+
+## Recursos para profundizar
+
+- [Tutorial de Python - Funciones](https://docs.python.org/es/3/tutorial/controlflow.html#defining-functions){target="_blank"}
+- [Python Functions (W3Schools)](https://www.w3schools.com/python/python_functions.asp){target="_blank"}
+- [Python Lambda Functions (W3Schools)](https://www.w3schools.com/python/python_lambda.asp){target="_blank"}
+- [Python Iterators (W3Schools)](https://www.w3schools.com/python/python_iterators.asp){target="_blank"}
+- [Funciones Decoradoras (Hektor Profe)](https://hektorprofe.github.io/python/funcionalidades-avanzadas/funciones-decoradoras/){target="_blank"}
+- [Funciones Lambda (Hektor Profe)](https://hektorprofe.github.io/python/funcionalidades-avanzadas/funciones-lambda/){target="_blank"}
+- [Funciones Generadoras (Hektor Profe)](https://hektorprofe.github.io/python/funcionalidades-avanzadas/funciones-generadoras/){target="_blank"}
+- [Función Filter (Hektor Profe)](https://hektorprofe.github.io/python/funcionalidades-avanzadas/funcion-filter/){target="_blank"}
+- [Función Map (Hektor Profe)](https://hektorprofe.github.io/python/funcionalidades-avanzadas/funcion-map/){target="_blank"}

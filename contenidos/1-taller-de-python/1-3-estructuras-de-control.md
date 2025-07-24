@@ -298,3 +298,10 @@ for empleado in empleados:
 | switch/match | `if-elif` o `match-case` (3.10+) | `switch` |
 
 La sintaxis de Python prioriza la legibilidad y expresividad, usando palabras en inglés en lugar de símbolos cuando es posible.
+
+## Recursos para profundizar
+
+- [Tutorial de Python - Estructuras de control](https://docs.python.org/es/3/tutorial/controlflow.html){target="_blank"}
+- [Python for Loops (W3Schools)](https://www.w3schools.com/python/python_for_loops.asp){target="_blank"}
+- [Python While Loops (W3Schools)](https://www.w3schools.com/python/python_while_loops.asp){target="_blank"}
+- [Pyhhon Match Statement (W3Schools)](https://www.w3schools.com/python/python_match.asp){target="_blank"}
