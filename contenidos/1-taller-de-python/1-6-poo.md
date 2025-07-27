@@ -237,7 +237,7 @@ for cls in orden:
     print(cls.__name__)
 ```
 
-Es decir cuando se invoca un método cualquier de un objeto de la clase `Ayudante`, Python primero busca el método en la propia clase `Ayudante`, luego en `Estudiante`, luego en `Docente`, luego en `Persona` y finalmente en `object`. 
+Es decir cuando se invoca un método cualquier de un objeto de la clase `Ayudante`, Python primero busca el método en la propia clase `Ayudante`, luego en `Estudiante`, luego en `Docente`, luego en `Persona` y finalmente en `object`.
 
 Por ese motivo no se puede usar `super()` en el constructor de la clase `Estudiante` ya que si se hiciera, se generaría una ambigüedad en la resolución del método a llamar, ya que `super()` buscaría el siguiente método en la jerarquía de clases, que en este caso sería el constructor de `Docente`, lo que no es lo que se desea.
 
@@ -279,7 +279,14 @@ caption: Programación Orientada a Objetos - Figuras Geométricas
 ```
 
 ```{code-cell}
-:tags: ["hide-cell"]
+:tags: [hide-input, remove-input]
 %run ../_static/code/figuras/main.py
 ```
 
+[Descargar código completo de Figuras Geométricas](https://github.com/untref-edd/apuntes/tree/main/contenidos/_static/code/figuras){target="_blank"}
+
+## Recursos para profundizar
+
+- [Tutorial de Python - Clases](https://docs.python.org/es/3.13/tutorial/classes.html){target="_blank"}
+- [Programación Orientada a Objetos (Hektor Profe)](https://hektorprofe.github.io/python/programacion-orientada-a-objetos/){target="_blank"}
+- [Python - Clases y Objetos (W3Schools)](https://www.w3schools.com/python/python_classes.asp){target="_blank"}
