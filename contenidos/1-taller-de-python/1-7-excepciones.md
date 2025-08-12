@@ -23,7 +23,7 @@ except ExceptionType1:
     # Manejador de excepciones del tipo ExceptionType1
 except (ExceptionType2, ExceptionType3):
     # Manejador de excepciones del tipo ExceptionType2 y ExceptionType3
-except ExceptionType4 as e
+except ExceptionType4 as e:
     # Manejador de excepciones del tipo ExceptionType4
     # e es una variable con información sobre la excepción que se puede
     # usar dentro del handler
