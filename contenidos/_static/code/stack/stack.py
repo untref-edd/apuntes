@@ -23,6 +23,8 @@ Clases:
     Stack: Implementación de pila usando lista interna de Python.
 """
 
+from stack_exception import StackException
+
 
 class Stack:
     """
@@ -71,6 +73,7 @@ class Stack:
             >>> print(stack.size())      # 0
         """
         self._items = []
+
     def push(self, item):
         """
         Agrega un elemento a la cima de la pila.
@@ -108,7 +111,7 @@ class Stack:
             El elemento que estaba en la cima de la pila.
 
         Raises:
-            IndexError: Si se intenta hacer pop en una pila vacía.
+            StackException: Si se intenta hacer pop en una pila vacía.
 
         Complejidad temporal: O(1)
         Complejidad espacial: O(1)
@@ -123,10 +126,10 @@ class Stack:
 
             # Caso de error:
             >>> stack_vacia = Stack()
-            >>> stack_vacia.pop()    # Lanza IndexError
+            >>> stack_vacia.pop()    # Lanza StackException
         """
         if self.is_empty():
-            raise IndexError("pop from empty stack")
+            raise StackException("pop from empty stack")
         return self._items.pop()
 
     def peek(self):
@@ -141,7 +144,7 @@ class Stack:
             El elemento que está en la cima de la pila.
 
         Raises:
-            IndexError: Si se intenta hacer peek en una pila vacía.
+            StackException: Si se intenta hacer peek en una pila vacía.
 
         Complejidad temporal: O(1)
         Complejidad espacial: O(1)
@@ -156,10 +159,10 @@ class Stack:
 
             # Caso de error:
             >>> stack_vacia = Stack()
-            >>> stack_vacia.peek()   # Lanza IndexError
+            >>> stack_vacia.peek()   # Lanza StackException
         """
         if self.is_empty():
-            raise IndexError("peek from empty stack")
+            raise StackException("peek from empty stack")
         return self._items[-1]
 
     def is_empty(self):
@@ -282,12 +285,12 @@ def demo_stack():
     print("\n=== Manejo de errores ===")
     try:
         stack.pop()
-    except IndexError as e:
+    except StackException as e:
         print(f"Error al hacer pop en pila vacía: {e}")
 
     try:
         stack.peek()
-    except IndexError as e:
+    except StackException as e:
         print(f"Error al hacer peek en pila vacía: {e}")
 
 
