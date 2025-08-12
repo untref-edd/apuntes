@@ -1,0 +1,2 @@
+class StackException(Exception):
+    pass
