@@ -213,7 +213,7 @@ En el ejemplo anterior, tanto `Docente` como `Estudiante` tienen un atributo `le
 
 `Ayudante` hereda de ambas clases que tienen un atributo `legajo`, sin embargo el atributo `legajo` no se duplica en un objeto de la clase `Ayudante`. Lo que permite que con el mismo `legajo` de `Estudiante` se pueda pagar al `Docente`.
 
-El siguiente fragmento de código inspecciona los atributos del objeto `ayudante1` y los imprime en la consola (En [Instrospección](1-8-instrospeccion.md) veremos más en detalle como los objetos pueden observarse y modificarse a si mismos en tiempo de ejecución)
+El siguiente fragmento de código inspecciona los atributos del objeto `ayudante1` y los imprime en la consola (En [Instrospección](1-8-introspeccion.md) veremos más en detalle como los objetos pueden observarse y modificarse a si mismos en tiempo de ejecución)
 
 ```{code-cell}
 print("Atributos de ayudante1:")
