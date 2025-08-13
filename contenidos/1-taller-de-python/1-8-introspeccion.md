@@ -130,20 +130,20 @@ help(alice)
 
 ## Uso de `eval()` para evaluar expresiones
 
-La función `eval()` permite ejecutar expresiones Python desde una cadena de texto. Esto puede ser útil para evaluar dinámicamente código, pero debe usarse con precaución debido a implicaciones de seguridad.
 La función `eval()` permite ejecutar expresiones Python desde una cadena de texto. Esto puede ser útil para evaluar dinámicamente código, pero **debe usarse con extrema precaución** debido a implicaciones de seguridad.
-La función `eval()` permite ejecutar expresiones Python desde una cadena de texto. **Advertencia de seguridad:** `eval()` puede ejecutar cualquier código Python, lo que significa que si se usa con entrada no confiable, puede permitir la ejecución de código malicioso. **Nunca uses `eval()` con datos provenientes de usuarios o fuentes externas.**
 
-Por ejemplo, el siguiente código es peligroso si la variable `expresion` proviene de un usuario:
+Por ejemplo, el siguiente código es peligroso si la variable `expresion` proviene de un usuario no confiable:
 
 ```python
 expresion = input("Introduce una expresión: ")
 resultado = eval(expresion)  # ¡Peligroso! El usuario puede ejecutar cualquier código Python.
 print("Resultado de la expresión:", resultado)
-```{admonition} ⚠️ Advertencia de seguridad
-Nunca utilices `eval()` con entradas que provengan de usuarios o fuentes no confiables. Hacerlo puede permitir la ejecución de código malicioso y comprometer la seguridad de tu sistema.
+```
 
-Si necesitas evaluar literales (números, listas, diccionarios, etc.) de forma segura, utiliza `ast.literal_eval()` en lugar de `eval()`.
+```{Important} Advertencia de seguridad
+Nunca se debe utilizar `eval()` con entradas que provengan de usuarios o fuentes no confiables. Hacerlo puede permitir la ejecución de código malicioso y comprometer la seguridad del sistema.
+```
+
 ```{code-cell}
 x = 10
 expresion = "x * 2"
