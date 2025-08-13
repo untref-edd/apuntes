@@ -257,7 +257,7 @@ Evitar atrapar excepciones genéricas sin necesidad
 Usar excepciones específicas primero
 : Ordenar los`except`de más específico a más genérico, ya que Python ejecuta el primero que coincide. Ejemplo:
 
-```{code-block}
+```{code-block} python
 except FileNotFoundError:
     ...
 except OSError:
