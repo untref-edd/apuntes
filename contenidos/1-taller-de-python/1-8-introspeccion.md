@@ -131,7 +131,12 @@ help(alice)
 ## Uso de `eval()` para evaluar expresiones
 
 La función `eval()` permite ejecutar expresiones Python desde una cadena de texto. Esto puede ser útil para evaluar dinámicamente código, pero debe usarse con precaución debido a implicaciones de seguridad.
+La función `eval()` permite ejecutar expresiones Python desde una cadena de texto. Esto puede ser útil para evaluar dinámicamente código, pero **debe usarse con extrema precaución** debido a implicaciones de seguridad.
 
+```{admonition} ⚠️ Advertencia de seguridad
+Nunca utilices `eval()` con entradas que provengan de usuarios o fuentes no confiables. Hacerlo puede permitir la ejecución de código malicioso y comprometer la seguridad de tu sistema.
+
+Si necesitas evaluar literales (números, listas, diccionarios, etc.) de forma segura, utiliza `ast.literal_eval()` en lugar de `eval()`.
 ```{code-cell}
 x = 10
 expresion = "x * 2"
