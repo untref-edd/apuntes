@@ -155,3 +155,4 @@ La introspección y reflexión son herramientas poderosas pero que se deben util
 
 - [Documentación oficial de Python sobre introspección](https://docs.python.org/es/3.13/library/inspect.html){target="_blank"}
 - [Artículos sobre metaprogramación en Python (Real Python)](https://realpython.com/learning-paths/metaprogramming-in-python/){target="_blank"}
+  
