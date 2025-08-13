@@ -13,7 +13,7 @@ parts:
     - file: 1-taller-de-python/1-5-funciones
     - file: 1-taller-de-python/1-6-poo
     - file: 1-taller-de-python/1-7-excepciones
-    - file: 1-taller-de-python/1-8-instrospeccion
+    - file: 1-taller-de-python/1-8-introspeccion
     - file: 1-taller-de-python/1-9-archivos
     - file: 1-taller-de-python/1-10-persistencia
   - caption: Grafos
