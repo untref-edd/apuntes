@@ -40,6 +40,8 @@ Constructor
 En Python, una clase es una plantilla para crear objetos, similar a los `struct` de Go, una clase permite definir nuevos tipos de datos. Un objeto, en cambio, es una instancia de una clase y puede tener atributos (datos) y métodos (funciones). Pueden existir múltiples objetos de la misma clase, cada uno con sus propios valores para los atributos.
 
 ```{code-cell}
+:tags: [hide-output]
+
 class Persona:
     def __init__(self, nombre, edad):
         self.nombre = nombre
@@ -66,6 +68,8 @@ Una clase puede heredar de otra clase, o dicho de otra manera, puede extender ot
 
 ```{code-cell}
 ---
+tags: [hide-output]
+
 mystnb:
   number_source_lines: true
 ---
@@ -104,6 +108,8 @@ Python va más allá que otros lenguajes de programación orientados a objetos y
 
 ```{code-cell}
 ---
+tags: [hide-output]
+
 mystnb:
   number_source_lines: true
 ---
@@ -216,6 +222,8 @@ En el ejemplo anterior, tanto `Docente` como `Estudiante` tienen un atributo `le
 El siguiente fragmento de código inspecciona los atributos del objeto `ayudante1` y los imprime en la consola (En [Instrospección](1-8-introspeccion.md) veremos más en detalle como los objetos pueden observarse y modificarse a si mismos en tiempo de ejecución)
 
 ```{code-cell}
+:tags: [hide-output]
+
 print("Atributos de ayudante1:")
 atributos = vars(ayudante1)
 for key, value in atributos.items():
@@ -231,6 +239,8 @@ En el ejemplo anterior el método `presentar` se define tanto en `Docente` como 
 Cuando hay herencia múltiple se debe tener cuidado como se resuelve el polimorfismo, ya que puede haber ambigüedades si dos clases base tienen un método con el mismo nombre. En Python, se utiliza el **Orden de Resolución de Métodos (MRO)** para determinar qué método se llama en caso de ambigüedad.
 
 ```{code-cell}
+:tags: [hide-output]
+
 print("Orden de Resolución de Métodos (MRO) de Ayudante:")
 orden = Ayudante.__mro__
 for cls in orden:
@@ -279,7 +289,7 @@ caption: Programación Orientada a Objetos - Figuras Geométricas
 ```
 
 ```{code-cell}
-:tags: [hide-input, remove-input]
+:tags: [hide-input, remove-input, hide-output]
 %run ../_static/code/figuras/main.py
 ```
 

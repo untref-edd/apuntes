@@ -60,6 +60,8 @@ finally:
 : Incluso si en el `try` o `except` se usa `return` o se lanza una nueva excepción, el `finally` siempre se ejecuta antes de que el flujo salga del bloque.
 
 ```{code-cell}
+:tags: [hide-output]
+
 divisor = "10" # cadena de caracteres
 try:
     # Código que puede generar excepciones
@@ -235,6 +237,8 @@ Otra forma de lanzar una excepción en forma condicional es con la sentencia `as
 `assert` es una declaración que se utiliza para realizar pruebas de afirmaciones en el código. Si la afirmación es falsa, se lanza una excepción `AssertionError`. Esto puede ser útil para verificar condiciones que deberían ser verdaderas en un punto determinado del programa. Por ejemplo para chequear se cumplan las precondiciones cuando se llama a una función.
 
 ```{code-cell}
+:tags: [hide-output]
+
 def dividir(a, b):
     assert b != 0, "El divisor no puede ser cero"
     return a / b
@@ -242,7 +246,7 @@ def dividir(a, b):
 if __name__ == "__main__":
    try:
         resultado = dividir(10, 0)
-    except AssertionError as e:
+   except AssertionError as e:
         print(f"Error: {e}")
 ```
 

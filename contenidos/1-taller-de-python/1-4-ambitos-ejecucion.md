@@ -56,6 +56,8 @@ En Python **todo es un objeto**, por lo tanto tanto podemos pensar que todas las
 Cuando a una variable que ya tenía asignado un objeto inmutable, se le asigna otro valor, en realidad se crea un nuevo objeto inmutable en memoria y la referencia anterior se pierde.
 
 ```{code-cell}
+:tags: [hide-output]
+
 s1 = "hola"
 s2 = s1
 s1 += " mundo" # Esto crea una nueva cadena "hola mundo" y s1 ahora referencia a ella
@@ -84,6 +86,8 @@ En este fragmento, `s1` y `s2` inicialmente referencian al mismo objeto, la cade
 Cuando se modifica un objeto mutable, se altera el objeto en su lugar. Si múltiples variables referencian al mismo objeto mutable, todas verán los cambios.
 
 ```{code-cell}
+:tags: [hide-output]
+
 lista1 = [1, 2, 3]
 lista2 = lista1 # lista1 y lista2 referencian a la misma lista
 lista1.append(4) # Modifica la lista original
@@ -154,6 +158,8 @@ Las variables definidas dentro de una función son locales a esa función. Esto 
 Si hay variables globales definidas con el mismo nombre de las variables locales, entonces las locales **ocultan** las globales. Esto se conoce como **Ocultamiento** de variables (_shadowing_).
 
 ```{code-cell}
+:tags: [hide-output]
+
 mensaje = "Hola desde el ámbito global" # Variable global
 def mi_funcion():
     mensaje = "Hola desde la función" # Variable local
@@ -168,6 +174,8 @@ La variable local `mensaje` dentro de `mi_funcion` oculta la variable global del
 Si se necesita modificar una variable global desde dentro de una función, se debe usar la palabra clave `global` para indicar que se quiere referenciar a la variable global.
 
 ```{code-cell}
+:tags: [hide-output]
+
 mensaje = "Hola desde el ámbito global" # Variable global
 def mi_funcion():
     global mensaje # Indica que se quiere usar la variable global
@@ -194,6 +202,8 @@ Para que una función sea una clausura, debe cumplir dos condiciones:
   
 ```{code-cell}
 ---
+tags: [hide-output]
+
 mystnb:
   number_source_lines: true
 ---
@@ -229,6 +239,8 @@ El ámbito global se refiere a las variables definidas en el nivel superior de u
 Al declarar un módulo se puede incluir variables y constantes globales que pueden ser utilizadas en todo el código del módulo. A modo de ejemplo podemos ver las constantes matemáticas definidas en el módulo `math`, como `math.pi` o `math.e`.
 
 ```{code-cell}
+:tags: [hide-output]
+
 import math  # Importa el módulo math
 print("Constantes matemáticas:")
 print(math.pi)  # Imprime el valor de pi
@@ -272,6 +284,8 @@ No se recomienda bajo ningún punto de vista, redefinir nombres built-in, ya que
 ```
 
 ```{code-cell}
+:tags: [hide-output]
+
 print(len("Hola"))  # Llama a la función built-in len
 def mi_funcion():
     len = 4

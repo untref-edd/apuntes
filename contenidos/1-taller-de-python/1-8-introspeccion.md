@@ -43,6 +43,8 @@ En **Java** estas capacidades existen mediante *Reflection API*, mientras que en
 ## Ejemplo básico de introspección
 
 ```{code-cell}
+:tags: [hide-output]
+
 class Persona:
     """Clase simple para ejemplo de introspección."""
     def __init__(self, nombre, edad):
@@ -78,6 +80,8 @@ En Python es posible agregar atributos o métodos a un objeto existente en tiemp
 Esto otorga flexibilidad, pero puede volver el código difícil de mantener si se abusa.
 
 ```{code-cell}
+:tags: [hide-output]
+
 import types
 
 class Persona:
@@ -111,6 +115,8 @@ ana.saludar()
 `help()` es una función incorporada en Python que proporciona información sobre objetos, funciones y módulos. Es especialmente útil para obtener documentación sobre cómo usar un objeto o qué métodos y atributos tiene.
 
 ```{code-cell}
+:tags: [hide-output]
+
 class Persona:
     """Clase simple para ejemplo de documentación."""
     def __init__(self, nombre, edad):
@@ -145,6 +151,8 @@ Nunca se debe utilizar `eval()` con entradas que provengan de usuarios o fuentes
 ```
 
 ```{code-cell}
+:tags: [hide-output]
+
 x = 10
 expresion = "x * 2"
 resultado = eval(expresion)

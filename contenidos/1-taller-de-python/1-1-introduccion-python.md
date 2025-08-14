@@ -48,6 +48,8 @@ Permite usar diferentes estilos de programación según las necesidades del proy
 La programación imperativa se basa en la ejecución secuencial de instrucciones. Para realizar una tarea se debe programar paso a paso especificando ***como*** se debe hacer.
 
 ```{code-cell}
+:tags: [hide-output]
+
 # Programación imperativa
 def factorial(n):
     resultado = 1
@@ -61,6 +63,8 @@ print(f"Factorial de 5: {factorial(5)}")
 La programación funcional se basa en el uso de funciones puras y evita el estado mutable. Se enfoca en ***que*** se debe hacer, utilizando funciones de orden superior y evitando efectos secundarios. En el capítulo de funciones profundizaremos un poco más en este paradigma.
 
 ```{code-cell}
+:tags: [hide-output]
+
 # Quicksort en una línea (programación funcional)
 qs = lambda lst: lst if len(lst) <= 1 else qs([x for x in lst[1:] if x < lst[0]]) + \
                                   [lst[0]] + qs([x for x in lst[1:] if x >= lst[0]])
@@ -75,19 +79,23 @@ Python es un lenguaje **fuertemente tipado**, lo que significa que no se permite
 
 ```{code-cell}
 ---
-tags: [raises-exception]
+tags: [raises-exception, hide-output]
 ---
 # Ejemplo de tipado fuerte
 resultado = "5" + 3  # Esto generará un error
 ```
 
 ```{code-cell}
+:tags: [hide-output]
+
 # Conversión explícita necesaria
 resultado_correcto = int("5") + 3
 print(f"Resultado correcto: {resultado_correcto}")
 ```
 
 ```{code-cell}
+:tags: [hide-output]
+
 # Tipado dinámico - las variables pueden cambiar de tipo
 variable = 42        # int
 print(f"Tipo: {type(variable)}, Valor: {variable}")
@@ -107,6 +115,8 @@ Python se caracteriza por su sintaxis clara y legible:
 
 ```{code-cell}
 ---
+tags: [hide-output]
+
 mystnb:
   number_source_lines: true
 ---
@@ -145,6 +155,8 @@ El cuerpo de la función se extiende hasta la línea 18 a partir de la cual el c
 Entre las líneas 2 y 10 encontramos la documentación de la función, que explica su propósito, los argumentos que recibe y el valor que devuelve. Esta documentación se escribe entre comillas triples (`"""`) y es accesible a través de la función `help(es_numero_primo)`. `help` es una función de Python que muestra la documentación de un objeto.
 
 ```{code-cell}
+:tags: [hide-output]
+
 help(es_numero_primo)
 ```
 
@@ -186,6 +198,8 @@ Python se utiliza en una amplia gama de aplicaciones, gracias a su versatilidad 
 Primero, verifica si Python ya está instalado:
 
 ```{code-cell}
+:tags: [hide-output]
+
 import sys
 print(f"Versión de Python: {sys.version}")
 print(f"Plataforma: {sys.platform}")
