@@ -1,0 +1,28 @@
+Estructuras de datos
+Fundamentos de la asignatura
+Esta asignatura se centra en proporcionar a los estudiantes conocimientos sobre la búsqueda y recuperación de información, así como en las estructuras de datos necesarias para almacenarla y manipularla. El constante y creciente volumen de información publicada en internet y en redes sociales, junto con la necesidad de procesarla y analizarla para extraer conocimiento valioso, es la principal motivación para explorar esta disciplina, que se considera precursora de la ciencia de datos y base fundamental para el desarrollo de aplicaciones inteligentes y sistemas de toma de decisiones basados en datos.
+El estudio de las estructuras de datos y los algoritmos de búsqueda y recuperación de información es esencial para comprender cómo se organizan y manipulan los datos en una amplia gama de aplicaciones, desde sistemas de bases de datos y motores de búsqueda, hasta redes sociales y plataformas de comercio electrónico. Además, proporciona a los estudiantes las herramientas y habilidades necesarias para diseñar e implementar soluciones eficientes y escalables para problemas del mundo real que involucran grandes volúmenes de datos, sentando las bases para una comprensión profunda de la ciencia de datos y sus aplicaciones en diversos campos y disciplinas.
+Objetivo general
+Comprender y aplicar los principios fundamentales de las estructuras de datos y los algoritmos de búsqueda y recuperación de información, con énfasis en su relevancia para el manejo eficiente de grandes volúmenes de datos y su aplicación en la ciencia de datos y el desarrollo de sistemas inteligentes.
+Objetivos específicos
+Al finalizar la materia los alumnos serán capaces de:
+Reconocer la problemática del manejo de grandes volúmenes de información y la necesidad de estructuras de datos y algoritmos eficientes para su procesamiento y análisis.
+Estudiar, implementar y comparar el rendimiento de diferentes estructuras de datos relevantes para la búsqueda y recuperación de información.
+Comprender cómo las estructuras de datos y los algoritmos estudiados son fundamentales para el desarrollo de aplicaciones de ciencia de datos, como motores de búsqueda, sistemas de recomendación y análisis de redes sociales.
+Seleccionar y adaptar las estructuras de datos y algoritmos adecuados para resolver problemas específicos relacionados con el manejo y análisis de grandes volúmenes de datos.
+Comprender en profundidad los conceptos de organización de datos y registros de información, analizando diversas formas de representación y almacenamiento.
+
+
+資料結構
+學科基礎
+本課程致力於為學生提供資訊搜尋和檢索的知識，以及儲存和操作資訊所需的資料結構。網路和社群媒體上不斷增長的資訊量，以及對其進行處理和分析以提取有價值知識的需求，是探索該學科的主要動機。該學科被認為是數據科學的先驅，也是開發智慧應用程式和數據驅動決策系統的基礎。
+資料結構以及資訊搜尋和檢索演算法的研究對於理解從資料庫系統、搜尋引擎到社交媒體和電商平台等各種應用中資料的組織和操作方式至關重要。此外，本課程也為學生提供設計和實施高效、可擴展的大量資料解決方案所需的工具和技能，為深入理解資料科學及其在各個領域和學科的應用奠定基礎。
+整體目標
+理解並應用資料結構和資訊搜尋與檢索演算法的基本原理，重點關注其與高效管理海量資料及其在資料科學和智慧系統開發中的應用。
+具體目標
+完成本課程後，學生將能夠：
+認識到管理海量資訊的問題，以及對高效資料結構和演算法進行處理和分析的需求。
+學習、實現並比較與資訊搜尋和檢索相關的不同資料結構的效能。
+理解所研究的資料結構和演算法如何成為資料科學應用（例如搜尋引擎、推薦系統和社交網路分析）開發的基礎。
+選擇並調整合適的資料結構和演算法來解決與海量資料管理和分析相關的具體問題。
+深入了解資料組織和資訊記錄的概念，分析各種表示和儲存形式。

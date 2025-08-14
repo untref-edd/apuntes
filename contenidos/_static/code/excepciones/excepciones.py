@@ -1,3 +1,5 @@
+"""Suma números enteros ingresados por el usuario.
+"""
 suma = 0
 while True:
     try:

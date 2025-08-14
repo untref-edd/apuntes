@@ -16,7 +16,7 @@ En **Java** y **Go**, esto se hace a través de librerías específicas (`java.i
 
 ## Representación de archivos y carpetas
 
-En un sistema operativo (SO), un **archivo** es básicamente una secuencia de bytes almacenada en un medio físico (disco, SSD, memoria externa). Por lo general los archivos se encuentran en el disco dentro de un **sistema de archivos** o **filesystem**. Este **sistema de archivo** depende de cada sistema operativo. Por ejemplo Linux utiliza un **sistema de archivos** denominado ***ext4***, mientras que Windows utiliza ***NTFS***. 
+En un sistema operativo (SO), un **archivo** es básicamente una secuencia de bytes almacenada en un medio físico (disco, SSD, memoria externa). Por lo general los archivos se encuentran en el disco dentro de un **sistema de archivos** o **filesystem**. Este **sistema de archivo** depende de cada sistema operativo. Por ejemplo Linux utiliza un **sistema de archivos** denominado ***ext4***, mientras que Windows utiliza ***NTFS***.
 
 La principal diferencia entre distintos sistemas de archivos es como se gestionan los metadatos (información sobre el archivo, como su nombre, tamaño, permisos, etc.) y la estructura de directorios.
 
@@ -26,7 +26,7 @@ Archivo
 Carpeta (o directorio)
 : Estructura que agrupa archivos y otras carpetas.
 
-Para que una aplicación o programa pueda crear, leer o escribir un archivo o carpeta debe realizar una solicitud al SO, principal responsable de la gestión del hardware. 
+Para que una aplicación o programa pueda crear, leer o escribir un archivo o carpeta debe realizar una solicitud al SO, principal responsable de la gestión del hardware.
 
 El SO responde a la petición con un ***descriptor de archivo*** (*file descriptor*). Este ***descriptor de archivo*** es un número entero que identifica de manera única un archivo abierto en ese momento.
 
@@ -35,11 +35,12 @@ Mientras la aplicación tiene el archivo abierto, puede leer y escribir en él. 
 ### Lectura y escritura
 
 Cuando abrimos un archivo:
+
 1. El S.O. localiza el archivo y asigna un *file descriptor*.
 2. Python crea un **objeto archivo** que envuelve ese descriptor.
 3. Las operaciones de lectura/escritura se hacen en **buffers** (bloques de memoria intermedia) para optimizar el rendimiento.
 
-Ejemplo: si quiere leer un archivo grande, Python no trae todo de golpe, sino trozos que se van entregando al programa. Lo mismo ocurre al escribir, en lugar de escribir todo de una vez, Python lo hace en partes. 
+Ejemplo: si quiere leer un archivo grande, Python no trae todo de golpe, sino trozos que se van entregando al programa. Lo mismo ocurre al escribir, en lugar de escribir todo de una vez, Python lo hace en partes.
 
 Cuando se cierra un archivo en el que se escribieron datos, Python se asegura que todos los datos se hayan escrito correctamente en el disco, volcando toda la información de los buffers.
 
@@ -54,7 +55,7 @@ Texto
 Binarios
 : Los bytes se usan tal cual (imágenes, ejecutables, audio, etc.).
 
-En Python, esto se define al abrir el archivo con `'t'` (texto) o `'b'` (binario).
+En Python, esto se define al abrir el archivo con `'t'` (texto) o `'b'` (binario). En general si se omite el modo, se abrirá en modo texto.
 
 ### Saltos de línea: `\n` vs `\r\n`
 
@@ -62,7 +63,7 @@ En **Linux y macOS** los saltos de línea se representan con el caracter `\n`, m
 
 ## Operaciones con carpetas
 
-Para manipular carpetas y rutas, Python ofrece el módulo **`os`** y **`pathlib`**.
+Para manipular carpetas y rutas, Python ofrece los módulos **`os`** y **`pathlib`**.
 
 ### Rutas o Paths absolutos y relativos
 
@@ -75,8 +76,6 @@ Path Relativo
 : Por ejemplo: `datos/archivo.txt`
 
 El caracter especial `.` representa el directorio actual, mientras que `..` representa el directorio padre, con lo cual se pueden gestionar rutas relativas de manera más sencilla.
-
-Algunas funciones útiles del módulo os para manipular archivos y carpetas son:
 
 Algunas funciones útiles del módulo `os` para manipular archivos y carpetas son:
 
@@ -103,6 +102,8 @@ Algunas funciones útiles del módulo `os` para manipular archivos y carpetas so
 | `os.path.getsize(path)` | Obtiene tamaño del archivo en bytes | `1024` |
 
 ```{code-cell} python
+:tags: [hide-output]
+
 import os
 
 # Ejemplo práctico de uso
@@ -151,6 +152,8 @@ Python 3.4+ incluye `pathlib`, que ofrece una interfaz más moderna y orientada 
 | `Path.chdir(path)` | Cambia el directorio actual | `Path.chdir('/nueva/ruta')` |
 
 ```{code-cell} python
+:tags: [hide-output]
+
 from pathlib import Path
 
 # Ejemplo con pathlib (más pythónico)
@@ -170,8 +173,8 @@ archivos_md = list(Path('.').glob('**/*.md'))
 print(f"Archivos Markdown encontrados: {len(archivos_md)}")
 ```
 
-```{note}
-**Recomendación:** Para código nuevo, usa `pathlib` ya que es más legible y moderno. Para compatibilidad con código antiguo o scripts simples, `os.path` sigue siendo válido.
+```{admonition} Recomendación
+Para código nuevo, se recomienda usar `pathlib` ya que es más legible y moderno. Para compatibilidad con código antiguo o scripts simples, `os.path` sigue siendo válido.
 ```
 
 ### ***Caminar*** por el sistema de archivos
@@ -179,6 +182,8 @@ print(f"Archivos Markdown encontrados: {len(archivos_md)}")
 `os.walk()` permite recorrer todas las carpetas y archivos a partir de una ubicación dada
 
 ```{code-cell}
+:tags: [hide-output]
+
 import os
 
 # Ejemplo de uso de os.walk()
@@ -200,21 +205,275 @@ for raiz, dirs, archivos in os.walk('.'):
 
 ## Operaciones básicas sobre archivos
 
+### Apertura de archivos
+
 La función básica para abrir archivos es open():
 
 ```{code-block} python
 open(nombre, modo, encoding)
 ```
 
-| Modo   | Significado                      | Crea archivo si no existe | Borra contenido previo |
-| ------ | -------------------------------- | ------------------------- | ---------------------- |
-| `'r'`  | read (lectura)                   | No                        | No                     |
-| `'w'`  | write (escritura)                | Si                        | Si                     |
-| `'a'`  | append (agregar)                 | Si                        | No                     |
-| `'rb'` | read binary (lectura binaria)    | No                        | No                     |
-| `'wb'` | write binary (escritura binaria) | Si                        | Si                     |
+| Modo   | Significado                           | Crea archivo si no existe | Borra contenido previo |
+| ------ | ------------------------------------- | ------------------------- | ---------------------- |
+| `'r'`  | read (lectura)                        | No                        | No                     |
+| `'w'`  | write (escritura)                     | Si                        | Si                     |
+| `'a'`  | append (agregar)                      | Si                        | No                     |
+| `'x'`  | exclusive write (escritura exclusiva) | Si                        | -                      |
+
+El modo `'x'` es similar a `'w'`, pero **lanza una excepción** si el archivo ya existe. Se usa para asegurarse que no estamos borrando el contenido de un archivo creado previamente.
+
+Los modos de apertura de archivos por defecto abren los archivos como texto, si se trata de un archivo binario se debe especificar el modo `'b'`. Por ejemplo: `'rb'` para lectura binaria o `'wb'` para escritura binaria.
 
 ```{code-cell}
 :tags: [hide-output]
 help(open)
 ```
+
+### Lectura de archivos
+
+Una vez abierto un archivo hay varias formas de leerlo, se puede leer completamente y cargarlo en memoria, o leerlo línea por línea, o posicionar el cursor en una parte específica del archivo para leer desde allí la cantidad de caracteres deseada, etc.
+
+El archivo de texto que vamos a usar de prueba tiene texto en castellano y en chino tradicional, con caracteres especiales.
+
+#### Leer todo el documento en una variable
+
+```{code-cell}
+:tags: [hide-output]
+
+archivo = '../_static/code/archivos/edd.txt'
+
+try:
+  f=open(archivo, 'r', encoding='utf-8') # Puede levantar FileNotFoundError
+  contenido = f.read() # Puede levantar otras excepciones
+except FileNotFoundError:
+  print("Archivo no encontrado")
+except Exception as e:
+  print(f"Error inesperado: {e}")
+else:
+  print(contenido)
+finally:
+  f.close()
+```
+
+#### Leer línea por línea en una lista
+
+```{code-cell}
+:tags: [hide-output]
+
+archivo = '../_static/code/archivos/edd.txt'
+
+try:
+  f=open(archivo, 'r', encoding='utf-8') # Puede levantar FileNotFoundError
+  contenido = f.readlines() # Puede levantar otras excepciones
+except FileNotFoundError:
+  print("Archivo no encontrado")
+except Exception as e:
+  print(f"Error inesperado: {e}")
+else:
+  print(contenido)
+finally:
+  f.close()
+```
+
+#### Iterar línea por línea
+
+```{code-cell}
+:tags: [hide-output]
+# Iterar con while
+
+archivo = '../_static/code/archivos/edd.txt'
+
+try:
+  f=open(archivo, 'r', encoding='utf-8') # Puede levantar FileNotFoundError
+  while (linea := f.readline()):
+    print(linea)
+except FileNotFoundError:
+  print("Archivo no encontrado")
+except Exception as e:
+  print(f"Error inesperado: {e}")
+finally:
+  f.close()
+```
+
+```{code-cell}
+:tags: [hide-output]
+# Iterar con for
+
+archivo = '../_static/code/archivos/edd.txt'
+
+try:
+  for linea in open(archivo, 'r', encoding='utf-8'):
+    print(linea)
+except FileNotFoundError:
+  print("Archivo no encontrado")
+except Exception as e:
+  print(f"Error inesperado: {e}")
+finally:
+  f.close()
+```
+
+#### Leer una porción específica del archivo
+
+```{code-cell}
+:tags: [hide-output]
+
+archivo = '../_static/code/archivos/edd.txt'
+
+try:
+  f=open(archivo, 'r', encoding='utf-8') # Puede levantar FileNotFoundError
+  f.seek(100) # Posicionar el cursor en el caracter 100
+  print("Leer desde la posición 100\n")
+  print(f.read(100)) # Leer 100 caracteres a partir de la posición 100
+  print("\nLeer desde el inicio\n")
+  f.seek(0) # Volver al inicio del archivo
+  print(f.read(100)) # Leer 100 caracteres desde el inicio
+except FileNotFoundError:
+  print("Archivo no encontrado")
+except Exception as e:
+  print(f"Error inesperado: {e}")
+finally:
+  f.close()
+```
+
+#### Leer un archivo binario
+
+Si leemos el mismo archivo de texto pero en formato binario veremos dígitos en hexadecimal que se usan para representar los caracteres especiales.
+
+```{code-cell}
+:tags: [hide-output]
+
+archivo = '../_static/code/archivos/edd.txt'
+
+try:
+  f=open(archivo, 'rb') # Puede levantar FileNotFoundError
+  contenido = f.read() # Puede levantar otras excepciones
+except FileNotFoundError:
+  print("Archivo no encontrado")
+except Exception as e:
+  print(f"Error inesperado: {e}")
+else:
+  print(contenido)
+finally:
+  f.close()
+```
+
+### Escritura de archivos
+
+De forma similar a la lectura, podemos escribir en un archivo utilizando el modo de apertura 'w' (write) o 'a' (append). El modo 'w' sobrescribe el archivo si ya existe, mientras que 'a' agrega contenido al final del archivo.
+
+#### Escribir todo el contenido de una vez
+
+```{code-cell}
+:tags: [hide-output]
+
+archivo = '../_static/code/archivos/texto.txt'
+
+try:
+  f=open(archivo, 'w', encoding='utf-8') 
+  f.write("Nuevo contenido para el archivo\n")
+except FileNotFoundError:
+  print("Archivo no encontrado")
+except Exception as e:
+  print(f"Error inesperado: {e}")
+else:
+  print("Contenido escrito correctamente")
+finally:
+  f.close()
+```
+
+#### Escribir línea por línea
+
+```{code-cell}
+:tags: [hide-output]
+
+archivo = '../_static/code/archivos/texto.txt'
+
+try:
+  f=open(archivo, 'w', encoding='utf-8') # Puede levantar FileNotFoundError
+  lista =[]
+  for i in range(5):
+    lista.append(f"Línea {i}\n")
+  f.writelines(lista)
+except FileNotFoundError:
+  print("Archivo no encontrado")
+except Exception as e:
+  print(f"Error inesperado: {e}")
+else:
+  print("Contenido escrito correctamente")
+finally:
+  f.close()
+```
+
+```{code-cell}
+:tags: [hide-output]
+
+archivo = '../_static/code/archivos/texto.txt'
+
+try:
+  f=open(archivo, 'a', encoding='utf-8') # Puede levantar FileNotFoundError
+  lista =[]
+  for i in range(5):
+    lista.append(f"Línea {i}\n")
+  f.writelines(lista)
+  f.write("學科基礎\n")
+except FileNotFoundError:
+  print("Archivo no encontrado")
+except Exception as e:
+  print(f"Error inesperado: {e}")
+else:
+  print("Contenido agregado correctamente")
+finally:
+  f.close()
+```
+
+### Entorno seguro para manipular archivos
+
+Python provee un entorno seguro para manipular archivos con la sentencia `with` que nos asegura que siempre se cierra el archivo cuando se sale del bloque.
+
+```{code-cell}
+:tags: [hide-output]
+
+def copiar_archivo(origen, destino):
+    with open(origen, "r") as f_origen, open(destino, "w") as f_destino:
+        while bloque := f_origen.read(1024):
+            f_destino.write(bloque)
+
+def mostrar_archivo(archivo):
+    with open(archivo, "r") as f:
+        for linea in f:
+            print(linea)
+
+# Copiamos texto.txt a copia.txt
+copiar_archivo("../_static/code/archivos/texto.txt", \
+               "../_static/code/archivos/copia.txt")
+mostrar_archivo("../_static/code/archivos/copia.txt")
+```
+
+El siguiente script nos permite comparar byte a byte dos archivos para ver si son iguales
+
+```{code-cell}
+:tags: [hide-output]
+
+def comparar_archivos(archivo1, archivo2):
+    with open(archivo1, "rb") as f1, open(archivo2, "rb") as f2:
+        while True:
+            bloque1 = f1.read(1024)
+            bloque2 = f2.read(1024)
+            if bloque1 != bloque2:
+                print("Los archivos son diferentes")
+                return
+            if not bloque1:
+                break
+    print("Los archivos son iguales")
+
+# Comparamos texto.txt con copia.txt
+comparar_archivos("../_static/code/archivos/texto.txt", \
+                  "../_static/code/archivos/copia.txt")
+```
+
+## Recursos para profundizar
+
+- [Documentación oficial de Python sobre manejo de archivos](https://docs.python.org/es/3.13/tutorial/inputoutput.html#reading-and-writing-files){target="_blank"}
+- [Módulo os](https://docs.python.org/es/3.13/library/os.html){target="_blank"}
+- [Módulo pathlib](https://docs.python.org/es/3.13/library/pathlib.html){target="_blank"}
+- [Módulo shutil: copia y eliminación de archivos](https://docs.python.org/es/3.13/library/shutil.html){target="_blank"}
