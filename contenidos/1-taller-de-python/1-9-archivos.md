@@ -222,6 +222,8 @@ open(nombre, modo, encoding)
 
 El modo `'x'` es similar a `'w'`, pero **lanza una excepción** si el archivo ya existe. Se usa para asegurarse que no estamos borrando el contenido de un archivo creado previamente.
 
+El modo `'a'` permite agregar contenido al final del archivo sin borrar el contenido existente. Si el archivo no existe previamente, se crea.
+
 Los modos de apertura de archivos por defecto abren los archivos como texto, si se trata de un archivo binario se debe especificar el modo `'b'`. Por ejemplo: `'rb'` para lectura binaria o `'wb'` para escritura binaria.
 
 ```{code-cell}
@@ -302,7 +304,8 @@ finally:
 archivo = '../_static/code/archivos/edd.txt'
 
 try:
-  for linea in open(archivo, 'r', encoding='utf-8'):
+  f=open(archivo, 'r', encoding='utf-8') # Puede levantar FileNotFoundError
+  for linea in f:
     print(linea)
 except FileNotFoundError:
   print("Archivo no encontrado")
@@ -389,7 +392,7 @@ finally:
 archivo = '../_static/code/archivos/texto.txt'
 
 try:
-  f=open(archivo, 'w', encoding='utf-8') # Puede levantar FileNotFoundError
+  f=open(archivo, 'w', encoding='utf-8') 
   lista =[]
   for i in range(5):
     lista.append(f"Línea {i}\n")
@@ -410,7 +413,7 @@ finally:
 archivo = '../_static/code/archivos/texto.txt'
 
 try:
-  f=open(archivo, 'a', encoding='utf-8') # Puede levantar FileNotFoundError
+  f=open(archivo, 'a', encoding='utf-8') 
   lista =[]
   for i in range(5):
     lista.append(f"Línea {i}\n")
