@@ -889,3 +889,4 @@ La comprensión es una característica funcional de Python muy poderosa.
 - [Comprensiones de listas, tuplas y diccionarios (Python Docs)](https://docs.python.org/es/3/tutorial/datastructures.html#list-comprehensions){target="_blank"}
 - [Comprensión de listas (Hektor Profe)](https://hektorprofe.github.io/python/funcionalidades-avanzadas/comprension-de-listas/){target="_blank"}
 - [Operadores Encadenados (Hektor Profe)](https://hektorprofe.github.io/python/funcionalidades-avanzadas/operadores-encadenados/){target="_blank"}
+- [Intérprete Python, para entender como funciona](https://pythontutor.com/python-compiler.html#mode=edit){target="_blank"}
