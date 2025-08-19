@@ -245,16 +245,17 @@ El archivo de texto que vamos a usar de prueba tiene texto en castellano y en ch
 archivo = '../_static/code/archivos/edd.txt'
 
 try:
-  f=open(archivo, 'r', encoding='utf-8') # Puede levantar FileNotFoundError
-  contenido = f.read() # Puede levantar otras excepciones
+  f = open(archivo, 'r', encoding='utf-8') # Puede levantar FileNotFoundError
 except FileNotFoundError:
   print("Archivo no encontrado")
-except Exception as e:
-  print(f"Error inesperado: {e}")
 else:
-  print(contenido)
-finally:
-  f.close()
+  try:
+    contenido = f.read() # Puede levantar otras excepciones
+    print(contenido)
+  except Exception as e:
+    print(f"Error inesperado: {e}")
+  finally:
+    f.close()
 ```
 
 #### Leer línea por línea en una lista
