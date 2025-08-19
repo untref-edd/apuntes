@@ -266,16 +266,17 @@ else:
 archivo = '../_static/code/archivos/edd.txt'
 
 try:
-  f=open(archivo, 'r', encoding='utf-8') # Puede levantar FileNotFoundError
-  contenido = f.readlines() # Puede levantar otras excepciones
+  f = open(archivo, 'r', encoding='utf-8') # Puede levantar FileNotFoundError
 except FileNotFoundError:
   print("Archivo no encontrado")
-except Exception as e:
-  print(f"Error inesperado: {e}")
 else:
-  print(contenido)
-finally:
-  f.close()
+  try:
+    contenido = f.readlines() # Puede levantar otras excepciones
+    print(contenido)
+  except Exception as e:
+    print(f"Error inesperado: {e}")
+  finally:
+    f.close()
 ```
 
 #### Iterar línea por línea
@@ -283,19 +284,20 @@ finally:
 ```{code-cell}
 :tags: [hide-output]
 # Iterar con while
-
 archivo = '../_static/code/archivos/edd.txt'
 
 try:
-  f=open(archivo, 'r', encoding='utf-8') # Puede levantar FileNotFoundError
-  while (linea := f.readline()):
-    print(linea)
+  f = open(archivo, 'r', encoding='utf-8') # Puede levantar FileNotFoundError
 except FileNotFoundError:
   print("Archivo no encontrado")
-except Exception as e:
-  print(f"Error inesperado: {e}")
-finally:
-  f.close()
+else:
+  try:
+    while (linea := f.readline()):
+      print(linea)
+  except Exception as e:
+    print(f"Error inesperado: {e}")
+  finally:
+    f.close()
 ```
 
 ```{code-cell}
@@ -305,15 +307,17 @@ finally:
 archivo = '../_static/code/archivos/edd.txt'
 
 try:
-  f=open(archivo, 'r', encoding='utf-8') # Puede levantar FileNotFoundError
-  for linea in f:
-    print(linea)
+  f = open(archivo, 'r', encoding='utf-8') # Puede levantar FileNotFoundError
 except FileNotFoundError:
   print("Archivo no encontrado")
-except Exception as e:
-  print(f"Error inesperado: {e}")
-finally:
-  f.close()
+else:
+  try:
+    for linea in f:
+      print(linea)
+  except Exception as e:
+    print(f"Error inesperado: {e}")
+  finally:
+    f.close()
 ```
 
 #### Leer una porción específica del archivo
@@ -324,19 +328,21 @@ finally:
 archivo = '../_static/code/archivos/edd.txt'
 
 try:
-  f=open(archivo, 'r', encoding='utf-8') # Puede levantar FileNotFoundError
-  f.seek(100) # Posicionar el cursor en el caracter 100
-  print("Leer desde la posición 100\n")
-  print(f.read(100)) # Leer 100 caracteres a partir de la posición 100
-  print("\nLeer desde el inicio\n")
-  f.seek(0) # Volver al inicio del archivo
-  print(f.read(100)) # Leer 100 caracteres desde el inicio
+  f = open(archivo, 'r', encoding='utf-8') # Puede levantar FileNotFoundError
 except FileNotFoundError:
   print("Archivo no encontrado")
-except Exception as e:
-  print(f"Error inesperado: {e}")
-finally:
-  f.close()
+else:
+  try:
+    f.seek(100) # Posicionar el cursor en el caracter 100
+    print("Leer desde la posición 100\n")
+    print(f.read(100)) # Leer 100 caracteres a partir de la posición 100
+    print("\nLeer desde el inicio\n")
+    f.seek(0) # Volver al inicio del archivo
+    print(f.read(100)) # Leer 100 caracteres desde el inicio
+  except Exception as e:
+    print(f"Error inesperado: {e}")
+  finally:
+    f.close()
 ```
 
 #### Leer un archivo binario
@@ -349,16 +355,17 @@ Si leemos el mismo archivo de texto pero en formato binario veremos dígitos en 
 archivo = '../_static/code/archivos/edd.txt'
 
 try:
-  f=open(archivo, 'rb') # Puede levantar FileNotFoundError
-  contenido = f.read() # Puede levantar otras excepciones
+  f = open(archivo, 'rb') # Puede levantar FileNotFoundError
 except FileNotFoundError:
   print("Archivo no encontrado")
-except Exception as e:
-  print(f"Error inesperado: {e}")
 else:
-  print(contenido)
-finally:
-  f.close()
+  try:
+    contenido = f.read() # Puede levantar otras excepciones
+    print(contenido)
+  except Exception as e:
+    print(f"Error inesperado: {e}")
+  finally:
+    f.close()
 ```
 
 ### Escritura de archivos
@@ -373,16 +380,18 @@ De forma similar a la lectura, podemos escribir en un archivo utilizando el modo
 archivo = '../_static/code/archivos/texto.txt'
 
 try:
-  f=open(archivo, 'w', encoding='utf-8') 
-  f.write("Nuevo contenido para el archivo\n")
-except FileNotFoundError:
-  print("Archivo no encontrado")
+  f = open(archivo, 'w', encoding='utf-8')  
 except Exception as e:
   print(f"Error inesperado: {e}")
 else:
-  print("Contenido escrito correctamente")
-finally:
-  f.close()
+  try:
+    f.write("Nuevo contenido para el archivo\n")
+  except Exception as e:
+    print(f"Error inesperado: {e}")
+  else:
+    print("Contenido escrito correctamente")
+  finally:
+    f.close()
 ```
 
 #### Escribir línea por línea
@@ -393,19 +402,21 @@ finally:
 archivo = '../_static/code/archivos/texto.txt'
 
 try:
-  f=open(archivo, 'w', encoding='utf-8') 
-  lista =[]
-  for i in range(5):
-    lista.append(f"Línea {i}\n")
-  f.writelines(lista)
-except FileNotFoundError:
-  print("Archivo no encontrado")
+  f = open(archivo, 'w', encoding='utf-8')  
 except Exception as e:
   print(f"Error inesperado: {e}")
 else:
-  print("Contenido escrito correctamente")
-finally:
-  f.close()
+  try:
+    lista = []
+    for i in range(5):
+      lista.append(f"Línea {i}\n")
+    f.writelines(lista)
+  except Exception as e:
+    print(f"Error inesperado: {e}")
+  else:
+    print("Contenido escrito correctamente")
+  finally:
+    f.close()
 ```
 
 ```{code-cell}
@@ -414,20 +425,22 @@ finally:
 archivo = '../_static/code/archivos/texto.txt'
 
 try:
-  f=open(archivo, 'a', encoding='utf-8') 
-  lista =[]
-  for i in range(5):
-    lista.append(f"Línea {i}\n")
-  f.writelines(lista)
-  f.write("學科基礎\n")
-except FileNotFoundError:
-  print("Archivo no encontrado")
+  f = open(archivo, 'a', encoding='utf-8')  
 except Exception as e:
   print(f"Error inesperado: {e}")
 else:
-  print("Contenido agregado correctamente")
-finally:
-  f.close()
+  try:
+    lista = []
+    for i in range(5):
+      lista.append(f"Línea {i}\n")
+    f.writelines(lista)
+    f.write("學科基礎\n")
+  except Exception as e:
+    print(f"Error inesperado: {e}")
+  else:
+    print("Contenido agregado correctamente")
+  finally:
+    f.close()
 ```
 
 ### Entorno seguro para manipular archivos
