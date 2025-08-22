@@ -32,6 +32,9 @@ parts:
     - file: 3-recuperacion-de-la-informacion/3-5-redes-sociales
     - file: 3-recuperacion-de-la-informacion/3-6-indices-invertidos
     - file: 3-recuperacion-de-la-informacion/3-7-indices-arboles-b
+  - caption: Anexos
+    chapters:
+    - file: Anexos/GitBash
   - caption: Referencias
     chapters:
     - file: bibliografia
