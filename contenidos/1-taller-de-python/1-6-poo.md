@@ -52,6 +52,7 @@ class Persona:
     def saludar(self):
         print(f"Hola, mi nombre es {self.nombre} y tengo {self.edad} años.")
 
+
 # Crear un objeto de la clase Persona
 persona1 = Persona("Alice", 30)
 persona1.saludar()
@@ -83,6 +84,7 @@ class Docente(Persona):
     def presentar(self):
         self.saludar()  # Usa método heredado
         print(f"Soy docente de {self.materia}.")
+
 
 # Crear un objeto de la clase Docente
 docente1 = Docente("Juan", 25, "Algoritmos y Programación")
@@ -127,7 +129,7 @@ class Persona:
 class Docente(Persona):
     def __init__(self, legajo, nombre, edad, materia):
         Persona.__init__(self, nombre, edad)
-        self.legajo = legajo #legajo del Docente como Empleado
+        self.legajo = legajo  # legajo del Docente como Empleado
         self.materia = materia
 
     def presentar(self):
@@ -141,7 +143,7 @@ class Docente(Persona):
 class Estudiante(Persona):
     def __init__(self, legajo, nombre, edad, carrera):
         Persona.__init__(self, nombre, edad)
-        self.legajo = legajo #legajo del Estudiante como Alumno
+        self.legajo = legajo  # legajo del Estudiante como Alumno
         self.carrera = carrera
 
     def presentar(self):
@@ -165,6 +167,7 @@ class Ayudante(Estudiante, Docente):
         self.saludar()
         print(f"Soy estudiante de {self.carrera} y ayudante en {self.materia}")
 
+
 # Crear un objeto de la clase Docente
 docente1 = Docente(64781, "Juan", 30, "Algoritmos y Programación")
 docente1.presentar()
@@ -176,23 +179,21 @@ estudiante1.presentar()
 print()
 
 # Crear un objeto de la clase Ayudante
-ayudante1 = Ayudante(29478, \
-                    "Luis", \
-                    23, \
-                    "Algoritmos y Programación", \
-                    "Ingeniería en Sonido")
+ayudante1 = Ayudante(
+    29478, "Luis", 23, "Algoritmos y Programación", "Ingeniería en Sonido"
+)
 ayudante1.presentar()
 print()
 print(type(ayudante1))
 
 print("Pagar a docentes")
 for docente in [docente1, ayudante1]:
-    docente.pagar()  # Llama al método pagar de Docente    
+    docente.pagar()  # Llama al método pagar de Docente
 print()
 
 print("Mostrar legajo de estudiantes")
 for estudiante in [estudiante1, ayudante1]:
-    estudiante.mostrar_legajo()  
+    estudiante.mostrar_legajo()
 print()
 
 # Actualizamos el legajo del ayudante

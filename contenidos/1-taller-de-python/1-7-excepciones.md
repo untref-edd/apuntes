@@ -64,7 +64,7 @@ finally:
 ---
 tags: [hide-output]
 ---
-divisor = "10" # cadena de caracteres
+divisor = "10"  # cadena de caracteres
 try:
     # Código que puede generar excepciones
     resultado = 10 // int(divisor)  # // División entera
@@ -248,10 +248,11 @@ def dividir(a, b):
     assert b != 0, "El divisor no puede ser cero"
     return a / b
 
+
 if __name__ == "__main__":
-   try:
+    try:
         resultado = dividir(10, 0)
-   except AssertionError as e:
+    except AssertionError as e:
         print(f"Error: {e}")
 ```
 

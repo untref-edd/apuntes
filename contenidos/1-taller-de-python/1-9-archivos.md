@@ -112,27 +112,26 @@ import os
 directorio_actual = os.getcwd()
 print(f"Directorio actual: {directorio_actual}")
 print("Archivos en directorio actual:")
-for archivo in os.listdir('.'):
+for archivo in os.listdir("."):
     print(f" - {archivo}")
 
-os.chdir('/tmp') # Cambia al directorio temporal
+os.chdir("/tmp")  # Cambia al directorio temporal
 # Crear estructura de carpetas
-if not os.path.exists('datos'):
-    os.makedirs('datos/procesados')
+if not os.path.exists("datos"):
+    os.makedirs("datos/procesados")
     print(f"Estructura de carpetas creada: {os.path.abspath('datos/procesados')}")
 
 # Trabajar con rutas
 # Construir una ruta a un archivo.
 # Se recomienda usar os.path.join y no concatenar cadenas
-# ya que el módulo os puede construir rutas de forma portable para 
+# ya que el módulo os puede construir rutas de forma portable para
 # cualquier sistema operativo. Es decir este programa funcionará
 # en cualquier sistema operativo sin modificaciones
-ruta_archivo = os.path.join('datos', 'archivo.txt')
+ruta_archivo = os.path.join("datos", "archivo.txt")
 print(f"Ruta construida: {ruta_archivo}")
 print(f"Ruta absoluta: {os.path.abspath(ruta_archivo)}")
 print(f"¿Existe la ruta?: {os.path.exists(ruta_archivo)}")
 os.chdir(directorio_actual)
-
 ```
 
 ### Módulo `pathlib`{l=python} (Recomendado para proyectos nuevos)
@@ -164,7 +163,7 @@ directorio_actual = Path.cwd()
 print(f"Directorio act: {directorio_actual}")
 
 # Crear ruta de forma elegante
-archivo = Path('/tmp') / "datos" / "ejemplo.txt"
+archivo = Path("/tmp") / "datos" / "ejemplo.txt"
 print(f"Ruta del archivo: {archivo}")
 
 # Crear directorio si no existe
@@ -172,7 +171,7 @@ archivo.parent.mkdir(parents=True, exist_ok=True)
 print(f"Directorio creado: {archivo.parent}")
 
 # Buscar archivos por patrón
-archivos_md = list(Path('.').glob('**/*.md'))
+archivos_md = list(Path(".").glob("**/*.md"))
 print(f"Archivos Markdown encontrados: {len(archivos_md)}")
 ```
 
@@ -191,7 +190,7 @@ tags: [hide-output]
 import os
 
 # Ejemplo de uso de os.walk()
-for raiz, dirs, archivos in os.walk('.'):
+for raiz, dirs, archivos in os.walk("."):
     print(f"Carpeta: {raiz}")
     for archivo in archivos:
         print(f" - {archivo}")
@@ -249,20 +248,20 @@ El archivo de texto que vamos a usar de prueba tiene texto en castellano y en ch
 ---
 tags: [hide-output]
 ---
-archivo = '../_static/code/archivos/edd.txt'
+archivo = "../_static/code/archivos/edd.txt"
 
 try:
-  f = open(archivo, 'r', encoding='utf-8') # Puede levantar FileNotFoundError
+    f = open(archivo, "r", encoding="utf-8")  # Puede levantar FileNotFoundError
 except FileNotFoundError:
-  print("Archivo no encontrado")
+    print("Archivo no encontrado")
 else:
-  try:
-    contenido = f.read() # Puede levantar otras excepciones
-    print(contenido)
-  except Exception as e:
-    print(f"Error inesperado: {e}")
-  finally:
-    f.close()
+    try:
+        contenido = f.read()  # Puede levantar otras excepciones
+        print(contenido)
+    except Exception as e:
+        print(f"Error inesperado: {e}")
+    finally:
+        f.close()
 ```
 
 #### Leer línea por línea en una lista
@@ -271,20 +270,20 @@ else:
 ---
 tags: [hide-output]
 ---
-archivo = '../_static/code/archivos/edd.txt'
+archivo = "../_static/code/archivos/edd.txt"
 
 try:
-  f = open(archivo, 'r', encoding='utf-8') # Puede levantar FileNotFoundError
+    f = open(archivo, "r", encoding="utf-8")  # Puede levantar FileNotFoundError
 except FileNotFoundError:
-  print("Archivo no encontrado")
+    print("Archivo no encontrado")
 else:
-  try:
-    contenido = f.readlines() # Puede levantar otras excepciones
-    print(contenido)
-  except Exception as e:
-    print(f"Error inesperado: {e}")
-  finally:
-    f.close()
+    try:
+        contenido = f.readlines()  # Puede levantar otras excepciones
+        print(contenido)
+    except Exception as e:
+        print(f"Error inesperado: {e}")
+    finally:
+        f.close()
 ```
 
 #### Iterar línea por línea
@@ -294,20 +293,20 @@ else:
 tags: [hide-output]
 ---
 # Iterar con while
-archivo = '../_static/code/archivos/edd.txt'
+archivo = "../_static/code/archivos/edd.txt"
 
 try:
-  f = open(archivo, 'r', encoding='utf-8') # Puede levantar FileNotFoundError
+    f = open(archivo, "r", encoding="utf-8")  # Puede levantar FileNotFoundError
 except FileNotFoundError:
-  print("Archivo no encontrado")
+    print("Archivo no encontrado")
 else:
-  try:
-    while (linea := f.readline()):
-      print(linea)
-  except Exception as e:
-    print(f"Error inesperado: {e}")
-  finally:
-    f.close()
+    try:
+        while linea := f.readline():
+            print(linea)
+    except Exception as e:
+        print(f"Error inesperado: {e}")
+    finally:
+        f.close()
 ```
 
 ```{code-cell} python
@@ -316,20 +315,20 @@ tags: [hide-output]
 ---
 # Iterar con for
 
-archivo = '../_static/code/archivos/edd.txt'
+archivo = "../_static/code/archivos/edd.txt"
 
 try:
-  f = open(archivo, 'r', encoding='utf-8') # Puede levantar FileNotFoundError
+    f = open(archivo, "r", encoding="utf-8")  # Puede levantar FileNotFoundError
 except FileNotFoundError:
-  print("Archivo no encontrado")
+    print("Archivo no encontrado")
 else:
-  try:
-    for linea in f:
-      print(linea)
-  except Exception as e:
-    print(f"Error inesperado: {e}")
-  finally:
-    f.close()
+    try:
+        for linea in f:
+            print(linea)
+    except Exception as e:
+        print(f"Error inesperado: {e}")
+    finally:
+        f.close()
 ```
 
 #### Leer una porción específica del archivo
@@ -338,24 +337,24 @@ else:
 ---
 tags: [hide-output]
 ---
-archivo = '../_static/code/archivos/edd.txt'
+archivo = "../_static/code/archivos/edd.txt"
 
 try:
-  f = open(archivo, 'r', encoding='utf-8') # Puede levantar FileNotFoundError
+    f = open(archivo, "r", encoding="utf-8")  # Puede levantar FileNotFoundError
 except FileNotFoundError:
-  print("Archivo no encontrado")
+    print("Archivo no encontrado")
 else:
-  try:
-    f.seek(100) # Posicionar el cursor en el caracter 100
-    print("Leer desde la posición 100\n")
-    print(f.read(100)) # Leer 100 caracteres a partir de la posición 100
-    print("\nLeer desde el inicio\n")
-    f.seek(0) # Volver al inicio del archivo
-    print(f.read(100)) # Leer 100 caracteres desde el inicio
-  except Exception as e:
-    print(f"Error inesperado: {e}")
-  finally:
-    f.close()
+    try:
+        f.seek(100)  # Posicionar el cursor en el caracter 100
+        print("Leer desde la posición 100\n")
+        print(f.read(100))  # Leer 100 caracteres a partir de la posición 100
+        print("\nLeer desde el inicio\n")
+        f.seek(0)  # Volver al inicio del archivo
+        print(f.read(100))  # Leer 100 caracteres desde el inicio
+    except Exception as e:
+        print(f"Error inesperado: {e}")
+    finally:
+        f.close()
 ```
 
 #### Leer un archivo binario
@@ -366,20 +365,20 @@ Si leemos el mismo archivo de texto pero en formato binario veremos dígitos en 
 ---
 tags: [hide-output]
 ---
-archivo = '../_static/code/archivos/edd.txt'
+archivo = "../_static/code/archivos/edd.txt"
 
 try:
-  f = open(archivo, 'rb') # Puede levantar FileNotFoundError
+    f = open(archivo, "rb")  # Puede levantar FileNotFoundError
 except FileNotFoundError:
-  print("Archivo no encontrado")
+    print("Archivo no encontrado")
 else:
-  try:
-    contenido = f.read() # Puede levantar otras excepciones
-    print(contenido)
-  except Exception as e:
-    print(f"Error inesperado: {e}")
-  finally:
-    f.close()
+    try:
+        contenido = f.read()  # Puede levantar otras excepciones
+        print(contenido)
+    except Exception as e:
+        print(f"Error inesperado: {e}")
+    finally:
+        f.close()
 ```
 
 ### Escritura de archivos
@@ -392,21 +391,21 @@ De forma similar a la lectura, podemos escribir en un archivo utilizando el modo
 ---
 tags: [hide-output]
 ---
-archivo = '../_static/code/archivos/texto.txt'
+archivo = "../_static/code/archivos/texto.txt"
 
 try:
-  f = open(archivo, 'w', encoding='utf-8')  
+    f = open(archivo, "w", encoding="utf-8")
 except Exception as e:
-  print(f"Error inesperado: {e}")
-else:
-  try:
-    f.write("Nuevo contenido para el archivo\n")
-  except Exception as e:
     print(f"Error inesperado: {e}")
-  else:
-    print("Contenido escrito correctamente")
-  finally:
-    f.close()
+else:
+    try:
+        f.write("Nuevo contenido para el archivo\n")
+    except Exception as e:
+        print(f"Error inesperado: {e}")
+    else:
+        print("Contenido escrito correctamente")
+    finally:
+        f.close()
 ```
 
 #### Escribir línea por línea
@@ -415,49 +414,49 @@ else:
 ---
 tags: [hide-output]
 ---
-archivo = '../_static/code/archivos/texto.txt'
+archivo = "../_static/code/archivos/texto.txt"
 
 try:
-  f = open(archivo, 'w', encoding='utf-8')  
+    f = open(archivo, "w", encoding="utf-8")
 except Exception as e:
-  print(f"Error inesperado: {e}")
-else:
-  try:
-    lista = []
-    for i in range(5):
-      lista.append(f"Línea {i}\n")
-    f.writelines(lista)
-  except Exception as e:
     print(f"Error inesperado: {e}")
-  else:
-    print("Contenido escrito correctamente")
-  finally:
-    f.close()
+else:
+    try:
+        lista = []
+        for i in range(5):
+            lista.append(f"Línea {i}\n")
+        f.writelines(lista)
+    except Exception as e:
+        print(f"Error inesperado: {e}")
+    else:
+        print("Contenido escrito correctamente")
+    finally:
+        f.close()
 ```
 
 ```{code-cell} python
 ---
 tags: [hide-output]
 ---
-archivo = '../_static/code/archivos/texto.txt'
+archivo = "../_static/code/archivos/texto.txt"
 
 try:
-  f = open(archivo, 'a', encoding='utf-8')  
+    f = open(archivo, "a", encoding="utf-8")
 except Exception as e:
-  print(f"Error inesperado: {e}")
-else:
-  try:
-    lista = []
-    for i in range(5):
-      lista.append(f"Línea {i}\n")
-    f.writelines(lista)
-    f.write("學科基礎\n")
-  except Exception as e:
     print(f"Error inesperado: {e}")
-  else:
-    print("Contenido agregado correctamente")
-  finally:
-    f.close()
+else:
+    try:
+        lista = []
+        for i in range(5):
+            lista.append(f"Línea {i}\n")
+        f.writelines(lista)
+        f.write("學科基礎\n")
+    except Exception as e:
+        print(f"Error inesperado: {e}")
+    else:
+        print("Contenido agregado correctamente")
+    finally:
+        f.close()
 ```
 
 ### Entorno seguro para manipular archivos
@@ -473,14 +472,17 @@ def copiar_archivo(origen, destino):
         while bloque := f_origen.read(1024):
             f_destino.write(bloque)
 
+
 def mostrar_archivo(archivo):
     with open(archivo, "r") as f:
         for linea in f:
             print(linea)
 
+
 # Copiamos texto.txt a copia.txt
-copiar_archivo("../_static/code/archivos/texto.txt", \
-               "../_static/code/archivos/copia.txt")
+copiar_archivo(
+    "../_static/code/archivos/texto.txt", "../_static/code/archivos/copia.txt"
+)
 mostrar_archivo("../_static/code/archivos/copia.txt")
 ```
 
@@ -502,9 +504,11 @@ def comparar_archivos(archivo1, archivo2):
                 break
     print("Los archivos son iguales")
 
+
 # Comparamos texto.txt con copia.txt
-comparar_archivos("../_static/code/archivos/texto.txt", \
-                  "../_static/code/archivos/copia.txt")
+comparar_archivos(
+    "../_static/code/archivos/texto.txt", "../_static/code/archivos/copia.txt"
+)
 ```
 
 ## Recursos para profundizar

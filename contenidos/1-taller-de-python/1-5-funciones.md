@@ -46,10 +46,11 @@ Los parámetros se ligan con los argumentos de la función en el orden en que es
 tags: [hide-output]
 ---
 def concatenar_cadenas(cadena1, cadena2):
-    return cadena1 + cadena2  
+    return cadena1 + cadena2
+
 
 print(concatenar_cadenas("Hola, ", "mundo!"))  # Salida: Hola, mundo!
-print(concatenar_cadenas("mundo!", "Hola, "))  # Salida: mundo!Hola, 
+print(concatenar_cadenas("mundo!", "Hola, "))  # Salida: mundo!Hola,
 ```
 
 ### Parámetros Nombrados
@@ -62,6 +63,7 @@ tags: [hide-output]
 ---
 def concatenar_cadenas(cadena1, cadena2):
     return cadena1 + cadena2
+
 
 print(concatenar_cadenas(cadena2="mundo!", cadena1="Hola, "))  # Salida: Hola, mundo!
 ```
@@ -79,8 +81,9 @@ def sumar(*numeros):
     print(f"El tipo de numeros es: {type(numeros)}")
     suma = 0
     for num in numeros:
-      suma += num
+        suma += num
     return suma
+
 
 print(sumar(1, 2, 3))  # Salida: 6
 print(sumar(4, 5, 6, 7, 8))  # Salida: 30
@@ -100,6 +103,7 @@ def mostrar_info(**info):
     for clave, valor in info.items():
         print(f"{clave}: {valor}")
 
+
 mostrar_info(nombre="Juan", edad=30, ciudad="Madrid")
 ```
 
@@ -112,7 +116,8 @@ Los parámetros por defecto permiten definir valores predeterminados para los pa
 tags: [hide-output]
 ---
 def saludar(nombre="mundo"):
-    return f"Hola, {nombre}!" 
+    return f"Hola, {nombre}!"
+
 
 print(saludar())  # Salida: Hola, mundo!
 print(saludar("Juan"))  # Salida: Hola, Juan!
@@ -137,6 +142,7 @@ def funcion_ejemplo(param1, param2="valor_por_defecto", *args, **kwargs):
     print(f"args: {args}")
     print(f"kwargs: {kwargs}")
 
+
 funcion_ejemplo(1, 2, 3, 4, clave1="valor1", clave2="valor2")
 ```
 
@@ -149,6 +155,7 @@ def funcion_ejemplo(param1, param2="valor_por_defecto", *args, **kwargs):
     print(f"args: {args}")
     print(f"kwargs: {kwargs}")
 
+
 funcion_ejemplo(1, (2, 3), clave1="valor1", clave2="valor2")
 ```
 
@@ -160,6 +167,7 @@ def funcion_ejemplo(param1, param2="valor_por_defecto", *args, **kwargs):
     print(f"param1: {param1}, param2: {param2}")
     print(f"args: {args}")
     print(f"kwargs: {kwargs}")
+
 
 funcion_ejemplo(1, clave1="valor1", clave2="valor2")
 ```
@@ -177,6 +185,7 @@ def division_y_resto(dividendo, divisor):
     resto = dividendo % divisor
     return cociente, resto
 
+
 cociente, resto = division_y_resto(10, 3)
 print(f"Cociente: {cociente}, Resto: {resto}")
 ```
@@ -191,7 +200,9 @@ def sumar(a: int, b: int) -> int:
     """
     Suma dos números enteros y devuelve el resultado.
     """
-    return a + b    
+    return a + b
+
+
 print(sumar(3, 5))  # Salida: 8
 print(sumar("a", "b"))  # Salida: ab
 ```
@@ -222,13 +233,17 @@ tags: [hide-output]
 def componer(func1, func2):
     def funcion_compuesta(x):
         return func2(func1(x))
+
     return funcion_compuesta
+
 
 def cuadrado(x):
     return x * x
 
+
 def doble(x):
     return x + x
+
 
 doble_cuadrado = componer(cuadrado, doble)
 print(doble_cuadrado(3))  # Salida: 18
@@ -258,6 +273,8 @@ tags: [hide-output]
 ---
 def componer(func1, func2):
     return lambda x: func2(func1(x))
+
+
 doble_cuadrado = componer(lambda x: x * x, lambda x: x + x)
 print(doble_cuadrado(3))  # Salida:
 ```
@@ -280,9 +297,10 @@ def mapear(func, iterable):
     """
     return [func(x) for x in iterable]
 
+
 numeros = [x for x in range(10)]
 cuadrados = mapear(lambda x: x**2, numeros)
-print(f"Cuadrados: {cuadrados}") 
+print(f"Cuadrados: {cuadrados}")
 ```
 
 Python proporciona la función `map`{l=python} para realizar mapeo de manera más concisa y que permite devolver un iterador en lugar de una lista. Como todo iterador, una vez que se consume, es decir que se itera sobre él, no se puede volver a utilizar. Por lo tanto, es común convertirlo a una lista o tupla para conservar los resultados.
@@ -314,9 +332,10 @@ def filtrar(func, iterable):
     """
     return [x for x in iterable if func(x)]
 
+
 numeros = [x for x in range(10)]
 pares = filtrar(lambda x: x % 2 == 0, numeros)
-print(f"Números pares: {pares}")  
+print(f"Números pares: {pares}")
 ```
 
 En este caso la función de filtrado es una función anónima `lambda x: x % 2 == 0`. Las funciones anónimas siempre devuelven el resultado de la última expresión evaluada, por lo que no es necesario utilizar `return`{l=python}.
@@ -331,7 +350,7 @@ numeros = [x for x in range(10)]
 pares = filter(lambda x: x % 2 == 0, numeros)
 print(type(pares))  # <class 'filter'>
 lista = list(pares)  # Convierte el iterador a lista
-print(f"Números pares: {lista}")  # 
+print(f"Números pares: {lista}")  #
 ```
 
 Reducción
@@ -346,9 +365,10 @@ En este caso, se utiliza para sumar todos los números de la lista. Aplica la su
 tags: [hide-output]
 ---
 from functools import reduce
+
 numeros = [x for x in range(10)]
 suma_total = reduce(lambda x, y: x + y, numeros)
-print(f"Suma total: {suma_total}") #(((((((((0+1)+2)+3)+4)+5)+6)+7)+8)+9) = 45
+print(f"Suma total: {suma_total}")  # (((((((((0+1)+2)+3)+4)+5)+6)+7)+8)+9) = 45
 ```
 
 La función de reducción es la función anónima `lambda x, y: x + y`, que toma dos argumentos y devuelve su suma. No hace falta utilizar `return`{l=python} ya que la última expresión evaluada es justamente la suma de `x`{l=python} e `y`{l=python}.
@@ -360,9 +380,10 @@ Otro ejemplo de reducción con cadenas de caracteres:
 tags: [hide-output]
 ---
 from functools import reduce
+
 palabras = ["Python", "mundo", "Hola"]
 frase = reduce(lambda x, y: y + " " + x, palabras)
-print(f"Frase: {frase}")  
+print(f"Frase: {frase}")
 ```
 
 En este caso, la función de reducción concatena las palabras en orden inverso, creando una frase a partir de la lista de palabras. El orden inverso se debe al orden en que concatena los elementos la función de reducción.
@@ -377,7 +398,7 @@ Iteradores
 tags: [hide-output]
 ---
 numeros = [x for x in range(10)]
-iterador = iter(numeros) #
+iterador = iter(numeros)  #
 while True:
     try:
         numero = next(iterador)
@@ -403,16 +424,20 @@ def decorador(func):
     """
     Decora la función `func`{l=python} para agregarle mensajes al valor de retorno.
     """
+
     def funcion_decorada(*args, **kwargs):
         resultado = f"El resultado de la operación es : {func(*args, **kwargs)}"
         return resultado
+
     return funcion_decorada
+
 
 def funcion_original(x):
     return x * 2
 
+
 funcion_decorada = decorador(funcion_original)
-funcion_decorada(5)  
+funcion_decorada(5)
 ```
 
 La función `decorador`{l=python} toma una función `func`{l=python} como argumento y devuelve una nueva función, `funcion_decorada`{l=python} que agrega el mensaje *El resultado de la operación es : "* al resultado de la función original.
@@ -431,16 +456,23 @@ def decorador(func):
     def funcion_decorada(*args, **kwargs):
         resultado = f"El resultado de la operación es : {func(*args, **kwargs)}"
         return resultado
+
     return funcion_decorada
+
 
 @decorador
 def funcion_original(x):
     return x * 2
-print(funcion_original(5)) 
+
+
+print(funcion_original(5))
+
 
 @decorador
 def funcion_suma(a, b):
     return a + b
+
+
 print(funcion_suma(3, 4))
 ```
 
@@ -456,6 +488,8 @@ def contador():
     while True:
         yield i
         i += 1
+
+
 contador_gen = contador()
 print(type(contador_gen))  # <class 'generator'>
 print(next(contador_gen))  # Salida: 0
@@ -473,13 +507,16 @@ tags: [hide-output]
 ---
 def contador():
     i = 0
+
     def siguiente():
         nonlocal i
         valor = i
         i += 1
         return valor
+
     return siguiente
-    
+
+
 siguiente = contador()
 print(siguiente())  # Salida: 0
 print(siguiente())  # Salida: 1

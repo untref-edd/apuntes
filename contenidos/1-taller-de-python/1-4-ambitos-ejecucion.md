@@ -62,8 +62,8 @@ tags: [hide-output]
 ---
 s1 = "hola"
 s2 = s1
-s1 += " mundo" # Esto crea una nueva cadena "hola mundo" y s1 ahora referencia a ella
-print(f"s1: {s1}, s2: {s2}") # Salida: s1: hola mundo, s2: hola
+s1 += " mundo"  # Esto crea una nueva cadena "hola mundo" y s1 ahora referencia a ella
+print(f"s1: {s1}, s2: {s2}")  # Salida: s1: hola mundo, s2: hola
 ```
 
 <iframe
@@ -92,9 +92,9 @@ Cuando se modifica un objeto mutable, se altera el objeto en su lugar. Si múlti
 tags: [hide-output]
 ---
 lista1 = [1, 2, 3]
-lista2 = lista1 # lista1 y lista2 referencian a la misma lista
-lista1.append(4) # Modifica la lista original
-print(f"lista1: {lista1}, lista2: {lista2}") 
+lista2 = lista1  # lista1 y lista2 referencian a la misma lista
+lista1.append(4)  # Modifica la lista original
+print(f"lista1: {lista1}, lista2: {lista2}")
 ```
 
 <iframe
@@ -164,13 +164,16 @@ Si hay variables globales definidas con el mismo nombre de las variables locales
 ---
 tags: [hide-output]
 ---
-mensaje = "Hola desde el ámbito global" # Variable global
+mensaje = "Hola desde el ámbito global"  # Variable global
+
+
 def mi_funcion():
-    mensaje = "Hola desde la función" # Variable local
+    mensaje = "Hola desde la función"  # Variable local
     print(mensaje)
 
-mi_funcion() # Llama a la función que imprime el mensaje local
-print(mensaje) # Acceso a la variable global
+
+mi_funcion()  # Llama a la función que imprime el mensaje local
+print(mensaje)  # Acceso a la variable global
 ```
 
 La variable local `mensaje`{l=python} dentro de `mi_funcion`{l=python} oculta la variable global del mismo nombre. Cuando se llama a `mi_funcion`{l=python}, imprime el mensaje local, mientras que fuera de la función se accede a la variable global.
@@ -181,13 +184,17 @@ Si se necesita modificar una variable global desde dentro de una función, se de
 ---
 tags: [hide-output]
 ---
-mensaje = "Hola desde el ámbito global" # Variable global
+mensaje = "Hola desde el ámbito global"  # Variable global
+
+
 def mi_funcion():
-    global mensaje # Indica que se quiere usar la variable global
-    mensaje = "Hola desde la función" # Modifica la variable global
+    global mensaje  # Indica que se quiere usar la variable global
+    mensaje = "Hola desde la función"  # Modifica la variable global
     print(mensaje)
-mi_funcion() # Llama a la función que modifica el mensaje global
-print(mensaje) # Acceso a la variable global modificada
+
+
+mi_funcion()  # Llama a la función que modifica el mensaje global
+print(mensaje)  # Acceso a la variable global modificada
 ```
 
 ```{Warning}
@@ -215,7 +222,9 @@ mystnb:
 def fabrica_incrementos(y):
     def incrementar(x):
         return x + y  # y está encapsulada en la función interna
-    return incrementar  # Retorna la función interna  
+
+    return incrementar  # Retorna la función interna
+
 
 incrementar_2 = fabrica_incrementos(2)  # Crea una función que incrementa en 2
 print(incrementar_2(5))  # Salida: 7
@@ -248,6 +257,7 @@ Al declarar un módulo se puede incluir variables y constantes globales que pued
 tags: [hide-output]
 ---
 import math  # Importa el módulo math
+
 print("Constantes matemáticas:")
 print(math.pi)  # Imprime el valor de pi
 print(math.e)  # Imprime el valor de e
@@ -295,9 +305,13 @@ No se recomienda bajo ningún punto de vista, redefinir nombres built-in, ya que
 tags: [hide-output]
 ---
 print(len("Hola"))  # Llama a la función built-in len
+
+
 def mi_funcion():
     len = 4
     print(len("Mundo"))  # Error
+
+
 mi_funcion()  # Llama a la función que imprime la longitud de "Mundo"
 ```
 

@@ -49,12 +49,14 @@ tags: [hide-output]
 ---
 class Persona:
     """Clase simple para ejemplo de introspección."""
+
     def __init__(self, nombre, edad):
         self.nombre = nombre
         self.edad = edad
-    
+
     def saludar(self):
         print(f"Hola, soy {self.nombre} y tengo {self.edad} años.")
+
 
 # Crear instancia
 persona = Persona("Alice", 30)
@@ -73,7 +75,6 @@ print("Edad actualizada:", getattr(persona, "edad"))
 # Verificar invocabilidad
 print("¿Es 'persona' invocable?", callable(persona))
 print("¿Es 'persona.saludar' invocable?", callable(persona.saludar))
-
 ```
 
 ## Ejemplo de reflexión con cautela
@@ -87,6 +88,7 @@ tags: [hide-output]
 ---
 import types
 
+
 class Persona:
     def __init__(self, nombre, edad):
         self.nombre = nombre
@@ -95,6 +97,7 @@ class Persona:
     def saludar(self):
         print(f"Hola, soy {self.nombre} y tengo {self.edad} años.")
 
+
 juan = Persona("Juan", 40)
 ana = Persona("Ana", 35)
 
@@ -102,9 +105,13 @@ ana = Persona("Ana", 35)
 juan.telefono = "123-456-7890"
 ana.domicilio = "La Merced 123"
 
+
 # Agregar un método personalizado solo a 'juan'
 def saludar_con_telefono(self):
-    print(f"Hola, soy {self.nombre}, tengo {self.edad} años y mi teléfono es {self.telefono}.")
+    print(
+        f"Hola, soy {self.nombre}, tengo {self.edad} años y mi teléfono es {self.telefono}."
+    )
+
 
 juan.saludar = types.MethodType(saludar_con_telefono, juan)
 
@@ -123,6 +130,7 @@ tags: [hide-output]
 ---
 class Persona:
     """Clase simple para ejemplo de documentación."""
+
     def __init__(self, nombre, edad):
         self.nombre = nombre
         self.edad = edad
@@ -130,6 +138,7 @@ class Persona:
     def saludar(self):
         """Método para saludar."""
         print(f"Hola, soy {self.nombre} y tengo {self.edad} años.")
+
 
 # Crear instancia
 alice = Persona("Alice", 30)
