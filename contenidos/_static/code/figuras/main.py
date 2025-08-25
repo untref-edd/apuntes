@@ -16,7 +16,7 @@ from triangulo import Triangulo
 def imprimir_propiedades_figura(figura):
     """
     Imprime las propiedades de una figura usando polimorfismo.
-    
+
     Args:
         figura: Cualquier objeto que tenga métodos perimetro() y area().
     """
@@ -31,44 +31,35 @@ def demo_polimorfismo():
     Demostración de polimorfismo con una lista de diferentes figuras.
     """
     print("=== Demostración de Polimorfismo con Figuras ===\n")
-    
+
     # Crear diferentes tipos de figuras
     figuras = [
         # Rectángulo de 3x4
         Rectangulo(Punto(0, 0), Punto(3, 4)),
-        
         # Cuadrado de lado 5
         Cuadrado(Punto(1, 1), 5),
-        
         # Círculo de radio 3
         Circulo(Punto(2, 2), 3),
-        
         # Elipse con radios 4 y 2
         Elipse(Punto(0, 0), 4, 2),
-        
         # Triángulo rectángulo
         Triangulo(Punto(0, 0), Punto(3, 0), Punto(0, 4)),
-        
         # Triángulo equilátero aproximado
-        Triangulo(
-            Punto(0, 0), 
-            Punto(2, 0), 
-            Punto(1, 1.732)  # altura ≈ √3
-        )
+        Triangulo(Punto(0, 0), Punto(2, 0), Punto(1, 1.732)),  # altura ≈ √3
     ]
-    
+
     # Demostrar polimorfismo: mismo código funciona para todas las figuras
     total_perimetro = 0
     total_area = 0
-    
+
     for i, figura in enumerate(figuras, 1):
         print(f"--- Figura {i} ---")
         imprimir_propiedades_figura(figura)
-        
+
         # Acumular totales
         total_perimetro += figura.perimetro()
         total_area += figura.area()
-    
+
     # Mostrar totales
     print("=" * 50)
     print(f"Total de figuras: {len(figuras)}")
@@ -81,19 +72,19 @@ def demo_herencia():
     Demostración de relaciones de herencia.
     """
     print("\n=== Demostración de Herencia ===\n")
-    
+
     # Crear instancias
     rectangulo = Rectangulo(Punto(0, 0), Punto(4, 3))
     cuadrado = Cuadrado(Punto(0, 0), 4)
     elipse = Elipse(Punto(0, 0), 3, 2)
     circulo = Circulo(Punto(0, 0), 3)
-    
+
     print("Relaciones de herencia:")
     print(f"¿Cuadrado es instancia de Rectángulo? {isinstance(cuadrado, Rectangulo)}")
     print(f"¿Círculo es instancia de Elipse? {isinstance(circulo, Elipse)}")
     print(f"¿Rectángulo es instancia de Cuadrado? {isinstance(rectangulo, Cuadrado)}")
     print()
-    
+
     # Mostrar jerarquías de clases
     print("Jerarquías de clases:")
     print(f"Cuadrado MRO: {[cls.__name__ for cls in Cuadrado.__mro__]}")
@@ -105,30 +96,24 @@ def demo_casos_especiales():
     Demostración de casos especiales y validaciones.
     """
     print("\n=== Casos Especiales ===\n")
-    
+
     # Figuras con valores por defecto
     print("Figuras con valores por defecto:")
-    figuras_default = [
-        Rectangulo(),
-        Cuadrado(),
-        Circulo(),
-        Elipse(),
-        Triangulo()
-    ]
-    
+    figuras_default = [Rectangulo(), Cuadrado(), Circulo(), Elipse(), Triangulo()]
+
     for figura in figuras_default:
         print(f"{figura} -> Área: {figura.area():.2f}")
-    
+
     print()
-    
+
     # Casos límite
     print("Casos límite:")
-    
+
     # Triángulo degenerado (área = 0)
     triangulo_degenerado = Triangulo(Punto(0, 0), Punto(1, 0), Punto(2, 0))
     print(f"Triángulo degenerado: {triangulo_degenerado}")
     print(f"Área: {triangulo_degenerado.area():.2f}")
-    
+
     # Círculo muy pequeño
     circulo_pequeno = Circulo(Punto(0, 0), 0.001)
     print(f"Círculo pequeño: {circulo_pequeno}")

@@ -13,6 +13,7 @@ install:
 .PHONY: fmt
 fmt:
 	mdformat contenidos/**/*.md
+	black --line-length 120 .
 
 ## build: compila el libro
 .PHONY: build
