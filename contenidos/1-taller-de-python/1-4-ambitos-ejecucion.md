@@ -9,6 +9,7 @@ kernelspec:
   language: python
   name: python3
 ---
+
 # Ámbitos de Ejecución
 
 Este capítulo profundizaremos sobre el manejo de variables en Python, contrastándolo con lo que ya conocemos de Go y Java. Aunque los conceptos fundamentales de variables son universales, Python introduce matices importantes en su gestión, especialmente en lo que respecta a la inmutabilidad de ciertos tipos de datos, los ámbitos de ejecución y la poderosa característica de las clausuras.
@@ -17,12 +18,12 @@ Este capítulo profundizaremos sobre el manejo de variables en Python, contrast�
 
 En Go y Java, la declaración de variables a menudo implica especificar explícitamente el tipo de dato (aunque Go ofrece inferencia de tipo). Python, por otro lado, es un lenguaje de tipado dinámico. Esto significa que no se declara el tipo de una variable; el tipo se infiere en tiempo de ejecución según el valor que se le asigna.
 
-Una diferencia clave es que en Python, las variables son esencialmente referencias a objetos en memoria. Cuando se reasigna  una variable, simplemente esa referencia pasa a apuntar a un objeto diferente, en lugar de cambiar el valor (esto es crucial para entender la inmutabilidad de ciertos tipos).
+Una diferencia clave es que en Python, las variables son esencialmente referencias a objetos en memoria. Cuando se reasigna una variable, simplemente esa referencia pasa a apuntar a un objeto diferente, en lugar de cambiar el valor (esto es crucial para entender la inmutabilidad de ciertos tipos).
 
 Cada vez que se asigna un valor a una variable, Python sigue los siguientes pasos:
 
 1. Crea un objeto en memoria (si no existe ya).
-2. Asigna una referencia a ese objeto.
+1. Asigna una referencia a ese objeto.
 
 Python garantiza que los pasos anteriores para asignar una variable son **_atómicos_**, es decir se ejecutan uno tras otro sin interrupciones, lo que asegura la consistencia del estado de las variables en un entorno multihilo.
 
@@ -56,8 +57,9 @@ En Python **todo es un objeto**, por lo tanto tanto podemos pensar que todas las
 Cuando a una variable que ya tenía asignado un objeto inmutable, se le asigna otro valor, en realidad se crea un nuevo objeto inmutable en memoria y la referencia anterior se pierde.
 
 ```{code-cell}
-:tags: [hide-output]
-
+---
+tags: [hide-output]
+---
 s1 = "hola"
 s2 = s1
 s1 += " mundo" # Esto crea una nueva cadena "hola mundo" y s1 ahora referencia a ella
@@ -86,8 +88,9 @@ En este fragmento, `s1` y `s2` inicialmente referencian al mismo objeto, la cade
 Cuando se modifica un objeto mutable, se altera el objeto en su lugar. Si múltiples variables referencian al mismo objeto mutable, todas verán los cambios.
 
 ```{code-cell}
-:tags: [hide-output]
-
+---
+tags: [hide-output]
+---
 lista1 = [1, 2, 3]
 lista2 = lista1 # lista1 y lista2 referencian a la misma lista
 lista1.append(4) # Modifica la lista original
@@ -158,8 +161,9 @@ Las variables definidas dentro de una función son locales a esa función. Esto 
 Si hay variables globales definidas con el mismo nombre de las variables locales, entonces las locales **ocultan** las globales. Esto se conoce como **Ocultamiento** de variables (_shadowing_).
 
 ```{code-cell}
-:tags: [hide-output]
-
+---
+tags: [hide-output]
+---
 mensaje = "Hola desde el ámbito global" # Variable global
 def mi_funcion():
     mensaje = "Hola desde la función" # Variable local
@@ -174,8 +178,9 @@ La variable local `mensaje` dentro de `mi_funcion` oculta la variable global del
 Si se necesita modificar una variable global desde dentro de una función, se debe usar la palabra clave `global` para indicar que se quiere referenciar a la variable global.
 
 ```{code-cell}
-:tags: [hide-output]
-
+---
+tags: [hide-output]
+---
 mensaje = "Hola desde el ámbito global" # Variable global
 def mi_funcion():
     global mensaje # Indica que se quiere usar la variable global
@@ -199,7 +204,7 @@ Para que una función sea una clausura, debe cumplir dos condiciones:
 
 - Debe ser una función anidada (una función definida dentro de otra función).
 - Debe referenciar variables de su ámbito externo (no global, no local a ella misma). Estas variables se conocen como **referencias externas**.
-  
+
 ```{code-cell}
 ---
 tags: [hide-output]
@@ -220,13 +225,13 @@ Al ejecutar el fragmento anterior ocurre lo siguiente:
 
 1. En la línea 1 se define la función `fabrica_incrementos` que recibe un parámetro `y`. El código de la función (hasta la línea 4) se guarda en memoria. Es un valor más. El nombre de la función `fabrica_incrementos` se guarda en el ámbito global y es la referencia que permite acceder al objeto función.
 
-2. En la línea 6 se llama a `fabrica_incrementos(2)` y el resultado de esa operación (la función interna `incrementar`) se va a asignar a la variable `incrementar_2`. En este momento, `y` tiene el valor 2 y se guarda en la clausura de la función interna `incrementar`.
+1. En la línea 6 se llama a `fabrica_incrementos(2)` y el resultado de esa operación (la función interna `incrementar`) se va a asignar a la variable `incrementar_2`. En este momento, `y` tiene el valor 2 y se guarda en la clausura de la función interna `incrementar`.
 
-3. El valor devuelto por `fabrica_incrementos` es una función que queda ligada a la variable `incrementar_2`. `incrementar_2` contiene el valor de `y`, al momento de su creación, en su clausura. Esto significa que `incrementar_2` "recuerda" el valor de `y` aunque `fabrica_incrementos` ya haya terminado su ejecución.
+1. El valor devuelto por `fabrica_incrementos` es una función que queda ligada a la variable `incrementar_2`. `incrementar_2` contiene el valor de `y`, al momento de su creación, en su clausura. Esto significa que `incrementar_2` "recuerda" el valor de `y` aunque `fabrica_incrementos` ya haya terminado su ejecución.
 
-4. En la línea 7, se ejecuta `incrementar_2`. `incrementar_2` toma un parámetro `x` y retorna la suma de `x` más `y`. Si bien `fabrica_incrementos` ya ha terminado su ejecución y por lo tanto los valores de sus parámetros no están en la memoria, la referencia a `y` se mantiene en la clausura. La función realiza la operación `5 + 2`, donde `5` es el valor ligado al parámetro `x` y `2` es el valor de `y`, al momento de la creación de `incrementar_2`que se guardó en la clausura.
+1. En la línea 7, se ejecuta `incrementar_2`. `incrementar_2` toma un parámetro `x` y retorna la suma de `x` más `y`. Si bien `fabrica_incrementos` ya ha terminado su ejecución y por lo tanto los valores de sus parámetros no están en la memoria, la referencia a `y` se mantiene en la clausura. La función realiza la operación `5 + 2`, donde `5` es el valor ligado al parámetro `x` y `2` es el valor de `y`, al momento de la creación de `incrementar_2`que se guardó en la clausura.
 
-5. `incrementar_2(5)` retorna 7 al ámbito global, y `print` lo muestra en la salida.
+1. `incrementar_2(5)` retorna 7 al ámbito global, y `print` lo muestra en la salida.
 
 ```{Important}
 Para Python todas las variables son referencias, incluido los nombres de las funciones. Al colocar paréntesis luego del nombre de la misma, se invoca la función y se ejecuta el código que contiene. Si no se colocan paréntesis, se obtiene una referencia a la función, que es un objeto más en memoria.
@@ -239,8 +244,9 @@ El ámbito global se refiere a las variables definidas en el nivel superior de u
 Al declarar un módulo se puede incluir variables y constantes globales que pueden ser utilizadas en todo el código del módulo. A modo de ejemplo podemos ver las constantes matemáticas definidas en el módulo `math`, como `math.pi` o `math.e`.
 
 ```{code-cell}
-:tags: [hide-output]
-
+---
+tags: [hide-output]
+---
 import math  # Importa el módulo math
 print("Constantes matemáticas:")
 print(math.pi)  # Imprime el valor de pi
@@ -253,10 +259,11 @@ print(math.nan)  # Imprime el valor de NaN (Not a Number)
 Para definir un módulo propio se crea un archivo con extensión `.py` y se pueden definir variables y funciones que serán accesibles desde otros módulos al importarlos. El nombre del módulo es el nombre del archivo sin la extensión `.py`.
 
 A modo de ejemplo, se muestra un módulo simple que implementa una pila (_stack_) utilizando una lista y Objetos. Más adelante veremos en detalle la [Programación Orientada a Objetos (POO)](1-6-poo.md) en Python, pero aquí se muestra un ejemplo de un módulo y como se documenta cada parte del código.
-`
-````{admonition} Click para ver el código
-:class: dropdown
 
+````{admonition} Click para ver el código
+---
+class: dropdown
+---
 ```{literalinclude} ../_static/code/stack/stack.py
 ```
 
@@ -284,8 +291,9 @@ No se recomienda bajo ningún punto de vista, redefinir nombres built-in, ya que
 ```
 
 ```{code-cell}
-:tags: [hide-output]
-
+---
+tags: [hide-output]
+---
 print(len("Hola"))  # Llama a la función built-in len
 def mi_funcion():
     len = 4
@@ -295,7 +303,6 @@ mi_funcion()  # Llama a la función que imprime la longitud de "Mundo"
 
 ## Recursos para profundizar
 
-- [Tutorial de Python - Ámbitos de ejecución](https://docs.python.org/es/3/tutorial/classes.html#scopes-and-namespaces){target="_blank"}
-- [Python Scopes and Namespaces (W3Schools)](https://www.w3schools.com/python/python_scope.asp){target="_blank"}
-- [Python Built-in Functions (W3Schools)](https://www.w3schools.com/python/python_ref_functions.asp){target="_blank"}
-  
+- [Tutorial de Python - Ámbitos de ejecución](https://docs.python.org/es/3/tutorial/classes.html#scopes-and-namespaces){target="\_blank"}
+- [Python Scopes and Namespaces (W3Schools)](https://www.w3schools.com/python/python_scope.asp){target="\_blank"}
+- [Python Built-in Functions (W3Schools)](https://www.w3schools.com/python/python_ref_functions.asp){target="\_blank"}

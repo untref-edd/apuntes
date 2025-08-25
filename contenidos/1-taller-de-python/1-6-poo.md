@@ -9,6 +9,7 @@ kernelspec:
   language: python
   name: python3
 ---
+
 # Programación Orientada a Objetos (POO)
 
 La Programación Orientada a Objetos (POO) es un paradigma de programación que utiliza "objetos" para representar datos y comportamientos. En Python, la POO se implementa a través de clases e instancias de esas clases, los objetos.
@@ -40,8 +41,9 @@ Constructor
 En Python, una clase es una plantilla para crear objetos, similar a los `struct` de Go, una clase permite definir nuevos tipos de datos. Un objeto, en cambio, es una instancia de una clase y puede tener atributos (datos) y métodos (funciones). Pueden existir múltiples objetos de la misma clase, cada uno con sus propios valores para los atributos.
 
 ```{code-cell}
-:tags: [hide-output]
-
+---
+tags: [hide-output]
+---
 class Persona:
     def __init__(self, nombre, edad):
         self.nombre = nombre
@@ -100,7 +102,7 @@ En este caso como tanto `Docente` como `Persona` tienen un constructor, `__init_
 
 Con esta estrategia se evita la duplicación de código y se asegura que los atributos de la clase base se inicialicen correctamente. Además, si por algún motivo hay que modificar el constructor de la clase base, no es necesario cambiar el código de la subclase.
 
-En el método `presentar`, se llama al método `saludar` de la clase base `Persona` utilizando `self.saludar()`, lo que permite reutilizar el comportamiento definido en la clase base. En este caso como el método `saludar` no fue ***sobreescrito*** en la clase `Docente`, directamente se puede utilizar `self.saludar()` para llamar al método de la  clase base, sin problemas.
+En el método `presentar`, se llama al método `saludar` de la clase base `Persona` utilizando `self.saludar()`, lo que permite reutilizar el comportamiento definido en la clase base. En este caso como el método `saludar` no fue ***sobreescrito*** en la clase `Docente`, directamente se puede utilizar `self.saludar()` para llamar al método de la clase base, sin problemas.
 
 ### Herencia Múltiple
 
@@ -213,7 +215,7 @@ Diagrama de clases de Ayudante
 Un ***diagrama de clases***, es un diagrama estático que muestra la estructura de un sistema mediante las clases que lo componen y sus relaciones. Una flecha con una línea continua y un triángulo en la punta indica herencia, y en cada clase se pueden ver los atributos y métodos que se definen en cada una. En general no se muestran los atributos y métodos heredados, ni los constructores, pero si los métodos que se sobrescriben, es decir, que se redefinen en una subclase. En el diagrama anterior el método `presentar` de la clase `Ayudante` sobrescribe el método `presentar` de las clases `Docente` y `Estudiante`.
 ```
 
-Cuando hay herencia múltiple se recomienda utilizar el nombre de la clase base explícitamente en el constructor de la subclase en lugar de `super()`. En la clase `Docente`, línea 12 se utiliza directamente `Persona` en lugar de usar `super()`, y en la línea 26 de la clase `Estudiante`  también, para evitar ambigüedades en la resolución de métodos y atributos.
+Cuando hay herencia múltiple se recomienda utilizar el nombre de la clase base explícitamente en el constructor de la subclase en lugar de `super()`. En la clase `Docente`, línea 12 se utiliza directamente `Persona` en lugar de usar `super()`, y en la línea 26 de la clase `Estudiante` también, para evitar ambigüedades en la resolución de métodos y atributos.
 
 En el ejemplo anterior, tanto `Docente` como `Estudiante` tienen un atributo `legajo`, por lo que al crear un objeto de la clase `Ayudante`, se debe especificar explícitamente a qué clase base se está llamando.
 
@@ -222,8 +224,9 @@ En el ejemplo anterior, tanto `Docente` como `Estudiante` tienen un atributo `le
 El siguiente fragmento de código inspecciona los atributos del objeto `ayudante1` y los imprime en la consola (En [Instrospección](1-8-introspeccion.md) veremos más en detalle como los objetos pueden observarse y modificarse a si mismos en tiempo de ejecución)
 
 ```{code-cell}
-:tags: [hide-output]
-
+---
+tags: [hide-output]
+---
 print("Atributos de ayudante1:")
 atributos = vars(ayudante1)
 for key, value in atributos.items():
@@ -239,8 +242,9 @@ En el ejemplo anterior el método `presentar` se define tanto en `Docente` como 
 Cuando hay herencia múltiple se debe tener cuidado como se resuelve el polimorfismo, ya que puede haber ambigüedades si dos clases base tienen un método con el mismo nombre. En Python, se utiliza el **Orden de Resolución de Métodos (MRO)** para determinar qué método se llama en caso de ambigüedad.
 
 ```{code-cell}
-:tags: [hide-output]
-
+---
+tags: [hide-output]
+---
 print("Orden de Resolución de Métodos (MRO) de Ayudante:")
 orden = Ayudante.__mro__
 for cls in orden:
@@ -289,14 +293,16 @@ caption: Programación Orientada a Objetos - Figuras Geométricas
 ```
 
 ```{code-cell}
-:tags: [hide-input, remove-input, hide-output]
+---
+tags: [hide-input, remove-input, hide-output]
+---
 %run ../_static/code/figuras/main.py
 ```
 
-[Descargar código completo de Figuras Geométricas](https://github.com/untref-edd/apuntes/tree/main/contenidos/_static/code/figuras){target="_blank"}
+[Descargar código completo de Figuras Geométricas](https://github.com/untref-edd/apuntes/tree/main/contenidos/_static/code/figuras){target="\_blank"}
 
 ## Recursos para profundizar
 
-- [Tutorial de Python - Clases](https://docs.python.org/es/3.13/tutorial/classes.html){target="_blank"}
-- [Programación Orientada a Objetos (Hektor Profe)](https://hektorprofe.github.io/python/programacion-orientada-a-objetos/){target="_blank"}
-- [Python - Clases y Objetos (W3Schools)](https://www.w3schools.com/python/python_classes.asp){target="_blank"}
+- [Tutorial de Python - Clases](https://docs.python.org/es/3.13/tutorial/classes.html){target="\_blank"}
+- [Programación Orientada a Objetos (Hektor Profe)](https://hektorprofe.github.io/python/programacion-orientada-a-objetos/){target="\_blank"}
+- [Python - Clases y Objetos (W3Schools)](https://www.w3schools.com/python/python_classes.asp){target="\_blank"}

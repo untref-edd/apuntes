@@ -9,6 +9,7 @@ kernelspec:
   language: python
   name: python3
 ---
+
 # Manejo de Excepciones
 
 Las excepciones son eventos que ocurren durante la ejecución de un programa y que interrumpen su flujo normal. Este mecanismo no solo permite manejar errores en tiempo de ejecución, sino que también permite gestionar otras situaciones excepcionales que pueden surgir.
@@ -60,8 +61,9 @@ finally:
 : Incluso si en el `try` o `except` se usa `return` o se lanza una nueva excepción, el `finally` siempre se ejecuta antes de que el flujo salga del bloque.
 
 ```{code-cell}
-:tags: [hide-output]
-
+---
+tags: [hide-output]
+---
 divisor = "10" # cadena de caracteres
 try:
     # Código que puede generar excepciones
@@ -96,7 +98,9 @@ En Python existen muchas excepciones predefinidas que están organizadas en form
 La jerarquia de excepciones permite manejar las excepciones de manera más específica y detallada. Por ejemplo, si se desea manejar todas las excepciones relacionadas con operaciones aritméticas, se puede capturar la excepción `ArithmeticError`. Si se desea manejar solo las excepciones de división por cero, se puede capturar la excepción `ZeroDivisionError`.
 
 ````{admonition} Click para ver la jerarquía de excepciones
-:class: dropdown
+---
+class: dropdown
+---
 ```
 BaseException
  ├── BaseExceptionGroup
@@ -237,8 +241,9 @@ Otra forma de lanzar una excepción en forma condicional es con la sentencia `as
 `assert` es una declaración que se utiliza para realizar pruebas de afirmaciones en el código. Si la afirmación es falsa, se lanza una excepción `AssertionError`. Esto puede ser útil para verificar condiciones que deberían ser verdaderas en un punto determinado del programa. Por ejemplo para chequear se cumplan las precondiciones cuando se llama a una función.
 
 ```{code-cell}
-:tags: [hide-output]
-
+---
+tags: [hide-output]
+---
 def dividir(a, b):
     assert b != 0, "El divisor no puede ser cero"
     return a / b
@@ -296,7 +301,7 @@ Usar `else` para el código dependiente de éxito
 
 ## Recursos para profundizar
 
-- [Documentación oficial de Python sobre manejo de excepciones](https://docs.python.org/es/3.13/tutorial/errors.html){target="_blank"}
-- [Excepciones incorporadas en Python](https://docs.python.org/es/3/library/exceptions.html){target="_blank"}
-- [Errores y Excepciones (Hektor Profe)](https://hektorprofe.github.io/python/errores-y-excepciones/){target="_blank"}
-- [Python Exceptions: An Introduction (Real Python)](https://realpython.com/python-exceptions/){target="_blank"}
+- [Documentación oficial de Python sobre manejo de excepciones](https://docs.python.org/es/3.13/tutorial/errors.html){target="\_blank"}
+- [Excepciones incorporadas en Python](https://docs.python.org/es/3/library/exceptions.html){target="\_blank"}
+- [Errores y Excepciones (Hektor Profe)](https://hektorprofe.github.io/python/errores-y-excepciones/){target="\_blank"}
+- [Python Exceptions: An Introduction (Real Python)](https://realpython.com/python-exceptions/){target="\_blank"}

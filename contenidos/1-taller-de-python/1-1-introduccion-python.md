@@ -9,13 +9,14 @@ kernelspec:
   language: python
   name: python3
 ---
+
 # Introducción a Python
 
-Python es un lenguaje de programación multipropósito, creado a fines de los años 80 por [Guido van Rossum](https://es.wikipedia.org/wiki/Guido_van_Rossum){target="_blank"}.
+Python es un lenguaje de programación multipropósito, creado a fines de los años 80 por [Guido van Rossum](https://es.wikipedia.org/wiki/Guido_van_Rossum){target="\_blank"}.
 
 <div align="center">
 
-[![Logo de Python](../assets/images/python-logo-generic.svg){width=200px}](https://python.org){target="_blank"}
+[![Logo de Python](../assets/images/python-logo-generic.svg){width=200px}](https://python.org){target="\_blank"}
 
 </div>
 
@@ -48,8 +49,9 @@ Permite usar diferentes estilos de programación según las necesidades del proy
 La programación imperativa se basa en la ejecución secuencial de instrucciones. Para realizar una tarea se debe programar paso a paso especificando ***como*** se debe hacer.
 
 ```{code-cell}
-:tags: [hide-output]
-
+---
+tags: [hide-output]
+---
 # Programación imperativa
 def factorial(n):
     resultado = 1
@@ -63,8 +65,9 @@ print(f"Factorial de 5: {factorial(5)}")
 La programación funcional se basa en el uso de funciones puras y evita el estado mutable. Se enfoca en ***que*** se debe hacer, utilizando funciones de orden superior y evitando efectos secundarios. En el capítulo de funciones profundizaremos un poco más en este paradigma.
 
 ```{code-cell}
-:tags: [hide-output]
-
+---
+tags: [hide-output]
+---
 # Quicksort en una línea (programación funcional)
 qs = lambda lst: lst if len(lst) <= 1 else qs([x for x in lst[1:] if x < lst[0]]) + \
                                   [lst[0]] + qs([x for x in lst[1:] if x >= lst[0]])
@@ -86,16 +89,18 @@ resultado = "5" + 3  # Esto generará un error
 ```
 
 ```{code-cell}
-:tags: [hide-output]
-
+---
+tags: [hide-output]
+---
 # Conversión explícita necesaria
 resultado_correcto = int("5") + 3
 print(f"Resultado correcto: {resultado_correcto}")
 ```
 
 ```{code-cell}
-:tags: [hide-output]
-
+---
+tags: [hide-output]
+---
 # Tipado dinámico - las variables pueden cambiar de tipo
 variable = 42        # int
 print(f"Tipo: {type(variable)}, Valor: {variable}")
@@ -120,7 +125,6 @@ tags: [hide-output]
 mystnb:
   number_source_lines: true
 ---
-
 def es_numero_primo(n):
     """
     Determina si un número es primo.
@@ -155,8 +159,9 @@ El cuerpo de la función se extiende hasta la línea 18 a partir de la cual el c
 Entre las líneas 2 y 10 encontramos la documentación de la función, que explica su propósito, los argumentos que recibe y el valor que devuelve. Esta documentación se escribe entre comillas triples (`"""`) y es accesible a través de la función `help(es_numero_primo)`. `help` es una función de Python que muestra la documentación de un objeto.
 
 ```{code-cell}
-:tags: [hide-output]
-
+---
+tags: [hide-output]
+---
 help(es_numero_primo)
 ```
 
@@ -169,8 +174,9 @@ La forma de identar los bloques de código es fundamental en Python. A diferenci
 Python se utiliza en una amplia gama de aplicaciones, gracias a su versatilidad y a la gran cantidad de bibliotecas y frameworks disponibles. Algunas de las áreas más comunes son:
 
 ```{list-table}
-:header-rows: 1
-
+---
+header-rows: 1
+---
 * - Área
   - Frameworks/Bibliotecas
   - Ejemplos de uso
@@ -198,8 +204,9 @@ Python se utiliza en una amplia gama de aplicaciones, gracias a su versatilidad 
 Primero, verifica si Python ya está instalado:
 
 ```{code-cell}
-:tags: [hide-output]
-
+---
+tags: [hide-output]
+---
 import sys
 print(f"Versión de Python: {sys.version}")
 print(f"Plataforma: {sys.platform}")
@@ -249,10 +256,10 @@ pip3 --version
 
 Para profundizar en Python, puedes consultar los siguientes recursos:
 
-- [Documentación oficial de Python](https://docs.python.org/es/3/){target="_blank"}
-- [Tutorial de Python](https://docs.python.org/es/3/tutorial/index.html){target="_blank"}
-- [Tutorial de Python en Inglés (W3Schools)](https://www.w3schools.com/python/){target="_blank"}
-- [Guía de estilo PEP 8](https://www.python.org/dev/peps/pep-0008/){target="_blank"}
-- [Dive Into Python 3 (libro gratuito)](https://diveintopython3.net/){target="_blank"}
-- [Comunidad Python en Argentina](https://python.org.ar/){target="_blank"}
-- [Apuntes del curso de Python - HEKTOR DOCS](https://hektorprofe.github.io/python/){target="_blank"}
+- [Documentación oficial de Python](https://docs.python.org/es/3/){target="\_blank"}
+- [Tutorial de Python](https://docs.python.org/es/3/tutorial/index.html){target="\_blank"}
+- [Tutorial de Python en Inglés (W3Schools)](https://www.w3schools.com/python/){target="\_blank"}
+- [Guía de estilo PEP 8](https://www.python.org/dev/peps/pep-0008/){target="\_blank"}
+- [Dive Into Python 3 (libro gratuito)](https://diveintopython3.net/){target="\_blank"}
+- [Comunidad Python en Argentina](https://python.org.ar/){target="\_blank"}
+- [Apuntes del curso de Python - HEKTOR DOCS](https://hektorprofe.github.io/python/){target="\_blank"}

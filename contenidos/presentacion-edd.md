@@ -9,11 +9,12 @@ kernelspec:
   language: python
   name: python3
 ---
+
 # Estructuras de Datos
 
 ## De que va la materia
 
-En esta asignatura estudiaremos como buscar y recuperar información, así como en las estructuras de datos necesarias para almacenarla y manipularla. La principal motiviación para incursionar en esta disciplina es el constante y creciente volumen de información publicada en internet y en redes sociales, junto con la necesidad de procesarla y analizarla para extraer conocimiento valioso. Se considera que esta disciplina es precursora de la ciencia de datos y base fundamental para el desarrollo de aplicaciones inteligentes y sistemas de toma de decisiones basados en datos y nos permitirá entender como funcionan una amplia gama de aplicaciones, desde sistemas de bases de datos y motores de búsqueda, hasta redes sociales y plataformas de comercio electrónico. 
+En esta asignatura estudiaremos como buscar y recuperar información, así como en las estructuras de datos necesarias para almacenarla y manipularla. La principal motiviación para incursionar en esta disciplina es el constante y creciente volumen de información publicada en internet y en redes sociales, junto con la necesidad de procesarla y analizarla para extraer conocimiento valioso. Se considera que esta disciplina es precursora de la ciencia de datos y base fundamental para el desarrollo de aplicaciones inteligentes y sistemas de toma de decisiones basados en datos y nos permitirá entender como funcionan una amplia gama de aplicaciones, desde sistemas de bases de datos y motores de búsqueda, hasta redes sociales y plataformas de comercio electrónico.
 
 ## Objetivos
 
@@ -52,9 +53,9 @@ Para aprobar la materia además hay que aprobar un examen final, para poder rend
 
 ## Herramientas para cursar
 
-- <a href="https://classroom.google.com/c/NzAwMzMxODY0NzIx" target="_blank">Google Classroom</a>
-- <a href="https://untref-edd.slack.com/" target="_blank">Slack</a>
-- <a href="https://classroom.github.com/classrooms/220222794-untref-edd-2025" target="_blank">Github Classroom</a>
-- <a href="https://meet.google.com/rzj-hjek-npx" target="_blank">Meet para Encuentros Virtuales</a>
+- [Google Classroom](https://classroom.google.com/c/NzAwMzMxODY0NzIx){target="\_blank"}
+- [Slack](https://untref-edd.slack.com/){target="\_blank"}
+- [Github Classroom](https://classroom.github.com/classrooms/220222794-untref-edd-2025){target="\_blank"}
+- [Meet para encuentros virtuales](https://meet.google.com/rzj-hjek-npx){target="\_blank"}
 
 <h1 class="align-center">¡Bienvenidos a Estructuras de Datos!</h1>

@@ -9,12 +9,13 @@ kernelspec:
   language: python
   name: python3
 ---
+
 # Introspección y Reflexión
 
 ## Definiciones
 
 Introspección
-: Es la capacidad de un programa para **examinar su propia estructura y estado en tiempo de ejecución**.  
+: Es la capacidad de un programa para **examinar su propia estructura y estado en tiempo de ejecución**.\
 : En Python, gracias a su naturaleza dinámica, podemos inspeccionar tipos, atributos y métodos de objetos, incluso sin conocerlos de antemano.
 
 Reflexión
@@ -26,25 +27,26 @@ En **Java** estas capacidades existen mediante *Reflection API*, mientras que en
 
 ## Herramientas comunes de introspección y reflexión
 
-| Función           | Descripción |
-|-------------------|-------------|
-| `type(obj)`       | Devuelve el tipo del objeto. |
-| `dir(obj)`        | Lista atributos y métodos disponibles. |
-| `id(obj)`         | Identificador único en memoria. |
-| `vars(obj)`       | Diccionario de atributos de instancia. |
-| `getattr(obj, name[, default])` | Obtiene un atributo dinámicamente. |
-| `setattr(obj, name, value)`     | Asigna un atributo dinámicamente. |
-| `hasattr(obj, name)`            | Verifica si un atributo existe. |
-| `callable(obj)`   | Indica si el objeto es invocable como función o método. |
-| `help(obj)`       | Muestra la documentación. |
+| Función                         | Descripción                                             |
+| ------------------------------- | ------------------------------------------------------- |
+| `type(obj)`                     | Devuelve el tipo del objeto.                            |
+| `dir(obj)`                      | Lista atributos y métodos disponibles.                  |
+| `id(obj)`                       | Identificador único en memoria.                         |
+| `vars(obj)`                     | Diccionario de atributos de instancia.                  |
+| `getattr(obj, name[, default])` | Obtiene un atributo dinámicamente.                      |
+| `setattr(obj, name, value)`     | Asigna un atributo dinámicamente.                       |
+| `hasattr(obj, name)`            | Verifica si un atributo existe.                         |
+| `callable(obj)`                 | Indica si el objeto es invocable como función o método. |
+| `help(obj)`                     | Muestra la documentación.                               |
 
----
+______________________________________________________________________
 
 ## Ejemplo básico de introspección
 
 ```{code-cell}
-:tags: [hide-output]
-
+---
+tags: [hide-output]
+---
 class Persona:
     """Clase simple para ejemplo de introspección."""
     def __init__(self, nombre, edad):
@@ -80,8 +82,9 @@ En Python es posible agregar atributos o métodos a un objeto existente en tiemp
 Esto otorga flexibilidad, pero puede volver el código difícil de mantener si se abusa.
 
 ```{code-cell}
-:tags: [hide-output]
-
+---
+tags: [hide-output]
+---
 import types
 
 class Persona:
@@ -115,8 +118,9 @@ ana.saludar()
 `help()` es una función incorporada en Python que proporciona información sobre objetos, funciones y módulos. Es especialmente útil para obtener documentación sobre cómo usar un objeto o qué métodos y atributos tiene.
 
 ```{code-cell}
-:tags: [hide-output]
-
+---
+tags: [hide-output]
+---
 class Persona:
     """Clase simple para ejemplo de documentación."""
     def __init__(self, nombre, edad):
@@ -142,7 +146,9 @@ Por ejemplo, el siguiente código es peligroso si la variable `expresion` provie
 
 ```python
 expresion = input("Introduce una expresión: ")
-resultado = eval(expresion)  # ¡Peligroso! El usuario puede ejecutar cualquier código Python.
+resultado = eval(
+    expresion
+)  # ¡Peligroso! El usuario puede ejecutar cualquier código Python.
 print("Resultado de la expresión:", resultado)
 ```
 
@@ -151,8 +157,9 @@ Nunca se debe utilizar `eval()` con entradas que provengan de usuarios o fuentes
 ```
 
 ```{code-cell}
-:tags: [hide-output]
-
+---
+tags: [hide-output]
+---
 x = 10
 expresion = "x * 2"
 resultado = eval(expresion)
@@ -173,6 +180,5 @@ La introspección y reflexión son herramientas poderosas pero que se deben util
 
 ## Recursos para profundizar
 
-- [Documentación oficial de Python sobre introspección](https://docs.python.org/es/3.13/library/inspect.html){target="_blank"}
-- [Artículos sobre metaprogramación en Python (Real Python)](https://realpython.com/learning-paths/metaprogramming-in-python/){target="_blank"}
-  
+- [Documentación oficial de Python sobre introspección](https://docs.python.org/es/3.13/library/inspect.html){target="\_blank"}
+- [Artículos sobre metaprogramación en Python (Real Python)](https://realpython.com/learning-paths/metaprogramming-in-python/){target="\_blank"}

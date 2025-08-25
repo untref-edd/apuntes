@@ -9,6 +9,7 @@ kernelspec:
   language: python
   name: python3
 ---
+
 # Índices Invertidos
 
 ## Recuperación booleana

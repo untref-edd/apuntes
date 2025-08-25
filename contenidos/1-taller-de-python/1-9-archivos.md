@@ -9,9 +9,10 @@ kernelspec:
   language: python
   name: python3
 ---
+
 # Archivos
 
-En casi cualquier lenguaje de programación, interactuar con archivos es fundamental.  
+En casi cualquier lenguaje de programación, interactuar con archivos es fundamental.\
 En **Java** y **Go**, esto se hace a través de librerías específicas (`java.io`, `os`), pero en **Python** es mucho más directo y expresivo.
 
 ## Representación de archivos y carpetas
@@ -37,8 +38,8 @@ Mientras la aplicación tiene el archivo abierto, puede leer y escribir en él. 
 Cuando abrimos un archivo:
 
 1. El S.O. localiza el archivo y asigna un *file descriptor*.
-2. Python crea un **objeto archivo** que envuelve ese descriptor.
-3. Las operaciones de lectura/escritura se hacen en **buffers** (bloques de memoria intermedia) para optimizar el rendimiento.
+1. Python crea un **objeto archivo** que envuelve ese descriptor.
+1. Las operaciones de lectura/escritura se hacen en **buffers** (bloques de memoria intermedia) para optimizar el rendimiento.
 
 Ejemplo: si quiere leer un archivo grande, Python no trae todo de golpe, sino trozos que se van entregando al programa. Lo mismo ocurre al escribir, en lugar de escribir todo de una vez, Python lo hace en partes.
 
@@ -49,7 +50,7 @@ En este contexto es fundamental usar los bloques `try / finally` para garantizar
 ### Archivos de texto vs binarios
 
 Texto
-: Interpretan bytes según una codificación (por ejemplo UTF-8).  
+: Interpretan bytes según una codificación (por ejemplo UTF-8).\
 : Ejemplo: `"hola"` → `68 6f 6c 61` (bytes) interpretados como caracteres.
 
 Binarios
@@ -68,42 +69,43 @@ Para manipular carpetas y rutas, Python ofrece los módulos **`os`** y **`pathli
 ### Rutas o Paths absolutos y relativos
 
 Path Absoluto
-: Especifica toda la ruta desde la raíz.  
+: Especifica toda la ruta desde la raíz.\
 : Por ejemplo: `/home/usuario/archivo.txt` o `C:\Users\Usuario\archivo.txt`
 
 Path Relativo
-: Se interpreta desde el directorio donde se ejecuta el programa.  
+: Se interpreta desde el directorio donde se ejecuta el programa.\
 : Por ejemplo: `datos/archivo.txt`
 
 El caracter especial `.` representa el directorio actual, mientras que `..` representa el directorio padre, con lo cual se pueden gestionar rutas relativas de manera más sencilla.
 
 Algunas funciones útiles del módulo `os` para manipular archivos y carpetas son:
 
-| Función | Descripción | Ejemplo |
-|---------|-------------|---------|
-| `os.getcwd()` | Obtiene el directorio de trabajo actual | `'/home/usuario/proyecto'` |
-| `os.chdir(path)` | Cambia el directorio de trabajo actual | `os.chdir('/home/usuario/docs')` |
-| `os.listdir(path)` | Lista archivos y carpetas en un directorio | `['archivo1.txt', 'carpeta1', 'imagen.png']` |
-| `os.mkdir(path)` | Crea un directorio | `os.mkdir('nueva_carpeta')` |
-| `os.makedirs(path)` | Crea directorios anidados (recursivo) | `os.makedirs('carpeta/subcarpeta')` |
-| `os.rmdir(path)` | Elimina un directorio vacío | `os.rmdir('carpeta_vacia')` |
-| `os.removedirs(path)` | Elimina directorios vacíos recursivamente | `os.removedirs('carpeta/subcarpeta')` |
-| `os.remove(path)` | Elimina un archivo | `os.remove('archivo.txt')` |
-| `os.rename(old, new)` | Renombra archivo o directorio | `os.rename('viejo.txt', 'nuevo.txt')` |
-| `os.stat(path)` | Obtiene información del archivo (tamaño, permisos, etc.) | `os.stat('archivo.txt')` |
-| `os.path.exists(path)` | Verifica si existe archivo o directorio | `True` o `False` |
-| `os.path.isfile(path)` | Verifica si es un archivo | `True` o `False` |
-| `os.path.isdir(path)` | Verifica si es un directorio | `True` o `False` |
-| `os.path.join(...)` | Une partes de una ruta de forma portable | `os.path.join('carpeta', 'archivo.txt')` |
-| `os.path.basename(path)` | Obtiene el nombre del archivo | `'archivo.txt'` de `'/ruta/archivo.txt'` |
-| `os.path.dirname(path)` | Obtiene el directorio padre | `'/ruta'` de `'/ruta/archivo.txt'` |
-| `os.path.splitext(path)` | Separa nombre y extensión | `('archivo', '.txt')` |
-| `os.path.abspath(path)` | Convierte ruta relativa a absoluta | `'/home/usuario/archivo.txt'` |
-| `os.path.getsize(path)` | Obtiene tamaño del archivo en bytes | `1024` |
+| Función                  | Descripción                                              | Ejemplo                                      |
+| ------------------------ | -------------------------------------------------------- | -------------------------------------------- |
+| `os.getcwd()`            | Obtiene el directorio de trabajo actual                  | `'/home/usuario/proyecto'`                   |
+| `os.chdir(path)`         | Cambia el directorio de trabajo actual                   | `os.chdir('/home/usuario/docs')`             |
+| `os.listdir(path)`       | Lista archivos y carpetas en un directorio               | `['archivo1.txt', 'carpeta1', 'imagen.png']` |
+| `os.mkdir(path)`         | Crea un directorio                                       | `os.mkdir('nueva_carpeta')`                  |
+| `os.makedirs(path)`      | Crea directorios anidados (recursivo)                    | `os.makedirs('carpeta/subcarpeta')`          |
+| `os.rmdir(path)`         | Elimina un directorio vacío                              | `os.rmdir('carpeta_vacia')`                  |
+| `os.removedirs(path)`    | Elimina directorios vacíos recursivamente                | `os.removedirs('carpeta/subcarpeta')`        |
+| `os.remove(path)`        | Elimina un archivo                                       | `os.remove('archivo.txt')`                   |
+| `os.rename(old, new)`    | Renombra archivo o directorio                            | `os.rename('viejo.txt', 'nuevo.txt')`        |
+| `os.stat(path)`          | Obtiene información del archivo (tamaño, permisos, etc.) | `os.stat('archivo.txt')`                     |
+| `os.path.exists(path)`   | Verifica si existe archivo o directorio                  | `True` o `False`                             |
+| `os.path.isfile(path)`   | Verifica si es un archivo                                | `True` o `False`                             |
+| `os.path.isdir(path)`    | Verifica si es un directorio                             | `True` o `False`                             |
+| `os.path.join(...)`      | Une partes de una ruta de forma portable                 | `os.path.join('carpeta', 'archivo.txt')`     |
+| `os.path.basename(path)` | Obtiene el nombre del archivo                            | `'archivo.txt'` de `'/ruta/archivo.txt'`     |
+| `os.path.dirname(path)`  | Obtiene el directorio padre                              | `'/ruta'` de `'/ruta/archivo.txt'`           |
+| `os.path.splitext(path)` | Separa nombre y extensión                                | `('archivo', '.txt')`                        |
+| `os.path.abspath(path)`  | Convierte ruta relativa a absoluta                       | `'/home/usuario/archivo.txt'`                |
+| `os.path.getsize(path)`  | Obtiene tamaño del archivo en bytes                      | `1024`                                       |
 
 ```{code-cell} python
-:tags: [hide-output]
-
+---
+tags: [hide-output]
+---
 import os
 
 # Ejemplo práctico de uso
@@ -137,23 +139,24 @@ os.chdir(directorio_actual)
 
 Python 3.4+ incluye `pathlib`, que ofrece una interfaz más moderna y orientada a objetos:
 
-| Función/Método | Descripción | Ejemplo |
-|----------------|-------------|---------|
-| `Path.cwd()` | Directorio actual | `Path.cwd()` |
-| `Path.home()` | Directorio home del usuario | `Path.home()` |
-| `Path.exists()` | Verifica existencia | `Path('archivo.txt').exists()` |
-| `Path.is_file()` | Verifica si es archivo | `Path('archivo.txt').is_file()` |
-| `Path.is_dir()` | Verifica si es directorio | `Path('carpeta').is_dir()` |
-| `Path.mkdir()` | Crea directorio | `Path('nueva').mkdir(parents=True)` |
-| `Path.unlink()` | Elimina archivo | `Path('archivo.txt').unlink()` |
-| `Path.rmdir()` | Elimina directorio vacío | `Path('carpeta').rmdir()` |
-| `Path.iterdir()` | Itera sobre contenido | `list(Path('.').iterdir())` |
-| `Path.glob(pattern)` | Busca archivos por patrón | `Path('.').glob('*.txt')` |
-| `Path.chdir(path)` | Cambia el directorio actual | `Path.chdir('/nueva/ruta')` |
+| Función/Método       | Descripción                 | Ejemplo                             |
+| -------------------- | --------------------------- | ----------------------------------- |
+| `Path.cwd()`         | Directorio actual           | `Path.cwd()`                        |
+| `Path.home()`        | Directorio home del usuario | `Path.home()`                       |
+| `Path.exists()`      | Verifica existencia         | `Path('archivo.txt').exists()`      |
+| `Path.is_file()`     | Verifica si es archivo      | `Path('archivo.txt').is_file()`     |
+| `Path.is_dir()`      | Verifica si es directorio   | `Path('carpeta').is_dir()`          |
+| `Path.mkdir()`       | Crea directorio             | `Path('nueva').mkdir(parents=True)` |
+| `Path.unlink()`      | Elimina archivo             | `Path('archivo.txt').unlink()`      |
+| `Path.rmdir()`       | Elimina directorio vacío    | `Path('carpeta').rmdir()`           |
+| `Path.iterdir()`     | Itera sobre contenido       | `list(Path('.').iterdir())`         |
+| `Path.glob(pattern)` | Busca archivos por patrón   | `Path('.').glob('*.txt')`           |
+| `Path.chdir(path)`   | Cambia el directorio actual | `Path.chdir('/nueva/ruta')`         |
 
 ```{code-cell} python
-:tags: [hide-output]
-
+---
+tags: [hide-output]
+---
 from pathlib import Path
 
 # Ejemplo con pathlib (más pythónico)
@@ -182,8 +185,9 @@ Para código nuevo, se recomienda usar `pathlib` ya que es más legible y modern
 `os.walk()` permite recorrer todas las carpetas y archivos a partir de una ubicación dada
 
 ```{code-cell}
-:tags: [hide-output]
-
+---
+tags: [hide-output]
+---
 import os
 
 # Ejemplo de uso de os.walk()
@@ -213,12 +217,12 @@ La función básica para abrir archivos es open():
 open(nombre, modo, encoding)
 ```
 
-| Modo   | Significado                           | Crea archivo si no existe | Borra contenido previo |
-| ------ | ------------------------------------- | ------------------------- | ---------------------- |
-| `'r'`  | read (lectura)                        | No                        | No                     |
-| `'w'`  | write (escritura)                     | Si                        | Si                     |
-| `'a'`  | append (agregar)                      | Si                        | No                     |
-| `'x'`  | exclusive write (escritura exclusiva) | Si                        | -                      |
+| Modo  | Significado                           | Crea archivo si no existe | Borra contenido previo |
+| ----- | ------------------------------------- | ------------------------- | ---------------------- |
+| `'r'` | read (lectura)                        | No                        | No                     |
+| `'w'` | write (escritura)                     | Si                        | Si                     |
+| `'a'` | append (agregar)                      | Si                        | No                     |
+| `'x'` | exclusive write (escritura exclusiva) | Si                        | -                      |
 
 El modo `'x'` es similar a `'w'`, pero **lanza una excepción** si el archivo ya existe. Se usa para asegurarse que no estamos borrando el contenido de un archivo creado previamente.
 
@@ -227,7 +231,9 @@ El modo `'a'` permite agregar contenido al final del archivo sin borrar el conte
 Los modos de apertura de archivos por defecto abren los archivos como texto, si se trata de un archivo binario se debe especificar el modo `'b'`. Por ejemplo: `'rb'` para lectura binaria o `'wb'` para escritura binaria.
 
 ```{code-cell}
-:tags: [hide-output]
+---
+tags: [hide-output]
+---
 help(open)
 ```
 
@@ -240,8 +246,9 @@ El archivo de texto que vamos a usar de prueba tiene texto en castellano y en ch
 #### Leer todo el documento en una variable
 
 ```{code-cell}
-:tags: [hide-output]
-
+---
+tags: [hide-output]
+---
 archivo = '../_static/code/archivos/edd.txt'
 
 try:
@@ -261,8 +268,9 @@ else:
 #### Leer línea por línea en una lista
 
 ```{code-cell}
-:tags: [hide-output]
-
+---
+tags: [hide-output]
+---
 archivo = '../_static/code/archivos/edd.txt'
 
 try:
@@ -282,7 +290,9 @@ else:
 #### Iterar línea por línea
 
 ```{code-cell}
-:tags: [hide-output]
+---
+tags: [hide-output]
+---
 # Iterar con while
 archivo = '../_static/code/archivos/edd.txt'
 
@@ -301,7 +311,9 @@ else:
 ```
 
 ```{code-cell}
-:tags: [hide-output]
+---
+tags: [hide-output]
+---
 # Iterar con for
 
 archivo = '../_static/code/archivos/edd.txt'
@@ -323,8 +335,9 @@ else:
 #### Leer una porción específica del archivo
 
 ```{code-cell}
-:tags: [hide-output]
-
+---
+tags: [hide-output]
+---
 archivo = '../_static/code/archivos/edd.txt'
 
 try:
@@ -350,8 +363,9 @@ else:
 Si leemos el mismo archivo de texto pero en formato binario veremos dígitos en hexadecimal que se usan para representar los caracteres especiales.
 
 ```{code-cell}
-:tags: [hide-output]
-
+---
+tags: [hide-output]
+---
 archivo = '../_static/code/archivos/edd.txt'
 
 try:
@@ -375,8 +389,9 @@ De forma similar a la lectura, podemos escribir en un archivo utilizando el modo
 #### Escribir todo el contenido de una vez
 
 ```{code-cell}
-:tags: [hide-output]
-
+---
+tags: [hide-output]
+---
 archivo = '../_static/code/archivos/texto.txt'
 
 try:
@@ -397,8 +412,9 @@ else:
 #### Escribir línea por línea
 
 ```{code-cell}
-:tags: [hide-output]
-
+---
+tags: [hide-output]
+---
 archivo = '../_static/code/archivos/texto.txt'
 
 try:
@@ -420,8 +436,9 @@ else:
 ```
 
 ```{code-cell}
-:tags: [hide-output]
-
+---
+tags: [hide-output]
+---
 archivo = '../_static/code/archivos/texto.txt'
 
 try:
@@ -448,8 +465,9 @@ else:
 Python provee un entorno seguro para manipular archivos con la sentencia `with` que nos asegura que siempre se cierra el archivo cuando se sale del bloque.
 
 ```{code-cell}
-:tags: [hide-output]
-
+---
+tags: [hide-output]
+---
 def copiar_archivo(origen, destino):
     with open(origen, "r") as f_origen, open(destino, "w") as f_destino:
         while bloque := f_origen.read(1024):
@@ -469,8 +487,9 @@ mostrar_archivo("../_static/code/archivos/copia.txt")
 El siguiente script nos permite comparar byte a byte dos archivos para ver si son iguales
 
 ```{code-cell}
-:tags: [hide-output]
-
+---
+tags: [hide-output]
+---
 def comparar_archivos(archivo1, archivo2):
     with open(archivo1, "rb") as f1, open(archivo2, "rb") as f2:
         while True:
@@ -490,7 +509,7 @@ comparar_archivos("../_static/code/archivos/texto.txt", \
 
 ## Recursos para profundizar
 
-- [Documentación oficial de Python sobre manejo de archivos](https://docs.python.org/es/3.13/tutorial/inputoutput.html#reading-and-writing-files){target="_blank"}
-- [Módulo os](https://docs.python.org/es/3.13/library/os.html){target="_blank"}
-- [Módulo pathlib](https://docs.python.org/es/3.13/library/pathlib.html){target="_blank"}
-- [Módulo shutil: copia y eliminación de archivos](https://docs.python.org/es/3.13/library/shutil.html){target="_blank"}
+- [Documentación oficial de Python sobre manejo de archivos](https://docs.python.org/es/3.13/tutorial/inputoutput.html#reading-and-writing-files){target="\_blank"}
+- [Módulo os](https://docs.python.org/es/3.13/library/os.html){target="\_blank"}
+- [Módulo pathlib](https://docs.python.org/es/3.13/library/pathlib.html){target="\_blank"}
+- [Módulo shutil: copia y eliminación de archivos](https://docs.python.org/es/3.13/library/shutil.html){target="\_blank"}
