@@ -18,6 +18,7 @@ class Contacto:
         correos (list[str])
         telefonos (list[str])
     """
+
     def __init__(self, nombre, apellido, correos=None, telefonos=None):
         self.nombre = nombre
         self.apellido = apellido
@@ -25,9 +26,11 @@ class Contacto:
         self.telefonos = telefonos if telefonos else []
 
     def __str__(self):
-        return (f"{self.nombre} {self.apellido}\n"
-                f"  Correos: {', '.join(self.correos)}\n"
-                f"  Teléfonos: {', '.join(self.telefonos)}")
+        return (
+            f"{self.nombre} {self.apellido}\n"
+            f"  Correos: {', '.join(self.correos)}\n"
+            f"  Teléfonos: {', '.join(self.telefonos)}"
+        )
 
 
 def agregar_contacto(agenda, contacto):
@@ -86,9 +89,12 @@ def menu():
                 apellido = input("Apellido: ")
                 correos = input("Correos (separados por coma): ").split(",")
                 telefonos = input("Teléfonos (separados por coma): ").split(",")
-                contacto = Contacto(nombre, apellido,
-                                    [c.strip() for c in correos if c.strip()],
-                                    [t.strip() for t in telefonos if t.strip()])
+                contacto = Contacto(
+                    nombre,
+                    apellido,
+                    [c.strip() for c in correos if c.strip()],
+                    [t.strip() for t in telefonos if t.strip()],
+                )
                 agregar_contacto(agenda, contacto)
             elif opcion == "2":
                 nombre = input("Nombre: ")
