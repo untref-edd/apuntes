@@ -47,16 +47,16 @@ En Python **todo es un objeto**, por lo tanto tanto podemos pensar que todas las
 
 ### Tipos Inmutables (como los "primitivos" en Java/Go)
 
-- Booleanos (`bool`)
-- Números (`int`, `float`, `complex`)
-- Cadenas (`str`)
-- Tuplas (`tuple`)
-- Rangos (`range`)
-- Conjuntos congelados (`frozenset`)
+- Booleanos (`bool`{l=python})
+- Números (`int`{l=python}, `float`{l=python}, `complex`{l=python})
+- Cadenas (`str`{l=python})
+- Tuplas (`tuple`{l=python})
+- Rangos (`range`{l=python})
+- Conjuntos congelados (`frozenset`{l=python})
 
 Cuando a una variable que ya tenía asignado un objeto inmutable, se le asigna otro valor, en realidad se crea un nuevo objeto inmutable en memoria y la referencia anterior se pierde.
 
-```{code-cell}
+```{code-cell} python
 ---
 tags: [hide-output]
 ---
@@ -76,7 +76,7 @@ print(f"s1: {s1}, s2: {s2}") # Salida: s1: hola mundo, s2: hola
     webkitallowfullscreen="true">
 </iframe>
 
-En este fragmento, `s1` y `s2` inicialmente referencian al mismo objeto, la cadena "hola". Al modificar `s1`, se crea un nuevo objeto cadena "hola mundo", y `s1` ahora apunta a este nuevo objeto, mientras que `s2` sigue apuntando al antiguo objeto "hola".
+En este fragmento, `s1`{l=python} y `s2`{l=python} inicialmente referencian al mismo objeto, la cadena "hola". Al modificar `s1`{l=python}, se crea un nuevo objeto cadena "hola mundo", y `s1`{l=python} ahora apunta a este nuevo objeto, mientras que `s2`{l=python} sigue apuntando al antiguo objeto "hola".
 
 ### Tipos Mutables (como los objetos en Java/Go)
 
@@ -87,7 +87,7 @@ En este fragmento, `s1` y `s2` inicialmente referencian al mismo objeto, la cade
 
 Cuando se modifica un objeto mutable, se altera el objeto en su lugar. Si múltiples variables referencian al mismo objeto mutable, todas verán los cambios.
 
-```{code-cell}
+```{code-cell} python
 ---
 tags: [hide-output]
 ---
@@ -107,23 +107,23 @@ print(f"lista1: {lista1}, lista2: {lista2}")
     webkitallowfullscreen="true">
 </iframe>
 
-En este caso, `lista1` y `lista2` referencian al mismo objeto lista. Al modificar `lista1`, `lista2` refleja el cambio porque ambas variables apuntan al mismo objeto en memoria.
+En este caso, `lista1`{l=python} y `lista2`{l=python} referencian al mismo objeto lista. Al modificar `lista1`{l=python}, `lista2`{l=python} refleja el cambio porque ambas variables apuntan al mismo objeto en memoria.
 
 ## Visibilidad de Variables
 
 En Python no existe el concepto de público, privado o protegido como en Java. En cambio, se utiliza una convención de nomenclatura para indicar la visibilidad de las variables:
 
 Variables públicas
-: Se definen sin guiones bajos al inicio del nombre. Son accesibles desde cualquier parte del código (ej. `mi_variable`).
+: Se definen sin guiones bajos al inicio del nombre. Son accesibles desde cualquier parte del código (ej. `mi_variable`{l=python}).
 
 Variables protegidas
-: Se definen con un guion bajo al inicio del nombre (ej. `_variable`). Indica que la variable es para uso interno del módulo o clase, pero aún es accesible desde fuera.
+: Se definen con un guion bajo al inicio del nombre (ej. `_variable`{l=python}). Indica que la variable es para uso interno del módulo o clase, pero aún es accesible desde fuera.
 
 Variables privadas
-: Se definen con dos guiones bajos al inicio del nombre (ej. `__variable`). Esto activa el _name mangling_, lo que significa que el nombre de la variable se modifica internamente para evitar conflictos con nombres en subclases.
+: Se definen con dos guiones bajos al inicio del nombre (ej. `__variable`{l=python}). Esto activa el _name mangling_, lo que significa que el nombre de la variable se modifica internamente para evitar conflictos con nombres en subclases.
 
 Variables especiales
-: Se definen con dos guiones bajos al inicio y al final del nombre (ej. `__init__`). Estas son utilizadas por Python para definir métodos especiales y no deben ser modificadas directamente.
+: Se definen con dos guiones bajos al inicio y al final del nombre (ej. `__init__`{l=python}). Estas son utilizadas por Python para definir métodos especiales y no deben ser modificadas directamente.
 
 ```{Warning}
 Todas las variables en Python son accesibles desde fuera del módulo o clase, incluso las privadas. La convención de nomenclatura es solo una guía para los desarrolladores y no impide el acceso a las variables.
@@ -160,7 +160,7 @@ Las variables definidas dentro de una función son locales a esa función. Esto 
 
 Si hay variables globales definidas con el mismo nombre de las variables locales, entonces las locales **ocultan** las globales. Esto se conoce como **Ocultamiento** de variables (_shadowing_).
 
-```{code-cell}
+```{code-cell} python
 ---
 tags: [hide-output]
 ---
@@ -173,11 +173,11 @@ mi_funcion() # Llama a la función que imprime el mensaje local
 print(mensaje) # Acceso a la variable global
 ```
 
-La variable local `mensaje` dentro de `mi_funcion` oculta la variable global del mismo nombre. Cuando se llama a `mi_funcion`, imprime el mensaje local, mientras que fuera de la función se accede a la variable global.
+La variable local `mensaje`{l=python} dentro de `mi_funcion`{l=python} oculta la variable global del mismo nombre. Cuando se llama a `mi_funcion`{l=python}, imprime el mensaje local, mientras que fuera de la función se accede a la variable global.
 
-Si se necesita modificar una variable global desde dentro de una función, se debe usar la palabra clave `global` para indicar que se quiere referenciar a la variable global.
+Si se necesita modificar una variable global desde dentro de una función, se debe usar la palabra clave `global`{l=python} para indicar que se quiere referenciar a la variable global.
 
-```{code-cell}
+```{code-cell} python
 ---
 tags: [hide-output]
 ---
@@ -205,7 +205,7 @@ Para que una función sea una clausura, debe cumplir dos condiciones:
 - Debe ser una función anidada (una función definida dentro de otra función).
 - Debe referenciar variables de su ámbito externo (no global, no local a ella misma). Estas variables se conocen como **referencias externas**.
 
-```{code-cell}
+```{code-cell} python
 ---
 tags: [hide-output]
 
@@ -223,15 +223,15 @@ print(incrementar_2(5))  # Salida: 7
 
 Al ejecutar el fragmento anterior ocurre lo siguiente:
 
-1. En la línea 1 se define la función `fabrica_incrementos` que recibe un parámetro `y`. El código de la función (hasta la línea 4) se guarda en memoria. Es un valor más. El nombre de la función `fabrica_incrementos` se guarda en el ámbito global y es la referencia que permite acceder al objeto función.
+1. En la línea 1 se define la función `fabrica_incrementos`{l=python} que recibe un parámetro `y`{l=python}. El código de la función (hasta la línea 4) se guarda en memoria. Es un valor más. El nombre de la función `fabrica_incrementos`{l=python} se guarda en el ámbito global y es la referencia que permite acceder al objeto función.
 
-1. En la línea 6 se llama a `fabrica_incrementos(2)` y el resultado de esa operación (la función interna `incrementar`) se va a asignar a la variable `incrementar_2`. En este momento, `y` tiene el valor 2 y se guarda en la clausura de la función interna `incrementar`.
+1. En la línea 6 se llama a `fabrica_incrementos(2)` y el resultado de esa operación (la función interna `incrementar`{l=python}) se va a asignar a la variable `incrementar_2`{l=python}. En este momento, `y`{l=python} tiene el valor 2 y se guarda en la clausura de la función interna `incrementar`{l=python}.
 
-1. El valor devuelto por `fabrica_incrementos` es una función que queda ligada a la variable `incrementar_2`. `incrementar_2` contiene el valor de `y`, al momento de su creación, en su clausura. Esto significa que `incrementar_2` "recuerda" el valor de `y` aunque `fabrica_incrementos` ya haya terminado su ejecución.
+1. El valor devuelto por `fabrica_incrementos`{l=python} es una función que queda ligada a la variable `incrementar_2`{l=python}. `incrementar_2`{l=python} contiene el valor de `y`{l=python}, al momento de su creación, en su clausura. Esto significa que `incrementar_2`{l=python} "recuerda" el valor de `y`{l=python} aunque `fabrica_incrementos`{l=python} ya haya terminado su ejecución.
 
-1. En la línea 7, se ejecuta `incrementar_2`. `incrementar_2` toma un parámetro `x` y retorna la suma de `x` más `y`. Si bien `fabrica_incrementos` ya ha terminado su ejecución y por lo tanto los valores de sus parámetros no están en la memoria, la referencia a `y` se mantiene en la clausura. La función realiza la operación `5 + 2`, donde `5` es el valor ligado al parámetro `x` y `2` es el valor de `y`, al momento de la creación de `incrementar_2`que se guardó en la clausura.
+1. En la línea 7, se ejecuta `incrementar_2`{l=python}. `incrementar_2`{l=python} toma un parámetro `x`{l=python} y retorna la suma de `x`{l=python} más `y`{l=python}. Si bien `fabrica_incrementos`{l=python} ya ha terminado su ejecución y por lo tanto los valores de sus parámetros no están en la memoria, la referencia a `y`{l=python} se mantiene en la clausura. La función realiza la operación `5 + 2`, donde `5`{l=python} es el valor ligado al parámetro `x`{l=python} y `2`{l=python} es el valor de `y`{l=python}, al momento de la creación de `incrementar_2`{l=python}que se guardó en la clausura.
 
-1. `incrementar_2(5)` retorna 7 al ámbito global, y `print` lo muestra en la salida.
+1. `incrementar_2(5)` retorna 7 al ámbito global, y `print`{l=python} lo muestra en la salida.
 
 ```{Important}
 Para Python todas las variables son referencias, incluido los nombres de las funciones. Al colocar paréntesis luego del nombre de la misma, se invoca la función y se ejecuta el código que contiene. Si no se colocan paréntesis, se obtiene una referencia a la función, que es un objeto más en memoria.
@@ -241,9 +241,9 @@ Para Python todas las variables son referencias, incluido los nombres de las fun
 
 El ámbito global se refiere a las variables definidas en el nivel superior de un módulo. Estas variables son accesibles desde cualquier parte del módulo, incluidas las funciones.
 
-Al declarar un módulo se puede incluir variables y constantes globales que pueden ser utilizadas en todo el código del módulo. A modo de ejemplo podemos ver las constantes matemáticas definidas en el módulo `math`, como `math.pi` o `math.e`.
+Al declarar un módulo se puede incluir variables y constantes globales que pueden ser utilizadas en todo el código del módulo. A modo de ejemplo podemos ver las constantes matemáticas definidas en el módulo `math`{l=python}, como `math.pi` o `math.e`.
 
-```{code-cell}
+```{code-cell} python
 ---
 tags: [hide-output]
 ---
@@ -269,7 +269,7 @@ class: dropdown
 
 ````
 
-A partir de la función `demo_stack`, se muestra cómo se puede utilizar el módulo `stack` para crear una pila, agregar elementos y eliminarlos.
+A partir de la función `demo_stack`{l=python}, se muestra cómo se puede utilizar el módulo `stack`{l=python} para crear una pila, agregar elementos y eliminarlos.
 
 Es común que los módulos tengan un bloque de código al final que se ejecuta solo si el módulo se ejecuta directamente, no cuando se importa. Esto se logra utilizando la siguiente estructura:
 
@@ -282,7 +282,7 @@ Si el módulo se importa desde otro módulo, el bloque `if __name__ == "__main__
 
 ### Ámbito Built-in (B)
 
-El ámbito built-in contiene nombres predefinidos por Python, como funciones y excepciones que están disponibles en todos los módulos sin necesidad de importarlos. Estos nombres son parte del núcleo del lenguaje y se pueden utilizar directamente en cualquier parte del código. Algunos ejemplos son `print`, `len`, `range`, `int`, `str`, entre otros.
+El ámbito built-in contiene nombres predefinidos por Python, como funciones y excepciones que están disponibles en todos los módulos sin necesidad de importarlos. Estos nombres son parte del núcleo del lenguaje y se pueden utilizar directamente en cualquier parte del código. Algunos ejemplos son `print`{l=python}, `len`{l=python}, `range`{l=python}, `int`{l=python}, `str`{l=python}, entre otros.
 
 Si se intenta redefinir un nombre built-in, se creará una variable local o global que ocultará temporalmente el nombre built-in, pero no se eliminará del ámbito built-in.
 
@@ -290,7 +290,7 @@ Si se intenta redefinir un nombre built-in, se creará una variable local o glob
 No se recomienda bajo ningún punto de vista, redefinir nombres built-in, ya que esto puede causar confusión y errores difíciles de depurar. Es mejor utilizar nombres descriptivos y evitar conflictos con los nombres predefinidos de Python.
 ```
 
-```{code-cell}
+```{code-cell} python
 ---
 tags: [hide-output]
 ---

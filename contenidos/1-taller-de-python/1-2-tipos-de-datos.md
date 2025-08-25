@@ -94,7 +94,7 @@ tags: [hide-output]
 x = 5 + "10"
 ```
 
-## Cadenas de caracteres (`str`)
+## Cadenas de caracteres (`str`{l=python})
 
 Una cadena es una secuencia **inmutable** de caracteres.
 
@@ -358,7 +358,7 @@ mensaje = "Hola, \tmundo."  # \t inserta una tabulación
 print(mensaje)
 ```
 
-## Listas (`list`)
+## Listas (`list`{l=python})
 
 Las listas son colecciones **ordenadas**, **polimórficas** y **mutables** de elementos.
 
@@ -464,7 +464,7 @@ for n in numeros:
     print(n)
 ```
 
-## 4. Tuplas (`tuple`)
+## 4. Tuplas (`tuple`{l=python})
 
 Son similares a las listas, **ordenadas** y **polimórficas**, pero **inmutables**, es decir, una vez creada no se puede modificar.
 
@@ -721,7 +721,7 @@ for clave, valor in persona.items():  # Itera sobre los pares clave-valor
     print(f"{clave}: {valor}")
 ```
 
-## Conjuntos (`set`)
+## Conjuntos (`set`{l=python})
 
 Los conjuntos son colecciones **no ordenadas** de elementos únicos. No permiten duplicados y no tienen un índice asociado a sus elementos.
 
@@ -804,7 +804,7 @@ conjunto.discard(7)  # No genera error
 print(conjunto)
 ```
 
-el operador `in` se puede usar para verificar si un elemento está en un conjunto:
+el operador `in`{l=python} se puede usar para verificar si un elemento está en un conjunto:
 
 ```{code-cell} python
 ---

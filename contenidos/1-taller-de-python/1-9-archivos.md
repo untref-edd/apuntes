@@ -45,7 +45,7 @@ Ejemplo: si quiere leer un archivo grande, Python no trae todo de golpe, sino tr
 
 Cuando se cierra un archivo en el que se escribieron datos, Python se asegura que todos los datos se hayan escrito correctamente en el disco, volcando toda la información de los buffers.
 
-En este contexto es fundamental usar los bloques `try / finally` para garantizar que los archivos se cierren adecuadamente, incluso si ocurre un error durante la lectura o escritura. Como el bloque `finally` se ejecuta siempre, podemos asegurarnos de que el archivo se cierre en cualquier situación, incluso si hay excepciones, y que todos los datos escritos se guarden correctamente, liberando el archivo para su uso futuro o parte de otro programa.
+En este contexto es fundamental usar los bloques `try / finally` para garantizar que los archivos se cierren adecuadamente, incluso si ocurre un error durante la lectura o escritura. Como el bloque `finally`{l=python} se ejecuta siempre, podemos asegurarnos de que el archivo se cierre en cualquier situación, incluso si hay excepciones, y que todos los datos escritos se guarden correctamente, liberando el archivo para su uso futuro o parte de otro programa.
 
 ### Archivos de texto vs binarios
 
@@ -64,7 +64,7 @@ En **Linux y macOS** los saltos de línea se representan con el caracter `\n`, m
 
 ## Operaciones con carpetas
 
-Para manipular carpetas y rutas, Python ofrece los módulos **`os`** y **`pathlib`**.
+Para manipular carpetas y rutas, Python ofrece los módulos **`os`{l=python}** y **`pathlib`{l=python}**.
 
 ### Rutas o Paths absolutos y relativos
 
@@ -78,7 +78,7 @@ Path Relativo
 
 El caracter especial `.` representa el directorio actual, mientras que `..` representa el directorio padre, con lo cual se pueden gestionar rutas relativas de manera más sencilla.
 
-Algunas funciones útiles del módulo `os` para manipular archivos y carpetas son:
+Algunas funciones útiles del módulo `os`{l=python} para manipular archivos y carpetas son:
 
 | Función                  | Descripción                                              | Ejemplo                                      |
 | ------------------------ | -------------------------------------------------------- | -------------------------------------------- |
@@ -92,15 +92,15 @@ Algunas funciones útiles del módulo `os` para manipular archivos y carpetas so
 | `os.remove(path)`        | Elimina un archivo                                       | `os.remove('archivo.txt')`                   |
 | `os.rename(old, new)`    | Renombra archivo o directorio                            | `os.rename('viejo.txt', 'nuevo.txt')`        |
 | `os.stat(path)`          | Obtiene información del archivo (tamaño, permisos, etc.) | `os.stat('archivo.txt')`                     |
-| `os.path.exists(path)`   | Verifica si existe archivo o directorio                  | `True` o `False`                             |
-| `os.path.isfile(path)`   | Verifica si es un archivo                                | `True` o `False`                             |
-| `os.path.isdir(path)`    | Verifica si es un directorio                             | `True` o `False`                             |
+| `os.path.exists(path)`   | Verifica si existe archivo o directorio                  | `True`{l=python} o `False`{l=python}         |
+| `os.path.isfile(path)`   | Verifica si es un archivo                                | `True`{l=python} o `False`{l=python}         |
+| `os.path.isdir(path)`    | Verifica si es un directorio                             | `True`{l=python} o `False`{l=python}         |
 | `os.path.join(...)`      | Une partes de una ruta de forma portable                 | `os.path.join('carpeta', 'archivo.txt')`     |
 | `os.path.basename(path)` | Obtiene el nombre del archivo                            | `'archivo.txt'` de `'/ruta/archivo.txt'`     |
 | `os.path.dirname(path)`  | Obtiene el directorio padre                              | `'/ruta'` de `'/ruta/archivo.txt'`           |
 | `os.path.splitext(path)` | Separa nombre y extensión                                | `('archivo', '.txt')`                        |
 | `os.path.abspath(path)`  | Convierte ruta relativa a absoluta                       | `'/home/usuario/archivo.txt'`                |
-| `os.path.getsize(path)`  | Obtiene tamaño del archivo en bytes                      | `1024`                                       |
+| `os.path.getsize(path)`  | Obtiene tamaño del archivo en bytes                      | `1024`{l=python}                             |
 
 ```{code-cell} python
 ---
@@ -135,9 +135,9 @@ os.chdir(directorio_actual)
 
 ```
 
-### Módulo `pathlib` (Recomendado para proyectos nuevos)
+### Módulo `pathlib`{l=python} (Recomendado para proyectos nuevos)
 
-Python 3.4+ incluye `pathlib`, que ofrece una interfaz más moderna y orientada a objetos:
+Python 3.4+ incluye `pathlib`{l=python}, que ofrece una interfaz más moderna y orientada a objetos:
 
 | Función/Método       | Descripción                 | Ejemplo                             |
 | -------------------- | --------------------------- | ----------------------------------- |
@@ -177,14 +177,14 @@ print(f"Archivos Markdown encontrados: {len(archivos_md)}")
 ```
 
 ```{admonition} Recomendación
-Para código nuevo, se recomienda usar `pathlib` ya que es más legible y moderno. Para compatibilidad con código antiguo o scripts simples, `os.path` sigue siendo válido.
+Para código nuevo, se recomienda usar `pathlib`{l=python} ya que es más legible y moderno. Para compatibilidad con código antiguo o scripts simples, `os.path` sigue siendo válido.
 ```
 
 ### ***Caminar*** por el sistema de archivos
 
 `os.walk()` permite recorrer todas las carpetas y archivos a partir de una ubicación dada
 
-```{code-cell}
+```{code-cell} python
 ---
 tags: [hide-output]
 ---
@@ -230,7 +230,7 @@ El modo `'a'` permite agregar contenido al final del archivo sin borrar el conte
 
 Los modos de apertura de archivos por defecto abren los archivos como texto, si se trata de un archivo binario se debe especificar el modo `'b'`. Por ejemplo: `'rb'` para lectura binaria o `'wb'` para escritura binaria.
 
-```{code-cell}
+```{code-cell} python
 ---
 tags: [hide-output]
 ---
@@ -245,7 +245,7 @@ El archivo de texto que vamos a usar de prueba tiene texto en castellano y en ch
 
 #### Leer todo el documento en una variable
 
-```{code-cell}
+```{code-cell} python
 ---
 tags: [hide-output]
 ---
@@ -267,7 +267,7 @@ else:
 
 #### Leer línea por línea en una lista
 
-```{code-cell}
+```{code-cell} python
 ---
 tags: [hide-output]
 ---
@@ -289,7 +289,7 @@ else:
 
 #### Iterar línea por línea
 
-```{code-cell}
+```{code-cell} python
 ---
 tags: [hide-output]
 ---
@@ -310,7 +310,7 @@ else:
     f.close()
 ```
 
-```{code-cell}
+```{code-cell} python
 ---
 tags: [hide-output]
 ---
@@ -334,7 +334,7 @@ else:
 
 #### Leer una porción específica del archivo
 
-```{code-cell}
+```{code-cell} python
 ---
 tags: [hide-output]
 ---
@@ -362,7 +362,7 @@ else:
 
 Si leemos el mismo archivo de texto pero en formato binario veremos dígitos en hexadecimal que se usan para representar los caracteres especiales.
 
-```{code-cell}
+```{code-cell} python
 ---
 tags: [hide-output]
 ---
@@ -388,7 +388,7 @@ De forma similar a la lectura, podemos escribir en un archivo utilizando el modo
 
 #### Escribir todo el contenido de una vez
 
-```{code-cell}
+```{code-cell} python
 ---
 tags: [hide-output]
 ---
@@ -411,7 +411,7 @@ else:
 
 #### Escribir línea por línea
 
-```{code-cell}
+```{code-cell} python
 ---
 tags: [hide-output]
 ---
@@ -435,7 +435,7 @@ else:
     f.close()
 ```
 
-```{code-cell}
+```{code-cell} python
 ---
 tags: [hide-output]
 ---
@@ -462,9 +462,9 @@ else:
 
 ### Entorno seguro para manipular archivos
 
-Python provee un entorno seguro para manipular archivos con la sentencia `with` que nos asegura que siempre se cierra el archivo cuando se sale del bloque.
+Python provee un entorno seguro para manipular archivos con la sentencia `with`{l=python} que nos asegura que siempre se cierra el archivo cuando se sale del bloque.
 
-```{code-cell}
+```{code-cell} python
 ---
 tags: [hide-output]
 ---
@@ -486,7 +486,7 @@ mostrar_archivo("../_static/code/archivos/copia.txt")
 
 El siguiente script nos permite comparar byte a byte dos archivos para ver si son iguales
 
-```{code-cell}
+```{code-cell} python
 ---
 tags: [hide-output]
 ---

@@ -22,7 +22,7 @@ Reflexión
 : Va un paso más allá: no solo inspecciona, sino que **modifica el comportamiento o la estructura** de objetos, clases o módulos en tiempo de ejecución.
 
 ```{note}
-En **Java** estas capacidades existen mediante *Reflection API*, mientras que en **Go** se logran con el paquete `reflect`. En Python, estas herramientas están integradas en el propio lenguaje y son mucho más accesibles.
+En **Java** estas capacidades existen mediante *Reflection API*, mientras que en **Go** se logran con el paquete `reflect`{l=python}. En Python, estas herramientas están integradas en el propio lenguaje y son mucho más accesibles.
 ```
 
 ## Herramientas comunes de introspección y reflexión
@@ -43,7 +43,7 @@ ______________________________________________________________________
 
 ## Ejemplo básico de introspección
 
-```{code-cell}
+```{code-cell} python
 ---
 tags: [hide-output]
 ---
@@ -81,7 +81,7 @@ print("¿Es 'persona.saludar' invocable?", callable(persona.saludar))
 En Python es posible agregar atributos o métodos a un objeto existente en tiempo de ejecución.
 Esto otorga flexibilidad, pero puede volver el código difícil de mantener si se abusa.
 
-```{code-cell}
+```{code-cell} python
 ---
 tags: [hide-output]
 ---
@@ -117,7 +117,7 @@ ana.saludar()
 
 `help()` es una función incorporada en Python que proporciona información sobre objetos, funciones y módulos. Es especialmente útil para obtener documentación sobre cómo usar un objeto o qué métodos y atributos tiene.
 
-```{code-cell}
+```{code-cell} python
 ---
 tags: [hide-output]
 ---
@@ -142,7 +142,7 @@ help(alice)
 
 La función `eval()` permite ejecutar expresiones Python desde una cadena de texto. Esto puede ser útil para evaluar dinámicamente código, pero **debe usarse con extrema precaución** debido a implicaciones de seguridad.
 
-Por ejemplo, el siguiente código es peligroso si la variable `expresion` proviene de un usuario no confiable:
+Por ejemplo, el siguiente código es peligroso si la variable `expresion`{l=python} proviene de un usuario no confiable:
 
 ```python
 expresion = input("Introduce una expresión: ")
@@ -156,7 +156,7 @@ print("Resultado de la expresión:", resultado)
 Nunca se debe utilizar `eval()` con entradas que provengan de usuarios o fuentes no confiables. Hacerlo puede permitir la ejecución de código malicioso y comprometer la seguridad del sistema.
 ```
 
-```{code-cell}
+```{code-cell} python
 ---
 tags: [hide-output]
 ---
