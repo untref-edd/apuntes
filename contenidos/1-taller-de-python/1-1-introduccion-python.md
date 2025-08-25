@@ -32,7 +32,7 @@ Guido Van Rossum es el principal autor de Python, y su continuo rol central en d
 
 El Zen de Python es una colección de principios que guían el diseño y la filosofía del lenguaje:
 
-```{code-cell}
+```{code-cell} python
 import this
 ```
 
@@ -42,36 +42,45 @@ Estos principios enfatizan la importancia de escribir código claro, legible y e
 
 ### Multiparadigma
 
-Python es un lenguaje de programación **orientado a objetos, introspectivo y reflexivo, imperativo y funcional**.
+Python es un lenguaje de programación **orientado a objetos**, **introspectivo y reflexivo**, **imperativo** y **funcional**.
 
 Permite usar diferentes estilos de programación según las necesidades del proyecto, incluso combinando varios estilos en un mismo proyecto.
 
 La programación imperativa se basa en la ejecución secuencial de instrucciones. Para realizar una tarea se debe programar paso a paso especificando ***como*** se debe hacer.
 
-```{code-cell}
----
-tags: [hide-output]
----
+```{code-cell} python
 # Programación imperativa
 def factorial(n):
     resultado = 1
     for i in range(1, n + 1):
         resultado *= i
     return resultado
+```
 
+```{code-cell} python
+---
+tags: [hide-output]
+---
 print(f"Factorial de 5: {factorial(5)}")
 ```
 
 La programación funcional se basa en el uso de funciones puras y evita el estado mutable. Se enfoca en ***que*** se debe hacer, utilizando funciones de orden superior y evitando efectos secundarios. En el capítulo de funciones profundizaremos un poco más en este paradigma.
 
-```{code-cell}
+```{code-cell} python
+# Quicksort en una línea (expresión)
+qs = lambda lst: (
+    lst
+    if len(lst) <= 1
+    else qs([x for x in lst[1:] if x < lst[0]])
+    + [lst[0]]
+    + qs([x for x in lst[1:] if x >= lst[0]])
+)
+```
+
+```{code-cell} python
 ---
 tags: [hide-output]
 ---
-# Quicksort en una línea (programación funcional)
-qs = lambda lst: lst if len(lst) <= 1 else qs([x for x in lst[1:] if x < lst[0]]) + \
-                                  [lst[0]] + qs([x for x in lst[1:] if x >= lst[0]])
-
 lista = [3, 6, 8, 10, 1, 2, 1]
 print(f"Lista ordenada: {qs(lista)}")
 ```
@@ -80,7 +89,7 @@ print(f"Lista ordenada: {qs(lista)}")
 
 Python es un lenguaje **fuertemente tipado**, lo que significa que no se permite realizar operaciones entre tipos de datos incompatibles sin conversión explícita.
 
-```{code-cell}
+```{code-cell} python
 ---
 tags: [raises-exception, hide-output]
 ---
@@ -88,7 +97,7 @@ tags: [raises-exception, hide-output]
 resultado = "5" + 3  # Esto generará un error
 ```
 
-```{code-cell}
+```{code-cell} python
 ---
 tags: [hide-output]
 ---
@@ -97,28 +106,28 @@ resultado_correcto = int("5") + 3
 print(f"Resultado correcto: {resultado_correcto}")
 ```
 
-```{code-cell}
+```{code-cell} python
 ---
 tags: [hide-output]
 ---
 # Tipado dinámico - las variables pueden cambiar de tipo
-variable = 42        # int
+variable = 42  # int
 print(f"Tipo: {type(variable)}, Valor: {variable}")
 
 variable = "Python"  # str
 print(f"Tipo: {type(variable)}, Valor: {variable}")
 
-variable = [1, 2, 3] # list
+variable = [1, 2, 3]  # list
 print(f"Tipo: {type(variable)}, Valor: {variable}")
 ```
 
-En este fragmento el mismo identificador `variable` se liga a diferentes tipos de datos a lo largo del tiempo, demostrando el tipado dinámico de Python. No hace falta declarar el tipo de la variable al momento de su creación, Python lo infiere automáticamente.
+En este fragmento el mismo identificador `variable`{l=python} se liga a diferentes tipos de datos a lo largo del tiempo, demostrando el tipado dinámico de Python. No hace falta declarar el tipo de la variable al momento de su creación, Python lo infiere automáticamente.
 
 ### Sintaxis clara y legible
 
 Python se caracteriza por su sintaxis clara y legible:
 
-```{code-cell}
+```{code-cell} python
 ---
 tags: [hide-output]
 
@@ -128,21 +137,22 @@ mystnb:
 def es_numero_primo(n):
     """
     Determina si un número es primo.
-    
+
     Args:
         n (int): El número a evaluar
-        
+
     Returns:
         bool: True si es primo, False en caso contrario
     """
     if n < 2:
         return False
-    
-    for i in range(2, int(n ** 0.5) + 1):
+
+    for i in range(2, int(n**0.5) + 1):
         if n % i == 0:
             return False
-    
+
     return True
+
 
 # Filtra una lista de números quedándose solo con los primos
 numeros = [2, 3, 4, 5, 17, 25, 29]
@@ -152,13 +162,13 @@ print(f"Números primos: {primos}")
 
 Los bloques de código se delimitan por indentación, lo que mejora la legibilidad y evita errores comunes de sintaxis.
 
-En la línea 1 se define una función `es_numero_primo` que recibe un número entero `n` y devuelve `True` si es primo, o `False` en caso contrario. La definición de una función se realiza con la palabra clave `def`, seguida del nombre de la función, los parámetros entre paréntesis y dos puntos (`:`). Los dos puntos indican el inicio de un bloque de código que debe estar indentado, en este caso el cuerpo de la función.
+En la línea 1 se define una función `es_numero_primo`{l=python} que recibe un número entero `n`{l=python} y devuelve `True`{l=python} si es primo, o `False`{l=python} en caso contrario. La definición de una función se realiza con la palabra clave `def`{l=python}, seguida del nombre de la función, los parámetros entre paréntesis y dos puntos (`:`{l=python}). Los dos puntos indican el inicio de un bloque de código que debe estar indentado, en este caso el cuerpo de la función.
 
 El cuerpo de la función se extiende hasta la línea 18 a partir de la cual el código vuelve a estar alineado a la izquierda, indicando que ya no forma parte del bloque de la función.
 
-Entre las líneas 2 y 10 encontramos la documentación de la función, que explica su propósito, los argumentos que recibe y el valor que devuelve. Esta documentación se escribe entre comillas triples (`"""`) y es accesible a través de la función `help(es_numero_primo)`. `help` es una función de Python que muestra la documentación de un objeto.
+Entre las líneas 2 y 10 encontramos la documentación de la función, que explica su propósito, los argumentos que recibe y el valor que devuelve. Esta documentación se escribe entre comillas triples (`"""`{l=python}) y es accesible a través de la función `help(es_numero_primo)`{l=python}. `help`{l=python} es una función de Python que muestra la documentación de un objeto.
 
-```{code-cell}
+```{code-cell} python
 ---
 tags: [hide-output]
 ---
@@ -167,7 +177,7 @@ help(es_numero_primo)
 
 Esta forma de documentar el código junto con el código mismo es una buena práctica que facilita la comprensión y el mantenimiento del código.
 
-La forma de identar los bloques de código es fundamental en Python. A diferencia de otros lenguajes que utilizan llaves `{}` o palabras clave como `begin` y `end`, Python utiliza la indentación para definir el alcance de los bloques de código. Esto significa que todos los bloques deben estar correctamente indentados para evitar errores de sintaxis. Por ejemplo la identación puede ser de 4 espacios, que es la convención más común en Python.
+La forma de identar los bloques de código es fundamental en Python. A diferencia de otros lenguajes que utilizan llaves (`{`, `}`) o palabras clave como `begin` y `end`, Python utiliza la indentación para definir el alcance de los bloques de código. Esto significa que todos los bloques deben estar correctamente indentados para evitar errores de sintaxis. Por ejemplo la identación puede ser de 4 espacios, que es la convención más común en Python.
 
 ## Aplicaciones de Python
 
@@ -203,11 +213,12 @@ header-rows: 1
 
 Primero, verifica si Python ya está instalado:
 
-```{code-cell}
+```{code-cell} python
 ---
 tags: [hide-output]
 ---
 import sys
+
 print(f"Versión de Python: {sys.version}")
 print(f"Plataforma: {sys.platform}")
 ```
@@ -220,7 +231,7 @@ print(f"Plataforma: {sys.platform}")
 2. Ejecuta el instalador
 3. **Importante**: Marca "Add Python to PATH"
 4. Verifica la instalación:
-   ```
+   ```console
    python --version
    pip --version
    ```
@@ -238,12 +249,12 @@ python3 --version
 pip3 --version
 ```
 ````
-````{tab-item} macOS
+````{tab-item} MacOS
 ```bash
 # Usando Homebrew (recomendado)
 brew install python
 
-# O usando el instalador oficial desde python.org
+# o usando el instalador oficial desde python.org
 
 # Verificar instalación
 python3 --version
