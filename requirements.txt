@@ -1,5 +1,8 @@
 bokeh
 jupyter-book
+mdformat
+mdformat-black
+mdformat-myst
+networkx
 sphinx-proof
 sphinx-thebe
-networkx

@@ -9,6 +9,11 @@ help:
 install:
 	pip install --requirement requirements.txt
 
+## fmt: formatea todos el contenido del libro
+.PHONY: fmt
+fmt:
+	mdformat contenidos/**/*.md
+
 ## build: compila el libro
 .PHONY: build
 build:
