@@ -6,3 +6,5 @@ mdformat-myst
 networkx
 sphinx-proof
 sphinx-thebe
+geopandas
+matplotlib
