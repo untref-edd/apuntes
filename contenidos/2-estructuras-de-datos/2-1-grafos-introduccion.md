@@ -72,7 +72,7 @@ Grafo de correlativas en un plan de estudios
 
 Los **grafos dirigidos** también se denominan **digrafos**.
 
-Como se observa en la última figura hay vértices que no están conectados a otros vértices. Un grafo puede tener vértices *"desconectados"*. Si todos los vértices de un grafo están conectados entre sí, se dice que el grafo es **conexo** y se cumple que $|V| - 1 ≤ |E| ≤ |V|^2$.
+Como se observa en la última figura hay vértices que no están conectados a otros vértices. Un grafo puede tener vértices *"desconectados"*. Un grafo se dice que es **conexo** si existe un camino entre cada par de vértices, es decir, para cualquier par de vértices, se puede llegar de uno al otro siguiendo las aristas del grafo. Para grafos conexos, se cumple que $|V| - 1 ≤ |E| ≤ |V|^2$.
 
 ## Grafos ponderados y no ponderados
 
