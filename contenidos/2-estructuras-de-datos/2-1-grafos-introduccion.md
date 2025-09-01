@@ -248,7 +248,7 @@ Lista de adyacencia del grafo no dirigido
 
 En Python existen varias bibliotecas que facilitan la representación y manipulación de grafos. Vamos a usar **NetworkX** para representar grafos y **Matplotlib** para visualizarlos.
 
-**Networkx** estructuras de datos y algoritmos eficientes para trabajar con grafos, lo que facilita tareas como la búsqueda de caminos, la detección de ciclos y el análisis de redes.
+**NetworkX** proporciona estructuras de datos y algoritmos eficientes para trabajar con grafos, lo que facilita tareas como la búsqueda de caminos, la detección de ciclos y el análisis de redes.
 
 Ambas bibliotecas se deben instalar previamente.
 
@@ -286,8 +286,8 @@ También se pueden agregar nodos individuales
 `add_node(n)`{l=python}
 : Para agregar un nodo `n`{l=python} al grafo.
 
-`add_node_from(iterable)`{l=python}
-: Para agregar múltiples nodos desde un `iterable`{l=python}, de tuplas de la forma `(n, d)`{l=python}, donde `n`{l=python} es el nodo y `d`{l=python} es un diccionario con los atributos opcionales.
+`add_nodes_from(iterable)`{l=python}
+: Para agregar múltiples nodos desde un `iterable`{l=python}. Cada elemento puede ser un nodo o una tupla de la forma `(n, d)`{l=python}, donde `n`{l=python} es el nodo y `d`{l=python} es un diccionario con los atributos opcionales.
 
 ### Graficar grafos
 
