@@ -18,7 +18,7 @@ Se utiliza para resolver problemas de planificación y dependencia de tareas, do
 
 ## Algoritmo de Kahn
 
-Una forma de encontrar un ordenamiento topológico es mediante el algoritmo de Kahn ([Arthur Kahn](https://en.wikipedia.org/wiki/Arthur_Kahn){target="_blank"}), que utiliza un enfoque basado en el grado de entrada de los vértices. Los pasos son los siguientes:
+Una forma de encontrar un ordenamiento topológico es mediante el algoritmo de Kahn ([Arthur Kahn](https://en.wikipedia.org/wiki/Arthur_Kahn){target="\_blank"}), que utiliza un enfoque basado en el grado de entrada de los vértices. Los pasos son los siguientes:
 
 ```{code-block}
 ---
@@ -82,26 +82,23 @@ En los algoritmos de grafos se acostumbra a utilizar tanto la cantidad de vérti
 
 ***NetworkX*** proporciona el método `topological_sort`{l=python} para calcular el orden topológico de un grafo dirigido acíclico (DAG).
 
-```{code-cell}python
+```{code-cell} python
 ---
 tags: [hide-output]
 ---
 import networkx as nx
 
-def orden_topologico_networkx(grafo):
-    G = nx.DiGraph(grafo)
-    return list(nx.topological_sort(G))
-
-# Ejemplo de uso
 grafo = {
-    'V0': ['V1', 'V3'],
-    'V1': ['V3', 'V4'],
-    'V2': ['V0', 'V5'],
-    'V3': ['V4', 'V5', 'V6'],
-    'V4': ['V6'],
-    'V5': [],
-    'V6': ['V5']
+    "V0": ["V1", "V3"],
+    "V1": ["V3", "V4"],
+    "V2": ["V0", "V5"],
+    "V3": ["V4", "V5", "V6"],
+    "V4": ["V6"],
+    "V5": [],
+    "V6": ["V5"],
 }
 
-print(orden_topologico_networkx(grafo))
+G = nx.DiGraph(grafo)
+
+list(nx.topological_sort(G))
 ```
