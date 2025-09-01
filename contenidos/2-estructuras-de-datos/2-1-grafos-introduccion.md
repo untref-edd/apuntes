@@ -141,7 +141,7 @@ Grado de salida
 : Por ejemplo en el grafo anterior el grado de salida del vértice $V_5$ es 0
 
 Fuente
-: Es un vértice que cuyo grado de entrada es 0
+: Es un vértice cuyo grado de entrada es 0
 
 Sumidero
 : Es un vértice cuyo grado de salida es 0
