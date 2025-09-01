@@ -254,7 +254,7 @@ Ambas bibliotecas se deben instalar previamente.
 pip install networkx matplotlib
 ```
 
-Los vértices deben ser de tipos inmutables de datos. Es decir, cualquier tipo que pueda ser clave de un diccionario.
+Los vértices deben ser de tipos *hashables*, es decir, cualquier tipo que pueda ser clave de un diccionario. Los tipos inmutables como cadenas, números o tuplas suelen ser una buena elección porque son hashables y funcionan bien como identificadores de nodos.
 
 ### Crear grafos
 
