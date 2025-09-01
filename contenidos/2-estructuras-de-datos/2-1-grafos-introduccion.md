@@ -286,8 +286,8 @@ También se pueden agregar nodos individuales
 `add_node(n)`{l=python}
 : Para agregar un nodo `n`{l=python} al grafo.
 
-`add_node_from(iterable)`{l=python}
-: Para agregar múltiples nodos desde un `iterable`{l=python}, de tuplas de la forma `(n, d)`{l=python}, donde `n`{l=python} es el nodo y `d`{l=python} es un diccionario con los atributos opcionales.
+`add_nodes_from(iterable)`{l=python}
+: Para agregar múltiples nodos desde un `iterable`{l=python}. Cada elemento puede ser un nodo o una tupla de la forma `(n, d)`{l=python}, donde `n`{l=python} es el nodo y `d`{l=python} es un diccionario con los atributos opcionales.
 
 ### Graficar grafos
 
