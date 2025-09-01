@@ -18,7 +18,7 @@ Se utiliza para resolver problemas de planificación y dependencia de tareas, do
 
 ## Algoritmo de Kahn
 
-Una forma de encontrar un ordenamiento topológico es mediante el algoritmo de Kahn ([Arthur Kahn](https://en.wikipedia.org/wiki/Arthur_Kahn){target=\_blank}), que utiliza un enfoque basado en el grado de entrada de los vértices. Los pasos son los siguientes:
+Una forma de encontrar un ordenamiento topológico es mediante el algoritmo de Kahn ([Arthur Kahn](https://en.wikipedia.org/wiki/Arthur_Kahn){target="_blank"}), que utiliza un enfoque basado en el grado de entrada de los vértices. Los pasos son los siguientes:
 
 ```{code-block}
 ---
