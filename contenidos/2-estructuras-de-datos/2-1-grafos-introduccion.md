@@ -437,7 +437,7 @@ plt.show()
 
 ## Recursos para profundizar
 
-- [Documentación de NetworkX](https://networkx.org/documentation/stable/index.html){target="\_blank"}
-- [Tutorial de Matplotlib](https://matplotlib.org/stable/tutorials/index.html){target="\_blank"}
-- [Introducción a grafos y redes con Python](https://cienciadedatos.net/documentos/pygml01-introduccion-grafos-redes-python){target="\_blank"}
-- [NetworkX Tutorial](https://www.kaggle.com/code/alireza151/networkx-tutorial){target="\_blank"}
+- [Documentación de NetworkX](https://networkx.org/documentation/stable/index.html){target="_blank"}
+- [Tutorial de Matplotlib](https://matplotlib.org/stable/tutorials/index.html){target="_blank"}
+- [Introducción a grafos y redes con Python](https://cienciadedatos.net/documentos/pygml01-introduccion-grafos-redes-python){target="_blank"}
+- [NetworkX Tutorial](https://www.kaggle.com/code/alireza151/networkx-tutorial){target="_blank"}
