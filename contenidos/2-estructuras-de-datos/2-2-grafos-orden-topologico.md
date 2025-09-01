@@ -42,7 +42,7 @@ ORDEN TOPOLÓGICO (G: DiGrafo)
             SI w.grado_entrada == 0:
                 q.encolar(w)
 
-    SI quedaron nodos sin imprimir:
+    SI quedaron nodos sin procesar:
         REPORTAR error: grafo con ciclos
 ```
 
