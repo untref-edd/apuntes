@@ -131,7 +131,7 @@ Visto de otra forma si partimos de un vértice cualquiera del grafo no existe ni
 name: grafo_dag
 width: 60%
 ---
-Grafo dirigido acíclico
+Grafo Dirigido Acíclico
 ```
 
 Grado de entrada
