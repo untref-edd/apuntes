@@ -1,0 +1,976 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   version="1.1"
+   width="526px"
+   height="281px"
+   viewBox="-0.5 -0.5 526 281"
+   content="&lt;mxfile host=&quot;localhost&quot; modified=&quot;2024-09-04T14:25:35.522Z&quot; agent=&quot;5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36&quot; etag=&quot;SBV6Bb2kcbqUH1gj4S_G&quot; version=&quot;15.8.7&quot; type=&quot;embed&quot;&gt;&lt;diagram id=&quot;Wr1XqaWAmWsoYyeQi_kw&quot; name=&quot;Page-1&quot;&gt;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&lt;/diagram&gt;&lt;/mxfile&gt;"
+   id="svg632"
+   sodipodi:docname="grafo_dirigido_lista.svg"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview634"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="2.526616"
+     inkscape:cx="161.08502"
+     inkscape:cy="141.4936"
+     inkscape:window-width="2560"
+     inkscape:window-height="1376"
+     inkscape:window-x="0"
+     inkscape:window-y="36"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g630" />
+  <defs
+     id="defs344">
+    <style
+       type="text/css"
+       id="style342">@import url(&quot;https://fonts.googleapis.com/css?family=Jetbrains+Mono&quot;);</style>
+  </defs>
+  <g
+     id="g630">
+    <g
+       id="cell-2">
+      <rect
+         x="40"
+         y="0"
+         width="40"
+         height="40"
+         fill="rgb(255, 255, 255)"
+         stroke="rgb(0, 0, 0)"
+         pointer-events="all"
+         id="rect346" />
+    </g>
+    <g
+       id="cell-48">
+      <path
+         d="M 80 60 L 113.63 60"
+         fill="none"
+         stroke="rgb(0, 0, 0)"
+         stroke-miterlimit="10"
+         pointer-events="stroke"
+         id="path349" />
+      <path
+         d="M 118.88 60 L 111.88 63.5 L 113.63 60 L 111.88 56.5 Z"
+         fill="rgb(0, 0, 0)"
+         stroke="rgb(0, 0, 0)"
+         stroke-miterlimit="10"
+         pointer-events="all"
+         id="path351" />
+    </g>
+    <g
+       id="cell-3">
+      <rect
+         x="40"
+         y="40"
+         width="40"
+         height="40"
+         fill="rgb(255, 255, 255)"
+         stroke="rgb(0, 0, 0)"
+         pointer-events="all"
+         id="rect354" />
+    </g>
+    <g
+       id="cell-49">
+      <path
+         d="M 80 100 L 113.63 100"
+         fill="none"
+         stroke="rgb(0, 0, 0)"
+         stroke-miterlimit="10"
+         pointer-events="stroke"
+         id="path357" />
+      <path
+         d="M 118.88 100 L 111.88 103.5 L 113.63 100 L 111.88 96.5 Z"
+         fill="rgb(0, 0, 0)"
+         stroke="rgb(0, 0, 0)"
+         stroke-miterlimit="10"
+         pointer-events="all"
+         id="path359" />
+    </g>
+    <g
+       id="cell-4">
+      <rect
+         x="40"
+         y="80"
+         width="40"
+         height="40"
+         fill="rgb(255, 255, 255)"
+         stroke="rgb(0, 0, 0)"
+         pointer-events="all"
+         id="rect362" />
+    </g>
+    <g
+       id="cell-50">
+      <path
+         d="M 80 140 L 113.63 140"
+         fill="none"
+         stroke="rgb(0, 0, 0)"
+         stroke-miterlimit="10"
+         pointer-events="stroke"
+         id="path365" />
+      <path
+         d="M 118.88 140 L 111.88 143.5 L 113.63 140 L 111.88 136.5 Z"
+         fill="rgb(0, 0, 0)"
+         stroke="rgb(0, 0, 0)"
+         stroke-miterlimit="10"
+         pointer-events="all"
+         id="path367" />
+    </g>
+    <g
+       id="cell-5">
+      <rect
+         x="40"
+         y="120"
+         width="40"
+         height="40"
+         fill="rgb(255, 255, 255)"
+         stroke="rgb(0, 0, 0)"
+         pointer-events="all"
+         id="rect370" />
+    </g>
+    <g
+       id="cell-6">
+      <rect
+         x="40"
+         y="160"
+         width="40"
+         height="40"
+         fill="rgb(255, 255, 255)"
+         stroke="rgb(0, 0, 0)"
+         pointer-events="all"
+         id="rect373" />
+    </g>
+    <g
+       id="cell-9">
+      <rect
+         x="0"
+         y="0"
+         width="40"
+         height="40"
+         fill="none"
+         stroke="none"
+         pointer-events="all"
+         id="rect382" />
+      <g
+         fill="rgb(0, 0, 0)"
+         font-family="Jetbrains Mono"
+         text-anchor="middle"
+         font-size="12px"
+         id="g386">
+        <text
+           x="19.5"
+           y="24.5"
+           id="text384">0</text>
+      </g>
+    </g>
+    <g
+       id="cell-10">
+      <rect
+         x="0"
+         y="40"
+         width="40"
+         height="40"
+         fill="none"
+         stroke="none"
+         pointer-events="all"
+         id="rect389" />
+      <g
+         fill="rgb(0, 0, 0)"
+         font-family="Jetbrains Mono"
+         text-anchor="middle"
+         font-size="12px"
+         id="g393">
+        <text
+           x="19.5"
+           y="64.5"
+           id="text391">1</text>
+      </g>
+    </g>
+    <g
+       id="cell-11">
+      <rect
+         x="0"
+         y="80"
+         width="40"
+         height="40"
+         fill="none"
+         stroke="none"
+         pointer-events="all"
+         id="rect396" />
+      <g
+         fill="rgb(0, 0, 0)"
+         font-family="Jetbrains Mono"
+         text-anchor="middle"
+         font-size="12px"
+         id="g400">
+        <text
+           x="19.5"
+           y="104.5"
+           id="text398">2</text>
+      </g>
+    </g>
+    <g
+       id="cell-12">
+      <rect
+         x="0"
+         y="120"
+         width="40"
+         height="40"
+         fill="none"
+         stroke="none"
+         pointer-events="all"
+         id="rect403" />
+      <g
+         fill="rgb(0, 0, 0)"
+         font-family="Jetbrains Mono"
+         text-anchor="middle"
+         font-size="12px"
+         id="g407">
+        <text
+           x="19.5"
+           y="144.5"
+           id="text405">3</text>
+      </g>
+    </g>
+    <g
+       id="cell-13">
+      <rect
+         x="0"
+         y="160"
+         width="40"
+         height="40"
+         fill="none"
+         stroke="none"
+         pointer-events="all"
+         id="rect410" />
+      <g
+         fill="rgb(0, 0, 0)"
+         font-family="Jetbrains Mono"
+         text-anchor="middle"
+         font-size="12px"
+         id="g414">
+        <text
+           x="19.5"
+           y="184.5"
+           id="text412">4</text>
+      </g>
+    </g>
+    <g
+       id="cell-18">
+      <rect
+         x="120"
+         y="5"
+         width="60"
+         height="30"
+         fill="rgb(255, 255, 255)"
+         stroke="rgb(0, 0, 0)"
+         pointer-events="all"
+         id="rect431" />
+      <g
+         fill="rgb(0, 0, 0)"
+         font-family="Jetbrains Mono"
+         text-anchor="middle"
+         font-size="12px"
+         id="g435">
+        <text
+           x="149.5"
+           y="24.5"
+           id="text433"
+           inkscape:label="text433"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;font-family:'Jetbrains Mono';-inkscape-font-specification:'Jetbrains Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline"><tspan
+             sodipodi:role="line"
+             id="tspan794"
+             x="149.5"
+             y="24.5">(B, 4)</tspan></text>
+      </g>
+    </g>
+    <g
+       id="cell-19">
+      <rect
+         x="220"
+         y="5"
+         width="60"
+         height="30"
+         fill="rgb(255, 255, 255)"
+         stroke="rgb(0, 0, 0)"
+         pointer-events="all"
+         id="rect438" />
+      <g
+         fill="rgb(0, 0, 0)"
+         font-family="Jetbrains Mono"
+         text-anchor="middle"
+         font-size="12px"
+         id="g442">
+        <text
+           x="249.5"
+           y="24.5"
+           id="text440"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;font-family:'Jetbrains Mono';-inkscape-font-specification:'Jetbrains Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"><tspan
+             sodipodi:role="line"
+             id="tspan796"
+             x="249.5"
+             y="24.5">(C, 5)</tspan></text>
+      </g>
+    </g>
+    <g
+       id="cell-20">
+      <path
+         d="M 80 20 L 113.63 20"
+         fill="none"
+         stroke="rgb(0, 0, 0)"
+         stroke-miterlimit="10"
+         pointer-events="stroke"
+         id="path445" />
+      <path
+         d="M 118.88 20 L 111.88 23.5 L 113.63 20 L 111.88 16.5 Z"
+         fill="rgb(0, 0, 0)"
+         stroke="rgb(0, 0, 0)"
+         stroke-miterlimit="10"
+         pointer-events="all"
+         id="path447" />
+    </g>
+    <g
+       id="cell-21">
+      <path
+         d="M 180 20 L 213.63 20"
+         fill="none"
+         stroke="rgb(0, 0, 0)"
+         stroke-miterlimit="10"
+         pointer-events="stroke"
+         id="path450" />
+      <path
+         d="M 218.88 20 L 211.88 23.5 L 213.63 20 L 211.88 16.5 Z"
+         fill="rgb(0, 0, 0)"
+         stroke="rgb(0, 0, 0)"
+         stroke-miterlimit="10"
+         pointer-events="all"
+         id="path452" />
+    </g>
+    <g
+       id="cell-23">
+      <rect
+         x="120"
+         y="45"
+         width="60"
+         height="30"
+         fill="rgb(255, 255, 255)"
+         stroke="rgb(0, 0, 0)"
+         pointer-events="all"
+         id="rect455" />
+      <g
+         fill="rgb(0, 0, 0)"
+         font-family="Jetbrains Mono"
+         text-anchor="middle"
+         font-size="12px"
+         id="g459">
+        <text
+           x="149.5"
+           y="64.5"
+           id="text457"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;font-family:'Jetbrains Mono';-inkscape-font-specification:'Jetbrains Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"><tspan
+             sodipodi:role="line"
+             id="tspan798"
+             x="149.5"
+             y="64.5">(A, 4)</tspan></text>
+      </g>
+    </g>
+    <g
+       id="cell-24">
+      <rect
+         x="220"
+         y="45"
+         width="60"
+         height="30"
+         fill="rgb(255, 255, 255)"
+         stroke="rgb(0, 0, 0)"
+         pointer-events="all"
+         id="rect462" />
+      <g
+         fill="rgb(0, 0, 0)"
+         font-family="Jetbrains Mono"
+         text-anchor="middle"
+         font-size="12px"
+         id="g466">
+        <text
+           x="249.5"
+           y="64.5"
+           id="text464">(C, 2)</text>
+      </g>
+    </g>
+    <g
+       id="cell-25">
+      <path
+         d="M 180 60 L 213.63 60"
+         fill="none"
+         stroke="rgb(0, 0, 0)"
+         stroke-miterlimit="10"
+         pointer-events="stroke"
+         id="path469" />
+      <path
+         d="M 218.88 60 L 211.88 63.5 L 213.63 60 L 211.88 56.5 Z"
+         fill="rgb(0, 0, 0)"
+         stroke="rgb(0, 0, 0)"
+         stroke-miterlimit="10"
+         pointer-events="all"
+         id="path471" />
+    </g>
+    <g
+       id="cell-30">
+      <rect
+         x="120"
+         y="85"
+         width="60"
+         height="30"
+         fill="rgb(255, 255, 255)"
+         stroke="rgb(0, 0, 0)"
+         pointer-events="all"
+         id="rect474" />
+      <g
+         fill="rgb(0, 0, 0)"
+         font-family="Jetbrains Mono"
+         text-anchor="middle"
+         font-size="12px"
+         id="g478">
+        <text
+           x="149.5"
+           y="104.5"
+           id="text476">(A, 5)</text>
+      </g>
+    </g>
+    <g
+       id="cell-31">
+      <rect
+         x="220"
+         y="85"
+         width="60"
+         height="30"
+         fill="rgb(255, 255, 255)"
+         stroke="rgb(0, 0, 0)"
+         pointer-events="all"
+         id="rect481" />
+      <g
+         fill="rgb(0, 0, 0)"
+         font-family="Jetbrains Mono"
+         text-anchor="middle"
+         font-size="12px"
+         id="g485">
+        <text
+           x="249.5"
+           y="104.5"
+           id="text483">(B, 2)</text>
+      </g>
+    </g>
+    <g
+       id="cell-32">
+      <path
+         d="M 180 100 L 213.63 100"
+         fill="none"
+         stroke="rgb(0, 0, 0)"
+         stroke-miterlimit="10"
+         pointer-events="stroke"
+         id="path488" />
+      <path
+         d="M 218.88 100 L 211.88 103.5 L 213.63 100 L 211.88 96.5 Z"
+         fill="rgb(0, 0, 0)"
+         stroke="rgb(0, 0, 0)"
+         stroke-miterlimit="10"
+         pointer-events="all"
+         id="path490" />
+    </g>
+    <g
+       id="cell-35">
+      <rect
+         x="120"
+         y="125"
+         width="60"
+         height="30"
+         fill="rgb(255, 255, 255)"
+         stroke="rgb(0, 0, 0)"
+         pointer-events="all"
+         id="rect493" />
+      <g
+         fill="rgb(0, 0, 0)"
+         font-family="Jetbrains Mono"
+         text-anchor="middle"
+         font-size="12px"
+         id="g497">
+        <text
+           x="149.5"
+           y="144.5"
+           id="text495">(C, 4)</text>
+      </g>
+    </g>
+    <g
+       id="cell-36">
+      <rect
+         x="220"
+         y="125"
+         width="60"
+         height="30"
+         fill="rgb(255, 255, 255)"
+         stroke="rgb(0, 0, 0)"
+         pointer-events="all"
+         id="rect500" />
+      <g
+         fill="rgb(0, 0, 0)"
+         font-family="Jetbrains Mono"
+         text-anchor="middle"
+         font-size="12px"
+         id="g504">
+        <text
+           x="249.5"
+           y="144.5"
+           id="text502">(E, 3)</text>
+      </g>
+    </g>
+    <g
+       id="cell-37">
+      <path
+         d="M 180 140 L 213.63 140"
+         fill="none"
+         stroke="rgb(0, 0, 0)"
+         stroke-miterlimit="10"
+         pointer-events="stroke"
+         id="path507" />
+      <path
+         d="M 218.88 140 L 211.88 143.5 L 213.63 140 L 211.88 136.5 Z"
+         fill="rgb(0, 0, 0)"
+         stroke="rgb(0, 0, 0)"
+         stroke-miterlimit="10"
+         pointer-events="all"
+         id="path509" />
+    </g>
+    <g
+       id="cell-51">
+      <rect
+         x="120"
+         y="165"
+         width="60"
+         height="30"
+         fill="rgb(255, 255, 255)"
+         stroke="rgb(0, 0, 0)"
+         pointer-events="all"
+         id="rect536" />
+      <g
+         fill="rgb(0, 0, 0)"
+         font-family="Jetbrains Mono"
+         text-anchor="middle"
+         font-size="12px"
+         id="g540">
+        <text
+           x="149.5"
+           y="184.5"
+           id="text538">(A, 1)</text>
+      </g>
+    </g>
+    <g
+       id="cell-52">
+      <path
+         d="M 80 180 L 113.63 180"
+         fill="none"
+         stroke="rgb(0, 0, 0)"
+         stroke-miterlimit="10"
+         pointer-events="stroke"
+         id="path543" />
+      <path
+         d="M 118.88 180 L 111.88 183.5 L 113.63 180 L 111.88 176.5 Z"
+         fill="rgb(0, 0, 0)"
+         stroke="rgb(0, 0, 0)"
+         stroke-miterlimit="10"
+         pointer-events="all"
+         id="path545" />
+    </g>
+    <g
+       id="cell-60"
+       transform="translate(99.604214,-2)">
+      <rect
+         x="315"
+         y="25"
+         width="10"
+         height="10"
+         fill="none"
+         stroke="none"
+         pointer-events="all"
+         id="rect570" />
+      <path
+         d="m 315,28.33 5,6.67 5,-6.67 z"
+         fill="#000000"
+         stroke="#000000"
+         stroke-miterlimit="10"
+         pointer-events="all"
+         id="path572" />
+      <path
+         d="m 320,25 v 3.33"
+         fill="none"
+         stroke="#000000"
+         stroke-miterlimit="10"
+         pointer-events="all"
+         id="path574" />
+    </g>
+    <g
+       id="cell-19-3"
+       transform="translate(98.819785,-1.9191124)">
+      <rect
+         x="220"
+         y="5"
+         width="60"
+         height="30"
+         fill="#ffffff"
+         stroke="#000000"
+         pointer-events="all"
+         id="rect438-6" />
+      <g
+         fill="#000000"
+         font-family="'Jetbrains Mono'"
+         text-anchor="middle"
+         font-size="12px"
+         id="g442-7">
+        <text
+           x="249.5"
+           y="24.5"
+           id="text440-5"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;font-family:'Jetbrains Mono';-inkscape-font-specification:'Jetbrains Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"><tspan
+             sodipodi:role="line"
+             id="tspan796-3"
+             x="249.5"
+             y="24.5">(E, 1)</tspan></text>
+      </g>
+    </g>
+    <g
+       id="cell-61-5"
+       transform="translate(99.611358,-1.1275398)">
+      <path
+         d="m 280,20 h 40 v 5"
+         fill="none"
+         stroke="#000000"
+         stroke-miterlimit="10"
+         pointer-events="stroke"
+         id="path577-6" />
+    </g>
+    <g
+       id="cell-60-2"
+       transform="translate(101.41324,78.761529)">
+      <rect
+         x="315"
+         y="25"
+         width="10"
+         height="10"
+         fill="none"
+         stroke="none"
+         pointer-events="all"
+         id="rect570-7" />
+      <path
+         d="m 315,28.33 5,6.67 5,-6.67 z"
+         fill="#000000"
+         stroke="#000000"
+         stroke-miterlimit="10"
+         pointer-events="all"
+         id="path572-0" />
+      <path
+         d="m 320,25 v 3.33"
+         fill="none"
+         stroke="#000000"
+         stroke-miterlimit="10"
+         pointer-events="all"
+         id="path574-9" />
+    </g>
+    <g
+       id="cell-19-3-3"
+       transform="translate(100.62881,78.842417)">
+      <rect
+         x="220"
+         y="5"
+         width="60"
+         height="30"
+         fill="#ffffff"
+         stroke="#000000"
+         pointer-events="all"
+         id="rect438-6-6" />
+      <g
+         fill="#000000"
+         font-family="'Jetbrains Mono'"
+         text-anchor="middle"
+         font-size="12px"
+         id="g442-7-0">
+        <text
+           x="249.5"
+           y="24.5"
+           id="text440-5-6"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;font-family:'Jetbrains Mono';-inkscape-font-specification:'Jetbrains Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"><tspan
+             sodipodi:role="line"
+             id="tspan796-3-2"
+             x="249.5"
+             y="24.5">(D, 4)</tspan></text>
+      </g>
+    </g>
+    <g
+       id="cell-61-5-6"
+       transform="translate(101.42038,79.633989)">
+      <path
+         d="m 280,20 h 40 v 5"
+         fill="none"
+         stroke="#000000"
+         stroke-miterlimit="10"
+         pointer-events="stroke"
+         id="path577-6-1" />
+    </g>
+    <g
+       id="cell-62">
+      <rect
+         x="315"
+         y="65"
+         width="10"
+         height="10"
+         fill="none"
+         stroke="none"
+         pointer-events="all"
+         id="rect580" />
+      <path
+         d="M 315 68.33 L 320 75 L 325 68.33 Z"
+         fill="#000000"
+         stroke="rgb(0, 0, 0)"
+         stroke-miterlimit="10"
+         pointer-events="all"
+         id="path582" />
+      <path
+         d="M 320 65 L 320 68.33"
+         fill="none"
+         stroke="rgb(0, 0, 0)"
+         stroke-miterlimit="10"
+         pointer-events="all"
+         id="path584" />
+    </g>
+    <g
+       id="cell-63">
+      <path
+         d="M 280 60 L 320 60 L 320 65"
+         fill="none"
+         stroke="rgb(0, 0, 0)"
+         stroke-miterlimit="10"
+         pointer-events="stroke"
+         id="path587" />
+    </g>
+    <g
+       id="cell-68"
+       transform="translate(-200)">
+      <rect
+         x="515"
+         y="145"
+         width="10"
+         height="10"
+         fill="none"
+         stroke="none"
+         pointer-events="all"
+         id="rect610" />
+      <path
+         d="m 515,148.33 5,6.67 5,-6.67 z"
+         fill="#000000"
+         stroke="#000000"
+         stroke-miterlimit="10"
+         pointer-events="all"
+         id="path612" />
+      <path
+         d="m 520,145 v 3.33"
+         fill="none"
+         stroke="#000000"
+         stroke-miterlimit="10"
+         pointer-events="all"
+         id="path614" />
+    </g>
+    <g
+       id="cell-69"
+       transform="translate(-200)">
+      <path
+         d="m 480,140 h 40 v 5"
+         fill="none"
+         stroke="#000000"
+         stroke-miterlimit="10"
+         pointer-events="stroke"
+         id="path617" />
+    </g>
+    <g
+       id="cell-36-2"
+       transform="translate(0.480582,38.645463)">
+      <rect
+         x="220"
+         y="125"
+         width="60"
+         height="30"
+         fill="#ffffff"
+         stroke="#000000"
+         pointer-events="all"
+         id="rect500-0" />
+      <g
+         fill="#000000"
+         font-family="'Jetbrains Mono'"
+         text-anchor="middle"
+         font-size="12px"
+         id="g504-2">
+        <text
+           x="249.5"
+           y="144.5"
+           id="text502-3">(D, 3)</text>
+      </g>
+    </g>
+    <g
+       id="cell-37-7"
+       transform="translate(0.480582,38.645463)">
+      <path
+         d="m 180,140 h 33.63"
+         fill="none"
+         stroke="#000000"
+         stroke-miterlimit="10"
+         pointer-events="stroke"
+         id="path507-5" />
+      <path
+         d="m 218.88,140 -7,3.5 1.75,-3.5 -1.75,-3.5 z"
+         fill="#000000"
+         stroke="#000000"
+         stroke-miterlimit="10"
+         pointer-events="all"
+         id="path509-9" />
+    </g>
+    <g
+       id="cell-68-2"
+       transform="translate(-199.51942,38.645463)">
+      <rect
+         x="515"
+         y="145"
+         width="10"
+         height="10"
+         fill="none"
+         stroke="none"
+         pointer-events="all"
+         id="rect610-2" />
+      <path
+         d="m 515,148.33 5,6.67 5,-6.67 z"
+         fill="#000000"
+         stroke="#000000"
+         stroke-miterlimit="10"
+         pointer-events="all"
+         id="path612-8" />
+      <path
+         d="m 520,145 v 3.33"
+         fill="none"
+         stroke="#000000"
+         stroke-miterlimit="10"
+         pointer-events="all"
+         id="path614-9" />
+    </g>
+    <g
+       id="cell-69-7"
+       transform="translate(-199.51942,38.645463)">
+      <path
+         d="m 480,140 h 40 v 5"
+         fill="none"
+         stroke="#000000"
+         stroke-miterlimit="10"
+         pointer-events="stroke"
+         id="path617-3" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;font-family:'Jetbrains Mono';-inkscape-font-specification:'Jetbrains Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000"
+       x="55.701656"
+       y="26.809256"
+       id="text904"><tspan
+         sodipodi:role="line"
+         id="tspan902" /></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;font-family:'Jetbrains Mono';-inkscape-font-specification:'Jetbrains Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000"
+       x="51.369076"
+       y="25.621897"
+       id="text908"><tspan
+         sodipodi:role="line"
+         id="tspan906"
+         x="51.369076"
+         y="25.621897"> A</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;font-family:'Jetbrains Mono';-inkscape-font-specification:'Jetbrains Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000"
+       x="55.369076"
+       y="65.596313"
+       id="text912"><tspan
+         sodipodi:role="line"
+         id="tspan910"
+         x="55.369076"
+         y="65.596313">B</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;font-family:'Jetbrains Mono';-inkscape-font-specification:'Jetbrains Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000"
+       x="55.764862"
+       y="105.17494"
+       id="text916"><tspan
+         sodipodi:role="line"
+         id="tspan914"
+         x="55.764862"
+         y="105.17494">C</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;font-family:'Jetbrains Mono';-inkscape-font-specification:'Jetbrains Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000"
+       x="56.160648"
+       y="146.33672"
+       id="text920"><tspan
+         sodipodi:role="line"
+         id="tspan918"
+         x="56.160648"
+         y="146.33672">D</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;font-family:'Jetbrains Mono';-inkscape-font-specification:'Jetbrains Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000"
+       x="55.348007"
+       y="186.70692"
+       id="text924"><tspan
+         sodipodi:role="line"
+         id="tspan922"
+         x="55.348007"
+         y="186.70692">E</tspan></text>
+    <g
+       id="cell-21-2"
+       transform="translate(99.549133,-1.5022576)">
+      <path
+         d="m 180,20 h 33.63"
+         fill="none"
+         stroke="#000000"
+         stroke-miterlimit="10"
+         pointer-events="stroke"
+         id="path450-9" />
+      <path
+         d="m 218.88,20 -7,3.5 1.75,-3.5 -1.75,-3.5 z"
+         fill="#000000"
+         stroke="#000000"
+         stroke-miterlimit="10"
+         pointer-events="all"
+         id="path452-1" />
+    </g>
+    <g
+       id="cell-21-2-8"
+       transform="translate(100.29857,78.446575)">
+      <path
+         d="m 180,20 h 33.63"
+         fill="none"
+         stroke="#000000"
+         stroke-miterlimit="10"
+         pointer-events="stroke"
+         id="path450-9-7" />
+      <path
+         d="m 218.88,20 -7,3.5 1.75,-3.5 -1.75,-3.5 z"
+         fill="#000000"
+         stroke="#000000"
+         stroke-miterlimit="10"
+         pointer-events="all"
+         id="path452-1-9" />
+    </g>
+  </g>
+</svg>
