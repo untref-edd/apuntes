@@ -41,9 +41,7 @@ width: 60%
 ---
 Ejemplo de un grafo
 ```
-
-```{note}
-Si entre cada par de vértices se puede tener más de una arista, entonces se trata de un **multigrafo** o **grafo multivariado**. En esta materia no vamos a estudiar **multigrafos**.
+Si entre cada par de vértices se puede tener más de una arista, entonces se trata de un **multigrafo**. En esta materia no vamos a estudiar **multigrafos**.
 
 [Ver más sobre multigrafos](https://es.wikipedia.org/wiki/Multigrafo){target="_blank"}
 ```
