@@ -248,7 +248,7 @@ Lista de adyacencia del grafo no dirigido
 
 En Python existen varias bibliotecas que facilitan la representación y manipulación de grafos. Vamos a usar **NetworkX** para representar grafos y **Matplotlib** para visualizarlos.
 
-**Networkx** estructuras de datos y algoritmos eficientes para trabajar con grafos, lo que facilita tareas como la búsqueda de caminos, la detección de ciclos y el análisis de redes.
+**NetworkX** proporciona estructuras de datos y algoritmos eficientes para trabajar con grafos, lo que facilita tareas como la búsqueda de caminos, la detección de ciclos y el análisis de redes.
 
 Ambas bibliotecas se deben instalar previamente.
 
