@@ -169,8 +169,8 @@ $$
 
 $$
 \begin{aligned}
-A=\{(V_0, V_1, 2), (V_0, V_3, 1), (V_1, V_3, 3), (V_1, V_4, 10), (V_3, V_4, 2), (V_3, V_6, 4),\\
-   (V_3, V_5, 8), (V_3, V_2, 2), (V_2, V_0, 4), (V_2, V_5, 5), (V_4, V_6, 6), (V_6, V_5, 1)\}
+A=\{(V_0, V_1, 2), (V_0, V_3, 1), (V_1, V_3, 3), (V_1, V_4, 10), (V_2, V_0, 4), (V_2, V_5, 5),\\
+   (V_3, V_2, 2), (V_3, V_4, 2), (V_3, V_5, 8), (V_3, V_6, 4), (V_4, V_6, 6), (V_6, V_5, 1)\}
 \end{aligned}
 $$
 
@@ -186,13 +186,13 @@ Se numeran los vértices del grafo desde $0$ hasta $n-1$ y se genera una matriz 
 
 |           | **$V_0$** | **$V_1$** | **$V_2$** | **$V_3$** | **$V_4$** | **$V_5$** | **$V_6$** |
 | --------: | :-------: | :-------: | :-------: | :-------: | :-------: | :-------: | :-------: |
-| **$V_0$** |     -     |     2     |     1     |     -     |     -     |     -     |     -     |
-| **$V_1$** |     -     |     -     |     3     |    10     |     -     |     -     |     -     |
-| **$V_2$** |     4     |     -     |     -     |     -     |     5     |     -     |     -     |
-| **$V_3$** |     -     |     2     |     -     |     2     |     8     |     4     |     -     |
-| **$V_4$** |     -     |     -     |     -     |     -     |     -     |     5     |     -     |
+| **$V_0$** |     -     |     2     |     -     |     1     |     -     |     -     |     -     |
+| **$V_1$** |     -     |     -     |     -     |     3     |    10     |     -     |     -     |
+| **$V_2$** |     4     |     -     |     -     |     -     |     -     |     5     |     -     |
+| **$V_3$** |     -     |     -     |     2     |     -     |     2     |     8     |     4     |
+| **$V_4$** |     -     |     -     |     -     |     -     |     -     |     -     |     5     |
 | **$V_5$** |     -     |     -     |     -     |     -     |     -     |     -     |     -     |
-| **$V_6$** |     -     |     -     |     -     |     -     |     -     |     -     |     1     |
+| **$V_6$** |     -     |     -     |     -     |     -     |     -     |     1     |     -     |
 
 La matriz de adyacencia es una representación eficiente para grafos densos, donde el número de aristas es cercano al número máximo posible ($|V|^2$). Sin embargo, puede ser ineficiente en términos de espacio para grafos dispersos, donde el número de aristas es mucho menor que el número máximo posible. En la matriz de ejemplo solo unos pocos elementos son diferentes de '-'.
 
