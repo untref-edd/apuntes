@@ -76,13 +76,13 @@ print(f"s1: {s1}, s2: {s2}")  # Salida: s1: hola mundo, s2: hola
     webkitallowfullscreen="true">
 </iframe>
 
-En este fragmento, `s1`{l=python} y `s2`{l=python} inicialmente referencian al mismo objeto, la cadena "hola". Al modificar `s1`{l=python}, se crea un nuevo objeto cadena "hola mundo", y `s1`{l=python} ahora apunta a este nuevo objeto, mientras que `s2`{l=python} sigue apuntando al antiguo objeto "hola".
+En este fragmento, `s1`{l=python} y `s2`{l=python} inicialmente referencian al mismo objeto, la cadena `"hola"`{l=python}. Al modificar `s1`{l=python}, se crea un nuevo objeto cadena `"hola mundo"`{l=python}, y `s1`{l=python} ahora apunta a este nuevo objeto, mientras que `s2`{l=python} sigue apuntando al antiguo objeto `"hola"`{l=python}.
 
 ### Tipos Mutables (como los objetos en Java/Go)
 
-- Listas (list)
-- Diccionarios (dict)
-- Conjuntos (set)
+- Listas (`list`{l=python})
+- Diccionarios (`dict`{l=python})
+- Conjuntos (`set`{l=python})
 - Objetos de clases personalizadas
 
 Cuando se modifica un objeto mutable, se altera el objeto en su lugar. Si múltiples variables referencian al mismo objeto mutable, todas verán los cambios.
@@ -123,7 +123,7 @@ Variables privadas
 : Se definen con dos guiones bajos al inicio del nombre (ej. `__variable`{l=python}). Esto activa el _name mangling_, lo que significa que el nombre de la variable se modifica internamente para evitar conflictos con nombres en subclases.
 
 Variables especiales
-: Se definen con dos guiones bajos al inicio y al final del nombre (ej. `__init__`{l=python}). Estas son utilizadas por Python para definir métodos especiales y no deben ser modificadas directamente.
+: Se definen con dos guiones bajos al inicio y al final del nombre, estos son conocidos en la comunidad Python como _dunder methods_ (ej. `__init__`{l=python}). Estas son utilizadas por Python para definir métodos especiales y no deben ser modificadas directamente.
 
 ```{Warning}
 Todas las variables en Python son accesibles desde fuera del módulo o clase, incluso las privadas. La convención de nomenclatura es solo una guía para los desarrolladores y no impide el acceso a las variables.
@@ -133,19 +133,19 @@ Todas las variables en Python son accesibles desde fuera del módulo o clase, in
 
 Python define un sistema de ámbitos para resolver nombres (variables, funciones, clases, etc.). Este sistema se conoce comúnmente como la regla LEGB:
 
-Local (L)
+_Local_ (L)
 : Nombres definidos dentro de una función.
 
-Enclosing (E) / Clausura
+_Enclosing_ (E) / Clausura
 : Nombres en el ámbito de una función externa (función "envolvente"). Este ámbito define el contexto de ejecución de una función anidada.
 
-Global (G)
-: Nombres definidos en el nivel superior de un módulo (archivo .py).
+_Global_ (G)
+: Nombres definidos en el nivel superior de un módulo (archivo `.py`).
 
-Built-in (B)
-: Nombres preasignados por Python (ej. open, range, print).
+_Built-in_ (B)
+: Nombres preasignados por Python (ej. `open`{l=python}, `range`{l=python}, `print`{l=python}).
 
-Cuando Python busca un nombre, sigue este orden: primero busca en el ámbito Local, luego en el Enclosing, después en el Global y finalmente en el Built-in.
+Cuando Python busca un nombre, sigue este orden: primero busca en el ámbito _Local_, luego en el _Enclosing_, después en el _Global_ y finalmente en el _Built-in_.
 
 ```{figure} ../assets/images/ambitos.png
 ---
