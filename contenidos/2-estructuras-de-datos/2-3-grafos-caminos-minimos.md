@@ -92,7 +92,9 @@ DIJKSTRA (G: DiGrafo, s: Vertice)
                     pq.encolar(w, distancia[w])
 ```
 
-```{code-cell}
+A continuación se muestra la aplicación del algoritmo al grafo de la figura anterior, desde que se desencola el vértice inicial a distancia 0 y se lo marca como visitado. Es decir en la primera iteración del ciclo MIENTRAS, luego de desencolar el vértice inicial.
+
+```{code-cell}python
 :tags: [remove-input]
 import networkx as nx
 import matplotlib.pyplot as plt
@@ -286,3 +288,5 @@ html = f"""
 display(HTML(html))
 
 ```
+
+
