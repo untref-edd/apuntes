@@ -12,12 +12,11 @@ kernelspec:
 
 # Archivos
 
-En casi cualquier lenguaje de programación, interactuar con archivos es fundamental.\
-En **Java** y **Go**, esto se hace a través de librerías específicas (`java.io`, `os`), pero en **Python** es mucho más directo y expresivo.
+En casi cualquier lenguaje de programación, interactuar con archivos es fundamental. En **Java** y **Go**, esto se hace a través de librerías específicas (`java.io`{l=java}, `os`{l=go}), pero en **Python** es mucho más directo y expresivo.
 
 ## Representación de archivos y carpetas
 
-En un sistema operativo (SO), un **archivo** es básicamente una secuencia de bytes almacenada en un medio físico (disco, SSD, memoria externa). Por lo general los archivos se encuentran en el disco dentro de un **sistema de archivos** o **filesystem**. Este **sistema de archivo** depende de cada sistema operativo. Por ejemplo Linux utiliza un **sistema de archivos** denominado ***ext4***, mientras que Windows utiliza ***NTFS***.
+En un sistema operativo (SO), un **archivo** es básicamente una secuencia de _bytes_ almacenada en un medio físico (disco, SSD, memoria externa). Por lo general los archivos se encuentran en el disco dentro de un **sistema de archivos** o _**filesystem**_. Este **sistema de archivo** depende de cada sistema operativo. Por ejemplo Linux utiliza un **sistema de archivos** denominado _**ext4**_, mientras que Windows utiliza _**NTFS**_.
 
 La principal diferencia entre distintos sistemas de archivos es como se gestionan los metadatos (información sobre el archivo, como su nombre, tamaño, permisos, etc.) y la estructura de directorios.
 
@@ -29,15 +28,15 @@ Carpeta (o directorio)
 
 Para que una aplicación o programa pueda crear, leer o escribir un archivo o carpeta debe realizar una solicitud al SO, principal responsable de la gestión del hardware.
 
-El SO responde a la petición con un ***descriptor de archivo*** (*file descriptor*). Este ***descriptor de archivo*** es un número entero que identifica de manera única un archivo abierto en ese momento.
+El SO responde a la petición con un **descriptor de archivo** (_**file descriptor**_). Este **descriptor de archivo** es un número entero que identifica de manera única un archivo abierto en ese momento.
 
-Mientras la aplicación tiene el archivo abierto, puede leer y escribir en él. Cuando la aplicación ya no necesita más el archivo debe *cerrarlo*. Al cerrar el archivo se notifica al SO que se terminó de utilizar y por lo tanto queda disponible para que otra aplicación o programa pueda manipularlo.
+Mientras la aplicación tiene el archivo abierto, puede leer y escribir en él. Cuando la aplicación ya no necesita más el archivo debe _cerrarlo_. Al cerrar el archivo se notifica al SO que se terminó de utilizar y por lo tanto queda disponible para que otra aplicación o programa pueda manipularlo.
 
 ### Lectura y escritura
 
 Cuando abrimos un archivo:
 
-1. El S.O. localiza el archivo y asigna un *file descriptor*.
+1. El SO localiza el archivo y asigna un _file descriptor_.
 1. Python crea un **objeto archivo** que envuelve ese descriptor.
 1. Las operaciones de lectura/escritura se hacen en **buffers** (bloques de memoria intermedia) para optimizar el rendimiento.
 
@@ -45,62 +44,62 @@ Ejemplo: si quiere leer un archivo grande, Python no trae todo de golpe, sino tr
 
 Cuando se cierra un archivo en el que se escribieron datos, Python se asegura que todos los datos se hayan escrito correctamente en el disco, volcando toda la información de los buffers.
 
-En este contexto es fundamental usar los bloques `try / finally` para garantizar que los archivos se cierren adecuadamente, incluso si ocurre un error durante la lectura o escritura. Como el bloque `finally`{l=python} se ejecuta siempre, podemos asegurarnos de que el archivo se cierre en cualquier situación, incluso si hay excepciones, y que todos los datos escritos se guarden correctamente, liberando el archivo para su uso futuro o parte de otro programa.
+En este contexto es fundamental usar los bloques `try`{l=python}/`finally`{l=python} para garantizar que los archivos se cierren adecuadamente, incluso si ocurre un error durante la lectura o escritura. Como el bloque `finally`{l=python} se ejecuta siempre, podemos asegurarnos de que el archivo se cierre en cualquier situación, incluso si hay excepciones, y que todos los datos escritos se guarden correctamente, liberando el archivo para su uso futuro o parte de otro programa.
 
-### Archivos de texto vs binarios
+### Archivos de texto vs archivos binarios
 
 Texto
-: Interpretan bytes según una codificación (por ejemplo UTF-8).\
-: Ejemplo: `"hola"` → `68 6f 6c 61` (bytes) interpretados como caracteres.
+: Interpretan _bytes_ según una codificación (por ejemplo UTF-8).
+: Ejemplo: `"hola"`{l=python} → `68 6f 6c 61` (bytes) interpretados como caracteres.
 
 Binarios
-: Los bytes se usan tal cual (imágenes, ejecutables, audio, etc.).
+: Los _bytes_ se usan tal cual (imágenes, ejecutables, audio, etc.).
 
-En Python, esto se define al abrir el archivo con `'t'` (texto) o `'b'` (binario). En general si se omite el modo, se abrirá en modo texto.
+En Python, esto se define al abrir el archivo con `"t"`{l=python} (texto) o `"b"`{l=python} (binario). En general si se omite el modo, se abrirá en modo texto.
 
 ### Saltos de línea: `\n` vs `\r\n`
 
-En **Linux y macOS** los saltos de línea se representan con el caracter `\n`, mientras que en **Windows** se usan dos caracteres `\r\n`. Python **traduce automáticamente** al trabajar en modo texto, así que no hay que preocuparse si el programa se ejecuta en un entorno **Windows**, **Linux** o **macOS**, salvo que estemos manipulando el archivo en modo binario, donde es responsabilidad del programador.
+En **Linux** y **macOS** los saltos de línea se representan con el caracter `\n`, mientras que en **Windows** se usan dos caracteres `\r\n`. Python **traduce automáticamente** al trabajar en modo texto, así que no hay que preocuparse si el programa se ejecuta en un entorno **Windows**, **Linux** o **macOS**, salvo que estemos manipulando el archivo en modo binario, donde es responsabilidad del programador.
 
 ## Operaciones con carpetas
 
-Para manipular carpetas y rutas, Python ofrece los módulos **`os`{l=python}** y **`pathlib`{l=python}**.
+Para manipular carpetas y rutas, Python ofrece los módulos `os`{l=python} y `pathlib`{l=python}.
 
 ### Rutas o Paths absolutos y relativos
 
 Path Absoluto
-: Especifica toda la ruta desde la raíz.\
+: Especifica toda la ruta desde la raíz.
 : Por ejemplo: `/home/usuario/archivo.txt` o `C:\Users\Usuario\archivo.txt`
 
 Path Relativo
-: Se interpreta desde el directorio donde se ejecuta el programa.\
+: Se interpreta desde el directorio donde se ejecuta el programa.
 : Por ejemplo: `datos/archivo.txt`
 
 El caracter especial `.` representa el directorio actual, mientras que `..` representa el directorio padre, con lo cual se pueden gestionar rutas relativas de manera más sencilla.
 
 Algunas funciones útiles del módulo `os`{l=python} para manipular archivos y carpetas son:
 
-| Función                  | Descripción                                              | Ejemplo                                      |
-| ------------------------ | -------------------------------------------------------- | -------------------------------------------- |
-| `os.getcwd()`            | Obtiene el directorio de trabajo actual                  | `'/home/usuario/proyecto'`                   |
-| `os.chdir(path)`         | Cambia el directorio de trabajo actual                   | `os.chdir('/home/usuario/docs')`             |
-| `os.listdir(path)`       | Lista archivos y carpetas en un directorio               | `['archivo1.txt', 'carpeta1', 'imagen.png']` |
-| `os.mkdir(path)`         | Crea un directorio                                       | `os.mkdir('nueva_carpeta')`                  |
-| `os.makedirs(path)`      | Crea directorios anidados (recursivo)                    | `os.makedirs('carpeta/subcarpeta')`          |
-| `os.rmdir(path)`         | Elimina un directorio vacío                              | `os.rmdir('carpeta_vacia')`                  |
-| `os.removedirs(path)`    | Elimina directorios vacíos recursivamente                | `os.removedirs('carpeta/subcarpeta')`        |
-| `os.remove(path)`        | Elimina un archivo                                       | `os.remove('archivo.txt')`                   |
-| `os.rename(old, new)`    | Renombra archivo o directorio                            | `os.rename('viejo.txt', 'nuevo.txt')`        |
-| `os.stat(path)`          | Obtiene información del archivo (tamaño, permisos, etc.) | `os.stat('archivo.txt')`                     |
-| `os.path.exists(path)`   | Verifica si existe archivo o directorio                  | `True`{l=python} o `False`{l=python}         |
-| `os.path.isfile(path)`   | Verifica si es un archivo                                | `True`{l=python} o `False`{l=python}         |
-| `os.path.isdir(path)`    | Verifica si es un directorio                             | `True`{l=python} o `False`{l=python}         |
-| `os.path.join(...)`      | Une partes de una ruta de forma portable                 | `os.path.join('carpeta', 'archivo.txt')`     |
-| `os.path.basename(path)` | Obtiene el nombre del archivo                            | `'archivo.txt'` de `'/ruta/archivo.txt'`     |
-| `os.path.dirname(path)`  | Obtiene el directorio padre                              | `'/ruta'` de `'/ruta/archivo.txt'`           |
-| `os.path.splitext(path)` | Separa nombre y extensión                                | `('archivo', '.txt')`                        |
-| `os.path.abspath(path)`  | Convierte ruta relativa a absoluta                       | `'/home/usuario/archivo.txt'`                |
-| `os.path.getsize(path)`  | Obtiene tamaño del archivo en bytes                      | `1024`{l=python}                             |
+| Función                            | Descripción                                              | Ejemplo                                                      |
+| ---------------------------------- | -------------------------------------------------------- | ------------------------------------------------------------ |
+| `os.getcwd()`{l=python}            | Obtiene el directorio de trabajo actual                  | `"/home/usuario/proyecto"`{l=python}                         |
+| `os.chdir(path)`{l=python}         | Cambia el directorio de trabajo actual                   | `os.chdir('/home/usuario/docs')`{l=python}                   |
+| `os.listdir(path)`{l=python}       | Lista archivos y carpetas en un directorio               | `['archivo1.txt', 'carpeta1', 'imagen.png']`{l=python}       |
+| `os.mkdir(path)`{l=python}         | Crea un directorio                                       | `os.mkdir('nueva_carpeta')`{l=python}                        |
+| `os.makedirs(path)`{l=python}      | Crea directorios anidados (recursivo)                    | `os.makedirs('carpeta/subcarpeta')`{l=python}                |
+| `os.rmdir(path)`{l=python}         | Elimina un directorio vacío                              | `os.rmdir('carpeta_vacia')`{l=python}                        |
+| `os.removedirs(path)`{l=python}    | Elimina directorios vacíos recursivamente                | `os.removedirs('carpeta/subcarpeta')`{l=python}              |
+| `os.remove(path)`{l=python}        | Elimina un archivo                                       | `os.remove('archivo.txt')`{l=python}                         |
+| `os.rename(old, new)`{l=python}    | Renombra archivo o directorio                            | `os.rename('viejo.txt', 'nuevo.txt')`{l=python}              |
+| `os.stat(path)`{l=python}          | Obtiene información del archivo (tamaño, permisos, etc.) | `os.stat('archivo.txt')`{l=python}                           |
+| `os.path.exists(path)`{l=python}   | Verifica si existe archivo o directorio                  | `True`{l=python} o `False`{l=python}                         |
+| `os.path.isfile(path)`{l=python}   | Verifica si es un archivo                                | `True`{l=python} o `False`{l=python}                         |
+| `os.path.isdir(path)`{l=python}    | Verifica si es un directorio                             | `True`{l=python} o `False`{l=python}                         |
+| `os.path.join(...)`{l=python}      | Une partes de una ruta de forma portable                 | `os.path.join('carpeta', 'archivo.txt')`{l=python}           |
+| `os.path.basename(path)`{l=python} | Obtiene el nombre del archivo                            | `"archivo.txt"`{l=python} de `"/ruta/archivo.txt"`{l=python} |
+| `os.path.dirname(path)`{l=python}  | Obtiene el directorio padre                              | `"/ruta"`{l=python} de `"/ruta/archivo.txt"`{l=python}       |
+| `os.path.splitext(path)`{l=python} | Separa nombre y extensión                                | `('archivo', '.txt')`{l=python}                              |
+| `os.path.abspath(path)`{l=python}  | Convierte ruta relativa a absoluta                       | `"/home/usuario/archivo.txt"`{l=python}                      |
+| `os.path.getsize(path)`{l=python}  | Obtiene tamaño del archivo en bytes                      | `1024`{l=python}                                             |
 
 ```{code-cell} python
 ---
@@ -111,11 +110,14 @@ import os
 # Ejemplo práctico de uso
 directorio_actual = os.getcwd()
 print(f"Directorio actual: {directorio_actual}")
+
 print("Archivos en directorio actual:")
 for archivo in os.listdir("."):
     print(f" - {archivo}")
 
-os.chdir("/tmp")  # Cambia al directorio temporal
+# Cambia al directorio temporal
+os.chdir("/tmp")
+
 # Crear estructura de carpetas
 if not os.path.exists("datos"):
     os.makedirs("datos/procesados")
@@ -123,14 +125,15 @@ if not os.path.exists("datos"):
 
 # Trabajar con rutas
 # Construir una ruta a un archivo.
-# Se recomienda usar os.path.join y no concatenar cadenas
-# ya que el módulo os puede construir rutas de forma portable para
-# cualquier sistema operativo. Es decir este programa funcionará
-# en cualquier sistema operativo sin modificaciones
+# Se recomienda usar `os.path.join` y no concatenar cadenas ya que el módulo
+# `os` puede construir rutas de forma portable para cualquier sistema operativo.
+# Es decir este programa funcionará en cualquier sistema operativo sin
+# modificaciones.
 ruta_archivo = os.path.join("datos", "archivo.txt")
 print(f"Ruta construida: {ruta_archivo}")
 print(f"Ruta absoluta: {os.path.abspath(ruta_archivo)}")
 print(f"¿Existe la ruta?: {os.path.exists(ruta_archivo)}")
+
 os.chdir(directorio_actual)
 ```
 
@@ -138,19 +141,19 @@ os.chdir(directorio_actual)
 
 Python 3.4+ incluye `pathlib`{l=python}, que ofrece una interfaz más moderna y orientada a objetos:
 
-| Función/Método       | Descripción                 | Ejemplo                             |
-| -------------------- | --------------------------- | ----------------------------------- |
-| `Path.cwd()`         | Directorio actual           | `Path.cwd()`                        |
-| `Path.home()`        | Directorio home del usuario | `Path.home()`                       |
-| `Path.exists()`      | Verifica existencia         | `Path('archivo.txt').exists()`      |
-| `Path.is_file()`     | Verifica si es archivo      | `Path('archivo.txt').is_file()`     |
-| `Path.is_dir()`      | Verifica si es directorio   | `Path('carpeta').is_dir()`          |
-| `Path.mkdir()`       | Crea directorio             | `Path('nueva').mkdir(parents=True)` |
-| `Path.unlink()`      | Elimina archivo             | `Path('archivo.txt').unlink()`      |
-| `Path.rmdir()`       | Elimina directorio vacío    | `Path('carpeta').rmdir()`           |
-| `Path.iterdir()`     | Itera sobre contenido       | `list(Path('.').iterdir())`         |
-| `Path.glob(pattern)` | Busca archivos por patrón   | `Path('.').glob('*.txt')`           |
-| `Path.chdir(path)`   | Cambia el directorio actual | `Path.chdir('/nueva/ruta')`         |
+| Función/Método                 | Descripción                 | Ejemplo                                       |
+| ------------------------------ | --------------------------- | --------------------------------------------- |
+| `Path.cwd()`{l=python}         | Directorio actual           | `Path.cwd()`{l=python}                        |
+| `Path.home()`{l=python}        | Directorio home del usuario | `Path.home()`{l=python}                       |
+| `Path.exists()`{l=python}      | Verifica existencia         | `Path('archivo.txt').exists()`{l=python}      |
+| `Path.is_file()`{l=python}     | Verifica si es archivo      | `Path('archivo.txt').is_file()`{l=python}     |
+| `Path.is_dir()`{l=python}      | Verifica si es directorio   | `Path('carpeta').is_dir()`{l=python}          |
+| `Path.mkdir()`{l=python}       | Crea directorio             | `Path('nueva').mkdir(parents=True)`{l=python} |
+| `Path.unlink()`{l=python}      | Elimina archivo             | `Path('archivo.txt').unlink()`{l=python}      |
+| `Path.rmdir()`{l=python}       | Elimina directorio vacío    | `Path('carpeta').rmdir()`{l=python}           |
+| `Path.iterdir()`{l=python}     | Itera sobre contenido       | `list(Path('.').iterdir())`{l=python}         |
+| `Path.glob(pattern)`{l=python} | Busca archivos por patrón   | `Path('.').glob('*.txt')`{l=python}           |
+| `Path.chdir(path)`{l=python}   | Cambia el directorio actual | `Path.chdir('/nueva/ruta')`{l=python}         |
 
 ```{code-cell} python
 ---
@@ -176,58 +179,60 @@ print(f"Archivos Markdown encontrados: {len(archivos_md)}")
 ```
 
 ```{admonition} Recomendación
-Para código nuevo, se recomienda usar `pathlib`{l=python} ya que es más legible y moderno. Para compatibilidad con código antiguo o scripts simples, `os.path` sigue siendo válido.
+Para código nuevo, se recomienda usar `pathlib`{l=python} ya que es más legible y moderno. Para compatibilidad con código antiguo o scripts simples, `os.path`{l=python} sigue siendo válido.
 ```
 
-### ***Caminar*** por el sistema de archivos
+### _Caminar_ por el sistema de archivos
 
-`os.walk()` permite recorrer todas las carpetas y archivos a partir de una ubicación dada
+`os.walk()`{l=python} permite recorrer todas las carpetas y archivos a partir de una ubicación dada
 
 ```{code-cell} python
 ---
 tags: [hide-output]
 ---
 import os
+from datetime import datetime
 
 # Ejemplo de uso de os.walk()
 for raiz, dirs, archivos in os.walk("."):
     print(f"Carpeta: {raiz}")
     for archivo in archivos:
-        print(f" - {archivo}")
-        print(f"   Ruta absoluta: {os.path.abspath(archivo)}")
-
         # Obtener información del archivo
         info = os.stat(archivo)
-        print(f"   Tamaño: {info.st_size} bytes")
-        print(f"   Última modificación: {info.st_mtime}")
-        print(f"   Permisos: {info.st_mode}")
-        print(f"   Propietario: {info.st_uid}")
-        print(f"   Grupo: {info.st_gid}")
-        print()
+
+        print(f""" - {archivo}
+   Ruta absoluta: {os.path.abspath(archivo)}")
+
+   Tamaño: {info.st_size} bytes
+   Última modificación: {datetime.fromtimestamp(info.st_mtime)}
+   Permisos: {info.st_mode & 0o777:#o}
+   Propietario: {info.st_uid}
+   Grupo: {info.st_gid}
+""")
 ```
 
 ## Operaciones básicas sobre archivos
 
 ### Apertura de archivos
 
-La función básica para abrir archivos es open():
+La función básica para abrir archivos es `open()`{l=python}:
 
 ```{code-block} python
 open(nombre, modo, encoding)
 ```
 
-| Modo  | Significado                           | Crea archivo si no existe | Borra contenido previo |
-| ----- | ------------------------------------- | ------------------------- | ---------------------- |
-| `'r'` | read (lectura)                        | No                        | No                     |
-| `'w'` | write (escritura)                     | Si                        | Si                     |
-| `'a'` | append (agregar)                      | Si                        | No                     |
-| `'x'` | exclusive write (escritura exclusiva) | Si                        | -                      |
+| Modo            | Significado                             | Crea archivo si no existe | Borra contenido previo |
+| --------------- | --------------------------------------- | ------------------------- | ---------------------- |
+| `"r"`{l=python} | _read_ (lectura)                        | No                        | No                     |
+| `"w"`{l=python} | _write_ (escritura)                     | Si                        | Si                     |
+| `"a"`{l=python} | _append_ (agregar)                      | Si                        | No                     |
+| `"x"`{l=python} | _exclusive write_ (escritura exclusiva) | Si                        | -                      |
 
-El modo `'x'` es similar a `'w'`, pero **lanza una excepción** si el archivo ya existe. Se usa para asegurarse que no estamos borrando el contenido de un archivo creado previamente.
+El modo `"x"`{l=python} es similar a `"w"`{l=python}, pero **lanza una excepción** si el archivo ya existe. Se usa para asegurarse que no estamos borrando el contenido de un archivo creado previamente.
 
-El modo `'a'` permite agregar contenido al final del archivo sin borrar el contenido existente. Si el archivo no existe previamente, se crea.
+El modo `"a"`{l=python} permite agregar contenido al final del archivo sin borrar el contenido existente. Si el archivo no existe previamente, se crea.
 
-Los modos de apertura de archivos por defecto abren los archivos como texto, si se trata de un archivo binario se debe especificar el modo `'b'`. Por ejemplo: `'rb'` para lectura binaria o `'wb'` para escritura binaria.
+Los modos de apertura de archivos por defecto abren los archivos como texto, si se trata de un archivo binario se debe especificar el modo `"b"`{l=python}. Por ejemplo: `"rb"`{l=python} para lectura binaria o `"wb"`{l=python} para escritura binaria.
 
 ```{code-cell} python
 ---
