@@ -8,3 +8,4 @@ sphinx-proof
 sphinx-thebe
 geopandas
 matplotlib
+-e .
