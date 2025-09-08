@@ -338,9 +338,9 @@ def render_frame_bellman_ford(graph, step, pos=None, source=None):
             node_colors.append("#dddddd")  # primer paso → todos grises excepto origen
         else:
             if dist[n] == prev_dist.get(n, float("inf")):
-                node_colors.append("#34a853")  # verde si no cambió
+                node_colors.append("#dddddd")  # gris si no cambió
             else:
-                node_colors.append("#dddddd")  # gris si cambió
+                node_colors.append("#34a853")  # verde si cambió
 
     # Aristas del árbol de predecesores
     tree_edges = set()
