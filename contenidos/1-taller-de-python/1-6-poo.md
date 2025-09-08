@@ -16,7 +16,7 @@ La Programación Orientada a Objetos (POO) es un paradigma de programación que 
 
 Las clases permiten definir nuevos tipos de datos, encapsulando atributos (datos) y métodos (funciones) que operan sobre esos datos. Esto facilita la organización del código, la reutilización y la creación de programas más complejos de manera estructurada.
 
-## Algunos concptos clave de la POO
+## Algunos conceptos clave de la POO
 
 Atributos
 : Son variables que pertenecen a una clase y representan el estado del objeto. Los atributos pueden ser de diferentes tipos, como enteros, cadenas, listas, etc. Cada objeto en memoria tiene sus propios valores para estos atributos. Estos atributos determinan el estado del objeto.
@@ -38,7 +38,7 @@ Constructor
 
 ## Clases y Objetos
 
-En Python, una clase es una plantilla para crear objetos, similar a los `struct`{l=python} de Go, una clase permite definir nuevos tipos de datos. Un objeto, en cambio, es una instancia de una clase y puede tener atributos (datos) y métodos (funciones). Pueden existir múltiples objetos de la misma clase, cada uno con sus propios valores para los atributos.
+En Python, una clase es una plantilla para crear objetos, similar a los `struct`{l=go} de Go, una clase permite definir nuevos tipos de datos. Un objeto, en cambio, es una instancia de una clase y puede tener atributos (datos) y métodos (funciones). Pueden existir múltiples objetos de la misma clase, cada uno con sus propios valores para los atributos.
 
 ```{code-cell} python
 ---

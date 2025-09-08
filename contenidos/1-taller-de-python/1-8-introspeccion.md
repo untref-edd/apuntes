@@ -15,29 +15,29 @@ kernelspec:
 ## Definiciones
 
 Introspección
-: Es la capacidad de un programa para **examinar su propia estructura y estado en tiempo de ejecución**.\
+: Es la capacidad de un programa para **examinar su propia estructura y estado en tiempo de ejecución**.
 : En Python, gracias a su naturaleza dinámica, podemos inspeccionar tipos, atributos y métodos de objetos, incluso sin conocerlos de antemano.
 
 Reflexión
 : Va un paso más allá: no solo inspecciona, sino que **modifica el comportamiento o la estructura** de objetos, clases o módulos en tiempo de ejecución.
 
 ```{note}
-En **Java** estas capacidades existen mediante *Reflection API*, mientras que en **Go** se logran con el paquete `reflect`{l=python}. En Python, estas herramientas están integradas en el propio lenguaje y son mucho más accesibles.
+En **Java** estas capacidades existen mediante *Reflection API*, mientras que en **Go** se logran con el paquete `reflect`{l=go}. En Python, estas herramientas están integradas en el propio lenguaje y son mucho más accesibles.
 ```
 
 ## Herramientas comunes de introspección y reflexión
 
-| Función                         | Descripción                                             |
-| ------------------------------- | ------------------------------------------------------- |
-| `type(obj)`                     | Devuelve el tipo del objeto.                            |
-| `dir(obj)`                      | Lista atributos y métodos disponibles.                  |
-| `id(obj)`                       | Identificador único en memoria.                         |
-| `vars(obj)`                     | Diccionario de atributos de instancia.                  |
-| `getattr(obj, name[, default])` | Obtiene un atributo dinámicamente.                      |
-| `setattr(obj, name, value)`     | Asigna un atributo dinámicamente.                       |
-| `hasattr(obj, name)`            | Verifica si un atributo existe.                         |
-| `callable(obj)`                 | Indica si el objeto es invocable como función o método. |
-| `help(obj)`                     | Muestra la documentación.                               |
+| Función                                   | Descripción                                             |
+| ----------------------------------------- | ------------------------------------------------------- |
+| `type(obj)`{l=python}                     | Devuelve el tipo del objeto.                            |
+| `dir(obj)`{l=python}                      | Lista atributos y métodos disponibles.                  |
+| `id(obj)`{l=python}                       | Identificador único en memoria.                         |
+| `vars(obj)`{l=python}                     | Diccionario de atributos de instancia.                  |
+| `getattr(obj, name[, default])`{l=python} | Obtiene un atributo dinámicamente.                      |
+| `setattr(obj, name, value)`{l=python}     | Asigna un atributo dinámicamente.                       |
+| `hasattr(obj, name)`{l=python}            | Verifica si un atributo existe.                         |
+| `callable(obj)`{l=python}                 | Indica si el objeto es invocable como función o método. |
+| `help(obj)`{l=python}                     | Muestra la documentación.                               |
 
 ______________________________________________________________________
 
@@ -80,6 +80,7 @@ print("¿Es 'persona.saludar' invocable?", callable(persona.saludar))
 ## Ejemplo de reflexión con cautela
 
 En Python es posible agregar atributos o métodos a un objeto existente en tiempo de ejecución.
+
 Esto otorga flexibilidad, pero puede volver el código difícil de mantener si se abusa.
 
 ```{code-cell} python

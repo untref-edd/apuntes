@@ -302,7 +302,7 @@ for i, (x, y) in enumerate(puntos):
 
 ## No hay `switch`{l=python}
 
-Python 3.10+ tiene match-case, pero la siguiente construcción usando `if`{l=python}-`elif`{l=python} es más común.
+Python 3.10+ tiene `match`{l=python}-`case`{l=python}, pero la siguiente construcción usando `if`{l=python}-`elif`{l=python} es más común.
 
 ```{code-cell} python
 ---

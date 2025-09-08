@@ -10,9 +10,9 @@ kernelspec:
   name: python3
 ---
 
-# Funciones en Python y Paradigma Funcional
+# Funciones y paradigma funcional
 
-Las funciones son ciudadanos de primera clase en Python, lo que le otorga al lenguaje ciertas características del paradigma funcional. En este capítulo, exploraremos cómo definir y utilizar funciones, los diferentes tipos de pasajes de parámetros, y cómo Python implementa el paradigma funcional a través de funciones de orden superior, funciones anónimas (lambda), y más.
+En Python las funciones son ciudadanos de primera clase, lo que le otorga al lenguaje ciertas características del paradigma funcional. En este capítulo, exploraremos cómo definir y utilizar funciones, los diferentes tipos de pasajes de parámetros, y cómo Python implementa el paradigma funcional a través de funciones de orden superior, funciones anónimas (_lambda_), y más.
 
 ## Pasajes de parámetros y devolución de valores
 
@@ -213,7 +213,7 @@ En el fragmento anterior, la función `sumar`{l=python} está anotada para indic
 
 ## Paradigma funcional
 
-La **programación funcional** es un paradigma de programación declarativo basado en el uso de funciones verdaderamente matemáticas. En este estilo de programación las funciones son *ciudadanas de primera clase*, porque sus expresiones pueden ser asignadas a variables como se haría con cualquier otro valor; además de que pueden crearse funciones de orden superior.
+La **programación funcional** es un paradigma de programación declarativo basado en el uso de funciones verdaderamente matemáticas. En este estilo de programación las funciones son _ciudadanas de primera clase_, porque sus expresiones pueden ser asignadas a variables como se haría con cualquier otro valor; además de que pueden crearse funciones de orden superior.
 
 Funciones de orden superior
 : Son aquellas que pueden:
@@ -292,7 +292,7 @@ tags: [hide-output]
 ---
 def mapear(func, iterable):
     """
-    Aplica la función `func`{l=python} a cada elemento de `iterable`
+    Aplica la función `func` a cada elemento de `iterable`
     y devuelve una lista con los resultados.
     """
     return [func(x) for x in iterable]
@@ -327,8 +327,8 @@ tags: [hide-output]
 ---
 def filtrar(func, iterable):
     """
-    Filtra los elementos de `iterable`{l=python} que cumplen con la
-    condición definida en `func`{l=python}.
+    Filtra los elementos de `iterable` que cumplen con la
+    condición definida en `func`.
     """
     return [x for x in iterable if func(x)]
 
@@ -422,11 +422,11 @@ tags: [hide-output]
 ---
 def decorador(func):
     """
-    Decora la función `func`{l=python} para agregarle mensajes al valor de retorno.
+    Decora la función `func` para agregarle mensajes al valor de retorno.
     """
 
     def funcion_decorada(*args, **kwargs):
-        resultado = f"El resultado de la operación es : {func(*args, **kwargs)}"
+        resultado = f"El resultado de la operación es: {func(*args, **kwargs)}"
         return resultado
 
     return funcion_decorada
@@ -440,7 +440,7 @@ funcion_decorada = decorador(funcion_original)
 funcion_decorada(5)
 ```
 
-La función `decorador`{l=python} toma una función `func`{l=python} como argumento y devuelve una nueva función, `funcion_decorada`{l=python} que agrega el mensaje *El resultado de la operación es : "* al resultado de la función original.
+La función `decorador`{l=python} toma una función `func`{l=python} como argumento y devuelve una nueva función, `funcion_decorada`{l=python} que agrega el mensaje _El resultado de la operación es:_ al resultado de la función original.
 
 ```{Note}
 En este ejemplo se ultiliza `*args` y `**kwargs` para permitir que la función decorada acepte cualquier número de argumentos posicionales y nombrados, lo que la hace más flexible. En la línea 7, la expresión `func(*args, **kwargs)` invoca a la función original con los argumentos que le pasaron a la función decorada.
@@ -454,7 +454,7 @@ tags: [hide-output]
 ---
 def decorador(func):
     def funcion_decorada(*args, **kwargs):
-        resultado = f"El resultado de la operación es : {func(*args, **kwargs)}"
+        resultado = f"El resultado de la operación es: {func(*args, **kwargs)}"
         return resultado
 
     return funcion_decorada

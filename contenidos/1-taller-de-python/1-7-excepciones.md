@@ -16,25 +16,30 @@ Las excepciones son eventos que ocurren durante la ejecución de un programa y q
 
 El mecanismo de manejo de excepciones se basa en el uso de bloques `try`{l=python}, `except`{l=python}, `else`{l=python} y `finally`{l=python}. Por cada bloque `try`{l=python} puede haber uno o varios bloques `except`{l=python}, uno por cada tipo de excepción que se quiera manejar. A continuación, se describen cada uno de estos bloques
 
-```python
+```{code-block} python
 try:
-    # Bloque protegido:
-    # Código que puede generar una excepciones
+    # Bloque protegido: Código que puede generar una excepciones
+    llamado_a_funcion_que_puede_fallar()
+
 except ExceptionType1:
-    # Manejador de excepciones del tipo ExceptionType1
+    print("ocurrió una excepción del tipo ExceptionType1")
+
 except (ExceptionType2, ExceptionType3):
-    # Manejador de excepciones del tipo ExceptionType2 y ExceptionType3
+    print("ocurrió una excepción que puede ser de tipo ExceptionType2 o ExcepcionType3")
+
 except ExceptionType4 as e:
-    # Manejador de excepciones del tipo ExceptionType4
-    # e es una variable con información sobre la excepción que se puede
-    # usar dentro del handler
+    # Manejador de excepciones del tipo ExceptionType4. `e` es una variable con
+    # información sobre la excepción que se puede usar dentro del handler
+    print("ocurrió un error del tipo ExceptionType4 con mensaje", e)
+
 except:
-    # Manejador de excepciones genérico
-    print("Se produjo una excepción no controlada")
+    print("se produjo una excepción no controlada")
+
 else:
-    # Código que se ejecuta si no hay excepciones
+    print("no ocurrió ninguna excepción")
+
 finally:
-    # Código que se ejecuta siempre
+    print("este bloque se ejecutará siempre")
 ```
 
 `try`
@@ -65,21 +70,27 @@ finally:
 tags: [hide-output]
 ---
 divisor = "10"  # cadena de caracteres
+
 try:
     # Código que puede generar excepciones
     resultado = 10 // int(divisor)  # // División entera
+
 except ZeroDivisionError as e:
     # Manejo de la excepción división por cero
     print(f"No se puede dividir por cero: {e}")
+
 except ValueError as e:
     # Manejo de la excepción para valores no numéricos
     print(f"Error: {e}")
+
 except:
     # Manejador de excepciones genérico
     print("Se produjo una excepción no controlada")
+
 else:
     # Este bloque se ejecuta si no hay excepciones
     print("La división fue exitosa:", resultado)
+
 finally:
     # Este bloque se ejecuta siempre
     print("Bloque finally ejecutado")
@@ -289,16 +300,16 @@ No silenciar excepciones sin justificación
 : Evitar `except: pass` sin explicación. Si es necesario ignorar un error, se debe documentar por qué.
 
 Relanzar cuando sea necesario
-: Si el bloque`except`{l=python}no puede manejar la excepción de manera útil, se debe volver a lanzarla (raise) para que sea tratada en un nivel superior.
+: Si el bloque `except`{l=python} no puede manejar la excepción de manera útil, se debe volver a lanzarla (raise) para que sea tratada en un nivel superior.
 
-Mantener el bloque`except`{l=python}lo más simple posible
+Mantener el bloque `except`{l=python} lo más simple posible
 : Los `handlers`{l=python} deben ser bloques de código simple, ya que un nuevo error que se generé allí podría ocultar la situación excepcional original.
 
 Personalizar excepciones si es necesario
 : Crear clases de excepciones propias cuando la aplicación puede tener errores específicos, para que sea más fácil distinguirlos. Por ejemplo `StackException`{l=python}.
 
 Usar `else`{l=python} para el código dependiente de éxito
-: Colocar en `else`{l=python} las operaciones que deben ejecutarse solo si no hubo excepción, en lugar de ponerlas en el`try`{l=python}. Esto ayuda a mantener el código más claro y a separar la lógica de manejo de errores de la lógica normal del programa.
+: Colocar en `else`{l=python} las operaciones que deben ejecutarse solo si no hubo excepción, en lugar de ponerlas en el `try`{l=python}. Esto ayuda a mantener el código más claro y a separar la lógica de manejo de errores de la lógica normal del programa.
 
 ## Recursos para profundizar
 
