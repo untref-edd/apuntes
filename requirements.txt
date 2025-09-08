@@ -8,4 +8,5 @@ sphinx-proof
 sphinx-thebe
 geopandas
 matplotlib
--e .
+
+--editable contenidos/_static/code
