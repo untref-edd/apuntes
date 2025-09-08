@@ -122,16 +122,17 @@ El costo de un camino en un grafo ponderado es la suma de los pesos de las arist
 
 Por ejemplo, en la siguiente tabla se observa el peso de las aristas que componen el camino $A-E$:
 
-<div align="center" style="width: 40%; margin: auto;">
-
+```{table}
+---
+width: 50%
+---
 |  Arista  | Peso |
 | :------: | :--: |
 | $(A, B)$ |  4   |
 | $(B, C)$ |  2   |
 | $(C, D)$ |  4   |
 | $(D, E)$ |  3   |
-
-</div>
+```
 
 por lo tanto el costo del camino $A-E$ es:
 

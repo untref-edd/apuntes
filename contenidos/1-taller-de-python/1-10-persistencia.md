@@ -327,7 +327,7 @@ with open("../_static/tmp/log.log", "r") as f:
 El módulo `json`{l=python} se basa en el estandar **JSON** (JavaScript Object Notation) y presenta un enfoque diferente al de `pickle`{l=python} y `dill`{l=python}, ya que se basa en texto plano y no permite la ejecución de código al deserializar. Esto lo convierte en una opción más segura para la serialización y el intercambio de datos simples, como diccionarios y listas. Los archivos JSON son legibles por humanos y pueden ser fácilmente compartidos entre diferentes lenguajes de programación.
 
 ```{note}
-**JSON** (JavaScript Object Notation) es un **formato de intercambio de datos basado en texto**.  
+**JSON** (JavaScript Object Notation) es un **formato de intercambio de datos basado en texto**.
 Se originó en el ecosistema de **JavaScript**, pero rápidamente se convirtió en un **estándar independiente del lenguaje** debido a su simplicidad y legibilidad.
 ```
 
@@ -339,10 +339,10 @@ Características principales de JSON:
 - Es el formato más usado en **APIs REST, microservicios, configuración de aplicaciones y bases de datos NoSQL** como MongoDB.
 
 Objetos
-: Se representan como pares clave-valor (`{ "clave": valor }`{l=json}).
+: Se representan como pares clave-valor (`{"clave": "valor"}`{l=json}).
 
 Arreglos
-: Se representan como listas ordenadas de elementos (`[valor1, valor2, ...]`{l=json}).
+: Se representan como listas ordenadas de elementos (`["valor1", "valor2", "valorN"]`{l=json}).
 
 Valores primitivos
 : Se representan como números, cadenas, booleanos (`true`{l=json}, `false`{l=json}) y `null`{l=json} para `None`{l=python}.
