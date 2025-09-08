@@ -16,11 +16,11 @@ En esta sección veremos dos algoritmos para recorrer grafos. Basicamente hay do
 
 Recorrer un grafo significa visitar todos sus vértices y aristas de una manera sistemática y ordenada. Los recorridos de grafos son fundamentales en muchas aplicaciones, como la búsqueda de caminos, la detección de ciclos, la planificación de tareas y la optimización de redes.
 
-## Recorrido a lo ancho - *Breadth First Search* (BFS)
+## Recorrido a lo ancho: _Breadth First Search_ (BFS)
 
 El recorrido a lo ancho, o BFS, es un algoritmo que explora los nodos de un grafo en capas, visitando primero todos los nodos a una distancia dada antes de pasar a los nodos a una mayor distancia. Esto se logra utilizando una cola para llevar un registro de los nodos que deben ser visitados. Un ejemplo de aplicación de este recorrido lo vimos cuando estudiamos orden topológico.
 
-```{code-block} python
+```text
 BFS (s: Vertice):
     q <- Cola()
 
@@ -46,16 +46,24 @@ $$
 
 ### Camino Mínimo en grafos sin pesos
 
-```{code-block}
-BFS (s: Vertice):
+```text
+CAMINO_MINIMO_BFS (s: Vertice)
     q <- Cola()
+
+    distancia[s] = 0
+    previo[s] = None
+
     q.encolar(s)
     visitado[s] = True
+
     MIENTRAS NO q.esta_vacia()
         v = q.desencolar()
+
         PARA CADA w EN v.adyacentes:
             SI NO visitado[w]:
                 visitado[w] = True
+                distancia[w] = distancia[v] + 1
+                previo[w] = v
                 q.encolar(w)
 ```
 
@@ -86,28 +94,27 @@ width: 60%
 Grafo Bipartito Ordenado
 ```
 
-```{code-block}
+```text
 ES_BIPARTITO (s: Vertice):
     q <- Cola()
+
+    color[s] = True
+
     q.encolar(s)
     visitado[s] = True
+
     MIENTRAS NO q.esta_vacia()
         v = q.desencolar()
+
         PARA CADA w EN v.adyacentes:
             SI NO visitado[w]:
                 visitado[w] = True
-                q.encolar(w)
-    q.encolar(s)
-    visitado[s] = True
-    MIENTRAS NO q.esta_vacia()
-        v = q.desencolar()
-        PARA CADA w EN v.adyacentes:
-            SI NO visitado[w]:
-                visitado[w] = True
+                color[w] = NOT color[v]
                 q.encolar(w)
             SINO:
                 SI color[w] == color[v]:
                     DEVOLVER False
+
     DEVOLVER True
 ```
 
@@ -119,11 +126,11 @@ Web Crawler
 Sistemas de navegación GPS
 : Para encontrar localizaciones vecinas.
 
-## Recorrido en profundidad - DFS
+## Recorrido en profundidad: _Depth First Search_ DFS
 
 El recorrido en profundidad, o DFS, es un algoritmo que explora los nodos de un grafo adentrándose lo más posible en cada rama antes de retroceder. Esto se logra utilizando una pila (o la pila de llamadas del sistema si se usa recursión) para llevar un registro de los nodos que deben ser visitados.
 
-```{code-block}
+```text
 DFS (v, visitado = {}, contador = 0):
     visitado[v] = True
     contador += 1
@@ -154,7 +161,7 @@ Componentes conexas
 Componentes fuertemente conexas
 : Dado un grafo dirigido $G$, una componentes fuertemente conexa es un conjunto de vértices tal que empezando en uno de ellos cualquiera podemos acceder al resto recorriendo las aristas en el sentido que indican.
 
-```
+```text
 COMPONENTES_CONEXAS (G: Grafo):
     PARA CADA v EN G.vertices:
         visitado[v] = -1
