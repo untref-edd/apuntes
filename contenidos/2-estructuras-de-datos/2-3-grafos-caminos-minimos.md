@@ -80,7 +80,7 @@ DIJKSTRA (G: DiGrafo, s: Vertice)
     pq.encolar(s, 0)
 
     MIENTRAS NO pq.esta_vacia():
-        v = pq.desencolar_minimo() 
+        v = pq.desencolar_minimo()
 
         visitado[v] = True
 
@@ -101,10 +101,12 @@ from grafos import caminos_minimos
 # Definición del grafo dirigido (puedes modificarlo y ejecutar para ver el paso a paso)
 G = nx.DiGraph()
 edges = [
-  ("A","B",4), ("A","C",1),
-  ("B","E",3), 
-  ("C","B",2), ("C","D",2),
-  ("D","E",3)
+    ("A", "B", 4),
+    ("A", "C", 1),
+    ("B", "E", 3),
+    ("C", "B", 2),
+    ("C", "D", 2),
+    ("D", "E", 3),
 ]
 G.add_weighted_edges_from(edges)
 SOURCE = "A"
@@ -131,10 +133,12 @@ from grafos import caminos_minimos
 # Definición del grafo dirigido (puedes modificarlo y ejecutar para ver el paso a paso)
 G = nx.DiGraph()
 edges = [
-  ("A","B",1), ("A","C",2),
-  ("B","E",3), 
-  ("C","B",-2), ("C","D",2),
-  ("D","E",3)
+    ("A", "B", 1),
+    ("A", "C", 2),
+    ("B", "E", 3),
+    ("C", "B", -2),
+    ("C", "D", 2),
+    ("D", "E", 3),
 ]
 G.add_weighted_edges_from(edges)
 SOURCE = "A"
@@ -245,10 +249,12 @@ from grafos import caminos_minimos
 # Definición del grafo dirigido (puedes modificarlo y ejecutar para ver el paso a paso)
 G = nx.DiGraph()
 edges = [
-  ("A","B",1), ("A","C",2),
-  ("B","E",3), 
-  ("C","B",-2), ("C","D",2),
-  ("D","E",3)
+    ("A", "B", 1),
+    ("A", "C", 2),
+    ("B", "E", 3),
+    ("C", "B", -2),
+    ("C", "D", 2),
+    ("D", "E", 3),
 ]
 G.add_weighted_edges_from(edges)
 SOURCE = "A"
