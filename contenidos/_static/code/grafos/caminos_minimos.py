@@ -393,7 +393,7 @@ def show_bellman_ford_step_by_step(graph, source):
     """
     steps = bellman_ford_trace(graph, source)
     pos = nx.spring_layout(graph, seed=7)
-    frames = [render_frame_bellman_ford(graph, s, pos) for s in steps]
+    frames = [render_frame_bellman_ford(graph, s, pos, source) for s in steps]
 
     uid = secrets.token_hex(3)
     root_id = f"bf-{uid}"
