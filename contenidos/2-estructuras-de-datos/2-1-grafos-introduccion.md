@@ -178,7 +178,7 @@ Es un vértice cuyo grado de salida es 0
 ```{Important}
 Un ***DAG*** siempre tiene al menos un vértice ***fuente*** y un vértice ***sumidero***.
 
-En el grafo de la figura anterior, el vértice $V_0$ es una fuente y el vértice $V_5$ es un sumidero.
+En el grafo de la figura anterior, el vértice $V_2$ es una fuente y el vértice $V_5$ es un sumidero.
 ```
 
 ## Representación de Grafos
