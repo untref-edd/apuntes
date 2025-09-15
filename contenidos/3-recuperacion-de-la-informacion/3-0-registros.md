@@ -444,8 +444,10 @@ class Agenda:
     La cantidad de campos debe coincidir con la definición.
     """
     if len(campos) != len(self._campos):
-      raise ValueError("La cantidad de campos no coincide con la \
-        definición")
+      raise ValueError(
+        "La cantidad de campos no coincide con la "
+        "definición"
+      )
     registro = b""
     for campo in campos:
       campo_bytes = campo.encode()
