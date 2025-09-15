@@ -266,7 +266,7 @@ class Agenda:
     self._campos = campos  # lista de nombres de campos
     try:
       tam_archivo = os.path.getsize(archivo)
-      self._cant_registros = tam_archivo / self._len_registro
+      self._cant_registros = tam_archivo // self._len_registro
     except FileNotFoundError:
       self._cant_registros = 0
 
