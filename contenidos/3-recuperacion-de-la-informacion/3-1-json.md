@@ -55,7 +55,7 @@ Un archivo JSON está compuesto por una serie de pares clave-valor, donde cada c
 }
 ```
 
-Este formato es muy uttilizado para el intercambio de datos entre aplicaciones web y servidores, ya que es fácil de parsear y generar en la mayoría de los lenguajes de programación.
+Este formato es muy utilizado para el intercambio de datos entre aplicaciones web y servidores, ya que es fácil de parsear y generar en la mayoría de los lenguajes de programación.
 
 En la sección de [Persistencia de Datos](../1-taller-de-python/1-10-persistencia.md) vimos cómo trabajar con archivos JSON en Python utilizando la librería estándar `json`. Aquí veremos cómo utilizar JSON para organizar registros en un archivo.
 
