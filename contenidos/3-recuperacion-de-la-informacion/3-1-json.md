@@ -172,7 +172,7 @@ with open("agenda.json", "r") as f:
 
 La principal ventaja de utilizar JSON para organizar registros es que es un formato ampliamente soportado y fácil de leer y escribir. Además, permite almacenar datos estructurados de manera flexible, ya que los objetos pueden tener diferentes campos y tipos de datos.
 
-A continuación se define una agenda general donde solo los campos nombres y apellidos son obligatorios, y donde cada registros puede tener incluso campos diferentes.
+A continuación se define una agenda general donde solo los campos nombres y apellidos son obligatorios, y donde cada registro puede tener incluso campos diferentes.
 
 ```{code-cell} python
 class AgendaGeneral:
