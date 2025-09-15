@@ -10,32 +10,31 @@ kernelspec:
   name: python3
 ---
 
-# Java Script Object Notation (JSON)
+# JavaScript Object Notation (JSON)
 
 ```{code-cell} python
 ---
 tags: [hide-output, remove-cell]
-
 ---
-"""Borra todos los archivos y carpetas en /tmp
-"""
+"""Borra todos los archivos y carpetas en /tmp"""
 import os
 import shutil
 
 tmp_dir = "/tmp"
 os.chdir(tmp_dir)
+
 for filename in os.listdir(tmp_dir):
-  file_path = os.path.join(tmp_dir, filename)
-  try:
-    if os.path.isfile(file_path) or os.path.islink(file_path):
-      os.remove(file_path)
-    elif os.path.isdir(file_path):
-      shutil.rmtree(file_path)
-  except Exception as e:
-    print(f"No se pudo borrar {file_path}: {e}")
+    file_path = os.path.join(tmp_dir, filename)
+    try:
+        if os.path.isfile(file_path) or os.path.islink(file_path):
+            os.remove(file_path)
+        elif os.path.isdir(file_path):
+            shutil.rmtree(file_path)
+    except Exception as e:
+        print(f"No se pudo borrar {file_path}: {e}")
 ```
 
-JSON (JavaScript Object Notation) es un formato ligero de intercambio de datos que es fácil de leer y escribir para los humanos, y fácil de parsear y generar para las máquinas. Es un formato de texto que utiliza una sintaxis basada en objetos y arrays, similar a la de JavaScript.
+JSON (*JavaScript Object Notation*) es un formato ligero de intercambio de datos que es fácil de leer y escribir para los humanos, y fácil de parsear y generar para las máquinas. Es un formato de texto que utiliza una sintaxis basada en objetos y arrays de JavaScript.
 
 ## Estructura de JSON
 
@@ -90,55 +89,57 @@ A continuación se muestra cómo definir una clase `Agenda` que almacena los con
 import json
 import os
 
+
 class Agenda:
-  def __init__(self, archivo):
-    self._archivo = archivo
-    # Si el archivo no existe, lo crea con una lista vacía
-    if not os.path.exists(archivo):
-      with open(archivo, "w") as f:
-        json.dump([], f)
-    # Carga los contactos existentes
-    with open(archivo, "r") as f:
-      self._contactos = json.load(f)
+    def __init__(self, archivo):
+        self._archivo = archivo
 
-  def guardar_contacto(self, nombre, telefono="", email=""):
-    if not nombre:
-      raise ValueError("El nombre es obligatorio")
-    contacto = {
-      "nombre": nombre,
-      "telefono": telefono,
-      "email": email
-    }
-    self._contactos.append(contacto)
-    with open(self._archivo, "w") as f:
-      json.dump(self._contactos, f, ensure_ascii=False, indent=2)
+        # Si el archivo no existe, lo crea con una lista vacía
+        if not os.path.exists(archivo):
+            with open(archivo, "w") as f:
+                json.dump([], f)
 
-  def cantidad_registros(self):
-    return len(self._contactos)
+        # Carga los contactos existentes
+        with open(archivo, "r") as f:
+            self._contactos = json.load(f)
 
-  def __iter__(self):
-    return AgendaIterator(self)
+    def guardar_contacto(self, nombre, telefono="", email=""):
+        if not nombre:
+            raise ValueError("El nombre es obligatorio")
+
+        contacto = {"nombre": nombre, "telefono": telefono, "email": email}
+        self._contactos.append(contacto)
+
+        with open(self._archivo, "w") as f:
+            json.dump(self._contactos, f, ensure_ascii=False, indent=2)
+
+    def cantidad_registros(self):
+        return len(self._contactos)
+
+    def __iter__(self):
+        return AgendaIterator(self)
 ```
 
 Definimos el iterador para la agenda:
 
 ```{code-cell} python
 class AgendaIterator:
-  """Iterador para la agenda de contactos en formato JSON"""
-  def __init__(self, agenda):
-    self._agenda = agenda
-    self._index = 0
+    """Iterador para la agenda de contactos en formato JSON"""
 
-  def __iter__(self):
-    return self
+    def __init__(self, agenda):
+        self._agenda = agenda
+        self._index = 0
 
-  def __next__(self):
-    if self._index < len(self._agenda._contactos):
-      contacto = self._agenda._contactos[self._index]
-      self._index += 1
-      return contacto
-    else:
-      raise StopIteration
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self._index >= len(self._agenda._contactos):
+            raise StopIteration()
+
+        contacto = self._agenda._contactos[self._index]
+        self._index += 1
+        return contacto
 ```
 
 Ejemplo de uso:
@@ -155,8 +156,8 @@ agenda.guardar_contacto("Lisa", "", "lisa.simpson@example.com")
 
 print(f"Cantidad de registros: {agenda.cantidad_registros()}")
 for contacto in agenda:
-  print(contacto)
-  print("-----")
+    print(contacto)
+    print("-----")
 ```
 
 Si vemos el contenido del archivo `agenda.json`, se observa que los datos están guardados en formato de texto legible, seguiendo el estándar JSON
@@ -166,8 +167,8 @@ Si vemos el contenido del archivo `agenda.json`, se observa que los datos están
 tags: [hide-output]
 ---
 with open("agenda.json", "r") as f:
-  contenido = f.read()
-  print(contenido)
+    contenido = f.read()
+    print(contenido)
 ```
 
 La principal ventaja de utilizar JSON para organizar registros es que es un formato ampliamente soportado y fácil de leer y escribir. Además, permite almacenar datos estructurados de manera flexible, ya que los objetos pueden tener diferentes campos y tipos de datos.
@@ -176,26 +177,30 @@ A continuación se define una agenda general donde solo los campos nombres y ape
 
 ```{code-cell} python
 class AgendaGeneral:
-  def __init__(self, archivo):
-    self._archivo = archivo
-    if not os.path.exists(archivo):
-      with open(archivo, "w") as f:
-        json.dump([], f)
-    with open(archivo, "r") as f:
-      self._contactos = json.load(f)
+    def __init__(self, archivo):
+        self._archivo = archivo
 
-  def guardar_contacto(self, **kwargs):
-    if "nombre" not in kwargs or "apellido" not in kwargs:
-      raise ValueError("Los campos 'nombre' y 'apellido' son obligatorios")
-    self._contactos.append(kwargs)
-    with open(self._archivo, "w") as f:
-      json.dump(self._contactos, f, ensure_ascii=False, indent=2)
+        if not os.path.exists(archivo):
+            with open(archivo, "w") as f:
+                json.dump([], f)
 
-  def cantidad_registros(self):
-    return len(self._contactos)
+        with open(archivo, "r") as f:
+            self._contactos = json.load(f)
 
-  def __iter__(self):
-    return AgendaIterator(self)
+    def guardar_contacto(self, **kwargs):
+        if "nombre" not in kwargs or "apellido" not in kwargs:
+            raise ValueError("Los campos 'nombre' y 'apellido' son obligatorios")
+
+        self._contactos.append(kwargs)
+
+        with open(self._archivo, "w") as f:
+            json.dump(self._contactos, f, ensure_ascii=False, indent=2)
+
+    def cantidad_registros(self):
+        return len(self._contactos)
+
+    def __iter__(self):
+        return AgendaIterator(self)
 ```
 
 Ejemplo de uso:
@@ -206,63 +211,60 @@ tags: [hide-output]
 ---
 agenda = AgendaGeneral("agenda_general.json")
 agenda.guardar_contacto(
-  nombre="Juan",
-  apellido="Pérez",
-  telefono="123456789",
-  email="juan.perez@example.com"
+    nombre="Juan",
+    apellido="Pérez",
+    telefono="123456789",
+    email="juan.perez@example.com",
 )
 agenda.guardar_contacto(
-  nombre="Ana",
-  apellido="García",
-  telefono="987654321",
-  cumpleaños="1990-01-01"
+    nombre="Ana", apellido="García", telefono="987654321", cumpleaños="1990-01-01"
 )
 agenda.guardar_contacto(
-  nombre="Homero",
-  apellido="Simpson",
-  direccion={
-    "calle": "742 Evergreen Terrace",
-    "ciudad": "Springfield"
-  },
-  telefono="555-8765"
+    nombre="Homero",
+    apellido="Simpson",
+    direccion={"calle": "742 Evergreen Terrace", "ciudad": "Springfield"},
+    telefono="555-8765",
 )
 agenda.guardar_contacto(
-  nombre="Lisa",
-  apellido="Simpson",
-  email="lisa.simpson@example.com",
-  hobbies=["saxofón", "política"]
+    nombre="Lisa",
+    apellido="Simpson",
+    email="lisa.simpson@example.com",
+    hobbies=["saxofón", "política"],
 )
 agenda.guardar_contacto(
-  nombre="Bart",
-  apellido="Simpson",
-  telefono="555-1234",
-  email="bart.simpson@example.com"
+    nombre="Bart",
+    apellido="Simpson",
+    telefono="555-1234",
+    email="bart.simpson@example.com",
 )
 for contacto in agenda:
-  # Imprime nombre y apellido en la primera línea
-  nombre = contacto.get("nombre", "")
-  apellido = contacto.get("apellido", "")
-  print(f"{nombre} {apellido}")
-  # Función recursiva para imprimir campos
-  def imprimir_campos(d, indent=2):
-    for clave, valor in d.items():
-      if clave in ("nombre", "apellido"):
-        continue
-      if isinstance(valor, dict):
-        print(" " * indent + f"{clave}:")
-        imprimir_campos(valor, indent + 2)
-      elif isinstance(valor, list):
-        print(" " * indent + f"{clave}: [")
-        for item in valor:
-          if isinstance(item, dict):
-            imprimir_campos(item, indent + 4)
-          else:
-            print(" " * (indent + 2) + f"- {item}")
-        print(" " * indent + "]")
-      else:
-        print(" " * indent + f"{clave}: {valor}")
-  imprimir_campos(contacto)
-  print("-----")
+    # Imprime nombre y apellido en la primera línea
+    nombre = contacto.get("nombre", "")
+    apellido = contacto.get("apellido", "")
+    print(f"{nombre} {apellido}")
+
+    # Función recursiva para imprimir campos
+    def imprimir_campos(d, indent=2):
+        for clave, valor in d.items():
+            if clave in ("nombre", "apellido"):
+                continue
+
+            if isinstance(valor, dict):
+                print(" " * indent + f"{clave}:")
+                imprimir_campos(valor, indent + 2)
+            elif isinstance(valor, list):
+                print(" " * indent + f"{clave}: [")
+                for item in valor:
+                    if isinstance(item, dict):
+                        imprimir_campos(item, indent + 4)
+                    else:
+                        print(" " * (indent + 2) + f"- {item}")
+                print(" " * indent + "]")
+            else:
+                print(" " * indent + f"{clave}: {valor}")
+
+    imprimir_campos(contacto)
+    print("-----")
 ```
 
 Archivo `agenda_general.json`:
@@ -272,8 +274,9 @@ Archivo `agenda_general.json`:
 tags: [hide-output]
 ---
 with open("agenda_general.json", "r") as f:
-  contenido = f.read()
-  print(contenido)
+    contenido = f.read()
+    print(contenido)
+
 print(f"Cantidad de bytes en el archivo: {len(contenido)}")
 print(f"Cantidad de registros: {agenda.cantidad_registros()}")
 ```
