@@ -37,7 +37,8 @@ for filename in os.listdir(tmp_dir):
 
 En esta sección vamos a ver distintos formatos para organizar la información en archivos, es decir de la organización lógica de los datos. Estos formatos son independientes del lenguaje de programación que utilicemos, y en muchos casos son independientes del software que utilicemos.
 
-Supongamos que queremos crear una ***agenda*** para almacenar datos de contactos: **nombre**, **apellido**, **teléfono** y **email**. Una primera forma sería guardar los datos sin ningún tipo de organización, simplemente uno detrás de otro, separados por espacios o saltos de línea:
+Supongamos que queremos crear una ***agenda*** para almacenar datos de contactos: **nombre**, **apellido**, **teléfono** y **email**. Una primera aproximación sería guardar los datos sin ningún tipo de organización, simplemente uno detrás de otro:
+
 ```{code-cell} python
 ---
 tags: [hide-output]
@@ -64,13 +65,13 @@ with open("agenda.txt") as datos:
     print(linea)
 ```
 
-Si observamos el contenido del archivo `agenda.txt`, vemos que los datos están todos juntos, sin ningún tipo de organización. Se ha perdido la integridad de los datos, ya que no sabemos dónde termina un dato y empieza otro. Además, si queremos buscar un contacto, tenemos que leer todo el archivo y buscar el nombre, lo cual es muy ineficiente.
+Si observamos el contenido del archivo `agenda.txt`, vemos que los datos están todos juntos, sin ningún tipo de organización. Se ha perdido **la integridad de los datos**, ya que no sabemos dónde termina un dato y empieza otro. Además, si queremos buscar un contacto, tenemos que leer todo el archivo y buscar el nombre, lo cual es muy ineficiente.
 
-Los datos de una entidad (en este caso un contacto) se suelen llamar **registro**. Un registro está formado por varios **campos** (en este caso nombre, apellido, teléfono y email). Existen varios formatos para organizar los registros en un archivo, veamos algunos de ellos.
+Los datos de una entidad (en este caso un contacto) se suele llamar **registro**. Un registro está formado por varios **campos** (en este caso nombre, apellido, teléfono y email). Existen varios formatos para organizar los registros en un archivo, veamos algunos de ellos.
 
 ## Registros de longitud fija con campos de longitud fija
 
-Una forma de organizar los registros es asignar una longitud fija a cada campo. Por ejemplo, podemos decidir que el campo nombre tendrá 20 caracteres, el campo apellido 30 caracteres, el campo teléfono 15 caracteres y el campo email 40 caracteres. Si un dato es más corto que la longitud asignada, se rellena con espacios en blanco. Si un dato es más largo, se trunca.
+Una forma de organizar los registros es asignar una longitud fija a cada campo. Por ejemplo, podemos decidir que el campo nombre tendrá 20 caracteres, el campo apellido 30 caracteres, el campo teléfono 15 caracteres y el campo email 40 caracteres. Si un dato es más corto que la longitud asignada, se rellena con espacios en blanco o nulos. Si un dato es más largo, se trunca.
 
 ```{code-cell} python
 ---
@@ -82,76 +83,119 @@ import os
 import struct
 
 class Agenda:
-  def __init__(self, archivo, len_nombre=20, len_apellido=30, len_telefono=15, len_email=40):
-      self._archivo = archivo
-      # Formato del registro con campos de longitud fija
-      self._formato = "%ds%ds%ds%ds" % (len_nombre, len_apellido, len_telefono, len_email)
-      # Longitud total del registro
-      self._len_registro = struct.calcsize(self._formato)
+  def __init__(
+    self, archivo, len_nombre=20, len_apellido=30,
+    len_telefono=15, len_email=40
+  ):
+    self._archivo = archivo
+    # Formato del registro: cada campo tiene longitud fija en bytes.
+    # Ejemplo: "20s30s15s40s" para nombre, apellido, teléfono y email.
+    # En total 105 bytes por registro.
+    self._formato = "%ds%ds%ds%ds" % (
+      len_nombre, len_apellido, len_telefono, len_email
+    )
+    # Calcula la longitud total del registro en bytes.
+    # struct.calcsize calcula el tamaño en bytes del formato especificado.
+    self._len_registro = struct.calcsize(self._formato)
 
-      # cantidad de registros presentes en la agenda
-      try:
-          # devuelve tamaño del archivo, si no existe levanta FileNotFoundException
-          tam_archivo = os.path.getsize(archivo)
-          self._cant_registros = tam_archivo / self._len_registro
-      except FileNotFoundError:
-          self._cant_registros = 0
+    # Calcula la cantidad de registros presentes en la agenda.
+    try:
+      tam_archivo = os.path.getsize(archivo)
+      # Divide el tamaño del archivo por la longitud de cada registro.
+      self._cant_registros = tam_archivo // self._len_registro
+    except FileNotFoundError:
+      self._cant_registros = 0
 
   def guardar_contacto(self, nombre, apellido, telefono="", email=""):
-      """Permite guardar un registro, nombre y apellido son obligatorios"""
-      if not nombre or not apellido:
-          raise ValueError("Nombre y apellido son obligatorios")
+    """
+    Guarda un registro en el archivo.
+    Nombre y apellido son obligatorios.
+    """
+    if not nombre or not apellido:
+      raise ValueError("Nombre y apellido son obligatorios")
 
-      # abre el archivo en modo append binario. Si el archivo no existe lo crea.
-      with open(self._archivo, "ab") as registros:
-          # empaqueta los datos en un registro de longitud fija
-          registro = struct.pack(self._formato, nombre.encode(), apellido.encode(), telefono.encode(), email.encode())
-          # escribe el registro al final del archivo
-          registros.write(registro)
+    # Abre el archivo en modo append binario. Lo crea si no existe.
+    with open(self._archivo, "ab") as registros:
+      # struct.pack convierte los datos en una secuencia de bytes
+      # según el formato definido. Cada campo se codifica y se rellena
+      # o trunca para ocupar la cantidad de bytes especificada.
+      registro = struct.pack(
+        self._formato,
+        nombre.encode(), apellido.encode(),
+        telefono.encode(), email.encode()
+      )
+      # Escribe el registro al final del archivo.
+      registros.write(registro)
 
-      self._cant_registros += 1
+    self._cant_registros += 1
 
   def cantidad_registros(self):
-      """Devuelve la cantidad de registros que hay en la agenda"""
-      return self._cant_registros
+    """Devuelve la cantidad de registros que hay en la agenda."""
+    return self._cant_registros
 
   def __iter__(self):
-      """Devuelve un iterador para la agenda"""
-      return AgendaIterator(self)
+    """Devuelve un iterador para la agenda."""
+    return AgendaIterator(self)
 ```
+
+```{note}
+Los métodos `encode()`{l=python} y `decode()`{l=python} convierten entre cadenas de texto y secuencias de bytes. Por defecto utilizan la codificación UTF-8, que es capaz de representar todos los caracteres Unicode. Si se utilizan caracteres especiales (como tildes o ñ), es importante asegurarse de que la codificación sea la misma al guardar y al leer los datos.
+```
+
 A continuación definimos el iterador para la agenda:
+
 ```{code-cell} python
 ---
 mystnb:
     number_source_lines: true
 ---
 class AgendaIterator:
-  """Iterador para la agenda"""
+  """Iterador para la agenda de registros de longitud fija"""
 
   def __init__(self, agenda):
     self._agenda = agenda
-    # posicion actual para iterar
-    self._index = 0
+    self._index = 0  # Índice del registro actual
 
   def __next__(self):
+    """
+    Devuelve:
+      dict: Un diccionario con el siguiente conjunto de datos o
+      valores en la iteración.
+    """
+    # Si quedan registros por leer
     if self._index < self._agenda._cant_registros:
       with open(self._agenda._archivo, "rb") as registros:
-          # posicion en bytes del registro actual
-          posicion = self._index * self._agenda._len_registro
+        # Calcula la posición en bytes del registro actual
+        posicion = self._index * self._agenda._len_registro
+        registros.seek(posicion)
+        # Lee el bloque de bytes correspondiente al registro
+        registro = registros.read(self._agenda._len_registro)
+        self._index += 1
 
-          registros.seek(posicion)
-
-          registro = registros.read(self._agenda._len_registro)
-          self._index += 1
-
-          # chequea la integridad del registro leído
-          if len(registro) == self._agenda._len_registro:
-            (b_nombre, b_apellido, b_telefono, b_email) = struct.unpack(self._agenda._formato, registro)
-            return b_nombre.decode().strip(), b_apellido.decode().strip(), b_telefono.decode().strip(), b_email.decode().strip()
-          else:
-            return "", "", "", "" # registro corrupto
+        # Verifica que se haya leído un registro completo
+        if len(registro) == self._agenda._len_registro:
+          # struct.unpack convierte los bytes en tuplas de campos
+          # según el formato definido en la agenda
+          b_nombre, b_apellido, b_telefono, b_email = struct.unpack(
+            self._agenda._formato, registro
+          )
+          # Decodifica los bytes y elimina espacios/nulos extra
+          return (
+            b_nombre.decode().strip(),
+            b_apellido.decode().strip(),
+            b_telefono.decode().strip(),
+            b_email.decode().strip()
+          )
+        else:
+          # Si el registro está corrupto, devuelve campos vacíos
+          return "", "", "", ""
     else:
-        raise StopIteration
+      # No quedan más registros
+      raise StopIteration
+```
+
+```{note}
+El método `strip()`{l=python} elimina espacios en blanco y caracteres de nueva línea al inicio y al final de una cadena. En este caso, se utiliza para eliminar los caracteres nulos (`\x00`) que se utilizan para rellenar los campos cuando son más cortos que la longitud asignada.
 ```
 
 Ejemplo de uso con el iterador
@@ -161,9 +205,15 @@ Ejemplo de uso con el iterador
 tags: [hide-output]
 ---
 agenda = Agenda("agenda_fixed.dat")
-agenda.guardar_contacto("March", "Simpson", "555-1234", "march@example.com")
-agenda.guardar_contacto("Bart", "Simpson", "555-5678", "bart@example.com")
-agenda.guardar_contacto("Homero", "Simpson", "555-8765", "homero@example.com")
+agenda.guardar_contacto(
+  "March", "Simpson", "555-1234", "march@example.com"
+)
+agenda.guardar_contacto(
+  "Bart", "Simpson", "555-5678", "bart@example.com"
+)
+agenda.guardar_contacto(
+  "Homero", "Simpson", "555-8765", "homero@example.com"
+)
 agenda.guardar_contacto("Lisa", "Simpson")  # sin teléfono ni email
 
 print(f"Cantidad de registros: {agenda.cantidad_registros()}")  
@@ -183,16 +233,25 @@ tags: [hide-output]
 with open("agenda_fixed.dat", "rb") as f:
     contenido = f.read()
     print(contenido)
-``` 
-Los nulos se representan con el byte `\x00`. Se observa que cada registro ocupa 105 bytes (20 + 30 + 15 + 40) y la mayoría de los caracteres son valores nulos.
 
-Este formato tiene la ventaja de que es muy sencillo calcular la posición de un registro en el archivo, ya que todos los registros tienen la misma longitud. Por ejemplo, el registro `n` empieza en la posición `n * len_registro`. Esto permite acceder a un registro directamente sin tener que leer todo el archivo. Sin embargo, tiene la desventaja de que se desperdicia espacio si los datos son más cortos que la longitud asignada, y no es flexible si se quieren agregar nuevos campos o cambiar la longitud de los campos.
+print(f"Longitud del registro: {agenda._len_registro} bytes")
+print(f"Formato del registro: {agenda._formato} (105 bytes)")
+print(f"Cantidad de registros: {agenda.cantidad_registros()}")
+print(
+    f"Cantidad de bytes en el archivo: {len(contenido)} "
+    f"(105 * {agenda.cantidad_registros()})"
+)
+```
 
 Tampoco permite almacenar datos que superen la longitud asignada, ya que se truncan. Por ejemplo, si intentamos guardar un nombre con más de 20 caracteres, se perderán los caracteres adicionales.
 
 ## Registros de longitud fija y campos de longitud variable
 
-Otra forma de organizar los registros es asignar una longitud fija a cada registro, pero permitir que los campos tengan longitud variable. Para ello, se puede utilizar un delimitador para separar los campos dentro del registro. Por ejemplo, podemos utilizar el carácter `|` como delimitador.
+Otra forma de organizar los registros es asignar una longitud fija a cada registro, pero permitir que los campos tengan longitud variable. Para ello, se puede utilizar un delimitador para separar los campos dentro del registro. Por ejemplo, podemos utilizar el carácter `|` como delimitador. Este tipo de organización es más eficiente en términos de espacio, ya que no se desperdicia espacio si los campos son más cortos que la longitud asignada. Sin embargo, tiene la desventaja de que no se pueden almacenar registros que superen la longitud asignada, ya que se truncan.
+
+```{note}
+El carácter delimitador no puede aparecer en los datos, ya que se interpretaría como el final de un campo. Si es necesario que este caracter sea parte de los datos, se puede utilizar un mecanismo de escape, como por ejemplo, duplicar el carácter (`||` se interpreta como un solo `|` en los datos).
+```
 
 ```{code-cell} python
 ---
@@ -201,72 +260,112 @@ mystnb:
     number_source_lines: true
 ---
 class Agenda:
-  def __init__(self, archivo, len_registro=100):
-      self._archivo = archivo
-      self._len_registro = len_registro
-      try:
-          tam_archivo = os.path.getsize(archivo)
-          self._cant_registros = tam_archivo / self._len_registro
-      except FileNotFoundError:
-          self._cant_registros = 0
-  def guardar_contacto(self, nombre, apellido, telefono="", email=""):
-      """Permite guardar un registro, nombre y apellido son obligatorios"""
-      if not nombre or not apellido:
-          raise ValueError("Nombre y apellido son obligatorios")
-      registro = f"{nombre}|{apellido}|{telefono}|{email}"
-      if len(registro.encode()) > self._len_registro:
-          raise ValueError("El registro es demasiado largo")
-      registro = registro.encode()
-      registro = registro.ljust(self._len_registro, b'\x00')
-      with open(self._archivo, "ab") as registros:
-          registros.write(registro)
-      self._cant_registros += 1
+  def __init__(self, archivo, campos, len_registro=100):
+    self._archivo = archivo
+    self._len_registro = len_registro
+    self._campos = campos  # lista de nombres de campos
+    try:
+      tam_archivo = os.path.getsize(archivo)
+      self._cant_registros = tam_archivo / self._len_registro
+    except FileNotFoundError:
+      self._cant_registros = 0
+
+  def guardar_contacto(self, *valores):
+    """
+    Guarda un registro en el archivo.
+    La cantidad de valores debe coincidir con la cantidad de campos.
+    """
+    if len(valores) != len(self._campos):
+      raise ValueError("Cantidad de valores incorrecta")
+    if not valores[0] or not valores[1]:
+      raise ValueError("Nombre y apellido son obligatorios")
+    # Une los valores usando '|' como delimitador
+    registro = "|".join(str(valor) for valor in valores)
+    # Verifica que el registro no supere la longitud máxima
+    if len(registro.encode()) > self._len_registro:
+      raise ValueError("El registro es demasiado largo")
+    # Convierte el registro a bytes y lo rellena con nulos si es necesario
+    registro = registro.encode()
+    registro = registro.ljust(self._len_registro, b'\x00')
+    # Escribe el registro al final del archivo
+    with open(self._archivo, "ab") as registros:
+      registros.write(registro)
+    self._cant_registros += 1
+
   def cantidad_registros(self):
-      """Devuelve la cantidad de registros que hay en la agenda"""
-      return self._cant_registros
+    """Devuelve la cantidad de registros que hay en la agenda"""
+    return self._cant_registros
+
   def __iter__(self):
-      """Devuelve un iterador para la agenda"""
-      return AgendaIterator(self)
+    """Devuelve un iterador para la agenda"""
+    return AgendaIterator(self)
 ```
 
-`registro.encode()`{l=python} convierte la cadena a bytes, y `ljust`{l=python} rellena con nulos a la derecha, hasta alcanzar la longitud fija del registro. Algunos caracteres como vocales con tildes o la letra ñ pueden ocupar más de un byte (por ejemplo `é` se condifica como `b'\xc3\xa9'`), por lo que es importante medir la longitud en bytes y no en caracteres (linea 15).
+```{note}
+`registro.encode()`{l=python} convierte la cadena a bytes, y `ljust`{l=python} rellena con nulos a la derecha, hasta alcanzar la longitud fija del registro. Algunos caracteres como vocales con tildes o la letra ñ pueden ocupar más de un byte (por ejemplo `é` se codifica como `b'\xc3\xa9'`), por lo que es importante medir la longitud en bytes y no en caracteres (línea 27).
+```
 
 A continuación definimos el iterador para la agenda:
 
 ```{code-cell} python
 ---
-tags: [hide-input]
 mystnb:
     number_source_lines: true
 ---
 class AgendaIterator:
-  """Iterador para la agenda"""
+  """Iterador para la agenda de registros de longitud fija y
+  campos de longitud variable"""
   def __init__(self, agenda):
-      self._agenda = agenda
-      self._indice = 0
+    self._agenda = agenda
+    self._index = 0
+
   def __iter__(self):
-      return self
+    return self
+
   def __next__(self):
-      if self._indice < self._agenda.cantidad_registros():
-          registro = self.obtener_registro(self._indice)
-          self._indice += 1
-          return registro
-      else:
-          raise StopIteration
-  def obtener_registro(self, indice):
+    """
+    Devuelve:
+      dict: Un diccionario con el siguiente conjunto de datos o
+      valores en la iteración.
+    """
+    # Si quedan registros por leer
+    if self._index < self._agenda._cant_registros:
       with open(self._agenda._archivo, "rb") as registros:
-          posicion = indice * self._agenda._len_registro
-          registros.seek(posicion)
-          registro = registros.read(self._agenda._len_registro)
-          if len(registro) == self._agenda._len_registro:
-              registro = registro.decode().rstrip('\x00')
-              campos = registro.split('|')
-              if len(campos) == 4:
-                  return campos[0], campos[1], campos[2], campos[3]
-              else:
-                  return None, None, None, None  # registro corrupto
-          else:
-              return None, None, None, None  # registro corrupto
+        # Calcula la posición en bytes del registro actual.
+        # Cada registro ocupa self._agenda._len_registro bytes,
+        # por lo tanto la posición es índice * longitud_registro.
+        posicion = int(self._index * self._agenda._len_registro)
+        registros.seek(posicion)
+        registro = registros.read(self._agenda._len_registro)
+        self._index += 1
+        if len(registro) == self._agenda._len_registro:
+          registro = registro.rstrip(b'\x00').decode(
+            errors="replace"
+          )
+          campos = registro.split('|')
+          # Rellenar campos faltantes con cadenas vacías
+          while len(campos) < len(self._agenda._campos):
+            campos.append("")
+          # Devuelve un diccionario con claves nombre de los campos
+          return dict(
+            zip(
+              self._agenda._campos,
+              campos[:len(self._agenda._campos)]
+            )
+          )
+        else:
+          # Registro corrupto
+          return dict(
+            (campo, "") for campo in self._agenda._campos
+          )
+    else:
+      raise StopIteration
+```
+
+```{note}
+El método `rstrip(b'\x00')`{l=python} elimina los caracteres nulos (`\x00`) al final de la cadena de bytes, que se utilizan para rellenar el registro cuando es más corto que la longitud asignada. Luego, `decode(errors="replace")`{l=python} convierte los bytes a una cadena de texto, reemplazando cualquier byte inválido con el carácter de reemplazo (`�`).
+
+La función `zip`{l=python} combina dos listas en una lista de tuplas, donde cada tupla contiene un elemento de cada lista. En este caso, se utiliza para combinar la lista de nombres de campos con la lista de valores correspondientes, y luego se convierte en un diccionario.
 ```
 
 Ejemplo de uso con el iterador
@@ -275,12 +374,12 @@ Ejemplo de uso con el iterador
 ---
 tags: [hide-output]
 ---
-agenda = Agenda("agenda.dat")
+agenda = Agenda("agenda.dat", ["nombre", "apellido", "telefono", "email"])
 agenda.guardar_contacto("Juan", "Pérez", "123456789", "juan@example.com")
 agenda.guardar_contacto("Ana", "Gómez", "987654321", "ana@example.com")
 for contacto in agenda:
-    print(contacto)
-    print("-----")
+  print(contacto)
+  print("-----")
 ```
 
 Si observamos el contenido del archivo `agenda.dat` con un editor hexadecimal, vemos que los datos están organizados en bloques de longitud fija, y cada campo está separado por el carácter `|`, rellenando con nulos si es necesario.
@@ -290,15 +389,329 @@ Si observamos el contenido del archivo `agenda.dat` con un editor hexadecimal, v
 tags: [hide-output]
 ---
 with open("agenda.dat", "rb") as f:
-    contenido = f.read()
-    print(contenido)
-``` 
+  contenido = f.read()
+  print(contenido)
 
-Cada registro ocupa 100 bytes y los campos están separados por el byte `0x7c` que corresponde al carácter `|`.
-
-Este formato tiene la ventaja de que permite almacenar campos de longitud variable dentro de un registro de longitud fija, lo cual es más eficiente en términos de espacio. Además, es sencillo calcular la posición de un registro en el archivo, ya que todos los registros tienen la misma longitud. Sin embargo, tiene la desventaja de que se desperdicia espacio si los registros son más cortos que la longitud asignada, y no es flexible si se quieren agregar nuevos campos o cambiar la longitud de los campos. Tampoco permite almacenar registros que superen la longitud asignada, ya que se truncan.
+print(f"Longitud del registro: {agenda._len_registro} bytes")
+print(f"Cantidad de registros: {agenda.cantidad_registros()}")
+print(
+  f"Cantidad de bytes en el archivo: {len(contenido)} "
+  f"({agenda._len_registro} * {agenda.cantidad_registros()})"
+)
+```
 
 ## Registros de longitud variable y campos de longitud variable
 
 Para implementar este tipo de registro se puede preceder cada registro con un entero que indique la longitud del registro en bytes. De esta forma, al leer el archivo, se lee primero la longitud del registro y luego se lee el registro completo. Analogamente, se puede preceder cada campo con un entero que indique la longitud del campo en bytes.
 
+```{code-cell} python
+---
+tags: [hide-output]
+mystnb:
+    number_source_lines: true
+---
+import struct
+class Agenda:
+  def __init__(self, archivo, campos):
+    self._archivo = archivo
+    self._campos = campos  # lista de nombres de campos
+    try:
+      tam_archivo = os.path.getsize(archivo)
+      self._cant_registros = 0
+      with open(archivo, "rb") as f:
+        pos = 0
+        # Recorre el archivo desde el inicio hasta el final
+        while pos < tam_archivo:
+          f.seek(pos)
+          # Lee los primeros 4 bytes que indican la longitud del registro
+          # 4 bytes para un entero sin signo (unsigned int)
+          len_bytes = f.read(4)
+          if len(len_bytes) < 4:
+            break  # fin de archivo o registro corrupto
+          # Convierte los 4 bytes en un entero (longitud del registro)
+          (len_registro,) = struct.unpack("I", len_bytes)
+          # Avanza la posición: 4 bytes de longitud + longitud del registro
+          pos += 4 + len_registro
+          # Incrementa el contador de registros
+          self._cant_registros += 1
+    except FileNotFoundError:
+      # Si el archivo no existe, no hay registros
+      self._cant_registros = 0
+
+  def guardar_contacto(self, *campos):
+    """
+    Guarda un registro en el archivo.
+    La cantidad de campos debe coincidir con la definición.
+    """
+    if len(campos) != len(self._campos):
+      raise ValueError("La cantidad de campos no coincide con la \
+        definición")
+    registro = b""
+    for campo in campos:
+      campo_bytes = campo.encode()
+      len_campo = len(campo_bytes)
+      # struct.pack("I", len_campo) convierte el entero en 4 bytes
+      # Luego se concatenan los 4 bytes de longitud y los bytes del campo
+      registro += struct.pack("I", len_campo) + campo_bytes
+    len_registro = len(registro)
+    with open(self._archivo, "ab") as registros:
+      # struct.pack("I", len_registro) convierte el entero en 4 bytes
+      # Luego se concatenan los 4 bytes de longitud y los bytes del registro
+      registros.write(struct.pack("I", len_registro))
+      registros.write(registro)
+    self._cant_registros += 1
+
+  def cantidad_registros(self):
+    """Devuelve la cantidad de registros que hay en la agenda"""
+    return self._cant_registros
+
+  def __iter__(self):
+    """Devuelve un iterador para la agenda"""
+    return AgendaIterator(self)
+```
+
+A continuación definimos el iterador para la agenda:
+
+```{code-cell} python
+---
+mystnb:
+    number_source_lines: true
+---
+class AgendaIterator:
+  """Iterador para la agenda de registros de longitud variable"""
+  def __init__(self, agenda):
+    self._agenda = agenda
+    self._pos = 0
+    self._tam_archivo = os.path.getsize(self._agenda._archivo)
+
+  def __iter__(self):
+    return self
+
+  def __next__(self):
+    """
+    Devuelve:
+      dict: Un diccionario con el siguiente conjunto de datos o
+      valores en la iteración.
+    """
+    # Si quedan registros por leer
+    if self._pos >= self._tam_archivo:
+      raise StopIteration
+    with open(self._agenda._archivo, "rb") as f:
+      f.seek(self._pos)
+      len_bytes = f.read(4)
+      if len(len_bytes) < 4:
+        raise StopIteration
+      (len_registro,) = struct.unpack("I", len_bytes)
+      registro_bytes = f.read(len_registro)
+      if len(registro_bytes) < len_registro:
+        raise StopIteration
+      self._pos += 4 + len_registro
+      campos = []
+      # offset es la posición dentro del registro
+      offset = 0
+      while offset < len_registro and len(campos) < len(self._agenda._campos):
+        len_campo_bytes = registro_bytes[offset:offset + 4]
+        if len(len_campo_bytes) < 4:
+          break
+        (len_campo,) = struct.unpack("I", len_campo_bytes)
+        offset += 4
+        campo_bytes = registro_bytes[offset:offset + len_campo]
+        campo = campo_bytes.decode()
+        campos.append(campo)
+        offset += len_campo
+      # Rellenar campos faltantes con cadenas vacías
+      while len(campos) < len(self._agenda._campos):
+        campos.append("")
+      return dict(zip(self._agenda._campos, campos))
+```
+
+Ejemplo de uso con el iterador
+
+```{code-cell} python
+---
+tags: [hide-output]
+---
+campos = ["nombre", "apellido", "telefono", "email"]
+agenda = Agenda("agenda_var.dat", campos)
+agenda.guardar_contacto(
+  "Juan", "Pérez", "123456789", "juan.perez@example.com"
+)
+agenda.guardar_contacto(
+  "Ana", "Gómez", "987654321", "ana.gomez@example.com"
+)
+agenda.guardar_contacto(
+  "Homero", "Simpson", "555-8765", ""
+)  # sin email
+agenda.guardar_contacto(
+  "Lisa", "Simpson", "", "lisa.simpson@example.com"
+)  # sin teléfono
+for contacto in agenda:
+    print(contacto)
+    print("-----")
+```
+
+Si observamos el contenido del archivo `agenda_var.dat` con un editor hexadecimal, vemos que los datos están organizados en bloques de longitud variable, y cada campo está precedido por un entero que indica la longitud del campo en bytes.
+
+```{code-cell} python
+---
+tags: [hide-output]
+---
+with open("agenda_var.dat", "rb") as f:
+  contenido = f.read()
+  print(contenido)
+
+print(f"Cantidad de bytes en el archivo: {len(contenido)}")
+print(f"Cantidad de registros: {agenda.cantidad_registros()}")
+```
+
+Esta forma de organizar los registros es la más flexible, ya que permite almacenar datos de cualquier longitud sin desperdiciar espacio. Sin embargo, tiene la desventaja de que el acceso a los registros es secuencial, ya que no se puede calcular la posición de un registro en función de su índice. Además, la implementación es más compleja, ya que se deben manejar las longitudes de los registros y campos.
+
+## Otras formas de organizar registros
+
+- Registros de longitud variable y campos de longitud fija: cada campo tiene una longitud fija, pero el registro puede tener una longitud variable. Se puede utilizar un delimitador para separar los campos dentro del registro, y preceder el registro con un entero que indique la longitud del registro en bytes.
+- Usar índices para acceder rápidamente a los registros: se puede crear un archivo de índices que contenga la posición de cada registro en el archivo de datos. De esta forma, se puede acceder rápidamente a un registro específico sin tener que leer todo el archivo.
+
+Cada una de estas formas tiene sus ventajas y desventajas, y la elección depende de las necesidades específicas de la aplicación. En general cuanto mayor flexibilidad se requiere en función del espacio ocupado, mayor es la complejidad de la implementación.
+
+## Archivos CSV
+
+Otra forma común de organizar los registros es utilizar el formato CSV (Comma-Separated Values). En este formato, cada registro se almacena en una línea del archivo, y los campos dentro del registro están separados por comas. Si un campo contiene una coma, se encierra entre comillas dobles. Si un campo contiene comillas dobles, se escapan con otra comilla doble.
+
+Python cuenta con un módulo estándar llamado `csv` que facilita la lectura y escritura de archivos en formato CSV. Veamos cómo implementar la clase `Agenda` utilizando este formato.
+
+```{note}
+La primera línea del archivo puede contener los nombres de los campos, lo cual facilita la interpretación de los datos. El módulo `csv` puede manejar esto automáticamente si se utiliza la clase `DictReader` para leer y `DictWriter` para escribir.
+```
+
+```{code-cell} python
+---
+tags: [hide-output]
+mystnb:
+    number_source_lines: true
+---
+import csv
+import os
+
+class Agenda:
+  def __init__(self, archivo, campos, separador=","):
+    self._archivo = archivo
+    self._campos = campos  # lista de nombres de campos
+    self._cant_registros = 0
+    self._separador = separador
+    # Escribir cabecera si el archivo no existe o está vacío
+    if not os.path.exists(archivo) or os.path.getsize(archivo) == 0:
+      with open(archivo, "w", newline='') as f:
+        # DictWriter escribe el encabezado usando los nombres de los campos
+        writer = csv.DictWriter(f, fieldnames=campos, delimiter=separador)
+        writer.writeheader()  # escribe la cabecera en la primera línea
+    # Contar registros (excluyendo la cabecera)
+    try:
+      with open(archivo, "r", newline='') as f:
+        reader = csv.DictReader(f, fieldnames=campos, delimiter=separador)
+        next(reader, None)  # saltar cabecera
+        for _ in reader:
+          self._cant_registros += 1
+    except FileNotFoundError:
+      self._cant_registros = 0
+
+  def guardar_contacto(self, *valores):
+    """
+    Guarda un registro. La cantidad de valores debe coincidir con la cantidad de campos.
+    Se arma el registro como un diccionario: {campo: valor}
+    """
+    if len(valores) != len(self._campos):
+      raise ValueError("Cantidad de valores incorrecta")
+    if not valores[0] or not valores[1]:
+      raise ValueError("Nombre y apellido son obligatorios")
+    registro = dict(zip(self._campos, valores))  # crea el registro como dict
+    with open(self._archivo, "a", newline='') as f:
+      writer = csv.DictWriter(f, fieldnames=self._campos, delimiter=self._separador)
+      writer.writerow(registro)  # escribe el registro como fila dict
+    self._cant_registros += 1
+
+  def cantidad_registros(self):
+    """Devuelve la cantidad de registros que hay en la agenda"""
+    return self._cant_registros
+
+  def __iter__(self):
+    """Devuelve un iterador para la agenda"""
+    return AgendaIterator(self)
+```
+
+A continuación definimos el iterador para la agenda:
+
+```{code-cell} python
+---
+mystnb:
+    number_source_lines: true
+---
+class AgendaIterator:
+  """Iterador para la agenda de registros en formato CSV con cabecera"""
+  def __init__(self, agenda):
+    self._agenda = agenda
+    # Abrir el archivo en modo lectura
+    self._file = open(self._agenda._archivo, "r", newline='')
+    # Usar DictReader para leer registros como diccionarios
+    self._reader = csv.DictReader(
+      self._file,
+      fieldnames=self._agenda._campos,
+      delimiter=self._agenda._separador
+    )
+    next(self._reader, None)  # Saltar la cabecera
+
+  def __iter__(self):
+    return self
+
+  def __next__(self):
+    try:
+      # Cada registro se obtiene como un diccionario {campo: valor}
+      registro = next(self._reader)
+      # Si faltan campos, se rellenan con cadenas vacías
+      for campo in self._agenda._campos:
+        if campo not in registro or registro[campo] is None:
+          registro[campo] = ""
+      # Devuelve el registro parseado en campos
+      return registro
+    except StopIteration:
+      self._file.close()
+      raise StopIteration
+```
+
+Ejemplo de uso con el iterador
+
+```{code-cell} python
+---
+tags: [hide-output]
+---
+campos = ["nombre", "apellido", "telefono", "email"]
+agenda = Agenda("agenda.csv", campos)
+agenda.guardar_contacto("Juan", "Pérez", "123456789", "juan.perez@example.com")
+agenda.guardar_contacto("Ana", "Gómez", "987654321", "ana.gomez@example.com")
+agenda.guardar_contacto("Homero", "Simpson", "555-8765", "")  # sin email
+agenda.guardar_contacto("Lisa", "Simpson", "", "lisa.simpson@example.com")
+
+for contacto in agenda:
+    print(contacto)
+    print("-----")
+```
+
+Si observamos el contenido del archivo `agenda.csv`, vemos que los datos están organizados en líneas, y cada campo está separado por comas. La primera línea contiene los nombres de los campos.
+
+```{code-cell} python
+---
+tags: [hide-output]
+---
+with open("agenda.csv", "r") as f:
+  contenido = f.read()
+  print(contenido)
+print(f"Cantidad de registros: {agenda.cantidad_registros()}")
+```
+
+## Comparación de formatos de registros
+
+| Tipo de registro                                   | Descripción                                                                 | Ventajas                                                                                 | Desventajas                                                                                 |
+|----------------------------------------------------|-----------------------------------------------------------------------------|------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
+| Longitud fija, campos de longitud fija              | Cada campo ocupa una cantidad fija de bytes.                                | Acceso rápido por posición.<br>Implementación simple.<br>Uso eficiente de memoria.       | Desperdicio de espacio si los datos son cortos.<br>Trunca datos largos.<br>Poco flexible.   |
+| Longitud fija, campos de longitud variable          | El registro tiene longitud fija, los campos se separan por delimitador.     | Mejor aprovechamiento de espacio.<br>Acceso rápido por posición.<br>Implementación simple.| No permite registros largos.<br>El delimitador no puede estar en los datos.<br>Menos flexible.|
+| Longitud variable, campos de longitud variable      | Cada registro y campo precedido por su longitud en bytes.                   | Máxima flexibilidad.<br>No desperdicia espacio.<br>Permite cualquier longitud de datos.  | Acceso secuencial.<br>Implementación más compleja.<br>Mayor sobrecarga por longitud extra.  |
+| CSV (Comma-Separated Values)                       | Cada registro es una línea, campos separados por comas.                     | Muy utilizado.<br>Fácil de leer y editar.<br>Compatible con muchas herramientas.         | No apto para acceso aleatorio.<br>Problemas con comas en los datos.<br>Menos eficiente.     |
