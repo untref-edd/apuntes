@@ -18,7 +18,7 @@ kernelspec:
 
 XML permite a los usuarios definir sus propias etiquetas y estructuras de datos, lo que lo hace muy flexible y adaptable a diferentes necesidades. A diferencia de HTML, que tiene un conjunto fijo de etiquetas predefinidas, XML permite crear etiquetas personalizadas que describen el contenido de manera más precisa.
 
-XML es un estándar abierto mantenido por el [World Wide Web Consortium (W3C)](https://www.w3.org/XML/){target="\_blank"} y es ampliamente utilizado en diversas aplicaciones, incluyendo:
+XML es un estándar abierto mantenido por el [World Wide Web Consortium (W3C)](https://www.w3.org/XML/){target='_blank'} y es ampliamente utilizado en diversas aplicaciones, incluyendo:
 
 - Intercambio de datos entre sistemas diferentes.
 - Configuración de aplicaciones.
