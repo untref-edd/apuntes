@@ -96,7 +96,7 @@ if re.search(patron, texto):
 `^` (circunflejo)
 : Coincide con el inicio de la cadena
 
-`$` (signo de dólar)
+`$` (signo pesos)
 : Coincide con el final de la cadena
 
 `*` (asterisco)
@@ -239,7 +239,7 @@ Python proporciona atajos para clases de caracteres comunes:
 : Cualquier no-espacio en blanco
 
 `\b`
-: Límite de palabra
+: Límite, borde o frontera de palabra
 
 `\B`
 : No-límite de palabra
@@ -954,57 +954,6 @@ print(re.search(patron2, texto).group())
 ## Integración con estructuras de datos
 
 Las expresiones regulares se integran naturalmente con las estructuras de datos de Python:
-
-### Índice invertido con regex
-
-```{code-cell} python
----
-tags: [hide-output]
----
-import re
-from collections import defaultdict
-
-
-class IndiceInvertido:
-    """Índice invertido que usa regex para procesar documentos"""
-
-    def __init__(self):
-        self.indice = defaultdict(set)
-
-    def agregar_documento(self, doc_id, texto):
-        """Agrega un documento al índice"""
-        # Tokenizar usando regex
-        palabras = re.findall(r"\b\w+\b", texto.lower())
-
-        for palabra in palabras:
-            self.indice[palabra].add(doc_id)
-
-    def buscar(self, patron):
-        """Busca documentos que contengan palabras que coincidan con el patrón"""
-        patron_compilado = re.compile(patron, re.IGNORECASE)
-        documentos = set()
-
-        for palabra in self.indice.keys():
-            if patron_compilado.search(palabra):
-                documentos.update(self.indice[palabra])
-
-        return documentos
-
-
-# Crear índice
-indice = IndiceInvertido()
-indice.agregar_documento(1, "Python es un lenguaje de programación")
-indice.agregar_documento(2, "Programar en Python es divertido")
-indice.agregar_documento(3, "Java y JavaScript son diferentes")
-
-# Buscar documentos que contengan palabras que empiecen con "prog"
-docs = indice.buscar(r"^prog")
-print(f"Documentos con palabras que empiezan con 'prog': {docs}")
-
-# Buscar documentos con palabras que contengan "python"
-docs = indice.buscar(r"python")
-print(f"Documentos con 'python': {docs}")
-```
 
 ### Filtrado de listas con regex
 
