@@ -3,11 +3,14 @@ jupyter-book
 mdformat
 mdformat-black
 mdformat-myst
+myst-parser
 networkx
 sphinx-proof
 sphinx-thebe
+sphinxcontrib-mermaid
 geopandas
 matplotlib
 lxml
+feedparser
 
 --editable contenidos/_static/code

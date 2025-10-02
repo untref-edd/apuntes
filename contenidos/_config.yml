@@ -61,6 +61,7 @@ sphinx:
     - sphinx_thebe
     - bokeh.sphinxext.bokeh_plot
     - sphinxcontrib.bibtex
+    - sphinxcontrib.mermaid
   config:
     language: es
     bibtex_bibfiles:
