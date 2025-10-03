@@ -24,6 +24,7 @@ parts:
     - file: 2-estructuras-de-datos/2-4-grafos-recorridos
   - caption: Recuperación de la Información
     chapters:
+    - file: 3-recuperacion-de-la-informacion/3-0-0-recuperacion
     - file: 3-recuperacion-de-la-informacion/3-0-registros
     - file: 3-recuperacion-de-la-informacion/3-1-json
     - file: 3-recuperacion-de-la-informacion/3-2-xml

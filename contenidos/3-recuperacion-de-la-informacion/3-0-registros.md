@@ -35,6 +35,8 @@ for filename in os.listdir(tmp_dir):
 
 En esta sección vamos a ver distintos formatos para organizar la información en archivos, es decir de la organización lógica de los datos. Estos formatos son independientes del lenguaje de programación que utilicemos, y en muchos casos son independientes del software que utilicemos.
 
+Los registros permiten estructurar la información de una forma que facilita su almacenamiento, recuperación y manipulación. Un registro es un conjunto de datos relacionados que se almacenan juntos y representan una entidad o un objeto específico. Cada registro está compuesto por varios campos, donde cada campo contiene un dato específico.
+
 Supongamos que queremos crear una ***agenda*** para almacenar datos de contactos: **nombre**, **apellido**, **teléfono** y **email**. Una primera aproximación sería guardar los datos sin ningún tipo de organización, simplemente uno detrás de otro:
 
 ```{code-cell} python
@@ -66,7 +68,7 @@ with open("agenda.txt") as datos:
 
 Si observamos el contenido del archivo `agenda.txt`, vemos que los datos están todos juntos, sin ningún tipo de organización. Se ha perdido **la integridad de los datos**, ya que no sabemos dónde termina un dato y empieza otro. Además, si queremos buscar un contacto, tenemos que leer todo el archivo y buscar el nombre, lo cual es muy ineficiente.
 
-Los datos de una entidad (en este caso un contacto) se suele llamar **registro**. Un registro está formado por varios **campos** (en este caso nombre, apellido, teléfono y email). Existen varios formatos para organizar los registros en un archivo, veamos algunos de ellos.
+Existen varios formatos para organizar los registros en un archivo, veamos algunos de ellos.
 
 ## Registros de longitud fija con campos de longitud fija
 
