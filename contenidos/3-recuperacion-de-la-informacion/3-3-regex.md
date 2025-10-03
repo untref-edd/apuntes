@@ -380,6 +380,34 @@ if match:
     print(f"Precio: {match.group('precio')}")
     print(f"Diccionario: {match.groupdict()}")
 ```
+### Miradas alrededor
+
+Las miradas alrededor permiten hacer coincidir un patrón solo si está precedido o seguido por otro patrón, sin incluirlo en la coincidencia:
+
+`(?=...)` 
+: Mirada hacia adelante (lookahead)
+
+`(?!...)`
+: Mirada hacia atrás (lookbehind)
+
+`(?<=...)`
+: Mirada hacia atrás positiva
+
+`(?<!...)`
+: Mirada hacia atrás negativa
+
+```{code-cell} python
+---
+tags: [hide-output]
+---
+import re
+texto = "foo1 bar2 foo3 baz4"
+# Mirada hacia adelante: foo seguido de un dígito
+print(re.findall(r"foo(?=\d)", texto))  # ['foo', 'foo']
+# Mirada hacia atrás: dígito precedido de foo
+print(re.findall(r"(?<=foo)\d", texto))  # ['1', '3']
+```
+
 
 ## Casos de uso en recuperación de información
 
@@ -1040,6 +1068,83 @@ print("Archivos de 2024:", filtrar_archivos(archivos, r"2024"))
 # Filtrar archivos Python
 print("Archivos Python:", filtrar_archivos(archivos, r"\.py$"))
 ```
+
+## Tablas de referencia rápida
+
+### Caracteres
+
+| Expresión | Significado | Ejemplo | Match |
+| :- | :- | :- | :- |
+| `\d` | En la mayoría de los lenguajes un dígito 0..9 | `file_\d\d` | file_25 |
+| | En Python 3 y .Net un dígito Unicode | `file_\d\d` | file_2੩ |
+| `\w` | En la mayoría de los lenguajes, un carácter de palabra: letra, dígito o '_' | `\w-\w\w\w` | A-f_3 |
+| | En Python 3, un símbolo Unicode de palabra, incluye '_' | `\w-\w\w\w` | 字-ま_۳ |
+| | En .NET, un símbolo Unicode de palabra, incluye conector '‿' | `\w-\w\w\w` | 字-ま‿۳ |
+| `\s` | En la mayoría de los lenguajes caracteres de blanco estándar | `a\sb\sc` | a b c |
+| | En la .NET, Python 3, Javascript, caracteres de blanco Unicode | `a\sb\sc` | a b c |
+| `\D` | Un caracter que no es un dígito `\d`del lenguaje | `\D\D\D` | ABC |
+| `\W` | Un caracter que no es un dígito `\w`del lenguaje | `\W\W\W\W` | *+=) |
+| `\S` | Un caracter que no es un blanco estandar `\s`del lenguaje | `\S\S\S\S` | casa |
+| `.` | Cualquier caracter, excepto cortes de líneas | `a.c` | abc |
+| | | `.*` | piso 2, depto "A" |
+| `\.` | Un punto | `\w\.\d` | a.3 |
+| `\` | Escape de caracteres especiales | `\*\?\$\^` | *?$^ |
+| | | `\[\{\(\)\}\]` | [{()}] |
+
+### Cuantificadores
+
+| Expresión | Significado | Ejemplo | Match |
+| :- | :- | :- | :- |
+| `+` | Una o más apariciones | `\w-\w+` | C-125x_1 |
+| `{3}` | Exactamente tres apariciones | `\D{3}` | ANA |
+| `{2,4}` | Entre dos y cuatro apariciones | `\W{2,4}` | {+} |
+| `*` | Cero o más aparaciones | `A*B*C*` | AAAACCCC |
+| `?` | Cero o una aparición | `casas?` | casa |
+
+### Lógica
+
+| Expresión | Significado | Ejemplo | Match |
+| :- | :- | :- | :- |
+| `\|` | Or | `22\|33` | 22 |
+| `( ... )` | Captura un grupo y lo asocia a una variable numerada | `UN(O\|TREF)` | UNTREF (y captura TREF) |
+| `\1` | Lo capturado en el grupo 1 | `r(\w)g\1\x` | regex |
+| `\2` | Lo capturado en el grupo 2 | `(\d+)+(\d+)=\2+\1` | 25+33=33+25 |
+| `(?:…)` | Grupo que no se captura (se verifica la regex pero no se captura) | `A(?:na\|licia)` | Alicia |
+
+### Clases de caracteres
+
+| Expresión | Significado | Ejemplo | Match |
+| :- | :- | :- | :- |
+| `[ ... ]` | Uno de los caracteres entre corchetes | `[AEIOU]` | A |
+| `-` | Indicador de rango | `[a-z]` | Una letra minúscula |
+| | | `[A-Z]+` | Una o más letras mayúsculas |
+| | | `[AB1-5w-z]` | Uno de los caracteres A, B, 1, 2, 3, 4, 5, w, x, y, z|
+| `[^x]` | Cualquier caracter distinto de x | `A[^a]B` | AxB |
+| `[^x-y]` | Cualquier caracter fuera del rango x-y | `[^a-z]{3}` | A1! |
+| `[\xhh]` | El caracter con código hh en hexadecimal de la tabla de símbolos [ASCII](https://ascii.cl/es/) | `[\x41-\x45]{3}` | ABE |
+
+### Posiciones: fronteras y anclas
+
+| Expresión | Significado | Ejemplo | Match |
+| :- | :- | :------- | :-|
+| `^` | Indicador de comienzo de cadena (o comienzo de línea). | | |
+| | Tiene que estar fuera de [ ] (adentro de [ ] significa negación) | `^abc.*` | Texto que empieza con *abc* |
+| `$` | Fin de cadena o fin de línea | `.*el final\.$` | Texto que termina en *el final.* |
+| `\b` | Frontera de la palabra | `Bibi.*\bes\b.*` | Bibi es mi amiga |
+| `\B` | No es frontera de palabra | `Bibi.*\Bes\B.*` | Bibi usa un vestido |
+
+### Miradas alrededor (_look behind_ y _look ahead_)
+
+No consumen caracteres, se quedan paradas donde ocurrió el matching
+
+| Expresión | Significado | Ejemplo | Match |
+| :- | :- | :------- | :-|
+| `(?=…)` | Mirar hacia adelante con parámetro positivo | `(?=\d{10})\d{5}` | Si hacia adelante hay 10 dígitos matchear los primeros 5 |
+| `(?<=…)` | Mirar hacia atrás con parámetro positivo | `(?<=foo).*` | lo que está justo detrás de la posición corriente es la cadena 'foo' |
+| | | | El matching es todo lo que sigue a foo |
+| `(?!…)` | Mirar hacia adelante con parámetro negativo | `q(?!ue)` | matchea una q no este seguida de ue |
+| | | `(?!teatro)te\w+` | cualquier palabra que empiece con te pero no sea teatro |
+| `(?<!…)` | Mirar hacia atrás con parámetro negativo | `(?<!fut)bol` | bol siempre y cuando no esté precedida por fut |
 
 ## Recursos adicionales
 
