@@ -29,10 +29,11 @@ parts:
     - file: 3-recuperacion-de-la-informacion/3-1-json
     - file: 3-recuperacion-de-la-informacion/3-2-xml
     - file: 3-recuperacion-de-la-informacion/3-3-regex
-    - file: 3-recuperacion-de-la-informacion/3-4-web-scraping
-    - file: 3-recuperacion-de-la-informacion/3-5-redes-sociales
-    - file: 3-recuperacion-de-la-informacion/3-6-indices-invertidos
-    - file: 3-recuperacion-de-la-informacion/3-7-indices-arboles-b
+    - file: 3-recuperacion-de-la-informacion/3-4-web-apis
+    - file: 3-recuperacion-de-la-informacion/3-5-web-scraping
+    - file: 3-recuperacion-de-la-informacion/3-6-redes-sociales
+    - file: 3-recuperacion-de-la-informacion/3-7-indices-invertidos
+    - file: 3-recuperacion-de-la-informacion/3-8-indices-arboles-b
   - caption: Anexos
     chapters:
     - file: Anexos/GitBash
