@@ -12,5 +12,6 @@ geopandas
 matplotlib
 lxml
 feedparser
+folium
 
 --editable contenidos/_static/code

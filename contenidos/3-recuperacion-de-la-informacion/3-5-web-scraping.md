@@ -18,11 +18,11 @@ Web scraping es el proceso de extraer información de sitios web de forma automa
 
 ### Consideraciones Legales y Éticas
 
-Antes de realizar web scraping, es fundamental considerar:
+Antes de realizar web scraping, es fundamental considerar aspectos legales y éticos. Algunos sitios web prohíben el scraping en sus términos de servicio, y es importante respetar estas políticas para evitar problemas legales. 
 
-#### Aspectos Legales
+También es crucial ser respetuoso con los servidores web, evitando sobrecargar el sitio con demasiadas solicitudes en poco tiempo.
 
-**Archivo robots.txt**
+robots.txt
 : Archivo en la raíz del sitio web que especifica qué partes pueden ser accedidas por robots automatizados.
 
 ```{code-cell} python
@@ -36,62 +36,19 @@ print("Contenido de robots.txt de python.org (primeras líneas):")
 print('\n'.join(response.text.split('\n')[:20]))
 ```
 
-**Términos de Servicio**
+Términos de Servicio
 : Muchos sitios web prohíben explícitamente el scraping en sus términos de uso.
 
-**Leyes de Protección de Datos**
+Leyes de Protección de Datos
 : Regulaciones como GDPR en Europa o leyes locales de protección de datos personales.
 
-**Propiedad Intelectual**
+Propiedad Intelectual
 : El contenido scrapeado puede estar protegido por derechos de autor.
 
-#### Buenas Prácticas Éticas
-
-**Respetar robots.txt**
-: Siempre verificar y respetar las directivas del archivo robots.txt.
-
-**Limitar la frecuencia de solicitudes**
-: No sobrecargar los servidores con demasiadas solicitudes simultáneas.
-
-```{code-cell} python
-import time
-import requests
-
-def scraping_respetuoso(urls, delay=1):
-    """
-    Realiza solicitudes con un delay entre cada una.
-    
-    Args:
-        urls: Lista de URLs a consultar
-        delay: Segundos de espera entre solicitudes
-    """
-    resultados = []
-    
-    for url in urls:
-        print(f"Consultando: {url}")
-        response = requests.get(url)
-        resultados.append(response)
-        
-        # Esperar antes de la siguiente solicitud
-        time.sleep(delay)
-    
-    return resultados
-
-# Ejemplo de uso
-urls_ejemplo = [
-    'https://httpbin.org/delay/1',
-    'https://httpbin.org/delay/1'
-]
-
-print("Realizando solicitudes con delay de 2 segundos...")
-# resultados = scraping_respetuoso(urls_ejemplo, delay=2)
-print("Scraping respetuoso completado")
-```
-
-**Identificarse correctamente**
+Identificarse correctamente
 : Usar un User-Agent descriptivo que permita al administrador del sitio contactarte.
 
-**Uso responsable de los datos**
+Uso responsable de los datos
 : No usar los datos scrapeados para propósitos no éticos o ilegales.
 
 ### Web Scraping Manual con Python
@@ -103,6 +60,8 @@ Python ofrece excelentes bibliotecas para web scraping. Las más populares son `
 ```bash
 pip install requests beautifulsoup4 lxml
 ```
+
+`BeautifulSoup`{l=python} es una biblioteca para parsear documentos HTML y XML, facilitando la navegación y búsqueda de elementos dentro del árbol del documento.
 
 #### Ejemplo Básico: Extraer Información de una Página
 
@@ -142,7 +101,9 @@ else:
 
 #### Selectores CSS
 
-BeautifulSoup también permite usar selectores CSS, que son muy potentes y flexibles:
+BeautifulSoup también permite usar selectores CSS, que son muy potentes y flexibles.
+
+Un selector CSS es una cadena que define un patrón para seleccionar elementos en un documento HTML o XML, similar a cómo se seleccionan elementos en CSS para aplicar estilos en una página web.
 
 ```{code-cell} python
 import requests
@@ -202,56 +163,6 @@ for enlace in enlaces[:10]:
         if url_completa not in enlaces_unicos:
             enlaces_unicos.add(url_completa)
             print(f"{texto:30} -> {url_completa}")
-```
-
-#### Manejo de Tablas HTML
-
-```{code-cell} python
-import requests
-from bs4 import BeautifulSoup
-import pandas as pd
-
-# Ejemplo con una tabla HTML simple
-html_tabla = """
-<table>
-    <tr>
-        <th>País</th>
-        <th>Capital</th>
-        <th>Población (millones)</th>
-    </tr>
-    <tr>
-        <td>Argentina</td>
-        <td>Buenos Aires</td>
-        <td>45.4</td>
-    </tr>
-    <tr>
-        <td>Brasil</td>
-        <td>Brasilia</td>
-        <td>214.3</td>
-    </tr>
-    <tr>
-        <td>Chile</td>
-        <td>Santiago</td>
-        <td>19.5</td>
-    </tr>
-</table>
-"""
-
-soup = BeautifulSoup(html_tabla, 'html.parser')
-tabla = soup.find('table')
-
-# Extraer encabezados
-encabezados = [th.get_text() for th in tabla.find_all('th')]
-
-# Extraer filas
-filas = []
-for tr in tabla.find_all('tr')[1:]:  # Saltar la fila de encabezados
-    fila = [td.get_text() for td in tr.find_all('td')]
-    filas.append(fila)
-
-# Crear DataFrame
-df = pd.DataFrame(filas, columns=encabezados)
-print(df)
 ```
 
 #### Manejo de Errores y Timeouts

@@ -22,11 +22,11 @@ La World Wide Web funciona bajo un modelo cliente-servidor. El siguiente diagram
 
 ```{mermaid}
 flowchart LR
-    A[Cliente<br/>Navegador] -->|1. Solicitud HTTP| B[Servidor Web]
-    B -->|2. Respuesta HTTP| A
-    A -->|3. Consulta DNS| C[Servidor DNS]
-    C -->|4. Dirección IP| A
-    
+    A[Cliente<br/>Navegador] -->|1- Consulta DNS| C[Servidor DNS]
+    C -->|2- Dirección IP| A
+    A -->|3- Solicitud HTTP| B[Servidor Web]
+    B -->|4- Respuesta HTTP| A
+
     style A fill:#e1f5ff
     style B fill:#ffe1e1
     style C fill:#e1ffe1
@@ -43,9 +43,17 @@ Los componentes principales son:
 **DNS (Domain Name System)**
 : Sistema que traduce nombres de dominio legibles (como `www.google.com`) a direcciones IP numéricas que los computadores pueden entender.
 
+En primer lugar el cliente o browser realiza una consulta DNS para obtener la dirección IP del servidor web asociado al dominio. Luego, el cliente envía una solicitud HTTP al servidor, que procesa la solicitud y devuelve una respuesta con el recurso solicitado.
+
 ### El Protocolo HTTP
 
 HTTP (*HyperText Transfer Protocol*) es el protocolo de comunicación que permite la transferencia de información en la Web. Define cómo los clientes y servidores intercambian mensajes.
+
+HTTP fue diseñado para ser simple y flexible, permitiendo la transferencia de diferentes tipos de datos (HTML, JSON, imágenes, etc.) a través de una estructura de mensajes estándar.
+
+El protocolo HTTP sigue un modelo de solicitud-respuesta (*request-response*), donde el cliente envía una solicitud al servidor y este responde con el recurso solicitado o un mensaje de error.
+
+En el siguiente diagrama de secuencia se muestra una interacción típica entre un cliente y un servidor utilizando HTTP:
 
 ```{mermaid}
 sequenceDiagram
@@ -60,17 +68,24 @@ sequenceDiagram
 
 #### Características de HTTP
 
-- **Sin estado (stateless)**: Cada solicitud es independiente, el servidor no mantiene información sobre solicitudes anteriores
-- **Basado en texto**: Los mensajes son legibles por humanos
-- **Extensible**: Permite agregar nuevos métodos y cabeceras
-- **Cliente-Servidor**: Modelo de comunicación request-response
+Sin estado (stateless)
+: Cada solicitud es independiente, el servidor no mantiene información sobre solicitudes anteriores (algunos servidores implementan algunos mecanismos para manejar sesiones, pero esto no es parte del protocolo HTTP en sí).
+
+Basado en texto
+: Los mensajes son legibles por humanos
+
+Extensible
+: Permite agregar nuevos métodos y cabeceras
+
+Cliente-Servidor
+: Modelo de comunicación request-response
 
 #### Métodos HTTP Principales
 
 Los métodos HTTP más comunes son:
 
 `GET`
-: Solicita un recurso específico. Es el método más común y solo debe recuperar datos sin modificarlos.
+: Solicita un recurso específico. Es el método más común para solicitar un recurso al servidor. Si no se especifica un recurso en particular, el servidor generalmente devuelve la página principal, normalmente `index.html`.
 
 `POST`
 : Envía datos al servidor para crear un nuevo recurso. Comúnmente usado en formularios.
@@ -115,15 +130,63 @@ Las respuestas HTTP incluyen un código de estado que indica el resultado de la 
 
 #### Ejemplo de Solicitud HTTP con Python
 
+En Python, la biblioteca `requests` facilita la realización de solicitudes HTTP. Aquí hay un ejemplo básico de cómo hacer una solicitud GET:
+
 ```{code-cell} python
+---
+tags: [hide-output]
+---
 import requests
 
 # Realizar una solicitud GET
-response = requests.get('https://httpbin.org/get')
+response = requests.get('https://untref.edu.ar/')
 
 print(f"Código de estado: {response.status_code}")
-print(f"Cabeceras de respuesta:\n{response.headers}")
-print(f"\nContenido (primeros 200 caracteres):\n{response.text[:200]}")
+for k, v in response.headers.items():
+    print(f"{k}: {v}")
+print(f"\nPrimeros 200 caracteres del contenido (página html):\n{response.text[:200]}")
+```
+
+El intercambio entre cliente y servidor puede verse en crudo utilizando herramientas como `curl` en la línea de comandos. Aquí hay un ejemplo de cómo se vería una solicitud y respuesta HTTP:
+
+```bash
+curl -v https://untref.edu.ar/
+```
+
+**Petición enviada:**
+
+```text
+GET / HTTP/1.1
+Host: www.untref.edu.ar
+User-Agent: curl/8.12.1
+Accept: */*
+```
+
+La solicitud HTTP consta de varias líneas, donde la primera línea indica el método HTTP (`GET`), el recurso solicitado (`/` que es la raíz del sitio) y la versión del protocolo (`HTTP/1.1`). Las líneas siguientes son las cabeceras (*headers*) que proporcionan información adicional sobre la solicitud. En este caso, se especifica el host, el agente de usuario (navegador) y los tipos de contenido aceptados.
+
+El servidor también responde con una serie de cabeceras y el contenido de la página solicitada. La primera línea de la respuesta indica el código de estado (`200 OK`), seguido de las cabeceras de respuesta y finalmente el cuerpo del mensaje que contiene el HTML de la página.
+
+**Respuesta recibida:**
+
+```text
+HTTP/1.1 200 OK
+Date: Mon, 06 Oct 2025 15:06:59 GMT
+Server: Apache
+Cache-Control: no-cache
+Set-Cookie: XSRF-TOKEN=eyJpdiI6IkhZbnpaYmpEV0ZaM1ZaRVwvYUQzbDZRPT0iLCJ2YWx1ZSI6ImtcL240ZFRjS1BhYWZmZWNcL0t3a1FtNFwvVWRhY0Q5Wm5qakF4M09UekM0T3hvbW0zb2FDTkZ3ZGxPTExQUGpCNXY1WUZvRW1oODhrQ2pEWlV4OCtkT3RnPT0iLCJtYWMiOiIzZjM3OTcyYTU4YmVlZmZmNGVhODIwOWI1Y2U5MWQ2YjNkZjBiMmFhZGQ3MjU2OWYzZTExYTQzZTA4NDVlY2JhIn0%3D; expires=Mon, 06-Oct-2025 17:07:00 GMT; Max-Age=7200; path=/
+Set-Cookie: laravel_session=eyJpdiI6IkxIeHIyRElDdm82bFV1WDdrRTRickE9PSIsInZhbHVlIjoiYTRMZklQZDk2RTgwMjdLMXlFQ2ltVjJoWjhsdzB1a2ZhSmVYYlo1amc4a1FwYU9EQUQrWUo2b2QweEVxQThPcTJnWTlTbklMMkNUYjdJVUtGYWsyOXc9PSIsIm1hYyI6ImExOTNmMGNhN2NjMGJlN2I2ZDAwZTIwNWMyMDg2ZTU3NTdlNjYwNTRmYTc4NTYyODU4NjBmMTI0YWQ4Y2JhNWYifQ%3D%3D; expires=Mon, 06-Oct-2025 17:07:00 GMT; Max-Age=7200; path=/; HttpOnly
+Transfer-Encoding: chunked
+Content-Type: text/html; charset=UTF-8
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>UNTREF 
+</title>
+...
+
 ```
 
 ### HTTPS: HTTP Seguro
@@ -137,7 +200,7 @@ HTTPS (HTTP Secure) es la versión segura de HTTP que utiliza encriptación TLS/
 
 ## APIs: Interfaces de Programación de Aplicaciones
 
-Las APIs (*Application Programming Interfaces*) son interfaces que permiten que diferentes aplicaciones se comuniquen entre sí de manera programática. En el contexto web, las APIs proporcionan endpoints (puntos de acceso) que los desarrolladores pueden usar para acceder a datos y funcionalidades de un servicio.
+Las APIs (*Application Programming Interfaces*) son interfaces que permiten que diferentes aplicaciones se comuniquen entre sí de manera programática. En el contexto web, las APIs proporcionan puntos de acceso (*endpoints*) que los desarrolladores pueden usar para acceder a datos y funcionalidades de un servicio.
 
 ```{mermaid}
 flowchart TB
@@ -153,7 +216,29 @@ flowchart TB
     style D fill:#e1ffe1
     style E fill:#f5e1ff
 ```
+Una aplicación cliente (por ejemplo una aplicación web o móvil) realiza solicitudes HTTP a una API REST, que procesa la solicitud, interactúa con bases de datos u otros servicios, y devuelve los datos en formatos como JSON o XML.
 
+El protocolo base es HTTP, y los recursos se acceden a través de URLs específicas. Por ejemplo una URL típica de una API REST podría ser:
+
+``` html
+https://api.ejemplo.com/v1/usuarios/123
+```
+
+Donde:
+- `https://api.ejemplo.com` es el dominio de la API. Es decir el servidor donde está alojada la API.
+- `/v1` indica la versión de la API. Un servidor puede tener múltiples versiones de una API para mantener compatibilidad con clientes antiguos.
+- `/usuarios/123` es el recurso específico (usuario con ID 123) 
+
+Ante esta solicitud, la API podría devolver un JSON con los datos del usuario:
+
+``` json
+{
+  "id": 123,
+  "nombre": "Juan Pérez",
+  "email": "juan.perez@ejemplo.com"
+}
+```
+  
 ### API REST (Representational State Transfer)
 
 REST es un estilo arquitectónico para diseñar servicios web que se basa en los principios de HTTP. Una API REST expone recursos a través de URLs y utiliza los métodos HTTP estándar para operaciones CRUD (Create, Read, Update, Delete).
@@ -177,168 +262,161 @@ REST es un estilo arquitectónico para diseñar servicios web que se basa en los
 
 #### Ejemplo: Consumir una API REST Pública
 
-Vamos a consumir la API pública de JSONPlaceholder, que simula un servicio REST:
+Vamos a consumir una API pública para consultar resultados electorales de Argentina, disponible en [https://resultados.mininterior.gob.ar](https://resultados.mininterior.gob.ar).
 
 ```{code-cell} python
+---
+tags: [hide-output]
+---
 import requests
 import json
-
-# Obtener una lista de posts
-response = requests.get('https://jsonplaceholder.typicode.com/posts')
-posts = response.json()
-
-print(f"Total de posts: {len(posts)}")
-print(f"\nPrimer post:")
-print(json.dumps(posts[0], indent=2))
-
-# Obtener un post específico
-post_id = 1
-response = requests.get(f'https://jsonplaceholder.typicode.com/posts/{post_id}')
-post = response.json()
-print(f"\nPost con ID {post_id}:")
-print(f"Título: {post['title']}")
-print(f"Cuerpo: {post['body'][:100]}...")
-
-# Crear un nuevo post (simulado)
-nuevo_post = {
-    'title': 'Mi nuevo post',
-    'body': 'Este es el contenido de mi post',
-    'userId': 1
-}
-
-response = requests.post(
-    'https://jsonplaceholder.typicode.com/posts',
-    json=nuevo_post
-)
-
-print(f"\nCódigo de respuesta al crear post: {response.status_code}")
-print(f"Post creado (simulado):")
-print(json.dumps(response.json(), indent=2))
+# Realizar una solicitud GET a la API del Ministerio del Interior
+response = requests.get('https://resultados.mininterior.gob.ar/api/resultados/getResultados?anioEleccion=2019&tipoRecuento=1&tipoEleccion=2&categoriaId=1&distritoId=2&seccionProvincialId=1&seccionId=118')
+if response.status_code == 200:
+    datos = response.json()
+    print(json.dumps(datos, indent=2, ensure_ascii=False))
+else:
+    print(f"Error al acceder a la API: {response.status_code}")
+    print(json.dumps(response.json(), indent=2, ensure_ascii=False))
 ```
+
+En la solicitud anterior, se puede ver que se utilizan varios parámetros en la URL para especificar los datos que se quieren consultar
+
+| Parámetro               | Valor  | Significado                                        |
+| ----------------------- | ------ | -------------------------------------------------- |
+| `anioEleccion=2019`     | 2019   | Año de la elección consultada.                     |
+| `tipoRecuento=1`        | 1      | Tipo de recuento. 1 = Recuento Provisional         |
+| `tipoEleccion=1`        | 2      | Tipo de elección. 2 = Generales                    |
+| `categoriaId=1`         | 1      | Categoría electoral. 1 = Presidente de la Nación.  |
+| `distritoId=2`          | 2      | Distrito Electoral. 2 = Provincia de Buenos Aires. |
+| `seccionProvincialId=1` | 1      | Sección provincial. 1 = Primera Sección Electoral. |
+| `seccionId=118`         | 118    | Sección electoral. 118 = Tres de Febrero.          |
+
+La documentación de la API se puede [descargar](https://www.argentina.gob.ar/sites/default/files/2017/08/api-publicacion-resultados-electorales.zip){target="_blank"} desde el sitio oficial del Ministerio del Interior.
+
+La respuesta de la API es un JSON con los resultados detallados para Tres de Febrero.
 
 #### Ejemplo: API de Información Geográfica
 
-Muchas APIs REST proporcionan datos estructurados útiles. Veamos un ejemplo con una API de información de países:
+Muchas APIs REST proporcionan datos estructurados útiles. Vamos a consultar OpenStreetMap (OSM) que ofrece datos geográficos.
+
+```{note}
+ [OpenStreetMap](https://www.openstreetmap.org/about){target="_blank"} es un proyecto colaborativo para crear un mapa libre y editable del mundo. Los datos son aportados por voluntarios y están disponibles bajo la licencia Open Database License (ODbL).
+ ```
 
 ```{code-cell} python
+---
+tags: [hide-output]
+---
 import requests
-import json
+from lxml import etree as ET
 
-# Obtener información sobre Argentina
-response = requests.get('https://restcountries.com/v3.1/name/argentina')
-paises = response.json()
+# Realizar una solicitud GET a la API de Open Maps
+response = requests.get('https://api.openstreetmap.org/api/0.6/way/1275831310')
+if response.status_code == 200:
+    # Parsear la respuesta XML
+    root = ET.fromstring(response.content)
+    # Recorrer el XML de OpenStreetMap
 
-if paises:
-    argentina = paises[0]
-    print(f"Nombre oficial: {argentina.get('name', {}).get('official', 'N/A')}")
-    print(f"Capital: {argentina.get('capital', ['N/A'])[0]}")
-    print(f"Región: {argentina.get('region', 'N/A')}")
-    print(f"Población: {argentina.get('population', 'N/A'):,}")
-    print(f"Área: {argentina.get('area', 'N/A'):,} km²")
-    
-    # Idiomas
-    idiomas = argentina.get('languages', {})
-    print(f"Idiomas: {', '.join(idiomas.values())}")
-    
-    # Monedas
-    monedas = argentina.get('currencies', {})
-    for codigo, info in monedas.items():
-        print(f"Moneda: {info.get('name')} ({codigo})")
+    # Buscar el elemento <way>
+    way = root.find('way')
+    if way is not None:
+        print(f"ID del way: {way.get('id')}")
+        print("Etiquetas asociadas:")
+        for tag in way.findall('tag'):
+            clave = tag.get('k')
+            valor = tag.get('v')
+            print(f"  {clave}: {valor}")
+    else:
+        print("No se encontró el elemento <way> en la respuesta.")
 ```
 
-#### Ejemplo: API del Clima (OpenWeatherMap)
+La documentación de la API de OpenStreetMap está disponible en [https://wiki.openstreetmap.org/wiki/API_v0.6](https://wiki.openstreetmap.org/wiki/API_v0.6){target="_blank"}.
+
+Con el way ID `1275831310` que identifica a la sede Caseros I de la UNTREF, se puede obtener el mapa correspondiente
 
 ```{code-cell} python
 import requests
+import folium
 
-# Nota: En un caso real, necesitarías registrarte y obtener una API key gratuita
-# Este es solo un ejemplo ilustrativo de cómo funcionaría
-
-def obtener_clima(ciudad, api_key):
+def obtener_geojson_way(osm_way_id):
+    # Consulta Overpass para el way específico
+    url = "https://overpass-api.de/api/interpreter"
+    # Query Overpass: way + nodos + metadata
+    query = f"""
+    [out:json];
+    way({osm_way_id});
+    out body;
+    >;
+    out meta;
     """
-    Obtiene información del clima para una ciudad específica.
-    
-    Args:
-        ciudad: Nombre de la ciudad
-        api_key: Clave de API de OpenWeatherMap
-    """
-    base_url = "http://api.openweathermap.org/data/2.5/weather"
-    
-    parametros = {
-        'q': ciudad,
-        'appid': api_key,
-        'units': 'metric',  # Para obtener temperatura en Celsius
-        'lang': 'es'
-    }
-    
-    try:
-        response = requests.get(base_url, params=parametros)
-        response.raise_for_status()  # Lanza excepción si hay error HTTP
-        
-        datos = response.json()
-        
-        print(f"Clima en {datos['name']}, {datos['sys']['country']}")
-        print(f"Temperatura: {datos['main']['temp']}°C")
-        print(f"Sensación térmica: {datos['main']['feels_like']}°C")
-        print(f"Descripción: {datos['weather'][0]['description']}")
-        print(f"Humedad: {datos['main']['humidity']}%")
-        print(f"Velocidad del viento: {datos['wind']['speed']} m/s")
-        
-        return datos
-        
-    except requests.exceptions.HTTPError as e:
-        print(f"Error HTTP: {e}")
-    except requests.exceptions.RequestException as e:
-        print(f"Error en la solicitud: {e}")
-    except KeyError as e:
-        print(f"Error procesando la respuesta: {e}")
+    response = requests.get(url, params={"data": query})
+    response.raise_for_status()
+    return response.json()
 
-# Ejemplo de uso (requiere API key válida)
-# obtener_clima("Buenos Aires", "TU_API_KEY_AQUI")
-print("Para usar esta función, registrate en https://openweathermap.org/api")
+def construir_mapa(geojson_data):
+    # Extraer nodos del way y sus coordenadas
+    # Overpass pone los nodos como elementos tipo "node" en el array "elements"
+    nodes = {}
+    for el in geojson_data.get("elements", []):
+        if el["type"] == "node":
+            nodes[el["id"]] = (el["lat"], el["lon"])
+    # Construir lista ordenada de coordenadas del way
+    coords = []
+    for el in geojson_data.get("elements", []):
+        if el["type"] == "way":
+            for nid in el["nodes"]:
+                if nid in nodes:
+                    coords.append(nodes[nid])
+    # Centrar el mapa en la primera coordenada
+    if not coords:
+        raise RuntimeError("No se hallaron coordenadas del way")
+    centro = coords[0]
+    mapa = folium.Map(location=centro, zoom_start=18)
+    # Añadir polígono (o línea) al mapa
+    folium.PolyLine(locations=coords, color="blue", weight=3).add_to(mapa)
+    # También podrías usar folium.Polygon si es cerrado
+    return mapa
+    # Visualizar el mapa en el notebook
+
+def main():
+    osm_way_id = 1275831310  # el way de la Sede Caseros I
+    geojson = obtener_geojson_way(osm_way_id)
+    mapa = construir_mapa(geojson)
+    # Mostrar el mapa en el notebook
+    display(mapa)
+
+if __name__ == "__main__":
+    main()
+```
+
+El fragmento de código anterior utiliza la librería `folium`{l=python} para visualizar en un mapa interactivo la geometría de un "way" (camino o polígono) obtenido de OpenStreetMap. El proceso es:
+
+1. Extraer coordenadas de los nodos que forman el "way" desde un objeto GeoJSON.
+2. Centrar el mapa en la primera coordenada encontrada.
+3. Dibujar la línea (o polígono) sobre el mapa usando folium.PolyLine.
+4. Mostrar el mapa en un entorno interactivo (como Jupyter Notebook) usando display(mapa).
+
+La función principal (main) obtiene el GeoJSON de un "way" específico, en este caso la Sede Caseros I, construye el mapa y lo muestra.
+
+overpass-api.de es un servicio web que permite consultar y extraer datos de OpenStreetMap mediante un lenguaje de consultas específico (Overpass QL). Se usa para obtener información geográfica detallada, como nodos, caminos y relaciones, de la base de datos de OSM.
+
+```{note}
+[GeoJSON](https://es.wikipedia.org/wiki/GeoJSON){target="_blank"} es un formato basado en JSON para representar datos geográficos. Define varias estructuras como Point, LineString, Polygon, MultiPoint, MultiLineString, MultiPolygon y GeometryCollection para describir diferentes tipos de geometrías espaciales. 
 ```
 
 #### Autenticación en APIs REST
 
-Las APIs frecuentemente requieren autenticación. Los métodos más comunes son:
+Las APIs frecuentemente requieren autenticación, sobre todo cuando se trata de servicios **privados**. Los métodos más comunes son:
 
-**API Keys**
+API Keys
 : Una clave secreta que se envía en la URL o en las cabeceras.
 
-```{code-cell} python
-# Ejemplo conceptual con API key
-import requests
-
-# Opción 1: En la URL como parámetro
-response = requests.get(
-    'https://api.ejemplo.com/datos',
-    params={'api_key': 'tu_clave_secreta'}
-)
-
-# Opción 2: En las cabeceras
-headers = {'X-API-Key': 'tu_clave_secreta'}
-response = requests.get('https://api.ejemplo.com/datos', headers=headers)
-
-print(f"Método de autenticación configurado")
-```
-
-**OAuth 2.0**
+OAuth 2.0
 : Protocolo de autorización más complejo pero seguro, usado por servicios como Google, Facebook, Twitter.
 
-**Bearer Tokens**
+Bearer Tokens
 : Tokens de acceso que se envían en el header de autorización.
-
-```{code-cell} python
-# Ejemplo conceptual con Bearer Token
-import requests
-
-headers = {
-    'Authorization': 'Bearer tu_token_de_acceso_aqui'
-}
-
-response = requests.get('https://api.ejemplo.com/datos', headers=headers)
-print(f"Autenticación con Bearer Token configurada")
-```
 
 ## Mejores Prácticas para Usar APIs
 
@@ -350,41 +428,6 @@ print(f"Autenticación con Bearer Token configurada")
 4. **Monitorear cuotas**: Estar atento a los límites de uso
 5. **Versionar**: Usar versiones específicas de APIs para evitar cambios inesperados
 
-### Manejo de Errores y Reintentos
-
-```{code-cell} python
-import requests
-import time
-
-def consumir_api_con_reintentos(url, max_intentos=3, delay=1):
-    """
-    Realiza una solicitud con reintentos en caso de error.
-    
-    Args:
-        url: URL de la API
-        max_intentos: Número máximo de reintentos
-        delay: Tiempo de espera entre reintentos (en segundos)
-    """
-    for intento in range(max_intentos):
-        try:
-            response = requests.get(url, timeout=10)
-            response.raise_for_status()
-            return response.json()
-        except requests.exceptions.RequestException as e:
-            print(f"Intento {intento + 1} falló: {e}")
-            if intento < max_intentos - 1:
-                time.sleep(delay * (2 ** intento))  # Backoff exponencial
-            else:
-                print("Todos los intentos fallaron")
-                raise
-    
-    return None
-
-# Ejemplo de uso
-# datos = consumir_api_con_reintentos('https://api.ejemplo.com/datos')
-print("Función de reintentos definida")
-```
-
 ## Referencias y Recursos Adicionales
 
 ### Documentación Oficial
@@ -395,7 +438,7 @@ print("Función de reintentos definida")
 
 ### Libros y Referencias Académicas
 
-- Christopher D. Manning, Prabhakar Raghavan and Hinrich Schütze, *Introduction to Information Retrieval*, Cambridge University Press, 2008. Capítulo 19: Web Search Basics.
+- Manning, C. D., Raghavan, P., & Schütze, H. (2008). *Introduction to Information Retrieval*. Cambridge University Press. Capítulo 19: Web Search Basics.{cite:p}`irbook`
 
 ### APIs Públicas para Practicar
 
