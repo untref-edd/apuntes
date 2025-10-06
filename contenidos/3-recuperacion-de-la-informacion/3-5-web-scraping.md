@@ -12,15 +12,140 @@ kernelspec:
 
 # Web Scraping
 
-## Web Scraping
+```{code-cell} python
+---
+tags: [hide-output, remove-cell]
+---
+"""Borra todos los archivos y carpetas en /tmp"""
+import os
+import shutil
+
+
+tmp_dir = "/tmp"
+os.chdir(tmp_dir)
+for filename in os.listdir(tmp_dir):
+    file_path = os.path.join(tmp_dir, filename)
+    try:
+        if os.path.isfile(file_path) or os.path.islink(file_path):
+            os.remove(file_path)
+        elif os.path.isdir(file_path):
+            shutil.rmtree(file_path)
+    except Exception as e:
+        print(f"No se pudo borrar {file_path}: {e}")
+```
 
 Web scraping es el proceso de extraer información de sitios web de forma automatizada. Mientras que las APIs proporcionan interfaces estructuradas para acceder a datos, el web scraping permite obtener información de sitios que no ofrecen APIs o cuando se necesita acceder a datos que no están disponibles a través de ellas.
 
-### Consideraciones Legales y Éticas
+Los artefactos que realizan web scraping se conocen comúnmente como ***"scrapers"***, ***"spiders"*** o ***"crawlers"***. Estos programas navegan por las páginas web, descargan su contenido HTML y extraen la información relevante.
 
-Antes de realizar web scraping, es fundamental considerar aspectos legales y éticos. Algunos sitios web prohíben el scraping en sus términos de servicio, y es importante respetar estas políticas para evitar problemas legales. 
+El siguiente diagrama ilustra la arquitectura básica de un ***Crawler***:
+
+```{mermaid}
+---
+name: crawler_diagram
+title: Diagrama de un Crawler
+---
+flowchart TB
+    %% Definición del flujo principal (de arriba a abajo para mejor alineación visual)
+    subgraph Entrada[" "]
+        A[URLs semilla] --> B[Frontera de URLs]
+    end
+
+    subgraph Descarga_y_Analisis[" "]
+        B --> C[Obtenedor de HTML]
+        C --> D[Analizador HTML]
+        D --> E[Detección de duplicados]
+    end
+
+    subgraph Extraccion_y_Gestion[" "]
+        E --> F[Extractor de URLs]
+        F --> G[Filtro de URLs]
+        G --> H[Cargador/Detector de URLs]
+        H --> I[(Almacenamiento de URLs)]
+        H --> B
+    end
+
+    %% Módulos auxiliares arriba del flujo principal
+    subgraph Auxiliares[" "]
+        direction LR
+        J[Resolutor DNS] --> K[Cacheo] --> L[(Almacenamiento de datos)]
+    end
+
+    %% Conexiones auxiliares
+    C --> J
+    E --> K
+    E --> L
+    K --> L
+
+    %% Colores principales
+    style A fill:#b6e8b0,stroke:#2e8b57,stroke-width:2px,color:#000
+    style B fill:#b6e8b0,stroke:#2e8b57,stroke-width:2px,color:#000
+
+    style C fill:#add8e6,stroke:#4682b4,stroke-width:2px,color:#000
+    style D fill:#add8e6,stroke:#4682b4,stroke-width:2px,color:#000
+    style E fill:#add8e6,stroke:#4682b4,stroke-width:2px,color:#000
+    style F fill:#add8e6,stroke:#4682b4,stroke-width:2px,color:#000
+    style G fill:#add8e6,stroke:#4682b4,stroke-width:2px,color:#000
+    style H fill:#add8e6,stroke:#4682b4,stroke-width:2px,color:#000
+
+    style J fill:#d8b0ff,stroke:#7b68ee,stroke-width:2px,color:#000
+    style K fill:#d8b0ff,stroke:#7b68ee,stroke-width:2px,color:#000
+
+    style I fill:#ffe599,stroke:#c9a602,stroke-width:2px,color:#000
+    style L fill:#ffe599,stroke:#c9a602,stroke-width:2px,color:#000
+
+    %% Fondo de grupos
+    style Entrada fill:#fff9c4,stroke:#fff9c4
+    style Descarga_y_Analisis fill:#fff9c4,stroke:#fff9c4
+    style Extraccion_y_Gestion fill:#fff9c4,stroke:#fff9c4
+    style Auxiliares fill:#fff9c4,stroke:#fff9c4
+```
+
+URLs semilla
+: Puntos de partida para el crawler. Una serie de URLs iniciales desde donde comenzar la exploración.
+
+Frontera de URLs
+: Estructura de datos que almacena las URLs pendientes de visitar. Cada vez que el *crawler* visita una página, extrae nuevas URLs y las añade a esta frontera.
+
+Obtenedor de HTML
+: Componente que realiza solicitudes HTTP para descargar el contenido HTML de las páginas web.
+
+Analizador HTML
+: Procesa el HTML descargado para extraer información relevante, como texto, enlaces, imágenes, etc.
+
+Detección de duplicados
+: Módulo que verifica si una URL ya ha sido visitada para evitar procesarla nuevamente.
+
+Extractor de URLs
+: Extrae todas las URLs presentes en la página web analizada.
+
+Filtro de URLs
+: Aplica reglas para decidir qué URLs deben ser añadidas a la frontera (por ejemplo, solo URLs del mismo dominio).
+
+Cargador/Detector de URLs
+: Añade nuevas URLs a la frontera y marca las URLs visitadas.
+
+Almacenamiento de URLs
+: Base de datos o archivo donde se guardan las URLs visitadas y pendientes.
+
+Resolutor DNS
+: Convierte nombres de dominio en direcciones IP para realizar las solicitudes HTTP.
+
+Cacheo
+: Almacena temporalmente respuestas HTTP para mejorar la eficiencia y reducir la carga en los servidores web.
+
+Almacenamiento de datos
+: Base de datos o archivo donde se guardan los datos extraídos del contenido web.
+
+## Consideraciones Legales y Éticas
+
+Antes de realizar una exploración de la web, es fundamental considerar aspectos legales y éticos. Algunos sitios web prohíben el scraping en sus términos de servicio, y es importante respetar estas políticas para evitar problemas legales.
 
 También es crucial ser respetuoso con los servidores web, evitando sobrecargar el sitio con demasiadas solicitudes en poco tiempo.
+
+Los servidores pueden tener mecanismos para detectar y bloquear actividades sospechosas, como un número excesivo de solicitudes en un corto período.
+
+En general las políticas de acceso a un sitio web por parte de los scrapers se regulan mediante:
 
 robots.txt
 : Archivo en la raíz del sitio web que especifica qué partes pueden ser accedidas por robots automatizados.
@@ -51,11 +176,11 @@ Identificarse correctamente
 Uso responsable de los datos
 : No usar los datos scrapeados para propósitos no éticos o ilegales.
 
-### Web Scraping Manual con Python
+## Web Scraping Manual con Python
 
-Python ofrece excelentes bibliotecas para web scraping. Las más populares son `requests` para realizar solicitudes HTTP y `BeautifulSoup` para parsear HTML.
+Python ofrece excelentes bibliotecas para web scraping. Las más populares son `requests`{l=python} para realizar solicitudes HTTP y `BeautifulSoup`{l=python} para parsear HTML.
 
-#### Instalación de Bibliotecas
+### Instalación de Bibliotecas
 
 ```bash
 pip install requests beautifulsoup4 lxml
@@ -63,156 +188,77 @@ pip install requests beautifulsoup4 lxml
 
 `BeautifulSoup`{l=python} es una biblioteca para parsear documentos HTML y XML, facilitando la navegación y búsqueda de elementos dentro del árbol del documento.
 
-#### Ejemplo Básico: Extraer Información de una Página
+### Ejemplo Básico de un crawler
 
 ```{code-cell} python
+---
+tags: [hide-output]
+---
+
 import requests
 from bs4 import BeautifulSoup
+from urllib.parse import urljoin, urlparse
+import csv
+import time
 
-# Obtener una página web
-url = 'https://quotes.toscrape.com/'
-response = requests.get(url)
+def es_mismo_dominio(url, dominio_base):
+    """Verifica si la URL pertenece al mismo dominio base."""
+    return urlparse(url).netloc == dominio_base
 
-# Verificar que la solicitud fue exitosa
-if response.status_code == 200:
-    # Parsear el HTML
-    soup = BeautifulSoup(response.content, 'html.parser')
-    
-    # Encontrar todas las citas
-    citas = soup.find_all('div', class_='quote')
-    
-    print(f"Se encontraron {len(citas)} citas:\n")
-    
-    for cita in citas[:3]:  # Mostrar solo las primeras 3
-        texto = cita.find('span', class_='text').get_text()
-        autor = cita.find('small', class_='author').get_text()
-        
-        # Tags
-        tags = cita.find_all('a', class_='tag')
-        tags_texto = [tag.get_text() for tag in tags]
-        
-        print(f"Cita: {texto}")
-        print(f"Autor: {autor}")
-        print(f"Tags: {', '.join(tags_texto)}")
-        print("-" * 60)
-else:
-    print(f"Error al acceder a la página: {response.status_code}")
+def crawler_frontera(url_semilla, max_paginas=50, retraso=1, archivo_csv='enlaces.csv'):
+    frontera = [url_semilla]
+    visitadas = set()
+    enlaces_extraidos = []
+
+    dominio_base = urlparse(url_semilla).netloc
+
+    while frontera and len(visitadas) < max_paginas:
+        url_actual = frontera.pop(0)
+        if url_actual in visitadas:
+            continue
+
+        print(f"Visitando: {url_actual}")
+        try:
+            response = requests.get(url_actual, timeout=10, headers={
+                'User-Agent': 'MiCrawler/1.0 (contacto@ejemplo.com)'
+            })
+            response.raise_for_status()
+        except Exception as e:
+            print(f"  Error al acceder: {e}")
+            continue
+
+        soup = BeautifulSoup(response.text, 'lxml')
+        visitadas.add(url_actual)
+
+        # Extraer y guardar enlaces
+        for enlace in soup.find_all('a', href=True):
+            url_encontrada = urljoin(url_actual, enlace['href'])
+            url_encontrada = url_encontrada.split('#')[0]  # Quitar fragmentos
+            if es_mismo_dominio(url_encontrada, dominio_base):
+                if url_encontrada not in visitadas and url_encontrada not in frontera:
+                    frontera.append(url_encontrada)
+                enlaces_extraidos.append({'pagina': url_actual, 'enlace': url_encontrada})
+
+        time.sleep(retraso)  # Ser respetuoso con el servidor
+
+    # Guardar enlaces en un archivo CSV
+    with open(archivo_csv, 'w', newline='', encoding='utf-8') as f:
+        writer = csv.DictWriter(f, fieldnames=['pagina', 'enlace'])
+        writer.writeheader()
+        writer.writerows(enlaces_extraidos)
+
+    print(f"\nTotal de páginas visitadas: {len(visitadas)}")
+    print(f"Enlaces guardados en: {archivo_csv}")
+
+# Ejemplo de uso:
+crawler_frontera('https://quotes.toscrape.com/', max_paginas=10, archivo_csv='enlaces_quotes.csv')
 ```
 
-#### Selectores CSS
+En el siguiente enalace se puede descargar el archivo .csv generado por el ***crawler***: [`enlaces_quotes.csv`](enlaces_quotes.csv)
 
-BeautifulSoup también permite usar selectores CSS, que son muy potentes y flexibles.
+## Scrapy
 
-Un selector CSS es una cadena que define un patrón para seleccionar elementos en un documento HTML o XML, similar a cómo se seleccionan elementos en CSS para aplicar estilos en una página web.
-
-```{code-cell} python
-import requests
-from bs4 import BeautifulSoup
-
-url = 'https://quotes.toscrape.com/'
-response = requests.get(url)
-soup = BeautifulSoup(response.content, 'html.parser')
-
-# Usar selectores CSS
-# Seleccionar todas las citas usando select()
-citas = soup.select('div.quote')
-
-print(f"Total de citas encontradas: {len(citas)}\n")
-
-# Seleccionar elementos específicos dentro de cada cita
-for cita in citas[:2]:
-    # El texto de la cita
-    texto = cita.select_one('span.text').get_text()
-    
-    # El autor
-    autor = cita.select_one('small.author').get_text()
-    
-    # Todos los tags
-    tags = [tag.get_text() for tag in cita.select('a.tag')]
-    
-    print(f"'{texto}'")
-    print(f"  — {autor}")
-    print(f"  Tags: {', '.join(tags)}\n")
-```
-
-#### Navegación y Extracción de Enlaces
-
-```{code-cell} python
-import requests
-from bs4 import BeautifulSoup
-from urllib.parse import urljoin
-
-url = 'https://quotes.toscrape.com/'
-response = requests.get(url)
-soup = BeautifulSoup(response.content, 'html.parser')
-
-# Encontrar todos los enlaces
-enlaces = soup.find_all('a')
-
-print("Algunos enlaces encontrados:\n")
-
-enlaces_unicos = set()
-for enlace in enlaces[:10]:
-    href = enlace.get('href')
-    texto = enlace.get_text().strip()
-    
-    if href:
-        # Convertir enlaces relativos a absolutos
-        url_completa = urljoin(url, href)
-        
-        if url_completa not in enlaces_unicos:
-            enlaces_unicos.add(url_completa)
-            print(f"{texto:30} -> {url_completa}")
-```
-
-#### Manejo de Errores y Timeouts
-
-```{code-cell} python
-import requests
-from bs4 import BeautifulSoup
-from requests.exceptions import RequestException, Timeout, HTTPError
-
-def scrape_con_manejo_errores(url, timeout=10):
-    """
-    Realiza web scraping con manejo robusto de errores.
-    
-    Args:
-        url: URL a scrapear
-        timeout: Tiempo máximo de espera en segundos
-    """
-    try:
-        # Realizar la solicitud con timeout
-        response = requests.get(url, timeout=timeout)
-        
-        # Verificar el código de estado
-        response.raise_for_status()
-        
-        # Parsear el contenido
-        soup = BeautifulSoup(response.content, 'html.parser')
-        
-        return soup
-        
-    except Timeout:
-        print(f"Error: Tiempo de espera agotado para {url}")
-    except HTTPError as e:
-        print(f"Error HTTP {e.response.status_code}: {url}")
-    except RequestException as e:
-        print(f"Error en la solicitud: {e}")
-    except Exception as e:
-        print(f"Error inesperado: {e}")
-    
-    return None
-
-# Ejemplo de uso
-soup = scrape_con_manejo_errores('https://quotes.toscrape.com/')
-if soup:
-    titulo = soup.find('title')
-    print(f"Título de la página: {titulo.get_text() if titulo else 'No encontrado'}")
-```
-
-### Web Scraping con Scrapy
-
-Scrapy es un framework de Python para web scraping a gran escala. Proporciona funcionalidades avanzadas como:
+Scrapy es un *framework* de Python para web scraping a gran escala. Proporciona funcionalidades avanzadas como:
 
 - Gestión automática de solicitudes concurrentes
 - Manejo de robots.txt
@@ -220,408 +266,275 @@ Scrapy es un framework de Python para web scraping a gran escala. Proporciona fu
 - Exportación a múltiples formatos (JSON, CSV, XML)
 - Middleware para personalizar el comportamiento
 
-#### Instalación de Scrapy
+### Instalación de Scrapy
 
 ```bash
 pip install scrapy
 ```
 
-#### Anatomía de una Spider de Scrapy
+````{admonition} Anatomía de una Spider en Scrapy
+Una *spider* en Scrapy es una clase que hereda de `scrapy.Spider` y define cómo navegar y extraer información de un sitio web. Los elementos clave que se deben configurar son:
 
-Una spider es una clase que define cómo scrapear un sitio:
+- **name**: Identificador único de la spider dentro del proyecto.
+- **allowed_domains**: Lista de dominios permitidos para evitar que la spider navegue fuera del sitio objetivo.
+- **start_urls**: Lista de URLs iniciales desde donde comenzará el scraping.
+- **custom_settings** *(opcional)*: Permite definir configuraciones específicas para esta spider, como el retraso entre descargas, el User-Agent, el respeto a robots.txt, número de solicitudes concurrentes, etc.
+- **parse**: Método principal que procesa la respuesta de cada URL y define cómo extraer los datos o seguir enlaces adicionales.
 
-```{code-cell} python
-# Este código es ilustrativo de cómo se vería una spider de Scrapy
-# En la práctica, se ejecuta desde la línea de comandos
+Ejemplo básico:
 
-ejemplo_spider = """
+```python
 import scrapy
 
-class CitasSpider(scrapy.Spider):
-    name = 'citas'
-    start_urls = ['https://quotes.toscrape.com/']
-    
-    # Configuración para ser respetuoso
+class MiSpider(scrapy.Spider):
+    name = 'mi_spider'
+    allowed_domains = ['ejemplo.com']
+    start_urls = ['https://ejemplo.com/']
+
     custom_settings = {
-        'DOWNLOAD_DELAY': 1,  # Esperar 1 segundo entre solicitudes
-        'ROBOTSTXT_OBEY': True,  # Respetar robots.txt
-        'USER_AGENT': 'MiScraper/1.0 (contacto@ejemplo.com)'
+        'DOWNLOAD_DELAY': 1,  # Espera 1 segundo entre solicitudes
+        'ROBOTSTXT_OBEY': True,  # Respeta robots.txt
+        'USER_AGENT': 'MiSpider/1.0 (contacto@ejemplo.com)'
     }
-    
+
     def parse(self, response):
-        # Extraer todas las citas de la página
-        for cita in response.css('div.quote'):
+        # Lógica de extracción de datos
+        for elemento in response.css('div.item'):
             yield {
-                'texto': cita.css('span.text::text').get(),
-                'autor': cita.css('small.author::text').get(),
-                'tags': cita.css('a.tag::text').getall(),
+                'titulo': elemento.css('h2::text').get(),
+                'enlace': elemento.css('a::attr(href)').get(),
             }
-        
-        # Seguir al siguiente enlace de paginación
-        next_page = response.css('li.next a::attr(href)').get()
-        if next_page:
-            yield response.follow(next_page, self.parse)
-"""
-
-print("Ejemplo de Spider de Scrapy:")
-print(ejemplo_spider)
-```
-
-#### Crear un Proyecto Scrapy
-
-```{code-cell} python
-# Comandos para crear y ejecutar un proyecto Scrapy
-comandos_scrapy = """
-# 1. Crear un nuevo proyecto
-scrapy startproject mi_proyecto
-
-# 2. Navegar al directorio del proyecto
-cd mi_proyecto
-
-# 3. Crear una nueva spider
-scrapy genspider nombre_spider dominio.com
-
-# 4. Ejecutar la spider
-scrapy crawl nombre_spider
-
-# 5. Exportar a JSON
-scrapy crawl nombre_spider -o resultados.json
-
-# 6. Exportar a CSV
-scrapy crawl nombre_spider -o resultados.csv
-"""
-
-print("Comandos básicos de Scrapy:")
-print(comandos_scrapy)
-```
-
-#### Ejemplo Completo: Spider para Extraer Noticias
-
-```{code-cell} python
-# Ejemplo ilustrativo de una spider más completa
-ejemplo_spider_noticias = """
-import scrapy
-from datetime import datetime
-
-class NoticiasSpider(scrapy.Spider):
-    name = 'noticias'
-    allowed_domains = ['example-news.com']
-    start_urls = ['https://example-news.com/']
-    
-    custom_settings = {
-        'DOWNLOAD_DELAY': 2,
-        'CONCURRENT_REQUESTS': 1,
-        'ROBOTSTXT_OBEY': True,
-        'USER_AGENT': 'NewsBot/1.0 (contacto@ejemplo.com)'
-    }
-    
-    def parse(self, response):
-        # Extraer enlaces a artículos
-        articulos = response.css('article.noticia')
-        
-        for articulo in articulos:
-            enlace = articulo.css('a.titulo::attr(href)').get()
-            
-            if enlace:
-                # Seguir cada enlace y parsear el artículo completo
-                yield response.follow(enlace, self.parse_articulo)
-        
-        # Paginación
+        # Seguir enlaces a otras páginas si es necesario
         siguiente = response.css('a.siguiente::attr(href)').get()
         if siguiente:
             yield response.follow(siguiente, self.parse)
+```
+
+**Resumen de configuración esencial:**
+- Define el nombre y dominios permitidos.
+- Especifica las URLs de inicio.
+- Ajusta `custom_settings` para controlar el comportamiento de la spider.
+- Implementa el método `parse` para extraer y procesar la información. En el ejemplo, se extraen títulos y enlaces de elementos con la clase `item`, y se sigue un enlace de paginación si está presente.
+
+Para spiders más avanzados, se pueden sobrescribir otros métodos o definir múltiples funciones de parseo según la estructura del sitio.
+````
+
+## Proyecto Práctico: Spider de Libros con Scrapy
+
+A continuación se presenta un tutorial paso a paso para crear un spider con **Scrapy** que visite el sitio [Books to Scrape](https://books.toscrape.com/) y genere un archivo CSV con títulos y precios de los libros de la categoría "Horror".
+
+### Paso 1: Crear un Proyecto Scrapy
+
+Crear un nuevo proyecto de Scrapy en el directorio actual:
+
+Iniciar un nuevo proyecto y una spider:
+```bash
+scrapy startproject books_scraper
+cd books_scraper
+scrapy genspider books books.toscrape.com
+```
+
+### Paso 2: Estructura del Proyecto
+
+El comando anterior crea la siguiente estructura de directorios:
+
+```text
+books_scraper/
+    scrapy.cfg
+    books_scraper/
+        __init__.py
+        items.py
+        middlewares.py
+        pipelines.py
+        settings.py
+        spiders/
+            __init__.py
+            books.py
+```
+
+### Paso 3: Definir los Items
+
+Editar el archivo `items.py` para definir la estructura de datos que queremos extraer:
+
+```python
+# books_scraper/items.py
+import scrapy
+
+class BookItem(scrapy.Item):
+    title = scrapy.Field()
+    price = scrapy.Field()
+    category = scrapy.Field()
+    availability = scrapy.Field()
+    rating = scrapy.Field()
+```
+
+### Paso 4: Implementar el Spider
+
+Editar el archivo `spiders/books.py` con la lógica de extracción:
+
+```python
+# books_scraper/spiders/books.py
+import scrapy
+from books_scraper.items import BookItem
+
+class BooksSpider(scrapy.Spider):
+    name = 'books'
+    allowed_domains = ['books.toscrape.com']
+    start_urls = ['https://books.toscrape.com/catalogue/category/books/horror_31/index.html']
     
-    def parse_articulo(self, response):
-        # Extraer información del artículo
-        yield {
-            'url': response.url,
-            'titulo': response.css('h1.titulo::text').get(),
-            'fecha': response.css('time::attr(datetime)').get(),
-            'autor': response.css('span.autor::text').get(),
-            'categoria': response.css('span.categoria::text').get(),
-            'contenido': ' '.join(response.css('div.contenido p::text').getall()),
-            'tags': response.css('a.tag::text').getall(),
-            'scrapeado_en': datetime.now().isoformat(),
-        }
-"""
-
-print("Ejemplo de Spider para extraer noticias:")
-print(ejemplo_spider_noticias)
+    def parse(self, response):
+        """Extrae información de libros de la página actual"""
+        
+        # Extraer todos los libros de la página
+        books = response.css('article.product_pod')
+        
+        for book in books:
+            item = BookItem()
+            
+            # Extraer título
+            item['title'] = book.css('h3 a::attr(title)').get()
+            
+            # Extraer precio
+            price_text = book.css('p.price_color::text').get()
+            item['price'] = price_text.replace('£', '') if price_text else None
+            
+            # Extraer disponibilidad
+            availability = book.css('p.instock.availability::text').getall()
+            item['availability'] = ''.join(availability).strip() if availability else None
+            
+            # Extraer calificación
+            rating_class = book.css('p.star-rating::attr(class)').get()
+            if rating_class:
+                rating = rating_class.split()[-1]  # Obtiene la última palabra (One, Two, Three, etc.)
+                item['rating'] = rating
+            
+            item['category'] = 'Horror'
+            
+            yield item
+        
+        # Seguir a la siguiente página si existe
+        next_page = response.css('li.next a::attr(href)').get()
+        if next_page:
+            next_page_url = response.urljoin(next_page)
+            yield scrapy.Request(next_page_url, callback=self.parse)
 ```
 
-#### Selectores XPath vs CSS en Scrapy
+### Paso 5: Configurar Pipeline para CSV
 
-Scrapy soporta tanto selectores CSS como XPath:
+Crear un pipeline personalizado para exportar a CSV. Editar `pipelines.py`:
 
-```{code-cell} python
-comparacion_selectores = """
-# Selectores CSS
-response.css('div.quote span.text::text').get()
-response.css('a::attr(href)').getall()
-response.css('div.quote').getall()
+```python
+# books_scraper/pipelines.py
+import csv
+import os
 
-# Selectores XPath (más potentes pero más complejos)
-response.xpath('//div[@class="quote"]/span[@class="text"]/text()').get()
-response.xpath('//a/@href').getall()
-response.xpath('//div[@class="quote"]').getall()
-
-# XPath permite operaciones más complejas:
-# Seleccionar elementos que contienen cierto texto
-response.xpath('//div[contains(@class, "quote")]')
-
-# Seleccionar el elemento padre
-response.xpath('//span[@class="text"]/parent::div')
-
-# Condiciones complejas
-response.xpath('//div[@class="quote" and @id="primera"]')
-"""
-
-print("Comparación de selectores en Scrapy:")
-print(comparacion_selectores)
-```
-
-#### Middleware y Pipelines en Scrapy
-
-**Middleware**
-: Componentes que procesan requests y responses.
-
-**Pipelines**
-: Procesan los items extraídos (limpieza, validación, almacenamiento).
-
-```{code-cell} python
-ejemplo_pipeline = """
-# pipelines.py - Procesar items scrapeados
-
-class LimpiezaPipeline:
-    def process_item(self, item, spider):
-        # Limpiar espacios en blanco
-        if 'texto' in item:
-            item['texto'] = item['texto'].strip()
-        
-        if 'autor' in item:
-            item['autor'] = item['autor'].strip()
-        
-        return item
-
-class ValidacionPipeline:
-    def process_item(self, item, spider):
-        # Validar que los campos requeridos estén presentes
-        campos_requeridos = ['texto', 'autor']
-        
-        for campo in campos_requeridos:
-            if campo not in item or not item[campo]:
-                raise DropItem(f'Falta campo requerido: {campo}')
-        
-        return item
-
-class AlmacenamientoPipeline:
+class CsvExportPipeline:
+    def __init__(self):
+        self.file = None
+        self.writer = None
+    
     def open_spider(self, spider):
-        self.archivo = open('resultados.json', 'w', encoding='utf-8')
-        self.archivo.write('[\\n')
+        """Se ejecuta cuando se abre el spider"""
+        self.file = open('horror_books.csv', 'w', newline='', encoding='utf-8')
+        self.writer = csv.DictWriter(
+            self.file, 
+            fieldnames=['title', 'price', 'category', 'availability', 'rating']
+        )
+        self.writer.writeheader()
     
     def close_spider(self, spider):
-        self.archivo.write('\\n]')
-        self.archivo.close()
+        """Se ejecuta cuando se cierra el spider"""
+        if self.file:
+            self.file.close()
     
     def process_item(self, item, spider):
-        import json
-        linea = json.dumps(dict(item), ensure_ascii=False, indent=2)
-        self.archivo.write(linea + ',\\n')
+        """Procesa cada item extraído"""
+        self.writer.writerow(dict(item))
         return item
+```
 
-# En settings.py, activar los pipelines:
+### Paso 6: Configurar Settings
+
+Editar `settings.py` para activar el pipeline y configurar el comportamiento del spider:
+
+```python
+# books_scraper/settings.py
+BOT_NAME = 'books_scraper'
+
+SPIDER_MODULES = ['books_scraper.spiders']
+NEWSPIDER_MODULE = 'books_scraper.spiders'
+
+# Respetar robots.txt
+ROBOTSTXT_OBEY = True
+
+# Configurar pipelines
 ITEM_PIPELINES = {
-    'mi_proyecto.pipelines.LimpiezaPipeline': 100,
-    'mi_proyecto.pipelines.ValidacionPipeline': 200,
-    'mi_proyecto.pipelines.AlmacenamientoPipeline': 300,
+    'books_scraper.pipelines.CsvExportPipeline': 300,
 }
-"""
 
-print("Ejemplo de Pipelines en Scrapy:")
-print(ejemplo_pipeline)
+# Configurar delays para ser respetuosos con el servidor
+DOWNLOAD_DELAY = 1  # Esperar 1 segundo entre requests
+RANDOMIZE_DOWNLOAD_DELAY = 0.5  # Variar el delay ±50%
+
+# User agent personalizado
+USER_AGENT = 'books_scraper (+http://www.yourdomain.com)'
+
+# Configuración de logging
+LOG_LEVEL = 'INFO'
 ```
 
-### Scraping de Sitios Dinámicos (JavaScript)
+### Paso 7: Ejecutar el Spider
 
-Muchos sitios web modernos generan contenido dinámicamente con JavaScript. Para estos casos, herramientas como `requests` y `BeautifulSoup` no son suficientes porque solo obtienen el HTML inicial. Se necesitan herramientas que ejecuten JavaScript:
+Para ejecutar el spider y generar el archivo CSV:
 
-#### Selenium
+```bash
+cd books_scraper
+scrapy crawl books
+# Esto generará un archivo 'horror_books.csv' con los resultados
+```
+
+### Paso 8: Análisis de Resultados (Opcional)
+
+Podemos analizar los resultados usando pandas:
 
 ```{code-cell} python
-ejemplo_selenium = """
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+---
+tags: [hide-output]
+---
+import pandas as pd
 
-# Configurar el driver (Chrome, Firefox, etc.)
-driver = webdriver.Chrome()
+# Cargar los datos
+df = pd.read_csv('../_static/code/scraping/books_scraper/horror_books.csv')
 
-try:
-    # Navegar a la página
-    driver.get('https://ejemplo-dinamico.com')
-    
-    # Esperar a que un elemento específico esté presente
-    wait = WebDriverWait(driver, 10)
-    elemento = wait.until(
-        EC.presence_of_element_located((By.CLASS_NAME, 'contenido-dinamico'))
-    )
-    
-    # Interactuar con la página
-    boton = driver.find_element(By.ID, 'cargar-mas')
-    boton.click()
-    
-    # Extraer datos
-    items = driver.find_elements(By.CLASS_NAME, 'item')
-    
-    for item in items:
-        titulo = item.find_element(By.TAG_NAME, 'h2').text
-        descripcion = item.find_element(By.CLASS_NAME, 'descripcion').text
-        print(f'{titulo}: {descripcion}')
+# Estadísticas básicas
+print("Estadísticas de los libros de Horror:")
+print(f"Total de libros: {len(df)}")
+print(f"Precio promedio: £{df['price'].astype(float).mean():.2f}")
+print(f"Precio mínimo: £{df['price'].astype(float).min():.2f}")
+print(f"Precio máximo: £{df['price'].astype(float).max():.2f}")
 
-finally:
-    driver.quit()
-"""
-
-print("Ejemplo de Selenium para sitios dinámicos:")
-print(ejemplo_selenium)
+# Distribución de calificaciones
+print("\\nDistribución de calificaciones:")
+print(df['rating'].value_counts())
+# Mostrar las primeras filas del DataFrame
+print("Código para análisis con pandas:")
+print(analysis_code)
 ```
 
-#### Playwright
+### Consideraciones Importantes
 
-Una alternativa moderna a Selenium:
+1. **Respeto por robots.txt**: Scrapy automáticamente respeta el archivo robots.txt del sitio
+2. **Delays entre requests**: Configuramos delays para no sobrecargar el servidor
+3. **Manejo de errores**: Scrapy maneja automáticamente errores de red y reintentos
+4. **Escalabilidad**: El código puede extenderse fácilmente para otras categorías
 
-```{code-cell} python
-ejemplo_playwright = """
-from playwright.sync_api import sync_playwright
+### Extensiones Posibles
 
-with sync_playwright() as p:
-    # Lanzar navegador
-    browser = p.chromium.launch(headless=True)
-    page = browser.new_page()
-    
-    # Navegar a la página
-    page.goto('https://ejemplo-dinamico.com')
-    
-    # Esperar a que el contenido se cargue
-    page.wait_for_selector('.contenido-dinamico')
-    
-    # Hacer clic en un botón
-    page.click('#cargar-mas')
-    
-    # Extraer datos
-    items = page.query_selector_all('.item')
-    
-    for item in items:
-        titulo = item.query_selector('h2').inner_text()
-        descripcion = item.query_selector('.descripcion').inner_text()
-        print(f'{titulo}: {descripcion}')
-    
-    browser.close()
-"""
-
-print("Ejemplo de Playwright para sitios dinámicos:")
-print(ejemplo_playwright)
-```
-
-### Caso Práctico: Scraping Completo
-
-Veamos un ejemplo completo que integra varios conceptos:
-
-```{code-cell} python
-import requests
-from bs4 import BeautifulSoup
-import time
-import csv
-from urllib.parse import urljoin
-
-def verificar_robots_txt(base_url):
-    """Verifica si el scraping está permitido según robots.txt"""
-    robots_url = urljoin(base_url, '/robots.txt')
-    try:
-        response = requests.get(robots_url, timeout=5)
-        if response.status_code == 200:
-            print(f"Robots.txt encontrado. Revisa las reglas antes de continuar.")
-            print(response.text[:200] + "...")
-            return True
-    except:
-        print("No se pudo acceder a robots.txt")
-    return False
-
-def scrape_quotes_con_paginacion(max_paginas=2):
-    """
-    Scrapea citas con paginación de manera ética y estructurada.
-    """
-    base_url = 'https://quotes.toscrape.com'
-    
-    # Verificar robots.txt
-    verificar_robots_txt(base_url)
-    
-    todas_las_citas = []
-    pagina_actual = 1
-    
-    while pagina_actual <= max_paginas:
-        url = f'{base_url}/page/{pagina_actual}/'
-        
-        print(f"\nScrapeando página {pagina_actual}: {url}")
-        
-        try:
-            # Headers para identificarnos
-            headers = {
-                'User-Agent': 'Mozilla/5.0 (Educational Bot; contact@ejemplo.com)'
-            }
-            
-            response = requests.get(url, headers=headers, timeout=10)
-            response.raise_for_status()
-            
-            soup = BeautifulSoup(response.content, 'html.parser')
-            
-            # Extraer citas
-            citas = soup.find_all('div', class_='quote')
-            
-            if not citas:
-                print("No se encontraron más citas. Finalizando.")
-                break
-            
-            for cita in citas:
-                datos_cita = {
-                    'texto': cita.find('span', class_='text').get_text(),
-                    'autor': cita.find('small', class_='author').get_text(),
-                    'tags': [tag.get_text() for tag in cita.find_all('a', class_='tag')],
-                    'pagina': pagina_actual
-                }
-                todas_las_citas.append(datos_cita)
-            
-            print(f"  Extraídas {len(citas)} citas")
-            
-            # Respetar el servidor: esperar entre solicitudes
-            time.sleep(1)
-            
-            pagina_actual += 1
-            
-        except requests.exceptions.RequestException as e:
-            print(f"Error al acceder a {url}: {e}")
-            break
-    
-    return todas_las_citas
-
-# Ejecutar el scraping
-print("Iniciando scraping ético y estructurado...")
-citas = scrape_quotes_con_paginacion(max_paginas=2)
-
-print(f"\n{'='*60}")
-print(f"Total de citas extraídas: {len(citas)}")
-print(f"{'='*60}\n")
-
-# Mostrar algunas estadísticas
-if citas:
-    print("Primeras 2 citas:")
-    for i, cita in enumerate(citas[:2], 1):
-        print(f"\n{i}. {cita['texto']}")
-        print(f"   — {cita['autor']}")
-        print(f"   Tags: {', '.join(cita['tags'])}")
-```
-
+- **Múltiples categorías**: Modificar `start_urls` para incluir más categorías
+- **Imágenes**: Agregar extracción de URLs de imágenes de libros
+- **Detalles adicionales**: Visitar páginas individuales de libros para más información
+- **Base de datos**: Cambiar el pipeline para guardar en SQLite o PostgreSQL
+- **Monitoreo**: Agregar logging y métricas de rendimiento
 
 ## Comparación: APIs vs Web Scraping
 
@@ -734,6 +647,7 @@ print("  - Desventajas: Puede sobrecargar el servidor si no se controla")
 - **pandas**: Análisis y manipulación de datos
 - **SQLAlchemy**: ORM para bases de datos
 - **MongoDB**: Base de datos NoSQL para datos no estructurados
+
 
 ## Referencias y Recursos Adicionales
 

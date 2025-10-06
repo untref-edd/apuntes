@@ -13,5 +13,8 @@ matplotlib
 lxml
 feedparser
 folium
+beautifulsoup4
+requests
+scrapy
 
 --editable contenidos/_static/code

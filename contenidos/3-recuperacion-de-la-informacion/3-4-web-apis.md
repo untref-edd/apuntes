@@ -66,6 +66,30 @@ sequenceDiagram
     Note over C,S: Respuesta HTTP con contenido
 ```
 
+A continuación se muestra un tipico intercambio de mensajes entre cliente y servidor:
+
+**Petición enviada:**
+
+```text
+GET /contact HTTP/1.1
+Host: example.com
+User-Agent: curl/8.6.0
+Accept: */*
+```
+
+**Respuesta recibida:**
+
+```text
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=UTF-8
+Date: Fri, 21 Jun 2024 14:18:33 GMT
+Last-Modified: Thu, 17 Oct 2019 07:18:26 GMT
+Content-Length: 1234
+
+<!doctype html>
+<!-- HTML content follows -->
+```
+
 #### Características de HTTP
 
 Sin estado (stateless)
@@ -82,7 +106,7 @@ Cliente-Servidor
 
 #### Métodos HTTP Principales
 
-Los métodos HTTP más comunes son:
+Los métodos HTTP definen las peticiones que se puede solicitar al servidor sobre un recurso específico:
 
 `GET`
 : Solicita un recurso específico. Es el método más común para solicitar un recurso al servidor. Si no se especifica un recurso en particular, el servidor generalmente devuelve la página principal, normalmente `index.html`.
@@ -147,7 +171,7 @@ for k, v in response.headers.items():
 print(f"\nPrimeros 200 caracteres del contenido (página html):\n{response.text[:200]}")
 ```
 
-El intercambio entre cliente y servidor puede verse en crudo utilizando herramientas como `curl` en la línea de comandos. Aquí hay un ejemplo de cómo se vería una solicitud y respuesta HTTP:
+El intercambio entre cliente y servidor puede verse en *"crudo"* utilizando herramientas como `curl` en la línea de comandos. Aquí hay un ejemplo de cómo se vería una solicitud y respuesta HTTP:
 
 ```bash
 curl -v https://untref.edu.ar/
