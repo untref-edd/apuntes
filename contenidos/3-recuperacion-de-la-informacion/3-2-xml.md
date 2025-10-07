@@ -14,7 +14,7 @@ kernelspec:
 
 ## XML
 
-**XML** (eXtensible Markup Language) es un lenguaje de marcado que define un conjunto de reglas para la codificación de documentos en un formato que es tanto legible por humanos como por máquinas. Fue diseñado para almacenar y transportar datos, y es ampliamente utilizado en aplicaciones web, servicios web y sistemas de intercambio de datos.
+**XML** (_eXtensible Markup Language_) es un lenguaje de marcado que define un conjunto de reglas para la codificación de documentos en un formato que es tanto legible por humanos como por máquinas. Fue diseñado para almacenar y transportar datos, y es ampliamente utilizado en aplicaciones web, servicios web y sistemas de intercambio de datos.
 
 XML permite a los usuarios definir sus propias etiquetas y estructuras de datos, lo que lo hace muy flexible y adaptable a diferentes necesidades. A diferencia de HTML, que tiene un conjunto fijo de etiquetas predefinidas, XML permite crear etiquetas personalizadas que describen el contenido de manera más precisa.
 
@@ -76,7 +76,7 @@ align: center
 Árbol que representa la estructura del poema en XML.
 ```
 
-Existen varios sitios en internet que permiten visualizar el árbol asociado. Por ejemplo [https://codebeautify.org/xmlviewer](https://codebeautify.org/xmlviewer?input=%3Cpoema%20fecha=%22Abril%20de%201915%22%20lugar=%22Granada%22%3E%3Ctitulo%3EAlba%3C/titulo%3E%3Cverso%3EMi%20coraz%C3%B3n%20oprimido%3C/verso%3E%3Cverso%3Esiente%20junto%20a%20la%20alborada%3C/verso%3E%3Cverso%3Eel%20dolor%20de%20sus%20amores%3C/verso%3E%3Cverso%3Ey%20el%20sue%C3%B1o%20de%20las%20distancias.%20%3C/verso%3E%3C/poema%3E){target="\_blank"} }.
+Existen varios sitios en internet que permiten visualizar el árbol asociado. Por ejemplo [https://codebeautify.org/xmlviewer](https://codebeautify.org/xmlviewer?input=%3Cpoema%20fecha=%22Abril%20de%201915%22%20lugar=%22Granada%22%3E%3Ctitulo%3EAlba%3C/titulo%3E%3Cverso%3EMi%20coraz%C3%B3n%20oprimido%3C/verso%3E%3Cverso%3Esiente%20junto%20a%20la%20alborada%3C/verso%3E%3Cverso%3Eel%20dolor%20de%20sus%20amores%3C/verso%3E%3Cverso%3Ey%20el%20sue%C3%B1o%20de%20las%20distancias.%20%3C/verso%3E%3C/poema%3E){target="\_blank"}.
 
 En el ejemplo anterior, el elemento raíz es `poema`{l=xml}, que contiene como elementos hijos: `titulo`{l=xml} y varios elementos `verso`{l=xml}. El elemento `poema`{l=xml} también tiene dos atributos: `fecha`{l=xml} y `lugar`{l=xml}, que proporcionan información adicional sobre el poema.
 
@@ -84,7 +84,7 @@ Que un documento XML se pueda representar como un árbol simplifica la consulta 
 
 ## XPath: XML Path Language
 
-**XPath** (XML Path Language) es un lenguaje de consulta utilizado para navegar y seleccionar nodos en documentos XML. Proporciona una sintaxis para definir rutas que permiten localizar elementos, atributos y otros nodos dentro de la estructura jerárquica de un documento XML.
+**XPath** (_XML Path Language_) es un lenguaje de consulta utilizado para navegar y seleccionar nodos en documentos XML. Proporciona una sintaxis para definir rutas que permiten localizar elementos, atributos y otros nodos dentro de la estructura jerárquica de un documento XML.
 
 Permite describir caminos a través del árbol XML utilizando una notación similar a la de los sistemas de archivos. Por ejemplo, la expresión `/poema/titulo`{l=xml} selecciona el elemento `titulo`{l=xml} que es hijo directo del elemento raíz `poema`{l=xml}. Evaluar una expresión XPath es buscar **elementos** o **atributos** en un documento XML que coincidan con los criterios especificados en la expresión. El resultado son todos los nodos que cumplen con esos criterios.
 
@@ -108,7 +108,7 @@ language: xml
 | `..`               | Padre del nodo actual                                                                      |
 | `@nombre_atributo` | Atributo                                                                                   |
 
-Cada consulta XPath devuelve un conjunto de nodos que cumplen con los criterios especificados en la expresión. Se recomienda realizar pruebas en [XPath Tester](https://codebeautify.org/Xpath-Tester?input=%3Cbiblioteca%3E%0A%20%20%3Clibro%3E%0A%20%20%20%20%3Ctitulo%3ELa%20vida%20est%C3%A1%20en%20otra%20parte%3C/titulo%3E%0A%20%20%20%20%3Cautor%3EMilan%20Kundera%3C/autor%3E%0A%20%20%20%20%3CfechaPublicacion%20a%C3%B1o%3D%221973%22%20/%3E%0A%20%20%20%20%3Cprecio%3E305.50%3C/precio%3E%0A%20%20%3C/libro%3E%0A%20%20%3Crevista%3E%0A%20%20%20%20%3Ctitulo%3EComputer%20Gaming%20World%3C/titulo%3E%0A%20%20%20%20%3Ceditorial%3EGolden%20Empire%20Publications%3C/editorial%3E%0A%20%20%20%20%3CfechaPublicacion%20a%C3%B1o%3D%221981%22%20/%3E%0A%20%20%20%20%3Cprecio%3E669.99%3C/precio%3E%0A%20%20%3C/revista%3E%0A%20%20%3Clibro%3E%0A%20%20%20%20%3Ctitulo%3EPantale%C3%B3n%20y%20las%20visitadoras%3C/titulo%3E%0A%20%20%20%20%3Cautor%20fechaNacimiento%3D%2228/03/1936%22%3EMario%20Vargas%20Llosa%3C/autor%3E%0A%20%20%20%20%3CfechaPublicacion%20a%C3%B1o%3D%221973%22%20/%3E%0A%20%20%20%20%3Cprecio%3E214.48%3C/precio%3E%0A%20%20%3C/libro%3E%0A%20%20%3Clibro%3E%0A%20%20%20%20%3Ctitulo%3EConversaci%C3%B3n%20en%20la%20catedral%3C/titulo%3E%0A%20%20%20%20%3Cautor%20fechaNacimiento%3D%2228/03/1936%22%3EMario%20Vargas%20Llosa%3C/autor%3E%0A%20%20%20%20%3CfechaPublicacion%20a%C3%B1o%3D%221969%22%20/%3E%0A%20%20%20%20%3Cprecio%3E541.78%3C/precio%3E%0A%20%20%3C/libro%3E%0A%20%20%3Crevista%3E%0A%20%20%20%20%3Ctitulo%3EPC%20Users%3C/titulo%3E%0A%20%20%20%20%3Ceditorial%3ERedUsers%3C/editorial%3E%0A%20%20%20%20%3CfechaPublicacion%20a%C3%B1o%3D%222000%22%20/%3E%0A%20%20%20%20%3Cprecio%3E220.50%3C/precio%3E%0A%20%20%3C/revista%3E%0A%3C/biblioteca%3E){target="\_blank"} }.
+Cada consulta XPath devuelve un conjunto de nodos que cumplen con los criterios especificados en la expresión. Se recomienda realizar pruebas en [XPath Tester](https://codebeautify.org/Xpath-Tester?input=%3Cbiblioteca%3E%0A%20%20%3Clibro%3E%0A%20%20%20%20%3Ctitulo%3ELa%20vida%20est%C3%A1%20en%20otra%20parte%3C/titulo%3E%0A%20%20%20%20%3Cautor%3EMilan%20Kundera%3C/autor%3E%0A%20%20%20%20%3CfechaPublicacion%20a%C3%B1o%3D%221973%22%20/%3E%0A%20%20%20%20%3Cprecio%3E305.50%3C/precio%3E%0A%20%20%3C/libro%3E%0A%20%20%3Crevista%3E%0A%20%20%20%20%3Ctitulo%3EComputer%20Gaming%20World%3C/titulo%3E%0A%20%20%20%20%3Ceditorial%3EGolden%20Empire%20Publications%3C/editorial%3E%0A%20%20%20%20%3CfechaPublicacion%20a%C3%B1o%3D%221981%22%20/%3E%0A%20%20%20%20%3Cprecio%3E669.99%3C/precio%3E%0A%20%20%3C/revista%3E%0A%20%20%3Clibro%3E%0A%20%20%20%20%3Ctitulo%3EPantale%C3%B3n%20y%20las%20visitadoras%3C/titulo%3E%0A%20%20%20%20%3Cautor%20fechaNacimiento%3D%2228/03/1936%22%3EMario%20Vargas%20Llosa%3C/autor%3E%0A%20%20%20%20%3CfechaPublicacion%20a%C3%B1o%3D%221973%22%20/%3E%0A%20%20%20%20%3Cprecio%3E214.48%3C/precio%3E%0A%20%20%3C/libro%3E%0A%20%20%3Clibro%3E%0A%20%20%20%20%3Ctitulo%3EConversaci%C3%B3n%20en%20la%20catedral%3C/titulo%3E%0A%20%20%20%20%3Cautor%20fechaNacimiento%3D%2228/03/1936%22%3EMario%20Vargas%20Llosa%3C/autor%3E%0A%20%20%20%20%3CfechaPublicacion%20a%C3%B1o%3D%221969%22%20/%3E%0A%20%20%20%20%3Cprecio%3E541.78%3C/precio%3E%0A%20%20%3C/libro%3E%0A%20%20%3Crevista%3E%0A%20%20%20%20%3Ctitulo%3EPC%20Users%3C/titulo%3E%0A%20%20%20%20%3Ceditorial%3ERedUsers%3C/editorial%3E%0A%20%20%20%20%3CfechaPublicacion%20a%C3%B1o%3D%222000%22%20/%3E%0A%20%20%20%20%3Cprecio%3E220.50%3C/precio%3E%0A%20%20%3C/revista%3E%0A%3C/biblioteca%3E){target="\_blank"}.
 
 `/biblioteca`
 : Selecciona el nodo raíz `biblioteca`{l=xml}.
@@ -240,22 +240,26 @@ pip install lxml
 tags: [hide-output]
 ---
 from lxml import etree
+
 # Cargar el documento XML
-tree = etree.parse('../_static/code/xml/biblioteca.xml')
+tree = etree.parse("../_static/code/xml/biblioteca.xml")
 root = tree.getroot()
+
 # Realizar una consulta XPath
 # Seleccionar todos los títulos de libros
-titulos = root.xpath('/biblioteca/libro/titulo/text()')
+titulos = root.xpath("/biblioteca/libro/titulo/text()")
 print("Títulos de libros:")
 for titulo in titulos:
     print(titulo)
+
 # Seleccionar todos los autores con fecha de nacimiento
-autores_con_fecha = root.xpath('//autor[@fechaNacimiento]/text()')
+autores_con_fecha = root.xpath("//autor[@fechaNacimiento]/text()")
 print("\nAutores con fecha de nacimiento:")
 for autor in autores_con_fecha:
     print(autor)
+
 # Seleccionar libros con precio menor a 300
-libros_baratos = root.xpath('/biblioteca/libro[precio < 300]/titulo/text()')
+libros_baratos = root.xpath("/biblioteca/libro[precio < 300]/titulo/text()")
 print("\nLibros con precio menor a 300:")
 for libro in libros_baratos:
     print(libro)
@@ -268,12 +272,15 @@ Otro ejemplo: Calcular el precio total de los libros
 tags: [hide-output]
 ---
 from lxml import etree
+
 # Cargar el documento XML
-tree = etree.parse('../_static/code/xml/biblioteca.xml')
+tree = etree.parse("../_static/code/xml/biblioteca.xml")
 root = tree.getroot()
+
 # Calcular el precio total de todos los libros
-precios = root.xpath('/biblioteca/libro/precio/text()')
+precios = root.xpath("/biblioteca/libro/precio/text()")
 total_precio = sum(float(precio) for precio in precios)
+
 print(f"\nPrecio total de todos los libros: {total_precio:.2f}")
 ```
 
@@ -286,14 +293,17 @@ print(f"\nPrecio total de todos los libros: {total_precio:.2f}")
 tags: [hide-output]
 ---
 import feedparser
+
 # URL del feed RSS de Clarin
-rss_url = 'https://www.clarin.com/rss/lo-ultimo/'
+rss_url = "https://www.clarin.com/rss/lo-ultimo/"
+
 # Parsear el feed RSS
 feed = feedparser.parse(rss_url)
+
 # Mostrar los títulos y enlaces de las últimas noticias
 print("Últimas noticias de Clarin:\n")
 for entry in feed.entries[:5]:  # Mostrar solo las primeras 5 noticias
-  print(f"Título: {entry.title}")
-  print(f"Fecha de publicación: {entry.published}")
-  print(f"Enlace: {entry.link}\n")
+    print(f"Título: {entry.title}")
+    print(f"Fecha de publicación: {entry.published}")
+    print(f"Enlace: {entry.link}\n")
 ```
