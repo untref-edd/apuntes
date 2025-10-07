@@ -41,9 +41,11 @@ Los componentes principales son:
 : Aplicación que responde a las solicitudes de los clientes, enviando los recursos solicitados. Ejemplos incluyen Apache, Nginx, y servidores de aplicaciones como Node.js o Python con frameworks como Django o FastAPI.
 
 **DNS (Domain Name System)**
-: Sistema que traduce nombres de dominio legibles (como `www.google.com`) a direcciones IP numéricas que los computadores pueden entender.
+: Sistema que traduce nombres de dominio legibles (como `www.untref.edu.ar`) a direcciones IP numéricas que los computadores pueden entender.
 
 En primer lugar el cliente o browser realiza una consulta DNS para obtener la dirección IP del servidor web asociado al dominio. Luego, el cliente envía una solicitud HTTP al servidor, que procesa la solicitud y devuelve una respuesta con el recurso solicitado.
+
+Hoy en día a través de la web no solo se puede obtener páginas HTML, sino también se pueden ejecutar aplicaciones web completas, donde el servidor puede enviar datos y código (generalmente JavaScript) que se ejecuta en el navegador del cliente, permitiendo interfaces interactivas y dinámicas.
 
 ### El Protocolo HTTP
 
@@ -66,8 +68,6 @@ sequenceDiagram
     Note over C,S: Respuesta HTTP con contenido
 ```
 
-A continuación se muestra un tipico intercambio de mensajes entre cliente y servidor:
-
 **Petición enviada:**
 
 ```text
@@ -76,6 +76,8 @@ Host: example.com
 User-Agent: curl/8.6.0
 Accept: */*
 ```
+
+La petición HTTP consta de varias líneas, donde la primera línea indica el método HTTP (`GET`), el recurso solicitado (`/contact`) y la versión del protocolo (`HTTP/1.1`). Las líneas siguientes son las cabeceras (*headers*) que proporcionan información adicional sobre la solicitud. En este caso, se especifica el host, el agente de usuario (navegador) y los tipos de contenido aceptados.
 
 **Respuesta recibida:**
 
@@ -89,6 +91,8 @@ Content-Length: 1234
 <!doctype html>
 <!-- HTML content follows -->
 ```
+
+La respuesta HTTP también consta de varias líneas, donde la primera línea indica el protocolo que usa el servidor y el código de estado (`200 OK`), seguido de las cabeceras de respuesta y finalmente el cuerpo del mensaje que contiene el HTML de la página.
 
 #### Características de HTTP
 
@@ -177,6 +181,10 @@ El intercambio entre cliente y servidor puede verse en *"crudo"* utilizando herr
 curl -v https://untref.edu.ar/
 ```
 
+```{note}
+cURL es una herramienta de línea de comandos, gratuita y de código abierto, para transferir datos usando diversas URLs y protocolos, comúnmente utilizada para interactuar con APIs, descargar archivos y probar recursos web. Es compatible con una amplia gama de protocolos como HTTP, HTTPS, FTP y SMB. cURL está disponible de forma nativa en sistemas operativos basados en Unix, incluyendo Linux y macOS, y está preinstalado en las versiones modernas de Windows. 
+```
+
 **Petición enviada:**
 
 ```text
@@ -185,10 +193,6 @@ Host: www.untref.edu.ar
 User-Agent: curl/8.12.1
 Accept: */*
 ```
-
-La solicitud HTTP consta de varias líneas, donde la primera línea indica el método HTTP (`GET`), el recurso solicitado (`/` que es la raíz del sitio) y la versión del protocolo (`HTTP/1.1`). Las líneas siguientes son las cabeceras (*headers*) que proporcionan información adicional sobre la solicitud. En este caso, se especifica el host, el agente de usuario (navegador) y los tipos de contenido aceptados.
-
-El servidor también responde con una serie de cabeceras y el contenido de la página solicitada. La primera línea de la respuesta indica el código de estado (`200 OK`), seguido de las cabeceras de respuesta y finalmente el cuerpo del mensaje que contiene el HTML de la página.
 
 **Respuesta recibida:**
 
@@ -240,6 +244,7 @@ flowchart TB
     style D fill:#e1ffe1
     style E fill:#f5e1ff
 ```
+
 Una aplicación cliente (por ejemplo una aplicación web o móvil) realiza solicitudes HTTP a una API REST, que procesa la solicitud, interactúa con bases de datos u otros servicios, y devuelve los datos en formatos como JSON o XML.
 
 El protocolo base es HTTP, y los recursos se acceden a través de URLs específicas. Por ejemplo una URL típica de una API REST podría ser:
@@ -249,9 +254,10 @@ https://api.ejemplo.com/v1/usuarios/123
 ```
 
 Donde:
+
 - `https://api.ejemplo.com` es el dominio de la API. Es decir el servidor donde está alojada la API.
 - `/v1` indica la versión de la API. Un servidor puede tener múltiples versiones de una API para mantener compatibilidad con clientes antiguos.
-- `/usuarios/123` es el recurso específico (usuario con ID 123) 
+- `/usuarios/123` es el recurso específico (usuario con ID 123).
 
 Ante esta solicitud, la API podría devolver un JSON con los datos del usuario:
 
@@ -286,7 +292,7 @@ REST es un estilo arquitectónico para diseñar servicios web que se basa en los
 
 #### Ejemplo: Consumir una API REST Pública
 
-Vamos a consumir una API pública para consultar resultados electorales de Argentina, disponible en [https://resultados.mininterior.gob.ar](https://resultados.mininterior.gob.ar).
+Vamos a consumir una API pública para consultar resultados electorales de Argentina, disponible en [https://resultados.mininterior.gob.ar](https://resultados.mininterior.gob.ar){target="_blank"}.
 
 ```{code-cell} python
 ---
@@ -306,15 +312,15 @@ else:
 
 En la solicitud anterior, se puede ver que se utilizan varios parámetros en la URL para especificar los datos que se quieren consultar
 
-| Parámetro               | Valor  | Significado                                        |
-| ----------------------- | ------ | -------------------------------------------------- |
-| `anioEleccion=2019`     | 2019   | Año de la elección consultada.                     |
-| `tipoRecuento=1`        | 1      | Tipo de recuento. 1 = Recuento Provisional         |
-| `tipoEleccion=1`        | 2      | Tipo de elección. 2 = Generales                    |
-| `categoriaId=1`         | 1      | Categoría electoral. 1 = Presidente de la Nación.  |
-| `distritoId=2`          | 2      | Distrito Electoral. 2 = Provincia de Buenos Aires. |
-| `seccionProvincialId=1` | 1      | Sección provincial. 1 = Primera Sección Electoral. |
-| `seccionId=118`         | 118    | Sección electoral. 118 = Tres de Febrero.          |
+| Parámetro               | Valor  | Significado                    |
+| ----------------------- | ------ | ------------------------------ |
+| `anioEleccion=2019`     | 2019   | Año de la elección consultada. |
+| `tipoRecuento=1`        | 1      | 1 = Recuento Provisional       |
+| `tipoEleccion=2`        | 2      | 2 = Elecciones Generales       |
+| `categoriaId=1`         | 1      | 1 = Presidente de la Nación.   |
+| `distritoId=2`          | 2      | 2 = Provincia de Buenos Aires. |
+| `seccionProvincialId=1` | 1      | 1 = Primera Sección Electoral. |
+| `seccionId=118`         | 118    | 118 = Tres de Febrero.         |
 
 La documentación de la API se puede [descargar](https://www.argentina.gob.ar/sites/default/files/2017/08/api-publicacion-resultados-electorales.zip){target="_blank"} desde el sitio oficial del Ministerio del Interior.
 
@@ -325,7 +331,7 @@ La respuesta de la API es un JSON con los resultados detallados para Tres de Feb
 Muchas APIs REST proporcionan datos estructurados útiles. Vamos a consultar OpenStreetMap (OSM) que ofrece datos geográficos.
 
 ```{note}
- [OpenStreetMap](https://www.openstreetmap.org/about){target="_blank"} es un proyecto colaborativo para crear un mapa libre y editable del mundo. Los datos son aportados por voluntarios y están disponibles bajo la licencia Open Database License (ODbL).
+ [OpenStreetMap](https://www.openstreetmap.org/about){target="_blank"} es un proyecto colaborativo para crear un mapa libre y editable del mundo. Los datos son aportados por voluntarios y están disponibles bajo la licencia [Open Database License (ODbL)](https://es.wikipedia.org/wiki/Licencia_Abierta_de_Bases_de_Datos){target="_blank"}.
  ```
 
 ```{code-cell} python
@@ -336,6 +342,7 @@ import requests
 from lxml import etree as ET
 
 # Realizar una solicitud GET a la API de Open Maps
+# Way Id = 1275831310 (Sede Caseros I de la UNTREF)
 response = requests.get('https://api.openstreetmap.org/api/0.6/way/1275831310')
 if response.status_code == 200:
     # Parsear la respuesta XML
@@ -357,7 +364,7 @@ if response.status_code == 200:
 
 La documentación de la API de OpenStreetMap está disponible en [https://wiki.openstreetmap.org/wiki/API_v0.6](https://wiki.openstreetmap.org/wiki/API_v0.6){target="_blank"}.
 
-Con el way ID `1275831310` que identifica a la sede Caseros I de la UNTREF, se puede obtener el mapa correspondiente
+Con el way ID `1275831310` también se puede obtener el mapa correspondiente a través del servicio Overpass API, que permite consultas más complejas. Aquí hay un ejemplo de cómo obtener la geometría del way en formato GeoJSON y visualizarlo en un mapa interactivo usando la librería `folium`{l=python}:
 
 ```{code-cell} python
 import requests
@@ -414,7 +421,7 @@ if __name__ == "__main__":
     main()
 ```
 
-El fragmento de código anterior utiliza la librería `folium`{l=python} para visualizar en un mapa interactivo la geometría de un "way" (camino o polígono) obtenido de OpenStreetMap. El proceso es:
+El fragmento de código anterior realiza los siguientes pasos:
 
 1. Extraer coordenadas de los nodos que forman el "way" desde un objeto GeoJSON.
 2. Centrar el mapa en la primera coordenada encontrada.
@@ -429,6 +436,8 @@ overpass-api.de es un servicio web que permite consultar y extraer datos de Open
 [GeoJSON](https://es.wikipedia.org/wiki/GeoJSON){target="_blank"} es un formato basado en JSON para representar datos geográficos. Define varias estructuras como Point, LineString, Polygon, MultiPoint, MultiLineString, MultiPolygon y GeometryCollection para describir diferentes tipos de geometrías espaciales. 
 ```
 
+Los servicios que ofrece OpenStreetMap se pueden consultar en su [wiki](https://wiki.openstreetmap.org/wiki/Main_Page){target="_blank"}.
+
 #### Autenticación en APIs REST
 
 Las APIs frecuentemente requieren autenticación, sobre todo cuando se trata de servicios **privados**. Los métodos más comunes son:
@@ -442,9 +451,9 @@ OAuth 2.0
 Bearer Tokens
 : Tokens de acceso que se envían en el header de autorización.
 
-## Mejores Prácticas para Usar APIs
+En general, antes de poder consultar una API, es necesario registrarse y obtener las credenciales necesarias.
 
-### Recomendaciones Generales
+## Mejores Prácticas para Usar APIs
 
 1. **Leer la documentación**: Entender límites de velocidad, autenticación y términos de uso
 2. **Manejar errores**: Implementar reintentos con backoff exponencial
@@ -471,8 +480,3 @@ Bearer Tokens
 - [OpenWeatherMap](https://openweathermap.org/api){target="_blank"} - Datos meteorológicos
 - [The Star Wars API](https://swapi.dev/){target="_blank"} - Datos de Star Wars
 - [PokéAPI](https://pokeapi.co/){target="_blank"} - Información sobre Pokémon
-
-### Recursos en Español
-
-- [Tutorial de Requests en Español](https://docs.python-requests.org/es/latest/){target="_blank"}
-- [Comunidad Python Argentina](https://python.org.ar/){target="_blank"}

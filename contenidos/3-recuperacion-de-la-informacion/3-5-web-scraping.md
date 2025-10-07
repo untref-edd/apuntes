@@ -20,7 +20,7 @@ tags: [hide-output, remove-cell]
 import os
 import shutil
 
-
+csv_path = os.path.join(os.getcwd(), '../_static/code/scraping/books_scraper/horror_books.csv')
 tmp_dir = "/tmp"
 os.chdir(tmp_dir)
 for filename in os.listdir(tmp_dir):
@@ -34,11 +34,15 @@ for filename in os.listdir(tmp_dir):
         print(f"No se pudo borrar {file_path}: {e}")
 ```
 
-Web scraping es el proceso de extraer información de sitios web de forma automatizada. Mientras que las APIs proporcionan interfaces estructuradas para acceder a datos, el web scraping permite obtener información de sitios que no ofrecen APIs o cuando se necesita acceder a datos que no están disponibles a través de ellas.
+Web scraping es el proceso de extraer información de sitios web de forma automatizada.
+
+Mientras que las APIs proporcionan interfaces estructuradas para acceder a datos, el web scraping permite obtener información de sitios que no ofrecen APIs o cuando se necesita acceder a datos que no están disponibles a través de ellas.
 
 Los artefactos que realizan web scraping se conocen comúnmente como ***"scrapers"***, ***"spiders"*** o ***"crawlers"***. Estos programas navegan por las páginas web, descargan su contenido HTML y extraen la información relevante.
 
-El siguiente diagrama ilustra la arquitectura básica de un ***Crawler***:
+Los buscadores web utilizan ***crawlers*** para indexar el contenido de la web y hacer que sea accesible a través de búsquedas. De alguna manera, los crawlers son la columna vertebral de los motores de búsqueda que permite a los buscadores descubrir y organizar la vasta cantidad de información disponible en Internet, almacenando en sus bases de datos no solo las URLs, sino también fragmentos de texto y metadatos asociados a cada página.
+
+El siguiente diagrama ilustra la arquitectura básica de un ***crawler***:
 
 ```{mermaid}
 ---
@@ -137,6 +141,14 @@ Cacheo
 Almacenamiento de datos
 : Base de datos o archivo donde se guardan los datos extraídos del contenido web.
 
+El proceso de web scraping puede variar en complejidad dependiendo del sitio web objetivo y de los datos que se desean extraer. Algunos sitios pueden tener estructuras HTML simples, mientras que otros pueden utilizar JavaScript para cargar contenido dinámicamente, lo que requiere técnicas más avanzadas.
+
+En general el proceso de búsqueda inicia con una lista de URLs semilla, que son las páginas iniciales que el crawler visitará. A partir de estas páginas, el crawler descarga el contenido HTML y lo analiza para extraer información relevante y nuevas URLs. Estas nuevas URLs se añaden a la frontera de URLs pendientes de visitar, y el proceso se repite hasta que se alcanzan ciertos límites, como un número máximo de páginas visitadas o una profundidad máxima de exploración.
+
+Para gestionar la frontera de URLs, se pueden utilizar diferentes estructuras de datos como colas (FIFO) para una exploración en anchura o pilas (LIFO) para una exploración en profundidad. Además, es importante implementar mecanismos para evitar visitar la misma URL múltiples veces, lo que se puede lograr mediante el uso de conjuntos o bases de datos para rastrear las URLs ya visitadas.
+
+También se pueden establecer reglas para filtrar las URLs que se añaden a la frontera, como limitar la exploración a un dominio específico o evitar ciertos tipos de contenido.
+
 ## Consideraciones Legales y Éticas
 
 Antes de realizar una exploración de la web, es fundamental considerar aspectos legales y éticos. Algunos sitios web prohíben el scraping en sus términos de servicio, y es importante respetar estas políticas para evitar problemas legales.
@@ -151,15 +163,22 @@ robots.txt
 : Archivo en la raíz del sitio web que especifica qué partes pueden ser accedidas por robots automatizados.
 
 ```{code-cell} python
+---
+tags: [hide-output]
+---
 import requests
 
 # Verificar el archivo robots.txt
-url_robots = 'https://www.python.org/robots.txt'
+url_robots = 'https://python.org/robots.txt'
 response = requests.get(url_robots)
 
-print("Contenido de robots.txt de python.org (primeras líneas):")
-print('\n'.join(response.text.split('\n')[:20]))
+print("Contenido de robots.txt de python.org:")
+print('\n'.join(response.text.split('\n')))
 ```
+
+El formato típico de un archivo `robots.txt` incluye directivas como `User-agent`, `Disallow`, y `Allow` para controlar el acceso de diferentes tipos de bots a distintas partes del sitio web.
+
+El protocolo Robots Exclusion Standard define cómo los bots deben interpretar estas directivas para respetar las políticas del sitio. Este protocolo se encuentra estandarizado a través de la [RFC 9309](https://www.rfc-editor.org/rfc/rfc9309.html){target="_blank"}.
 
 Términos de Servicio
 : Muchos sitios web prohíben explícitamente el scraping en sus términos de uso.
@@ -206,6 +225,20 @@ def es_mismo_dominio(url, dominio_base):
     return urlparse(url).netloc == dominio_base
 
 def crawler_frontera(url_semilla, max_paginas=50, retraso=1, archivo_csv='enlaces.csv'):
+    """
+    Función para realizar crawling web utilizando una frontera de enlaces tipo
+    FIFO (cola).
+    Recorre páginas web comenzando desde una URL semilla, siguiendo enlaces encontrados
+    hasta un máximo de páginas.
+
+    Parámetros:
+    - url_semilla (str): URL inicial desde donde comienza el crawling.
+    - max_paginas (int, opcional): Número máximo de páginas a visitar (por defecto 50).
+    - retraso (int o float, opcional): Tiempo de espera (en segundos) entre solicitudes
+    para evitar sobrecargar el servidor (por defecto 1).
+    - archivo_csv (str, opcional): Nombre del archivo CSV donde se guardarán los enlaces
+    encontrados (por defecto 'enlaces.csv').
+    """
     frontera = [url_semilla]
     visitadas = set()
     enlaces_extraidos = []
@@ -220,6 +253,12 @@ def crawler_frontera(url_semilla, max_paginas=50, retraso=1, archivo_csv='enlace
         print(f"Visitando: {url_actual}")
         try:
             response = requests.get(url_actual, timeout=10, headers={
+                # Es recomendable configurar el encabezado 'User-Agent' con un valor descriptivo que
+                # identifique el crawler y proporcione información de contacto.
+                # Esto ayuda a los administradores de los sitios web a identificar el origen de las solicitudes
+                # y contactar al responsable en caso necesario.
+                # Además, usar un User-Agent personalizado demuestra buenas prácticas y respeto por las
+                #  políticas del sitio.
                 'User-Agent': 'MiCrawler/1.0 (contacto@ejemplo.com)'
             })
             response.raise_for_status()
@@ -232,6 +271,7 @@ def crawler_frontera(url_semilla, max_paginas=50, retraso=1, archivo_csv='enlace
 
         # Extraer y guardar enlaces
         for enlace in soup.find_all('a', href=True):
+            # En una página html los enlaces están en etiquetas <a href="...">
             url_encontrada = urljoin(url_actual, enlace['href'])
             url_encontrada = url_encontrada.split('#')[0]  # Quitar fragmentos
             if es_mismo_dominio(url_encontrada, dominio_base):
@@ -272,7 +312,7 @@ Scrapy es un *framework* de Python para web scraping a gran escala. Proporciona 
 pip install scrapy
 ```
 
-````{admonition} Anatomía de una Spider en Scrapy
+````{admonition} Anatomía de un Spider en Scrapy
 Una *spider* en Scrapy es una clase que hereda de `scrapy.Spider` y define cómo navegar y extraer información de un sitio web. Los elementos clave que se deben configurar son:
 
 - **name**: Identificador único de la spider dentro del proyecto.
@@ -328,6 +368,7 @@ A continuación se presenta un tutorial paso a paso para crear un spider con **S
 Crear un nuevo proyecto de Scrapy en el directorio actual:
 
 Iniciar un nuevo proyecto y una spider:
+
 ```bash
 scrapy startproject books_scraper
 cd books_scraper
@@ -477,7 +518,7 @@ DOWNLOAD_DELAY = 1  # Esperar 1 segundo entre requests
 RANDOMIZE_DOWNLOAD_DELAY = 0.5  # Variar el delay ±50%
 
 # User agent personalizado
-USER_AGENT = 'books_scraper (+http://www.yourdomain.com)'
+USER_AGENT = 'books_scraper (untref.edu.ar)'
 
 # Configuración de logging
 LOG_LEVEL = 'INFO'
@@ -504,7 +545,7 @@ tags: [hide-output]
 import pandas as pd
 
 # Cargar los datos
-df = pd.read_csv('../_static/code/scraping/books_scraper/horror_books.csv')
+df = pd.read_csv(csv_path)
 
 # Estadísticas básicas
 print("Estadísticas de los libros de Horror:")
@@ -514,19 +555,11 @@ print(f"Precio mínimo: £{df['price'].astype(float).min():.2f}")
 print(f"Precio máximo: £{df['price'].astype(float).max():.2f}")
 
 # Distribución de calificaciones
-print("\\nDistribución de calificaciones:")
+print("\nDistribución de calificaciones:")
 print(df['rating'].value_counts())
-# Mostrar las primeras filas del DataFrame
-print("Código para análisis con pandas:")
-print(analysis_code)
 ```
 
-### Consideraciones Importantes
-
-1. **Respeto por robots.txt**: Scrapy automáticamente respeta el archivo robots.txt del sitio
-2. **Delays entre requests**: Configuramos delays para no sobrecargar el servidor
-3. **Manejo de errores**: Scrapy maneja automáticamente errores de red y reintentos
-4. **Escalabilidad**: El código puede extenderse fácilmente para otras categorías
+[Descargar código completo del Spider](https://github.com/untref-edd/apuntes/tree/main/contenidos/_static/code/scraping){target="\_blank"}
 
 ### Extensiones Posibles
 
@@ -575,52 +608,7 @@ header-rows: 1
 3. **Ser respetuoso**: Limitar la frecuencia de solicitudes
 4. **Manejar errores**: Anticipar cambios en la estructura del sitio
 5. **Considerar alternativas**: Preferir APIs cuando estén disponibles
-6. **Mantener el código**: Los sitios cambian, el scraper debe actualizarse
-
-### Consideraciones de Rendimiento
-
-```{code-cell} python
-import requests
-from concurrent.futures import ThreadPoolExecutor
-import time
-
-def scraping_secuencial(urls):
-    """Scraping tradicional, una URL a la vez"""
-    inicio = time.time()
-    resultados = []
-    
-    for url in urls:
-        response = requests.get(url)
-        resultados.append(len(response.content))
-    
-    duracion = time.time() - inicio
-    return resultados, duracion
-
-def scraping_concurrente(urls, max_workers=5):
-    """Scraping concurrente usando ThreadPoolExecutor"""
-    inicio = time.time()
-    
-    def fetch(url):
-        response = requests.get(url)
-        return len(response.content)
-    
-    with ThreadPoolExecutor(max_workers=max_workers) as executor:
-        resultados = list(executor.map(fetch, urls))
-    
-    duracion = time.time() - inicio
-    return resultados, duracion
-
-# Ejemplo conceptual (no ejecutar en producción sin limitaciones)
-urls_ejemplo = [f'https://httpbin.org/delay/1' for _ in range(3)]
-
-print("Comparación de enfoques de scraping:")
-print("\nSecuencial:")
-print("  - Ventajas: Simple, fácil de controlar")
-print("  - Desventajas: Lento para muchas URLs")
-print("\nConcurrente:")
-print("  - Ventajas: Mucho más rápido")
-print("  - Desventajas: Puede sobrecargar el servidor si no se controla")
-```
+6. **Mantener el código**: Si los sitios cambian, el scraper debe actualizarse
 
 ## Herramientas y Bibliotecas Adicionales
 
@@ -648,30 +636,23 @@ print("  - Desventajas: Puede sobrecargar el servidor si no se controla")
 - **SQLAlchemy**: ORM para bases de datos
 - **MongoDB**: Base de datos NoSQL para datos no estructurados
 
-
 ## Referencias y Recursos Adicionales
 
 ### Documentación Oficial
 
-- [Requests Documentation](https://requests.readthedocs.io/){target="_blank"}
 - [Beautiful Soup Documentation](https://www.crummy.com/software/BeautifulSoup/bs4/doc/){target="_blank"}
 - [Scrapy Documentation](https://docs.scrapy.org/){target="_blank"}
 
 ### Libros y Referencias Académicas
 
-- Christopher D. Manning, Prabhakar Raghavan and Hinrich Schütze, *Introduction to Information Retrieval*, Cambridge University Press, 2008. Capítulo 20: Web Crawling and Indexes.
-- Ryan Mitchell, *Web Scraping with Python*, 2nd Edition, O'Reilly Media, 2018.
+- Manning, C. D., Raghavan, P., & Schütze, H. (2008). *Introduction to Information Retrieval*. Cambridge University Press. Capítulo 20: Web Crawling and Indexes.{cite:p}`irbook`
+- Ryan Mitchell, *Web Scraping with Python*, 3rd Edition, O'Reilly Media, 2024.{cite:p}`Mitchell2024`
 
 ### Sitios para Practicar Web Scraping
 
 - [Quotes to Scrape](https://quotes.toscrape.com/){target="_blank"} - Sitio diseñado para practicar scraping
 - [Books to Scrape](https://books.toscrape.com/){target="_blank"} - Tienda de libros ficticia para scraping
 - [Scrape This Site](https://www.scrapethissite.com/){target="_blank"} - Ejercicios de scraping
-
-### Recursos en Español
-
-- [Tutorial de Requests en Español](https://docs.python-requests.org/es/latest/){target="_blank"}
-- [Comunidad Python Argentina](https://python.org.ar/){target="_blank"}
 
 ### Aspectos Legales
 
