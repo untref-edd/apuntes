@@ -294,7 +294,7 @@ def crawler_frontera(url_semilla, max_paginas=50, retraso=1, archivo_csv='enlace
 crawler_frontera('https://quotes.toscrape.com/', max_paginas=10, archivo_csv='enlaces_quotes.csv')
 ```
 
-En el siguiente enalace se puede descargar el archivo .csv generado por el ***crawler***: [`enlaces_quotes.csv`](enlaces_quotes.csv)
+En el siguiente enlace se puede descargar el archivo .csv generado por el ***crawler***: [`enlaces_quotes.csv`](enlaces_quotes.csv)
 
 ## Scrapy
 
