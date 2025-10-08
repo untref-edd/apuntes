@@ -24,16 +24,16 @@ parts:
     - file: 2-estructuras-de-datos/2-4-grafos-recorridos
   - caption: Recuperación de la Información
     chapters:
-    - file: 3-recuperacion-de-la-informacion/3-0-0-recuperacion
-    - file: 3-recuperacion-de-la-informacion/3-0-registros
-    - file: 3-recuperacion-de-la-informacion/3-1-json
-    - file: 3-recuperacion-de-la-informacion/3-2-xml
-    - file: 3-recuperacion-de-la-informacion/3-3-regex
-    - file: 3-recuperacion-de-la-informacion/3-4-web-apis
-    - file: 3-recuperacion-de-la-informacion/3-5-web-scraping
-    - file: 3-recuperacion-de-la-informacion/3-6-redes-sociales
-    - file: 3-recuperacion-de-la-informacion/3-7-indices-invertidos
-    - file: 3-recuperacion-de-la-informacion/3-8-indices-arboles-b
+    - file: 3-recuperacion-de-la-informacion/3-1-recuperacion
+    - file: 3-recuperacion-de-la-informacion/3-2-registros
+    - file: 3-recuperacion-de-la-informacion/3-3-json
+    - file: 3-recuperacion-de-la-informacion/3-4-xml
+    - file: 3-recuperacion-de-la-informacion/3-5-regex
+    - file: 3-recuperacion-de-la-informacion/3-6-web-apis
+    - file: 3-recuperacion-de-la-informacion/3-7-web-scraping
+    - file: 3-recuperacion-de-la-informacion/3-8-redes-sociales
+    - file: 3-recuperacion-de-la-informacion/3-9-indices-invertidos
+    - file: 3-recuperacion-de-la-informacion/3-10-indices-arboles-b
   - caption: Anexos
     chapters:
     - file: Anexos/GitBash
