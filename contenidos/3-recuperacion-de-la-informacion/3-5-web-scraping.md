@@ -178,7 +178,7 @@ print('\n'.join(response.text.split('\n')))
 
 El formato típico de un archivo `robots.txt` incluye directivas como `User-agent`, `Disallow`, y `Allow` para controlar el acceso de diferentes tipos de bots a distintas partes del sitio web.
 
-El protocolo Robots Exclusion Standard define cómo los bots deben interpretar estas directivas para respetar las políticas del sitio. Este protocolo se encuentra estandarizado a través de la [RFC 9309](https://www.rfc-editor.org/rfc/rfc9309.html){target="_blank"}.
+El protocolo Robots Exclusion Standard define cómo los bots deben interpretar estas directivas para respetar las políticas del sitio. Este protocolo se encuentra estandarizado a través de la [RFC 9309](https://www.rfc-editor.org/rfc/rfc9309.html){target="\_blank"}.
 
 Términos de Servicio
 : Muchos sitios web prohíben explícitamente el scraping en sus términos de uso.
@@ -213,7 +213,6 @@ pip install requests beautifulsoup4 lxml
 ---
 tags: [hide-output]
 ---
-
 import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin, urlparse
@@ -401,6 +400,7 @@ Editar el archivo `items.py` para definir la estructura de datos que queremos ex
 # books_scraper/items.py
 import scrapy
 
+
 class BookItem(scrapy.Item):
     title = scrapy.Field()
     price = scrapy.Field()
@@ -418,43 +418,50 @@ Editar el archivo `spiders/books.py` con la lógica de extracción:
 import scrapy
 from books_scraper.items import BookItem
 
+
 class BooksSpider(scrapy.Spider):
-    name = 'books'
-    allowed_domains = ['books.toscrape.com']
-    start_urls = ['https://books.toscrape.com/catalogue/category/books/horror_31/index.html']
-    
+    name = "books"
+    allowed_domains = ["books.toscrape.com"]
+    start_urls = [
+        "https://books.toscrape.com/catalogue/category/books/horror_31/index.html"
+    ]
+
     def parse(self, response):
         """Extrae información de libros de la página actual"""
-        
+
         # Extraer todos los libros de la página
-        books = response.css('article.product_pod')
-        
+        books = response.css("article.product_pod")
+
         for book in books:
             item = BookItem()
-            
+
             # Extraer título
-            item['title'] = book.css('h3 a::attr(title)').get()
-            
+            item["title"] = book.css("h3 a::attr(title)").get()
+
             # Extraer precio
-            price_text = book.css('p.price_color::text').get()
-            item['price'] = price_text.replace('£', '') if price_text else None
-            
+            price_text = book.css("p.price_color::text").get()
+            item["price"] = price_text.replace("£", "") if price_text else None
+
             # Extraer disponibilidad
-            availability = book.css('p.instock.availability::text').getall()
-            item['availability'] = ''.join(availability).strip() if availability else None
-            
+            availability = book.css("p.instock.availability::text").getall()
+            item["availability"] = (
+                "".join(availability).strip() if availability else None
+            )
+
             # Extraer calificación
-            rating_class = book.css('p.star-rating::attr(class)').get()
+            rating_class = book.css("p.star-rating::attr(class)").get()
             if rating_class:
-                rating = rating_class.split()[-1]  # Obtiene la última palabra (One, Two, Three, etc.)
-                item['rating'] = rating
-            
-            item['category'] = 'Horror'
-            
+                rating = rating_class.split()[
+                    -1
+                ]  # Obtiene la última palabra (One, Two, Three, etc.)
+                item["rating"] = rating
+
+            item["category"] = "Horror"
+
             yield item
-        
+
         # Seguir a la siguiente página si existe
-        next_page = response.css('li.next a::attr(href)').get()
+        next_page = response.css("li.next a::attr(href)").get()
         if next_page:
             next_page_url = response.urljoin(next_page)
             yield scrapy.Request(next_page_url, callback=self.parse)
@@ -469,25 +476,26 @@ Crear un pipeline personalizado para exportar a CSV. Editar `pipelines.py`:
 import csv
 import os
 
+
 class CsvExportPipeline:
     def __init__(self):
         self.file = None
         self.writer = None
-    
+
     def open_spider(self, spider):
         """Se ejecuta cuando se abre el spider"""
-        self.file = open('horror_books.csv', 'w', newline='', encoding='utf-8')
+        self.file = open("horror_books.csv", "w", newline="", encoding="utf-8")
         self.writer = csv.DictWriter(
-            self.file, 
-            fieldnames=['title', 'price', 'category', 'availability', 'rating']
+            self.file,
+            fieldnames=["title", "price", "category", "availability", "rating"],
         )
         self.writer.writeheader()
-    
+
     def close_spider(self, spider):
         """Se ejecuta cuando se cierra el spider"""
         if self.file:
             self.file.close()
-    
+
     def process_item(self, item, spider):
         """Procesa cada item extraído"""
         self.writer.writerow(dict(item))
@@ -500,17 +508,17 @@ Editar `settings.py` para activar el pipeline y configurar el comportamiento del
 
 ```python
 # books_scraper/settings.py
-BOT_NAME = 'books_scraper'
+BOT_NAME = "books_scraper"
 
-SPIDER_MODULES = ['books_scraper.spiders']
-NEWSPIDER_MODULE = 'books_scraper.spiders'
+SPIDER_MODULES = ["books_scraper.spiders"]
+NEWSPIDER_MODULE = "books_scraper.spiders"
 
 # Respetar robots.txt
 ROBOTSTXT_OBEY = True
 
 # Configurar pipelines
 ITEM_PIPELINES = {
-    'books_scraper.pipelines.CsvExportPipeline': 300,
+    "books_scraper.pipelines.CsvExportPipeline": 300,
 }
 
 # Configurar delays para ser respetuosos con el servidor
@@ -518,10 +526,10 @@ DOWNLOAD_DELAY = 1  # Esperar 1 segundo entre requests
 RANDOMIZE_DOWNLOAD_DELAY = 0.5  # Variar el delay ±50%
 
 # User agent personalizado
-USER_AGENT = 'books_scraper (untref.edu.ar)'
+USER_AGENT = "books_scraper (untref.edu.ar)"
 
 # Configuración de logging
-LOG_LEVEL = 'INFO'
+LOG_LEVEL = "INFO"
 ```
 
 ### Paso 7: Ejecutar el Spider
@@ -604,11 +612,11 @@ header-rows: 1
 ## Mejores Prácticas para Web Scraping
 
 1. **Verificar legalidad**: Revisar términos de servicio y robots.txt
-2. **Identificarse**: Usar un User-Agent descriptivo
-3. **Ser respetuoso**: Limitar la frecuencia de solicitudes
-4. **Manejar errores**: Anticipar cambios en la estructura del sitio
-5. **Considerar alternativas**: Preferir APIs cuando estén disponibles
-6. **Mantener el código**: Si los sitios cambian, el scraper debe actualizarse
+1. **Identificarse**: Usar un User-Agent descriptivo
+1. **Ser respetuoso**: Limitar la frecuencia de solicitudes
+1. **Manejar errores**: Anticipar cambios en la estructura del sitio
+1. **Considerar alternativas**: Preferir APIs cuando estén disponibles
+1. **Mantener el código**: Si los sitios cambian, el scraper debe actualizarse
 
 ## Herramientas y Bibliotecas Adicionales
 
@@ -640,8 +648,8 @@ header-rows: 1
 
 ### Documentación Oficial
 
-- [Beautiful Soup Documentation](https://www.crummy.com/software/BeautifulSoup/bs4/doc/){target="_blank"}
-- [Scrapy Documentation](https://docs.scrapy.org/){target="_blank"}
+- [Beautiful Soup Documentation](https://www.crummy.com/software/BeautifulSoup/bs4/doc/){target="\_blank"}
+- [Scrapy Documentation](https://docs.scrapy.org/){target="\_blank"}
 
 ### Libros y Referencias Académicas
 
@@ -650,11 +658,11 @@ header-rows: 1
 
 ### Sitios para Practicar Web Scraping
 
-- [Quotes to Scrape](https://quotes.toscrape.com/){target="_blank"} - Sitio diseñado para practicar scraping
-- [Books to Scrape](https://books.toscrape.com/){target="_blank"} - Tienda de libros ficticia para scraping
-- [Scrape This Site](https://www.scrapethissite.com/){target="_blank"} - Ejercicios de scraping
+- [Quotes to Scrape](https://quotes.toscrape.com/){target="\_blank"} - Sitio diseñado para practicar scraping
+- [Books to Scrape](https://books.toscrape.com/){target="\_blank"} - Tienda de libros ficticia para scraping
+- [Scrape This Site](https://www.scrapethissite.com/){target="\_blank"} - Ejercicios de scraping
 
 ### Aspectos Legales
 
-- [Can I scrape your website?](https://blog.apify.com/is-web-scraping-legal/){target="_blank"}
-- [Understanding robots.txt](https://developers.google.com/search/docs/crawling-indexing/robots/intro){target="_blank"}
+- [Can I scrape your website?](https://blog.apify.com/is-web-scraping-legal/){target="\_blank"}
+- [Understanding robots.txt](https://developers.google.com/search/docs/crawling-indexing/robots/intro){target="\_blank"}

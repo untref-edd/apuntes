@@ -61,7 +61,7 @@ En el siguiente diagrama de secuencia se muestra una interacción típica entre 
 sequenceDiagram
     participant C as Cliente
     participant S as Servidor
-    
+
     C->>S: GET /index.html HTTP/1.1
     Note over C,S: Solicitud HTTP
     S->>C: HTTP/1.1 200 OK
@@ -167,7 +167,7 @@ tags: [hide-output]
 import requests
 
 # Realizar una solicitud GET
-response = requests.get('https://untref.edu.ar/')
+response = requests.get("https://untref.edu.ar/")
 
 print(f"Código de estado: {response.status_code}")
 for k, v in response.headers.items():
@@ -182,7 +182,7 @@ curl -v https://untref.edu.ar/
 ```
 
 ```{note}
-cURL es una herramienta de línea de comandos, gratuita y de código abierto, para transferir datos usando diversas URLs y protocolos, comúnmente utilizada para interactuar con APIs, descargar archivos y probar recursos web. Es compatible con una amplia gama de protocolos como HTTP, HTTPS, FTP y SMB. cURL está disponible de forma nativa en sistemas operativos basados en Unix, incluyendo Linux y macOS, y está preinstalado en las versiones modernas de Windows. 
+cURL es una herramienta de línea de comandos, gratuita y de código abierto, para transferir datos usando diversas URLs y protocolos, comúnmente utilizada para interactuar con APIs, descargar archivos y probar recursos web. Es compatible con una amplia gama de protocolos como HTTP, HTTPS, FTP y SMB. cURL está disponible de forma nativa en sistemas operativos basados en Unix, incluyendo Linux y macOS, y está preinstalado en las versiones modernas de Windows.
 ```
 
 **Petición enviada:**
@@ -211,8 +211,7 @@ Content-Type: text/html; charset=UTF-8
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <title>UNTREF 
-</title>
+    <title>UNTREF</title>
 ...
 
 ```
@@ -237,7 +236,7 @@ flowchart TB
     B --> C[Base de Datos]
     B --> D[Servicios Externos]
     B --> E[Lógica de Negocio]
-    
+
     style A fill:#e1f5ff
     style B fill:#ffe1e1
     style C fill:#fff4e1
@@ -249,7 +248,7 @@ Una aplicación cliente (por ejemplo una aplicación web o móvil) realiza solic
 
 El protocolo base es HTTP, y los recursos se acceden a través de URLs específicas. Por ejemplo una URL típica de una API REST podría ser:
 
-``` html
+```html
 https://api.ejemplo.com/v1/usuarios/123
 ```
 
@@ -261,14 +260,14 @@ Donde:
 
 Ante esta solicitud, la API podría devolver un JSON con los datos del usuario:
 
-``` json
+```json
 {
   "id": 123,
   "nombre": "Juan Pérez",
   "email": "juan.perez@ejemplo.com"
 }
 ```
-  
+
 ### API REST (Representational State Transfer)
 
 REST es un estilo arquitectónico para diseñar servicios web que se basa en los principios de HTTP. Una API REST expone recursos a través de URLs y utiliza los métodos HTTP estándar para operaciones CRUD (Create, Read, Update, Delete).
@@ -292,7 +291,7 @@ REST es un estilo arquitectónico para diseñar servicios web que se basa en los
 
 #### Ejemplo: Consumir una API REST Pública
 
-Vamos a consumir una API pública para consultar resultados electorales de Argentina, disponible en [https://resultados.mininterior.gob.ar](https://resultados.mininterior.gob.ar){target="_blank"}.
+Vamos a consumir una API pública para consultar resultados electorales de Argentina, disponible en [https://resultados.mininterior.gob.ar](https://resultados.mininterior.gob.ar){target="\_blank"}.
 
 ```{code-cell} python
 ---
@@ -300,8 +299,11 @@ tags: [hide-output]
 ---
 import requests
 import json
+
 # Realizar una solicitud GET a la API del Ministerio del Interior
-response = requests.get('https://resultados.mininterior.gob.ar/api/resultados/getResultados?anioEleccion=2019&tipoRecuento=1&tipoEleccion=2&categoriaId=1&distritoId=2&seccionProvincialId=1&seccionId=118')
+response = requests.get(
+    "https://resultados.mininterior.gob.ar/api/resultados/getResultados?anioEleccion=2019&tipoRecuento=1&tipoEleccion=2&categoriaId=1&distritoId=2&seccionProvincialId=1&seccionId=118"
+)
 if response.status_code == 200:
     datos = response.json()
     print(json.dumps(datos, indent=2, ensure_ascii=False))
@@ -312,17 +314,17 @@ else:
 
 En la solicitud anterior, se puede ver que se utilizan varios parámetros en la URL para especificar los datos que se quieren consultar
 
-| Parámetro               | Valor  | Significado                    |
-| ----------------------- | ------ | ------------------------------ |
-| `anioEleccion=2019`     | 2019   | Año de la elección consultada. |
-| `tipoRecuento=1`        | 1      | 1 = Recuento Provisional       |
-| `tipoEleccion=2`        | 2      | 2 = Elecciones Generales       |
-| `categoriaId=1`         | 1      | 1 = Presidente de la Nación.   |
-| `distritoId=2`          | 2      | 2 = Provincia de Buenos Aires. |
-| `seccionProvincialId=1` | 1      | 1 = Primera Sección Electoral. |
-| `seccionId=118`         | 118    | 118 = Tres de Febrero.         |
+| Parámetro               | Valor | Significado                    |
+| ----------------------- | ----- | ------------------------------ |
+| `anioEleccion=2019`     | 2019  | Año de la elección consultada. |
+| `tipoRecuento=1`        | 1     | 1 = Recuento Provisional       |
+| `tipoEleccion=2`        | 2     | 2 = Elecciones Generales       |
+| `categoriaId=1`         | 1     | 1 = Presidente de la Nación.   |
+| `distritoId=2`          | 2     | 2 = Provincia de Buenos Aires. |
+| `seccionProvincialId=1` | 1     | 1 = Primera Sección Electoral. |
+| `seccionId=118`         | 118   | 118 = Tres de Febrero.         |
 
-La documentación de la API se puede [descargar](https://www.argentina.gob.ar/sites/default/files/2017/08/api-publicacion-resultados-electorales.zip){target="_blank"} desde el sitio oficial del Ministerio del Interior.
+La documentación de la API se puede [descargar](https://www.argentina.gob.ar/sites/default/files/2017/08/api-publicacion-resultados-electorales.zip){target="\_blank"} desde el sitio oficial del Ministerio del Interior.
 
 La respuesta de la API es un JSON con los resultados detallados para Tres de Febrero.
 
@@ -332,7 +334,7 @@ Muchas APIs REST proporcionan datos estructurados útiles. Vamos a consultar Ope
 
 ```{note}
  [OpenStreetMap](https://www.openstreetmap.org/about){target="_blank"} es un proyecto colaborativo para crear un mapa libre y editable del mundo. Los datos son aportados por voluntarios y están disponibles bajo la licencia [Open Database License (ODbL)](https://es.wikipedia.org/wiki/Licencia_Abierta_de_Bases_de_Datos){target="_blank"}.
- ```
+```
 
 ```{code-cell} python
 ---
@@ -343,32 +345,33 @@ from lxml import etree as ET
 
 # Realizar una solicitud GET a la API de Open Maps
 # Way Id = 1275831310 (Sede Caseros I de la UNTREF)
-response = requests.get('https://api.openstreetmap.org/api/0.6/way/1275831310')
+response = requests.get("https://api.openstreetmap.org/api/0.6/way/1275831310")
 if response.status_code == 200:
     # Parsear la respuesta XML
     root = ET.fromstring(response.content)
     # Recorrer el XML de OpenStreetMap
 
     # Buscar el elemento <way>
-    way = root.find('way')
+    way = root.find("way")
     if way is not None:
         print(f"ID del way: {way.get('id')}")
         print("Etiquetas asociadas:")
-        for tag in way.findall('tag'):
-            clave = tag.get('k')
-            valor = tag.get('v')
+        for tag in way.findall("tag"):
+            clave = tag.get("k")
+            valor = tag.get("v")
             print(f"  {clave}: {valor}")
     else:
         print("No se encontró el elemento <way> en la respuesta.")
 ```
 
-La documentación de la API de OpenStreetMap está disponible en [https://wiki.openstreetmap.org/wiki/API_v0.6](https://wiki.openstreetmap.org/wiki/API_v0.6){target="_blank"}.
+La documentación de la API de OpenStreetMap está disponible en [https://wiki.openstreetmap.org/wiki/API_v0.6](https://wiki.openstreetmap.org/wiki/API_v0.6){target="\_blank"}.
 
 Con el way ID `1275831310` también se puede obtener el mapa correspondiente a través del servicio Overpass API, que permite consultas más complejas. Aquí hay un ejemplo de cómo obtener la geometría del way en formato GeoJSON y visualizarlo en un mapa interactivo usando la librería `folium`{l=python}:
 
-```{code-cell} python
+```python
 import requests
 import folium
+
 
 def obtener_geojson_way(osm_way_id):
     # Consulta Overpass para el way específico
@@ -384,6 +387,7 @@ def obtener_geojson_way(osm_way_id):
     response = requests.get(url, params={"data": query})
     response.raise_for_status()
     return response.json()
+
 
 def construir_mapa(geojson_data):
     # Extraer nodos del way y sus coordenadas
@@ -410,12 +414,14 @@ def construir_mapa(geojson_data):
     return mapa
     # Visualizar el mapa en el notebook
 
+
 def main():
     osm_way_id = 1275831310  # el way de la Sede Caseros I
     geojson = obtener_geojson_way(osm_way_id)
     mapa = construir_mapa(geojson)
     # Mostrar el mapa en el notebook
     display(mapa)
+
 
 if __name__ == "__main__":
     main()
@@ -424,19 +430,19 @@ if __name__ == "__main__":
 El fragmento de código anterior realiza los siguientes pasos:
 
 1. Extraer coordenadas de los nodos que forman el "way" desde un objeto GeoJSON.
-2. Centrar el mapa en la primera coordenada encontrada.
-3. Dibujar la línea (o polígono) sobre el mapa usando folium.PolyLine.
-4. Mostrar el mapa en un entorno interactivo (como Jupyter Notebook) usando display(mapa).
+1. Centrar el mapa en la primera coordenada encontrada.
+1. Dibujar la línea (o polígono) sobre el mapa usando folium.PolyLine.
+1. Mostrar el mapa en un entorno interactivo (como Jupyter Notebook) usando display(mapa).
 
 La función principal (main) obtiene el GeoJSON de un "way" específico, en este caso la Sede Caseros I, construye el mapa y lo muestra.
 
 overpass-api.de es un servicio web que permite consultar y extraer datos de OpenStreetMap mediante un lenguaje de consultas específico (Overpass QL). Se usa para obtener información geográfica detallada, como nodos, caminos y relaciones, de la base de datos de OSM.
 
 ```{note}
-[GeoJSON](https://es.wikipedia.org/wiki/GeoJSON){target="_blank"} es un formato basado en JSON para representar datos geográficos. Define varias estructuras como Point, LineString, Polygon, MultiPoint, MultiLineString, MultiPolygon y GeometryCollection para describir diferentes tipos de geometrías espaciales. 
+[GeoJSON](https://es.wikipedia.org/wiki/GeoJSON){target="_blank"} es un formato basado en JSON para representar datos geográficos. Define varias estructuras como Point, LineString, Polygon, MultiPoint, MultiLineString, MultiPolygon y GeometryCollection para describir diferentes tipos de geometrías espaciales.
 ```
 
-Los servicios que ofrece OpenStreetMap se pueden consultar en su [wiki](https://wiki.openstreetmap.org/wiki/Main_Page){target="_blank"}.
+Los servicios que ofrece OpenStreetMap se pueden consultar en su [wiki](https://wiki.openstreetmap.org/wiki/Main_Page){target="\_blank"}.
 
 #### Autenticación en APIs REST
 
@@ -456,18 +462,18 @@ En general, antes de poder consultar una API, es necesario registrarse y obtener
 ## Mejores Prácticas para Usar APIs
 
 1. **Leer la documentación**: Entender límites de velocidad, autenticación y términos de uso
-2. **Manejar errores**: Implementar reintentos con backoff exponencial
-3. **Cachear respuestas**: Evitar solicitudes repetidas
-4. **Monitorear cuotas**: Estar atento a los límites de uso
-5. **Versionar**: Usar versiones específicas de APIs para evitar cambios inesperados
+1. **Manejar errores**: Implementar reintentos con backoff exponencial
+1. **Cachear respuestas**: Evitar solicitudes repetidas
+1. **Monitorear cuotas**: Estar atento a los límites de uso
+1. **Versionar**: Usar versiones específicas de APIs para evitar cambios inesperados
 
 ## Referencias y Recursos Adicionales
 
 ### Documentación Oficial
 
-- [Requests Documentation](https://requests.readthedocs.io/){target="_blank"}
-- [HTTP Documentation (MDN)](https://developer.mozilla.org/es/docs/Web/HTTP){target="_blank"}
-- [REST API Tutorial](https://restfulapi.net/){target="_blank"}
+- [Requests Documentation](https://requests.readthedocs.io/){target="\_blank"}
+- [HTTP Documentation (MDN)](https://developer.mozilla.org/es/docs/Web/HTTP){target="\_blank"}
+- [REST API Tutorial](https://restfulapi.net/){target="\_blank"}
 
 ### Libros y Referencias Académicas
 
@@ -475,8 +481,8 @@ En general, antes de poder consultar una API, es necesario registrarse y obtener
 
 ### APIs Públicas para Practicar
 
-- [JSONPlaceholder](https://jsonplaceholder.typicode.com/){target="_blank"} - API REST falsa para testing
-- [REST Countries](https://restcountries.com/){target="_blank"} - Información sobre países
-- [OpenWeatherMap](https://openweathermap.org/api){target="_blank"} - Datos meteorológicos
-- [The Star Wars API](https://swapi.dev/){target="_blank"} - Datos de Star Wars
-- [PokéAPI](https://pokeapi.co/){target="_blank"} - Información sobre Pokémon
+- [JSONPlaceholder](https://jsonplaceholder.typicode.com/){target="\_blank"} - API REST falsa para testing
+- [REST Countries](https://restcountries.com/){target="\_blank"} - Información sobre países
+- [OpenWeatherMap](https://openweathermap.org/api){target="\_blank"} - Datos meteorológicos
+- [The Star Wars API](https://swapi.dev/){target="\_blank"} - Datos de Star Wars
+- [PokéAPI](https://pokeapi.co/){target="\_blank"} - Información sobre Pokémon

@@ -161,9 +161,9 @@ Los predicados se escriben entre corchetes (`[`, `]`).
 
 | Expresión | Resultado                              |
 | :-------- | :------------------------------------- |
-| \*        | Todos los elementos en el nivel actual |
-| @\*       | Todos los atributos del nodo actual    |
-| text()    | El contenido de texto de un nodo       |
+| `*`       | Todos los elementos en el nivel actual |
+| `@*`      | Todos los atributos del nodo actual    |
+| `text()`  | El contenido de texto de un nodo       |
 
 `/biblioteca/*`
 : Selecciona todos los elementos hijos directos de biblioteca.
@@ -184,7 +184,7 @@ Los predicados se escriben entre corchetes (`[`, `]`).
 
 El operador `|` es el operador de unión permite seleccionar distintos caminos en el documento.
 
-`//libro/titulo \| //libro/precio`
+`//libro/titulo | //libro/precio`
 : Selecciona todos los nodos titulo y todos los nodos precio hijos de libro |
 
 ### Comparaciones

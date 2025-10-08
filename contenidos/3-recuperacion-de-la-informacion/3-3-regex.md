@@ -1093,9 +1093,9 @@ print("Archivos Python:", filtrar_archivos(archivos, r"\.py$"))
 |           | En .NET, un símbolo Unicode de palabra, incluye conector '‿'                 | `\w-\w\w\w`    | 字-ま‿۳           |
 | `\s`      | En la mayoría de los lenguajes caracteres de blanco estándar                 | `a\sb\sc`      | a b c             |
 |           | En la .NET, Python 3, Javascript, caracteres de blanco Unicode               | `a\sb\sc`      | a b c             |
-| `\D`      | Un caracter que no es un dígito `\d`del lenguaje                             | `\D\D\D`       | ABC               |
-| `\W`      | Un caracter que no es un dígito `\w`del lenguaje                             | `\W\W\W\W`     | \*+=)             |
-| `\S`      | Un caracter que no es un blanco estandar `\s`del lenguaje                    | `\S\S\S\S`     | casa              |
+| `\D`      | Un caracter que no es un dígito `\d` del lenguaje                            | `\D\D\D`       | ABC               |
+| `\W`      | Un caracter que no es un caracter de palabra `\w` del lenguaje               | `\W\W\W\W`     | \*+=)             |
+| `\S`      | Un caracter que no es un blanco estandar `\s` del lenguaje                   | `\S\S\S\S`     | casa              |
 | `.`       | Cualquier caracter, excepto cortes de líneas                                 | `a.c`          | abc               |
 |           |                                                                              | `.*`           | piso 2, depto "A" |
 | `\.`      | Un punto                                                                     | `\w\.\d`       | a.3               |
@@ -1117,7 +1117,7 @@ print("Archivos Python:", filtrar_archivos(archivos, r"\.py$"))
 | Expresión | Significado                                                       | Ejemplo             | Match                   |
 | :-------- | :---------------------------------------------------------------- | :------------------ | :---------------------- |
 | `\|`      | Or                                                                | `22\|33`            | 22                      |
-| `( ... )` | Captura un grupo y lo asocia a una variable numerada              | `UN(O\|TREF)`       | UNTREF (y captura TREF) |
+| `(...)`   | Captura un grupo y lo asocia a una variable numerada              | `UN(O\|TREF)`       | UNTREF (y captura TREF) |
 | `\1`      | Lo capturado en el grupo 1                                        | `r(\w)g\1\x`        | regex                   |
 | `\2`      | Lo capturado en el grupo 2                                        | `(\d+)+(\d+)=\2+\1` | 25+33=33+25             |
 | `(?:…)`   | Grupo que no se captura (se verifica la regex pero no se captura) | `A(?:na\|licia)`    | Alicia                  |
@@ -1126,7 +1126,7 @@ print("Archivos Python:", filtrar_archivos(archivos, r"\.py$"))
 
 | Expresión | Significado                                                                                    | Ejemplo          | Match                                                 |
 | :-------- | :--------------------------------------------------------------------------------------------- | :--------------- | :---------------------------------------------------- |
-| `[ ... ]` | Uno de los caracteres entre corchetes                                                          | `[AEIOU]`        | A                                                     |
+| `[...]`   | Uno de los caracteres entre corchetes                                                          | `[AEIOU]`        | A                                                     |
 | `-`       | Indicador de rango                                                                             | `[a-z]`          | Una letra minúscula                                   |
 |           |                                                                                                | `[A-Z]+`         | Una o más letras mayúsculas                           |
 |           |                                                                                                | `[AB1-5w-z]`     | Uno de los caracteres A, B, 1, 2, 3, 4, 5, w, x, y, z |
