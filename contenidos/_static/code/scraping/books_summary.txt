@@ -1,0 +1,32 @@
+RESUMEN DE ANÁLISIS - LIBROS DE HORROR
+==================================================
+
+Fecha de análisis: 2025-10-06 16:27:12.513233
+Total de libros analizados: 17
+
+ESTADÍSTICAS DE PRECIOS:
+  Precio promedio: £35.95
+  Precio mediano: £36.97
+  Rango de precios: £10.56 - £57.86
+
+TOP 10 LIBROS:
+   1. Security
+      Precio: £39.25 | Rating: Two
+   2. Follow You Home
+      Precio: £21.36 | Rating: One
+   3. The Loney
+      Precio: £23.40 | Rating: One
+   4. Pet Sematary
+      Precio: £10.56 | Rating: Three
+   5. Doctor Sleep (The Shining #2)
+      Precio: £40.12 | Rating: Two
+   6. Psycho: Sanitarium (Psycho #1.5)
+      Precio: £36.97 | Rating: Five
+   7. Can You Keep a Secret? (Fear Street Relaunch #4)
+      Precio: £48.64 | Rating: One
+   8. Red Dragon (Hannibal Lecter #1)
+      Precio: £23.37 | Rating: Three
+   9. Dracula the Un-Dead
+      Precio: £35.63 | Rating: Five
+  10. Night Shift (Night Shift #1-20)
+      Precio: £12.75 | Rating: Four

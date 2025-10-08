@@ -1,0 +1,15 @@
+# Dependencias principales
+scrapy>=2.5.0
+itemadapter>=0.7.0
+
+# Dependencias para procesamiento de datos (opcional)
+pandas>=1.3.0
+numpy>=1.21.0
+
+# Dependencias para bases de datos (opcional)
+sqlalchemy>=1.4.0
+pymongo>=4.0.0
+
+# Herramientas de desarrollo
+autopep8>=1.6.0
+flake8>=4.0.0

@@ -1,0 +1,138 @@
+[
+{
+  "title": "Security",
+  "price": "39.25",
+  "availability": "In stock",
+  "rating": "Two",
+  "url": "https://books.toscrape.com/catalogue/security_925/index.html",
+  "category": "Horror"
+},
+{
+  "title": "Follow You Home",
+  "price": "21.36",
+  "availability": "In stock",
+  "rating": "One",
+  "url": "https://books.toscrape.com/catalogue/follow-you-home_809/index.html",
+  "category": "Horror"
+},
+{
+  "title": "The Loney",
+  "price": "23.40",
+  "availability": "In stock",
+  "rating": "One",
+  "url": "https://books.toscrape.com/catalogue/the-loney_756/index.html",
+  "category": "Horror"
+},
+{
+  "title": "Pet Sematary",
+  "price": "10.56",
+  "availability": "In stock",
+  "rating": "Three",
+  "url": "https://books.toscrape.com/catalogue/pet-sematary_726/index.html",
+  "category": "Horror"
+},
+{
+  "title": "Doctor Sleep (The Shining #2)",
+  "price": "40.12",
+  "availability": "In stock",
+  "rating": "Two",
+  "url": "https://books.toscrape.com/catalogue/doctor-sleep-the-shining-2_686/index.html",
+  "category": "Horror"
+},
+{
+  "title": "Psycho: Sanitarium (Psycho #1.5)",
+  "price": "36.97",
+  "availability": "In stock",
+  "rating": "Five",
+  "url": "https://books.toscrape.com/catalogue/psycho-sanitarium-psycho-15_628/index.html",
+  "category": "Horror"
+},
+{
+  "title": "Can You Keep a Secret? (Fear Street Relaunch #4)",
+  "price": "48.64",
+  "availability": "In stock",
+  "rating": "One",
+  "url": "https://books.toscrape.com/catalogue/can-you-keep-a-secret-fear-street-relaunch-4_614/index.html",
+  "category": "Horror"
+},
+{
+  "title": "Red Dragon (Hannibal Lecter #1)",
+  "price": "23.37",
+  "availability": "In stock",
+  "rating": "Three",
+  "url": "https://books.toscrape.com/catalogue/red-dragon-hannibal-lecter-1_390/index.html",
+  "category": "Horror"
+},
+{
+  "title": "Dracula the Un-Dead",
+  "price": "35.63",
+  "availability": "In stock",
+  "rating": "Five",
+  "url": "https://books.toscrape.com/catalogue/dracula-the-un-dead_370/index.html",
+  "category": "Horror"
+},
+{
+  "title": "Night Shift (Night Shift #1-20)",
+  "price": "12.75",
+  "availability": "In stock",
+  "rating": "Four",
+  "url": "https://books.toscrape.com/catalogue/night-shift-night-shift-1-20_335/index.html",
+  "category": "Horror"
+},
+{
+  "title": "Needful Things",
+  "price": "47.51",
+  "availability": "In stock",
+  "rating": "Four",
+  "url": "https://books.toscrape.com/catalogue/needful-things_334/index.html",
+  "category": "Horror"
+},
+{
+  "title": "Misery",
+  "price": "34.79",
+  "availability": "In stock",
+  "rating": "Two",
+  "url": "https://books.toscrape.com/catalogue/misery_332/index.html",
+  "category": "Horror"
+},
+{
+  "title": "It",
+  "price": "25.01",
+  "availability": "In stock",
+  "rating": "Three",
+  "url": "https://books.toscrape.com/catalogue/it_330/index.html",
+  "category": "Horror"
+},
+{
+  "title": "'Salem's Lot",
+  "price": "49.56",
+  "availability": "In stock",
+  "rating": "Four",
+  "url": "https://books.toscrape.com/catalogue/salems-lot_309/index.html",
+  "category": "Horror"
+},
+{
+  "title": "The Stand",
+  "price": "57.86",
+  "availability": "In stock",
+  "rating": "Two",
+  "url": "https://books.toscrape.com/catalogue/the-stand_282/index.html",
+  "category": "Horror"
+},
+{
+  "title": "The Girl with All the Gifts",
+  "price": "49.47",
+  "availability": "In stock",
+  "rating": "Three",
+  "url": "https://books.toscrape.com/catalogue/the-girl-with-all-the-gifts_250/index.html",
+  "category": "Horror"
+},
+{
+  "title": "House of Leaves",
+  "price": "54.89",
+  "availability": "In stock",
+  "rating": "One",
+  "url": "https://books.toscrape.com/catalogue/house-of-leaves_169/index.html",
+  "category": "Horror"
+}
+]
