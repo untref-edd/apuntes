@@ -51,9 +51,117 @@ Es importante mencionar que al trabajar con datos de redes sociales, debemos res
 
 Las redes sociales pueden modelarse naturalmente como grafos, donde los nodos representan usuarios y las aristas representan relaciones de amistad o conexión. Este modelo nos permite aplicar algoritmos de teoría de grafos para analizar la estructura y propiedades de la red.
 
+### Registro como Desarrollador de Facebook
+
+Para acceder a datos de Facebook mediante su API oficial, primero debemos registrarnos como desarrolladores:
+
+**Paso 1: Crear una cuenta de desarrollador**
+
+1. Visitar [Facebook for Developers](https://developers.facebook.com/)
+2. Hacer clic en "Get Started" o "Comenzar"
+3. Iniciar sesión con tu cuenta de Facebook personal
+4. Completar el registro como desarrollador aceptando los términos de servicio
+
+**Paso 2: Crear una aplicación**
+
+1. En el panel de desarrollador, hacer clic en "My Apps" > "Create App"
+2. Seleccionar el tipo de aplicación (por ejemplo, "Consumer" o "Business")
+3. Completar los detalles de la aplicación:
+   - Nombre de la aplicación
+   - Email de contacto
+   - Categoría de la aplicación
+4. Una vez creada, obtendrás:
+   - **App ID**: Identificador único de tu aplicación
+   - **App Secret**: Clave secreta (mantener confidencial)
+
+**Paso 3: Configurar permisos**
+
+1. En el dashboard de la aplicación, ir a "Settings" > "Basic"
+2. Agregar productos necesarios (por ejemplo, "Facebook Login")
+3. Configurar los permisos que necesitarás:
+   - `public_profile`: Información pública de perfil
+   - `user_friends`: Lista de amigos
+   - `user_posts`: Publicaciones del usuario
+
+**Documentación oficial:**
+
+- [Meta for Developers - Getting Started](https://developers.facebook.com/docs/development/create-an-app/)
+- [Graph API Reference](https://developers.facebook.com/docs/graph-api/)
+- [Facebook Python SDK](https://facebook-sdk.readthedocs.io/)
+
+```{important}
+**Nota sobre privacidad**: La API de Facebook Graph ha limitado significativamente el acceso a datos de usuarios desde 2018 por razones de privacidad. Actualmente, solo se puede acceder a datos del propio usuario autenticado y amigos que hayan autorizado la aplicación. Para fines educativos, trabajaremos con grafos simulados pero usando la estructura de datos real que proporciona la API.
+```
+
+### Instalación de la Librería Facebook SDK
+
+Para trabajar con la API de Facebook en Python, usamos la librería `facebook-sdk`:
+
+```{code-cell} python
+---
+tags: [hide-output]
+---
+# Instalación (ejecutar en terminal)
+# pip install facebook-sdk
+
+# Importar la librería
+try:
+    import facebook
+    print("✓ facebook-sdk instalado correctamente")
+    print(f"Versión: {facebook.__version__}")
+except ImportError:
+    print("⚠ facebook-sdk no está instalado")
+    print("Instalar con: pip install facebook-sdk")
+```
+
+### Ejemplo de Uso de Facebook Graph API
+
+Aquí un ejemplo de cómo usar la API real de Facebook (requiere credenciales):
+
+```{code-cell} python
+---
+tags: [hide-output]
+mystnb:
+  number_source_lines: true
+---
+# IMPORTANTE: Este código es un ejemplo de estructura
+# Para ejecutarlo, necesitas reemplazar 'YOUR_ACCESS_TOKEN' con tu token real
+
+ejemplo_uso_api = '''
+import facebook
+
+# Configurar el token de acceso
+# Obtener desde: https://developers.facebook.com/tools/explorer/
+access_token = "YOUR_ACCESS_TOKEN"
+
+# Crear conexión a la API
+graph = facebook.GraphAPI(access_token=access_token, version="3.1")
+
+# Obtener información del usuario autenticado
+perfil = graph.get_object(id="me", fields="id,name,friends")
+
+print(f"Usuario: {perfil['name']}")
+print(f"ID: {perfil['id']}")
+
+# Obtener lista de amigos (requiere permiso user_friends)
+# Nota: Solo devuelve amigos que usan la misma aplicación
+if 'friends' in perfil:
+    amigos = perfil['friends']['data']
+    print(f"Amigos que usan la app: {len(amigos)}")
+    
+    # Construir grafo de conexiones
+    for amigo in amigos:
+        print(f"  - {amigo['name']} (ID: {amigo['id']})")
+'''
+
+print("=== Ejemplo de uso de Facebook Graph API ===")
+print(ejemplo_uso_api)
+print("\n⚠ Nota: Este ejemplo requiere credenciales reales de Facebook Developer")
+```
+
 ### Modelado de una Red Social como Grafo
 
-En una red social como Facebook, cada usuario puede ser representado como un vértice en un grafo, y las relaciones de amistad como aristas no dirigidas (ya que la amistad es bidireccional).
+Dado que el acceso a datos reales de Facebook está limitado, trabajaremos con un grafo simulado que representa la estructura que obtendríamos de la API. En una red social como Facebook, cada usuario puede ser representado como un vértice en un grafo, y las relaciones de amistad como aristas no dirigidas (ya que la amistad es bidireccional).
 
 ```{mermaid}
 ---
@@ -334,13 +442,264 @@ with open(archivo_metricas, 'w', encoding='utf-8') as f:
 print(f"\nMétricas guardadas en {archivo_metricas}")
 ```
 
-## Caso de estudio: Twitter y Procesamiento de JSON
+## Caso de estudio: Twitter/X y Procesamiento de JSON
 
-Twitter (ahora X) es una plataforma de microblogging donde los usuarios publican mensajes cortos llamados "tweets". La información de tweets se suele obtener en formato JSON, tanto de streams en tiempo real como de datos históricos.
+Twitter (ahora X) es una plataforma de microblogging donde los usuarios publican mensajes cortos llamados "tweets". La información de tweets se obtiene en formato JSON mediante la API oficial, tanto de streams en tiempo real como de datos históricos.
 
-### Estructura de un Tweet en JSON
+### Registro como Desarrollador de Twitter/X
 
-Un tweet típico contiene mucha información estructurada. Veamos un ejemplo simplificado:
+Para acceder a la API de Twitter/X, debemos registrarnos en el portal de desarrolladores:
+
+**Paso 1: Crear una cuenta de desarrollador**
+
+1. Visitar [Twitter Developer Portal](https://developer.twitter.com/)
+2. Hacer clic en "Sign up" o iniciar sesión con tu cuenta de Twitter/X
+3. Solicitar acceso como desarrollador:
+   - Seleccionar el propósito de uso (educativo, investigación, comercial)
+   - Describir cómo planeas usar la API
+   - Aceptar los términos de servicio
+
+**Paso 2: Crear un proyecto y aplicación**
+
+1. En el Developer Portal, ir a "Projects & Apps"
+2. Crear un nuevo proyecto:
+   - Nombre del proyecto
+   - Descripción y caso de uso
+3. Crear una aplicación dentro del proyecto
+4. Obtener las credenciales:
+   - **API Key** (Consumer Key)
+   - **API Secret Key** (Consumer Secret)
+   - **Bearer Token** (para API v2)
+   - **Access Token** y **Access Token Secret** (para autenticación de usuario)
+
+**Paso 3: Configurar permisos**
+
+1. En la configuración de la aplicación, establecer permisos:
+   - Read: Solo lectura de tweets
+   - Read and Write: Leer y publicar
+   - Read, Write and Direct Messages: Acceso completo
+2. Para acceso básico (Free tier):
+   - 500,000 tweets por mes
+   - Acceso a API v2
+   - Limitado a 1 aplicación
+
+**Niveles de acceso:**
+
+- **Free**: Acceso básico para aprender y construir
+- **Basic** ($100/mes): Más tweets y mejor acceso
+- **Pro** ($5,000/mes): Acceso completo para empresas
+- **Enterprise**: Acceso personalizado
+
+**Documentación oficial:**
+
+- [Twitter API Documentation](https://developer.twitter.com/en/docs)
+- [API v2 Quick Start](https://developer.twitter.com/en/docs/twitter-api/getting-started/getting-access-to-the-twitter-api)
+- [Tweepy Documentation](https://docs.tweepy.org/) (Librería Python oficial)
+- [API Reference](https://developer.twitter.com/en/docs/api-reference-index)
+
+### Instalación de Tweepy
+
+Tweepy es la librería oficial de Python para trabajar con la API de Twitter:
+
+```{code-cell} python
+---
+tags: [hide-output]
+---
+# Instalación (ejecutar en terminal)
+# pip install tweepy
+
+# Importar la librería
+try:
+    import tweepy
+    print("✓ tweepy instalado correctamente")
+    print(f"Versión: {tweepy.__version__}")
+except ImportError:
+    print("⚠ tweepy no está instalado")
+    print("Instalar con: pip install tweepy")
+```
+
+### Ejemplo de Autenticación con Twitter API v2
+
+```{code-cell} python
+---
+tags: [hide-output]
+mystnb:
+  number_source_lines: true
+---
+# IMPORTANTE: Este código es un ejemplo de estructura
+# Para ejecutarlo, necesitas reemplazar las credenciales con tus valores reales
+
+ejemplo_autenticacion = '''
+import tweepy
+
+# Método 1: Autenticación con Bearer Token (API v2)
+bearer_token = "YOUR_BEARER_TOKEN"
+client = tweepy.Client(bearer_token=bearer_token)
+
+# Método 2: Autenticación OAuth 1.0a (API v1.1)
+consumer_key = "YOUR_API_KEY"
+consumer_secret = "YOUR_API_SECRET"
+access_token = "YOUR_ACCESS_TOKEN"
+access_token_secret = "YOUR_ACCESS_TOKEN_SECRET"
+
+client = tweepy.Client(
+    consumer_key=consumer_key,
+    consumer_secret=consumer_secret,
+    access_token=access_token,
+    access_token_secret=access_token_secret
+)
+
+# Verificar autenticación
+try:
+    user = client.get_me()
+    print(f"✓ Autenticado como: @{user.data.username}")
+except Exception as e:
+    print(f"✗ Error de autenticación: {e}")
+'''
+
+print("=== Ejemplo de autenticación con Twitter API ===")
+print(ejemplo_autenticacion)
+print("\n⚠ Nota: Este ejemplo requiere credenciales reales de Twitter Developer Portal")
+```
+
+### Ejemplo de Búsqueda de Tweets con API v2
+
+```{code-cell} python
+---
+tags: [hide-output]
+mystnb:
+  number_source_lines: true
+---
+# Ejemplo de búsqueda de tweets usando la API real
+
+ejemplo_busqueda_tweets = '''
+import tweepy
+import json
+
+# Configurar cliente con Bearer Token
+bearer_token = "YOUR_BEARER_TOKEN"
+client = tweepy.Client(bearer_token=bearer_token)
+
+# Buscar tweets recientes sobre un tema
+query = "python programación -is:retweet"  # Tweets sobre Python, sin retweets
+
+# API v2: search_recent_tweets (últimos 7 días)
+tweets = client.search_recent_tweets(
+    query=query,
+    max_results=10,
+    tweet_fields=["created_at", "public_metrics", "author_id", "lang"],
+    expansions=["author_id"],
+    user_fields=["username", "name", "public_metrics"]
+)
+
+# Procesar resultados
+print(f"Encontrados {len(tweets.data)} tweets:")
+
+for tweet in tweets.data:
+    # Obtener información del autor
+    author = next(
+        (user for user in tweets.includes["users"] 
+         if user.id == tweet.author_id), 
+        None
+    )
+    
+    print(f"\\n@{author.username}: {tweet.text[:100]}...")
+    print(f"  ❤️ {tweet.public_metrics['like_count']} | "
+          f"🔄 {tweet.public_metrics['retweet_count']}")
+    
+    # Guardar en formato JSON
+    tweet_dict = {
+        "id": tweet.id,
+        "created_at": str(tweet.created_at),
+        "text": tweet.text,
+        "author": {
+            "username": author.username,
+            "name": author.name,
+            "followers": author.public_metrics["followers_count"]
+        },
+        "metrics": tweet.public_metrics,
+        "lang": tweet.lang
+    }
+    
+    # Guardar en archivo JSONL
+    with open("/tmp/tweets_reales.jsonl", "a", encoding="utf-8") as f:
+        f.write(json.dumps(tweet_dict, ensure_ascii=False) + "\\n")
+
+print("\\n✓ Tweets guardados en /tmp/tweets_reales.jsonl")
+'''
+
+print("=== Ejemplo de búsqueda de tweets con API v2 ===")
+print(ejemplo_busqueda_tweets)
+print("\n⚠ Nota: Este ejemplo requiere credenciales reales de Twitter Developer")
+```
+
+### Ejemplo de Streaming de Tweets en Tiempo Real
+
+```{code-cell} python
+---
+tags: [hide-output]
+mystnb:
+  number_source_lines: true
+---
+# Ejemplo de streaming en tiempo real usando la API
+
+ejemplo_streaming = '''
+import tweepy
+import json
+
+class TweetStreamListener(tweepy.StreamingClient):
+    """Clase para procesar tweets en streaming."""
+    
+    def __init__(self, bearer_token, max_tweets=50):
+        super().__init__(bearer_token)
+        self.tweet_count = 0
+        self.max_tweets = max_tweets
+        
+    def on_tweet(self, tweet):
+        """Callback cuando llega un nuevo tweet."""
+        self.tweet_count += 1
+        
+        print(f"[{self.tweet_count}] Nuevo tweet: {tweet.text[:80]}...")
+        
+        # Guardar en archivo
+        tweet_data = {
+            "id": tweet.id,
+            "text": tweet.text,
+            "created_at": str(tweet.created_at)
+        }
+        
+        with open("/tmp/stream_tweets.jsonl", "a", encoding="utf-8") as f:
+            f.write(json.dumps(tweet_data, ensure_ascii=False) + "\\n")
+        
+        # Detener después de max_tweets
+        if self.tweet_count >= self.max_tweets:
+            self.disconnect()
+            print(f"\\n✓ Stream detenido después de {self.max_tweets} tweets")
+    
+    def on_errors(self, errors):
+        """Callback para manejar errores."""
+        print(f"Error en streaming: {errors}")
+
+# Configurar y ejecutar streaming
+bearer_token = "YOUR_BEARER_TOKEN"
+stream = TweetStreamListener(bearer_token, max_tweets=50)
+
+# Agregar reglas de filtrado
+# stream.add_rules(tweepy.StreamRule("python OR javascript"))
+
+# Iniciar streaming
+# stream.filter(tweet_fields=["created_at", "public_metrics"])
+print("Stream configurado. Descomenta las últimas líneas para ejecutar.")
+'''
+
+print("=== Ejemplo de streaming de tweets en tiempo real ===")
+print(ejemplo_streaming)
+print("\n⚠ Nota: El streaming requiere credenciales y puede consumir tu cuota de API")
+```
+
+### Estructura de un Tweet en JSON (API v2)
+
+La API v2 de Twitter devuelve tweets en formato JSON con esta estructura:
 
 ```{code-cell} python
 ---
@@ -349,31 +708,59 @@ tags: [hide-output]
 import json
 from datetime import datetime
 
-# Ejemplo de tweet en formato JSON
-tweet_ejemplo = {
-    "id": 1234567890,
-    "created_at": "2024-01-15T10:30:00Z",
-    "text": "Las estructuras de datos son fundamentales en programación! #EDD #Python",
-    "user": {
-        "id": 98765,
-        "name": "Maria Lopez",
-        "screen_name": "maria_dev",
-        "followers_count": 1523,
-        "friends_count": 342
+# Ejemplo de tweet en formato JSON (estructura real de API v2)
+# Basado en la documentación oficial: https://developer.twitter.com/en/docs/twitter-api/data-dictionary/object-model/tweet
+tweet_ejemplo_api_v2 = {
+    "data": {
+        "id": "1234567890123456789",
+        "text": "Las estructuras de datos son fundamentales en programación! #EDD #Python",
+        "created_at": "2024-01-15T10:30:00.000Z",
+        "author_id": "987654321",
+        "lang": "es",
+        "public_metrics": {
+            "retweet_count": 15,
+            "reply_count": 3,
+            "like_count": 47,
+            "quote_count": 2,
+            "impression_count": 1523
+        },
+        "entities": {
+            "hashtags": [
+                {"start": 55, "end": 59, "tag": "EDD"},
+                {"start": 60, "end": 67, "tag": "Python"}
+            ]
+        }
     },
-    "retweet_count": 15,
-    "favorite_count": 47,
-    "hashtags": ["EDD", "Python"],
-    "lang": "es"
+    "includes": {
+        "users": [
+            {
+                "id": "987654321",
+                "name": "Maria Lopez",
+                "username": "maria_dev",
+                "created_at": "2020-05-10T12:00:00.000Z",
+                "public_metrics": {
+                    "followers_count": 1523,
+                    "following_count": 342,
+                    "tweet_count": 2341,
+                    "listed_count": 12
+                }
+            }
+        ]
+    }
 }
 
-print("=== Estructura de un Tweet ===")
-print(json.dumps(tweet_ejemplo, indent=2, ensure_ascii=False))
+print("=== Estructura de un Tweet (Twitter API v2) ===")
+print(json.dumps(tweet_ejemplo_api_v2, indent=2, ensure_ascii=False))
+print("\n📚 Documentación: https://developer.twitter.com/en/docs/twitter-api/data-dictionary/object-model/tweet")
 ```
 
 ### Procesamiento de Tweets Históricos
 
-Cuando trabajamos con datos históricos de Twitter, comúnmente recibimos archivos en formato JSONL (JSON Lines), donde cada línea es un objeto JSON independiente. Esto facilita el procesamiento de grandes volúmenes de datos:
+Cuando trabajamos con datos históricos de Twitter, comúnmente recibimos archivos en formato JSONL (JSON Lines), donde cada línea es un objeto JSON independiente. Esto facilita el procesamiento de grandes volúmenes de datos.
+
+```{note}
+**Datos de práctica**: Los siguientes ejemplos usan datos simulados con la estructura real de la API de Twitter v2. Para trabajar con datos reales, sigue los pasos de registro y autenticación descritos anteriormente y usa los ejemplos de código con Tweepy.
+```
 
 ```{code-cell} python
 ---
@@ -384,13 +771,16 @@ mystnb:
 import random
 
 def generar_tweets_ejemplo(n=20):
-    """Genera tweets de ejemplo para demostración."""
+    """
+    Genera tweets de ejemplo usando la estructura real de Twitter API v2.
+    Simula datos que se obtendrían usando tweepy.Client.search_recent_tweets()
+    """
     usuarios = [
-        {"name": "Ana García", "screen_name": "ana_tech", "followers": 2341},
-        {"name": "Bruno Silva", "screen_name": "bruno_code", "followers": 1523},
-        {"name": "Clara Ruiz", "screen_name": "clara_dev", "followers": 3421},
-        {"name": "Diego Mendoza", "screen_name": "diego_data", "followers": 987},
-        {"name": "Elena Torres", "screen_name": "elena_ai", "followers": 5432},
+        {"id": "1001", "name": "Ana García", "username": "ana_tech", "followers": 2341},
+        {"id": "1002", "name": "Bruno Silva", "username": "bruno_code", "followers": 1523},
+        {"id": "1003", "name": "Clara Ruiz", "username": "clara_dev", "followers": 3421},
+        {"id": "1004", "name": "Diego Mendoza", "username": "diego_data", "followers": 987},
+        {"id": "1005", "name": "Elena Torres", "username": "elena_ai", "followers": 5432},
     ]
     
     temas = [
@@ -406,15 +796,25 @@ def generar_tweets_ejemplo(n=20):
         usuario = random.choice(usuarios)
         tema, hashtags = random.choice(temas)
         
+        # Formato real de Twitter API v2
         tweet = {
-            "id": 1000000000 + i,
-            "created_at": f"2024-01-{random.randint(10,20):02d}T{random.randint(0,23):02d}:{random.randint(0,59):02d}:00Z",
+            "id": str(1000000000000000000 + i),
+            "author_id": usuario["id"],
+            "created_at": f"2024-01-{random.randint(10,20):02d}T{random.randint(0,23):02d}:{random.randint(0,59):02d}:00.000Z",
             "text": f"{tema} #{' #'.join(hashtags)}",
-            "user": usuario.copy(),
-            "retweet_count": random.randint(0, 50),
-            "favorite_count": random.randint(0, 100),
-            "hashtags": hashtags,
-            "lang": "es"
+            "lang": "es",
+            "public_metrics": {
+                "retweet_count": random.randint(0, 50),
+                "reply_count": random.randint(0, 20),
+                "like_count": random.randint(0, 100),
+                "quote_count": random.randint(0, 10),
+                "impression_count": random.randint(100, 5000)
+            },
+            "entities": {
+                "hashtags": [{"tag": tag} for tag in hashtags]
+            },
+            # Metadatos adicionales para procesamiento
+            "_user": usuario  # No viene en API real, lo agregamos para simplificar ejemplos
         }
         tweets.append(tweet)
     
@@ -422,7 +822,7 @@ def generar_tweets_ejemplo(n=20):
 
 # Generar tweets de ejemplo
 tweets = generar_tweets_ejemplo(20)
-print(f"Generados {len(tweets)} tweets de ejemplo")
+print(f"Generados {len(tweets)} tweets de ejemplo (estructura Twitter API v2)")
 print(f"\nPrimer tweet:\n{json.dumps(tweets[0], indent=2, ensure_ascii=False)}")
 ```
 
@@ -461,14 +861,16 @@ mystnb:
 ---
 def procesar_tweets_jsonl(archivo):
     """
-    Procesa un archivo JSONL de tweets y extrae estadísticas.
+    Procesa un archivo JSONL de tweets (formato Twitter API v2) y extrae estadísticas.
+    Compatible con la estructura real que devuelve tweepy.
     """
     estadisticas = {
         "total_tweets": 0,
         "usuarios_unicos": set(),
         "hashtags": {},
         "total_retweets": 0,
-        "total_favoritos": 0,
+        "total_likes": 0,
+        "total_replies": 0,
         "tweets_por_usuario": {},
     }
     
@@ -477,20 +879,27 @@ def procesar_tweets_jsonl(archivo):
             tweet = json.loads(linea)
             estadisticas["total_tweets"] += 1
             
-            # Usuario
-            screen_name = tweet["user"]["screen_name"]
-            estadisticas["usuarios_unicos"].add(screen_name)
-            estadisticas["tweets_por_usuario"][screen_name] = \
-                estadisticas["tweets_por_usuario"].get(screen_name, 0) + 1
+            # Usuario (de metadatos auxiliares _user)
+            if "_user" in tweet:
+                username = tweet["_user"]["username"]
+                estadisticas["usuarios_unicos"].add(username)
+                estadisticas["tweets_por_usuario"][username] = \
+                    estadisticas["tweets_por_usuario"].get(username, 0) + 1
             
-            # Hashtags
-            for hashtag in tweet.get("hashtags", []):
-                estadisticas["hashtags"][hashtag] = \
-                    estadisticas["hashtags"].get(hashtag, 0) + 1
+            # Hashtags (de entities)
+            if "entities" in tweet and "hashtags" in tweet["entities"]:
+                for hashtag_obj in tweet["entities"]["hashtags"]:
+                    hashtag = hashtag_obj.get("tag", "")
+                    if hashtag:
+                        estadisticas["hashtags"][hashtag] = \
+                            estadisticas["hashtags"].get(hashtag, 0) + 1
             
-            # Interacciones
-            estadisticas["total_retweets"] += tweet.get("retweet_count", 0)
-            estadisticas["total_favoritos"] += tweet.get("favorite_count", 0)
+            # Métricas públicas (estructura real de API v2)
+            if "public_metrics" in tweet:
+                metrics = tweet["public_metrics"]
+                estadisticas["total_retweets"] += metrics.get("retweet_count", 0)
+                estadisticas["total_likes"] += metrics.get("like_count", 0)
+                estadisticas["total_replies"] += metrics.get("reply_count", 0)
     
     # Convertir set a lista para serialización
     estadisticas["usuarios_unicos"] = list(estadisticas["usuarios_unicos"])
@@ -504,7 +913,8 @@ print("=== Estadísticas de Tweets ===")
 print(f"Total de tweets: {stats['total_tweets']}")
 print(f"Usuarios únicos: {len(stats['usuarios_unicos'])}")
 print(f"Total de retweets: {stats['total_retweets']}")
-print(f"Total de favoritos: {stats['total_favoritos']}")
+print(f"Total de likes: {stats['total_likes']}")
+print(f"Total de replies: {stats['total_replies']}")
 
 print("\n=== Hashtags más populares ===")
 hashtags_ordenados = sorted(stats["hashtags"].items(), key=lambda x: x[1], reverse=True)
@@ -530,7 +940,10 @@ mystnb:
 import time
 
 class TwitterStreamProcessor:
-    """Procesa tweets de un stream en tiempo real."""
+    """
+    Procesa tweets de un stream en tiempo real.
+    Compatible con la estructura de Twitter API v2.
+    """
     
     def __init__(self):
         self.tweets_procesados = 0
@@ -542,31 +955,43 @@ class TwitterStreamProcessor:
             f.write(f"=== Stream iniciado a las {datetime.now()} ===\n")
     
     def procesar_tweet(self, tweet):
-        """Procesa un tweet individual del stream."""
+        """Procesa un tweet individual del stream (formato API v2)."""
         self.tweets_procesados += 1
         
-        # Actualizar hashtags trending
-        for hashtag in tweet.get("hashtags", []):
-            self.hashtags_trending[hashtag] = \
-                self.hashtags_trending.get(hashtag, 0) + 1
+        # Actualizar hashtags trending (de entities)
+        if "entities" in tweet and "hashtags" in tweet["entities"]:
+            for hashtag_obj in tweet["entities"]["hashtags"]:
+                hashtag = hashtag_obj.get("tag", "")
+                if hashtag:
+                    self.hashtags_trending[hashtag] = \
+                        self.hashtags_trending.get(hashtag, 0) + 1
         
         # Registrar en log
         self._log_tweet(tweet)
         
-        # Detectar tweets populares
-        if tweet.get("retweet_count", 0) > 30 or tweet.get("favorite_count", 0) > 50:
-            self._alertar_tweet_popular(tweet)
+        # Detectar tweets populares (usando public_metrics)
+        if "public_metrics" in tweet:
+            metrics = tweet["public_metrics"]
+            retweets = metrics.get("retweet_count", 0)
+            likes = metrics.get("like_count", 0)
+            
+            if retweets > 30 or likes > 50:
+                self._alertar_tweet_popular(tweet)
     
     def _log_tweet(self, tweet):
         """Registra el tweet en un archivo de log."""
+        username = tweet.get("_user", {}).get("username", "unknown")
         with open(self.archivo_log, 'a', encoding='utf-8') as f:
-            f.write(f"[{tweet['created_at']}] @{tweet['user']['screen_name']}: {tweet['text']}\n")
+            f.write(f"[{tweet['created_at']}] @{username}: {tweet['text']}\n")
     
     def _alertar_tweet_popular(self, tweet):
         """Alerta sobre tweets que están ganando popularidad."""
+        username = tweet.get("_user", {}).get("username", "unknown")
+        metrics = tweet.get("public_metrics", {})
+        
         print(f"⚡ Tweet popular detectado!")
-        print(f"   @{tweet['user']['screen_name']}: {tweet['text'][:60]}...")
-        print(f"   ❤️ {tweet['favorite_count']} | 🔄 {tweet['retweet_count']}")
+        print(f"   @{username}: {tweet['text'][:60]}...")
+        print(f"   ❤️ {metrics.get('like_count', 0)} | 🔄 {metrics.get('retweet_count', 0)}")
     
     def obtener_trending_topics(self, top_n=5):
         """Obtiene los hashtags trending del momento."""
@@ -617,38 +1042,45 @@ Implementemos funciones para filtrar y buscar tweets por diferentes criterios:
 tags: [hide-output]
 ---
 def buscar_tweets_por_hashtag(archivo, hashtag):
-    """Busca tweets que contengan un hashtag específico."""
+    """Busca tweets que contengan un hashtag específico (formato API v2)."""
     tweets_encontrados = []
     
     with open(archivo, 'r', encoding='utf-8') as f:
         for linea in f:
             tweet = json.loads(linea)
-            if hashtag in tweet.get("hashtags", []):
-                tweets_encontrados.append(tweet)
+            # Buscar en entities.hashtags
+            if "entities" in tweet and "hashtags" in tweet["entities"]:
+                tags = [h.get("tag", "") for h in tweet["entities"]["hashtags"]]
+                if hashtag in tags:
+                    tweets_encontrados.append(tweet)
     
     return tweets_encontrados
 
-def buscar_tweets_por_usuario(archivo, screen_name):
-    """Busca todos los tweets de un usuario específico."""
+def buscar_tweets_por_usuario(archivo, username):
+    """Busca todos los tweets de un usuario específico (formato API v2)."""
     tweets_usuario = []
     
     with open(archivo, 'r', encoding='utf-8') as f:
         for linea in f:
             tweet = json.loads(linea)
-            if tweet["user"]["screen_name"] == screen_name:
+            # Buscar en _user.username (metadato auxiliar)
+            if "_user" in tweet and tweet["_user"].get("username") == username:
                 tweets_usuario.append(tweet)
     
     return tweets_usuario
 
 def filtrar_tweets_populares(archivo, min_retweets=20):
-    """Filtra tweets con un mínimo de retweets."""
+    """Filtra tweets con un mínimo de retweets (formato API v2)."""
     tweets_populares = []
     
     with open(archivo, 'r', encoding='utf-8') as f:
         for linea in f:
             tweet = json.loads(linea)
-            if tweet.get("retweet_count", 0) >= min_retweets:
-                tweets_populares.append(tweet)
+            # Usar public_metrics.retweet_count
+            if "public_metrics" in tweet:
+                retweets = tweet["public_metrics"].get("retweet_count", 0)
+                if retweets >= min_retweets:
+                    tweets_populares.append(tweet)
     
     return tweets_populares
 
@@ -657,7 +1089,8 @@ print("=== Búsqueda de tweets sobre #Python ===")
 tweets_python = buscar_tweets_por_hashtag(archivo_tweets, "Python")
 print(f"Encontrados {len(tweets_python)} tweets")
 for tweet in tweets_python[:3]:
-    print(f"  - @{tweet['user']['screen_name']}: {tweet['text']}")
+    username = tweet.get("_user", {}).get("username", "unknown")
+    print(f"  - @{username}: {tweet['text']}")
 
 print("\n=== Tweets del usuario @ana_tech ===")
 tweets_ana = buscar_tweets_por_usuario(archivo_tweets, "ana_tech")
@@ -667,7 +1100,8 @@ print("\n=== Tweets populares (>20 retweets) ===")
 tweets_pop = filtrar_tweets_populares(archivo_tweets, min_retweets=20)
 print(f"Encontrados {len(tweets_pop)} tweets populares")
 for tweet in tweets_pop[:3]:
-    print(f"  - {tweet['text'][:50]}... (🔄 {tweet['retweet_count']})")
+    retweets = tweet.get("public_metrics", {}).get("retweet_count", 0)
+    print(f"  - {tweet['text'][:50]}... (🔄 {retweets})")
 ```
 
 ## Caso de estudio: Instagram y Web Scraping con Scrapy
