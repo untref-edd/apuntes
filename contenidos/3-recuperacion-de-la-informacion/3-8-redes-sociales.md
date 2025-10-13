@@ -51,72 +51,18 @@ Es importante mencionar que al trabajar con datos de redes sociales, debemos res
 
 Las redes sociales pueden modelarse naturalmente como grafos, donde los nodos representan usuarios y las aristas representan relaciones de amistad o conexión. Este modelo nos permite aplicar algoritmos de teoría de grafos para analizar la estructura y propiedades de la red.
 
-### Registro como Desarrollador de Facebook
-
-Para acceder a datos de Facebook mediante su API oficial, primero debemos registrarnos como desarrolladores:
-
-**Paso 1: Crear una cuenta de desarrollador**
-
-1. Visitar [Facebook for Developers](https://developers.facebook.com/)
-2. Hacer clic en "Get Started" o "Comenzar"
-3. Iniciar sesión con tu cuenta de Facebook personal
-4. Completar el registro como desarrollador aceptando los términos de servicio
-
-**Paso 2: Crear una aplicación**
-
-1. En el panel de desarrollador, hacer clic en "My Apps" > "Create App"
-2. Seleccionar el tipo de aplicación (por ejemplo, "Consumer" o "Business")
-3. Completar los detalles de la aplicación:
-   - Nombre de la aplicación
-   - Email de contacto
-   - Categoría de la aplicación
-4. Una vez creada, obtendrás:
-   - **App ID**: Identificador único de tu aplicación
-   - **App Secret**: Clave secreta (mantener confidencial)
-
-**Paso 3: Configurar permisos**
-
-1. En el dashboard de la aplicación, ir a "Settings" > "Basic"
-2. Agregar productos necesarios (por ejemplo, "Facebook Login")
-3. Configurar los permisos que necesitarás:
-   - `public_profile`: Información pública de perfil
-   - `user_friends`: Lista de amigos
-   - `user_posts`: Publicaciones del usuario
-
-**Documentación oficial:**
-
-- [Meta for Developers - Getting Started](https://developers.facebook.com/docs/development/create-an-app/)
-- [Graph API Reference](https://developers.facebook.com/docs/graph-api/)
-- [Facebook Python SDK](https://facebook-sdk.readthedocs.io/)
-
-```{important}
-**Nota sobre privacidad**: La API de Facebook Graph ha limitado significativamente el acceso a datos de usuarios desde 2018 por razones de privacidad. Actualmente, solo se puede acceder a datos del propio usuario autenticado y amigos que hayan autorizado la aplicación. Para fines educativos, trabajaremos con grafos simulados pero usando la estructura de datos real que proporciona la API.
-```
+El primer paso es registrarse como desarollador en la plataforma de Meta (Facebook) y obtener un token de acceso para usar la API Graph de Facebook. Este token es necesario para autenticar las solicitudes y acceder a los datos permitidos. Ver [Anexo: Facebook](../Anexos/Facebook.md) para una guía detallada.
 
 ### Instalación de la Librería Facebook SDK
 
-Para trabajar con la API de Facebook en Python, usamos la librería `facebook-sdk`:
+Para trabajar con la API de Facebook en Python, vamos a usar la librería `facebook-sdk`{l=python}:
 
-```{code-cell} python
----
-tags: [hide-output]
----
-# Instalación (ejecutar en terminal)
-# pip install facebook-sdk
-
-# Importar la librería
-try:
-    import facebook
-    print("✓ facebook-sdk instalado correctamente")
-    print(f"Versión: {facebook.__version__}")
-except ImportError:
-    print("⚠ facebook-sdk no está instalado")
-    print("Instalar con: pip install facebook-sdk")
+```bash
+pip install facebook-sdk
 ```
 
 ### Ejemplo de Uso de Facebook Graph API
 
-Aquí un ejemplo de cómo usar la API real de Facebook (requiere credenciales):
 
 ```{code-cell} python
 ---
@@ -124,39 +70,64 @@ tags: [hide-output]
 mystnb:
   number_source_lines: true
 ---
-# IMPORTANTE: Este código es un ejemplo de estructura
-# Para ejecutarlo, necesitas reemplazar 'YOUR_ACCESS_TOKEN' con tu token real
+import facebook # Importamos la nueva librería
 
-ejemplo_uso_api = '''
-import facebook
+# --- CONFIGURACIÓN ---
+# Pegar aquí el Access Token de Usuario.
+USER_ACCESS_TOKEN = "USER_ACCESS_TOKEN"
 
-# Configurar el token de acceso
-# Obtener desde: https://developers.facebook.com/tools/explorer/
-access_token = "YOUR_ACCESS_TOKEN"
+def get_all_likes_sdk(token):
+    """
+    Obtiene todas las páginas que le han gustado a un usuario usando el facebook-sdk.
+    La paginación es manejada automáticamente por la librería.
 
-# Crear conexión a la API
-graph = facebook.GraphAPI(access_token=access_token, version="3.1")
+    Args:
+        token (str): El token de acceso de usuario con el permiso 'user_likes'.
 
-# Obtener información del usuario autenticado
-perfil = graph.get_object(id="me", fields="id,name,friends")
+    Returns:
+        list: Una lista de diccionarios que representan las páginas.
+    """
+    try:
+        # 1. Creamos una instancia del objeto GraphAPI
+        graph = facebook.GraphAPI(access_token=token)
+        
+        print("Obteniendo tus 'Me gusta' con el SDK de Facebook...")
+        
+        # 2. Usamos get_all_connections para manejar la paginación automáticamente.
+        #    La librería se encargará de hacer todas las llamadas necesarias.
+        pages_generator = graph.get_all_connections(
+            id='me', 
+            connection_name='likes',
+            fields='name,category'
+        )
+        
+        # Convertimos el generador a una lista para tener todos los resultados
+        all_likes = list(pages_generator)
+        
+        print("\nProceso completado.")
+        return all_likes
 
-print(f"Usuario: {perfil['name']}")
-print(f"ID: {perfil['id']}")
+    except facebook.GraphAPIError as e:
+        print(f"Error de la API de Facebook: {e}")
+        return []
 
-# Obtener lista de amigos (requiere permiso user_friends)
-# Nota: Solo devuelve amigos que usan la misma aplicación
-if 'friends' in perfil:
-    amigos = perfil['friends']['data']
-    print(f"Amigos que usan la app: {len(amigos)}")
-    
-    # Construir grafo de conexiones
-    for amigo in amigos:
-        print(f"  - {amigo['name']} (ID: {amigo['id']})")
-'''
+        # --- BLOQUE DE PRUEBA ---
+if __name__ == "__main__":
+    if "USER_ACCESS_TOKEN" in USER_ACCESS_TOKEN:
+        print("Por favor, edita el script y añade tu TOKEN DE ACCESO DE USUARIO.")
+    else:
+        # Llamamos a la nueva función
+        likes = get_all_likes_sdk(USER_ACCESS_TOKEN)
+        
+        if likes:
+            print(f"\n¡Se encontraron un total de {len(likes)} páginas que te gustan!")
+            print("\n--- Ejemplo de los primeros 5 resultados: ---")
+            for i, page in enumerate(likes[:100]):
+                category = page.get('category', 'Sin categoría')
+                print(f"{i+1}. Nombre: {page['name']} | Categoría: {category}")
+        else:
+            print("\nNo se encontraron 'Me gusta' o ocurrió un error durante el proceso.")
 
-print("=== Ejemplo de uso de Facebook Graph API ===")
-print(ejemplo_uso_api)
-print("\n⚠ Nota: Este ejemplo requiere credenciales reales de Facebook Developer")
 ```
 
 ### Modelado de una Red Social como Grafo

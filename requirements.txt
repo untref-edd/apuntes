@@ -16,5 +16,6 @@ folium
 beautifulsoup4
 requests
 scrapy
+facebook-sdk
 
 --editable contenidos/_static/code
