@@ -371,9 +371,9 @@ FACEBOOK_RATE_LIMIT_DELAY=1
 
 ### Librerías de Python Recomendadas
 
-- [**facebook-sdk**](https://facebook-sdk.readthedocs.io/){target="_blank"}: SDK oficial para Python
-- [**requests**](https://requests.readthedocs.io/){target="_blank"}: Para llamadas HTTP directas
-- [**python-facebook-api**](https://github.com/sns-sdks/python-facebook){target="_blank"}: Alternativa moderna
+- [**facebook-sdk**](https://facebook-sdk.readthedocs.io/){target="_blank"}: SDK de terceros/comunidad para interactuar con Graph API en Python
+- [**requests**](https://requests.readthedocs.io/){target="_blank"}: Para llamadas HTTP directas (recomendado para máxima compatibilidad)
+- [**python-facebook-api**](https://github.com/sns-sdks/python-facebook){target="_blank"}: Alternativa moderna mantenida por la comunidad
 
 ### Herramientas de Desarrollo
 
