@@ -104,7 +104,7 @@ def get_all_likes_sdk(token):
         print(f"Error de la API de Facebook: {e}")
         return []
 
-        # --- BLOQUE DE PRUEBA ---
+# --- BLOQUE DE PRUEBA ---
 if __name__ == "__main__":
 
     # --- CONFIGURACIÓN ---
