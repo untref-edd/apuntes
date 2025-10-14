@@ -35,7 +35,7 @@ for filename in os.listdir(tmp_dir):
 
 Las redes sociales se han convertido en una de las fuentes más importantes de información en la actualidad. Plataformas como Facebook, Twitter e Instagram generan enormes volúmenes de datos cada segundo, que pueden ser analizados para obtener insights valiosos sobre comportamientos, tendencias y patrones sociales.
 
-En este capítulo exploraremos diferentes técnicas y herramientas para recuperar y analizar información de redes sociales, centrándonos en tres casos de estudio principales:
+En este capítulo exploraremos diferentes técnicas y herramientas para recuperar y analizar información de redes sociales, centrándonos en dos casos de estudio principales:
 
 1. **Facebook**: Modelado de redes sociales como grafos y recorrido mediante algoritmos de búsqueda en profundidad (DFS).
 2. **Twitter**: Procesamiento de streams de tweets en tiempo real y análisis de datos históricos en formato JSON.
