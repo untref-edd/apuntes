@@ -221,7 +221,7 @@ Es importante entender las limitaciones de cada nivel de acceso:
 
 ### Librerías de Python Recomendadas
 
-- [**Tweepy**](https://docs.tweepy.org/){target="_blank"}: Librería oficial para Python
+- [**Tweepy**](https://docs.tweepy.org/){target="_blank"}: Librería de terceros (muy popular) para Python
 - [**Python-Twitter**](https://python-twitter.readthedocs.io/){target="_blank"}: Alternativa robusta
 - [**TwitterAPI**](https://github.com/geduldig/TwitterAPI){target="_blank"}: Acceso directo a endpoints
 

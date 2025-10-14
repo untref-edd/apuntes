@@ -127,11 +127,14 @@ def mostrar_estadisticas_api():
         )
         
         print("✅ Autenticación exitosa")
+        if hasattr(response, "meta") and "result_count" in response.meta:
+            print(f"• Resultados de búsqueda de prueba: {response.meta['result_count']}")
         print("\n📊 Información de la API:")
         print("• API Version: v2")
         print("• Tier: Free (500K tweets/mes)")
         print("• Search Recent: ✅ Disponible")
-        print("• Rate Limit: 300 requests/15min para búsquedas")
+        print("• Rate Limit: Consulta los límites vigentes en la documentación oficial:")
+        print("  https://developer.twitter.com/en/docs/twitter-api/rate-limits")
         
     except Exception as e:
         print(f"❌ Error al verificar API: {e}")
