@@ -127,6 +127,8 @@ def mostrar_estadisticas_api():
         )
         
         print("✅ Autenticación exitosa")
+        if hasattr(response, "meta") and "result_count" in response.meta:
+            print(f"• Resultados de búsqueda de prueba: {response.meta['result_count']}")
         print("\n📊 Información de la API:")
         print("• API Version: v2")
         print("• Tier: Free (500K tweets/mes)")
