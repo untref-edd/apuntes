@@ -133,7 +133,8 @@ def mostrar_estadisticas_api():
         print("• API Version: v2")
         print("• Tier: Free (500K tweets/mes)")
         print("• Search Recent: ✅ Disponible")
-        print("• Rate Limit: 300 requests/15min para búsquedas")
+        print("• Rate Limit: Consulta los límites vigentes en la documentación oficial:")
+        print("  https://developer.twitter.com/en/docs/twitter-api/rate-limits")
         
     except Exception as e:
         print(f"❌ Error al verificar API: {e}")
