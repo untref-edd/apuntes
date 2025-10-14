@@ -335,6 +335,7 @@ def mostrar_estadisticas_api():
         )
         
         print("Autenticación exitosa")
+        print(f"• Resultados de búsqueda de prueba: {response.meta.get('result_count', 0)} tweets encontrados")
         print("\nInformación de la API:")
         print("• API Version: v2")
         print("• Tier: Free (500K tweets/mes)")
