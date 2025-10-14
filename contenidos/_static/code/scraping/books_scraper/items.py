@@ -8,7 +8,6 @@ import scrapy
 
 class BookItem(scrapy.Item):
     """Item para representar un libro extraído del sitio Books to Scrape"""
-
     title = scrapy.Field()
     price = scrapy.Field()
     category = scrapy.Field()

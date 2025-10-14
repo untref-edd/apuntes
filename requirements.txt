@@ -17,5 +17,6 @@ beautifulsoup4
 requests
 scrapy
 facebook-sdk
+tweepy
 
 --editable contenidos/_static/code
