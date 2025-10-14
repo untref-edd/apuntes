@@ -48,7 +48,7 @@ Es importante mencionar que al trabajar con datos de redes sociales, debemos res
 
 Las redes sociales pueden modelarse naturalmente como grafos, donde los nodos representan usuarios y las aristas representan relaciones de amistad o conexión. Este modelo nos permite aplicar algoritmos de teoría de grafos para analizar la estructura y propiedades de la red.
 
-El primer paso es registrarse como desarollador en la plataforma de Meta (Facebook) y obtener un token de acceso para usar la API Graph de Facebook. Este token es necesario para autenticar las solicitudes y acceder a los datos permitidos. Ver [Anexo: Facebook](../Anexos/Facebook.md) para una guía detallada.
+El primer paso es registrarse como desarrollador en la plataforma de Meta (Facebook) y obtener un token de acceso para usar la API Graph de Facebook. Este token es necesario para autenticar las solicitudes y acceder a los datos permitidos. Ver [Anexo: Facebook](../Anexos/Facebook.md) para una guía detallada.
 
 ### Instalación de la Librería Facebook SDK
 
