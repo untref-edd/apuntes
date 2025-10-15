@@ -18,5 +18,7 @@ requests
 scrapy
 facebook-sdk
 tweepy
+nltk
+BTrees
 
 --editable contenidos/_static/code
