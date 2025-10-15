@@ -699,213 +699,15 @@ Al elegir un algoritmo de construcción de índices, considerar:
 
 ## Implementación con BSBI
 
-Ahora veamos una implementación práctica usando el algoritmo BSBI con un corpus de documentos sobre las obras de Tolkien:
+En el siguiente enlace se encuentra una implementación en Python del algoritmo BSBI para construir un índice invertido a partir de una colección de documentos. Esta implementación incluye procesamiento básico de texto (normalización, tokenización, eliminación de stopwords y stemming).
 
-```{code-cell} python
+```{literalinclude} ../_static/code/ii/README.md
 ---
-tags: [hide-output]
+language: md
 ---
-import sys
-sys.path.append('../_static/code/ii')
-
-from ii import BSBI
-from pathlib import Path
-
-# Crear constructor BSBI con bloques pequeños
-bsbi = BSBI(tamaño_bloque=50)
-
-# Construir índice desde el corpus de Tolkien
-corpus_path = Path('../_static/code/ii/corpus')
-print(f"Construyendo índice desde: {corpus_path}\n")
-
-indice = bsbi.construir_indice(corpus_path)
-
-# Mostrar estadísticas
-print(f"Índice construido exitosamente")
-print(f"Términos únicos: {len(indice)}")
-print(f"Total de postings: {sum(len(docs) for docs in indice.values())}")
-
-# Mostrar algunos términos de ejemplo
-print("\nEjemplos de términos y sus postings:")
-terminos_ejemplo = ['frodo', 'ring', 'gandalf', 'hobbit', 'aragorn']
-for termino in terminos_ejemplo:
-    docs = bsbi.buscar(termino)
-    if docs:
-        print(f"  '{termino}': {docs}")
 ```
 
-El algoritmo BSBI procesa los documentos en bloques, creando índices parciales ordenados que luego fusiona eficientemente. Esto permite manejar colecciones que no caben en memoria.
-
-## Índice Invertido Completo
-
-Para casos donde la colección sí cabe en memoria, podemos usar una implementación más simple:
-
-```{code-cell} python
----
-tags: [hide-output]
----
-from collections import defaultdict
-import re
-
-
-class IndiceInvertidoCompleto:
-    """Índice invertido con procesamiento de texto completo"""
-    
-    def __init__(self, usar_stopwords=True, usar_stemming=False):
-        self.indice = defaultdict(set)
-        self.documentos = {}
-        self.usar_stopwords = usar_stopwords
-        self.usar_stemming = usar_stemming
-    
-    def normalizar(self, texto):
-        """Normaliza el texto"""
-        texto = texto.lower()
-        texto = re.sub(r'[^\w\s]', '', texto)
-        return texto
-    
-    def tokenizar(self, texto):
-        """Tokeniza y procesa el texto"""
-        texto = self.normalizar(texto)
-        tokens = texto.split()
-        
-        # Eliminar stopwords si está habilitado
-        if self.usar_stopwords:
-            tokens = [t for t in tokens if t not in STOPWORDS]
-        
-        # Aplicar stemming si está habilitado
-        if self.usar_stemming:
-            tokens = [stem_simple(t) for t in tokens]
-        
-        return tokens
-    
-    def agregar_documento(self, doc_id, texto):
-        """Agrega un documento al índice"""
-        self.documentos[doc_id] = texto
-        tokens = self.tokenizar(texto)
-        
-        for token in tokens:
-            if token:  # Ignorar strings vacíos
-                self.indice[token].add(doc_id)
-    
-    def buscar(self, termino):
-        """Busca un término en el índice"""
-        # Procesar el término de búsqueda de la misma manera
-        tokens = self.tokenizar(termino)
-        if not tokens:
-            return set()
-        termino_procesado = tokens[0]
-        return self.indice.get(termino_procesado, set())
-    
-    def buscar_and(self, *terminos):
-        """Busca documentos que contienen todos los términos"""
-        if not terminos:
-            return set()
-        resultado = self.buscar(terminos[0])
-        for termino in terminos[1:]:
-            resultado &= self.buscar(termino)
-        return resultado
-    
-    def buscar_or(self, *terminos):
-        """Busca documentos que contienen al menos uno de los términos"""
-        resultado = set()
-        for termino in terminos:
-            resultado |= self.buscar(termino)
-        return resultado
-    
-    def obtener_estadisticas(self):
-        """Retorna estadísticas del índice"""
-        return {
-            'num_terminos': len(self.indice),
-            'num_documentos': len(self.documentos),
-            'terminos_mas_frecuentes': sorted(
-                [(t, len(docs)) for t, docs in self.indice.items()],
-                key=lambda x: x[1],
-                reverse=True
-            )[:10]
-        }
-
-
-# Crear índice con diferentes configuraciones
-print("=== Índice SIN procesamiento ===")
-indice1 = IndiceInvertidoCompleto(usar_stopwords=False, usar_stemming=False)
-indice1.agregar_documento(1, "La programación en Python es muy popular")
-indice1.agregar_documento(2, "Programar en Python es divertido y educativo")
-indice1.agregar_documento(3, "Los programadores de Python son muy demandados")
-stats1 = indice1.obtener_estadisticas()
-print(f"Términos en el índice: {stats1['num_terminos']}")
-
-print("\n=== Índice CON stopwords removidas ===")
-indice2 = IndiceInvertidoCompleto(usar_stopwords=True, usar_stemming=False)
-indice2.agregar_documento(1, "La programación en Python es muy popular")
-indice2.agregar_documento(2, "Programar en Python es divertido y educativo")
-indice2.agregar_documento(3, "Los programadores de Python son muy demandados")
-stats2 = indice2.obtener_estadisticas()
-print(f"Términos en el índice: {stats2['num_terminos']}")
-
-print("\n=== Índice CON stopwords y stemming ===")
-indice3 = IndiceInvertidoCompleto(usar_stopwords=True, usar_stemming=True)
-indice3.agregar_documento(1, "La programación en Python es muy popular")
-indice3.agregar_documento(2, "Programar en Python es divertido y educativo")
-indice3.agregar_documento(3, "Los programadores de Python son muy demandados")
-stats3 = indice3.obtener_estadisticas()
-print(f"Términos en el índice: {stats3['num_terminos']}")
-
-# Comparar búsquedas
-print("\n=== Comparación de búsquedas ===")
-print(f"Búsqueda 'programación':")
-print(f"  Sin procesamiento: {indice1.buscar('programación')}")
-print(f"  Con stopwords: {indice2.buscar('programación')}")
-print(f"  Con stemming: {indice3.buscar('programación')}")
-
-print(f"\nBúsqueda 'programar':")
-print(f"  Sin procesamiento: {indice1.buscar('programar')}")
-print(f"  Con stopwords: {indice2.buscar('programar')}")
-print(f"  Con stemming: {indice3.buscar('programar')}")  # Encuentra ambos!
-```
-
-Como podemos observar, el procesamiento reduce significativamente el tamaño del vocabulario y mejora la recuperación al agrupar variantes morfológicas de las mismas palabras.
-
-## Construcción de Índices
-
-La construcción de un índice invertido para una colección grande de documentos requiere consideraciones especiales:
-
-### Construcción en Memoria
-
-Para colecciones pequeñas que caben en memoria, el proceso es simple:
-
-```{code-cell} python
----
-tags: [hide-output]
----
-def construir_indice_simple(documentos):
-    """Construye un índice invertido en memoria"""
-    indice = IndiceInvertidoCompleto(usar_stopwords=True, usar_stemming=True)
-    
-    for doc_id, texto in documentos.items():
-        indice.agregar_documento(doc_id, texto)
-    
-    return indice
-
-
-# Ejemplo con una colección de documentos
-coleccion = {
-    1: "Python es un lenguaje interpretado de alto nivel",
-    2: "Java es un lenguaje compilado y tipado estáticamente",
-    3: "Python y Java son lenguajes orientados a objetos",
-    4: "Machine Learning se implementa frecuentemente en Python",
-    5: "Los frameworks de Java incluyen Spring y Hibernate"
-}
-
-indice_final = construir_indice_simple(coleccion)
-stats = indice_final.obtener_estadisticas()
-
-print(f"Índice construido:")
-print(f"  - Documentos: {stats['num_documentos']}")
-print(f"  - Términos únicos: {stats['num_terminos']}")
-print(f"\nTérminos más frecuentes:")
-for termino, freq in stats['terminos_mas_frecuentes']:
-    print(f"  {termino}: aparece en {freq} documento(s)")
-```
+[Descargar el código fuente de implementación BSBI](../_static/code/ii.zip){download="ii.zip"}
 
 ### Complejidad
 
@@ -917,63 +719,6 @@ Para colecciones muy grandes que no caben en memoria, se utilizan técnicas como
 - **Construcción por bloques**: Dividir la colección en bloques, crear índices parciales y luego fusionarlos
 - **Ordenamiento externo**: Usar algoritmos de ordenamiento que funcionen con datos en disco
 - **Procesamiento distribuido**: Utilizar frameworks como MapReduce para procesar en paralelo
-
-## Aplicaciones Prácticas
-
-Los índices invertidos se utilizan en:
-
-- **Motores de búsqueda web**: Google, Bing, etc.
-- **Búsqueda en documentos**: Elasticsearch, Solr, Lucene
-- **Búsqueda en código**: GitHub Code Search
-- **Bases de datos full-text**: PostgreSQL, MongoDB con índices de texto
-- **Sistemas de recomendación**: Para encontrar ítems similares
-- **Detección de plagio**: Comparar documentos eficientemente
-
-```{code-cell} python
----
-tags: [hide-output]
----
-# Ejemplo: Sistema simple de búsqueda de documentos
-class SistemaBusqueda:
-    """Sistema básico de búsqueda de documentos"""
-    
-    def __init__(self):
-        self.indice = IndiceInvertidoCompleto(usar_stopwords=True, usar_stemming=True)
-    
-    def indexar_documentos(self, documentos):
-        """Indexa una colección de documentos"""
-        for doc_id, contenido in documentos.items():
-            self.indice.agregar_documento(doc_id, contenido)
-    
-    def buscar_consulta(self, consulta):
-        """Procesa una consulta y retorna documentos relevantes"""
-        # Por simplicidad, asumimos consulta como términos separados por espacio (OR implícito)
-        terminos = consulta.split()
-        docs = self.indice.buscar_or(*terminos)
-        
-        # Retornar documentos con su contenido
-        resultados = []
-        for doc_id in docs:
-            resultados.append({
-                'id': doc_id,
-                'contenido': self.indice.documentos[doc_id]
-            })
-        return resultados
-
-
-# Crear sistema y buscar
-sistema = SistemaBusqueda()
-sistema.indexar_documentos(coleccion)
-
-# Realizar búsqueda
-consulta = "Machine Learning Python"
-resultados = sistema.buscar_consulta(consulta)
-
-print(f"Consulta: '{consulta}'")
-print(f"Se encontraron {len(resultados)} documento(s):\n")
-for res in resultados:
-    print(f"[Doc {res['id']}] {res['contenido']}")
-```
 
 ## Resumen
 
@@ -988,65 +733,23 @@ Los índices invertidos son esenciales para la recuperación eficiente de inform
 
 En el siguiente capítulo veremos cómo comprimir estos índices para reducir el espacio que ocupan, lo cual es crucial cuando trabajamos con colecciones de millones de documentos.
 
+## Aplicaciones Prácticas
+
+Los índices invertidos se utilizan en:
+
+- **Motores de búsqueda web**: Google, Bing, etc.
+- **Búsqueda en documentos**: Elasticsearch, Solr, Lucene
+- **Búsqueda en código**: GitHub Code Search
+- **Bases de datos full-text**: PostgreSQL, MongoDB con índices de texto
+- **Sistemas de recomendación**: Para encontrar ítems similares
+- **Detección de plagio**: Comparar documentos eficientemente
+
 ## Referencias y Recursos Adicionales
 
 ### Bibliografía Principal
 
-- Manning, C. D., Raghavan, P., & Schütze, H. (2008). **Introduction to Information Retrieval**. Cambridge University Press.
-  - Capítulo 1: Boolean retrieval
-  - Capítulo 2: The term vocabulary and postings lists
-  - Capítulo 4: Index construction
-  - [Disponible online](https://nlp.stanford.edu/IR-book/){target="_blank"}
+- Manning, C. D., Raghavan, P., & Schütze, H. (2008). *Introduction to Information Retrieval*. Cambridge University Press. Capítulos 1, 2, 3 y 4.{cite:p}`irbook`
 
-- Baeza-Yates, R., & Ribeiro-Neto, B. (2011). **Modern Information Retrieval: The Concepts and Technology behind Search** (2nd ed.). Addison-Wesley.
+- Modern Information Retrieval: The Concepts and Technology behind Search. {cite:p}`baeza2011`
 
-- Büttcher, S., Clarke, C. L., & Cormack, G. V. (2010). **Information Retrieval: Implementing and Evaluating Search Engines**. MIT Press.
-
-### Recursos en Línea
-
-- [Elasticsearch Guide - Inverted Index](https://www.elastic.co/guide/en/elasticsearch/reference/current/documents-indices.html){target="_blank"}: Documentación sobre índices invertidos en Elasticsearch
-
-- [Apache Lucene Documentation](https://lucene.apache.org/core/documentation.html){target="_blank"}: Motor de búsqueda open source que implementa índices invertidos
-
-- [Whoosh Documentation](https://whoosh.readthedocs.io/){target="_blank"}: Librería Python de búsqueda full-text
-
-- [Information Retrieval - Stanford CS276](https://web.stanford.edu/class/cs276/){target="_blank"}: Curso de Stanford sobre recuperación de información
-
-### Herramientas y Librerías
-
-- **Elasticsearch**: Motor de búsqueda distribuido basado en Lucene
-  - [https://www.elastic.co/elasticsearch/](https://www.elastic.co/elasticsearch/){target="_blank"}
-
-- **Apache Solr**: Plataforma de búsqueda empresarial basada en Lucene
-  - [https://solr.apache.org/](https://solr.apache.org/){target="_blank"}
-
-- **Whoosh**: Motor de búsqueda en Python puro
-  - [https://whoosh.readthedocs.io/](https://whoosh.readthedocs.io/){target="_blank"}
-
-- **NLTK (Natural Language Toolkit)**: Procesamiento de lenguaje natural en Python
-  - [https://www.nltk.org/](https://www.nltk.org/){target="_blank"}
-
-- **spaCy**: Librería avanzada de NLP
-  - [https://spacy.io/](https://spacy.io/){target="_blank"}
-
-### Artículos y Papers
-
-- Cutting, D., & Pedersen, J. (1997). "Space Optimizations for Total Ranking". *Proceedings of RIAO*.
-
-- Zobel, J., & Moffat, A. (2006). "Inverted files for text search engines". *ACM Computing Surveys*, 38(2).
-
-- Dean, J., & Ghemawat, S. (2004). "MapReduce: Simplified Data Processing on Large Clusters". *OSDI*.
-
-### Videos y Tutoriales
-
-- [How Search Engines Work - Matt Cutts (Google)](https://www.youtube.com/results?search_query=how+search+engines+work){target="_blank"}
-
-- [Building a Search Engine - MIT OpenCourseWare](https://ocw.mit.edu/){target="_blank"}
-
-### Para Profundizar
-
-- Estudiar implementaciones reales en Lucene (Java) o Whoosh (Python)
-- Experimentar con Elasticsearch para ver índices invertidos en producción
-- Implementar variantes como índices posicionales (para búsquedas de frases)
-- Explorar técnicas de ranking como TF-IDF y BM25
-- Investigar índices para búsqueda aproximada y corrección ortográfica
+- Information Retrieval: Implementing and Evaluating Search Engines. {cite:p}`buttcher2010`

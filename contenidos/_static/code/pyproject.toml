@@ -3,9 +3,9 @@ requires = ["setuptools>=64", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "grafos"
+name = "edd-code"
 version = "0.1"
-description = "Código de grafos para apuntes UNTREF-EDD"
+description = "Código de estructuras de datos para apuntes UNTREF-EDD"
 authors = [{ name = "UNTreF EDD" }]
 readme = "README.md"
 requires-python = ">=3.11"
@@ -15,4 +15,4 @@ dependencies = []
 Homepage = "https://github.com/untref-edd/apuntes"
 
 [tool.setuptools.packages]
-find = { include = ["grafos"] }
+find = { include = ["grafos", "ii"] }

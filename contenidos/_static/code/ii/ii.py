@@ -244,18 +244,6 @@ def ejemplo_bsbi():
     for termino in terminos_muestra:
         print(f"  {termino}: {indice[termino]}")
     
-    # Realizar algunas búsquedas
-    print("\n=== Ejemplos de búsqueda ===")
-    terminos_busqueda = ["frodo", "ring", "gandalf", "hobbit", "sauron"]
-    
-    for termino in terminos_busqueda:
-        docs = bsbi.buscar(termino)
-        if docs:
-            print(f"\n'{termino}' aparece en documentos: {docs}")
-        else:
-            print(f"\n'{termino}' no encontrado en el índice")
-    
-    # Estadísticas
     print("\n=== Estadísticas del Índice ===")
     total_postings = sum(len(docs) for docs in indice.values())
     print(f"Total de términos: {len(indice)}")
