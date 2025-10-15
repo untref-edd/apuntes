@@ -37,6 +37,8 @@ parts:
   - caption: Anexos
     chapters:
     - file: Anexos/GitBash
+    - file: Anexos/Facebook
+    - file: Anexos/Twitter
   - caption: Referencias
     chapters:
     - file: bibliografia

@@ -1,3 +1,15 @@
+---
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
 # Activación automática de entorno virtual en Git Bash
 
 Para esta guía se asume que el sistema Windows cuenta con Python y Git Bash instalados.
