@@ -631,6 +631,19 @@ tags: [hide-output]
 ---
 import sys
 
+# Función auxiliar para VB encoding
+def vb_encode_numero(numero):
+    """Codifica un número con VB encoding"""
+    if numero == 0:
+        return [0]
+    bytes_list = []
+    while numero > 0:
+        bytes_list.insert(0, numero % 128)
+        numero //= 128
+    for i in range(len(bytes_list) - 1):
+        bytes_list[i] += 128
+    return bytes_list
+
 # Comparar técnicas para una lista de postings típica
 postings = [1, 5, 8, 15, 23, 45, 67, 89, 123, 156, 234, 456, 789, 1234]
 gaps = [postings[0]] + [postings[i] - postings[i-1] for i in range(1, len(postings))]
@@ -646,16 +659,7 @@ print(f"Sin compresión: {sin_compresion} bytes ({sin_compresion * 8} bits)")
 # Variable Byte
 vb_bytes = []
 for gap in gaps:
-    if gap == 0:
-        vb_bytes.append(0)
-    else:
-        temp = []
-        while gap > 0:
-            temp.insert(0, gap % 128)
-            gap //= 128
-        for i in range(len(temp) - 1):
-            temp[i] += 128
-        vb_bytes.extend(temp)
+    vb_bytes.extend(vb_encode_numero(gap))
 
 print(f"Variable Byte: {len(vb_bytes)} bytes ({len(vb_bytes) * 8} bits)")
 print(f"  Ratio: {sin_compresion / len(vb_bytes):.2f}x")
