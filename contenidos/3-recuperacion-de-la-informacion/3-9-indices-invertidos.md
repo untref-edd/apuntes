@@ -338,9 +338,407 @@ for palabra in palabras:
 Para aplicaciones reales en español, se recomienda usar librerías especializadas como **NLTK** o **spaCy** que implementan algoritmos más sofisticados como el stemmer de Snowball o lematización basada en diccionarios.
 ```
 
+## Algoritmos de Construcción de Índices
+
+Cuando trabajamos con colecciones grandes de documentos que no caben en memoria RAM, necesitamos algoritmos especializados para construir el índice invertido. Existen tres enfoques principales: BSBI, SPIMI, y construcción distribuida con MapReduce.
+
+### BSBI (Blocked Sort-Based Indexing)
+
+El algoritmo **BSBI** (Blocked Sort-Based Indexing) es una técnica que construye índices cuando la colección de documentos no cabe en memoria. Divide el procesamiento en dos fases:
+
+**Fase 1: Generación de bloques ordenados**
+1. Lee documentos en bloques que sí caben en memoria
+2. Para cada bloque, extrae pares (término, doc_id)
+3. Ordena los pares en memoria
+4. Escribe el bloque ordenado a disco
+
+**Fase 2: Fusión de bloques (merge de k-vías)**
+1. Abre todos los archivos de bloques simultáneamente
+2. Usa un heap para fusionar eficientemente
+3. Produce el índice final ordenado
+
+#### Pseudocódigo BSBI
+
+```text
+ALGORITMO BSBI(colección_documentos)
+  bloques = []
+  buffer = []
+  
+  // Fase 1: Crear bloques ordenados
+  PARA CADA documento EN colección_documentos:
+    pares = ParsearDocumento(documento)
+    buffer.agregar(pares)
+    
+    SI buffer.tamaño >= TAMAÑO_BLOQUE:
+      índice_bloque = InvertirYOrdenar(buffer)
+      archivo_bloque = EscribirADisco(índice_bloque)
+      bloques.agregar(archivo_bloque)
+      buffer.limpiar()
+  FIN PARA
+  
+  // Procesar último bloque si existe
+  SI buffer NO está vacío:
+    índice_bloque = InvertirYOrdenar(buffer)
+    archivo_bloque = EscribirADisco(índice_bloque)
+    bloques.agregar(archivo_bloque)
+  FIN SI
+  
+  // Fase 2: Fusionar todos los bloques
+  índice_final = FusionarBloques(bloques)
+  RETORNAR índice_final
+FIN ALGORITMO
+
+
+FUNCIÓN InvertirYOrdenar(pares_término_docid):
+  // Ordena los pares por (término, doc_id)
+  pares_ordenados = Ordenar(pares_término_docid)
+  
+  // Construye diccionario término -> [doc_ids]
+  índice = diccionario_vacío()
+  PARA CADA (término, doc_id) EN pares_ordenados:
+    índice[término].agregar(doc_id)
+  FIN PARA
+  
+  RETORNAR índice
+FIN FUNCIÓN
+
+
+FUNCIÓN FusionarBloques(lista_bloques):
+  // Merge de k-vías usando un heap
+  heap = heap_vacío()
+  archivos = []
+  
+  // Inicializar heap con primera línea de cada bloque
+  PARA CADA bloque EN lista_bloques:
+    archivo = Abrir(bloque)
+    archivos.agregar(archivo)
+    (término, postings) = LeerLínea(archivo)
+    heap.insertar((término, postings, archivo))
+  FIN PARA
+  
+  índice_final = diccionario_vacío()
+  término_actual = NULL
+  postings_acumulados = []
+  
+  MIENTRAS heap NO vacío:
+    (término, postings, archivo) = heap.extraer_mínimo()
+    
+    SI término ≠ término_actual Y término_actual ≠ NULL:
+      índice_final[término_actual] = postings_acumulados
+      postings_acumulados = []
+    FIN SI
+    
+    término_actual = término
+    postings_acumulados.agregar(postings)
+    
+    // Leer siguiente línea del mismo archivo
+    SI NO archivo.fin():
+      (término, postings) = LeerLínea(archivo)
+      heap.insertar((término, postings, archivo))
+    FIN SI
+  FIN MIENTRAS
+  
+  // Guardar último término
+  SI término_actual ≠ NULL:
+    índice_final[término_actual] = postings_acumulados
+  FIN SI
+  
+  RETORNAR índice_final
+FIN FUNCIÓN
+```
+
+#### Complejidad de BSBI
+
+- **Tiempo**: O(T log T) donde T es el número total de pares (término, doc_id)
+  - Ordenamiento de bloques: O(T log T)
+  - Merge de k bloques: O(T log k)
+- **Espacio**: O(B) donde B es el tamaño del bloque en memoria
+- **I/O**: Cada par (término, doc_id) se lee y escribe una vez
+
+#### Ventajas y Desventajas de BSBI
+
+**Ventajas:**
+- Simple de implementar
+- Funciona bien con colecciones que no caben en memoria
+- El ordenamiento garantiza postings ordenados
+- Eficiente uso de I/O secuencial
+
+**Desventajas:**
+- Requiere espacio en disco para bloques intermedios
+- El merge de k-vías puede ser complejo con muchos bloques
+- Manejo de términos muy frecuentes puede ser ineficiente
+
+### SPIMI (Single-Pass In-Memory Indexing)
+
+El algoritmo **SPIMI** mejora BSBI al generar directamente un diccionario de términos → postings en cada bloque, en lugar de generar y ordenar pares. Esto es más eficiente en memoria.
+
+#### Pseudocódigo SPIMI
+
+```text
+ALGORITMO SPIMI(flujo_tokens)
+  bloques = []
+  diccionario = diccionario_vacío()
+  
+  MIENTRAS hay_más_tokens():
+    MIENTRAS hay_memoria_disponible():
+      (término, doc_id) = siguiente_token()
+      
+      SI término NO EN diccionario:
+        diccionario[término] = nueva_lista_postings()
+        AgregarADiccionario(término)
+      FIN SI
+      
+      SI doc_id NO EN diccionario[término]:
+        diccionario[término].agregar(doc_id)
+      FIN SI
+    FIN MIENTRAS
+    
+    // Memoria llena, escribir bloque a disco
+    bloque = OrdenarTérminos(diccionario)
+    archivo = EscribirBloque(bloque)
+    bloques.agregar(archivo)
+    diccionario.limpiar()
+  FIN MIENTRAS
+  
+  // Fusionar bloques
+  índice_final = FusionarBloques(bloques)
+  RETORNAR índice_final
+FIN ALGORITMO
+```
+
+#### Ventajas y Desventajas de SPIMI
+
+**Ventajas:**
+- Más eficiente en memoria que BSBI
+- Una sola pasada por los datos
+- No requiere ordenamiento explícito de pares
+- Genera postings ordenados por doc_id naturalmente
+
+**Desventajas:**
+- Requiere estructura de datos dinámica (diccionario)
+- Puede fragmentar memoria si hay muchos términos
+- Más complejo que BSBI
+
+### Construcción Distribuida con MapReduce
+
+Para colecciones masivas (terabytes o petabytes), se usa procesamiento distribuido con el paradigma **MapReduce**. Este enfoque distribuye el trabajo entre múltiples máquinas.
+
+#### Diagrama MapReduce para Construcción de Índices
+
+```{mermaid}
+---
+name: mapreduce-indexing
+title: Construcción de Índice Invertido con MapReduce
+---
+flowchart TB
+    subgraph Input[Entrada]
+        D1[Documento 1]
+        D2[Documento 2]
+        D3[Documento 3]
+        D4[Documento N]
+    end
+    
+    subgraph Map[Fase Map]
+        M1[Mapper 1]
+        M2[Mapper 2]
+        M3[Mapper 3]
+        M4[Mapper N]
+    end
+    
+    subgraph Shuffle[Shuffle & Sort]
+        S1[Agrupa por término]
+        S2[Ordena postings]
+    end
+    
+    subgraph Reduce[Fase Reduce]
+        R1[Reducer 1<br/>términos a-f]
+        R2[Reducer 2<br/>términos g-m]
+        R3[Reducer 3<br/>términos n-z]
+    end
+    
+    subgraph Output[Salida]
+        I1[Índice parcial 1]
+        I2[Índice parcial 2]
+        I3[Índice parcial 3]
+    end
+    
+    D1 --> M1
+    D2 --> M2
+    D3 --> M3
+    D4 --> M4
+    
+    M1 -->|"(término, doc_id)"| S1
+    M2 -->|"(término, doc_id)"| S1
+    M3 -->|"(término, doc_id)"| S1
+    M4 -->|"(término, doc_id)"| S1
+    
+    S1 --> S2
+    
+    S2 -->|término: a-f| R1
+    S2 -->|término: g-m| R2
+    S2 -->|término: n-z| R3
+    
+    R1 --> I1
+    R2 --> I2
+    R3 --> I3
+```
+
+#### Componentes de MapReduce
+
+**Fase Map:**
+- **Entrada**: Documento completo
+- **Proceso**: Tokeniza y normaliza el texto
+- **Salida**: Pares (término, doc_id) para cada término en el documento
+
+**Fase Shuffle & Sort:**
+- **Entrada**: Todos los pares (término, doc_id) de todos los mappers
+- **Proceso**: Agrupa todos los doc_ids por término y los ordena
+- **Salida**: Pares (término, lista_doc_ids) agrupados por término
+
+**Fase Reduce:**
+- **Entrada**: (término, lista_doc_ids) para un subconjunto de términos
+- **Proceso**: Consolida y ordena la lista de doc_ids
+- **Salida**: Entradas del índice invertido final
+
+#### Pseudocódigo MapReduce
+
+```text
+FUNCIÓN Map(doc_id, contenido_documento):
+  términos = Tokenizar(contenido_documento)
+  PARA CADA término EN términos:
+    término_normalizado = Normalizar(término)
+    EMITIR (término_normalizado, doc_id)
+  FIN PARA
+FIN FUNCIÓN
+
+
+FUNCIÓN Reduce(término, lista_doc_ids):
+  // Recibe: término y todos los doc_ids donde aparece
+  postings = []
+  
+  PARA CADA doc_id EN lista_doc_ids:
+    SI doc_id NO EN postings:
+      postings.agregar(doc_id)
+    FIN SI
+  FIN PARA
+  
+  postings_ordenados = Ordenar(postings)
+  EMITIR (término, postings_ordenados)
+FIN FUNCIÓN
+```
+
+#### Proceso de Indexación Paso a Paso con MapReduce
+
+1. **Particionamiento**: La colección se divide en splits (bloques) de documentos
+
+2. **Map en paralelo**: Cada mapper procesa un split:
+   - Lee documentos asignados
+   - Tokeniza y normaliza términos
+   - Emite pares (término, doc_id)
+
+3. **Shuffle**: El framework agrupa automáticamente:
+   - Todos los pares con el mismo término van al mismo reducer
+   - Los doc_ids se agrupan en listas
+
+4. **Reduce en paralelo**: Cada reducer procesa un rango de términos:
+   - Recibe (término, [doc_id₁, doc_id₂, ..., doc_idₙ])
+   - Elimina duplicados y ordena la lista
+   - Escribe el índice parcial a disco
+
+5. **Consolidación**: Los índices parciales se combinan en el índice final
+
+#### Ventajas y Desventajas de MapReduce
+
+**Ventajas:**
+- Escalabilidad masiva (miles de máquinas)
+- Tolerancia a fallos automática
+- Procesamiento paralelo eficiente
+- Ideal para colecciones enormes (TB/PB)
+
+**Desventajas:**
+- Overhead de comunicación entre nodos
+- Requiere infraestructura distribuida
+- Más complejo de implementar y depurar
+- Overkill para colecciones pequeñas
+
+### Tabla Comparativa de Algoritmos
+
+| Característica | BSBI | SPIMI | MapReduce |
+|----------------|------|-------|-----------|
+| **Tamaño de colección** | Mediano (GB) | Mediano (GB) | Masivo (TB-PB) |
+| **Requisito de memoria** | Bajo (tamaño de bloque) | Medio (diccionario dinámico) | Distribuido |
+| **Complejidad implementación** | Baja | Media | Alta |
+| **Velocidad (single machine)** | Media | Alta | N/A |
+| **Escalabilidad** | Limitada | Limitada | Excelente |
+| **Tolerancia a fallos** | Manual | Manual | Automática |
+| **I/O en disco** | 2 pasadas (leer + escribir) | 2 pasadas | Red + disco |
+| **Uso de CPU** | Alto (ordenamiento) | Medio | Distribuido |
+| **Mejor caso de uso** | Colecciones medianas, recursos limitados | Colecciones medianas, más memoria | Colecciones masivas, cluster disponible |
+
+### Consideraciones Prácticas
+
+Al elegir un algoritmo de construcción de índices, considerar:
+
+1. **Tamaño de la colección**:
+   - < 1 GB: Construcción en memoria simple
+   - 1-100 GB: BSBI o SPIMI
+   - > 100 GB: MapReduce o sistemas especializados
+
+2. **Recursos disponibles**:
+   - RAM limitada: BSBI (menor uso de memoria)
+   - RAM abundante: SPIMI (más rápido)
+   - Cluster disponible: MapReduce
+
+3. **Frecuencia de actualización**:
+   - Actualizaciones frecuentes: Índices incrementales
+   - Reconstrucción completa: Batch processing
+
+4. **Requisitos de tiempo**:
+   - Tiempo real: Índices incrementales
+   - Batch: Cualquier algoritmo según tamaño
+
+## Implementación con BSBI
+
+Ahora veamos una implementación práctica usando el algoritmo BSBI con un corpus de documentos sobre las obras de Tolkien:
+
+```{code-cell} python
+---
+tags: [hide-output]
+---
+import sys
+sys.path.append('../_static/code/ii')
+
+from ii import BSBI
+from pathlib import Path
+
+# Crear constructor BSBI con bloques pequeños
+bsbi = BSBI(tamaño_bloque=50)
+
+# Construir índice desde el corpus de Tolkien
+corpus_path = Path('../_static/code/ii/corpus')
+print(f"Construyendo índice desde: {corpus_path}\n")
+
+indice = bsbi.construir_indice(corpus_path)
+
+# Mostrar estadísticas
+print(f"Índice construido exitosamente")
+print(f"Términos únicos: {len(indice)}")
+print(f"Total de postings: {sum(len(docs) for docs in indice.values())}")
+
+# Mostrar algunos términos de ejemplo
+print("\nEjemplos de términos y sus postings:")
+terminos_ejemplo = ['frodo', 'ring', 'gandalf', 'hobbit', 'aragorn']
+for termino in terminos_ejemplo:
+    docs = bsbi.buscar(termino)
+    if docs:
+        print(f"  '{termino}': {docs}")
+```
+
+El algoritmo BSBI procesa los documentos en bloques, creando índices parciales ordenados que luego fusiona eficientemente. Esto permite manejar colecciones que no caben en memoria.
+
 ## Índice Invertido Completo
 
-Ahora implementemos un índice invertido más completo que incluya todas estas técnicas de procesamiento:
+Para casos donde la colección sí cabe en memoria, podemos usar una implementación más simple:
 
 ```{code-cell} python
 ---
@@ -584,7 +982,71 @@ Los índices invertidos son esenciales para la recuperación eficiente de inform
 - Permiten búsquedas rápidas al ir de término a documentos
 - Consisten en un diccionario de términos y listas de postings
 - El procesamiento de texto (normalización, tokenización, stopwords, stemming) mejora la efectividad
+- Algoritmos como BSBI, SPIMI y MapReduce permiten construir índices para colecciones grandes
 - Se utilizan en todos los motores de búsqueda modernos
 - La construcción para colecciones grandes requiere técnicas especiales
 
 En el siguiente capítulo veremos cómo comprimir estos índices para reducir el espacio que ocupan, lo cual es crucial cuando trabajamos con colecciones de millones de documentos.
+
+## Referencias y Recursos Adicionales
+
+### Bibliografía Principal
+
+- Manning, C. D., Raghavan, P., & Schütze, H. (2008). **Introduction to Information Retrieval**. Cambridge University Press.
+  - Capítulo 1: Boolean retrieval
+  - Capítulo 2: The term vocabulary and postings lists
+  - Capítulo 4: Index construction
+  - [Disponible online](https://nlp.stanford.edu/IR-book/){target="_blank"}
+
+- Baeza-Yates, R., & Ribeiro-Neto, B. (2011). **Modern Information Retrieval: The Concepts and Technology behind Search** (2nd ed.). Addison-Wesley.
+
+- Büttcher, S., Clarke, C. L., & Cormack, G. V. (2010). **Information Retrieval: Implementing and Evaluating Search Engines**. MIT Press.
+
+### Recursos en Línea
+
+- [Elasticsearch Guide - Inverted Index](https://www.elastic.co/guide/en/elasticsearch/reference/current/documents-indices.html){target="_blank"}: Documentación sobre índices invertidos en Elasticsearch
+
+- [Apache Lucene Documentation](https://lucene.apache.org/core/documentation.html){target="_blank"}: Motor de búsqueda open source que implementa índices invertidos
+
+- [Whoosh Documentation](https://whoosh.readthedocs.io/){target="_blank"}: Librería Python de búsqueda full-text
+
+- [Information Retrieval - Stanford CS276](https://web.stanford.edu/class/cs276/){target="_blank"}: Curso de Stanford sobre recuperación de información
+
+### Herramientas y Librerías
+
+- **Elasticsearch**: Motor de búsqueda distribuido basado en Lucene
+  - [https://www.elastic.co/elasticsearch/](https://www.elastic.co/elasticsearch/){target="_blank"}
+
+- **Apache Solr**: Plataforma de búsqueda empresarial basada en Lucene
+  - [https://solr.apache.org/](https://solr.apache.org/){target="_blank"}
+
+- **Whoosh**: Motor de búsqueda en Python puro
+  - [https://whoosh.readthedocs.io/](https://whoosh.readthedocs.io/){target="_blank"}
+
+- **NLTK (Natural Language Toolkit)**: Procesamiento de lenguaje natural en Python
+  - [https://www.nltk.org/](https://www.nltk.org/){target="_blank"}
+
+- **spaCy**: Librería avanzada de NLP
+  - [https://spacy.io/](https://spacy.io/){target="_blank"}
+
+### Artículos y Papers
+
+- Cutting, D., & Pedersen, J. (1997). "Space Optimizations for Total Ranking". *Proceedings of RIAO*.
+
+- Zobel, J., & Moffat, A. (2006). "Inverted files for text search engines". *ACM Computing Surveys*, 38(2).
+
+- Dean, J., & Ghemawat, S. (2004). "MapReduce: Simplified Data Processing on Large Clusters". *OSDI*.
+
+### Videos y Tutoriales
+
+- [How Search Engines Work - Matt Cutts (Google)](https://www.youtube.com/results?search_query=how+search+engines+work){target="_blank"}
+
+- [Building a Search Engine - MIT OpenCourseWare](https://ocw.mit.edu/){target="_blank"}
+
+### Para Profundizar
+
+- Estudiar implementaciones reales en Lucene (Java) o Whoosh (Python)
+- Experimentar con Elasticsearch para ver índices invertidos en producción
+- Implementar variantes como índices posicionales (para búsquedas de frases)
+- Explorar técnicas de ranking como TF-IDF y BM25
+- Investigar índices para búsqueda aproximada y corrección ortográfica

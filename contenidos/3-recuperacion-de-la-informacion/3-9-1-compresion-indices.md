@@ -881,3 +881,91 @@ La elección de técnicas depende de:
 - Requisitos de velocidad
 
 En sistemas reales como Lucene/Elasticsearch, se combinan múltiples técnicas para lograr compresión de 3-5x mientras mantienen excelente rendimiento de búsqueda.
+
+## Referencias y Recursos Adicionales
+
+### Bibliografía Principal
+
+- Manning, C. D., Raghavan, P., & Schütze, H. (2008). **Introduction to Information Retrieval**. Cambridge University Press.
+  - Capítulo 5: Index compression
+  - [Disponible online](https://nlp.stanford.edu/IR-book/){target="_blank"}
+
+- Witten, I. H., Moffat, A., & Bell, T. C. (1999). **Managing Gigabytes: Compressing and Indexing Documents and Images** (2nd ed.). Morgan Kaufmann.
+
+- Zobel, J., & Moffat, A. (2006). "Inverted files for text search engines". *ACM Computing Surveys*, 38(2), Article 6.
+
+### Artículos Clásicos
+
+- Elias, P. (1975). "Universal codeword sets and representations of the integers". *IEEE Transactions on Information Theory*, 21(2), 194-203.
+
+- Golomb, S. W. (1966). "Run-length encodings". *IEEE Transactions on Information Theory*, 12(3), 399-401.
+
+- Scholer, F., Williams, H. E., Yiannis, J., & Zobel, J. (2002). "Compression of inverted indexes for fast query evaluation". *SIGIR*.
+
+- Trotman, A. (2003). "Compressing inverted files". *Information Retrieval*, 6(1), 5-19.
+
+### Recursos en Línea
+
+- [Lucene Codec Documentation](https://lucene.apache.org/core/9_0_0/core/org/apache/lucene/codecs/package-summary.html){target="_blank"}: Implementación real de compresión en Lucene
+
+- [Elasticsearch Index Compression](https://www.elastic.co/blog/elasticsearch-storage-the-true-story){target="_blank"}: Blog post sobre compresión en Elasticsearch
+
+- [Data Compression Explained](http://mattmahoney.net/dc/dce.html){target="_blank"}: Tutorial completo sobre compresión de datos
+
+- [Zipf's Law - Wikipedia](https://en.wikipedia.org/wiki/Zipf%27s_law){target="_blank"}: Fundamento teórico de la compresión
+
+### Implementaciones y Herramientas
+
+- **Apache Lucene**: Implementa VB encoding y otras técnicas
+  - [https://lucene.apache.org/](https://lucene.apache.org/){target="_blank"}
+
+- **Terrier IR Platform**: Motor de búsqueda con múltiples codecs de compresión
+  - [http://terrier.org/](http://terrier.org/){target="_blank"}
+
+- **PISA (Performant Indexes and Search for Academia)**: Framework experimental para compresión
+  - [https://github.com/pisa-engine/pisa](https://github.com/pisa-engine/pisa){target="_blank"}
+
+### Papers Recientes
+
+- Lemire, D., & Boytsov, L. (2015). "Decoding billions of integers per second through vectorization". *Software: Practice and Experience*, 45(1), 1-29.
+
+- Ottaviano, G., & Venturini, R. (2014). "Partitioned Elias-Fano indexes". *SIGIR*.
+
+- Yan, H., Ding, S., & Suel, T. (2009). "Inverted index compression and query processing with optimized document ordering". *WWW*.
+
+### Comparaciones y Benchmarks
+
+- [Compression Benchmark by Lemire](https://github.com/lemire/FastPFor){target="_blank"}: Benchmarks de algoritmos de compresión
+
+- [Index Compression Survey](https://arxiv.org/abs/1908.10598){target="_blank"}: Survey reciente de técnicas
+
+### Para Profundizar
+
+- Estudiar **PForDelta** y **Simple-9**: técnicas modernas de compresión
+- Investigar **SIMD** y vectorización para decodificación rápida
+- Explorar **compresión en columnas** para sistemas analíticos
+- Analizar trade-offs entre **compresión y velocidad de decodificación**
+- Experimentar con diferentes esquemas en datasets reales
+- Implementar **adaptive compression** basado en estadísticas del corpus
+
+### Código y Datasets
+
+- [ClueWeb Dataset](https://lemurproject.org/clueweb09/){target="_blank"}: Colección grande para experimentación
+
+- [TREC Collections](https://trec.nist.gov/data.html){target="_blank"}: Colecciones estándar para IR
+
+- [Lemur Project](https://www.lemurproject.org/){target="_blank"}: Herramientas y librerías para IR
+
+### Cursos y Tutoriales
+
+- [Information Retrieval - Stanford CS276](https://web.stanford.edu/class/cs276/){target="_blank"}: Incluye material sobre compresión
+
+- [Text Compression - University of Melbourne](https://people.eng.unimelb.edu.au/ammoffat/){target="_blank"}: Recursos de Alistair Moffat
+
+### Aplicaciones Prácticas
+
+- Analizar cómo **Lucene** comprime diferentes tipos de datos (términos, frecuencias, posiciones)
+- Estudiar el formato **Postings List** de Elasticsearch
+- Implementar un **comparador de codecs** para medir ratios de compresión
+- Experimentar con **compresión selectiva** (solo términos frecuentes)
+- Medir impacto en **latencia de búsqueda** con diferentes compresiones
