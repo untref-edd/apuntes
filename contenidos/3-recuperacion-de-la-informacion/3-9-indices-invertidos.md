@@ -959,7 +959,7 @@ Para colecciones muy grandes que no caben en memoria, se utilizan técnicas como
 - **Procesamiento distribuido**: Utilizar frameworks como MapReduce para procesar en paralelo
 
 ## Resumen
-
+**
 Los índices invertidos son esenciales para la recuperación eficiente de información:
 
 - Permiten búsquedas rápidas al ir de término a documentos
