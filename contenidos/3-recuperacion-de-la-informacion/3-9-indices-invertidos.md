@@ -928,7 +928,7 @@ Al elegir un algoritmo de construcción de índices se debe considerar:
    - Actualizaciones frecuentes: Índices incrementales
    - Reconstrucción completa: Batch processing
 
-1. **Requisitos de tiempo**:
+1. **Requisitos de tiempo**:g
 
    - Tiempo real: Índices incrementales
    - Batch: Cualquier algoritmo según tamaño
