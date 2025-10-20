@@ -95,14 +95,15 @@ En memoria se carga la cadena completa y los punteros permiten acceder a cada t�
 
 Front Coding es una técnica que aprovecha los prefijos comunes entre términos consecutivos en orden lexicográfico aprovechando el hecho que, generalmente, las palabras ordenadas alfabéticamente comparten un prefijo común.
 
-Se agrupan las entradas del diccionario en bloques de k términos contiguos. En cada bloque se almacena primero el término base completo; a continuación se coloca un separador '*' que delimita el prefijo base y marca el final de ese primer término. Para los términos restantes del bloque no se repite el prefijo: se escribe un símbolo '⋄' que indica el punto donde termina el prefijo común y, a continuación, el sufijo que completa cada término. Antes de cada término completo o de cada sufijo se guarda su longitud en un byte (1 B). En la estructura auxiliar solo se mantiene la referencia (puntero) al primer término de cada bloque; el resto de términos se recupera a partir de la cadena combinada.  
+Se agrupan las entradas del diccionario en bloques de k términos contiguos. En cada bloque se almacena primero el término base completo; a continuación se coloca un separador '\*' que delimita el prefijo base y marca el final de ese primer término. Para los términos restantes del bloque no se repite el prefijo: se escribe un símbolo '⋄' que indica el punto donde termina el prefijo común y, a continuación, el sufijo que completa cada término. Antes de cada término completo o de cada sufijo se guarda su longitud en un byte (1 B). En la estructura auxiliar solo se mantiene la referencia (puntero) al primer término de cada bloque; el resto de términos se recupera a partir de la cadena combinada.
 
 Por ejemplo si las palabras son: algoritmo, alguacil, alguien, algas y alguno y k=5, se alamacenan como:
 
 ```text
 5alg*as6•oritmo5•uacil4•uien3•uno
 ```
-- La primera palabra "algas" se almacena completa precedida por su longitud (5). Se añade un "*" en el medio de la palabra para indicar el final del prefijo común "alg" para todo el bloque de 5 términos.
+
+- La primera palabra "algas" se almacena completa precedida por su longitud (5). Se añade un "\*" en el medio de la palabra para indicar el final del prefijo común "alg" para todo el bloque de 5 términos.
 - La segunda palabra "algoritmo" se almacena como "6•oritmo", donde "6" es la longitud del sufijo "oritmo" y "•" indica el final del prefijo común.
 - La tercera palabra "alguacil" se almacena como "5•uacil".
 - La cuarta palabra "alguien" se almacena como "4•uien".
@@ -242,11 +243,30 @@ print(f"  Ahorro: {100 * (1 - bits_gaps / bits_originales):.1f}%")
 
 ### Variable Byte Encoding (VB)
 
-Una técnica simple y eficiente es usar **codificación de bytes variables** donde usamos un bit de continuación para indicar si hay más bytes por leer.
+Otra técnica popular es Variable Byte encoding, que usa uno o más bytes para representar un número, dependiendo de su tamaño, así la cantidad de bytes para codificar el gap entre el id de un documento y el siguiente varía según el valor del gap.
 
 - Cada byte tiene 7 bits de datos y 1 bit de continuación
 - Bit de continuación = 1: hay más bytes
 - Bit de continuación = 0: es el último byte
+
+Asi por ejemplo la representación de los siguientes gaps `[15478, 396, 2076, 32173, 111, 9767]` sería:
+
+- 15478 → `10000011 10111110 00101110` (3 bytes)
+- 396 → `10000010 01100100` (2 bytes)
+- 2076 → `10000010 00001000 00000100` (3 bytes)
+- 32173 → `10000011 11111010 00101101` (3 bytes)
+- 111 → `01101111` (1 byte)
+- 9767 → `10000010 00101110 00000111` (3 bytes)
+
+Se parte de la representación en binario del número y se divide en grupos de 7 bits, cada grupo se almacena en un byte. El bit más significativo, es decir el primer bit del un byte de 8 bits, se usa para indicar si hay más bytes (1) o si es el último (0).
+
+Por ejemplo 15478 en binario es `11110001110110`. Dividido en grupos de 7 bits desde la derecha:
+
+- `0000011_0111100_0001110`
+
+Se utliza el bit más significativo para indicar si hay más bytes:
+
+- `10000011_10111100_00000011`
 
 ```{code-cell} python
 ---
@@ -492,7 +512,6 @@ for termino in terminos_busqueda:
         print(f"  [{doc_id}] {indice_comp.documentos[doc_id]}")
 ```
 
-
 ## Trade-offs de la Compresión
 
 La compresión de índices implica compromisos:
@@ -511,13 +530,9 @@ La compresión de índices implica compromisos:
 
 En la práctica, técnicas como Variable Byte son muy populares porque ofrecen un buen balance entre compresión y velocidad de decodificación.
 
-## Optimizaciones Adicionales
-
-
-
 ## Resumen
 
-L
+La compresión de índices es esencial para manejar grandes colecciones de documentos. Técnicas como front coding para el diccionario y gap encoding combinado con Variable Byte para las listas de postings permiten reducir significativamente el tamaño del índice mientras mantienen un rendimiento aceptable en las consultas.
 
 La elección de técnicas depende de:
 
