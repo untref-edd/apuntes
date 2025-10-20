@@ -37,7 +37,7 @@ La **compresión de índices** es una técnica fundamental para reducir el espac
 
 ## Motivación
 
-Consideremos un ejemplo real: un motor de búsqueda que indexa 1 mil millones de páginas web. Si cada página contiene en promedio 1000 términos únicos, y cada término aparece en promedio en 10,000 páginas, el índice invertido necesitaría almacenar aproximadamente:
+Consideremos un ejemplo real: un motor de búsqueda que indexa mil millones de páginas web. Si cada página contiene en promedio 1000 términos únicos, y cada término aparece en promedio en 10,000 páginas, el índice invertido necesitaría almacenar aproximadamente:
 
 - **Diccionario**: 10 millones de términos × 10 bytes = 100 MB
 - **Listas de postings**: 10 millones de términos × 10,000 documentos × 4 bytes (un entero) = 400 GB
@@ -62,163 +62,143 @@ print(f"Tamaño con compresión: {tamaño_comprimido_gb:.2f} GB")
 print(f"Ahorro: {tamaño_postings_gb - tamaño_comprimido_gb:.2f} GB")
 ```
 
-## Principios de Compresión
+Se puede comprimir tanto el diccionario de términos o Vocabulario como las listas de postings asociadas a cada término.
 
-La compresión de índices se basa en dos principios fundamentales:
-
-1. **Ley de Zipf**: En texto natural, algunos términos son mucho más frecuentes que otros. El término más frecuente aparece aproximadamente el doble de veces que el segundo más frecuente, tres veces más que el tercero, etc.
-
-2. **Localidad**: Los IDs de documentos en las listas de postings a menudo están espacialmente relacionados, por lo que almacenar diferencias (gaps) en lugar de valores absolutos resulta en números más pequeños.
-
-```{code-cell} python
----
-tags: [hide-output]
----
-import matplotlib.pyplot as plt
-
-# Simulación de la Ley de Zipf
-def generar_frecuencias_zipf(n_terminos):
-    """Genera frecuencias siguiendo la Ley de Zipf"""
-    frecuencias = []
-    for i in range(1, n_terminos + 1):
-        frecuencias.append(1 / i)
-    return frecuencias
-
-# Visualizar
-n = 50
-freqs = generar_frecuencias_zipf(n)
-
-plt.figure(figsize=(10, 5))
-plt.subplot(1, 2, 1)
-plt.plot(range(1, n + 1), freqs, 'b-')
-plt.xlabel('Ranking del término')
-plt.ylabel('Frecuencia relativa')
-plt.title('Ley de Zipf (escala lineal)')
-plt.grid(True)
-
-plt.subplot(1, 2, 2)
-plt.loglog(range(1, n + 1), freqs, 'r-')
-plt.xlabel('Ranking del término (log)')
-plt.ylabel('Frecuencia relativa (log)')
-plt.title('Ley de Zipf (escala logarítmica)')
-plt.grid(True)
-
-plt.tight_layout()
-plt.savefig('/tmp/zipf.png', dpi=80, bbox_inches='tight')
-plt.close()
-
-print("La Ley de Zipf muestra que pocos términos son muy frecuentes")
-print("y muchos términos son raros. Esto permite optimizar la compresión.")
-```
-
-## Compresión del Diccionario
+## Compresión del Diccionario de Términios
 
 El diccionario contiene todos los términos únicos. Aunque es relativamente pequeño comparado con las listas de postings, su compresión sigue siendo importante.
 
 ### Técnicas para Comprimir el Diccionario
 
-1. **Prefijos compartidos**: Los términos en un diccionario ordenado alfabéticamente comparten prefijos comunes.
+#### Cadena Única de Términos
 
-```{code-cell} python
+La primera técnica consiste en almacenar todos los términos como si fueran una única cadena de caracteres:
+
+- Guardar todas las palabras del diccionario como una larga cadena de caracteres.
+- Se le asocia una estructura de datos de longitud fija para la frecuencia, la referencia a la lista de apariciones (postings) y la referencia al término en la cadena.
+- La referencia al próximo término marca el final del término corriente.
+
+```{figure} ../assets/images/IICompresionTerminos.png
 ---
-tags: [hide-output]
+name: ii-compresion-terminos
 ---
-# Ejemplo de prefijos compartidos
-terminos = ['programación', 'programador', 'programar', 'programa', 'proyecto']
-
-print("Términos originales:")
-for t in terminos:
-    print(f"  {t} ({len(t)} caracteres)")
-
-print(f"\nTotal sin compresión: {sum(len(t) for t in terminos)} caracteres")
-
-# Compresión usando prefijos compartidos
-def comprimir_prefijos(terminos):
-    """Comprime términos usando prefijos compartidos"""
-    if not terminos:
-        return []
-    
-    comprimido = []
-    prev = ""
-    
-    for termino in terminos:
-        # Encontrar longitud del prefijo común
-        prefijo_len = 0
-        for i in range(min(len(prev), len(termino))):
-            if prev[i] == termino[i]:
-                prefijo_len += 1
-            else:
-                break
-        
-        # Guardar: (longitud prefijo común, sufijo único)
-        sufijo = termino[prefijo_len:]
-        comprimido.append((prefijo_len, sufijo))
-        prev = termino
-    
-    return comprimido
-
-comprimido = comprimir_prefijos(terminos)
-print("\nCompresión con prefijos:")
-for i, (pref_len, sufijo) in enumerate(comprimido):
-    print(f"  {terminos[i]}: prefijo={pref_len}, sufijo='{sufijo}'")
-
-# Calcular ahorro
-chars_comprimido = sum(len(sufijo) + 1 for _, sufijo in comprimido)  # +1 por el número
-print(f"\nCaracteres después de compresión: ~{chars_comprimido}")
-print(f"Reducción: ~{100 * (1 - chars_comprimido / sum(len(t) for t in terminos)):.1f}%")
+Compresión del diccionario de términos usando una cadena única.
 ```
 
-2. **Front coding**: Una variante más eficiente que agrupa términos en bloques.
+En la figura anterior se observa como se almacenan los términos "programa", ***"programable"***, ***"programación"***, ***"programador"*** y ***"programar"*** en una sola cadena. Cada término se referencia mediante un puntero que indica su posición inicial, la palabra termina justo antes del siguiente puntero.
+
+Con este esquema si se utilizan 4 bytes para la frecuencia, 4 bytes para la referencia a la lista de postings y 4 bytes para la referencia al término, se utilizan 12 bytes por término en el diccionario. Si el diccionario tiene 1 millón de términos, se utilizan 12 MB para almacenar el diccionario más el espacio necesario para la cadena de caracteres.
+
+En memoria se carga la cadena completa y los punteros permiten acceder a cada término. Sin embargo, aún se puede mejorar la compresión del diccionario.
+
+#### Front Coding
+
+Front Coding es una técnica que aprovecha los prefijos comunes entre términos consecutivos en orden lexicográfico aprovechando el hecho que, generalmente, las palabras ordenadas alfabéticamente comparten un prefijo común.
+
+Se agrupan las entradas del diccionario en bloques de k términos contiguos. En cada bloque se almacena primero el término base completo; a continuación se coloca un separador '*' que delimita el prefijo base y marca el final de ese primer término. Para los términos restantes del bloque no se repite el prefijo: se escribe un símbolo '⋄' que indica el punto donde termina el prefijo común y, a continuación, el sufijo que completa cada término. Antes de cada término completo o de cada sufijo se guarda su longitud en un byte (1 B). En la estructura auxiliar solo se mantiene la referencia (puntero) al primer término de cada bloque; el resto de términos se recupera a partir de la cadena combinada.  
+
+Por ejemplo si las palabras son: algoritmo, alguacil, alguien, algas y alguno y k=5, se alamacenan como:
+
+```text
+5alg*as6•oritmo5•uacil4•uien3•uno
+```
+- La primera palabra "algas" se almacena completa precedida por su longitud (5). Se añade un "*" en el medio de la palabra para indicar el final del prefijo común "alg" para todo el bloque de 5 términos.
+- La segunda palabra "algoritmo" se almacena como "6•oritmo", donde "6" es la longitud del sufijo "oritmo" y "•" indica el final del prefijo común.
+- La tercera palabra "alguacil" se almacena como "5•uacil".
+- La cuarta palabra "alguien" se almacena como "4•uien".
+- La quinta palabra "alguno" se almacena como "3•uno".
 
 ```{code-cell} python
 ---
 tags: [hide-output]
 ---
-def front_coding(terminos, tamaño_bloque=3):
-    """Implementa front coding con bloques"""
-    bloques = []
-    
-    for i in range(0, len(terminos), tamaño_bloque):
-        bloque_terminos = terminos[i:i + tamaño_bloque]
-        
-        # Primer término del bloque se guarda completo
-        primer_termino = bloque_terminos[0]
-        bloque = [primer_termino]
-        
-        # Resto se guarda como diferencias
-        for termino in bloque_terminos[1:]:
-            prefijo_len = 0
-            for j in range(min(len(primer_termino), len(termino))):
-                if primer_termino[j] == termino[j]:
-                    prefijo_len += 1
-                else:
-                    break
-            sufijo = termino[prefijo_len:]
-            bloque.append((prefijo_len, sufijo))
-        
-        bloques.append(bloque)
-    
-    return bloques
+# Implementación de Front Coding para el bloque de ejemplo
 
-# Ejemplo
-terminos_largos = [
-    'algoritmo', 'algoritmos', 'algebra', 'algebraico',
-    'buscar', 'busqueda', 'bueno', 'buenos'
-]
+def common_prefix(strings):
+    """Devuelve el prefijo común más largo de una lista de strings."""
+    if not strings:
+        return ""
+    s1, s2 = min(strings), max(strings)
+    for i, ch in enumerate(s1):
+        if i >= len(s2) or ch != s2[i]:
+            return s1[:i]
+    return s1
 
-bloques = front_coding(terminos_largos, tamaño_bloque=4)
+def front_encode_block(terms):
+    """
+    Codifica un bloque de términos usando front coding.
+    Formato: <len_base><prefijo>*<sufijo_base>{<len_suf>•<sufijo>}...
+    """
+    if not terms:
+        return ""
+    prefix = common_prefix(terms)
+    base = terms[0]
+    base_suffix = base[len(prefix):]
+    encoded = f"{len(base)}{prefix}*{base_suffix}"
+    for term in terms[1:]:
+        suf = term[len(prefix):]
+        encoded += f"{len(suf)}•{suf}"
+    return encoded
 
-print("Front coding con bloques de 4:")
-for i, bloque in enumerate(bloques):
-    print(f"\nBloque {i + 1}:")
-    print(f"  Base: '{bloque[0]}'")
-    for j, item in enumerate(bloque[1:], 1):
-        print(f"  + ({item[0]}, '{item[1]}')")
+def front_decode_block(encoded):
+    """Decodifica la cadena generada por front_encode_block y devuelve la lista de términos."""
+    import re
+    if not encoded:
+        return []
+    m = re.match(r'(\d+)', encoded)
+    if not m:
+        raise ValueError("Formato inválido: no se encontró la longitud del término base")
+    base_len = int(m.group(1))
+    rest = encoded[m.end():]
+    # buscar '*' que separa prefijo y sufijo del término base
+    star_idx = rest.find('*')
+    if star_idx == -1:
+        raise ValueError("Formato inválido: falta '*'")
+    prefix = rest[:star_idx]
+    # calcular sufijo del base usando la longitud indicada
+    base_suffix_len = base_len - len(prefix)
+    base_suffix = rest[star_idx+1:star_idx+1+base_suffix_len]
+    base = prefix + base_suffix
+    terms = [base]
+    rem = rest[star_idx+1+base_suffix_len:]
+    i = 0
+    while i < len(rem):
+        # leer número de longitud del sufijo
+        j = i
+        while j < len(rem) and rem[j].isdigit():
+            j += 1
+        if j == i:
+            raise ValueError("Formato inválido al leer longitud de sufijo")
+        num = int(rem[i:j])
+        if j >= len(rem) or rem[j] != '•':
+            raise ValueError("Formato inválido: falta '•' separador")
+        suf = rem[j+1:j+1+num]
+        terms.append(prefix + suf)
+        i = j+1+num
+    return terms
+
+# Ejemplo con las palabras solicitadas
+palabras = ["algas", "algoritmo", "alguacil", "alguien", "alguno"]
+
+encoded = front_encode_block(palabras)
+decoded = front_decode_block(encoded)
+
+print("Palabras originales:", palabras)
+print("Encoded:", encoded)
+print("Decoded:", decoded)
+assert decoded == palabras, "La decodificación no coincide con las palabras originales"
+
+# Estadísticas de compresión (bytes en UTF-8)
+original_bytes = sum(len(p.encode('utf-8')) for p in palabras)
+comprimido_bytes = len(encoded.encode('utf-8'))
+print(f"\nTamaño original: {original_bytes} bytes")
+print(f"Tamaño front coding: {comprimido_bytes} bytes")
+print(f"Ratio: {original_bytes / comprimido_bytes:.2f}x")
 ```
 
 ## Compresión de Listas de Postings
 
-Las listas de postings contienen los IDs de documentos donde aparece cada término. Esta es la parte más grande del índice y donde la compresión tiene mayor impacto.
+Las listas de postings contienen los IDs de documentos donde aparece cada término. La compresión de las listas de postings es crucial ya que es la que tiene mayor impacto en el tamaño total del índice.
 
 ### Gap Encoding (Codificación de Diferencias)
 
@@ -229,7 +209,7 @@ En lugar de almacenar los IDs completos, almacenamos las diferencias (gaps) entr
 tags: [hide-output]
 ---
 # Ejemplo de gap encoding
-doc_ids = [5, 13, 23, 34, 55, 89, 144]
+doc_ids = [15478, 15874, 17950, 50123, 50234, 60001]
 
 print("IDs originales:")
 print(doc_ids)
@@ -335,115 +315,6 @@ print(f"\nBytes VB: {encoded_all}")
 print(f"Tamaño original: {len(postings) * 4} bytes (enteros de 32 bits)")
 print(f"Tamaño comprimido: {len(encoded_all)} bytes")
 print(f"Ratio de compresión: {len(postings) * 4 / len(encoded_all):.2f}x")
-```
-
-### Gamma Encoding (γ-codes)
-
-Los **Gamma codes** de Elias son otra técnica que usa longitud variable óptima para números pequeños.
-
-Para codificar un número N:
-1. Encontrar la longitud L = ⌊log₂(N)⌋
-2. Escribir L ceros seguidos de un 1
-3. Escribir N en binario sin el bit más significativo
-
-```{code-cell} python
----
-tags: [hide-output]
----
-def gamma_encode(numero):
-    """Codifica un número usando Elias Gamma encoding"""
-    if numero < 1:
-        raise ValueError("Gamma encoding requiere números >= 1")
-    
-    # Encontrar longitud en binario
-    longitud = numero.bit_length() - 1
-    
-    # Parte 1: unary code de la longitud (longitud ceros + un 1)
-    unary = '0' * longitud + '1'
-    
-    # Parte 2: número en binario sin el bit más significativo
-    if longitud > 0:
-        binario = format(numero, 'b')[1:]  # Quitar el primer bit
-    else:
-        binario = ''
-    
-    return unary + binario
-
-def gamma_decode(codigo):
-    """Decodifica un string binario en Gamma encoding"""
-    # Contar ceros hasta el primer 1
-    longitud = 0
-    i = 0
-    while i < len(codigo) and codigo[i] == '0':
-        longitud += 1
-        i += 1
-    
-    # Saltar el 1
-    i += 1
-    
-    # Leer los siguientes 'longitud' bits
-    if longitud == 0:
-        return 1
-    
-    binario = '1' + codigo[i:i + longitud]
-    return int(binario, 2)
-
-# Ejemplos
-print("Gamma Encoding:")
-print(f"{'Número':<10} {'Código Gamma':<20} {'Bits'}")
-print("-" * 40)
-
-for num in [1, 2, 3, 4, 5, 10, 17, 100]:
-    codigo = gamma_encode(num)
-    bits = len(codigo)
-    print(f"{num:<10} {codigo:<20} {bits}")
-
-# Verificar decodificación
-print("\nVerificación de decodificación:")
-for num in [1, 5, 17]:
-    codigo = gamma_encode(num)
-    decodificado = gamma_decode(codigo)
-    print(f"{num} → '{codigo}' → {decodificado} {'✓' if num == decodificado else '✗'}")
-```
-
-### Delta Encoding (δ-codes)
-
-Los **Delta codes** son una mejora sobre Gamma codes, más eficientes para números moderadamente grandes.
-
-```{code-cell} python
----
-tags: [hide-output]
----
-def delta_encode(numero):
-    """Codifica un número usando Elias Delta encoding"""
-    if numero < 1:
-        raise ValueError("Delta encoding requiere números >= 1")
-    
-    # Encontrar longitud del número en binario
-    longitud = numero.bit_length()
-    
-    # Codificar la longitud usando gamma
-    gamma_longitud = gamma_encode(longitud)
-    
-    # Número en binario sin el bit más significativo
-    if longitud > 1:
-        binario = format(numero, 'b')[1:]
-    else:
-        binario = ''
-    
-    return gamma_longitud + binario
-
-# Comparar Gamma vs Delta
-print("Comparación Gamma vs Delta:")
-print(f"{'Número':<10} {'Gamma':<25} {'Delta':<25} {'Mejor'}")
-print("-" * 75)
-
-for num in [1, 2, 5, 10, 50, 100, 500, 1000]:
-    gamma = gamma_encode(num)
-    delta = delta_encode(num)
-    mejor = "Gamma" if len(gamma) <= len(delta) else "Delta"
-    
-    print(f"{num:<10} {gamma:<25} {delta:<25} {mejor} ({abs(len(gamma) - len(delta))} bits)")
 ```
 
 ## Índice Invertido con Compresión
@@ -621,92 +492,19 @@ for termino in terminos_busqueda:
         print(f"  [{doc_id}] {indice_comp.documentos[doc_id]}")
 ```
 
-## Comparación de Técnicas
-
-Cada técnica de compresión tiene sus ventajas:
-
-```{code-cell} python
----
-tags: [hide-output]
----
-import sys
-
-# Función auxiliar para VB encoding
-def vb_encode_numero(numero):
-    """Codifica un número con VB encoding"""
-    if numero == 0:
-        return [0]
-    bytes_list = []
-    while numero > 0:
-        bytes_list.insert(0, numero % 128)
-        numero //= 128
-    for i in range(len(bytes_list) - 1):
-        bytes_list[i] += 128
-    return bytes_list
-
-# Comparar técnicas para una lista de postings típica
-postings = [1, 5, 8, 15, 23, 45, 67, 89, 123, 156, 234, 456, 789, 1234]
-gaps = [postings[0]] + [postings[i] - postings[i-1] for i in range(1, len(postings))]
-
-print("Comparación de técnicas de compresión:\n")
-print(f"Postings: {postings}")
-print(f"Gaps: {gaps}\n")
-
-# Sin compresión (32 bits por número)
-sin_compresion = len(postings) * 4
-print(f"Sin compresión: {sin_compresion} bytes ({sin_compresion * 8} bits)")
-
-# Variable Byte
-vb_bytes = []
-for gap in gaps:
-    vb_bytes.extend(vb_encode_numero(gap))
-
-print(f"Variable Byte: {len(vb_bytes)} bytes ({len(vb_bytes) * 8} bits)")
-print(f"  Ratio: {sin_compresion / len(vb_bytes):.2f}x")
-
-# Gamma encoding
-gamma_bits = 0
-for gap in gaps:
-    if gap > 0:
-        longitud = gap.bit_length() - 1
-        gamma_bits += 2 * longitud + 1
-
-gamma_bytes = (gamma_bits + 7) // 8  # Redondear hacia arriba
-print(f"Gamma encoding: {gamma_bytes} bytes ({gamma_bits} bits)")
-print(f"  Ratio: {sin_compresion / gamma_bytes:.2f}x")
-
-# Delta encoding  
-delta_bits = 0
-for gap in gaps:
-    if gap > 0:
-        longitud = gap.bit_length()
-        # Longitud codificada en gamma
-        len_longitud = longitud.bit_length() - 1
-        gamma_longitud_bits = 2 * len_longitud + 1
-        # Más el número sin el bit más significativo
-        numero_bits = longitud - 1 if longitud > 1 else 0
-        delta_bits += gamma_longitud_bits + numero_bits
-
-delta_bytes = (delta_bits + 7) // 8
-print(f"Delta encoding: {delta_bytes} bytes ({delta_bits} bits)")
-print(f"  Ratio: {sin_compresion / delta_bytes:.2f}x")
-
-print("\n=== Resumen ===")
-print("Variable Byte: Simple, rápida, buena para números pequeños-medianos")
-print("Gamma: Óptima para números muy pequeños, más compleja")
-print("Delta: Mejor que Gamma para números más grandes, más compleja")
-```
 
 ## Trade-offs de la Compresión
 
 La compresión de índices implica compromisos:
 
 **Ventajas:**
+
 - Reducción significativa del espacio en disco
 - Menos transferencia de datos disco-memoria
 - Posible mejora en velocidad (menos I/O)
 
 **Desventajas:**
+
 - Overhead de CPU para comprimir/descomprimir
 - Código más complejo
 - No se puede acceder aleatoriamente sin descomprimir
@@ -715,166 +513,14 @@ En la práctica, técnicas como Variable Byte son muy populares porque ofrecen u
 
 ## Optimizaciones Adicionales
 
-### Skip Lists
 
-Para listas de postings muy largas, se pueden agregar **skip pointers** que permiten saltar secciones durante la búsqueda:
-
-```{code-cell} python
----
-tags: [hide-output]
----
-class PostingListConSkips:
-    """Lista de postings con skip pointers para búsquedas eficientes"""
-    
-    def __init__(self, doc_ids, skip_interval=3):
-        self.doc_ids = sorted(doc_ids)
-        self.skip_interval = skip_interval
-        self.skip_pointers = {}
-        
-        # Crear skip pointers
-        for i in range(0, len(self.doc_ids), skip_interval):
-            if i + skip_interval < len(self.doc_ids):
-                self.skip_pointers[i] = i + skip_interval
-    
-    def intersect(self, other):
-        """Intersección con otra lista usando skip pointers"""
-        resultado = []
-        i, j = 0, 0
-        
-        comparaciones = 0  # Para medir eficiencia
-        
-        while i < len(self.doc_ids) and j < len(other.doc_ids):
-            comparaciones += 1
-            
-            if self.doc_ids[i] == other.doc_ids[j]:
-                resultado.append(self.doc_ids[i])
-                i += 1
-                j += 1
-            elif self.doc_ids[i] < other.doc_ids[j]:
-                # Intentar usar skip pointer
-                if i in self.skip_pointers and \
-                   self.doc_ids[self.skip_pointers[i]] <= other.doc_ids[j]:
-                    i = self.skip_pointers[i]
-                else:
-                    i += 1
-            else:
-                # Intentar usar skip pointer en other
-                if j in other.skip_pointers and \
-                   other.doc_ids[other.skip_pointers[j]] <= self.doc_ids[i]:
-                    j = other.skip_pointers[j]
-                else:
-                    j += 1
-        
-        return resultado, comparaciones
-
-
-# Ejemplo
-list1 = PostingListConSkips([1, 3, 5, 8, 12, 15, 23, 34, 45, 56, 67, 78])
-list2 = PostingListConSkips([2, 5, 8, 15, 23, 45, 67, 89])
-
-resultado, comps = list1.intersect(list2)
-print(f"Intersección: {resultado}")
-print(f"Comparaciones realizadas: {comps}")
-print(f"Comparaciones sin skips: {len(list1.doc_ids) + len(list2.doc_ids)}")
-```
-
-### Compresión del Diccionario con Front Coding
-
-Ya vimos front coding anteriormente. En índices reales, se combina con otras técnicas:
-
-```{code-cell} python
----
-tags: [hide-output]
----
-class DiccionarioComprimido:
-    """Diccionario con front coding"""
-    
-    def __init__(self):
-        self.bloques = []
-        self.termino_a_bloque = {}
-    
-    def agregar_terminos(self, terminos, tamaño_bloque=4):
-        """Agrega términos usando front coding"""
-        terminos_ordenados = sorted(terminos)
-        
-        for i in range(0, len(terminos_ordenados), tamaño_bloque):
-            bloque_terminos = terminos_ordenados[i:i + tamaño_bloque]
-            bloque_id = len(self.bloques)
-            
-            # Crear bloque con front coding
-            bloque = [bloque_terminos[0]]  # Término base
-            
-            for termino in bloque_terminos[1:]:
-                # Encontrar prefijo común con el término base
-                base = bloque[0]
-                prefijo_len = 0
-                for j in range(min(len(base), len(termino))):
-                    if base[j] == termino[j]:
-                        prefijo_len += 1
-                    else:
-                        break
-                
-                sufijo = termino[prefijo_len:]
-                bloque.append((prefijo_len, sufijo))
-            
-            self.bloques.append(bloque)
-            
-            # Indexar términos a bloques
-            for termino in bloque_terminos:
-                self.termino_a_bloque[termino] = bloque_id
-    
-    def buscar(self, termino):
-        """Busca un término en el diccionario"""
-        if termino not in self.termino_a_bloque:
-            return None
-        
-        bloque_id = self.termino_a_bloque[termino]
-        return bloque_id
-    
-    def calcular_compresion(self, terminos):
-        """Calcula estadísticas de compresión"""
-        bytes_sin_comprimir = sum(len(t) for t in terminos)
-        
-        bytes_comprimidos = 0
-        for bloque in self.bloques:
-            bytes_comprimidos += len(bloque[0])  # Término base
-            for item in bloque[1:]:
-                if isinstance(item, tuple):
-                    bytes_comprimidos += 1 + len(item[1])  # Prefijo + sufijo
-        
-        return bytes_sin_comprimir, bytes_comprimidos
-
-
-# Ejemplo
-terminos = [
-    'algoritmo', 'algoritmos', 'algebraico', 'algebra',
-    'buscar', 'busqueda', 'busquedas', 'bueno',
-    'datos', 'dato', 'dataframe', 'database',
-    'programar', 'programa', 'programacion', 'programador'
-]
-
-dic = DiccionarioComprimido()
-dic.agregar_terminos(terminos, tamaño_bloque=4)
-
-sin_comp, con_comp = dic.calcular_compresion(terminos)
-print(f"Diccionario con {len(terminos)} términos:")
-print(f"  Sin compresión: {sin_comp} bytes")
-print(f"  Con front coding: {con_comp} bytes")
-print(f"  Ratio: {sin_comp / con_comp:.2f}x")
-print(f"  Ahorro: {100 * (1 - con_comp / sin_comp):.1f}%")
-```
 
 ## Resumen
 
-La compresión de índices es esencial para sistemas de recuperación de información a gran escala:
-
-- **Gap encoding** reduce IDs a diferencias pequeñas
-- **Variable Byte** ofrece buen balance compresión/velocidad
-- **Gamma/Delta codes** son óptimos en bits pero más lentos
-- **Front coding** comprime el diccionario eficientemente
-- **Skip pointers** aceleran intersecciones de listas largas
+L
 
 La elección de técnicas depende de:
+
 - Tamaño de la colección
 - Patrones de consulta
 - Balance CPU vs espacio
@@ -887,8 +533,9 @@ En sistemas reales como Lucene/Elasticsearch, se combinan múltiples técnicas p
 ### Bibliografía Principal
 
 - Manning, C. D., Raghavan, P., & Schütze, H. (2008). **Introduction to Information Retrieval**. Cambridge University Press.
+
   - Capítulo 5: Index compression
-  - [Disponible online](https://nlp.stanford.edu/IR-book/){target="_blank"}
+  - [Disponible online](https://nlp.stanford.edu/IR-book/){target="\_blank"}
 
 - Witten, I. H., Moffat, A., & Bell, T. C. (1999). **Managing Gigabytes: Compressing and Indexing Documents and Images** (2nd ed.). Morgan Kaufmann.
 
@@ -906,24 +553,27 @@ En sistemas reales como Lucene/Elasticsearch, se combinan múltiples técnicas p
 
 ### Recursos en Línea
 
-- [Lucene Codec Documentation](https://lucene.apache.org/core/9_0_0/core/org/apache/lucene/codecs/package-summary.html){target="_blank"}: Implementación real de compresión en Lucene
+- [Lucene Codec Documentation](https://lucene.apache.org/core/9_0_0/core/org/apache/lucene/codecs/package-summary.html){target="\_blank"}: Implementación real de compresión en Lucene
 
-- [Elasticsearch Index Compression](https://www.elastic.co/blog/elasticsearch-storage-the-true-story){target="_blank"}: Blog post sobre compresión en Elasticsearch
+- [Elasticsearch Index Compression](https://www.elastic.co/blog/elasticsearch-storage-the-true-story){target="\_blank"}: Blog post sobre compresión en Elasticsearch
 
-- [Data Compression Explained](http://mattmahoney.net/dc/dce.html){target="_blank"}: Tutorial completo sobre compresión de datos
+- [Data Compression Explained](http://mattmahoney.net/dc/dce.html){target="\_blank"}: Tutorial completo sobre compresión de datos
 
-- [Zipf's Law - Wikipedia](https://en.wikipedia.org/wiki/Zipf%27s_law){target="_blank"}: Fundamento teórico de la compresión
+- [Zipf's Law - Wikipedia](https://en.wikipedia.org/wiki/Zipf%27s_law){target="\_blank"}: Fundamento teórico de la compresión
 
 ### Implementaciones y Herramientas
 
 - **Apache Lucene**: Implementa VB encoding y otras técnicas
-  - [https://lucene.apache.org/](https://lucene.apache.org/){target="_blank"}
+
+  - [https://lucene.apache.org/](https://lucene.apache.org/){target="\_blank"}
 
 - **Terrier IR Platform**: Motor de búsqueda con múltiples codecs de compresión
-  - [http://terrier.org/](http://terrier.org/){target="_blank"}
+
+  - [http://terrier.org/](http://terrier.org/){target="\_blank"}
 
 - **PISA (Performant Indexes and Search for Academia)**: Framework experimental para compresión
-  - [https://github.com/pisa-engine/pisa](https://github.com/pisa-engine/pisa){target="_blank"}
+
+  - [https://github.com/pisa-engine/pisa](https://github.com/pisa-engine/pisa){target="\_blank"}
 
 ### Papers Recientes
 
@@ -935,9 +585,9 @@ En sistemas reales como Lucene/Elasticsearch, se combinan múltiples técnicas p
 
 ### Comparaciones y Benchmarks
 
-- [Compression Benchmark by Lemire](https://github.com/lemire/FastPFor){target="_blank"}: Benchmarks de algoritmos de compresión
+- [Compression Benchmark by Lemire](https://github.com/lemire/FastPFor){target="\_blank"}: Benchmarks de algoritmos de compresión
 
-- [Index Compression Survey](https://arxiv.org/abs/1908.10598){target="_blank"}: Survey reciente de técnicas
+- [Index Compression Survey](https://arxiv.org/abs/1908.10598){target="\_blank"}: Survey reciente de técnicas
 
 ### Para Profundizar
 
@@ -950,17 +600,17 @@ En sistemas reales como Lucene/Elasticsearch, se combinan múltiples técnicas p
 
 ### Código y Datasets
 
-- [ClueWeb Dataset](https://lemurproject.org/clueweb09/){target="_blank"}: Colección grande para experimentación
+- [ClueWeb Dataset](https://lemurproject.org/clueweb09/){target="\_blank"}: Colección grande para experimentación
 
-- [TREC Collections](https://trec.nist.gov/data.html){target="_blank"}: Colecciones estándar para IR
+- [TREC Collections](https://trec.nist.gov/data.html){target="\_blank"}: Colecciones estándar para IR
 
-- [Lemur Project](https://www.lemurproject.org/){target="_blank"}: Herramientas y librerías para IR
+- [Lemur Project](https://www.lemurproject.org/){target="\_blank"}: Herramientas y librerías para IR
 
 ### Cursos y Tutoriales
 
-- [Information Retrieval - Stanford CS276](https://web.stanford.edu/class/cs276/){target="_blank"}: Incluye material sobre compresión
+- [Information Retrieval - Stanford CS276](https://web.stanford.edu/class/cs276/){target="\_blank"}: Incluye material sobre compresión
 
-- [Text Compression - University of Melbourne](https://people.eng.unimelb.edu.au/ammoffat/){target="_blank"}: Recursos de Alistair Moffat
+- [Text Compression - University of Melbourne](https://people.eng.unimelb.edu.au/ammoffat/){target="\_blank"}: Recursos de Alistair Moffat
 
 ### Aplicaciones Prácticas
 
