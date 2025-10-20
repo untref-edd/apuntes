@@ -941,8 +941,7 @@ Si por el contrario se quiere indexar una colección de tweets, cada tweet puede
 
 ## Implementación con BSBI
 
-En el siguiente enlace se encuentra una implementación en Python del algoritmo BSBI para construir un índice invertido a partir de una colección de documentos. Esta implementación incluye procesamiento básico de texto (normalización, tokenización, eliminación de stopwords y stemming).
-c
+En el siguiente enlace se encuentra una implementación en Python del algoritmo BSBI para construir un índice invertido a partir de una colección de documentos. Esta implementación incluye procesamiento básico de texto (normalización, tokenización, eliminación de stopwords y stemming) y compresión del índice.
 
 [https://github.com/untref-edd/IndiceInvertido](https://github.com/untref-edd/IndiceInvertido){target="\_blank"}
 
