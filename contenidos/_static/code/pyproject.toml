@@ -15,4 +15,4 @@ dependencies = []
 Homepage = "https://github.com/untref-edd/apuntes"
 
 [tool.setuptools.packages]
-find = { include = ["grafos"] }
+find = { include = ["grafos", "ii"] }

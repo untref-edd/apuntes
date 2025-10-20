@@ -928,7 +928,7 @@ Al elegir un algoritmo de construcción de índices se debe considerar:
    - Actualizaciones frecuentes: Índices incrementales
    - Reconstrucción completa: Batch processing
 
-1. **Requisitos de tiempo**:g
+1. **Requisitos de tiempo**:
 
    - Tiempo real: Índices incrementales
    - Batch: Cualquier algoritmo según tamaño
@@ -958,8 +958,8 @@ Para colecciones muy grandes que no caben en memoria, se utilizan técnicas como
 - **Ordenamiento externo**: Usar algoritmos de ordenamiento que funcionen con datos en disco
 - **Procesamiento distribuido**: Utilizar frameworks como MapReduce para procesar en paralelo
 
+
 ## Resumen
-**
 Los índices invertidos son esenciales para la recuperación eficiente de información:
 
 - Permiten búsquedas rápidas al ir de término a documentos
