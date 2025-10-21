@@ -115,6 +115,7 @@ tags: [hide-output]
 ---
 # Implementación de Front Coding para el bloque de ejemplo
 
+
 def common_prefix(strings):
     """Devuelve el prefijo común más largo de una lista de strings."""
     if not strings:
@@ -125,6 +126,7 @@ def common_prefix(strings):
             return s1[:i]
     return s1
 
+
 def front_encode_block(terms):
     """
     Codifica un bloque de términos usando front coding.
@@ -134,34 +136,38 @@ def front_encode_block(terms):
         return ""
     prefix = common_prefix(terms)
     base = terms[0]
-    base_suffix = base[len(prefix):]
+    base_suffix = base[len(prefix) :]
     encoded = f"{len(base)}{prefix}*{base_suffix}"
     for term in terms[1:]:
-        suf = term[len(prefix):]
+        suf = term[len(prefix) :]
         encoded += f"{len(suf)}•{suf}"
     return encoded
+
 
 def front_decode_block(encoded):
     """Decodifica la cadena generada por front_encode_block y devuelve la lista de términos."""
     import re
+
     if not encoded:
         return []
-    m = re.match(r'(\d+)', encoded)
+    m = re.match(r"(\d+)", encoded)
     if not m:
-        raise ValueError("Formato inválido: no se encontró la longitud del término base")
+        raise ValueError(
+            "Formato inválido: no se encontró la longitud del término base"
+        )
     base_len = int(m.group(1))
-    rest = encoded[m.end():]
+    rest = encoded[m.end() :]
     # buscar '*' que separa prefijo y sufijo del término base
-    star_idx = rest.find('*')
+    star_idx = rest.find("*")
     if star_idx == -1:
         raise ValueError("Formato inválido: falta '*'")
     prefix = rest[:star_idx]
     # calcular sufijo del base usando la longitud indicada
     base_suffix_len = base_len - len(prefix)
-    base_suffix = rest[star_idx+1:star_idx+1+base_suffix_len]
+    base_suffix = rest[star_idx + 1 : star_idx + 1 + base_suffix_len]
     base = prefix + base_suffix
     terms = [base]
-    rem = rest[star_idx+1+base_suffix_len:]
+    rem = rest[star_idx + 1 + base_suffix_len :]
     i = 0
     while i < len(rem):
         # leer número de longitud del sufijo
@@ -171,12 +177,13 @@ def front_decode_block(encoded):
         if j == i:
             raise ValueError("Formato inválido al leer longitud de sufijo")
         num = int(rem[i:j])
-        if j >= len(rem) or rem[j] != '•':
+        if j >= len(rem) or rem[j] != "•":
             raise ValueError("Formato inválido: falta '•' separador")
-        suf = rem[j+1:j+1+num]
+        suf = rem[j + 1 : j + 1 + num]
         terms.append(prefix + suf)
-        i = j+1+num
+        i = j + 1 + num
     return terms
+
 
 # Ejemplo con las palabras solicitadas
 palabras = ["algas", "algoritmo", "alguacil", "alguien", "alguno"]
@@ -190,8 +197,8 @@ print("Decoded:", decoded)
 assert decoded == palabras, "La decodificación no coincide con las palabras originales"
 
 # Estadísticas de compresión (bytes en UTF-8)
-original_bytes = sum(len(p.encode('utf-8')) for p in palabras)
-comprimido_bytes = len(encoded.encode('utf-8'))
+original_bytes = sum(len(p.encode("utf-8")) for p in palabras)
+comprimido_bytes = len(encoded.encode("utf-8"))
 print(f"\nTamaño original: {original_bytes} bytes")
 print(f"Tamaño front coding: {comprimido_bytes} bytes")
 print(f"Ratio: {original_bytes / comprimido_bytes:.2f}x")
@@ -218,7 +225,7 @@ print(doc_ids)
 # Convertir a gaps
 gaps = [doc_ids[0]]  # Primer ID se mantiene
 for i in range(1, len(doc_ids)):
-    gaps.append(doc_ids[i] - doc_ids[i-1])
+    gaps.append(doc_ids[i] - doc_ids[i - 1])
 
 print("\nGaps (diferencias):")
 print(gaps)
@@ -226,11 +233,13 @@ print(gaps)
 # Comparar tamaños (asumiendo que usamos el mínimo de bits necesarios)
 import math
 
+
 def bits_necesarios(numero):
     """Calcula bits necesarios para representar un número"""
     if numero == 0:
         return 1
     return math.ceil(math.log2(numero + 1))
+
 
 bits_originales = sum(bits_necesarios(id) for id in doc_ids)
 bits_gaps = sum(bits_necesarios(gap) for gap in gaps)
@@ -276,18 +285,19 @@ def vb_encode(numero):
     """Codifica un número usando Variable Byte encoding"""
     if numero == 0:
         return [0]
-    
+
     bytes_list = []
     while numero > 0:
         bytes_list.insert(0, numero % 128)  # 7 bits de datos
         numero //= 128
-    
+
     # El último byte tiene el bit de continuación en 0
     # Los demás tienen el bit en 1 (sumamos 128)
     for i in range(len(bytes_list) - 1):
         bytes_list[i] += 128
-    
+
     return bytes_list
+
 
 def vb_decode(bytes_list):
     """Decodifica una lista de bytes en Variable Byte encoding"""
@@ -302,6 +312,7 @@ def vb_decode(bytes_list):
             numero = numero * 128 + (byte - 128)
     return numero
 
+
 # Ejemplos
 numeros = [5, 127, 128, 130, 1000, 16383]
 
@@ -313,15 +324,15 @@ for num in numeros:
     encoded = vb_encode(num)
     bits_orig = 32  # Entero de 32 bits típico
     bits_vb = len(encoded) * 8
-    
+
     # Mostrar en binario
-    encoded_bin = ' '.join(format(b, '08b') for b in encoded)
+    encoded_bin = " ".join(format(b, "08b") for b in encoded)
     print(f"{num:<10} {encoded_bin:<25} {bits_orig:<20} {bits_vb}")
 
 # Ejemplo de compresión de una lista completa
 print("\n\nCompresión de lista de postings:")
 postings = [3, 12, 15, 27, 35, 89, 142, 156, 299, 312]
-gaps = [postings[0]] + [postings[i] - postings[i-1] for i in range(1, len(postings))]
+gaps = [postings[0]] + [postings[i] - postings[i - 1] for i in range(1, len(postings))]
 
 print(f"Postings originales: {postings}")
 print(f"Gaps: {gaps}")
@@ -337,7 +348,7 @@ print(f"Tamaño comprimido: {len(encoded_all)} bytes")
 print(f"Ratio de compresión: {len(postings) * 4 / len(encoded_all):.2f}x")
 ```
 
-## Trade-offs de la Compresión
+## *Trade-offs* de la Compresión
 
 La compresión de índices implica compromisos:
 
@@ -373,19 +384,13 @@ En sistemas reales como Lucene/Elasticsearch, se combinan múltiples técnicas p
 ### Bibliografía Principal
 
 - Manning, C. D., Raghavan, P., & Schütze, H. (2008). *Introduction to Information Retrieval*. Cambridge University Press. Capítulo 5.{cite:p}`irbook`
-
 - Zobel, J., & Moffat, A. (2006). "Inverted files for text search engines". *ACM Computing Surveys (CSUR)*, 38(2), 1-56.{cite:p}`zobel2006`
-
 - Witten, I. H., Moffat, A., & Bell, T. C. (1999). *Managing Gigabytes: Compressing and Indexing Documents and Images*. Morgan Kaufmann. Capítulo 7.{cite:p}`witten1999`
-
 - [ClueWeb Dataset](https://lemurproject.org/clueweb09/){target="\_blank"}: Colección grande para experimentación
-
 - [TREC Collections](https://trec.nist.gov/data.html){target="\_blank"}: Colecciones estándar para IR
-
 - [Lemur Project](https://www.lemurproject.org/){target="\_blank"}: Herramientas y librerías para IR
 
 ### Cursos y Tutoriales
 
 - [Information Retrieval - Stanford CS276](https://web.stanford.edu/class/cs276/){target="\_blank"}: Incluye material sobre compresión
-
 - [Text Compression - University of Melbourne](https://people.eng.unimelb.edu.au/ammoffat/){target="\_blank"}: Recursos de Alistair Moffat

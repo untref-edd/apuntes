@@ -58,8 +58,9 @@ documentos = {
     1: "Python es un lenguaje de programación",
     2: "Java es un lenguaje orientado a objetos",
     3: "Python y Java son lenguajes populares",
-    4: "Machine learning con Python"
+    4: "Machine learning con Python",
 }
+
 
 def buscar_sin_indice(termino, documentos):
     """Busca documentos que contienen un término (búsqueda secuencial)"""
@@ -68,6 +69,7 @@ def buscar_sin_indice(termino, documentos):
         if termino.lower() in contenido.lower():
             resultado.append(doc_id)
     return resultado
+
 
 # Buscar documentos con "Python"
 docs_con_python = buscar_sin_indice("Python", documentos)
@@ -207,66 +209,81 @@ tags: [hide-output]
 from collections import defaultdict
 
 # Palabras que NO se deben indexar (stopwords indicadas)
-STOPWORDS = {'es', 'un', 'de', 'a', 'son', 'con', 'y', 'la', 
-              'el', 'en', 'los', 'las', 'por', 'para'}
+STOPWORDS = {
+    "es",
+    "un",
+    "de",
+    "a",
+    "son",
+    "con",
+    "y",
+    "la",
+    "el",
+    "en",
+    "los",
+    "las",
+    "por",
+    "para",
+}
+
 
 class IndiceInvertido:
-  """Implementación simple de un índice invertido"""
-  
-  def __init__(self):
-    # Diccionario: término -> conjunto de IDs de documentos
-    self.indice = defaultdict(set)
-    # Almacena los documentos originales
-    self.documentos = {}
-  
-  def agregar_documento(self, doc_id, texto):
-    """Agrega un documento al índice (no indexa palabras en STOPWORDS)"""
-    self.documentos[doc_id] = texto
-    
-    # Tokenizar o separar el documento como una lista de palabras
-    # Las palabras se normalizan a minúsculas y se eliminan signos de puntuación básicos
-    palabras = texto.lower().split()
-    
-    # Agregar cada palabra al índice salvo las stopwords indicadas
-    for palabra in palabras:
-      # Eliminar puntuación básica alrededor de la palabra
-      palabra = palabra.strip('.,;:!?()[]{}"\'')
-      if not palabra:
-        continue
-      if palabra in STOPWORDS:
-        continue
-      self.indice[palabra].add(doc_id)
-  
-  def buscar(self, termino):
-    """Busca documentos que contienen el término (normaliza a minúsculas)"""
-    termino = termino.lower().strip('.,;:!?()[]{}"\'')
-    return self.indice.get(termino, set())
-  
-  def buscar_and(self, termino1, termino2):
-    """Busca documentos que contienen ambos términos"""
-    docs1 = self.buscar(termino1)
-    docs2 = self.buscar(termino2)
-    return docs1 & docs2
-  
-  def buscar_or(self, termino1, termino2):
-    """Busca documentos que contienen al menos uno de los términos"""
-    docs1 = self.buscar(termino1)
-    docs2 = self.buscar(termino2)
-    return docs1 | docs2
-  
-  def buscar_not(self, termino1, termino2):
-    """Busca documentos que contienen termino1 pero no termino2"""
-    docs1 = self.buscar(termino1)
-    docs2 = self.buscar(termino2)
-    return docs1 - docs2
-  
-  def __repr__(self):
-    """Representación del índice para inspección"""
-    resultado = []
-    for termino in (self.indice.keys()):
-      docs = (self.indice[termino])
-      resultado.append(f"{termino}: {docs}")
-    return "\n".join(resultado)
+    """Implementación simple de un índice invertido"""
+
+    def __init__(self):
+        # Diccionario: término -> conjunto de IDs de documentos
+        self.indice = defaultdict(set)
+        # Almacena los documentos originales
+        self.documentos = {}
+
+    def agregar_documento(self, doc_id, texto):
+        """Agrega un documento al índice (no indexa palabras en STOPWORDS)"""
+        self.documentos[doc_id] = texto
+
+        # Tokenizar o separar el documento como una lista de palabras
+        # Las palabras se normalizan a minúsculas y se eliminan signos de puntuación básicos
+        palabras = texto.lower().split()
+
+        # Agregar cada palabra al índice salvo las stopwords indicadas
+        for palabra in palabras:
+            # Eliminar puntuación básica alrededor de la palabra
+            palabra = palabra.strip(".,;:!?()[]{}\"'")
+            if not palabra:
+                continue
+            if palabra in STOPWORDS:
+                continue
+            self.indice[palabra].add(doc_id)
+
+    def buscar(self, termino):
+        """Busca documentos que contienen el término (normaliza a minúsculas)"""
+        termino = termino.lower().strip(".,;:!?()[]{}\"'")
+        return self.indice.get(termino, set())
+
+    def buscar_and(self, termino1, termino2):
+        """Busca documentos que contienen ambos términos"""
+        docs1 = self.buscar(termino1)
+        docs2 = self.buscar(termino2)
+        return docs1 & docs2
+
+    def buscar_or(self, termino1, termino2):
+        """Busca documentos que contienen al menos uno de los términos"""
+        docs1 = self.buscar(termino1)
+        docs2 = self.buscar(termino2)
+        return docs1 | docs2
+
+    def buscar_not(self, termino1, termino2):
+        """Busca documentos que contienen termino1 pero no termino2"""
+        docs1 = self.buscar(termino1)
+        docs2 = self.buscar(termino2)
+        return docs1 - docs2
+
+    def __repr__(self):
+        """Representación del índice para inspección"""
+        resultado = []
+        for termino in self.indice.keys():
+            docs = self.indice[termino]
+            resultado.append(f"{termino}: {docs}")
+        return "\n".join(resultado)
 
 
 # Crear el índice
@@ -309,28 +326,32 @@ print(f"Python AND NOT Java: {indice.buscar_not('python', 'java')}")
 
 En la práctica, el procesamiento de términos es más sofisticado que simplemente convertir a minúsculas y separar por espacios. Los sistemas reales aplican varias técnicas para mejorar la calidad del índice y la recuperación, entre ellas "normalización", "tokenización", "eliminación de stopwords" y "stemming/lematización". A continuación se muestran ejemplos de cada técnica usando la librería NLTK en Python.
 
-````{note}
+### NLTK
+
 NLTK (Natural Language Toolkit) es una librería popular en Python para procesamiento de lenguaje natural. Proporciona herramientas para tokenización, stemming, lematización, y manejo de stopwords, entre otras funcionalidades.
 
 Para instalar NLTK, ejecutar en la terminal:
-```bash 
+
+```bash
 pip install nltk
 ```
 
 Luego es necesario descargar algunos recursos adicionales (stopwords, modelos de tokenización) usando:
+
 ```python
 import nltk
+
 nltk.download()
 ```
+
 Se abrirá una ventana gráfica para seleccionar los recursos a descargar. Alternativamente, se pueden descargar recursos específicos directamente en el código como se muestra en los ejemplos a continuación.
 
 ```python
 import nltk
-nltk.download('stopwords', quiet=True)
-nltk.download('punkt', quiet=True)
 
+nltk.download("stopwords", quiet=True)
+nltk.download("punkt_tab", quiet=True)
 ```
-````
 
 ## Procesamiento de Términos con NLTK
 
@@ -344,24 +365,26 @@ tags: [hide-output]
 ---
 import re
 import nltk
-
-nltk.download('punkt', quiet=True)
-
 from nltk.tokenize import word_tokenize
 
+nltk.download("punkt_tab", quiet=True)
+
+
 def normalizar_texto(texto):
-  """Normaliza un texto para indexación usando NLTK para tokenizar."""
-  # Convertir a minúsculas
-  texto = texto.lower()
-  # Reemplazar signos de puntuación por espacios (dejando letras, números y espacios)
-  texto = re.sub(r'[^\w\s]', ' ', texto)
-  # Tokenizar con NLTK (maneja mejor cliticos, contracciones, etc.)
-  tokens = word_tokenize(texto, language='spanish')
-  # Reconstruir string normalizado (tokens separados por espacio)
-  return ' '.join(tokens)
+    """Normaliza un texto para indexación usando NLTK para tokenizar."""
+    # Convertir a minúsculas
+    texto = texto.lower()
+    # Reemplazar signos de puntuación por espacios (dejando letras, números y espacios)
+    texto = re.sub(r"[^\w\s]", " ", texto)
+    # Tokenizar con NLTK (maneja mejor cliticos, contracciones, etc.)
+    tokens = word_tokenize(texto, language="spanish")
+    # Reconstruir string normalizado (tokens separados por espacio)
+    return " ".join(tokens)
+
 
 # Ejemplo
 texto = "¡Python es GENIAL! ¿No lo crees? Dímelo."
+
 print(f"Original: {texto}")
 print(f"Normalizado: {normalizar_texto(texto)}")
 ```
@@ -375,14 +398,17 @@ Es el proceso de dividir el texto en unidades (tokens).
 tags: [hide-output]
 ---
 import nltk
-nltk.download('punkt', quiet=True)
 from nltk.tokenize import word_tokenize
 
+nltk.download("punkt_tab", quiet=True)
+
+
 def tokenizar(texto):
-  """Tokeniza un texto en palabras usando NLTK (Spanish punkt)."""
-  texto_normalizado = texto.lower()
-  tokens = word_tokenize(texto_normalizado, language='spanish')
-  return tokens
+    """Tokeniza un texto en palabras usando NLTK (Spanish punkt)."""
+    texto_normalizado = texto.lower()
+    tokens = word_tokenize(texto_normalizado, language="spanish")
+    return tokens
+
 
 texto = "Python 3.9 es la versión más reciente"
 tokens = tokenizar(texto)
@@ -398,21 +424,24 @@ NLTK proporciona listas de stopwords para varios idiomas, incluyendo español.
 tags: [hide-output]
 ---
 import nltk
-nltk.download('stopwords', quiet=True)
-nltk.download('punkt', quiet=True)
-
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 
-STOPWORDS_NLTK = set(stopwords.words('spanish'))
+nltk.download("stopwords", quiet=True)
+nltk.download("punkt_tab", quiet=True)
+
+
+STOPWORDS_NLTK = set(stopwords.words("spanish"))
+
 
 def eliminar_stopwords(tokens):
-  """Elimina stopwords usando la lista de NLTK para español."""
-  return [t for t in tokens if t not in STOPWORDS_NLTK]
+    """Elimina stopwords usando la lista de NLTK para español."""
+    return [t for t in tokens if t not in STOPWORDS_NLTK]
+
 
 # Ejemplo
 texto = "Python es un lenguaje de programación muy popular"
-tokens = word_tokenize(texto.lower(), language='spanish')
+tokens = word_tokenize(texto.lower(), language="spanish")
 tokens_sin_stop = eliminar_stopwords(tokens)
 
 print(f"Tokens originales: {tokens}")
@@ -423,20 +452,19 @@ print(f"Sin stopwords: {tokens_sin_stop}")
 ---
 tags: [hide-output]
 ---
+import textwrap
 import nltk
-nltk.download('stopwords', quiet=True)
-nltk.download('punkt', quiet=True)
 from nltk.corpus import stopwords
 
-STOPWORDS_NLTK = set(stopwords.words('spanish'))
+nltk.download("stopwords", quiet=True)
 
-import textwrap
+STOPWORDS_NLTK = set(stopwords.words("spanish"))
 
 print("Stopwords en español (NLTK):")
 palabras = sorted(STOPWORDS_NLTK)
-texto = ', '.join(palabras)
+texto = ", ".join(palabras)
 for linea in textwrap.wrap(texto, width=80):
-  print(linea)
+    print(linea)
 ```
 
 ### Stemming y Lematización
@@ -450,42 +478,41 @@ Se muestra stemming en español con SnowballStemmer (disponible en NLTK). NLTK n
 tags: [hide-output]
 ---
 import nltk
-nltk.download('wordnet', quiet=True)
-nltk.download('omw-1.4', quiet=True)
-nltk.download('punkt', quiet=True)
-nltk.download('stopwords', quiet=True)
-
 from nltk.stem.snowball import SnowballStemmer
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 
+nltk.download("wordnet", quiet=True)
+
 # Stemmer para español
-stemmer_es = SnowballStemmer('spanish')
+stemmer_es = SnowballStemmer("spanish")
 
 # Lemmatizer para inglés (WordNet)
 lemmatizer_en = WordNetLemmatizer()
 
+
 def stem_tokens_es(tokens):
-  """Aplica SnowballStemmer (español) a una lista de tokens."""
-  return [stemmer_es.stem(t) for t in tokens]
+    """Aplica SnowballStemmer (español) a una lista de tokens."""
+    return [stemmer_es.stem(t) for t in tokens]
+
 
 def lemmatize_tokens_en(tokens):
-  """Ejemplo de lematización en inglés con WordNetLemmatizer."""
-  return [lemmatizer_en.lemmatize(t) for t in tokens]
+    """Ejemplo de lematización en inglés con WordNetLemmatizer."""
+    return [lemmatizer_en.lemmatize(t) for t in tokens]
+
 
 # Ejemplos
-palabras_es = ['programación', 'programar', 'programador', 'estudiante', 'estudiar']
+palabras_es = ["programación", "programar", "programador", "estudiante", "estudiar"]
 stems = stem_tokens_es(palabras_es)
 print("Stemming (es):")
 for p, s in zip(palabras_es, stems):
-  print(f"{p} → {s}")
+    print(f"{p} → {s}")
 
-palabras_en = ['runners', 'run', 'philosophy', 'philosophical', 'philosopher']
+palabras_en = ["runners", "run", "philosophy", "philosophical", "philosopher"]
 lemmas_en = lemmatize_tokens_en(palabras_en)
 print("\nLematización (en, WordNet):")
 for p, l in zip(palabras_en, lemmas_en):
-  print(f"{p} → {l}")
-
+    print(f"{p} → {l}")
 ```
 
 Tanto el stemming como la lematización ayudan a agrupar diferentes formas de una misma palabra, reduciendo el tamaño del vocabulario y mejorando la recuperación al costo de perdida de la información, ya que diferentes palabras pueden mapear al mismo stem o lema.
@@ -496,13 +523,25 @@ Una técnica común es experimentar con diferentes configuraciones y evaluar su 
 
 Por ejemplo se puede utilizar un stemmer o lematizador durante la fase de construcción del índice para normalizar los términos, y luego aplicar el mismo proceso a las consultas de los usuarios para asegurar que coincidan con los términos indexados.
 
-````{note}
+#### spaCy
+
 Otra librería popular para procesamiento de lenguaje natural es **spaCy**, que ofrece modelos robustos para varios idiomas, incluyendo español. SpaCy proporciona tokenización, lematización, y reconocimiento de entidades nombradas, entre otras funcionalidades avanzadas. Para instalar spaCy y el modelo en español, ejecutar:
+
 ```bash
 pip install spacy
 python -m spacy download es_core_news_sm
 ```
-````
+
+o de forma alternativa se puede descargar el modelo desde Python con:
+
+```{code-cell} python
+---
+tags: [remove-output]
+---
+import spacy
+
+spacy.cli.download("es_core_news_sm")
+```
 
 A continuación se muestra un ejemplo de uso de spaCy para tokenización y lematización en español.
 
@@ -511,7 +550,7 @@ A continuación se muestra un ejemplo de uso de spaCy para tokenización y lemat
 tags: [hide-output]
 ---
 import spacy
-import textwrap #Para imprimir en 80 columnas
+import textwrap  # Para imprimir en 80 columnas
 
 # Cargar modelo en español
 nlp = spacy.load("es_core_news_sm")
@@ -534,26 +573,22 @@ doc = nlp(texto)
 
 # Filtrar tokens y lemas: excluir stopwords, puntuación y tokens no alfabéticos
 tokens_sin_stop = [token.text for token in doc if not token.is_stop and token.is_alpha]
-lemmas_sin_stop = [token.lemma_ for token in doc if not token.is_stop and token.is_alpha]
+lemmas_sin_stop = [
+    token.lemma_ for token in doc if not token.is_stop and token.is_alpha
+]
 
 
 label = "Tokens (sin stopwords): "
-s = ', '.join(tokens_sin_stop)
-print(textwrap.fill(
-  s,
-  width=80,
-  initial_indent=label,
-  subsequent_indent=' ' * len(label)
-))
+s = ", ".join(tokens_sin_stop)
+print(
+    textwrap.fill(s, width=80, initial_indent=label, subsequent_indent=" " * len(label))
+)
 
 label = "Lemas (sin stopwords): "
-s = ', '.join(lemmas_sin_stop)
-print(textwrap.fill(
-  s,
-  width=80,
-  initial_indent=label,
-  subsequent_indent=' ' * len(label)
-))
+s = ", ".join(lemmas_sin_stop)
+print(
+    textwrap.fill(s, width=80, initial_indent=label, subsequent_indent=" " * len(label))
+)
 ```
 
 ## Algoritmos de Construcción de Índices
@@ -581,89 +616,89 @@ El algoritmo **BSBI** (Blocked Sort-Based Indexing) es una técnica que construy
 
 ```text
 ALGORITMO BSBI(colección_documentos)
-  bloques = []
-  buffer = []
-  
-  // Fase 1: Crear bloques ordenados
-  PARA CADA documento EN colección_documentos:
-    pares = ParsearDocumento(documento)
-    buffer.agregar(pares)
-    
-    SI buffer.tamaño >= TAMAÑO_BLOQUE:
-      índice_bloque = InvertirYOrdenar(buffer)
-      archivo_bloque = EscribirADisco(índice_bloque)
-      bloques.agregar(archivo_bloque)
-      buffer.limpiar()
-  FIN PARA
-  
-  // Procesar último bloque si existe
-  SI buffer NO está vacío:
-    índice_bloque = InvertirYOrdenar(buffer)
-    archivo_bloque = EscribirADisco(índice_bloque)
-    bloques.agregar(archivo_bloque)
-  FIN SI
-  
-  // Fase 2: Fusionar todos los bloques
-  índice_final = FusionarBloques(bloques)
-  RETORNAR índice_final
+    bloques = []
+    buffer = []
+
+    // Fase 1: Crear bloques ordenados
+    PARA CADA documento EN colección_documentos:
+        pares = ParsearDocumento(documento)
+        buffer.agregar(pares)
+
+        SI buffer.tamaño >= TAMAÑO_BLOQUE:
+            índice_bloque = InvertirYOrdenar(buffer)
+            archivo_bloque = EscribirADisco(índice_bloque)
+            bloques.agregar(archivo_bloque)
+            buffer.limpiar()
+    FIN PARA
+
+    // Procesar último bloque si existe
+    SI buffer NO está vacío:
+        índice_bloque = InvertirYOrdenar(buffer)
+        archivo_bloque = EscribirADisco(índice_bloque)
+        bloques.agregar(archivo_bloque)
+    FIN SI
+
+    // Fase 2: Fusionar todos los bloques
+    índice_final = FusionarBloques(bloques)
+    RETORNAR índice_final
 FIN ALGORITMO
 
 
 FUNCIÓN InvertirYOrdenar(pares_término_docid):
-  // Ordena los pares por (término, doc_id)
-  pares_ordenados = Ordenar(pares_término_docid)
-  
-  // Construye diccionario término -> [doc_ids]
-  índice = diccionario_vacío()
-  PARA CADA (término, doc_id) EN pares_ordenados:
-    índice[término].agregar(doc_id)
-  FIN PARA
-  
-  RETORNAR índice
+    // Ordena los pares por (término, doc_id)
+    pares_ordenados = Ordenar(pares_término_docid)
+
+    // Construye diccionario término -> [doc_ids]
+    índice = diccionario_vacío()
+    PARA CADA (término, doc_id) EN pares_ordenados:
+        índice[término].agregar(doc_id)
+    FIN PARA
+
+    RETORNAR índice
 FIN FUNCIÓN
 
 
 FUNCIÓN FusionarBloques(lista_bloques):
-  // Merge de k-vías usando un heap
-  heap = heap_vacío()
-  archivos = []
-  
-  // Inicializar heap con primera línea de cada bloque
-  PARA CADA bloque EN lista_bloques:
-    archivo = Abrir(bloque)
-    archivos.agregar(archivo)
-    (término, postings) = LeerLínea(archivo)
-    heap.insertar((término, postings, archivo))
-  FIN PARA
-  
-  índice_final = diccionario_vacío()
-  término_actual = NULL
-  postings_acumulados = []
-  
-  MIENTRAS heap NO vacío:
-    (término, postings, archivo) = heap.extraer_mínimo()
-    
-    SI término ≠ término_actual Y término_actual ≠ NULL:
-      índice_final[término_actual] = postings_acumulados
-      postings_acumulados = []
+    // Merge de k-vías usando un heap
+    heap = heap_vacío()
+    archivos = []
+
+    // Inicializar heap con primera línea de cada bloque
+    PARA CADA bloque EN lista_bloques:
+        archivo = Abrir(bloque)
+        archivos.agregar(archivo)
+        (término, postings) = LeerLínea(archivo)
+        heap.insertar((término, postings, archivo))
+    FIN PARA
+
+    índice_final = diccionario_vacío()
+    término_actual = NULL
+    postings_acumulados = []
+
+    MIENTRAS heap NO vacío:
+        (término, postings, archivo) = heap.extraer_mínimo()
+
+        SI término ≠ término_actual Y término_actual ≠ NULL:
+            índice_final[término_actual] = postings_acumulados
+            postings_acumulados = []
+        FIN SI
+
+        término_actual = término
+        postings_acumulados.agregar(postings)
+
+        // Leer siguiente línea del mismo archivo
+        SI NO archivo.fin():
+            (término, postings) = LeerLínea(archivo)
+            heap.insertar((término, postings, archivo))
+        FIN SI
+    FIN MIENTRAS
+
+    // Guardar último término
+    SI término_actual ≠ NULL:
+        índice_final[término_actual] = postings_acumulados
     FIN SI
-    
-    término_actual = término
-    postings_acumulados.agregar(postings)
-    
-    // Leer siguiente línea del mismo archivo
-    SI NO archivo.fin():
-      (término, postings) = LeerLínea(archivo)
-      heap.insertar((término, postings, archivo))
-    FIN SI
-  FIN MIENTRAS
-  
-  // Guardar último término
-  SI término_actual ≠ NULL:
-    índice_final[término_actual] = postings_acumulados
-  FIN SI
-  
-  RETORNAR índice_final
+
+    RETORNAR índice_final
 FIN FUNCIÓN
 ```
 
@@ -698,33 +733,33 @@ El algoritmo **SPIMI** mejora BSBI al generar directamente un diccionario de té
 
 ```text
 ALGORITMO SPIMI(flujo_tokens)
-  bloques = []
-  diccionario = diccionario_vacío()
-  
-  MIENTRAS hay_más_tokens():
-    MIENTRAS hay_memoria_disponible():
-      (término, doc_id) = siguiente_token()
-      
-      SI término NO EN diccionario:
-        diccionario[término] = nueva_lista_postings()
-        AgregarADiccionario(término)
-      FIN SI
-      
-      SI doc_id NO EN diccionario[término]:
-        diccionario[término].agregar(doc_id)
-      FIN SI
+    bloques = []
+    diccionario = diccionario_vacío()
+
+    MIENTRAS hay_más_tokens():
+        MIENTRAS hay_memoria_disponible():
+            (término, doc_id) = siguiente_token()
+
+            SI término NO EN diccionario:
+                diccionario[término] = nueva_lista_postings()
+                AgregarADiccionario(término)
+            FIN SI
+
+            SI doc_id NO EN diccionario[término]:
+                diccionario[término].agregar(doc_id)
+            FIN SI
+        FIN MIENTRAS
+
+        // Memoria llena, escribir bloque a disco
+        bloque = OrdenarTérminos(diccionario)
+        archivo = EscribirBloque(bloque)
+        bloques.agregar(archivo)
+        diccionario.limpiar()
     FIN MIENTRAS
-    
-    // Memoria llena, escribir bloque a disco
-    bloque = OrdenarTérminos(diccionario)
-    archivo = EscribirBloque(bloque)
-    bloques.agregar(archivo)
-    diccionario.limpiar()
-  FIN MIENTRAS
-  
-  // Fusionar bloques
-  índice_final = FusionarBloques(bloques)
-  RETORNAR índice_final
+
+    // Fusionar bloques
+    índice_final = FusionarBloques(bloques)
+    RETORNAR índice_final
 FIN ALGORITMO
 ```
 
@@ -761,47 +796,47 @@ flowchart TB
         D3[Documento 3]
         D4[Documento N]
     end
-    
+
     subgraph Map[Fase Map]
         M1[Mapper 1]
         M2[Mapper 2]
         M3[Mapper 3]
         M4[Mapper N]
     end
-    
+
     subgraph Shuffle[Shuffle & Sort]
         S1[Agrupa por término]
         S2[Ordena postings]
     end
-    
+
     subgraph Reduce[Fase Reduce]
         R1[Reducer 1<br/>términos a-f]
         R2[Reducer 2<br/>términos g-m]
         R3[Reducer 3<br/>términos n-z]
     end
-    
+
     subgraph Output[Salida]
         I1[Índice parcial 1]
         I2[Índice parcial 2]
         I3[Índice parcial 3]
     end
-    
+
     D1 --> M1
     D2 --> M2
     D3 --> M3
     D4 --> M4
-    
+
     M1 -->|"(término, doc_id)"| S1
     M2 -->|"(término, doc_id)"| S1
     M3 -->|"(término, doc_id)"| S1
     M4 -->|"(término, doc_id)"| S1
-    
+
     S1 --> S2
-    
+
     S2 -->|término: a-f| R1
     S2 -->|término: g-m| R2
     S2 -->|término: n-z| R3
-    
+
     R1 --> I1
     R2 --> I2
     R3 --> I3
@@ -831,26 +866,26 @@ flowchart TB
 
 ```text
 FUNCIÓN Map(doc_id, contenido_documento):
-  términos = Tokenizar(contenido_documento)
-  PARA CADA término EN términos:
-    término_normalizado = Normalizar(término)
-    EMITIR (término_normalizado, doc_id)
-  FIN PARA
+    términos = Tokenizar(contenido_documento)
+    PARA CADA término EN términos:
+        término_normalizado = Normalizar(término)
+        EMITIR (término_normalizado, doc_id)
+    FIN PARA
 FIN FUNCIÓN
 
 
 FUNCIÓN Reduce(término, lista_doc_ids):
-  // Recibe: término y todos los doc_ids donde aparece
-  postings = []
-  
-  PARA CADA doc_id EN lista_doc_ids:
-    SI doc_id NO EN postings:
-      postings.agregar(doc_id)
-    FIN SI
-  FIN PARA
-  
-  postings_ordenados = Ordenar(postings)
-  EMITIR (término, postings_ordenados)
+    // Recibe: término y todos los doc_ids donde aparece
+    postings = []
+
+    PARA CADA doc_id EN lista_doc_ids:
+        SI doc_id NO EN postings:
+            postings.agregar(doc_id)
+        FIN SI
+    FIN PARA
+
+    postings_ordenados = Ordenar(postings)
+    EMITIR (término, postings_ordenados)
 FIN FUNCIÓN
 ```
 
@@ -913,25 +948,25 @@ Al elegir un algoritmo de construcción de índices se debe considerar:
 
 1. **Tamaño de la colección**:
 
-   - < 1 GB: Construcción en memoria simple
-   - 1-100 GB: BSBI o SPIMI
-   - > 100 GB: MapReduce o sistemas especializados
+   - < 1 GB: Construcción en memoria simple.
+   - 1-100 GB: BSBI o SPIMI.
+   - \> 100 GB: MapReduce o sistemas especializados.
 
 1. **Recursos disponibles**:
 
-   - RAM limitada: BSBI (menor uso de memoria)
-   - RAM abundante: SPIMI (más rápido)
-   - Cluster disponible: MapReduce
+   - RAM limitada: BSBI (menor uso de memoria).
+   - RAM abundante: SPIMI (más rápido).
+   - Cluster disponible: MapReduce.
 
 1. **Frecuencia de actualización**:
 
-   - Actualizaciones frecuentes: Índices incrementales
-   - Reconstrucción completa: Batch processing
+   - Actualizaciones frecuentes: Índices incrementales.
+   - Reconstrucción completa: Batch processing.
 
 1. **Requisitos de tiempo**:
 
-   - Tiempo real: Índices incrementales
-   - Batch: Cualquier algoritmo según tamaño
+   - Tiempo real: Índices incrementales.
+   - Batch: Cualquier algoritmo según tamaño.
 
 #### Diseño del índice
 
@@ -949,17 +984,17 @@ En el siguiente enlace se encuentra una implementación en Python del algoritmo 
 
 La construcción de un índice tiene complejidad:
 
-- **Tiempo**: O(n × m) donde n es el número de documentos y m es el promedio de términos por documento
-- **Espacio**: O(T) donde T es el número total de términos únicos en la colección
+- **Tiempo**: $O(n × m)$ donde n es el número de documentos y m es el promedio de términos por documento.
+- **Espacio**: $O(T)$ donde T es el número total de términos únicos en la colección.
 
 Para colecciones muy grandes que no caben en memoria, se utilizan técnicas como:
 
-- **Construcción por bloques**: Dividir la colección en bloques, crear índices parciales y luego fusionarlos
-- **Ordenamiento externo**: Usar algoritmos de ordenamiento que funcionen con datos en disco
-- **Procesamiento distribuido**: Utilizar frameworks como MapReduce para procesar en paralelo
-
+- **Construcción por bloques**: Dividir la colección en bloques, crear índices parciales y luego fusionarlos.
+- **Ordenamiento externo**: Usar algoritmos de ordenamiento que funcionen con datos en disco.
+- **Procesamiento distribuido**: Utilizar frameworks como MapReduce para procesar en paralelo.
 
 ## Resumen
+
 Los índices invertidos son esenciales para la recuperación eficiente de información:
 
 - Permiten búsquedas rápidas al ir de término a documentos
@@ -987,7 +1022,5 @@ Los índices invertidos se utilizan en:
 ### Bibliografía Principal
 
 - Manning, C. D., Raghavan, P., & Schütze, H. (2008). *Introduction to Information Retrieval*. Cambridge University Press. Capítulos 1, 2, 3 y 4.{cite:p}`irbook`
-
 - Modern Information Retrieval: The Concepts and Technology behind Search. {cite:p}`baeza2011`
-
 - Information Retrieval: Implementing and Evaluating Search Engines. {cite:p}`buttcher2010`

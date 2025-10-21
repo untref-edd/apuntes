@@ -17,6 +17,7 @@ networkx
 nltk
 requests
 scrapy
+spacy
 sphinx-proof
 sphinx-thebe
 sphinxcontrib-mermaid
