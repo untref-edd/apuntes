@@ -1,25 +1,26 @@
+BTrees
+beautifulsoup4
 bokeh
+facebook-sdk
+feedparser
+folium
+geopandas
 jupyter-book
+jupyterlab
+lxml
+matplotlib
 mdformat
 mdformat-black
 mdformat-myst
 myst-parser
 networkx
+nltk
+requests
+scrapy
 sphinx-proof
 sphinx-thebe
 sphinxcontrib-mermaid
-geopandas
-matplotlib
-lxml
-feedparser
-folium
-beautifulsoup4
-requests
-scrapy
-facebook-sdk
 tweepy
-nltk
-BTrees
 
 # Paquetes locales del curso
 # Incluye: grafos (algoritmos de grafos), ii (índices invertidos)
