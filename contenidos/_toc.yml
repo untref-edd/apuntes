@@ -33,8 +33,8 @@ parts:
     - file: 3-recuperacion-de-la-informacion/3-7-web-scraping
     - file: 3-recuperacion-de-la-informacion/3-8-redes-sociales
     - file: 3-recuperacion-de-la-informacion/3-9-indices-invertidos
-    - file: 3-recuperacion-de-la-informacion/3-9-1-compresion-indices
-    - file: 3-recuperacion-de-la-informacion/3-10-indices-arboles-b
+    - file: 3-recuperacion-de-la-informacion/3-10-compresion-indices
+    - file: 3-recuperacion-de-la-informacion/3-11-indices-arboles-b
   - caption: Anexos
     chapters:
     - file: Anexos/GitBash
