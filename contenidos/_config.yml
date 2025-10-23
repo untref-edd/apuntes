@@ -76,6 +76,7 @@ sphinx:
     html_theme: sphinx_rtd_theme
     html_theme_options:
       logo_only: true
+      collapse_navigation: false
     rst_epilog: |
       .. role:: red
          :class: red-text
