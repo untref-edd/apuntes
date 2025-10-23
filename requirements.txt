@@ -15,11 +15,11 @@ mdformat-myst
 myst-parser
 networkx
 nltk
-renku-sphinx-theme
 requests
 scrapy
 spacy
 sphinx-proof
+sphinx-rtd-theme
 sphinx-thebe
 sphinxcontrib-mermaid
 tweepy

@@ -71,6 +71,11 @@ sphinx:
     proof_minimal_theme: true
     html_static_path:
       - _static
+    html_css_files:
+      - css/rtd_custom.css
+    html_theme: sphinx_rtd_theme
+    html_theme_options:
+      logo_only: true
     rst_epilog: |
       .. role:: red
          :class: red-text
@@ -78,6 +83,3 @@ sphinx:
          :class: blue-text
       .. role:: green
          :class: green-text
-    html_theme: renku
-    html_theme_options:
-      logo_only: true
