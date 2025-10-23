@@ -15,6 +15,7 @@ mdformat-myst
 myst-parser
 networkx
 nltk
+renku-sphinx-theme
 requests
 scrapy
 spacy

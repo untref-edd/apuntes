@@ -78,3 +78,6 @@ sphinx:
          :class: blue-text
       .. role:: green
          :class: green-text
+    html_theme: renku
+    html_theme_options:
+      logo_only: true
