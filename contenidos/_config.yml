@@ -4,7 +4,7 @@
 title: Apuntes de Estructuras de Datos
 author: Cátedra de Estructuras de Datos
 copyright: "2025"
-logo: assets/images/untref-logo-white.svg
+logo: assets/images/untref-logo.svg
 only_build_toc_files: true
 
 # Force re-execution of notebooks on each build.
@@ -72,11 +72,12 @@ sphinx:
     html_static_path:
       - _static
     html_css_files:
-      - css/rtd_custom.css
-    html_theme: sphinx_rtd_theme
-    html_theme_options:
-      logo_only: true
-      collapse_navigation: false
+      - css/custom.css
+    # Para usar el tema de Read the Docs, descomentar las siguientes líneas
+    # html_theme: sphinx_rtd_theme
+    # html_theme_options:
+    #   logo_only: true
+    #   collapse_navigation: false
     rst_epilog: |
       .. role:: red
          :class: red-text
