@@ -56,7 +56,7 @@ width: 60%
 Grafo Dirigido Acíclico
 ```
 
-Un orden topológico posible es: $V_2, V_0, V_1, V_3, V_4, V_6, V_5$. Como se observa a continuación.
+Un orden topológico posible es: $V_2$, $V_0$, $V_1$, $V_3$, $V_4$, $V_6$, $V_5$. Como se observa a continuación.
 
 ```{figure} ../assets/images/grafo_orden_topologico.png
 ---
@@ -66,8 +66,11 @@ width: 60%
 Ordenamiento Topológico
 ```
 
-```{Important}
-El orden topológico no es único. Pueden existir múltiples ordenamientos topológicos para un mismo grafo. El orden topológico depende de la forma en que se procesan los nodos en el algoritmo. Por ejemplo si se usa una pila en lugar de una cola se obtiene un ordenamiento diferente.
+```{admonition} El orden topológico no es único
+---
+class: important
+---
+Pueden existir múltiples ordenamientos topológicos para un mismo grafo. El orden topológico depende de la forma en que se procesan los nodos en el algoritmo. Por ejemplo si se usa una pila en lugar de una cola se obtiene un ordenamiento diferente.
 ```
 
 ### Complejidad
@@ -75,7 +78,7 @@ El orden topológico no es único. Pueden existir múltiples ordenamientos topol
 La complejidad del algoritmo de Kahn es $O(|V|+|E|)$. Esto se debe a que cada vértice y cada arista se procesan una sola vez.
 
 ```{note}
-En los algoritmos de grafos se acostumbra a utilizar tanto la cantidad de vértices |V| como la cantidad de aristas |E| para analizar la complejidad temporal ya que si bien se puede acotar |E| en función de |V|, expresarlo en función de ambas variables brinda más información sobre el comportamiento del algoritmo en diferentes tipos de grafos.
+En los algoritmos de grafos se acostumbra a utilizar tanto la cantidad de vértices $|V|$ como la cantidad de aristas $|E|$ para analizar la complejidad temporal ya que si bien se puede acotar $|E|$ en función de $|V|$, expresarlo en función de ambas variables brinda más información sobre el comportamiento del algoritmo en diferentes tipos de grafos.
 ```
 
 ## Cálculo del orden topológico con NetworkX

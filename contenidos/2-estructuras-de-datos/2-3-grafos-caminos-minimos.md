@@ -27,7 +27,8 @@ En la siguiente tabla encontramos los caminos mínimos desde el vértice $A$ a l
 
 ```{table}
 ---
-width: 50%
+width: 240px
+align: center
 ---
 | Vértice | Camino Mínimo | Costo |
 | :-----: | :-----------: | :---: |

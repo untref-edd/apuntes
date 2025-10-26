@@ -124,7 +124,8 @@ Por ejemplo, en la siguiente tabla se observa el peso de las aristas que compone
 
 ```{table}
 ---
-width: 50%
+width: 180px
+align: center
 ---
 |  Arista  | Peso |
 | :------: | :--: |
@@ -181,7 +182,7 @@ Un ***DAG*** siempre tiene al menos un vértice ***fuente*** y un vértice ***su
 En el grafo de la figura anterior, el vértice $V_2$ es una fuente y el vértice $V_5$ es un sumidero.
 ```
 
-## Representación de Grafos
+## Representación de grafos
 
 En una computadora hay al menos dos formas de representar un grafo. Usando una **lista de adyacencia** o una **matriz de adyacencia**.
 
@@ -213,6 +214,11 @@ Grafo dirigido
 
 Se numeran los vértices del grafo desde $0$ hasta $n-1$ y se genera una matriz de adyacencia $M$ de tamaño $n \times n$ donde $M[i][j]$ representa el peso de la arista que conecta el vértice $V_i$ con el vértice $V_j$. Si no hay arista entre $V_i$ y $V_j$, se puede representar con un valor especial, como $\infty$ o $-$.
 
+```{table}
+---
+width: 320px
+align: center
+---
 |           | **$V_0$** | **$V_1$** | **$V_2$** | **$V_3$** | **$V_4$** | **$V_5$** | **$V_6$** |
 | :-------: | :-------: | :-------: | :-------: | :-------: | :-------: | :-------: | :-------: |
 | **$V_0$** |     -     |     2     |     -     |     1     |     -     |     -     |     -     |
@@ -222,6 +228,7 @@ Se numeran los vértices del grafo desde $0$ hasta $n-1$ y se genera una matriz 
 | **$V_4$** |     -     |     -     |     -     |     -     |     -     |     -     |     5     |
 | **$V_5$** |     -     |     -     |     -     |     -     |     -     |     -     |     -     |
 | **$V_6$** |     -     |     -     |     -     |     -     |     -     |     1     |     -     |
+```
 
 La matriz de adyacencia es una representación eficiente para grafos densos, donde el número de aristas es cercano al número máximo posible ($|V|^2$). Sin embargo, puede ser ineficiente en términos de espacio para grafos dispersos, donde el número de aristas es mucho menor que el número máximo posible. En la matriz de ejemplo solo unos pocos elementos son diferentes de '-'.
 
@@ -240,6 +247,11 @@ figclass: dark-light
 Grafo no dirigido
 ```
 
+```{table}
+---
+width: 240px
+align: center
+---
 |         | **$A$** | **$B$** | **$C$** | **$D$** | **$E$** |
 | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: |
 | **$A$** |    -    |    4    |    5    |    -    |    1    |
@@ -247,6 +259,7 @@ Grafo no dirigido
 | **$C$** |    5    |    2    |    -    |    4    |    -    |
 | **$D$** |    -    |    -    |    4    |    -    |    3    |
 | **$E$** |    1    |    -    |    -    |    3    |    -    |
+```
 
 ### Listas de adyacencias
 
