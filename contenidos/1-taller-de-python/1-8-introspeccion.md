@@ -10,7 +10,7 @@ kernelspec:
   name: python3
 ---
 
-# Introspección y Reflexión
+# Introspección y reflexión
 
 ## Definiciones
 
@@ -121,9 +121,9 @@ juan.saludar()
 ana.saludar()
 ```
 
-## Uso de `help()` para documentación
+## Uso de `help()`{l=python} para documentación
 
-`help()` es una función incorporada en Python que proporciona información sobre objetos, funciones y módulos. Es especialmente útil para obtener documentación sobre cómo usar un objeto o qué métodos y atributos tiene.
+`help()`{l=python} es una función incorporada en Python que proporciona información sobre objetos, funciones y módulos. Es especialmente útil para obtener documentación sobre cómo usar un objeto o qué métodos y atributos tiene.
 
 ```{code-cell} python
 ---
@@ -148,9 +148,9 @@ alice = Persona("Alice", 30)
 help(alice)
 ```
 
-## Uso de `eval()` para evaluar expresiones
+## Uso de `eval()`{l=python} para evaluar expresiones
 
-La función `eval()` permite ejecutar expresiones Python desde una cadena de texto. Esto puede ser útil para evaluar dinámicamente código, pero **debe usarse con extrema precaución** debido a implicaciones de seguridad.
+La función `eval()`{l=python} permite ejecutar expresiones Python desde una cadena de texto. Esto puede ser útil para evaluar dinámicamente código, pero **debe usarse con extrema precaución** debido a implicaciones de seguridad.
 
 Por ejemplo, el siguiente código es peligroso si la variable `expresion`{l=python} proviene de un usuario no confiable:
 
@@ -163,7 +163,7 @@ print("Resultado de la expresión:", resultado)
 ```
 
 ```{Important} Advertencia de seguridad
-Nunca se debe utilizar `eval()` con entradas que provengan de usuarios o fuentes no confiables. Hacerlo puede permitir la ejecución de código malicioso y comprometer la seguridad del sistema.
+Nunca se debe utilizar `eval()`{l=python} con entradas que provengan de usuarios o fuentes no confiables. Hacerlo puede permitir la ejecución de código malicioso y comprometer la seguridad del sistema.
 ```
 
 ```{code-cell} python

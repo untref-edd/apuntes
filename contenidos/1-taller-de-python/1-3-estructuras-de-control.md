@@ -10,7 +10,7 @@ kernelspec:
   name: python3
 ---
 
-# Estructuras de Control en Python
+# Estructuras de control en Python
 
 ## Condicionales
 
@@ -300,7 +300,7 @@ for i, (x, y) in enumerate(puntos):
     print(f"Punto {i}: ({x}, {y})")
 ```
 
-## No hay `switch`{l=python}
+## No hay `switch`
 
 Python 3.10+ tiene `match`{l=python}-`case`{l=python}, pero la siguiente construcción usando `if`{l=python}-`elif`{l=python} es más común.
 
@@ -322,7 +322,7 @@ else:
 print(resultado)
 ```
 
-## Ejemplo práctico: Procesamiento de datos
+## Ejemplo práctico: procesamiento de datos
 
 ```{code-cell} python
 ---

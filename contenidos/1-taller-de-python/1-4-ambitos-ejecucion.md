@@ -10,11 +10,11 @@ kernelspec:
   name: python3
 ---
 
-# Ámbitos de Ejecución
+# Ámbitos de ejecución
 
 Este capítulo profundizaremos sobre el manejo de variables en Python, contrastándolo con lo que ya conocemos de Go y Java. Aunque los conceptos fundamentales de variables son universales, Python introduce matices importantes en su gestión, especialmente en lo que respecta a la inmutabilidad de ciertos tipos de datos, los ámbitos de ejecución y la poderosa característica de las clausuras.
 
-## Variables y Asignación
+## Variables y asignación
 
 En Go y Java, la declaración de variables a menudo implica especificar explícitamente el tipo de dato (aunque Go ofrece inferencia de tipo). Python, por otro lado, es un lenguaje de tipado dinámico. Esto significa que no se declara el tipo de una variable; el tipo se infiere en tiempo de ejecución según el valor que se le asigna.
 
@@ -41,11 +41,11 @@ Si la variable ya tenía una referencia a otro objeto, esa referencia se pierde 
 
 Esto contrasta con Go y Java, donde la asignación de una variable puede implicar la creación de una copia del valor (especialmente para tipos primitivos).
 
-## Tipos de Datos y Mutabilidad
+## Tipos de datos y mutabilidad
 
 En Python **todo es un objeto**, por lo tanto tanto podemos pensar que todas las variables son referencias a objetos en el _heap_. La distinción importante es si un objeto es mutable o inmutable.
 
-### Tipos Inmutables (como los "primitivos" en Java/Go)
+### Tipos inmutables (como los "primitivos" en Java/Go)
 
 - Booleanos (`bool`{l=python})
 - Números (`int`{l=python}, `float`{l=python}, `complex`{l=python})
@@ -78,7 +78,7 @@ print(f"s1: {s1}, s2: {s2}")  # Salida: s1: hola mundo, s2: hola
 
 En este fragmento, `s1`{l=python} y `s2`{l=python} inicialmente referencian al mismo objeto, la cadena `"hola"`{l=python}. Al modificar `s1`{l=python}, se crea un nuevo objeto cadena `"hola mundo"`{l=python}, y `s1`{l=python} ahora apunta a este nuevo objeto, mientras que `s2`{l=python} sigue apuntando al antiguo objeto `"hola"`{l=python}.
 
-### Tipos Mutables (como los objetos en Java/Go)
+### Tipos mutables (como los objetos en Java/Go)
 
 - Listas (`list`{l=python})
 - Diccionarios (`dict`{l=python})
@@ -109,7 +109,7 @@ print(f"lista1: {lista1}, lista2: {lista2}")
 
 En este caso, `lista1`{l=python} y `lista2`{l=python} referencian al mismo objeto lista. Al modificar `lista1`{l=python}, `lista2`{l=python} refleja el cambio porque ambas variables apuntan al mismo objeto en memoria.
 
-## Visibilidad de Variables
+## Visibilidad de variables
 
 En Python no existe el concepto de público, privado o protegido como en Java. En cambio, se utiliza una convención de nomenclatura para indicar la visibilidad de las variables:
 
@@ -129,7 +129,7 @@ Variables especiales
 Todas las variables en Python son accesibles desde fuera del módulo o clase, incluso las privadas. La convención de nomenclatura es solo una guía para los desarrolladores y no impide el acceso a las variables.
 ```
 
-## Ámbitos de Ejecución (Scopes): La Regla LEGB
+## Ámbitos de ejecución (_scopes_): La regla LEGB
 
 Python define un sistema de ámbitos para resolver nombres (variables, funciones, clases, etc.). Este sistema se conoce comúnmente como la regla LEGB:
 
@@ -154,7 +154,7 @@ name: ambitos
 Ámbitos de Ejecución
 ```
 
-### Ámbito Local (L)
+### Ámbito _Local_ (L)
 
 Las variables definidas dentro de una función son locales a esa función. Esto significa que solo son accesibles dentro de la función y no pueden ser accedidas desde fuera de ella. Una vez que la función termina su ejecución, las variables locales se eliminan de la memoria.
 
@@ -201,7 +201,7 @@ print(mensaje)  # Acceso a la variable global modificada
 El uso excesivo de global o de ocultamiento de variables puede llevar a código difícil de mantener y depurar. Preferiblemente, se deben pasar las variables como argumentos a las funciones y las funciones deben devolver valores explicitos.
 ```
 
-### Ámbito Enclosing (E) / Clausuras
+### Ámbito _Enclosing_ (E) / Clausuras
 
 En Python, las funciones son ciudadanos de primera clase, lo que significa que Python las trata como a un objeto más y por lo tanto se pueden asignar funciones a variables, pasarlas como argumentos y retornarlas desde otras funciones y también se pueden **anidar**, esto es definir funciones dentro de otras funciones.
 
@@ -246,11 +246,11 @@ Al ejecutar el fragmento anterior ocurre lo siguiente:
 Para Python todas las variables son referencias, incluido los nombres de las funciones. Al colocar paréntesis luego del nombre de la misma, se invoca la función y se ejecuta el código que contiene. Si no se colocan paréntesis, se obtiene una referencia a la función, que es un objeto más en memoria.
 ```
 
-### Ámbito Global (G)
+### Ámbito _Global_ (G)
 
 El ámbito global se refiere a las variables definidas en el nivel superior de un módulo. Estas variables son accesibles desde cualquier parte del módulo, incluidas las funciones.
 
-Al declarar un módulo se puede incluir variables y constantes globales que pueden ser utilizadas en todo el código del módulo. A modo de ejemplo podemos ver las constantes matemáticas definidas en el módulo `math`{l=python}, como `math.pi` o `math.e`.
+Al declarar un módulo se puede incluir variables y constantes globales que pueden ser utilizadas en todo el código del módulo. A modo de ejemplo podemos ver las constantes matemáticas definidas en el módulo `math`{l=python}, como `math.pi`{l=python} o `math.e`{l=python}.
 
 ```{code-cell} python
 ---
@@ -288,16 +288,16 @@ if __name__ == "__main__":
     demo_stack()
 ```
 
-Si el módulo se importa desde otro módulo, el bloque `if __name__ == "__main__":` no se ejecuta, lo que permite que el código de demostración no interfiera con el uso del módulo como biblioteca.
+Si el módulo se importa desde otro módulo, el bloque `if __name__ == "__main__":`{l=python} no se ejecuta, lo que permite que el código de demostración no interfiera con el uso del módulo como biblioteca.
 
-### Ámbito Built-in (B)
+### Ámbito _Built-in_ (B)
 
-El ámbito built-in contiene nombres predefinidos por Python, como funciones y excepciones que están disponibles en todos los módulos sin necesidad de importarlos. Estos nombres son parte del núcleo del lenguaje y se pueden utilizar directamente en cualquier parte del código. Algunos ejemplos son `print`{l=python}, `len`{l=python}, `range`{l=python}, `int`{l=python}, `str`{l=python}, entre otros.
+El ámbito _built-in_ contiene nombres predefinidos por Python, como funciones y excepciones que están disponibles en todos los módulos sin necesidad de importarlos. Estos nombres son parte del núcleo del lenguaje y se pueden utilizar directamente en cualquier parte del código. Algunos ejemplos son `print`{l=python}, `len`{l=python}, `range`{l=python}, `int`{l=python}, `str`{l=python}, entre otros.
 
-Si se intenta redefinir un nombre built-in, se creará una variable local o global que ocultará temporalmente el nombre built-in, pero no se eliminará del ámbito built-in.
+Si se intenta redefinir un nombre _built-in_, se creará una variable local o global que ocultará temporalmente el nombre _built-in_, pero no se eliminará del ámbito _built-in_.
 
 ```{Warning}
-No se recomienda bajo ningún punto de vista, redefinir nombres built-in, ya que esto puede causar confusión y errores difíciles de depurar. Es mejor utilizar nombres descriptivos y evitar conflictos con los nombres predefinidos de Python.
+No se recomienda bajo ningún punto de vista, redefinir nombres _built-in_, ya que esto puede causar confusión y errores difíciles de depurar. Es mejor utilizar nombres descriptivos y evitar conflictos con los nombres predefinidos de Python.
 ```
 
 ```{code-cell} python

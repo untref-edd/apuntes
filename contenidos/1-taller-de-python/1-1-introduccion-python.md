@@ -21,14 +21,14 @@ Python es un lenguaje de programación multipropósito, creado a fines de los a�
 </div>
 
 ```{epigraph}
-Guido Van Rossum es el principal autor de Python, y su continuo rol central en decidir la dirección de Python es reconocido, refiriéndose a él como Benevolente Dictador Vitalicio (en inglés: Benevolent Dictator for Life, BDFL); sin embargo el 12 de julio de 2018 declinó de dicha situación de honor sin dejar un sucesor o sucesora y con una declaración altisonante:
+Guido Van Rossum es el principal autor de Python, y su continuo rol central en decidir la dirección de Python es reconocido, refiriéndose a él como Benevolente Dictador Vitalicio (en inglés: _Benevolent Dictator For Life_, BDFL); sin embargo el 12 de julio de 2018 declinó de dicha situación de honor sin dejar un sucesor o sucesora y con una declaración altisonante:
 
 >  *"Entonces, ¿qué van a hacer todos ustedes? ¿Crear una democracia? ¿Anarquía? ¿Una dictadura? ¿Una federación?"*
- 
+
 [Fuente Wikipedia](https://es.wikipedia.org/wiki/Python){target="_blank"}
 ```
 
-## El Zen de Python
+## El zen de Python
 
 El Zen de Python es una colección de principios que guían el diseño y la filosofía del lenguaje:
 
@@ -241,7 +241,7 @@ print(f"Plataforma: {sys.platform}")
 # Actualizar repositorios
 sudo apt update
 
-# Instalar Python 3 y pip
+# Instalar Python y pip
 sudo apt install python3 python3-pip
 
 # Verificar instalación

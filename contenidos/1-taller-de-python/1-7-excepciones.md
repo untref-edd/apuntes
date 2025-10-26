@@ -10,7 +10,7 @@ kernelspec:
   name: python3
 ---
 
-# Manejo de Excepciones
+# Manejo de excepciones
 
 Las excepciones son eventos que ocurren durante la ejecución de un programa y que interrumpen su flujo normal. Este mecanismo no solo permite manejar errores en tiempo de ejecución, sino que también permite gestionar otras situaciones excepcionales que pueden surgir.
 
@@ -42,25 +42,25 @@ finally:
     print("este bloque se ejecutará siempre")
 ```
 
-`try`
+`try`{l=python}
 : Este bloque contiene el código que podría generar una excepción. Mientras se ejecuta este bloque, Python *“vigila”* la aparición de errores.
 : Si se produce una excepción, la ejecución del bloque `try`{l=python} se interrumpe inmediatamente y se transfiere el control al primer `except`{l=python} que pueda manejarla.
 : Se suele decir que el código dentro de un `try`{l=python} está ***protegido***, porque ante un error no provoca que el programa finalice abruptamente, sino que permite reaccionar y manejar la situación. Por ejemplo, si debemos dividir dos números cuyo valor no conocemos de antemano, existe la posibilidad de una división por cero; por eso el cálculo puede colocarse dentro de un bloque `try`{l=python} para atraparlo y manejarlo.
 
-`except`
+`except`{l=python}
 : En Python, un bloque `except`{l=python} se ejecuta solo si ocurre una excepción en el bloque `try`{l=python} asociado. Este bloque actúa como un ***manejador de excepciones*** (*exception handler*) y puede realizar diversas acciones: registrar el error en un log, mostrar un mensaje al usuario, o incluso intentar recuperarse ejecutando una operación alternativa.
 : El comportamiento del `except`{l=python} depende del tipo de excepción y de la lógica del programa. Por ejemplo, si se produce una división por cero (`ZeroDivisionError`{l=python}), el `except`{l=python} podría mostrar un mensaje de error o sustituir el divisor por un valor por defecto para continuar la ejecución.
-: Si no ocurre ninguna excepción en el bloque `try`{l=python}, ningún `except`{l=python} se ejecuta y el flujo continúa normalmente después del `try/except`.
+: Si no ocurre ninguna excepción en el bloque `try`{l=python}, ningún `except`{l=python} se ejecuta y el flujo continúa normalmente después del `try`{l=python}/`except`{l=python}.
 : Cuando se lanza una excepción, Python busca el primer bloque `except`{l=python} que pueda manejarla.
 : La búsqueda se hace de arriba hacia abajo en el orden en que están escritos, por lo que conviene colocar primero los `except`{l=python} que capturan excepciones más específicas y dejar al final un `except`{l=python} genérico.
 : El `except`{l=python} genérico no especifica un tipo de excepción y atrapa cualquier excepción que sea instancia de `Exception`{l=python}.
 
-`else`
+`else`{l=python}
 : Es un bloque opcional que se ejecuta solo si el bloque `try`{l=python} termina sin generar excepciones.
 : Se usa para colocar el código que depende de que la operación haya salido bien, pero que no conviene poner directamente en el `try`{l=python} para no atrapar errores de forma innecesaria.
 : En otras palabras: `try`{l=python} → si no hay error → `else`{l=python}. Si hay error → `except`{l=python} (y el `else`{l=python} no se ejecuta).
 
-`finally`
+`finally`{l=python}
 : Es un bloque opcional que se ejecuta siempre, sin importar si el `try`{l=python} terminó con o sin excepción.
 : Sirve para ejecutar tareas de limpieza o liberación de recursos que deben realizarse pase lo que pase, como cerrar un archivo, liberar memoria o cerrar una conexión de red.
 : Incluso si en el `try`{l=python} o `except`{l=python} se usa `return`{l=python} o se lanza una nueva excepción, el `finally`{l=python} siempre se ejecuta antes de que el flujo salga del bloque.
@@ -97,12 +97,12 @@ finally:
 ```
 
 ```{hint}
-Activa `Live Code` (icono de un cohete en la parte superior derecha) para ejecutar el código anterior. Por ejemplo podés probar asignando distintos valores a `divisor`{l=python} como ser "0", la cadena "cero", números enteros, números decimales, y todo lo que se te ocurra.
+Activa **Live Code** (icono de un cohete en la parte superior derecha) para ejecutar el código anterior. Por ejemplo podés probar asignando distintos valores a `divisor`{l=python} como ser "0", la cadena "cero", números enteros, números decimales, y todo lo que se te ocurra.
 
 ¿Qué pasa en cada caso? ¿Es buena idea tener un bloque `except`{l=python} genérico?
 ```
 
-## Jerarquía de Excepciones
+## Jerarquía de excepciones
 
 En Python existen muchas excepciones predefinidas que están organizadas en forma jerárquica. Es decir que algunas excepciones son subclases de otras. Por ejemplo, `ZeroDivisionError`{l=python} es una subclase de `ArithmeticError`{l=python}, que a su vez es una subclase de `Exception`{l=python}. Esto significa que si se captura una excepción de tipo `ArithmeticError`{l=python}, también se capturarán las excepciones de tipo `ZeroDivisionError`{l=python}.
 
@@ -184,16 +184,16 @@ BaseException
 ```
 ````
 
-`KeyboardInterrupt`
+`KeyboardInterrupt`{l=python}
 : Esta excepción se genera cuando el usuario interrumpe la ejecución del programa, generalmente presionando `Ctrl+C` en la consola. Es una subclase de `BaseException`{l=python}, lo que significa que no es una excepción común y no se debe capturar a menos que se tenga un motivo específico para hacerlo.
 
-`SystemExit`
-: Esta excepción se genera cuando se llama a la función `sys.exit()`. Se utiliza para finalizar un programa de manera controlada. Al igual que `KeyboardInterrupt`{l=python}, es una subclase de `BaseException`{l=python}, por lo que no se debe capturar a menos que se tenga un motivo específico para hacerlo.
+`SystemExit`{l=python}
+: Esta excepción se genera cuando se llama a la función `sys.exit()`{l=python}. Se utiliza para finalizar un programa de manera controlada. Al igual que `KeyboardInterrupt`{l=python}, es una subclase de `BaseException`{l=python}, por lo que no se debe capturar a menos que se tenga un motivo específico para hacerlo.
 
-`Exception`
+`Exception`{l=python}
 : Esta es la clase base para todas las excepciones que no son errores del sistema. Todas las excepciones que se generan durante la ejecución de un programa son subclases de `Exception`{l=python}.
 
-`Warning`
+`Warning`{l=python}
 : Esta clase base se utiliza para advertencias que no son errores, pero que pueden indicar problemas potenciales en el código. Las advertencias no interrumpen la ejecución del programa, pero pueden ser útiles para identificar problemas que podrían surgir en el futuro. Por ejemplo, si se utiliza una función que está obsoleta, Python generará una advertencia de deprecación. Las advertencias se pueden capturar y manejar de manera similar a las excepciones, pero generalmente no se recomienda hacerlo, ya que las advertencias son más informativas que críticas.
 
 En el siguiente fragmento de código se observa un bucle donde se le pide al usuario que ingrese un número entero por teclado y se acumula la suma para finalmente mostrarla. Para salir del bucle el usuario debe presionar `Ctrl-C`
@@ -201,7 +201,7 @@ En el siguiente fragmento de código se observa un bucle donde se le pide al usu
 ```{literalinclude} ../_static/code/excepciones/excepciones.py
 ```
 
-## Excepciones Creadas por el Usuario
+## Excepciones creadas por el usuario
 
 Además de las excepciones predefinidas, Python permite a los desarrolladores crear sus propias excepciones personalizadas. Esto es útil cuando se desea manejar situaciones específicas que no están cubiertas por las excepciones predefinidas. Por ejemplo si tenemos una clase pila, podríamos querer lanzar una excepción si se intenta desapilar un elemento de una pila vacía. Podemos crear una excepción personalizada llamada `StackException`{l=python} para manejar esta situación. Para crear una excepción personalizada, se debe definir una nueva clase que herede de la clase `Exception`{l=python} o de alguna de sus subclases. En general se recomienda heredar directamente de `Exception`{l=python}, a menos que se tenga un motivo específico para hacerlo de otra manera, por ejemplo si se desea crear una jerarquía de excepciones personalizadas.
 
@@ -229,7 +229,7 @@ Reutilización
 Documentación
 : Las excepciones personalizadas pueden incluir documentación adicional que explique cuándo y por qué se deben lanzar, lo que ayuda a otros desarrolladores a entender su propósito y uso.
 
-## Lanzando Excepciones
+## Lanzando excepciones
 
 Las excepciones se lanzan utilizando la instrucción `raise`{l=python}, seguida de una instancia de la excepción que se desea lanzar. Por ejemplo, si se desea lanzar una excepción personalizada llamada `StackException`{l=python}, se puede hacer de la siguiente manera:
 
@@ -269,14 +269,14 @@ if __name__ == "__main__":
 
 ## Consideraciones en el diseño y uso de excepciones en Python
 
-Limitar el alcance del bloque`try`
+Limitar el alcance del bloque`try`{l=python}
 : Colocar dentro del`try`{l=python} solo el código que pueda generar la excepción que se desea manejar para evitar atrapar errores no relacionados y facilitar la identificación de la causa.
 
 Evitar atrapar excepciones genéricas sin necesidad
-: No usar `except Exception:` ni `except:` a menos que realmente se quiera interceptar cualquier excepción. Atrapar todo oculta errores y dificulta el depurado.
+: No usar `except Exception:`{l=python} ni `except:`{l=python} a menos que realmente se quiera interceptar cualquier excepción. Atrapar todo oculta errores y dificulta el depurado.
 
 Usar excepciones específicas primero
-: Ordenar los`except`{l=python}de más específico a más genérico, ya que Python ejecuta el primero que coincide. Ejemplo:
+: Ordenar los`except`{l=python} de más específico a más genérico, ya que Python ejecuta el primero que coincide. Ejemplo:
 
 ```{code-block} python
 except FileNotFoundError:
@@ -297,7 +297,7 @@ Liberar recursos siempre
 : Usar `finally`{l=python} para cerrar archivos, conexiones, o liberar memoria, sin importar si hubo excepción o no.
 
 No silenciar excepciones sin justificación
-: Evitar `except: pass` sin explicación. Si es necesario ignorar un error, se debe documentar por qué.
+: Evitar `except: pass`{l=python} sin explicación. Si es necesario ignorar un error, se debe documentar por qué.
 
 Relanzar cuando sea necesario
 : Si el bloque `except`{l=python} no puede manejar la excepción de manera útil, se debe volver a lanzarla (raise) para que sea tratada en un nivel superior.

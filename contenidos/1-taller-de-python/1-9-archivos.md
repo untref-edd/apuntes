@@ -65,7 +65,7 @@ En **Linux** y **macOS** los saltos de línea se representan con el caracter `\n
 
 Para manipular carpetas y rutas, Python ofrece los módulos `os`{l=python} y `pathlib`{l=python}.
 
-### Rutas o Paths absolutos y relativos
+### Rutas o _paths_ absolutos y relativos
 
 Path Absoluto
 : Especifica toda la ruta desde la raíz.
@@ -182,7 +182,7 @@ print(f"Archivos Markdown encontrados: {len(archivos_md)}")
 Para código nuevo, se recomienda usar `pathlib`{l=python} ya que es más legible y moderno. Para compatibilidad con código antiguo o scripts simples, `os.path`{l=python} sigue siendo válido.
 ```
 
-### _Caminar_ por el sistema de archivos
+### "Caminar" por el sistema de archivos
 
 `os.walk()`{l=python} permite recorrer todas las carpetas y archivos a partir de una ubicación dada
 
@@ -388,7 +388,7 @@ else:
 
 ### Escritura de archivos
 
-De forma similar a la lectura, podemos escribir en un archivo utilizando el modo de apertura 'w' (write) o 'a' (append). El modo 'w' sobrescribe el archivo si ya existe, mientras que 'a' agrega contenido al final del archivo.
+De forma similar a la lectura, podemos escribir en un archivo utilizando el modo de apertura `"w"`{l=python} (_write_) o `"a"`{l=python} (_append_). El modo `"w"`{l=python} sobrescribe el archivo si ya existe, mientras que `"a"`{l=python} agrega contenido al final del archivo.
 
 #### Escribir todo el contenido de una vez
 
@@ -491,7 +491,7 @@ copiar_archivo(
 mostrar_archivo("../_static/code/archivos/copia.txt")
 ```
 
-El siguiente script nos permite comparar byte a byte dos archivos para ver si son iguales
+El siguiente script nos permite comparar _byte_ a _byte_ dos archivos para ver si son iguales
 
 ```{code-cell} python
 ---

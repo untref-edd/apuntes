@@ -70,7 +70,7 @@ print(concatenar_cadenas(cadena2="mundo!", cadena1="Hola, "))  # Salida: Hola, m
 
 ### Parámetros Posicionales Variables
 
-Los parámetros posicionales variables se definen utilizando un asterisco (`*`) antes del nombre del parámetro. Esto permite pasar un número variable de argumentos posicionales a la función. Python internamente agrupa estos argumentos en una tupla.
+Los parámetros posicionales variables se definen utilizando un asterisco (`*`{l=python}) antes del nombre del parámetro. Esto permite pasar un número variable de argumentos posicionales a la función. Python internamente agrupa estos argumentos en una tupla.
 
 ```{code-cell} python
 ---
@@ -91,7 +91,7 @@ print(sumar(4, 5, 6, 7, 8))  # Salida: 30
 
 ### Parámetros Nombrados Variables
 
-Los parámetros nombrados variables se definen utilizando dos asteriscos (`**`) antes del nombre del parámetro. Esto permite pasar un número variable de argumentos nombrados a la función. Python internamente agrupa estos argumentos en un diccionario.
+Los parámetros nombrados variables se definen utilizando dos asteriscos (`**`{l=python}) antes del nombre del parámetro. Esto permite pasar un número variable de argumentos nombrados a la función. Python internamente agrupa estos argumentos en un diccionario.
 
 ```{code-cell} python
 ---
@@ -127,8 +127,8 @@ print(saludar("Juan"))  # Salida: Hola, Juan!
 Si en una misma función se utilizan parámetros posicionnales, nombreados, posicionales variables y nombrados variables, los parámetros deben seguir el siguiente orden:
 1. Parámetros posicionales
 2. Parámetros nombrados
-3. Parámetros posicionales variables (`*args`)
-4. Parámetros nombrados variables (`**kwargs`)
+3. Parámetros posicionales variables (`*args`{l=python})
+4. Parámetros nombrados variables (`**kwargs`{l=python})
 ```
 
 Por ejemplo:
@@ -215,14 +215,15 @@ En el fragmento anterior, la función `sumar`{l=python} está anotada para indic
 
 La **programación funcional** es un paradigma de programación declarativo basado en el uso de funciones verdaderamente matemáticas. En este estilo de programación las funciones son _ciudadanas de primera clase_, porque sus expresiones pueden ser asignadas a variables como se haría con cualquier otro valor; además de que pueden crearse funciones de orden superior.
 
-Funciones de orden superior
-: Son aquellas que pueden:
+```{admonition} Funciones de orden superior
+Son aquellas que pueden:
 
 - Recibir otras funciones como argumentos.
 - Retornar una función como resultado.
 - Ser asignadas a variables.
+```
 
-En el paradigma funcional en general y a diferencia del imperativo, la programación consiste en especificar el **Qué** y no el **Cómo** se resuelve un problema.
+En el paradigma funcional en general (y a diferencia del imperativo), la programación consiste en especificar el **Qué** y no el **Cómo** se resuelve un problema.
 
 Por ejemplo:
 
@@ -251,9 +252,9 @@ print(doble_cuadrado(3))  # Salida: 18
 
 En este ejemplo, `componer`{l=python} es una función de orden superior que toma dos funciones como argumentos y devuelve una nueva función que es la composición de las dos. Para poder elevar un número al cuadrado y luego duplicarlo, se utiliza `doble_cuadrado`{l=python}, que es el resultado de componer `cuadrado`{l=python} y `doble`{l=python}. Hay que prestar atención a que el orden en que se componen las funciones, ya que se aplica primero `cuadrado`{l=python} y luego `doble`{l=python}.
 
-### Funciones anónimas (lambda)
+### Funciones anónimas (`lambda`{l=python})
 
-Las funciones anónimas, también conocidas como funciones lambda, son funciones sin nombre que se definen utilizando la palabra clave `lambda`{l=python}. Son útiles para crear funciones pequeñas y rápidas sin necesidad de definirlas formalmente.
+Las funciones anónimas, también conocidas como funciones _lambda_, son funciones sin nombre que se definen utilizando la palabra clave `lambda`{l=python}. Son útiles para crear funciones pequeñas y rápidas sin necesidad de definirlas formalmente.
 
 ```{code-cell} python
 ---
@@ -265,7 +266,7 @@ print(suma(3, 5))  # Salida: 8
 
 Define una función que recibe dos argumentos `x`{l=python} e `y`{l=python} y retorna su suma. Esta función queda asociada a la variable `suma`{l=python}, que se puede utilizar para invocarla.
 
-El fragmento anterior de composición de funciones también se puede reescribir utilizando funciones lambda:
+El fragmento anterior de composición de funciones también se puede reescribir utilizando funciones _lambda_:
 
 ```{code-cell} python
 ---
@@ -338,7 +339,7 @@ pares = filtrar(lambda x: x % 2 == 0, numeros)
 print(f"Números pares: {pares}")
 ```
 
-En este caso la función de filtrado es una función anónima `lambda x: x % 2 == 0`. Las funciones anónimas siempre devuelven el resultado de la última expresión evaluada, por lo que no es necesario utilizar `return`{l=python}.
+En este caso la función de filtrado es una función anónima `lambda x: x % 2 == 0`{l=python}. Las funciones anónimas siempre devuelven el resultado de la última expresión evaluada, por lo que no es necesario utilizar `return`{l=python}.
 
 Python también proporciona la función `filter`{l=python} para realizar filtrado de manera más concisa. `filter`{l=python} devuelve un iterador que contiene los elementos de la colección que cumplen con la condición especificada por la función de filtrado.
 
@@ -371,7 +372,7 @@ suma_total = reduce(lambda x, y: x + y, numeros)
 print(f"Suma total: {suma_total}")  # (((((((((0+1)+2)+3)+4)+5)+6)+7)+8)+9) = 45
 ```
 
-La función de reducción es la función anónima `lambda x, y: x + y`, que toma dos argumentos y devuelve su suma. No hace falta utilizar `return`{l=python} ya que la última expresión evaluada es justamente la suma de `x`{l=python} e `y`{l=python}.
+La función de reducción es la función anónima `lambda x, y: x + y`{l=python}, que toma dos argumentos y devuelve su suma. No hace falta utilizar `return`{l=python} ya que la última expresión evaluada es justamente la suma de `x`{l=python} e `y`{l=python}.
 
 Otro ejemplo de reducción con cadenas de caracteres:
 
@@ -410,7 +411,7 @@ while True:
 ```{Note}
 En el capitulo [Excepciones](1-7-excepciones.md) veremos en más detalle el manejo de excepciones en Python. Por ahora basta con saber que una excepción interrumpe el flujo normal del programa protegido por un bloque `try`{l=python} y pasa el control al bloque `except`{l=python} correspondiente. En este caso el bloque `except`{l=python} captura la excepción `StopIteration`{l=python} para finalizar la iteración.
 
-La sentencia `break`{l=python} se utiliza para romper y salir del bucle infinito `while True`.
+La sentencia `break`{l=python} se utiliza para romper y salir del bucle infinito `while True`{l=python}.
 ```
 
 Decoradores
@@ -443,7 +444,7 @@ funcion_decorada(5)
 La función `decorador`{l=python} toma una función `func`{l=python} como argumento y devuelve una nueva función, `funcion_decorada`{l=python} que agrega el mensaje _El resultado de la operación es:_ al resultado de la función original.
 
 ```{Note}
-En este ejemplo se ultiliza `*args` y `**kwargs` para permitir que la función decorada acepte cualquier número de argumentos posicionales y nombrados, lo que la hace más flexible. En la línea 7, la expresión `func(*args, **kwargs)` invoca a la función original con los argumentos que le pasaron a la función decorada.
+En este ejemplo se ultiliza `*args`{l=python} y `**kwargs`{l=python} para permitir que la función decorada acepte cualquier número de argumentos posicionales y nombrados, lo que la hace más flexible. En la línea 7, la expresión `func(*args, **kwargs)`{l=python} invoca a la función original con los argumentos que le pasaron a la función decorada.
 ```
 
 Python proporciona una sintaxis especial para aplicar decoradores a funciones utilizando el símbolo `@` antes de la definición de la función. Esto es equivalente a decorar la función manualmente como se mostró anteriormente.

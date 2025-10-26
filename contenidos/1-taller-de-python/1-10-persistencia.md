@@ -10,7 +10,7 @@ kernelspec:
   name: python3
 ---
 
-# Persistencia de Datos
+# Persistencia de datos
 
 En programación, **persistencia** se refiere a la capacidad de un programa para **almacenar datos más allá de su ejecución**. Cuando un programa finaliza, normalmente los datos almacenados en memoria (RAM) se pierden. Para conservarlos, es necesario guardarlos en un medio de almacenamiento **persistente** como un archivo, una base de datos o la nube.
 
@@ -45,9 +45,14 @@ Sin serialización, no podríamos almacenar **objetos vivos** con un estado dete
 
 Python incluye varios módulos que permiten serializar y persistir datos de manera sencilla. Los más conocidos son:
 
-- [`pickle`{l=python}](https://docs.python.org/es/3.13/library/pickle.html){target="\_blank"}: serialización binaria de objetos de Python.
-- [`dill`{l=python}](https://pypi.org/project/dill/){target="\_blank"}: extensión de `pickle`{l=python} con mayor cobertura de tipos.
-- [`json`{l=python}](https://docs.python.org/es/3.13/library/json.html){target="\_blank"}: serialización en formato **texto legible** y estándar.
+[`pickle`{l=python}](https://docs.python.org/es/3.13/library/pickle.html){target="\_blank"}
+: Serialización binaria de objetos de Python.
+
+[`dill`{l=python}](https://pypi.org/project/dill/){target="\_blank"}
+: Extensión de `pickle`{l=python} con mayor cobertura de tipos.
+
+[`json`{l=python}](https://docs.python.org/es/3.13/library/json.html){target="\_blank"}
+: Serialización en formato **texto legible** y estándar.
 
 ## Módulo `pickle`{l=python}
 
@@ -129,10 +134,7 @@ import pickle
 
 
 class Persona:
-    """
-    Nueva versión de la clase Persona, se agrega el atributo dni
-    y el método get_dni
-    """
+    """Nueva versión de la clase Persona, se agrega el atributo dni y el método get_dni"""
 
     def __init__(self, dni=""):
         self.dni = dni
@@ -327,7 +329,7 @@ with open("../_static/tmp/log.log", "r") as f:
 El módulo `json`{l=python} se basa en el estandar **JSON** (JavaScript Object Notation) y presenta un enfoque diferente al de `pickle`{l=python} y `dill`{l=python}, ya que se basa en texto plano y no permite la ejecución de código al deserializar. Esto lo convierte en una opción más segura para la serialización y el intercambio de datos simples, como diccionarios y listas. Los archivos JSON son legibles por humanos y pueden ser fácilmente compartidos entre diferentes lenguajes de programación.
 
 ```{note}
-**JSON** (JavaScript Object Notation) es un **formato de intercambio de datos basado en texto**.
+**JSON** (_JavaScript Object Notation_) es un **formato de intercambio de datos basado en texto**.
 Se originó en el ecosistema de **JavaScript**, pero rápidamente se convirtió en un **estándar independiente del lenguaje** debido a su simplicidad y legibilidad.
 ```
 
@@ -405,7 +407,7 @@ print(lista_usuarios[0]["nombre"])  # Acceso al primer usuario
 ```
 
 ```{note}
-Existe un formato derivado de ***JSON*** denominado ***JSONL*** (JSON Lines), que consiste en una serie de objetos JSON separados por saltos de línea. Es útil para el procesamiento de grandes volúmenes de datos, ya que permite leer y escribir un objeto a la vez.
+Existe un formato derivado de **JSON** denominado **JSONL** (_JSON Lines_), que consiste en una serie de objetos JSON separados por saltos de línea. Es útil para el procesamiento de grandes volúmenes de datos, ya que permite leer y escribir un objeto a la vez.
 
 Este enfoque es muy usado en big data y machine learning, porque permite procesar el archivo registro por registro sin necesidad de cargarlo entero en memoria.
 ```
@@ -451,8 +453,11 @@ ______________________________________________________________________
 
 ## Módulo `shelve`{l=python}
 
-```{note}
-Una analogía útil: los `pickles`{l=python} son conservas que se guardan en frascos; a esos frascos se les puede agregar eneldo (`dill`{l=python}) para darles más sabor, y finalmente todos los frascos se organizan y etiquetan en una estantería (`shelve`{l=python}).
+```{admonition} Una analogía útil
+---
+class: note
+---
+Los `pickles`{l=python} son conservas que se guardan en frascos; a esos frascos se les puede agregar eneldo (`dill`{l=python}) para darles más sabor, y finalmente todos los frascos se organizan y etiquetan en una estantería (`shelve`{l=python}).
 ```
 
 Un shelve actúa como un diccionario persistente en disco, permitiendo almacenar y recuperar objetos de Python utilizando claves. Esto facilita la gestión de colecciones de objetos sin necesidad de preocuparse por la serialización manual.

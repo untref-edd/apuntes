@@ -36,7 +36,7 @@ Herencia
 Constructor
 : Es un método especial que se llama automáticamente cuando se crea un objeto de la clase. La finalidad del constructor es inicializar los atributos del objeto.
 
-## Clases y Objetos
+## Clases y objetos
 
 En Python, una clase es una plantilla para crear objetos, similar a los `struct`{l=go} de Go, una clase permite definir nuevos tipos de datos. Un objeto, en cambio, es una instancia de una clase y puede tener atributos (datos) y métodos (funciones). Pueden existir múltiples objetos de la misma clase, cada uno con sus propios valores para los atributos.
 
@@ -92,21 +92,21 @@ docente1.presentar()
 print(type(docente1))
 ```
 
-En el ejemplo anterior, la clase `Docente`{l=python} hereda de la clase `Persona`{l=python}. Es decir un `Docente`{l=python} ***es una*** `Persona`{l=python} y por lo tanto tiene todos los atributos y métodos de cualquier `Persona`{l=python} y además tiene nuevos atributos y métodos como `Docente`
+En el ejemplo anterior, la clase `Docente`{l=python} hereda de la clase `Persona`{l=python}. Es decir un `Docente`{l=python} ***es una*** `Persona`{l=python} y por lo tanto tiene todos los atributos y métodos de cualquier `Persona`{l=python} y además tiene nuevos atributos y métodos como `Docente`{l=python}.
 
 El constructor de la clase `Docente`{l=python} espera todos los parámetros para poder instanciar un nuevo objeto del tipo `Docente`{l=python}, esto es el `nombre`{l=python} y la `edad`{l=python} de la `Persona`{l=python} y la `materia`{l=python} de la que es `Docente`{l=python}.
 
-Lo primero que hace el constructor de la clase `Docente`{l=python} es llamar al constructor de la clase base `Persona`{l=python} (línea 3) utilizando `super().__init__(nombre, edad)`. Esto asegura que los atributos `nombre`{l=python} y `edad`{l=python} se inicialicen correctamente en el objeto `Docente`{l=python}.
+Lo primero que hace el constructor de la clase `Docente`{l=python} es llamar al constructor de la clase base `Persona`{l=python} (línea 3) utilizando `super().__init__(nombre, edad)`{l=python} Esto asegura que los atributos `nombre`{l=python} y `edad`{l=python} se inicialicen correctamente en el objeto `Docente`{l=python}.
 
-`super()` es una función que permite llamar a métodos de la clase base desde una subclase. Cuando se invoca `super().__init__(nombre, edad)`, se está llamando al constructor de la clase base `Persona`{l=python}.
+`super()`{l=python} es una función que permite llamar a métodos de la clase base desde una subclase. Cuando se invoca `super().__init__(nombre, edad)`{l=python}, se está llamando al constructor de la clase base `Persona`{l=python}.
 
-En este caso como tanto `Docente`{l=python} como `Persona`{l=python} tienen un constructor, `__init__`{l=python}, es necesario usar `super()` para llamar al constructor de la clase base, caso contrario, se estaría llamando al constructor de la clase `Docente`{l=python}.
+En este caso como tanto `Docente`{l=python} como `Persona`{l=python} tienen un constructor, `__init__`{l=python}, es necesario usar `super()`{l=python} para llamar al constructor de la clase base, caso contrario, se estaría llamando al constructor de la clase `Docente`{l=python}.
 
 Con esta estrategia se evita la duplicación de código y se asegura que los atributos de la clase base se inicialicen correctamente. Además, si por algún motivo hay que modificar el constructor de la clase base, no es necesario cambiar el código de la subclase.
 
-En el método `presentar`{l=python}, se llama al método `saludar`{l=python} de la clase base `Persona`{l=python} utilizando `self.saludar()`, lo que permite reutilizar el comportamiento definido en la clase base. En este caso como el método `saludar`{l=python} no fue ***sobreescrito*** en la clase `Docente`{l=python}, directamente se puede utilizar `self.saludar()` para llamar al método de la clase base, sin problemas.
+En el método `presentar`{l=python}, se llama al método `saludar`{l=python} de la clase base `Persona`{l=python} utilizando `self.saludar()`{l=python}, lo que permite reutilizar el comportamiento definido en la clase base. En este caso como el método `saludar`{l=python} no fue ***sobreescrito*** en la clase `Docente`{l=python}, directamente se puede utilizar `self.saludar()`{l=python} para llamar al método de la clase base, sin problemas.
 
-### Herencia Múltiple
+### Herencia múltiple
 
 Python va más allá que otros lenguajes de programación orientados a objetos y permite la herencia múltiple, lo que significa que una clase puede heredar de múltiples clases al mismo tiempo. Esto se logra especificando múltiples clases base en la definición de la clase.
 
@@ -254,7 +254,7 @@ for cls in orden:
 
 Es decir cuando se invoca un método cualquier de un objeto de la clase `Ayudante`{l=python}, Python primero busca el método en la propia clase `Ayudante`{l=python}, luego en `Estudiante`{l=python}, luego en `Docente`{l=python}, luego en `Persona`{l=python} y finalmente en `object`{l=python}.
 
-Por ese motivo no se puede usar `super()` en el constructor de la clase `Estudiante`{l=python} ya que si se hiciera, se generaría una ambigüedad en la resolución del método a llamar, ya que `super()` buscaría el siguiente método en la jerarquía de clases, que en este caso sería el constructor de `Docente`{l=python}, lo que no es lo que se desea.
+Por ese motivo no se puede usar `super()`{l=python} en el constructor de la clase `Estudiante`{l=python} ya que si se hiciera, se generaría una ambigüedad en la resolución del método a llamar, ya que `super()`{l=python} buscaría el siguiente método en la jerarquía de clases, que en este caso sería el constructor de `Docente`{l=python}, lo que no es lo que se desea.
 
 ```{Note}
 `object`{l=python} es la clase base de todas las clases en Python. Todas las clases heredan de `object`{l=python}, lo que significa que todas las instancias de clases en Python son también instancias de `object`{l=python}. Esto proporciona una serie de métodos y atributos comunes a todas las clases.
@@ -262,14 +262,14 @@ Por ese motivo no se puede usar `super()` en el constructor de la clase `Estudia
 Por eso cuando se dice que en Python todo es un objeto, se refiere a que todas las clases heredan de `object`{l=python}, y por lo tanto, todas las instancias de clases son también instancias de `object`{l=python}. Esto permite que todas las clases tengan un comportamiento común, como la capacidad de ser comparadas, impresas, etc.
 ```
 
-### Duck Typing
+### *Duck typing*
 
-El **Duck Typing** es un concepto en Python que se basa en la idea de que el tipo de un objeto se determina por su comportamiento en lugar de su clase. Es decir, si un objeto tiene los métodos y atributos necesarios para realizar una tarea, se puede tratar como si fuera de un tipo específico, sin necesidad de verificar su clase.
+El ***duck typing*** es un concepto en Python que se basa en la idea de que el tipo de un objeto se determina por su comportamiento en lugar de su clase. Es decir, si un objeto tiene los métodos y atributos necesarios para realizar una tarea, se puede tratar como si fuera de un tipo específico, sin necesidad de verificar su clase.
 
 ```{epigraph}
 "Si camina como un pato, nada como un pato y grazna como un pato, entonces probablemente sea un pato."
 ---
-Principio fundamental del Duck Typing en Python
+Principio fundamental del _duck typing_ en Python
 ```
 
 Este concepto es muy poderoso en Python, ya que permite que diferentes objetos puedan ser utilizados de manera intercambiable si cumplen con la interfaz esperada, sin necesidad de heredar de una clase específica. Todo ocurre de manera implícita, sin necesidad de declarar explícitamente que un objeto es de un tipo específico y sin necesidad de especificar interfaces o clases abstractas como en Java o Go. Esta versatilidad es gracias al sistema de tipos dinámico de Python.

@@ -10,11 +10,11 @@ kernelspec:
   name: python3
 ---
 
-# Tipos de Datos
+# Tipos de datos
 
 Python tiene varios tipos de datos integrados. A continuación, veremos los más usados: **números**, **cadenas**, **listas**, **tuplas** y **diccionarios**.
 
-## Tipos Numéricos
+## Tipos numéricos
 
 `int`{l=python}
 : Números enteros positivos o negativos, de cualquier tamaño. Los enteros se representan en memoria como una secuencia de bits, limitados por la memoria disponible
@@ -120,7 +120,7 @@ mensaje = "h" + mensaje[1:]  # Crea una nueva cadena
 print(mensaje)
 ```
 
-### Indexado y slicing
+### Indexado y _slicing_
 
 Las cadenas de caracteres están indexadas, es decir, que se puede manipular cada carácter por su posición. El primer carácter tiene índice 0, el segundo 1, y así sucesivamente. También se pueden usar índices negativos para acceder a los caracteres desde el final de la cadena y tajadas o slicing para obtener subcadenas. En las tajadas, el primer parámetro es el índice inicial y el segundo es el índice final (no incluido), similar a Go.
 
@@ -172,7 +172,7 @@ nombre = "Python"
 print(nombre[-3:])
 ```
 
-Las tajadas o slices en python tienen un tercer parámetro opcional que indica el paso entre los índices. Por ejemplo, `nombre[::2]`{l=python} devuelve cada segundo carácter de la cadena.
+Las tajadas o _slices_ en Python tienen un tercer parámetro opcional que indica el paso entre los índices. Por ejemplo, `nombre[::2]`{l=python} devuelve cada segundo carácter de la cadena.
 
 ```{code-cell} python
 ---
@@ -213,8 +213,7 @@ print(texto.lower())  # Convierte a minúsculas
 tags: [hide-output]
 ---
 texto = "Hola mundo"
-print(texto.replace("mundo", "Python"))  # Reemplaza las apariciones de "mundo"
-                                         # por "Python"
+print(texto.replace("mundo", "Python"))  # Reemplaza las apariciones de "mundo" por "Python"
 ```
 
 ```{code-cell} python
@@ -222,8 +221,7 @@ print(texto.replace("mundo", "Python"))  # Reemplaza las apariciones de "mundo"
 tags: [hide-output]
 ---
 texto = "Hola mundo"
-print(texto.split())  # Divide la cadena en una lista de palabras, separando
-                      # por espacios
+print(texto.split())  # Divide la cadena en una lista de palabras, separando por espacios
 ```
 
 ```{code-cell} python
@@ -274,7 +272,7 @@ print(saludo3)
 
 ### Iteración sobre cadenas de caracteres
 
-Las cadenas de caracteres son iterables, lo que significa que se pueden recorrer carácter por carácter usando un bucle `for`{l=python}.
+Las cadenas de caracteres son **iterables**, lo que significa que se pueden recorrer carácter por carácter usando un bucle `for`{l=python}.
 
 ```{code-cell} python
 ---
@@ -288,7 +286,7 @@ for caracter in "Python":
 
 El formateo de cadenas permite insertar valores en una cadena de texto de manera más legible y flexible. Hay varias formas de hacerlo:
 
-- Usando el método `format()`
+- Usando el método `format()`{l=python}
 
 ```{code-cell} python
 ---
@@ -693,8 +691,7 @@ print(persona.get("edad", "No encontrado"))  # Devuelve "No encontrado"
 tags: [hide-output]
 ---
 persona = {"nombre": "Ana", "email": "ana@mail.com"}
-print(persona.setdefault("edad", 30))  # Devuelve 30 y añade la clave "edad" con
-                                       # valor 30
+print(persona.setdefault("edad", 30))  # Devuelve 30 y añade la clave "edad" con valor 30
 print(persona)
 ```
 
@@ -703,8 +700,7 @@ print(persona)
 tags: [hide-output]
 ---
 persona = {"nombre": "Ana", "edad": 30, "email": "ana@mail.com"}
-lista = persona.setdefault("telefonos", [])  # Añade la clave "telefonos" con una
-                                             # lista vacía
+lista = persona.setdefault("telefonos", [])  # Añade la clave "telefonos" con una lista vacía
 lista.append("123-456-7890")  # Añade un teléfono a la lista
 print(persona)
 ```
