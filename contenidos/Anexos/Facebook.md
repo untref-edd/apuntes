@@ -131,19 +131,19 @@ El Explorador de Graph API permite probar diferentes consultas antes de implemen
 
 1. **Información del Usuario Actual**
 
-   ```
+   ```text
    /me?fields=id,name,email,birthday,location
    ```
 
 1. **Páginas que le Gustan al Usuario**
 
-   ```
+   ```text
    /me/likes?fields=name,category,fan_count,website
    ```
 
 1. **Publicaciones del Usuario**
 
-   ```
+   ```text
    /me/posts?fields=message,created_time,likes.summary(true),comments.summary(true)
    ```
 
@@ -151,7 +151,7 @@ El Explorador de Graph API permite probar diferentes consultas antes de implemen
 
 1. **Lista de Amigos (limitada)**
 
-   ```
+   ```text
    /me/friends?fields=name,id
    ```
 
@@ -161,13 +161,13 @@ El Explorador de Graph API permite probar diferentes consultas antes de implemen
 
 1. **Información de una Página Específica**
 
-   ```
+   ```text
    /{page-id}?fields=name,fan_count,category,website,about,location
    ```
 
 1. **Publicaciones de una Página Pública**
 
-   ```
+   ```text
    /{page-id}/posts?fields=message,created_time,likes.summary(true),shares.summary(true)
    ```
 
@@ -175,19 +175,19 @@ El Explorador de Graph API permite probar diferentes consultas antes de implemen
 
 1. **Eventos Públicos**
 
-   ```
+   ```text
    /search?type=event&q=tecnología&fields=name,description,start_time,place
    ```
 
 1. **Lugares Cercanos**
 
-   ```
+   ```text
    /search?type=place&center=lat,lng&distance=1000&fields=name,location,checkins
    ```
 
 1. **Análisis de Engagement**
 
-   ```
+   ```text
    /{post-id}?fields=reactions.summary(total_count).limit(0),comments.summary(total_count).limit(0),shares.summary(total_count).limit(0)
    ```
 

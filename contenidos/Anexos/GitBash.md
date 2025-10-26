@@ -36,7 +36,7 @@ Si todo salió relativamente bien, es posible que en nuestro _prompt_ aparezca e
 
 ```output
 (.venv)
-tiagox ~/Projects/untref-edd/edd
+~/Projects/untref-edd/edd
 $
 ```
 
