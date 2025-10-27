@@ -360,3 +360,50 @@ print(f"Palabras que terminan en 'CO': {', '.join(sorted(resultados))}")
 La elección de la estructura de datos depende del tipo de búsquedas más frecuentes en la aplicación.
 ```
 
+### Búsquedas con Comodín "*" en posiciones intermedias
+
+Para búsquedas con el comodín "*" en el medio de una palabra (como "P*CO"), se puede aprovechar tanto el árbol B+ normal como el árbol de palabras invertidas. La estrategia consiste en dividir la búsqueda en dos partes:
+1. Buscar en el árbol normal las palabras que comienzan con el prefijo antes del "*" (en este caso "P").
+2. Buscar en el árbol invertido las palabras que terminan con el sufijo después del "*" (en este caso "OC").
+3. Intersectar los resultados de ambas búsquedas para obtener las coincidencias finales.
+
+```{code-cell}python
+---
+tags: [hide-output]
+mystnb:
+    number_source_lines: true
+---
+from BTrees.OOBTree import OOBTree
+import pickle
+# Cargar ambos árboles B+ desde disco
+with open('/tmp/btree.pkl', 'rb') as f:
+    btree = pickle.load(f)
+with open('/tmp/btree_invertido.pkl', 'rb') as f:
+    btree_invertido = pickle.load(f)
+# Búsqueda con patrón "P*CO" (comodín en el medio)
+print("Búsqueda con patrón 'P*CO' (comodín en el medio):")
+print("Estrategia: Intersectar resultados de prefijo 'P' y sufijo 'OC'")
+resultados_prefijo = set()
+# Buscar en el árbol normal palabras que empiezan con 'P'
+for palabra in btree.keys(min='P', max='PZ'):
+    if palabra.startswith('P'):
+        resultados_prefijo.add(palabra)
+resultados_sufijo = set()
+# Buscar en el árbol invertido palabras que empiezan con 'OC'
+for palabra_invertida in btree_invertido.keys(min='OC', max='OCZ'):
+    if palabra_invertida.startswith('OC'):
+        palabra_original = btree_invertido[palabra_invertida]
+        resultados_sufijo.add(palabra_original)
+# Intersectar ambos conjuntos para obtener las coincidencias finales
+resultados_finales = resultados_prefijo.intersection(resultados_sufijo)
+print("\nResultados finales para 'P*CO':")
+for palabra in resultados_finales:
+    print(f"  ✓ {palabra}")
+print(f"\nTotal de resultados: {len(resultados_finales)}")
+```
+
+## Implementación Completa
+
+En  [IndiceOrdenado](https://github.com/untref-edd/IndiceOrdenado){target="_blank"} se encuentra una implementación completa de un índice basado en árboles B+ utilizando la librería `BTrees` de ZODB.
+
+
