@@ -9,6 +9,7 @@ kernelspec:
   language: python
   name: python3
 ---
+
 ```{code-cell} python
 ---
 tags: [hide-output, remove-cell]
@@ -29,11 +30,12 @@ for filename in os.listdir(tmp_dir):
     except Exception as e:
         print(f"No se pudo borrar {file_path}: {e}")
 ```
+
 # Árboles B - Índices Ordenados
 
 Con los índices invertidos hemos visto cómo organizar la información para acelerar las búsquedas por términos. Sin embargo, en muchos casos es necesario realizar búsquedas con comodines o rangos, como por ejemplo:
 
-- Buscar todos los documentos que contengan términos que empiecen con "comput*".
+- Buscar todos los documentos que contengan términos que empiecen con "comput\*".
 - Buscar documentos con fechas entre "2020-01-01" y "2020-12-31".
 - Buscar productos con precios entre 100 y 500.
 - Buscar nombres de usuarios que contengan la cadena "admin".
@@ -55,7 +57,7 @@ Un árbol-B de orden $M$ (el máximo número de hijos que puede tener cada nodo)
   - El primer hijo tiene valores menores que k1.
   - El segundo tiene valores mayores o igual a k1 y menores que k2, etc.
   - El último hijo tiene valores mayores que km.
-  
+
 Para construir índices usaremos árboles B+, una variante de los árboles B en la que:
 
 - Todos los valores se almacenan en las hojas.
@@ -63,6 +65,7 @@ Para construir índices usaremos árboles B+, una variante de los árboles B en 
 - Las hojas están enlazadas entre sí para facilitar recorridos secuenciales.
 
 ## Ejemplo de Árbol B+
+
 Consideremos un árbol B+ de orden 3 (cada nodo puede tener hasta 3 hijos) que almacena las siguientes palabras:"PACO", "POCO", "PECA", "PICO", "PALA", "POLO", "PIEL" y "PIPA". El árbol se vería así:
 
 ```{figure} ../assets/images/bplus1.png
@@ -84,18 +87,19 @@ En el ejemplo si se busca "PILA" como es mayor que la clave en la raíz, la bús
 ## Inserción en un Árbol B+
 
 La inserción de un nuevo valor en un árbol B+ sigue estos pasos:
-1. **Buscar la hoja adecuada**: Se comienza en la raíz y se desciende por el árbol siguiendo las claves hasta llegar a la hoja donde debería insertarse el nuevo valor.
-2. **Insertar el valor**: Si la hoja tiene espacio (menos de M-1 claves), se inserta el nuevo valor en orden.
-3. **Dividir la hoja si es necesario**: Si la hoja está llena (tiene M-1 claves), se divide en dos hojas. La clave mediana se promueve al nodo padre.
-4. **Actualizar el nodo padre**: Si el nodo padre también está lleno, se repite el proceso de división y promoción hacia arriba hasta llegar a la raíz.
-5. **Crear una nueva raíz si es necesario**: Si la raíz se divide, se crea una nueva raíz con la clave promovida.
-   
-| | |
-|---|---|
-| ![Inserción en hoja](../assets/images/bplus2.png)<br>Se encuentra la hoja donde se debe insertar "PILA". | ![División de hoja](../assets/images/bplus3.png)<br>Al insertar "PILA", la hoja se divide en dos, la primera contiene "PIEL" y la segunda "PILA \| PIPA". |
-| ![Promoción hacia arriba](../assets/images/bplus4.png)<br>Cómo "PILA", es la primera clave del segundo nodo que se partió, se promueve hacia arriba. | ![Nueva raíz](../assets/images/bplus5.png)<br>El nodo intermedio también se parte y finalmente se promueve "PILA" a la raíz. |
 
-Se puede usar un [visualizador interactivo](https://www.cs.usfca.edu/~galles/visualization/BPlusTree.html){target="_blank"} para observar cómo se realiza la inserción en un árbol B+.
+1. **Buscar la hoja adecuada**: Se comienza en la raíz y se desciende por el árbol siguiendo las claves hasta llegar a la hoja donde debería insertarse el nuevo valor.
+1. **Insertar el valor**: Si la hoja tiene espacio (menos de M-1 claves), se inserta el nuevo valor en orden.
+1. **Dividir la hoja si es necesario**: Si la hoja está llena (tiene M-1 claves), se divide en dos hojas. La clave mediana se promueve al nodo padre.
+1. **Actualizar el nodo padre**: Si el nodo padre también está lleno, se repite el proceso de división y promoción hacia arriba hasta llegar a la raíz.
+1. **Crear una nueva raíz si es necesario**: Si la raíz se divide, se crea una nueva raíz con la clave promovida.
+
+|                                                                                                                                                      |                                                                                                                                                           |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ![Inserción en hoja](../assets/images/bplus2.png)<br>Se encuentra la hoja donde se debe insertar "PILA".                                             | ![División de hoja](../assets/images/bplus3.png)<br>Al insertar "PILA", la hoja se divide en dos, la primera contiene "PIEL" y la segunda "PILA \| PIPA". |
+| ![Promoción hacia arriba](../assets/images/bplus4.png)<br>Cómo "PILA", es la primera clave del segundo nodo que se partió, se promueve hacia arriba. | ![Nueva raíz](../assets/images/bplus5.png)<br>El nodo intermedio también se parte y finalmente se promueve "PILA" a la raíz.                              |
+
+Se puede usar un [visualizador interactivo](https://www.cs.usfca.edu/~galles/visualization/BPlusTree.html){target="\_blank"} para observar cómo se realiza la inserción en un árbol B+.
 
 ## Ejercicio Interactivo
 
@@ -108,6 +112,7 @@ En la siguiente simulación presionar en que nodo insertar el nuevo valor y obse
 Para implementar índices basados en árboles B+ en Python, utilizaremos la librería `BTrees` del proyecto ZODB (Zope Object Database). Esta librería proporciona implementaciones maduras y eficientes de árboles B+ que pueden persistirse en disco.
 
 `BTrees` ofrece varias variantes según el tipo de claves y valores:
+
 - `OOBTree`: Claves y valores como objetos Python
 - `OIBTree`: Claves como objetos, valores como enteros
 - `IOBTree`: Claves como enteros, valores como objetos
@@ -284,9 +289,9 @@ En este ejemplo, "P?CO" coincide con PACO, PICO y POCO, que son las únicas pala
 Para patrones más complejos, se pueden usar expresiones regulares para el filtrado.
 ```
 
-### Búsqueda con Comodín "*" al final de la palabra
+### Búsqueda con Comodín "\*" al final de la palabra
 
-Para búsquedas con comodines al inicio de la palabra (como "*CO"), los árboles B+ tradicionales no son eficientes ya que están optimizados para búsquedas que comienzan desde el inicio de la clave.
+Para búsquedas con comodines al inicio de la palabra (como "\*CO"), los árboles B+ tradicionales no son eficientes ya que están optimizados para búsquedas que comienzan desde el inicio de la clave.
 
 Una estrategia efectiva es mantener un **índice adicional con palabras invertidas** en otro árbol B+. De esta manera, una búsqueda como "\*CO" se transforma en una búsqueda por prefijo "OC\*" en el índice invertido.
 
@@ -360,12 +365,13 @@ print(f"Palabras que terminan en 'CO': {', '.join(sorted(resultados))}")
 La elección de la estructura de datos depende del tipo de búsquedas más frecuentes en la aplicación.
 ```
 
-### Búsquedas con Comodín "*" en posiciones intermedias
+### Búsquedas con Comodín "\*" en posiciones intermedias
 
 Para búsquedas con el comodín "*" en el medio de una palabra (como "P*CO"), se puede aprovechar tanto el árbol B+ normal como el árbol de palabras invertidas. La estrategia consiste en dividir la búsqueda en dos partes:
-1. Buscar en el árbol normal las palabras que comienzan con el prefijo antes del "*" (en este caso "P").
-2. Buscar en el árbol invertido las palabras que terminan con el sufijo después del "*" (en este caso "OC").
-3. Intersectar los resultados de ambas búsquedas para obtener las coincidencias finales.
+
+1. Buscar en el árbol normal las palabras que comienzan con el prefijo antes del "\*" (en este caso "P").
+1. Buscar en el árbol invertido las palabras que terminan con el sufijo después del "\*" (en este caso "OC").
+1. Intersectar los resultados de ambas búsquedas para obtener las coincidencias finales.
 
 ```{code-cell}python
 ---
@@ -404,6 +410,4 @@ print(f"\nTotal de resultados: {len(resultados_finales)}")
 
 ## Implementación Completa
 
-En  [IndiceOrdenado](https://github.com/untref-edd/IndiceOrdenado){target="_blank"} se encuentra una implementación completa de un índice basado en árboles B+ utilizando la librería `BTrees` de ZODB.
-
-
+En [IndiceOrdenado](https://github.com/untref-edd/IndiceOrdenado){target="\_blank"} se encuentra una implementación completa de un índice basado en árboles B+ utilizando la librería `BTrees` de ZODB.
