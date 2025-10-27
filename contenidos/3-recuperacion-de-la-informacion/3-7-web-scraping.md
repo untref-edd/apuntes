@@ -430,38 +430,36 @@ class BooksSpider(scrapy.Spider):
         """Extrae información de libros de la página actual"""
 
         # Extraer todos los libros de la página
-        books = response.css("article.product_pod")
+        books = response.xpath("//article[contains(@class,'product_pod')]")
 
         for book in books:
             item = BookItem()
 
             # Extraer título
-            item["title"] = book.css("h3 a::attr(title)").get()
+            item["title"] = book.xpath(".//h3/a/@title").get().strip()
 
             # Extraer precio
-            price_text = book.css("p.price_color::text").get()
+            price_text = book.xpath(".//p[contains(@class,'price_color')]/text()").get().strip()
             item["price"] = price_text.replace("£", "") if price_text else None
 
             # Extraer disponibilidad
-            availability = book.css("p.instock.availability::text").getall()
-            item["availability"] = (
-                "".join(availability).strip() if availability else None
-            )
+            availability = book.xpath(".//p[contains(@class,'instock') and contains(@class,'availability')]/text()").getall()
+            item["availability"] = "".join(availability).strip() if availability else None
 
             # Extraer calificación
-            rating_class = book.css("p.star-rating::attr(class)").get()
+            rating_class = book.xpath(".//p[contains(@class,'star-rating')]/@class").get()
             if rating_class:
-                rating = rating_class.split()[
-                    -1
-                ]  # Obtiene la última palabra (One, Two, Three, etc.)
+                rating = rating_class.split()[-1]
                 item["rating"] = rating
+            else:
+                item["rating"] = None
 
             item["category"] = "Horror"
 
             yield item
 
         # Seguir a la siguiente página si existe
-        next_page = response.css("li.next a::attr(href)").get()
+        next_page = response.xpath("//li[contains(@class,'next')]/a/@href").get()
         if next_page:
             next_page_url = response.urljoin(next_page)
             yield scrapy.Request(next_page_url, callback=self.parse)
