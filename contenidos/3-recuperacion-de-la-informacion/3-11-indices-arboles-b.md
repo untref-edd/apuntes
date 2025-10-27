@@ -80,7 +80,7 @@ En la figura se observa que los nodos internos contienen las claves que guían l
 
 En cada nodo pueden haber como máximo 2 claves (orden 3) y como mínimo 1 clave (⌈3/2⌉ - 1 = 1) y las palabras dentro de cada nodo están ordenadas alfabéticamente.
 
-En los nodos intermedios y en la raíz se repiten palabras que ya están en las hojas, de tal manera que las palabras estrictamente menores a una clave dada se ecuentran el el subárbol izquierdo y las palabras mayores o iguales a esa clave se encuentran en su subárbol derecho.
+En los nodos intermedios y en la raíz se repiten palabras que ya están en las hojas, de tal manera que las palabras estrictamente menores a una clave dada se encuentran en el subárbol izquierdo y las palabras mayores o iguales a esa clave se encuentran en su subárbol derecho.
 
 En el ejemplo si se busca "PILA" como es mayor que la clave en la raíz, la búsqueda continúa en el subárbol derecho. El nodo intermedio contiene las palabras "PIEL|POCO", como "PILA" es mayor que "PIEL", pero menor que "POCO", la búsqueda continúa en el subárbol del medio. Al llegar a la hoja con las palabras "PIEL|PIPA", se determina que "PILA" no está en el árbol.
 
