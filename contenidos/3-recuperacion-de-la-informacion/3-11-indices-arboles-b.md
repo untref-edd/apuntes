@@ -7,7 +7,7 @@ jupytext:
 kernelspec:
   display_name: Python 3
   language: python
-  name: python3
+  name: pythoF
 ---
 
 # Árboles B - Índices Ordenados
@@ -46,32 +46,13 @@ Para construir índices usaremos árboles B+, una variante de los árboles B en 
 ## Ejemplo de Árbol B+
 Consideremos un árbol B+ de orden 3 (cada nodo puede tener hasta 3 hijos) que almacena las siguientes palabras:"PACO", "POCO", "PECA", "PICO", "PALA", "POLO", "PIEL" y "PIPA". El árbol se vería así:
 
-```{mermaid}
+```{figure} ../assets/images/bplus1.png
 ---
-name: BPlusTree
-title: Índice sobre un Árbol B+
+name: bplus1
 ---
-graph LR
-  % Nodos
-  A[PICO]
-  B[PECA]
-  C[PIEL|POCO]
-  D[PACO|PALA]
-  E[PECA]
-  F[PICO]
-  G[PIEL|PIPA]
-  H[POCO|POLO]
+Árbol B+ de orden 3.
 
-  % Conexiones
-  A --> B
-  A --> C
-  A --> D
-  B --> E
-  B --> F
-  C --> G
-  D --> H
 ```
-
 
 ## Ejercicio Interactivo
 
