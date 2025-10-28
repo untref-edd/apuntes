@@ -322,9 +322,9 @@ En este ejemplo, `"P?CO"`{l=python} coincide con `"PACO"`{l=python}, `"PICO"`{l=
 Para patrones más complejos, se pueden usar expresiones regulares para el filtrado.
 ```
 
-### Búsqueda con comodín `"*"`{l=python} al final de la palabra
+### Búsqueda con comodín `"*"`{l=python} al inicio de la palabra
 
-Para búsquedas con comodines al inicio de la palabra (como `"*CO"`{l=python}), los árboles B+ tradicionales no son eficientes ya que están optimizados para búsquedas que comienzan desde el inicio de la clave.
+Para búsquedas con comodines al inicio de la palabra (como `"*CO"`{l=python}), los árboles B+ tradicionales no son eficientes ya que están optimizados para búsquedas que comienzan desde el inicio de la clave, es decir de prefijos.
 
 Una estrategia efectiva es mantener un **índice adicional con palabras invertidas** en otro árbol B+. De esta manera, una búsqueda como `"*CO"`{l=python} se transforma en una búsqueda por prefijo `"OC*"`{l=python} en el índice invertido.
 
