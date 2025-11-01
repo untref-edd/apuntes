@@ -37,7 +37,7 @@ En esta sección vamos a ver distintos formatos para organizar la información e
 
 Los registros permiten estructurar la información de una forma que facilita su almacenamiento, recuperación y manipulación. Un registro es un conjunto de datos relacionados que se almacenan juntos y representan una entidad o un objeto específico. Cada registro está compuesto por varios campos, donde cada campo contiene un dato específico.
 
-Supongamos que queremos crear una ***agenda*** para almacenar datos de contactos: **nombre**, **apellido**, **teléfono** y **email**. Una primera aproximación sería guardar los datos sin ningún tipo de organización, simplemente uno detrás de otro:
+Supongamos que queremos crear una **agenda** para almacenar datos de contactos: **nombre**, **apellido**, **teléfono** y **email**. Una primera aproximación sería guardar los datos sin ningún tipo de organización, simplemente uno detrás de otro:
 
 ```{code-cell} python
 ---

@@ -10,9 +10,9 @@ kernelspec:
   name: python3
 ---
 
-# Introducción a la Recuperación de la Información
+# Introducción a la recuperación de la información
 
-La **recuperación de la información** (Information Retrieval - IR) es una disciplina fundamental de las ciencias de la computación que estudia la representación, almacenamiento, organización y acceso a elementos de información. Su objetivo principal es desarrollar sistemas que permitan a los usuarios encontrar documentos o fragmentos de información que satisfagan una necesidad informativa específica dentro de grandes colecciones de datos.
+La **recuperación de la información** (_Information Retrieval_, IR) es una disciplina fundamental de las ciencias de la computación que estudia la representación, almacenamiento, organización y acceso a elementos de información. Su objetivo principal es desarrollar sistemas que permitan a los usuarios encontrar documentos o fragmentos de información que satisfagan una necesidad informativa específica dentro de grandes colecciones de datos.
 
 ## Historia y Evolución
 
@@ -111,7 +111,7 @@ flowchart TB
 ```
 
 Colección de Documentos
-: Es el conjunto de información sobre el que opera un sistema de recuperación de información. Esta colección, también llamada ***corpus***, puede estar formada por documentos de texto, páginas web, bases de datos, archivos multimedia o cualquier otro tipo de contenido digital. Su función principal es servir como fuente de datos a partir de la cual los usuarios podrán buscar y recuperar información relevante según sus necesidades, siendo fundamental que esté bien organizada y representada para facilitar el acceso eficiente a los datos.
+: Es el conjunto de información sobre el que opera un sistema de recuperación de información. Esta colección, también llamada _**corpus**_, puede estar formada por documentos de texto, páginas web, bases de datos, archivos multimedia o cualquier otro tipo de contenido digital. Su función principal es servir como fuente de datos a partir de la cual los usuarios podrán buscar y recuperar información relevante según sus necesidades, siendo fundamental que esté bien organizada y representada para facilitar el acceso eficiente a los datos.
 
 Preprocesamiento
 : El preprocesamiento es una etapa fundamental en los sistemas de recuperación de información, ya que transforma los documentos originales en una forma que facilita su análisis y búsqueda. Este proceso suele incluir la segmentación del texto en palabras o frases, la conversión de todos los caracteres a minúsculas y la eliminación de signos de puntuación y palabras muy comunes que no aportan significado relevante. Además, se pueden aplicar técnicas para reducir las palabras a su raíz o forma base, lo que ayuda a unificar variantes y mejorar la coincidencia entre consultas y documentos. El objetivo principal es obtener una representación más uniforme y manejable del contenido, optimizando así la eficiencia y precisión del sistema.
@@ -146,7 +146,7 @@ Motores de Búsqueda Empresariales
 
 ## Tendencias Futuras
 
-En la actualidad, la inteligencia artificial y el aprendizaje automático están transformando la recuperación de la información. Por ejemplo, [*deep learning*](https://es.wikipedia.org/wiki/Aprendizaje_profundo){target="\_blank"} utiliza redes neuronales para comprender mejor el significado de los textos, permitiendo que los sistemas sean más precisos al buscar información relevante. Modelos avanzados como [BERT](<https://es.wikipedia.org/wiki/BERT_(modelo_de_lenguaje)>){target="\_blank"} y los llamados [transformers](<https://es.wikipedia.org/wiki/Transformador_(modelo_de_aprendizaje_autom%C3%A1tico)>){target="\_blank"} ayudan a los sistemas a entender el contexto de las palabras en una oración, mejorando la calidad de las respuestas. Además, existen sistemas de recuperación de información basados completamente en redes neuronales, que pueden aprender de grandes cantidades de datos y adaptarse a diferentes tipos de consultas de manera automática.
+En la actualidad, la inteligencia artificial y el aprendizaje automático están transformando la recuperación de la información. Por ejemplo, [_deep learning_](https://es.wikipedia.org/wiki/Aprendizaje_profundo){target="\_blank"} utiliza redes neuronales para comprender mejor el significado de los textos, permitiendo que los sistemas sean más precisos al buscar información relevante. Modelos avanzados como [BERT](<https://es.wikipedia.org/wiki/BERT_(modelo_de_lenguaje)>){target="\_blank"} y los llamados [transformers](<https://es.wikipedia.org/wiki/Transformador_(modelo_de_aprendizaje_autom%C3%A1tico)>){target="\_blank"} ayudan a los sistemas a entender el contexto de las palabras en una oración, mejorando la calidad de las respuestas. Además, existen sistemas de recuperación de información basados completamente en redes neuronales, que pueden aprender de grandes cantidades de datos y adaptarse a diferentes tipos de consultas de manera automática.
 
 La [búsqueda multimodal](https://es.wikipedia.org/wiki/B%C3%BAsqueda_multimodal){target="\_blank"} es otra tendencia importante. Esto significa que los sistemas ya no solo buscan información en texto, sino que también pueden analizar [imágenes](https://es.wikipedia.org/wiki/Reconocimiento_de_im%C3%A1genes){target="\_blank"}, [audio](https://es.wikipedia.org/wiki/Reconocimiento_del_habla){target="\_blank"} y [videos](https://es.wikipedia.org/wiki/Video_anal%C3%ADtica){target="\_blank"}. Por ejemplo, ahora es posible buscar una imagen similar a otra, o encontrar información relevante en un video. Incluso, con la [realidad aumentada](https://es.wikipedia.org/wiki/Realidad_aumentada){target="\_blank"}, se pueden obtener datos útiles sobre objetos o lugares en tiempo real usando la cámara de un dispositivo.
 
