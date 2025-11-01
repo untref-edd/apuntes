@@ -97,7 +97,9 @@ class BooksSpider(scrapy.Spider):
                 item["price"] = None
 
             # Extraer disponibilidad
-            availability = book_selector.xpath(".//p[contains(@class,'instock') and contains(@class,'availability')]/text()").getall()
+            availability = book_selector.xpath(
+                ".//p[contains(@class,'instock') and contains(@class,'availability')]/text()"
+            ).getall()
             if availability:
                 # Unir todos los textos y limpiar espacios
                 availability_text = "".join(availability).strip()
@@ -162,8 +164,8 @@ class BooksSpider(scrapy.Spider):
         product_info = {}
         rows = response.xpath("//table[contains(@class,'table-striped')]//tr")
         for row in rows:
-            key = row.xpath('.//td[1]//text()').get()
-            value = row.xpath('.//td[last()]//text()').get()
+            key = row.xpath(".//td[1]//text()").get()
+            value = row.xpath(".//td[last()]//text()").get()
             if key and value:
                 product_info[key.strip()] = value.strip()
 

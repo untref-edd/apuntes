@@ -439,15 +439,23 @@ class BooksSpider(scrapy.Spider):
             item["title"] = book.xpath(".//h3/a/@title").get().strip()
 
             # Extraer precio
-            price_text = book.xpath(".//p[contains(@class,'price_color')]/text()").get().strip()
+            price_text = (
+                book.xpath(".//p[contains(@class,'price_color')]/text()").get().strip()
+            )
             item["price"] = price_text.replace("£", "") if price_text else None
 
             # Extraer disponibilidad
-            availability = book.xpath(".//p[contains(@class,'instock') and contains(@class,'availability')]/text()").getall()
-            item["availability"] = "".join(availability).strip() if availability else None
+            availability = book.xpath(
+                ".//p[contains(@class,'instock') and contains(@class,'availability')]/text()"
+            ).getall()
+            item["availability"] = (
+                "".join(availability).strip() if availability else None
+            )
 
             # Extraer calificación
-            rating_class = book.xpath(".//p[contains(@class,'star-rating')]/@class").get()
+            rating_class = book.xpath(
+                ".//p[contains(@class,'star-rating')]/@class"
+            ).get()
             if rating_class:
                 rating = rating_class.split()[-1]
                 item["rating"] = rating
