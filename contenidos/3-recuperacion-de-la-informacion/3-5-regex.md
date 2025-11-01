@@ -45,7 +45,7 @@ En el contexto de las estructuras de datos y la recuperación de información, l
 
 ## ¿Qué son las expresiones regulares?
 
-Una expresión regular es un patrón que describe un conjunto de cadenas de texto. Por ejemplo, el patrón `r"\d{3}-\d{4}"` describe cualquier cadena que tenga tres dígitos, seguidos de un guion, seguidos de cuatro dígitos (como "123-4567").
+Una expresión regular es un patrón que describe un conjunto de cadenas de texto. Por ejemplo, el patrón `r"\d{3}-\d{4}"`{l=python} describe cualquier cadena que tenga tres dígitos, seguidos de un guion, seguidos de cuatro dígitos (como `"123-4567"`{l=python}).
 
 Las expresiones regulares utilizan una sintaxis especial con **metacaracteres** que tienen significados especiales. Estos metacaracteres permiten definir patrones complejos de forma concisa.
 
@@ -391,10 +391,10 @@ Las miradas alrededor permiten hacer coincidir un patrón solo si está precedid
 : Mirada hacia adelante positiva (_lookahead_)
 
 `(?!...)`
-: Mirada hacia adelante negativa (_lookbehind_)
+: Mirada hacia adelante negativa
 
 `(?<=...)`
-: Mirada hacia atrás positiva
+: Mirada hacia atrás positiva (_lookbehind_)
 
 `(?<!...)`
 : Mirada hacia atrás negativa
@@ -1081,6 +1081,8 @@ print("Archivos Python:", filtrar_archivos(archivos, r"\.py$"))
 ```
 
 ## Tablas de referencia rápida
+
+[Descargar la versión imprimible](../_static/docs/referencias_regex.pdf)
 
 ### Caracteres
 

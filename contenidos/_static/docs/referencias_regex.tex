@@ -1,0 +1,190 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage[margin=1cm]{geometry}          % Para márgenes razonables
+
+% --- PAQUETES ESENCIALES ---
+\usepackage[utf8]{inputenc}    % Para codificación UTF-8
+\usepackage{textcomp}          % Makes á, é, í, ó, ú simple characters.
+\usepackage[spanish]{babel}    % Para soporte del idioma españoll
+\usepackage[T1]{fontenc}       % Para codificación de fuentes
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- PAQUETES PARA LAS TABLAS ---
+\usepackage{booktabs}    % Para líneas de tabla profesionales (\toprule, \midrule, \bottomrule)
+\usepackage{longtable}   % Para tablas que pueden ocupar múltiples páginas
+\usepackage{array}       % Para definir anchos de columna (p{width})
+
+\pagestyle{empty} % Remueve números de página
+
+\begin{document}
+
+\section*{RegEx: Tablas de referencia rápida}
+
+\subsection*{Caracteres}
+
+% Usamos 'l' para columnas izquierdas y 'p{ancho}' para columnas con texto que debe ajustarse.
+\begin{longtable}{@{} p{2cm} p{7.5cm} p{3cm} p{5cm} @{}}
+\toprule
+\textbf{Expresión} & \textbf{Significado} & \textbf{Ejemplo} & \textbf{Match} \\
+\midrule
+\endfirsthead
+% Encabezado para páginas siguientes (en caso de que la tabla se divida)
+\toprule
+\textbf{Expresión} & \textbf{Significado} & \textbf{Ejemplo} & \textbf{Match} \\
+\midrule
+\endhead
+% Pie de página (si fuera necesario)
+\bottomrule
+\endfoot
+% Último pie de página
+\bottomrule
+\endlastfoot
+
+% --- Contenido de la Tabla 1 ---
+% Usamos \verb!...! para mostrar código literal. '!' es el delimitador.
+\centering \verb!\d! & Un dígito Unicode                                      & \verb!file_\d\d!    & \verb!file_25!           \\
+\centering \verb!\w! & Un carácter Unicode de palabra (incluye \verb!_!)      & \verb!\w-\w\w\w!    & \verb!A-f_3!             \\
+\centering \verb!\s! & Un caracteres de blanco Unicode                        & \verb!a\sb\sc!      & \verb!a b c!             \\
+\centering \verb!\D! & Un caracter que no es un dígito \verb!\d!              & \verb!\D\D\D!       & \verb!ABC!               \\
+\centering \verb!\W! & Un caracter que no es un caracter de palabra \verb!\w! & \verb!\W\W\W\W!     & \verb!*+=)!              \\
+\centering \verb!\S! & Un caracter que no es un blanco estándar \verb!\s!     & \verb!\S\S\S\S!     & \verb!casa!              \\
+\centering \verb!.!  & Cualquier caracter (excepto saltos de líneas)          & \verb!a.c!          & \verb!abc!               \\
+                     &                                                        & \verb!.*!           & \verb!piso 2, depto "A"! \\
+\centering \verb!\.! & Un punto                                               & \verb!\w\.\d!       & \verb!a.3!               \\
+\centering \verb!\!  & Escape de caracteres especiales                        & \verb!\*\?\$\^!     & \verb!*?$^!              \\
+                     &                                                        & \verb!\[\{\(\)\}\]! & \verb![{()}]!            \\
+\end{longtable}
+
+
+\subsection*{Cuantificadores}
+
+\begin{longtable}{@{} p{2cm} p{7.5cm} p{3cm} p{5cm} @{}}
+\toprule
+\textbf{Expresión} & \textbf{Significado} & \textbf{Ejemplo} & \textbf{Match} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Expresión} & \textbf{Significado} & \textbf{Ejemplo} & \textbf{Match} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\bottomrule
+\endlastfoot
+
+% --- Contenido de la Tabla 2 ---
+\centering \verb!+!     & Una o más apariciones     & \verb!\w-\w+!  & \verb!C-125x_1! \\
+\centering \verb!{3}!   & Exactamente 3 apariciones & \verb!\D{3}!   & \verb!ANA!      \\
+\centering \verb!{2,4}! & Entre 2 y 3 apariciones   & \verb!\W{2,4}! & \verb!{+}!      \\
+\centering \verb!{,5}!  & Hasta 5 apariciones       & \verb!\w{,5}!  & \verb!prog!     \\
+\centering \verb!*!     & Cero o más apariciones    & \verb!A*B*C*!  & \verb!AAAACCCC! \\
+\centering \verb!?!     & Cero o una aparición      & \verb!casas?!  & \verb!casa!     \\
+\end{longtable}
+
+
+\subsection*{Lógica}
+
+\begin{longtable}{@{} p{2cm} p{7.5cm} p{3cm} p{5cm} @{}}
+\toprule
+\textbf{Expresión} & \textbf{Significado} & \textbf{Ejemplo} & \textbf{Match} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Expresión} & \textbf{Significado} & \textbf{Ejemplo} & \textbf{Match} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\bottomrule
+\endlastfoot
+
+% --- Contenido de la Tabla 3 ---
+% El markdown \| significa un '|' literal. \verb!|! lo representa.
+\centering \verb!|!       & Operador ``or''            & \verb!22|33!             & \verb!22!                             \\
+\centering \verb!(...)!   & Grupo de captura           & \verb!UN(O|TREF)!        & \verb!UNTREF! (y captura \verb!TREF!) \\
+\centering \verb!\1!      & Lo capturado en el grupo 1 & \verb!r(\w)g\1\x!        & \verb!regex!                          \\
+\centering \verb!\2!      & Lo capturado en el grupo 2 & \verb!(\d+)+(\d+)=\2+\1! & \verb!25+33=33+25!                    \\
+\centering \verb!(?:...)! & Grupo que no se captura    & \verb!A(?:na|licia)!     & \verb!Alicia!                         \\
+\end{longtable}
+
+
+\subsection*{Clases de caracteres}
+
+\begin{longtable}{@{} p{2cm} p{7.5cm} p{3cm} p{5cm} @{}}
+\toprule
+\textbf{Expresión} & \textbf{Significado} & \textbf{Ejemplo} & \textbf{Match} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Expresión} & \textbf{Significado} & \textbf{Ejemplo} & \textbf{Match} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\bottomrule
+\endlastfoot
+
+% --- Contenido de la Tabla 4 ---
+\centering \verb![...]!  & Uno de los caracteres entre corchetes                  & \verb![AEIOU]!        & \verb!A!          \\
+\centering \verb!-!      & Indicador de rango                                     & \verb![a-z]+!         & \verb!minusculas! \\
+                         &                                                        & \verb![A-Z]+!         & \verb!MAYUSCULAS! \\
+                         &                                                        & \verb![AB1-5w-z]{3}!  & \verb!xB4!        \\
+\centering \verb![^x]!   & Cualquier caracter distinto de \verb!x!                & \verb!A[^a]B!         & \verb!AxB!        \\
+\centering \verb![^x-y]! & Cualquier caracter fuera del rango \verb!x-y!          & \verb![^a-z]{3}!      & \verb|A1!|        \\
+\centering \verb![\xhh]! & El caracter \verb!hh! en hexadecimal de la tabla ASCII & \verb![\x41-\x45]{3}! & \verb!ABE!        \\
+\end{longtable}
+
+
+\subsection*{Posiciones: fronteras y anclas}
+
+\begin{longtable}{@{} p{2cm} p{7.5cm} p{3cm} p{5cm} @{}}
+\toprule
+\textbf{Expresión} & \textbf{Significado} & \textbf{Ejemplo} & \textbf{Match} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Expresión} & \textbf{Significado} & \textbf{Ejemplo} & \textbf{Match} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\bottomrule
+\endlastfoot
+
+% --- Contenido de la Tabla 5 ---
+\centering \verb!^!  & Comienzo de cadena (o línea) & \verb!^abc.*!         & Texto que empieza con \verb!abc!       \\
+\centering \verb!$!  & Fin de cadena (o línea)      & \verb!.*el final\.$!  & Texto que termina con \verb!el final.! \\
+\centering \verb!\b! & Frontera de la palabra       & \verb!Bibi.*\bes\b.*! & \verb!Bibi es mi amiga!                \\
+\centering \verb!\B! & No es frontera de palabra    & \verb!Bibi.*\Bes\B.*! & \verb!Bibi usa un vestido!             \\
+\end{longtable}
+
+
+% \textit{} es para cursiva (itálica)
+\subsection*{Miradas alrededor (\textit{lookbehind} y \textit{lookahead})}
+
+No consumen caracteres, se quedan paradas donde ocurrió el matching
+
+\begin{longtable}{@{} p{2cm} p{5cm} p{3cm} p{7.5cm} @{}}
+\toprule
+\textbf{Expresión} & \textbf{Significado} & \textbf{Ejemplo} & \textbf{Match} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Expresión} & \textbf{Significado} & \textbf{Ejemplo} & \textbf{Match} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\bottomrule
+\endlastfoot
+
+% --- Contenido de la Tabla 6 ---
+\centering \verb!(?=...)!  & Mirada hacia adelante positiva & \verb!(?=\d{10})\d{5}! & Si hacia adelante hay 10 dígitos matchea los primeros 5                                                                  \\
+\centering \verb!(?<=...)! & Mirada hacia atrás positiva    & \verb!(?<=foo).*!      & Si lo que está justo detrás de la posición actual es la cadena \verb!foo!. El matching es todo lo que sigue a \verb!foo! \\
+\centering \verb|(?!...)|  & Mirada hacia adelante negativa & \verb|q(?!ue)|         & matchea una \verb!q! no este seguida de \verb!ue!                                                                        \\
+                           &                                & \verb|(?!teatro)te\w+| & cualquier palabra que empiece con \verb!te! pero no sea \verb!teatro!                                                    \\
+\centering \verb|(?<!...)| & Mirada hacia atrás negativa    & \verb|(?<!fut)bol|     & \verb!bol! siempre y cuando no esté precedida por \verb!fut!                                                             \\
+\end{longtable}
+
+\end{document}
+
+
