@@ -40,6 +40,7 @@ jobs:
       # Build the book
       - name: Build the book
         run: |
+          jupyter-book clean contenidos
           jupyter-book build contenidos
 
       # Upload the book's HTML as an artifact
