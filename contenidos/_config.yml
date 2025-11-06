@@ -37,7 +37,7 @@ parse:
     - tasklist
 
 html:
-  use_edit_page_button: false
+  use_edit_page_button: true
   use_repository_button: true
   use_issues_button: true
 
@@ -75,11 +75,6 @@ sphinx:
       - css/custom.css
     html_js_files:
       - js/custom.js
-    # Para usar el tema de Read the Docs, descomentar las siguientes líneas
-    # html_theme: sphinx_rtd_theme
-    # html_theme_options:
-    #   logo_only: true
-    #   collapse_navigation: false
     rst_epilog: |
       .. role:: red
          :class: red-text

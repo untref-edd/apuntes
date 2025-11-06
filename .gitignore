@@ -1,4 +1,3 @@
-apuntes-edd/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -146,9 +145,7 @@ dmypy.json
 .jupyter/desktop-workspaces/default-37a8.jupyterlab-workspace
 
 # Ignore only files inside any folder named 'tmp', but not the 'tmp' folder itself
-tmp/*
-**/tmp/*
+tmp/
 
 # Ignore temporary blocks from BSBI algorithm
 temp_blocks/
-**/temp_blocks/

@@ -1,5 +1,5 @@
 format: jb-book
-root: presentacion-edd
+root: introduccion
 defaults:
   titlesonly: True
   numbered: true
