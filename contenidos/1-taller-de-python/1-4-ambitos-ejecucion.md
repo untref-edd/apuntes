@@ -23,7 +23,7 @@ Una diferencia clave es que en Python, las variables son esencialmente referenci
 Cada vez que se asigna un valor a una variable, Python sigue los siguientes pasos:
 
 1. Crea un objeto en memoria (si no existe ya).
-1. Asigna una referencia a ese objeto.
+2. Asigna una referencia a ese objeto.
 
 Python garantiza que los pasos anteriores para asignar una variable son **_atómicos_**, es decir se ejecutan uno tras otro sin interrupciones, lo que asegura la consistencia del estado de las variables en un entorno multihilo.
 
@@ -234,13 +234,13 @@ Al ejecutar el fragmento anterior ocurre lo siguiente:
 
 1. En la línea 1 se define la función `fabrica_incrementos`{l=python} que recibe un parámetro `y`{l=python}. El código de la función (hasta la línea 4) se guarda en memoria. Es un valor más. El nombre de la función `fabrica_incrementos`{l=python} se guarda en el ámbito global y es la referencia que permite acceder al objeto función.
 
-1. En la línea 6 se llama a `fabrica_incrementos(2)` y el resultado de esa operación (la función interna `incrementar`{l=python}) se va a asignar a la variable `incrementar_2`{l=python}. En este momento, `y`{l=python} tiene el valor 2 y se guarda en la clausura de la función interna `incrementar`{l=python}.
+2. En la línea 6 se llama a `fabrica_incrementos(2)` y el resultado de esa operación (la función interna `incrementar`{l=python}) se va a asignar a la variable `incrementar_2`{l=python}. En este momento, `y`{l=python} tiene el valor 2 y se guarda en la clausura de la función interna `incrementar`{l=python}.
 
-1. El valor devuelto por `fabrica_incrementos`{l=python} es una función que queda ligada a la variable `incrementar_2`{l=python}. `incrementar_2`{l=python} contiene el valor de `y`{l=python}, al momento de su creación, en su clausura. Esto significa que `incrementar_2`{l=python} "recuerda" el valor de `y`{l=python} aunque `fabrica_incrementos`{l=python} ya haya terminado su ejecución.
+3. El valor devuelto por `fabrica_incrementos`{l=python} es una función que queda ligada a la variable `incrementar_2`{l=python}. `incrementar_2`{l=python} contiene el valor de `y`{l=python}, al momento de su creación, en su clausura. Esto significa que `incrementar_2`{l=python} "recuerda" el valor de `y`{l=python} aunque `fabrica_incrementos`{l=python} ya haya terminado su ejecución.
 
-1. En la línea 7, se ejecuta `incrementar_2`{l=python}. `incrementar_2`{l=python} toma un parámetro `x`{l=python} y retorna la suma de `x`{l=python} más `y`{l=python}. Si bien `fabrica_incrementos`{l=python} ya ha terminado su ejecución y por lo tanto los valores de sus parámetros no están en la memoria, la referencia a `y`{l=python} se mantiene en la clausura. La función realiza la operación `5 + 2`, donde `5`{l=python} es el valor ligado al parámetro `x`{l=python} y `2`{l=python} es el valor de `y`{l=python}, al momento de la creación de `incrementar_2`{l=python}que se guardó en la clausura.
+4. En la línea 7, se ejecuta `incrementar_2`{l=python}. `incrementar_2`{l=python} toma un parámetro `x`{l=python} y retorna la suma de `x`{l=python} más `y`{l=python}. Si bien `fabrica_incrementos`{l=python} ya ha terminado su ejecución y por lo tanto los valores de sus parámetros no están en la memoria, la referencia a `y`{l=python} se mantiene en la clausura. La función realiza la operación `5 + 2`, donde `5`{l=python} es el valor ligado al parámetro `x`{l=python} y `2`{l=python} es el valor de `y`{l=python}, al momento de la creación de `incrementar_2`{l=python}que se guardó en la clausura.
 
-1. `incrementar_2(5)` retorna 7 al ámbito global, y `print`{l=python} lo muestra en la salida.
+5. `incrementar_2(5)` retorna 7 al ámbito global, y `print`{l=python} lo muestra en la salida.
 
 ```{Important}
 Para Python todas las variables son referencias, incluido los nombres de las funciones. Al colocar paréntesis luego del nombre de la misma, se invoca la función y se ejecuta el código que contiene. Si no se colocan paréntesis, se obtiene una referencia a la función, que es un objeto más en memoria.

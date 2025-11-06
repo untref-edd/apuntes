@@ -430,9 +430,9 @@ if __name__ == "__main__":
 El fragmento de código anterior realiza los siguientes pasos:
 
 1. Extraer coordenadas de los nodos que forman el "way" desde un objeto GeoJSON.
-1. Centrar el mapa en la primera coordenada encontrada.
-1. Dibujar la línea (o polígono) sobre el mapa usando folium.PolyLine.
-1. Mostrar el mapa en un entorno interactivo (como Jupyter Notebook) usando display(mapa).
+2. Centrar el mapa en la primera coordenada encontrada.
+3. Dibujar la línea (o polígono) sobre el mapa usando folium.PolyLine.
+4. Mostrar el mapa en un entorno interactivo (como Jupyter Notebook) usando display(mapa).
 
 La función principal (main) obtiene el GeoJSON de un "way" específico, en este caso la Sede Caseros I, construye el mapa y lo muestra.
 
@@ -462,10 +462,10 @@ En general, antes de poder consultar una API, es necesario registrarse y obtener
 ## Mejores Prácticas para Usar APIs
 
 1. **Leer la documentación**: Entender límites de velocidad, autenticación y términos de uso
-1. **Manejar errores**: Implementar reintentos con backoff exponencial
-1. **Cachear respuestas**: Evitar solicitudes repetidas
-1. **Monitorear cuotas**: Estar atento a los límites de uso
-1. **Versionar**: Usar versiones específicas de APIs para evitar cambios inesperados
+2. **Manejar errores**: Implementar reintentos con backoff exponencial
+3. **Cachear respuestas**: Evitar solicitudes repetidas
+4. **Monitorear cuotas**: Estar atento a los límites de uso
+5. **Versionar**: Usar versiones específicas de APIs para evitar cambios inesperados
 
 ## Referencias y Recursos Adicionales
 

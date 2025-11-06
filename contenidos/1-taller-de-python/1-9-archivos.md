@@ -37,8 +37,8 @@ Mientras la aplicación tiene el archivo abierto, puede leer y escribir en él. 
 Cuando abrimos un archivo:
 
 1. El SO localiza el archivo y asigna un _file descriptor_.
-1. Python crea un **objeto archivo** que envuelve ese descriptor.
-1. Las operaciones de lectura/escritura se hacen en **buffers** (bloques de memoria intermedia) para optimizar el rendimiento.
+2. Python crea un **objeto archivo** que envuelve ese descriptor.
+3. Las operaciones de lectura/escritura se hacen en **buffers** (bloques de memoria intermedia) para optimizar el rendimiento.
 
 Ejemplo: si quiere leer un archivo grande, Python no trae todo de golpe, sino trozos que se van entregando al programa. Lo mismo ocurre al escribir, en lugar de escribir todo de una vez, Python lo hace en partes.
 

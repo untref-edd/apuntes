@@ -88,10 +88,10 @@ En el ejemplo si se busca `"PILA"`{l=python} como es mayor que la clave en la ra
 La inserción de un nuevo valor en un árbol B+ sigue estos pasos:
 
 1. **Buscar la hoja adecuada**: Se comienza en la raíz y se desciende por el árbol siguiendo las claves hasta llegar a la hoja donde debería insertarse el nuevo valor.
-1. **Insertar el valor**: Si la hoja tiene espacio (menos de $M-1$ claves), se inserta el nuevo valor en orden.
-1. **Dividir la hoja si es necesario**: Si la hoja está llena (tiene $M-1$ claves), se divide en dos hojas. La clave mediana se promueve al nodo padre.
-1. **Actualizar el nodo padre**: Si el nodo padre también está lleno, se repite el proceso de división y promoción hacia arriba hasta llegar a la raíz.
-1. **Crear una nueva raíz si es necesario**: Si la raíz se divide, se crea una nueva raíz con la clave promovida.
+2. **Insertar el valor**: Si la hoja tiene espacio (menos de $M-1$ claves), se inserta el nuevo valor en orden.
+3. **Dividir la hoja si es necesario**: Si la hoja está llena (tiene $M-1$ claves), se divide en dos hojas. La clave mediana se promueve al nodo padre.
+4. **Actualizar el nodo padre**: Si el nodo padre también está lleno, se repite el proceso de división y promoción hacia arriba hasta llegar a la raíz.
+5. **Crear una nueva raíz si es necesario**: Si la raíz se divide, se crea una nueva raíz con la clave promovida.
 
 ![Inserción en hoja](../assets/images/bplus2.png){align=center}
 
@@ -406,8 +406,8 @@ La elección de la estructura de datos depende del tipo de búsquedas más frecu
 Para búsquedas con el comodín `"*"`{l=python} en el medio de una palabra (como `"P*CO"`{l=python}), se puede aprovechar tanto el árbol B+ normal como el árbol de palabras invertidas. La estrategia consiste en dividir la búsqueda en dos partes:
 
 1. Buscar en el árbol normal las palabras que comienzan con el prefijo antes del `"*"`{l=python} (en este caso `"P"`{l=python}).
-1. Buscar en el árbol invertido las palabras que terminan con el sufijo después del `"*"`{l=python} (en este caso `"OC"`{l=python}).
-1. Intersectar los resultados de ambas búsquedas para obtener las coincidencias finales.
+2. Buscar en el árbol invertido las palabras que terminan con el sufijo después del `"*"`{l=python} (en este caso `"OC"`{l=python}).
+3. Intersectar los resultados de ambas búsquedas para obtener las coincidencias finales.
 
 ```{code-cell} python
 ---

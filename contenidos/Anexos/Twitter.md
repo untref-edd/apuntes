@@ -10,7 +10,7 @@ El primer paso es crear una cuenta de desarrollador en la plataforma X.
 
    - Abrir un navegador web y acceder al portal oficial: [https://developer.twitter.com/](https://developer.twitter.com/){target="\_blank"}.
 
-1. Iniciar Sesión
+2. Iniciar Sesión
 
    - Hacer clic en el botón **"Sign up"** en la esquina superior derecha e iniciar sesión con una cuenta personal de X (Twitter).
 
@@ -18,7 +18,7 @@ El primer paso es crear una cuenta de desarrollador en la plataforma X.
    **Requisito importante**: Necesitas tener una cuenta de X/Twitter verificada con un número de teléfono válido para poder solicitar acceso como desarrollador.
    ```
 
-1. Solicitar Acceso como Desarrollador
+3. Solicitar Acceso como Desarrollador
 
    - Hacer clic en **"Apply for a developer account"**.
 
@@ -30,7 +30,7 @@ El primer paso es crear una cuenta de desarrollador en la plataforma X.
 
      - **Casos de uso específicos**: Indicar si vas a analizar tweets, hacer streaming, publicar contenido, etc.
 
-1. Verificar la Solicitud
+4. Verificar la Solicitud
 
    - Revisar toda la información y enviar la solicitud.
 
@@ -46,7 +46,7 @@ Una vez aprobada tu cuenta de desarrollador, puedes crear aplicaciones para acce
 
    - Desde el Developer Portal, hacer clic en **"Projects & Apps"** en el menú lateral.
 
-1. Crear un Nuevo Proyecto
+2. Crear un Nuevo Proyecto
 
    - Hacer clic en el botón **"+ Create Project"**.
 
@@ -62,7 +62,7 @@ Una vez aprobada tu cuenta de desarrollador, puedes crear aplicaciones para acce
 
      - **"Building internal tools"**: Para herramientas empresariales.
 
-1. Crear una Aplicación dentro del Proyecto
+3. Crear una Aplicación dentro del Proyecto
 
    - Después de crear el proyecto, X te pedirá crear una aplicación.
 
@@ -90,7 +90,7 @@ Este es el paso más importante: generar las ***"llaves"*** para acceder a los d
    Para análisis de datos, generalmente solo necesitas permisos de **"Read"**.
    ```
 
-1. Generar el Bearer Token (API v2)
+2. Generar el Bearer Token (API v2)
 
    - Ir a la pestaña **"Keys and Tokens"**.
 
@@ -102,7 +102,7 @@ Este es el paso más importante: generar las ***"llaves"*** para acceder a los d
    El Bearer Token se muestra solo una vez. Si lo pierdes, deberás regenerar uno nuevo.
    ```
 
-1. Generar Consumer Keys (API v1.1)
+3. Generar Consumer Keys (API v1.1)
 
    - En la sección **"Consumer Keys"**, hacer clic en **"Generate"**.
 
@@ -114,7 +114,7 @@ Este es el paso más importante: generar las ***"llaves"*** para acceder a los d
 
    - **Copiar y guardar** ambas credenciales de forma segura.
 
-1. Generar Access Token y Access Token Secret
+4. Generar Access Token y Access Token Secret
 
    - En la sección **"Access Token and Secret"**, hacer clic en **"Generate"**.
 
@@ -140,7 +140,7 @@ Para acceder a diferentes funcionalidades de la API, necesitas configurar permis
 
    - Guardar los cambios.
 
-1. Verificar Nivel de Acceso a la API
+2. Verificar Nivel de Acceso a la API
 
    - X ofrece diferentes niveles de acceso:
 
@@ -152,7 +152,7 @@ Para acceder a diferentes funcionalidades de la API, necesitas configurar permis
 
      - **Enterprise**: Acceso personalizado y soporte premium.
 
-1. Configurar Webhook URLs (Opcional)
+3. Configurar Webhook URLs (Opcional)
 
    - Si planeas usar webhooks para recibir datos en tiempo real:
 
@@ -173,7 +173,7 @@ Una vez obtenidas las credenciales, es importante verificar que funcionan correc
         "https://api.twitter.com/2/tweets/search/recent?query=python"
    ```
 
-1. Verificar Access Tokens
+2. Verificar Access Tokens
 
    - Para OAuth 1.0a, las credenciales se usan en conjunto para firmar las peticiones.
 
@@ -238,9 +238,9 @@ Es importante entender las limitaciones de cada nivel de acceso:
 ### Protección de Credenciales
 
 1. **Nunca hardcodear** las credenciales en el código fuente.
-1. **Usar variables de entorno** o archivos de configuración privados.
-1. **Agregar archivos de credenciales** al `.gitignore`.
-1. **Regenerar tokens** periódicamente por seguridad.
+2. **Usar variables de entorno** o archivos de configuración privados.
+3. **Agregar archivos de credenciales** al `.gitignore`.
+4. **Regenerar tokens** periódicamente por seguridad.
 
 ### Ejemplo de Configuración Segura
 

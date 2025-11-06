@@ -44,8 +44,8 @@ Nos podemos imaginar que un índice invertido es una especie de diccionario, don
 Imaginemos que tenemos una colección de documentos y queremos buscar aquellos que contienen la palabra "Python". Sin un índice, tendríamos que:
 
 1. Leer cada documento completo
-1. Buscar la palabra "Python" en cada uno
-1. Guardar los documentos que la contengan
+2. Buscar la palabra "Python" en cada uno
+3. Guardar los documentos que la contengan
 
 Este proceso es extremadamente ineficiente para colecciones grandes. Con un índice invertido, simplemente buscamos "python" en el diccionario y obtenemos directamente la lista de documentos que lo contienen.
 
@@ -139,7 +139,7 @@ El modelo booleano es determinístico: un documento o bien coincide con la consu
 Un índice invertido consta de dos componentes principales:
 
 1. **Diccionario (o vocabulario)**: Contiene todos los términos únicos que aparecen en la colección
-1. **Listas de postings**: Para cada término del diccionario, una lista de documentos donde aparece
+2. **Listas de postings**: Para cada término del diccionario, una lista de documentos donde aparece
 
 <div style="width:100%; display:flex; justify-content:center;">
 
@@ -602,15 +602,15 @@ El algoritmo **BSBI** (Blocked Sort-Based Indexing) es una técnica que construy
 **Fase 1: Generación de bloques ordenados**
 
 1. Lee documentos en bloques que sí caben en memoria
-1. Para cada bloque, extrae pares (término, doc_id)
-1. Ordena los pares en memoria, agrupando por términos
-1. Escribe el bloque ordenado a disco
+2. Para cada bloque, extrae pares (término, doc_id)
+3. Ordena los pares en memoria, agrupando por términos
+4. Escribe el bloque ordenado a disco
 
 **Fase 2: Fusión de bloques (merge de k-vías)**
 
 1. Abre todos los archivos de bloques simultáneamente
-1. Usa un heap para fusionar eficientemente
-1. Produce el índice final ordenado
+2. Usa un heap para fusionar eficientemente
+3. Produce el índice final ordenado
 
 #### Pseudocódigo BSBI
 
@@ -893,24 +893,24 @@ FIN FUNCIÓN
 
 1. **Particionamiento**: La colección se divide en splits (bloques) de documentos
 
-1. **Map en paralelo**: Cada mapper procesa un split:
+2. **Map en paralelo**: Cada mapper procesa un split:
 
    - Lee documentos asignados
    - Tokeniza y normaliza términos
    - Emite pares (término, doc_id)
 
-1. **Shuffle**: El framework agrupa automáticamente:
+3. **Shuffle**: El framework agrupa automáticamente:
 
    - Todos los pares con el mismo término van al mismo reducer
    - Los doc_ids se agrupan en listas
 
-1. **Reduce en paralelo**: Cada reducer procesa un rango de términos:
+4. **Reduce en paralelo**: Cada reducer procesa un rango de términos:
 
    - Recibe (término, [doc_id₁, doc_id₂, ..., doc_idₙ])
    - Elimina duplicados y ordena la lista
    - Escribe el índice parcial a disco
 
-1. **Consolidación**: Los índices parciales se combinan en el índice final
+5. **Consolidación**: Los índices parciales se combinan en el índice final
 
 #### Ventajas y Desventajas de MapReduce
 
@@ -952,18 +952,18 @@ Al elegir un algoritmo de construcción de índices se debe considerar:
    - 1-100 GB: BSBI o SPIMI.
    - \> 100 GB: MapReduce o sistemas especializados.
 
-1. **Recursos disponibles**:
+2. **Recursos disponibles**:
 
    - RAM limitada: BSBI (menor uso de memoria).
    - RAM abundante: SPIMI (más rápido).
    - Cluster disponible: MapReduce.
 
-1. **Frecuencia de actualización**:
+3. **Frecuencia de actualización**:
 
    - Actualizaciones frecuentes: Índices incrementales.
    - Reconstrucción completa: Batch processing.
 
-1. **Requisitos de tiempo**:
+4. **Requisitos de tiempo**:
 
    - Tiempo real: Índices incrementales.
    - Batch: Cualquier algoritmo según tamaño.

@@ -12,7 +12,7 @@ install:
 ## fmt: formatea todos el contenido del libro
 .PHONY: fmt
 fmt:
-	mdformat contenidos/**/*.md
+	mdformat --number contenidos/**/*.md
 	black --line-length 120 .
 
 ## build: compila el libro
@@ -30,5 +30,5 @@ PORT ?= 8080
 
 ## server: levanta un servidor http para visualizar el libro
 .PHONY: server
-server: build
+server:
 	python -m http.server $(PORT) --directory contenidos/_build/html

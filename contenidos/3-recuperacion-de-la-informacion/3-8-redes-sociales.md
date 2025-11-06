@@ -38,7 +38,7 @@ Las redes sociales se han convertido en una de las fuentes más importantes de i
 En este capítulo exploraremos diferentes técnicas y herramientas para recuperar y analizar información de redes sociales, centrándonos en dos casos de estudio principales:
 
 1. **Facebook**: Modelado de redes sociales como grafos y recorrido mediante algoritmos de búsqueda en profundidad (DFS).
-1. **Twitter**: Procesamiento de streams de tweets en tiempo real y análisis de datos históricos en formato JSON.
+2. **Twitter**: Procesamiento de streams de tweets en tiempo real y análisis de datos históricos en formato JSON.
 
 ```{note}
 Es importante mencionar que al trabajar con datos de redes sociales, debemos respetar los términos de servicio de cada plataforma, las leyes de protección de datos personales, y considerar las implicaciones éticas del uso de información pública.

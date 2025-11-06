@@ -618,11 +618,11 @@ header-rows: 1
 ## Mejores Prácticas para Web Scraping
 
 1. **Verificar legalidad**: Revisar términos de servicio y robots.txt
-1. **Identificarse**: Usar un User-Agent descriptivo
-1. **Ser respetuoso**: Limitar la frecuencia de solicitudes
-1. **Manejar errores**: Anticipar cambios en la estructura del sitio
-1. **Considerar alternativas**: Preferir APIs cuando estén disponibles
-1. **Mantener el código**: Si los sitios cambian, el scraper debe actualizarse
+2. **Identificarse**: Usar un User-Agent descriptivo
+3. **Ser respetuoso**: Limitar la frecuencia de solicitudes
+4. **Manejar errores**: Anticipar cambios en la estructura del sitio
+5. **Considerar alternativas**: Preferir APIs cuando estén disponibles
+6. **Mantener el código**: Si los sitios cambian, el scraper debe actualizarse
 
 ## Herramientas y Bibliotecas Adicionales
 
