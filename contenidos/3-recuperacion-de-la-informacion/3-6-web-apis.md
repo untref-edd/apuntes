@@ -162,7 +162,7 @@ En Python, la biblioteca `requests` facilita la realización de solicitudes HTTP
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import requests
 
@@ -291,11 +291,11 @@ REST es un estilo arquitectónico para diseñar servicios web que se basa en los
 
 #### Ejemplo: Consumir una API REST Pública
 
-Vamos a consumir una API pública para consultar resultados electorales de Argentina, disponible en [https://resultados.mininterior.gob.ar](https://resultados.mininterior.gob.ar){target="\_blank"}.
+Vamos a consumir una API pública para consultar resultados electorales de Argentina, disponible en [https://resultados.mininterior.gob.ar](https://resultados.mininterior.gob.ar).
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import requests
 import json
@@ -324,7 +324,7 @@ En la solicitud anterior, se puede ver que se utilizan varios parámetros en la 
 | `seccionProvincialId=1` | 1     | 1 = Primera Sección Electoral. |
 | `seccionId=118`         | 118   | 118 = Tres de Febrero.         |
 
-La documentación de la API se puede [descargar](https://www.argentina.gob.ar/sites/default/files/2017/08/api-publicacion-resultados-electorales.zip){target="\_blank"} desde el sitio oficial del Ministerio del Interior.
+La documentación de la API se puede [descargar](https://www.argentina.gob.ar/sites/default/files/2017/08/api-publicacion-resultados-electorales.zip) desde el sitio oficial del Ministerio del Interior.
 
 La respuesta de la API es un JSON con los resultados detallados para Tres de Febrero.
 
@@ -333,12 +333,12 @@ La respuesta de la API es un JSON con los resultados detallados para Tres de Feb
 Muchas APIs REST proporcionan datos estructurados útiles. Vamos a consultar OpenStreetMap (OSM) que ofrece datos geográficos.
 
 ```{note}
- [OpenStreetMap](https://www.openstreetmap.org/about){target="_blank"} es un proyecto colaborativo para crear un mapa libre y editable del mundo. Los datos son aportados por voluntarios y están disponibles bajo la licencia [Open Database License (ODbL)](https://es.wikipedia.org/wiki/Licencia_Abierta_de_Bases_de_Datos){target="_blank"}.
+ [OpenStreetMap](https://www.openstreetmap.org/about) es un proyecto colaborativo para crear un mapa libre y editable del mundo. Los datos son aportados por voluntarios y están disponibles bajo la licencia [Open Database License (ODbL)](https://es.wikipedia.org/wiki/Licencia_Abierta_de_Bases_de_Datos).
 ```
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import requests
 from lxml import etree as ET
@@ -364,9 +364,9 @@ if response.status_code == 200:
         print("No se encontró el elemento <way> en la respuesta.")
 ```
 
-La documentación de la API de OpenStreetMap está disponible en [https://wiki.openstreetmap.org/wiki/API_v0.6](https://wiki.openstreetmap.org/wiki/API_v0.6){target="\_blank"}.
+La documentación de la API de OpenStreetMap está disponible en [https://wiki.openstreetmap.org/wiki/API_v0.6](https://wiki.openstreetmap.org/wiki/API_v0.6).
 
-Con el way ID `1275831310` también se puede obtener el mapa correspondiente a través del servicio Overpass API, que permite consultas más complejas. Aquí hay un ejemplo de cómo obtener la geometría del way en formato GeoJSON y visualizarlo en un mapa interactivo usando la librería `folium`{l=python}:
+Con el way ID `1275831310` también se puede obtener el mapa correspondiente a través del servicio Overpass API, que permite consultas más complejas. Aquí hay un ejemplo de cómo obtener la geometría del way en formato GeoJSON y visualizarlo en un mapa interactivo usando la librería `folium`:
 
 ```python
 import requests
@@ -439,10 +439,10 @@ La función principal (main) obtiene el GeoJSON de un "way" específico, en este
 overpass-api.de es un servicio web que permite consultar y extraer datos de OpenStreetMap mediante un lenguaje de consultas específico (Overpass QL). Se usa para obtener información geográfica detallada, como nodos, caminos y relaciones, de la base de datos de OSM.
 
 ```{note}
-[GeoJSON](https://es.wikipedia.org/wiki/GeoJSON){target="_blank"} es un formato basado en JSON para representar datos geográficos. Define varias estructuras como Point, LineString, Polygon, MultiPoint, MultiLineString, MultiPolygon y GeometryCollection para describir diferentes tipos de geometrías espaciales.
+[GeoJSON](https://es.wikipedia.org/wiki/GeoJSON) es un formato basado en JSON para representar datos geográficos. Define varias estructuras como Point, LineString, Polygon, MultiPoint, MultiLineString, MultiPolygon y GeometryCollection para describir diferentes tipos de geometrías espaciales.
 ```
 
-Los servicios que ofrece OpenStreetMap se pueden consultar en su [wiki](https://wiki.openstreetmap.org/wiki/Main_Page){target="\_blank"}.
+Los servicios que ofrece OpenStreetMap se pueden consultar en su [wiki](https://wiki.openstreetmap.org/wiki/Main_Page).
 
 #### Autenticación en APIs REST
 
@@ -471,9 +471,9 @@ En general, antes de poder consultar una API, es necesario registrarse y obtener
 
 ### Documentación Oficial
 
-- [Requests Documentation](https://requests.readthedocs.io/){target="\_blank"}
-- [HTTP Documentation (MDN)](https://developer.mozilla.org/es/docs/Web/HTTP){target="\_blank"}
-- [REST API Tutorial](https://restfulapi.net/){target="\_blank"}
+- [Requests Documentation](https://requests.readthedocs.io/)
+- [HTTP Documentation (MDN)](https://developer.mozilla.org/es/docs/Web/HTTP)
+- [REST API Tutorial](https://restfulapi.net/)
 
 ### Libros y Referencias Académicas
 
@@ -481,8 +481,8 @@ En general, antes de poder consultar una API, es necesario registrarse y obtener
 
 ### APIs Públicas para Practicar
 
-- [JSONPlaceholder](https://jsonplaceholder.typicode.com/){target="\_blank"} - API REST falsa para testing
-- [REST Countries](https://restcountries.com/){target="\_blank"} - Información sobre países
-- [OpenWeatherMap](https://openweathermap.org/api){target="\_blank"} - Datos meteorológicos
-- [The Star Wars API](https://swapi.dev/){target="\_blank"} - Datos de Star Wars
-- [PokéAPI](https://pokeapi.co/){target="\_blank"} - Información sobre Pokémon
+- [JSONPlaceholder](https://jsonplaceholder.typicode.com/) - API REST falsa para testing
+- [REST Countries](https://restcountries.com/) - Información sobre países
+- [OpenWeatherMap](https://openweathermap.org/api) - Datos meteorológicos
+- [The Star Wars API](https://swapi.dev/) - Datos de Star Wars
+- [PokéAPI](https://pokeapi.co/) - Información sobre Pokémon

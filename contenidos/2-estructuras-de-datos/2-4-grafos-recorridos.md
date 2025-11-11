@@ -67,7 +67,7 @@ CAMINO_MINIMO_BFS (s: Vertice)
                 q.encolar(w)
 ```
 
-La ventaja de este algoritmo es que encuentra el camino más corto (mínimo número de aristas) desde el vértice `s`{l=python} a cualquier otro vértice alcanzable desde `s`{l=python} en $O(|V| + |A|)$.
+La ventaja de este algoritmo es que encuentra el camino más corto (mínimo número de aristas) desde el vértice `s` a cualquier otro vértice alcanzable desde `s` en $O(|V| + |A|)$.
 
 ### Grafo Bipartito
 
@@ -76,7 +76,7 @@ Grafo Bipartito
 
 ```{figure} ../assets/images/grafo-bipartito.png
 ---
-name: grafo-bipartito
+name: grafo-bipartito-simple
 align: center
 width: 60%
 ---

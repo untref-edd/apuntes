@@ -14,7 +14,7 @@ kernelspec:
 
 ```{code-cell} python
 ---
-tags: [hide-output, remove-cell]
+tags: hide-output, remove-cell
 ---
 """Borra todos los archivos y carpetas en /tmp"""
 import os
@@ -47,7 +47,6 @@ El siguiente diagrama ilustra la arquitectura básica de un ***crawler***:
 ```{mermaid}
 ---
 name: crawler_diagram
-title: Diagrama de un Crawler
 ---
 flowchart TB
     %% Definición del flujo principal (de arriba a abajo para mejor alineación visual)
@@ -164,7 +163,7 @@ robots.txt
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import requests
 
@@ -178,7 +177,7 @@ print('\n'.join(response.text.split('\n')))
 
 El formato típico de un archivo `robots.txt` incluye directivas como `User-agent`, `Disallow`, y `Allow` para controlar el acceso de diferentes tipos de bots a distintas partes del sitio web.
 
-El protocolo Robots Exclusion Standard define cómo los bots deben interpretar estas directivas para respetar las políticas del sitio. Este protocolo se encuentra estandarizado a través de la [RFC 9309](https://www.rfc-editor.org/rfc/rfc9309.html){target="\_blank"}.
+El protocolo Robots Exclusion Standard define cómo los bots deben interpretar estas directivas para respetar las políticas del sitio. Este protocolo se encuentra estandarizado a través de la [RFC 9309](https://www.rfc-editor.org/rfc/rfc9309.html).
 
 Términos de Servicio
 : Muchos sitios web prohíben explícitamente el scraping en sus términos de uso.
@@ -197,7 +196,7 @@ Uso responsable de los datos
 
 ## Web Scraping Manual con Python
 
-Python ofrece excelentes bibliotecas para web scraping. Las más populares son `requests`{l=python} para realizar solicitudes HTTP y `BeautifulSoup`{l=python} para parsear HTML.
+Python ofrece excelentes bibliotecas para web scraping. Las más populares son `requests` para realizar solicitudes HTTP y `BeautifulSoup` para parsear HTML.
 
 ### Instalación de Bibliotecas
 
@@ -205,13 +204,13 @@ Python ofrece excelentes bibliotecas para web scraping. Las más populares son `
 pip install requests beautifulsoup4 lxml
 ```
 
-`BeautifulSoup`{l=python} es una biblioteca para parsear documentos HTML y XML, facilitando la navegación y búsqueda de elementos dentro del árbol del documento.
+`BeautifulSoup` es una biblioteca para parsear documentos HTML y XML, facilitando la navegación y búsqueda de elementos dentro del árbol del documento.
 
 ### Ejemplo Básico de un crawler
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import requests
 from bs4 import BeautifulSoup
@@ -554,7 +553,7 @@ Podemos analizar los resultados usando pandas:
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import pandas as pd
 
@@ -573,7 +572,7 @@ print("\nDistribución de calificaciones:")
 print(df['rating'].value_counts())
 ```
 
-[Descargar código completo del Spider](https://github.com/untref-edd/apuntes/tree/main/contenidos/_static/code/scraping){target="\_blank"}
+[Descargar código completo del Spider](https://github.com/untref-edd/apuntes/tree/main/contenidos/_static/code/scraping)
 
 ### Extensiones Posibles
 
@@ -654,8 +653,8 @@ header-rows: 1
 
 ### Documentación Oficial
 
-- [Beautiful Soup Documentation](https://www.crummy.com/software/BeautifulSoup/bs4/doc/){target="\_blank"}
-- [Scrapy Documentation](https://docs.scrapy.org/){target="\_blank"}
+- [Beautiful Soup Documentation](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
+- [Scrapy Documentation](https://docs.scrapy.org/)
 
 ### Libros y Referencias Académicas
 
@@ -664,11 +663,11 @@ header-rows: 1
 
 ### Sitios para Practicar Web Scraping
 
-- [Quotes to Scrape](https://quotes.toscrape.com/){target="\_blank"} - Sitio diseñado para practicar scraping
-- [Books to Scrape](https://books.toscrape.com/){target="\_blank"} - Tienda de libros ficticia para scraping
-- [Scrape This Site](https://www.scrapethissite.com/){target="\_blank"} - Ejercicios de scraping
+- [Quotes to Scrape](https://quotes.toscrape.com/) - Sitio diseñado para practicar scraping
+- [Books to Scrape](https://books.toscrape.com/) - Tienda de libros ficticia para scraping
+- [Scrape This Site](https://www.scrapethissite.com/) - Ejercicios de scraping
 
 ### Aspectos Legales
 
-- [Can I scrape your website?](https://blog.apify.com/is-web-scraping-legal/){target="\_blank"}
-- [Understanding robots.txt](https://developers.google.com/search/docs/crawling-indexing/robots/intro){target="\_blank"}
+- [Can I scrape your website?](https://blog.apify.com/is-web-scraping-legal/)
+- [Understanding robots.txt](https://developers.google.com/search/docs/crawling-indexing/robots/intro)

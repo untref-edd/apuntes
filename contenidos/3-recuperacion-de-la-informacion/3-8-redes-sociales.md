@@ -14,7 +14,7 @@ kernelspec:
 
 ```{code-cell} python
 ---
-tags: [hide-output, remove-cell]
+tags: hide-output, remove-cell
 ---
 """Borra todos los archivos y carpetas en /tmp"""
 import os
@@ -52,7 +52,7 @@ El primer paso es registrarse como desarrollador en la plataforma de Meta (Faceb
 
 ### Instalación de la Librería Facebook SDK
 
-Para trabajar con la API de Facebook en Python, vamos a usar la librería `facebook-sdk`{l=python}:
+Para trabajar con la API de Facebook en Python, vamos a usar la librería `facebook-sdk`:
 
 ```bash
 pip install facebook-sdk
@@ -60,7 +60,7 @@ pip install facebook-sdk
 
 ### Ejemplo de Uso de Facebook Graph API
 
-Copiar el siguiente fragmento de código en un archivo Python y reemplazar `USER_ACCESS_TOKEN`{l=python} con el token de acceso obtenido
+Copiar el siguiente fragmento de código en un archivo Python y reemplazar `USER_ACCESS_TOKEN` con el token de acceso obtenido
 
 ```{code-block} python
 ---
@@ -83,20 +83,20 @@ def get_all_likes_sdk(token):
     try:
         # 1. Creamos una instancia del objeto GraphAPI
         graph = facebook.GraphAPI(access_token=token)
-        
+
         print("Obteniendo tus 'Me gusta' con el SDK de Facebook...")
-        
+
         # 2. Usamos get_all_connections para manejar la paginación automáticamente.
         #    La librería se encargará de hacer todas las llamadas necesarias.
         pages_generator = graph.get_all_connections(
-            id='me', 
+            id='me',
             connection_name='likes',
             fields='name,category'
         )
-        
+
         # Convertimos el generador a una lista para tener todos los resultados
         all_likes = list(pages_generator)
-        
+
         print("\nProceso completado.")
         return all_likes
 
@@ -116,7 +116,7 @@ if __name__ == "__main__":
     else:
         # Llamamos a la nueva función
         likes = get_all_likes_sdk(USER_ACCESS_TOKEN)
-        
+
         if likes:
             print(f"\n¡Se encontraron un total de {len(likes)} páginas que te gustan!")
             print("\n--- Ejemplo de los primeros 100 resultados: ---")
@@ -135,7 +135,6 @@ En Facebook las relaciones de amistad son simétricas o bidireccionales, por lo 
 ```{mermaid}
 ---
 name: grafo-facebook
-title: Grafo de Facebook
 ---
 graph LR
     A[Ana]
@@ -145,7 +144,7 @@ graph LR
     E[Elena]
     F[Fernando]
     G[Gabriela]
-    
+
     A <--> B
     A <--> C
     A <--> D
@@ -155,7 +154,7 @@ graph LR
     D <--> F
     E <--> F
     F <--> G
-    
+
     style A fill:#ffcccc,stroke:#cc0000,stroke-width:2px
     style B fill:#ccffcc,stroke:#00cc00,stroke-width:2px
     style C fill:#ccccff,stroke:#0000cc,stroke-width:2px
@@ -165,7 +164,7 @@ graph LR
     style G fill:#ffddcc,stroke:#cc6600,stroke-width:2px
 ```
 
-En Facebook se puede acceder online a Graph API Explorer para probar consultas y explorar la estructura de datos: [Graph API Explorer](https://developers.facebook.com/tools/explorer/){target="\_blank"}.
+En Facebook se puede acceder online a Graph API Explorer para probar consultas y explorar la estructura de datos: [Graph API Explorer](https://developers.facebook.com/tools/explorer/).
 
 La siguiente consulta devuelve todos los likes e incluye las categorías:
 
@@ -193,7 +192,7 @@ Una persona que sigue a otra recibe sus tweets en su timeline, pero la persona s
 
 Antes de poder usar la API de Twitter, es necesario registrarse como desarrollador y crear una aplicación para obtener las credenciales necesarias (Bearer Token y Access Token). Ver [Anexo: Twitter](../Anexos/Twitter.md) para una guía detallada.
 
-Para consultar la API de Twitter en Python, usaremos la librería `tweepy`{l=python}.
+Para consultar la API de Twitter en Python, usaremos la librería `tweepy`.
 
 ```bash
 pip install tweepy
@@ -220,7 +219,7 @@ from datetime import datetime
 def verificar_credenciales():
     """Verifica que las credenciales estén configuradas"""
     bearer_token = os.getenv('TWITTER_BEARER_TOKEN')
-    
+
     if not bearer_token:
         print("Error: TWITTER_BEARER_TOKEN no encontrado en variables de entorno")
         print("\nPara configurar las credenciales:")
@@ -228,22 +227,22 @@ def verificar_credenciales():
         print("2. Ejecuta: export TWITTER_BEARER_TOKEN='tu_bearer_token_aqui'")
         print("3. O crea un archivo .env con: TWITTER_BEARER_TOKEN=tu_bearer_token_aqui")
         return None
-    
+
     return bearer_token
 
 def buscar_tweets_recientes(query="python", max_results=10):
     """Busca tweets recientes sobre un tema"""
-    
+
     bearer_token = verificar_credenciales()
     if not bearer_token:
         return
-    
+
     try:
         # Crear cliente de Twitter API v2
         client = tweepy.Client(bearer_token=bearer_token)
-        
+
         print(f"Buscando tweets sobre: '{query}'")
-        
+
         # Buscar tweets recientes
         tweets = client.search_recent_tweets(
             query=f"{query} -is:retweet lang:es",  # Excluir retweets, solo español
@@ -252,34 +251,34 @@ def buscar_tweets_recientes(query="python", max_results=10):
             expansions=["author_id"],
             user_fields=["username", "name", "public_metrics"]
         )
-        
+
         if not tweets.data:
             print("No se encontraron tweets. Verifica tu Bearer Token y cuota de API.")
             return
-        
+
         print(f"Encontrados {len(tweets.data)} tweets")
-        
+
         # Procesar y mostrar resultados
         archivo_salida = f"/tmp/tweets_{query.replace(' ', '_')}.jsonl"
-        
+
         with open(archivo_salida, "w", encoding="utf-8") as f:
             for tweet in tweets.data:
                 # Obtener información del autor
                 author = None
                 if tweets.includes and 'users' in tweets.includes:
                     author = next(
-                        (user for user in tweets.includes["users"] 
-                         if user.id == tweet.author_id), 
+                        (user for user in tweets.includes["users"]
+                         if user.id == tweet.author_id),
                         None
                     )
-                
+
                 # Mostrar información del tweet
                 print(f"\nTweet: {tweet.text[:100]}...")
                 if author:
                     print(f"Autor: @{author.username} ({author.name})")
                 print(f"Likes: {tweet.public_metrics['like_count']} | "
                       f"Retweets: {tweet.public_metrics['retweet_count']}")
-                
+
                 # Guardar en formato JSON
                 tweet_dict = {
                     "id": tweet.id,
@@ -294,24 +293,24 @@ def buscar_tweets_recientes(query="python", max_results=10):
                     "lang": tweet.lang,
                     "fecha_extraccion": datetime.now().isoformat()
                 }
-                
+
                 f.write(json.dumps(tweet_dict, ensure_ascii=False) + "\n")
-        
+
         print(f"\n Tweets guardados en: {archivo_salida}")
-        
+
     except tweepy.errors.Forbidden as e:
         print("Error 403 - Acceso denegado:")
         print("   • Verifica que tu Bearer Token sea válido")
         print("   • Asegúrate de que tu aplicación esté asociada a un Proyecto")
         print("   • Revisa que tengas permisos para usar la API v2")
         print(f"   • Detalles del error: {e}")
-        
+
     except tweepy.errors.TooManyRequests as e:
         print("Error 429 - Demasiadas solicitudes:")
         print("   • Has excedido el límite de la API")
         print("   • Espera unos minutos antes de intentar de nuevo")
         print(f"   • Detalles del error: {e}")
-        
+
     except Exception as e:
         print(f"Error inesperado: {e}")
         print("   • Verifica tu conexión a internet")
@@ -319,21 +318,21 @@ def buscar_tweets_recientes(query="python", max_results=10):
 
 def mostrar_estadisticas_api():
     """Muestra información sobre los límites de la API"""
-    
+
     bearer_token = verificar_credenciales()
     if not bearer_token:
         return
-    
+
     try:
         client = tweepy.Client(bearer_token=bearer_token)
-        
+
         # Verificar autenticación haciendo una búsqueda mínima
         response = client.search_recent_tweets(
-            query="test", 
+            query="test",
             max_results=10,
             tweet_fields=["created_at"]
         )
-        
+
         print("Autenticación exitosa")
         print(f"• Resultados de búsqueda de prueba: {response.meta.get('result_count', 0)} tweets encontrados")
         print("\nInformación de la API:")
@@ -341,24 +340,24 @@ def mostrar_estadisticas_api():
         print("• Search Recent: Disponible")
         print("• Para información actualizada sobre límites y tiers de la API, consulta la documentación oficial:")
         print("  https://developer.twitter.com/en/docs/twitter-api/rate-limits")
-        
+
     except Exception as e:
         print(f"Error al verificar API: {e}")
 
 def main():
     """Función principal del programa"""
-    
+
     print("Twitter/X API - Ejemplo de Análisis de Datos")
     print("=" * 50)
-    
+
     # Verificar configuración
     print("\n1 Verificando configuración...")
     mostrar_estadisticas_api()
-    
+
     # Buscar tweets sobre Python
     print("\n2 Buscando tweets sobre Python...")
     buscar_tweets_recientes("python", max_results=5)
-    
+
     # Buscar tweets sobre programación
     print("\n3 Buscando tweets sobre programación...")
     buscar_tweets_recientes("programacion", max_results=5)
@@ -372,7 +371,7 @@ if __name__ == "__main__":
     except ImportError:
         print("Tip: Instala python-dotenv para usar archivos .env")
         print("   pip install python-dotenv")
-    
+
     main()
 ```
 
@@ -382,7 +381,7 @@ La API v2 de Twitter devuelve tweets en formato JSON con esta estructura:
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import json
 from datetime import datetime
@@ -443,9 +442,7 @@ Cuando trabajamos con datos históricos de Twitter, comúnmente recibimos archiv
 
 ```{code-cell} python
 ---
-tags: [hide-output]
-mystnb:
-  number_source_lines: true
+tags: hide-output
 ---
 import random
 
@@ -461,7 +458,7 @@ def generar_tweets_ejemplo(n=20):
         {"id": "1004", "name": "Diego Mendoza", "username": "diego_data", "followers": 987},
         {"id": "1005", "name": "Elena Torres", "username": "elena_ai", "followers": 5432},
     ]
-    
+
     temas = [
         ("Las estructuras de datos son fundamentales", ["EDD", "Programación"]),
         ("Python es un lenguaje muy versátil", ["Python", "Desarrollo"]),
@@ -469,12 +466,12 @@ def generar_tweets_ejemplo(n=20):
         ("El análisis de redes sociales es fascinante", ["RedesSociales", "DataScience"]),
         ("Machine learning está revolucionando el mundo", ["ML", "IA"]),
     ]
-    
+
     tweets = []
     for i in range(n):
         usuario = random.choice(usuarios)
         tema, hashtags = random.choice(temas)
-        
+
         # Formato real de Twitter API v2
         tweet = {
             "id": str(1000000000000000000 + i),
@@ -496,7 +493,7 @@ def generar_tweets_ejemplo(n=20):
             "_user": usuario  # No viene en API real, lo agregamos para simplificar ejemplos
         }
         tweets.append(tweet)
-    
+
     return tweets
 
 # Generar tweets de ejemplo
@@ -507,7 +504,7 @@ print(f"\nPrimer tweet:\n{json.dumps(tweets[0], indent=2, ensure_ascii=False)}")
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 # Guardar tweets en formato JSONL
 archivo_tweets = "/tmp/tweets_historicos.jsonl"
@@ -521,7 +518,7 @@ print(f"Tweets guardados en {archivo_tweets}")
 # Verificar el contenido del archivo
 with open(archivo_tweets, 'r', encoding='utf-8') as f:
     primeras_lineas = [f.readline() for _ in range(3)]
-    
+
 print(f"\nPrimeras 3 líneas del archivo:")
 for i, linea in enumerate(primeras_lineas, 1):
     tweet = json.loads(linea)
@@ -534,9 +531,7 @@ Ahora procesemos los tweets para extraer información útil:
 
 ```{code-cell} python
 ---
-tags: [hide-output]
-mystnb:
-  number_source_lines: true
+tags: hide-output
 ---
 def procesar_tweets_jsonl(archivo):
     """
@@ -552,19 +547,19 @@ def procesar_tweets_jsonl(archivo):
         "total_replies": 0,
         "tweets_por_usuario": {},
     }
-    
+
     with open(archivo, 'r', encoding='utf-8') as f:
         for linea in f:
             tweet = json.loads(linea)
             estadisticas["total_tweets"] += 1
-            
+
             # Usuario (de metadatos auxiliares _user)
             if "_user" in tweet:
                 username = tweet["_user"]["username"]
                 estadisticas["usuarios_unicos"].add(username)
                 estadisticas["tweets_por_usuario"][username] = \
                     estadisticas["tweets_por_usuario"].get(username, 0) + 1
-            
+
             # Hashtags (de entities)
             if "entities" in tweet and "hashtags" in tweet["entities"]:
                 for hashtag_obj in tweet["entities"]["hashtags"]:
@@ -572,17 +567,17 @@ def procesar_tweets_jsonl(archivo):
                     if hashtag:
                         estadisticas["hashtags"][hashtag] = \
                             estadisticas["hashtags"].get(hashtag, 0) + 1
-            
+
             # Métricas públicas (estructura real de API v2)
             if "public_metrics" in tweet:
                 metrics = tweet["public_metrics"]
                 estadisticas["total_retweets"] += metrics.get("retweet_count", 0)
                 estadisticas["total_likes"] += metrics.get("like_count", 0)
                 estadisticas["total_replies"] += metrics.get("reply_count", 0)
-    
+
     # Convertir set a lista para serialización
     estadisticas["usuarios_unicos"] = list(estadisticas["usuarios_unicos"])
-    
+
     return estadisticas
 
 # Procesar los tweets

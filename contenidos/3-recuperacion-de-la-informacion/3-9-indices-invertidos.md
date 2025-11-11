@@ -14,7 +14,7 @@ kernelspec:
 
 ```{code-cell} python
 ---
-tags: [hide-output, remove-cell]
+tags: hide-output, remove-cell
 ---
 """Borra todos los archivos y carpetas en /tmp"""
 import os
@@ -51,7 +51,7 @@ Este proceso es extremadamente ineficiente para colecciones grandes. Con un índ
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 # Ejemplo: búsqueda sin índice (ineficiente)
 documentos = {
@@ -146,7 +146,6 @@ Un índice invertido consta de dos componentes principales:
 ```{mermaid}
 ---
 name: indice-invertido-matriz
-title: Estructura de un Índice Invertido
 ---
 %%{init: {'flowchart': {'nodeSpacing': 0, 'rankSpacing': 0, 'useMaxWidth': true}}}%%
 flowchart LR
@@ -204,7 +203,7 @@ Las stopwords son palabras comunes que no se indexan porque aportan poco valor s
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 from collections import defaultdict
 
@@ -299,9 +298,9 @@ print(indice)
 ```
 
 ```{note}
-`defaultdict`{l=python} de la librería estándar de Python se utiliza para simplificar la creación del diccionario de listas de postings. Cada vez que se accede a una clave que no existe, se crea automáticamente un conjunto vacío sin necesidad de inicializarlo con `setdefault`{l=python} como un diccionario estándar.
+`defaultdict` de la librería estándar de Python se utiliza para simplificar la creación del diccionario de listas de postings. Cada vez que se accede a una clave que no existe, se crea automáticamente un conjunto vacío sin necesidad de inicializarlo con `setdefault` como un diccionario estándar.
 
-Para realizar búsquedas booleanas, conviene representar las listas de postings como conjuntos (`set`{l=python}) para aprovechar las operaciones de intersección, unión y diferencia que son eficientes en conjuntos.
+Para realizar búsquedas booleanas, conviene representar las listas de postings como conjuntos (`set`) para aprovechar las operaciones de intersección, unión y diferencia que son eficientes en conjuntos.
 ```
 
 ### Búsquedas con el Índice
@@ -310,7 +309,7 @@ Ahora podemos realizar búsquedas muy eficientemente:
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 # Búsquedas simples
 print(f"\nDocumentos con 'python': {indice.buscar('python')}")
@@ -361,7 +360,7 @@ El proceso de normalización consiste en convertir el texto a una forma estánda
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import re
 import nltk
@@ -395,7 +394,7 @@ Es el proceso de dividir el texto en unidades (tokens).
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import nltk
 from nltk.tokenize import word_tokenize
@@ -421,7 +420,7 @@ NLTK proporciona listas de stopwords para varios idiomas, incluyendo español.
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import nltk
 from nltk.corpus import stopwords
@@ -450,7 +449,7 @@ print(f"Sin stopwords: {tokens_sin_stop}")
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import textwrap
 import nltk
@@ -475,7 +474,7 @@ Se muestra stemming en español con SnowballStemmer (disponible en NLTK). NLTK n
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import nltk
 from nltk.stem.snowball import SnowballStemmer
@@ -536,7 +535,7 @@ o de forma alternativa se puede descargar el modelo desde Python con:
 
 ```{code-cell} python
 ---
-tags: [remove-output]
+tags: remove-output
 ---
 import spacy
 
@@ -547,7 +546,7 @@ A continuación se muestra un ejemplo de uso de spaCy para tokenización y lemat
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import spacy
 import textwrap  # Para imprimir en 80 columnas
@@ -787,7 +786,6 @@ Para colecciones masivas (terabytes o petabytes), se usa procesamiento distribui
 ```{mermaid}
 ---
 name: mapreduce-indexing
-title: Construcción de Índice Invertido con MapReduce
 ---
 flowchart TB
     subgraph Input[Entrada]
@@ -978,7 +976,7 @@ Si por el contrario se quiere indexar una colección de tweets, cada tweet puede
 
 En el siguiente enlace se encuentra una implementación en Python del algoritmo BSBI para construir un índice invertido a partir de una colección de documentos. Esta implementación incluye procesamiento básico de texto (normalización, tokenización, eliminación de stopwords y stemming) y compresión del índice.
 
-[https://github.com/untref-edd/IndiceInvertido](https://github.com/untref-edd/IndiceInvertido){target="\_blank"}
+[https://github.com/untref-edd/IndiceInvertido](https://github.com/untref-edd/IndiceInvertido)
 
 ### Complejidad
 

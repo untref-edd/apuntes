@@ -12,21 +12,22 @@ kernelspec:
 
 # Introducción a Python
 
-Python es un lenguaje de programación multipropósito, creado a fines de los años 80 por [Guido van Rossum](https://es.wikipedia.org/wiki/Guido_van_Rossum){target="\_blank"}.
+Python es un lenguaje de programación multipropósito, creado a fines de los años 80 por [Guido van Rossum](https://es.wikipedia.org/wiki/Guido_van_Rossum).
 
-<div align="center">
+```{figure} ../assets/images/python-logo-generic.svg
+:align: center
+:width: 200px
+```
 
-[![Logo de Python](../assets/images/python-logo-generic.svg){width=200px}](https://python.org){target="\_blank"}
-
-</div>
-
-```{epigraph}
+````{admonition} [Wikipedia: Python > Historia](https://es.wikipedia.org/wiki/Python#Historia)
 Guido Van Rossum es el principal autor de Python, y su continuo rol central en decidir la dirección de Python es reconocido, refiriéndose a él como Benevolente Dictador Vitalicio (en inglés: _Benevolent Dictator For Life_, BDFL); sin embargo el 12 de julio de 2018 declinó de dicha situación de honor sin dejar un sucesor o sucesora y con una declaración altisonante:
 
->  *"Entonces, ¿qué van a hacer todos ustedes? ¿Crear una democracia? ¿Anarquía? ¿Una dictadura? ¿Una federación?"*
+```{blockquote}
+"Entonces, ¿qué van a hacer todos ustedes? ¿Crear una democracia? ¿Anarquía? ¿Una dictadura? ¿Una federación?"
 
-[Fuente Wikipedia](https://es.wikipedia.org/wiki/Python){target="_blank"}
+-- Guido Van Rossum
 ```
+````
 
 ## El zen de Python
 
@@ -59,7 +60,7 @@ def factorial(n):
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 print(f"Factorial de 5: {factorial(5)}")
 ```
@@ -79,7 +80,7 @@ qs = lambda lst: (
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 lista = [3, 6, 8, 10, 1, 2, 1]
 print(f"Lista ordenada: {qs(lista)}")
@@ -91,7 +92,7 @@ Python es un lenguaje **fuertemente tipado**, lo que significa que no se permite
 
 ```{code-cell} python
 ---
-tags: [raises-exception, hide-output]
+tags: raises-exception, hide-output
 ---
 # Ejemplo de tipado fuerte
 resultado = "5" + 3  # Esto generará un error
@@ -99,7 +100,7 @@ resultado = "5" + 3  # Esto generará un error
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 # Conversión explícita necesaria
 resultado_correcto = int("5") + 3
@@ -108,7 +109,7 @@ print(f"Resultado correcto: {resultado_correcto}")
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 # Tipado dinámico - las variables pueden cambiar de tipo
 variable = 42  # int
@@ -121,7 +122,7 @@ variable = [1, 2, 3]  # list
 print(f"Tipo: {type(variable)}, Valor: {variable}")
 ```
 
-En este fragmento el mismo identificador `variable`{l=python} se liga a diferentes tipos de datos a lo largo del tiempo, demostrando el tipado dinámico de Python. No hace falta declarar el tipo de la variable al momento de su creación, Python lo infiere automáticamente.
+En este fragmento el mismo identificador `variable` se liga a diferentes tipos de datos a lo largo del tiempo, demostrando el tipado dinámico de Python. No hace falta declarar el tipo de la variable al momento de su creación, Python lo infiere automáticamente.
 
 ### Sintaxis clara y legible
 
@@ -129,10 +130,7 @@ Python se caracteriza por su sintaxis clara y legible:
 
 ```{code-cell} python
 ---
-tags: [hide-output]
-
-mystnb:
-  number_source_lines: true
+tags: hide-output
 ---
 def es_numero_primo(n):
     """
@@ -162,15 +160,15 @@ print(f"Números primos: {primos}")
 
 Los bloques de código se delimitan por indentación, lo que mejora la legibilidad y evita errores comunes de sintaxis.
 
-En la línea 1 se define una función `es_numero_primo`{l=python} que recibe un número entero `n`{l=python} y devuelve `True`{l=python} si es primo, o `False`{l=python} en caso contrario. La definición de una función se realiza con la palabra clave `def`{l=python}, seguida del nombre de la función, los parámetros entre paréntesis y dos puntos (`:`{l=python}). Los dos puntos indican el inicio de un bloque de código que debe estar indentado, en este caso el cuerpo de la función.
+En la línea 1 se define una función `es_numero_primo` que recibe un número entero `n` y devuelve `True` si es primo, o `False` en caso contrario. La definición de una función se realiza con la palabra clave `def`, seguida del nombre de la función, los parámetros entre paréntesis y dos puntos (`:`). Los dos puntos indican el inicio de un bloque de código que debe estar indentado, en este caso el cuerpo de la función.
 
 El cuerpo de la función se extiende hasta la línea 18 a partir de la cual el código vuelve a estar alineado a la izquierda, indicando que ya no forma parte del bloque de la función.
 
-Entre las líneas 2 y 10 encontramos la documentación de la función, que explica su propósito, los argumentos que recibe y el valor que devuelve. Esta documentación se escribe entre comillas triples (`"""`{l=python}) y es accesible a través de la función `help(es_numero_primo)`{l=python}. `help`{l=python} es una función de Python que muestra la documentación de un objeto.
+Entre las líneas 2 y 10 encontramos la documentación de la función, que explica su propósito, los argumentos que recibe y el valor que devuelve. Esta documentación se escribe entre comillas triples (`"""`) y es accesible a través de la función `help(es_numero_primo)`. `help` es una función de Python que muestra la documentación de un objeto.
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 help(es_numero_primo)
 ```
@@ -215,7 +213,7 @@ Primero, verifica si Python ya está instalado:
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import sys
 
@@ -267,10 +265,10 @@ pip3 --version
 
 Para profundizar en Python, puedes consultar los siguientes recursos:
 
-- [Documentación oficial de Python](https://docs.python.org/es/3/){target="\_blank"}
-- [Tutorial de Python](https://docs.python.org/es/3/tutorial/index.html){target="\_blank"}
-- [Tutorial de Python en Inglés (W3Schools)](https://www.w3schools.com/python/){target="\_blank"}
-- [Guía de estilo PEP 8](https://www.python.org/dev/peps/pep-0008/){target="\_blank"}
-- [Dive Into Python 3 (libro gratuito)](https://diveintopython3.net/){target="\_blank"}
-- [Comunidad Python en Argentina](https://python.org.ar/){target="\_blank"}
-- [Apuntes del curso de Python - HEKTOR DOCS](https://hektorprofe.github.io/python/){target="\_blank"}
+- [Documentación oficial de Python](https://docs.python.org/es/3/)
+- [Tutorial de Python](https://docs.python.org/es/3/tutorial/index.html)
+- [Tutorial de Python en Inglés (W3Schools)](https://www.w3schools.com/python/)
+- [Guía de estilo PEP 8](https://www.python.org/dev/peps/pep-0008/)
+- [Dive Into Python 3 (libro gratuito)](https://diveintopython3.net/)
+- [Comunidad Python en Argentina](https://python.org.ar/)
+- [Apuntes del curso de Python - HEKTOR DOCS](https://hektorprofe.github.io/python/)

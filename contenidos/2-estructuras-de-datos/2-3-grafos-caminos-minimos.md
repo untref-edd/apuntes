@@ -27,7 +27,6 @@ En la siguiente tabla encontramos los caminos mínimos desde el vértice $A$ a l
 
 ```{table}
 ---
-width: 240px
 align: center
 ---
 | Vértice | Camino Mínimo | Costo |
@@ -55,7 +54,7 @@ Cuando se trata de algoritmos sin pesos en las aristas, se acostumbra definir el
 
 ## Algoritmo de Dijkstra
 
-El ***algoritmo de Dijkstra*** fue propuesto por [Edsger W. Dijkstra](https://es.wikipedia.org/wiki/Edsger_Dijkstra){target="\_blank"} en 1956 y publicado en 1959. Es un algoritmo ávido o ***greedy*** que encuentra todos los caminos mínimos desde un nodo inicial a todos los demás nodos en un grafo ponderado.
+El ***algoritmo de Dijkstra*** fue propuesto por [Edsger W. Dijkstra](https://es.wikipedia.org/wiki/Edsger_Dijkstra) en 1956 y publicado en 1959. Es un algoritmo ávido o ***greedy*** que encuentra todos los caminos mínimos desde un nodo inicial a todos los demás nodos en un grafo ponderado.
 
 Sigue una estrategia de exploración de los nodos más cercanos al origen, actualizando las distancias mínimas a medida que avanza.
 
@@ -121,7 +120,7 @@ Como el ***algoritmo de Dijkstra*** se basa en extraer de la cola de prioridad e
 
 Si hay alguna arista negativa ***Dijkstra*** puede fallar o no según el vértice que se considere como origen y la topología del grafo, por lo tanto para asegurar que el algoritmo funciona siempre:
 
-```{Important}
+```{important}
 El algoritmo de ***Dijkstra*** no admite grafos con aristas con pesos negativos para poder asegurar su correcto funcionamiento
 ```
 
@@ -182,7 +181,7 @@ Cada relajación puede provocar la inserción de un nuevo elemento en la cola de
 
 ## Algoritmo de Bellman-Ford
 
-El ***algoritmo de Bellman-Ford*** fue desarrollado de manera independiente por dos investigadores en la década de 1950: [Richard Bellman](https://es.wikipedia.org/wiki/Richard_Bellman){target="\_blank"}, quien lo publicó en 1958 en el marco de su trabajo sobre programación dinámica, y [Lester R. Ford Jr.](https://en.wikipedia.org/wiki/L._R._Ford_Jr.){target="\_blank"}, que lo había presentado unos años antes (1956).
+El ***algoritmo de Bellman-Ford*** fue desarrollado de manera independiente por dos investigadores en la década de 1950: [Richard Bellman](https://es.wikipedia.org/wiki/Richard_Bellman), quien lo publicó en 1958 en el marco de su trabajo sobre programación dinámica, y [Lester R. Ford Jr.](https://en.wikipedia.org/wiki/L._R._Ford_Jr.), que lo había presentado unos años antes (1956).
 
 Este algoritmo es una alternativa y complemento al ya conocido algoritmo de ***Dijkstra*** (1956) que ofrece una solución eficiente al problema de caminos mínimos desde un origen pero con la restricción de no tener aristas con pesos negativos.
 
@@ -273,7 +272,7 @@ $$
 
 ## Recursos para profundizar
 
-- [Algoritmo de Dijkstra (Wikipiedia)](https://es.wikipedia.org/wiki/Algoritmo_de_Dijkstra){target="\_blank"}
-- [Agloritmo de Bellman-Ford (Wikipedia)](https://es.wikipedia.org/wiki/Algoritmo_de_Bellman-Ford){target="\_blank"}
-- [Algoritmo de Dijkstra en DSA](https://www.w3schools.com/dsa/dsa_algo_graphs_dijkstra.php){target="\_blank"}
-- [Algoritmo de Bellman-Ford en DSA](https://www.w3schools.com/dsa/dsa_algo_graphs_bellmanford.php){target="\_blank"}
+- [Algoritmo de Dijkstra (Wikipiedia)](https://es.wikipedia.org/wiki/Algoritmo_de_Dijkstra)
+- [Agloritmo de Bellman-Ford (Wikipedia)](https://es.wikipedia.org/wiki/Algoritmo_de_Bellman-Ford)
+- [Algoritmo de Dijkstra en DSA](https://www.w3schools.com/dsa/dsa_algo_graphs_dijkstra.php)
+- [Algoritmo de Bellman-Ford en DSA](https://www.w3schools.com/dsa/dsa_algo_graphs_bellmanford.php)

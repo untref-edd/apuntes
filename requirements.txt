@@ -1,14 +1,12 @@
 BTrees
 beautifulsoup4
+dill
 bokeh
 facebook-sdk
 feedparser
 folium
 geopandas
-# Fijamos la versión a la más acutal de v1.x.x, Jupyter Book 2 ya está
-# disponible pero deberíamos aplicar cambios para permitir la migración a la
-# nueva versión.
-jupyter-book<2
+jupyter-book
 jupyterlab
 lxml
 matplotlib

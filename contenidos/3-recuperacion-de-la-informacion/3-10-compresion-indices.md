@@ -14,7 +14,7 @@ kernelspec:
 
 ```{code-cell} python
 ---
-tags: [hide-output, remove-cell]
+tags: hide-output, remove-cell
 ---
 """Borra todos los archivos y carpetas en /tmp"""
 import os
@@ -46,7 +46,7 @@ Esto es solo para almacenar los IDs de documentos. Agregar información adiciona
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 # Ejemplo: cálculo del tamaño sin compresión
 num_terminos = 10_000_000
@@ -111,7 +111,7 @@ Por ejemplo si las palabras son: algoritmo, alguacil, alguien, algas y alguno y 
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 # Implementación de Front Coding para el bloque de ejemplo
 
@@ -214,7 +214,7 @@ En lugar de almacenar los IDs completos, almacenamos las diferencias (gaps) entr
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 # Ejemplo de gap encoding
 doc_ids = [15478, 15874, 17950, 50123, 50234, 60001]
@@ -279,7 +279,7 @@ Se utliza el bit más significativo para indicar si hay más bytes:
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 def vb_encode(numero):
     """Codifica un número usando Variable Byte encoding"""
@@ -386,11 +386,11 @@ En sistemas reales como Lucene/Elasticsearch, se combinan múltiples técnicas p
 - Manning, C. D., Raghavan, P., & Schütze, H. (2008). *Introduction to Information Retrieval*. Cambridge University Press. Capítulo 5.{cite:p}`irbook`
 - Zobel, J., & Moffat, A. (2006). "Inverted files for text search engines". *ACM Computing Surveys (CSUR)*, 38(2), 1-56.{cite:p}`zobel2006`
 - Witten, I. H., Moffat, A., & Bell, T. C. (1999). *Managing Gigabytes: Compressing and Indexing Documents and Images*. Morgan Kaufmann. Capítulo 7.{cite:p}`witten1999`
-- [ClueWeb Dataset](https://lemurproject.org/clueweb09/){target="\_blank"}: Colección grande para experimentación
-- [TREC Collections](https://trec.nist.gov/data.html){target="\_blank"}: Colecciones estándar para IR
-- [Lemur Project](https://www.lemurproject.org/){target="\_blank"}: Herramientas y librerías para IR
+- [ClueWeb Dataset](https://lemurproject.org/clueweb09/): Colección grande para experimentación
+- [TREC Collections](https://trec.nist.gov/data.html): Colecciones estándar para IR
+- [Lemur Project](https://www.lemurproject.org/): Herramientas y librerías para IR
 
 ### Cursos y Tutoriales
 
-- [Information Retrieval - Stanford CS276](https://web.stanford.edu/class/cs276/){target="\_blank"}: Incluye material sobre compresión
-- [Text Compression - University of Melbourne](https://people.eng.unimelb.edu.au/ammoffat/){target="\_blank"}: Recursos de Alistair Moffat
+- [Information Retrieval - Stanford CS276](https://web.stanford.edu/class/cs276/): Incluye material sobre compresión
+- [Text Compression - University of Melbourne](https://people.eng.unimelb.edu.au/ammoffat/): Recursos de Alistair Moffat

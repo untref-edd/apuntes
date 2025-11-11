@@ -8,7 +8,7 @@ El primer paso es crear una cuenta de desarrollador en la plataforma X.
 
 1. Ir al Portal de Desarrolladores
 
-   - Abrir un navegador web y acceder al portal oficial: [https://developer.twitter.com/](https://developer.twitter.com/){target="\_blank"}.
+   - Abrir un navegador web y acceder al portal oficial: [https://developer.twitter.com/](https://developer.twitter.com/).
 
 2. Iniciar Sesión
 
@@ -214,16 +214,16 @@ Es importante entender las limitaciones de cada nivel de acceso:
 
 ### Documentación Oficial
 
-- [X API Documentation](https://developer.twitter.com/en/docs/twitter-api){target="\_blank"}
-- [API v2 Quick Start Guide](https://developer.twitter.com/en/docs/twitter-api/getting-started/getting-access-to-the-twitter-api){target="\_blank"}
-- [Authentication Guide](https://developer.twitter.com/en/docs/authentication/overview){target="\_blank"}
-- [Rate Limits and Pricing](https://developer.twitter.com/en/docs/twitter-api/rate-limits){target="\_blank"}
+- [X API Documentation](https://developer.twitter.com/en/docs/twitter-api)
+- [API v2 Quick Start Guide](https://developer.twitter.com/en/docs/twitter-api/getting-started/getting-access-to-the-twitter-api)
+- [Authentication Guide](https://developer.twitter.com/en/docs/authentication/overview)
+- [Rate Limits and Pricing](https://developer.twitter.com/en/docs/twitter-api/rate-limits)
 
 ### Librerías de Python Recomendadas
 
-- [**Tweepy**](https://docs.tweepy.org/){target="\_blank"}: Librería de terceros (muy popular) para Python
-- [**Python-Twitter**](https://python-twitter.readthedocs.io/){target="\_blank"}: Alternativa robusta
-- [**TwitterAPI**](https://github.com/geduldig/TwitterAPI){target="\_blank"}: Acceso directo a endpoints
+- [**Tweepy**](https://docs.tweepy.org/): Librería de terceros (muy popular) para Python
+- [**Python-Twitter**](https://python-twitter.readthedocs.io/): Alternativa robusta
+- [**TwitterAPI**](https://github.com/geduldig/TwitterAPI): Acceso directo a endpoints
 
 ### Ejemplos de Endpoints Útiles
 

@@ -18,11 +18,11 @@ Se utiliza para resolver problemas de planificación y dependencia de tareas, do
 
 ## Algoritmo de Kahn
 
-Una forma de encontrar un ordenamiento topológico es mediante el algoritmo de Kahn ([Arthur Kahn](https://en.wikipedia.org/wiki/Arthur_Kahn){target="\_blank"}), que utiliza un enfoque basado en el grado de entrada de los vértices. Los pasos son los siguientes:
+Una forma de encontrar un ordenamiento topológico es mediante el algoritmo de Kahn ([Arthur Kahn](https://en.wikipedia.org/wiki/Arthur_Kahn)), que utiliza un enfoque basado en el grado de entrada de los vértices. Los pasos son los siguientes:
 
 ```{code-block}
 ---
-linenos:
+linenos: true
 ---
 ORDEN TOPOLÓGICO (G: DiGrafo)
     q <- Cola vacía
@@ -83,11 +83,11 @@ En los algoritmos de grafos se acostumbra a utilizar tanto la cantidad de vérti
 
 ## Cálculo del orden topológico con NetworkX
 
-***NetworkX*** proporciona el método `topological_sort`{l=python} para calcular el orden topológico de un grafo dirigido acíclico (DAG).
+**_NetworkX_** proporciona el método `topological_sort` para calcular el orden topológico de un grafo dirigido acíclico (DAG).
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import networkx as nx
 

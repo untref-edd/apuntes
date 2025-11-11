@@ -45,32 +45,32 @@ Sin serialización, no podríamos almacenar **objetos vivos** con un estado dete
 
 Python incluye varios módulos que permiten serializar y persistir datos de manera sencilla. Los más conocidos son:
 
-[`pickle`{l=python}](https://docs.python.org/es/3.13/library/pickle.html){target="\_blank"}
+[`pickle`](https://docs.python.org/es/3.13/library/pickle.html)
 : Serialización binaria de objetos de Python.
 
-[`dill`{l=python}](https://pypi.org/project/dill/){target="\_blank"}
-: Extensión de `pickle`{l=python} con mayor cobertura de tipos.
+[`dill`](https://pypi.org/project/dill/)
+: Extensión de `pickle` con mayor cobertura de tipos.
 
-[`json`{l=python}](https://docs.python.org/es/3.13/library/json.html){target="\_blank"}
+[`json`](https://docs.python.org/es/3.13/library/json.html)
 : Serialización en formato **texto legible** y estándar.
 
-## Módulo `pickle`{l=python}
+## Módulo `pickle`
 
-`pickle`{l=python} convierte objetos de Python en una representación binaria que puede guardarse en un archivo o transmitirse. No es interoperable con otros lenguajes, es decir los objetos serializados y persistidos con `pickle`{l=python} no pueden ser leídos por programas en otros lenguajes.
+`pickle` convierte objetos de Python en una representación binaria que puede guardarse en un archivo o transmitirse. No es interoperable con otros lenguajes, es decir los objetos serializados y persistidos con `pickle` no pueden ser leídos por programas en otros lenguajes.
 
 Como se puede intuir, efectivamente constituye una brecha de seguridad cuando se usa fuera del ámbito de una computadora privada (en redes o en Internet, por ejemplo), ya que los datos pueden ser manipulados o leídos por terceros no autorizados.
 
-Se puede hacer un `pickle`{l=python} con:
+Se puede hacer un `pickle` con:
 
-- `None`{l=python}, `True`{l=python}, `False`{l=python}.
+- `None`, `True`, `False`.
 - Enteros, números en punto flotante y complejos.
-- Cadenas, bytes, array de bytes, tuplas, listas y diccionarios que contienen sólo objetos con los que se puede hacer un `pickle`{l=python}.
-- Funciones definidas en el nivel más externo de un módulo (usando `def`{l=python} y no `lambda`{l=python}).
+- Cadenas, bytes, array de bytes, tuplas, listas y diccionarios que contienen sólo objetos con los que se puede hacer un `pickle`.
+- Funciones definidas en el nivel más externo de un módulo (usando `def` y no `lambda`).
 - Clases (con algunas limitaciones) definidas en el nivel más externo de un módulo.
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import pickle
 
@@ -100,11 +100,11 @@ if __name__ == "__main__":
             print()
 ```
 
-En el ejemplo anterior se crean tres personas y se serializan en un archivo utilizando el módulo `pickle`{l=python}. Luego, se lee el archivo tal como está guardado, mostrando los bytes en su forma cruda. Para deserializar los objetos, se debe usar `pickle.load()`{l=python} en lugar de intentar leer el archivo directamente. `pickle.load()`{l=python} se encarga de reconstruir el objeto original a partir de su representación en bytes.
+En el ejemplo anterior se crean tres personas y se serializan en un archivo utilizando el módulo `pickle`. Luego, se lee el archivo tal como está guardado, mostrando los bytes en su forma cruda. Para deserializar los objetos, se debe usar `pickle.load()` en lugar de intentar leer el archivo directamente. `pickle.load()` se encarga de reconstruir el objeto original a partir de su representación en bytes.
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import pickle
 
@@ -124,11 +124,11 @@ for p in lista:
     print(f"Persona: {p}. Tipo: {type(p)}")
 ```
 
-Ahora se modifica la clase `Persona`{l=python}, se elimina el atributo `nombre`{l=python} y se agrega el atributo `dni`{l=python}.
+Ahora se modifica la clase `Persona`, se elimina el atributo `nombre` y se agrega el atributo `dni`.
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import pickle
 
@@ -168,32 +168,32 @@ for atributo, valor in vars(ana).items():
     print(atributo + ": " + valor)
 ```
 
-Vemos que debido a que Python es un lenguaje dinámico no tiene ningún problema en leer los objetos del archivo y recrearlos en memoria como fueron serializados, aún después de que la clase `Persona`{l=python} ha cambiado. Esto es posible porque `pickle`{l=python} almacena la información necesaria para reconstruir el objeto, incluyendo su estructura y atributos, lo que permite que los cambios en la implementación de la clase no afecten la capacidad de deserializar objetos previamente serializados. Sin embargo, es importante tener en cuenta que si se eliminan atributos o se cambian sus tipos, esto puede causar problemas al intentar acceder a esos atributos en objetos deserializados.
+Vemos que debido a que Python es un lenguaje dinámico no tiene ningún problema en leer los objetos del archivo y recrearlos en memoria como fueron serializados, aún después de que la clase `Persona` ha cambiado. Esto es posible porque `pickle` almacena la información necesaria para reconstruir el objeto, incluyendo su estructura y atributos, lo que permite que los cambios en la implementación de la clase no afecten la capacidad de deserializar objetos previamente serializados. Sin embargo, es importante tener en cuenta que si se eliminan atributos o se cambian sus tipos, esto puede causar problemas al intentar acceder a esos atributos en objetos deserializados.
 
-### Algunos detalles de la serialización con `pickle`{l=python}
+### Algunos detalles de la serialización con `pickle`
 
 - De las funciones (tanto del sistema como definidas por el usuario) lo único que se conserva es su nombre, no su valor. O sea que en el momento de recuperarlas hay que tener acceso a su valor (cuerpo de la función) para poderlas ejecutar.
-- Cuando se conserva una instancia de clase como `pickle`{l=python}, lo único que se guardan son los valores de los atributos, no su código asociado, de modo tal que se puedan luego recuperar instancias que se crearon en versiones anteriores de la clase sin problema.
+- Cuando se conserva una instancia de clase como `pickle`, lo único que se guardan son los valores de los atributos, no su código asociado, de modo tal que se puedan luego recuperar instancias que se crearon en versiones anteriores de la clase sin problema.
 
-### Funciones más usadas con `pickle`{l=python}
+### Funciones más usadas con `pickle`
 
-## Funciones más usadas del módulo `pickle`{l=python}
+## Funciones más usadas del módulo `pickle`
 
-| Función / Elemento                                                                            | Descripción breve                                                                                                        | Documentación oficial (español)                                                                                               |
-| --------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------- |
-| `pickle.dump`{l=python}                                                                       | Serializa un objeto y lo escribe en el archivo binario. Permite opcionalmente especificar el protocolo de serialización. | [Documentación de `dump`{l=python}](https://docs.python.org/es/3/library/pickle.html#pickle.dump){target="\_blank"}           |
-| `pickle.dumps`{l=python}                                                                      | Serializa un objeto, retornándolo como un objeto `bytes`. Ideal para enviar por red o guardar en memoria.                | [Documentación de `dumps`{l=python}](https://docs.python.org/es/3/library/pickle.html#pickle.dumps){target="\_blank"}         |
-| `pickle.load`{l=python}                                                                       | Lee datos serializados desde un archivo binario y reconstruye el objeto original.                                        | [Documentación de `load`{l=python}](https://docs.python.org/es/3/library/pickle.html#pickle.load){target="\_blank"}           |
-| `pickle.loads`{l=python}                                                                      | Reconstruye un objeto Python a partir de datos serializados en bytes.                                                    | [Documentación de `loads`{l=python}](https://docs.python.org/es/3/library/pickle.html#pickle.loads){target="\_blank"}         |
-| `pickle.Pickler`{l=python}                                                                    | Clase que serializa objetos en un flujo controlado. Permite mayor control sobre el proceso de serialización.             | [Documentación de `Pickler`{l=python}](https://docs.python.org/es/3/library/pickle.html#pickle.Pickler){target="\_blank"}     |
-| `pickle.Unpickler`{l=python}                                                                  | Clase que deserializa objetos desde un flujo de datos. Proporciona control avanzado sobre el proceso de deserialización. | [Documentación de `Unpickler`{l=python}](https://docs.python.org/es/3/library/pickle.html#pickle.Unpickler){target="\_blank"} |
-| Excepciones (`PickleError`{l=python}, `PicklingError`{l=python}, `UnpicklingError`{l=python}) | Clases de excepciones específicas para errores durante la serialización y deserialización.                               | [Documentación de excepciones en pickle](https://docs.python.org/es/3/library/pickle.html){target="\_blank"}                  |
+| Función / Elemento                                              | Descripción breve                                                                                                        | Documentación oficial (español)                                                                   |
+| --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------- |
+| `pickle.dump`                                                   | Serializa un objeto y lo escribe en el archivo binario. Permite opcionalmente especificar el protocolo de serialización. | [Documentación de `dump`](https://docs.python.org/es/3/library/pickle.html#pickle.dump)           |
+| `pickle.dumps`                                                  | Serializa un objeto, retornándolo como un objeto `bytes`. Ideal para enviar por red o guardar en memoria.                | [Documentación de `dumps`](https://docs.python.org/es/3/library/pickle.html#pickle.dumps)         |
+| `pickle.load`                                                   | Lee datos serializados desde un archivo binario y reconstruye el objeto original.                                        | [Documentación de `load`](https://docs.python.org/es/3/library/pickle.html#pickle.load)           |
+| `pickle.loads`                                                  | Reconstruye un objeto Python a partir de datos serializados en bytes.                                                    | [Documentación de `loads`](https://docs.python.org/es/3/library/pickle.html#pickle.loads)         |
+| `pickle.Pickler`                                                | Clase que serializa objetos en un flujo controlado. Permite mayor control sobre el proceso de serialización.             | [Documentación de `Pickler`](https://docs.python.org/es/3/library/pickle.html#pickle.Pickler)     |
+| `pickle.Unpickler`                                              | Clase que deserializa objetos desde un flujo de datos. Proporciona control avanzado sobre el proceso de deserialización. | [Documentación de `Unpickler`](https://docs.python.org/es/3/library/pickle.html#pickle.Unpickler) |
+| Excepciones (`PickleError`, `PicklingError`, `UnpicklingError`) | Clases de excepciones específicas para errores durante la serialización y deserialización.                               | [Documentación de excepciones en pickle](https://docs.python.org/es/3/library/pickle.html)        |
 
-## Módulo `dill`{l=python}
+## Módulo `dill`
 
-El módulo `dill`{l=python} es una extensión del módulo `pickle`{l=python} que permite la serialización de una gama más amplia de objetos de Python, incluyendo funciones, funciones `lambda`{l=python}, clases y módulos. Esto lo hace especialmente útil en situaciones donde se necesita serializar objetos más complejos que no son compatibles con `pickle`{l=python}.
+El módulo `dill` es una extensión del módulo `pickle` que permite la serialización de una gama más amplia de objetos de Python, incluyendo funciones, funciones `lambda`, clases y módulos. Esto lo hace especialmente útil en situaciones donde se necesita serializar objetos más complejos que no son compatibles con `pickle`.
 
-`dill`{l=python} no es un módulo estándar de Python. Para utilizarlo, primero hay que instalarlo:
+`dill` no es un módulo estándar de Python. Para utilizarlo, primero hay que instalarlo:
 
 ```console
 pip install dill
@@ -203,7 +203,7 @@ A continuación se serializa y persiste una función que en cuya clausura se enc
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import dill
 
@@ -224,7 +224,7 @@ with open("../_static/tmp/msj_cifrado.dill", "wb") as contenedor:
     dill.dump(mensaje_cifrado, contenedor)
 ```
 
-Si leemos el archivo creado `msj_cifrado.dill`, veremos que contiene una representación binaria del objeto serializado, que incluye la función `descifrar`{l=python} y su clausura con el mensaje y la clave.
+Si leemos el archivo creado `msj_cifrado.dill`, veremos que contiene una representación binaria del objeto serializado, que incluye la función `descifrar` y su clausura con el mensaje y la clave.
 
 ```text
 b'\x80\x04\x95\xef\x01\x00\x00\x00\x00\x00\x00\x8c\n'
@@ -235,7 +235,7 @@ b'h\x0bNh\x00\x8c\x0c_create_cell\x94\x93\x94N\x85\x94R\x94h\x15N\x85\x94R\x94\x
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import dill
 
@@ -249,7 +249,7 @@ print(mensaje_cifrado("secreto"))
 ## Serialización de objetos y la seguridad de la información
 
 ```{important}
-Los módulos `pickle`{l=python} y `dill`{l=python} no son seguros ya que se puede construir datos maliciosos que ejecuten código arbitrario durante el proceso de deserialización. Por lo tanto, es fundamental tener precaución al utilizar estos módulos y evitar cargar datos de fuentes no confiables.
+Los módulos `pickle` y `dill` no son seguros ya que se puede construir datos maliciosos que ejecuten código arbitrario durante el proceso de deserialización. Por lo tanto, es fundamental tener precaución al utilizar estos módulos y evitar cargar datos de fuentes no confiables.
 ```
 
 ### Ejemplo de riesgo de seguridad
@@ -258,7 +258,7 @@ A continuación se crea un archivo `log.log` en el directorio de trabajo actual 
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 with open("../_static/tmp/log.log", "w") as f:
     f.write("Este es un archivo de registro.\n")
@@ -273,7 +273,7 @@ with open("../_static/tmp/log.log", "r") as f:
     print(contenido)
 ```
 
-A continuación se crea un `pickle`{l=python} con un objeto malicioso que ejecuta un comando.
+A continuación se crea un `pickle` con un objeto malicioso que ejecuta un comando.
 
 ```{code-cell} python
 # Este código simula la creación de un archivo malicioso que borra log.log
@@ -304,29 +304,29 @@ Al intentar leer de nuevo el archivo `log.log` vemos que no existe más
 
 ```{code-cell} python
 ---
-tags: [raises-exception, hide-output]
+tags: raises-exception, hide-output
 ---
 with open("../_static/tmp/log.log", "r") as f:
     contenido = f.read()
     print(contenido)
 ```
 
-### Funciones más usadas del módulo `dill`{l=python}
+### Funciones más usadas del módulo `dill`
 
-| Función / Elemento                                                                            | Descripción breve                                                                                                                          | Documentación oficial (inglés)                                                                                                   |
-| --------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------- |
-| `dill.dump`{l=python}                                                                         | Serializa un objeto y lo escribe en el archivo binario. A diferencia de `pickle`{l=python}, soporta funciones, lambdas, generadores y más. | [Documentación de `dump`{l=python}](https://dill.readthedocs.io/en/latest/dill.html#dill.dump){target="\_blank"}                 |
-| `dill.dumps`{l=python}                                                                        | Serializa un objeto y lo devuelve como `bytes`. Soporta más tipos de Python que `pickle`{l=python}.                                        | [Documentación de `dumps`{l=python}](https://dill.readthedocs.io/en/latest/dill.html#dill.dumps){target="\_blank"}               |
-| `dill.load`{l=python}                                                                         | Lee datos serializados desde un archivo binario y reconstruye el objeto original. Puede restaurar funciones y objetos complejos.           | [Documentación de `load`{l=python}](https://dill.readthedocs.io/en/latest/dill.html#dill.load){target="\_blank"}                 |
-| `dill.loads`{l=python}                                                                        | Reconstruye un objeto Python a partir de datos serializados en `bytes`.                                                                    | [Documentación de `loads`{l=python}](https://dill.readthedocs.io/en/latest/dill.html#dill.loads){target="\_blank"}               |
-| `dill.dump_session`{l=python}                                                                 | Guarda el estado completo de la sesión interactiva de Python (variables, funciones, imports) en un archivo.                                | [Documentación de `dump_session`{l=python}](https://dill.readthedocs.io/en/latest/dill.html#dill.dump_session){target="\_blank"} |
-| `dill.load_session`{l=python}                                                                 | Restaura una sesión previamente guardada con `dump_session`{l=python}. Muy útil en debugging y experimentación.                            | [Documentación de `load_session`{l=python}](https://dill.readthedocs.io/en/latest/dill.html#dill.load_session){target="\_blank"} |
-| `dill.detect.trace`{l=python}                                                                 | Permite depurar el proceso de serialización mostrando qué objetos pueden o no serializarse.                                                | [Documentación de `detect`{l=python}](https://dill.readthedocs.io/en/latest/dill.html#module-dill.detect){target="\_blank"}      |
-| Excepciones (`PickleError`{l=python}, `PicklingError`{l=python}, `UnpicklingError`{l=python}) | `dill`{l=python} reutiliza las mismas excepciones que `pickle`{l=python} para manejar errores durante la serialización y deserialización.  | [Documentación de excepciones en pickle](https://docs.python.org/es/3/library/pickle.html#pickle-exceptions){target="\_blank"}   |
+| Función / Elemento                                              | Descripción breve                                                                                                                | Documentación oficial (inglés)                                                                               |
+| --------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `dill.dump`                                                     | Serializa un objeto y lo escribe en el archivo binario. A diferencia de `pickle`, soporta funciones, lambdas, generadores y más. | [Documentación de `dump`](https://dill.readthedocs.io/en/latest/dill.html#dill.dump)                         |
+| `dill.dumps`                                                    | Serializa un objeto y lo devuelve como `bytes`. Soporta más tipos de Python que `pickle`.                                        | [Documentación de `dumps`](https://dill.readthedocs.io/en/latest/dill.html#dill.dumps)                       |
+| `dill.load`                                                     | Lee datos serializados desde un archivo binario y reconstruye el objeto original. Puede restaurar funciones y objetos complejos. | [Documentación de `load`](https://dill.readthedocs.io/en/latest/dill.html#dill.load)                         |
+| `dill.loads`                                                    | Reconstruye un objeto Python a partir de datos serializados en `bytes`.                                                          | [Documentación de `loads`](https://dill.readthedocs.io/en/latest/dill.html#dill.loads)                       |
+| `dill.dump_session`                                             | Guarda el estado completo de la sesión interactiva de Python (variables, funciones, imports) en un archivo.                      | [Documentación de `dump_session`](https://dill.readthedocs.io/en/latest/dill.html#dill.dump_session)         |
+| `dill.load_session`                                             | Restaura una sesión previamente guardada con `dump_session`. Muy útil en debugging y experimentación.                            | [Documentación de `load_session`](https://dill.readthedocs.io/en/latest/dill.html#dill.load_session)         |
+| `dill.detect.trace`                                             | Permite depurar el proceso de serialización mostrando qué objetos pueden o no serializarse.                                      | [Documentación de `detect`](https://dill.readthedocs.io/en/latest/dill.html#module-dill.detect)              |
+| Excepciones (`PickleError`, `PicklingError`, `UnpicklingError`) | `dill` reutiliza las mismas excepciones que `pickle` para manejar errores durante la serialización y deserialización.            | [Documentación de excepciones en pickle](https://docs.python.org/es/3/library/pickle.html#pickle-exceptions) |
 
-## Módulo `json`{l=python}
+## Módulo `json`
 
-El módulo `json`{l=python} se basa en el estandar **JSON** (JavaScript Object Notation) y presenta un enfoque diferente al de `pickle`{l=python} y `dill`{l=python}, ya que se basa en texto plano y no permite la ejecución de código al deserializar. Esto lo convierte en una opción más segura para la serialización y el intercambio de datos simples, como diccionarios y listas. Los archivos JSON son legibles por humanos y pueden ser fácilmente compartidos entre diferentes lenguajes de programación.
+El módulo `json` se basa en el estandar **JSON** (JavaScript Object Notation) y presenta un enfoque diferente al de `pickle` y `dill`, ya que se basa en texto plano y no permite la ejecución de código al deserializar. Esto lo convierte en una opción más segura para la serialización y el intercambio de datos simples, como diccionarios y listas. Los archivos JSON son legibles por humanos y pueden ser fácilmente compartidos entre diferentes lenguajes de programación.
 
 ```{note}
 **JSON** (_JavaScript Object Notation_) es un **formato de intercambio de datos basado en texto**.
@@ -341,19 +341,19 @@ Características principales de JSON:
 - Es el formato más usado en **APIs REST, microservicios, configuración de aplicaciones y bases de datos NoSQL** como MongoDB.
 
 Objetos
-: Se representan como pares clave-valor (`{"clave": "valor"}`{l=json}).
+: Se representan como pares clave-valor (`{"clave": "valor"}`).
 
 Arreglos
-: Se representan como listas ordenadas de elementos (`["valor1", "valor2", "valorN"]`{l=json}).
+: Se representan como listas ordenadas de elementos (`["valor1", "valor2", "valorN"]`).
 
 Valores primitivos
-: Se representan como números, cadenas, booleanos (`true`{l=json}, `false`{l=json}) y `null`{l=json} para `None`{l=python}.
+: Se representan como números, cadenas, booleanos (`true`, `false`) y `null` para `None`.
 
-### Ejemplo de uso de `json`{l=python}
+### Ejemplo de uso de `json`
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import json
 
@@ -372,7 +372,7 @@ with open("../_static/tmp/datos.json", "r") as f:
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 # Deserializar de JSON
 with open("../_static/tmp/datos.json", "r") as f:
@@ -380,11 +380,11 @@ with open("../_static/tmp/datos.json", "r") as f:
     print(datos_cargados)
 ```
 
-Un archivo ***JSON*** solo puede contener un único diccionario o una lista, por lo que si hay que guardar múltiples objetos, se deben agrupar en una lista.
+Un archivo **_JSON_** solo puede contener un único diccionario o una lista, por lo que si hay que guardar múltiples objetos, se deben agrupar en una lista.
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import json
 
@@ -414,19 +414,19 @@ Este enfoque es muy usado en big data y machine learning, porque permite procesa
 
 ### Funciones más usadas del módulo `json`
 
-| Función / Elemento                        | Descripción breve                                                                                                                   | Documentación oficial (español)                                                                                                       |
-| ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| `json.dump`{l=python}                     | Serializa un objeto Python y lo escribe en un archivo en formato JSON. Opcionalmente permite configurar indentación y codificación. | [Documentación de `dump`{l=python}](https://docs.python.org/es/3/library/json.html#json.dump){target="\_blank"}                       |
-| `json.dumps`{l=python}                    | Serializa un objeto Python y lo devuelve como una cadena de texto JSON.                                                             | [Documentación de `dumps`{l=python}](https://docs.python.org/es/3/library/json.html#json.dumps){target="\_blank"}                     |
-| `json.load`{l=python}                     | Lee un archivo JSON y lo convierte en el objeto Python correspondiente (diccionarios, listas, etc.).                                | [Documentación de `load`{l=python}](https://docs.python.org/es/3/library/json.html#json.load){target="\_blank"}                       |
-| `json.loads`{l=python}                    | Convierte una cadena de texto JSON en el objeto Python correspondiente.                                                             | [Documentación de `loads`{l=python}](https://docs.python.org/es/3/library/json.html#json.loads){target="\_blank"}                     |
-| `json.JSONEncoder`{l=python}              | Clase que define cómo convertir objetos Python en JSON. Se puede extender para serializar tipos personalizados.                     | [Documentación de `JSONEncoder`{l=python}](https://docs.python.org/es/3/library/json.html#json.JSONEncoder){target="\_blank"}         |
-| `json.JSONDecoder`{l=python}              | Clase que define cómo convertir JSON en objetos Python. Se puede extender para deserializar estructuras personalizadas.             | [Documentación de `JSONDecoder`{l=python}](https://docs.python.org/es/3/library/json.html#json.JSONDecoder){target="\_blank"}         |
-| Excepciones (`JSONDecodeError`{l=python}) | Excepción que se lanza cuando un documento JSON no tiene el formato correcto.                                                       | [Documentación de `JSONDecodeError`{l=python}](https://docs.python.org/es/3/library/json.html#json.JSONDecodeError){target="\_blank"} |
+| Función / Elemento              | Descripción breve                                                                                                                   | Documentación oficial (español)                                                                           |
+| ------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `json.dump`                     | Serializa un objeto Python y lo escribe en un archivo en formato JSON. Opcionalmente permite configurar indentación y codificación. | [Documentación de `dump`](https://docs.python.org/es/3/library/json.html#json.dump)                       |
+| `json.dumps`                    | Serializa un objeto Python y lo devuelve como una cadena de texto JSON.                                                             | [Documentación de `dumps`](https://docs.python.org/es/3/library/json.html#json.dumps)                     |
+| `json.load`                     | Lee un archivo JSON y lo convierte en el objeto Python correspondiente (diccionarios, listas, etc.).                                | [Documentación de `load`](https://docs.python.org/es/3/library/json.html#json.load)                       |
+| `json.loads`                    | Convierte una cadena de texto JSON en el objeto Python correspondiente.                                                             | [Documentación de `loads`](https://docs.python.org/es/3/library/json.html#json.loads)                     |
+| `json.JSONEncoder`              | Clase que define cómo convertir objetos Python en JSON. Se puede extender para serializar tipos personalizados.                     | [Documentación de `JSONEncoder`](https://docs.python.org/es/3/library/json.html#json.JSONEncoder)         |
+| `json.JSONDecoder`              | Clase que define cómo convertir JSON en objetos Python. Se puede extender para deserializar estructuras personalizadas.             | [Documentación de `JSONDecoder`](https://docs.python.org/es/3/library/json.html#json.JSONDecoder)         |
+| Excepciones (`JSONDecodeError`) | Excepción que se lanza cuando un documento JSON no tiene el formato correcto.                                                       | [Documentación de `JSONDecodeError`](https://docs.python.org/es/3/library/json.html#json.JSONDecodeError) |
 
-## Tabla Comparativa: `pickle`{l=python} vs `dill`{l=python} vs `json`{l=python}
+## Tabla Comparativa: `pickle` vs `dill` vs `json`
 
-| Característica                | `pickle`{l=python}                  | `dill`{l=python}                                            | `json`{l=python}                                        |
+| Característica                | `pickle`                            | `dill`                                                      | `json`                                                  |
 | ----------------------------- | ----------------------------------- | ----------------------------------------------------------- | ------------------------------------------------------- |
 | **Formato**                   | Binario                             | Binario                                                     | Texto (legible por humanos)                             |
 | **Compatibilidad**            | Solo Python                         | Solo Python                                                 | Multilenguaje (estándar mundial)                        |
@@ -434,37 +434,34 @@ Este enfoque es muy usado en big data y machine learning, porque permite procesa
 | **Seguridad al deserializar** | Riesgo de ejecutar código malicioso | Riesgo de ejecutar código malicioso                         | Seguro (no ejecuta código)                              |
 | **Legibilidad**               | No legible (binario)                | No legible (binario)                                        | Legible (formato JSON)                                  |
 | **Usos comunes**              | Persistencia local de objetos       | Persistencia avanzada, guardar funciones                    | Intercambio de datos entre sistemas, APIs               |
-| **Ventaja principal**         | Fácil y rápido para Python          | Más flexible que `pickle`{l=python}                         | Estándar universal, interoperable                       |
-| **Desventaja principal**      | No interoperable, inseguro          | Igual que `pickle`{l=python} (pero más pesado)              | No soporta objetos complejos de Python                  |
+| **Ventaja principal**         | Fácil y rápido para Python          | Más flexible que `pickle`                                   | Estándar universal, interoperable                       |
+| **Desventaja principal**      | No interoperable, inseguro          | Igual que `pickle` (pero más pesado)                        | No soporta objetos complejos de Python                  |
 
 ## Organización de los datos
 
-Si bien `pickle`{l=python} y `dill`{l=python} permiten guardar objetos complejos de Python, y `json`{l=python} se limita a estructuras de datos más simples, en todos los casos los datos se almacenan como **un único objeto serializado por archivo**. Esto funciona bien para persistir estructuras completas (listas, diccionarios, clases), pero puede resultar incómodo cuando se quiere manejar una colección de objetos con acceso directo mediante una **clave**.
+Si bien `pickle` y `dill` permiten guardar objetos complejos de Python, y `json` se limita a estructuras de datos más simples, en todos los casos los datos se almacenan como **un único objeto serializado por archivo**. Esto funciona bien para persistir estructuras completas (listas, diccionarios, clases), pero puede resultar incómodo cuando se quiere manejar una colección de objetos con acceso directo mediante una **clave**.
 
-Para resolver esto, Python ofrece módulos como `shelve`{l=python} y `dbm`{l=python}, que permiten organizar la información de manera similar a una **base de datos ligera de pares clave-valor**, sin necesidad de instalar un gestor externo.
+Para resolver esto, Python ofrece módulos como `shelve` y `dbm`, que permiten organizar la información de manera similar a una **base de datos ligera de pares clave-valor**, sin necesidad de instalar un gestor externo.
 
-`shelve`{l=python}
-: Permite almacenar objetos de Python en un archivo de forma similar a un diccionario persistente. Se accede a los datos por clave, y cada valor puede ser un objeto complejo serializado automáticamente con `pickle`{l=python}. Es muy útil cuando se quieren mantener estructuras de datos de Python sin necesidad de escribir el proceso de serialización/deserialización manualmente.
+`shelve`
+: Permite almacenar objetos de Python en un archivo de forma similar a un diccionario persistente. Se accede a los datos por clave, y cada valor puede ser un objeto complejo serializado automáticamente con `pickle`. Es muy útil cuando se quieren mantener estructuras de datos de Python sin necesidad de escribir el proceso de serialización/deserialización manualmente.
 
-`dbm`{l=python}
-: Proporciona acceso a una familia de bases de datos simples, en las que cada clave se asocia a un valor binario. A diferencia de `shelve`{l=python}, en `dbm`{l=python} tanto las claves como los valores deben ser **cadenas de bytes** (`bytes`). Es más básico y portable, pero no admite directamente objetos de Python, sólo datos crudos en forma de texto o binario.
+`dbm`
+: Proporciona acceso a una familia de bases de datos simples, en las que cada clave se asocia a un valor binario. A diferencia de `shelve`, en `dbm` tanto las claves como los valores deben ser **cadenas de bytes** (`bytes`). Es más básico y portable, pero no admite directamente objetos de Python, sólo datos crudos en forma de texto o binario.
 
-______________________________________________________________________
-
-## Módulo `shelve`{l=python}
-
-```{admonition} Una analogía útil
 ---
-class: note
----
-Los `pickles`{l=python} son conservas que se guardan en frascos; a esos frascos se les puede agregar eneldo (`dill`{l=python}) para darles más sabor, y finalmente todos los frascos se organizan y etiquetan en una estantería (`shelve`{l=python}).
+
+## Módulo `shelve`
+
+```{note} Una analogía útil
+Los `pickles` son conservas que se guardan en frascos; a esos frascos se les puede agregar eneldo (`dill`) para darles más sabor, y finalmente todos los frascos se organizan y etiquetan en una estantería (`shelve`).
 ```
 
 Un shelve actúa como un diccionario persistente en disco, permitiendo almacenar y recuperar objetos de Python utilizando claves. Esto facilita la gestión de colecciones de objetos sin necesidad de preocuparse por la serialización manual.
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import shelve
 
@@ -489,13 +486,13 @@ with shelve.open("../_static/tmp/estudiantes.db") as db:
 - No es seguro para acceso concurrente desde múltiples procesos.
 - No es portable entre diferentes versiones de Python (ya que usa internamente pickle).
 
-## Módulo `dbm`{l=python}
+## Módulo `dbm`
 
-El módulo `dbm`{l=python} implementa una base de datos clave-valor simple, con distintas variantes (dbm.gnu, dbm.ndbm, etc.) dependiendo del sistema. Cada entrada se almacena como una clave y un valor, ambos en forma de cadenas de bytes. Esto lo hace más ligero y portable, pero también más limitado en cuanto a los tipos de datos que puede manejar.
+El módulo `dbm` implementa una base de datos clave-valor simple, con distintas variantes (dbm.gnu, dbm.ndbm, etc.) dependiendo del sistema. Cada entrada se almacena como una clave y un valor, ambos en forma de cadenas de bytes. Esto lo hace más ligero y portable, pero también más limitado en cuanto a los tipos de datos que puede manejar.
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import dbm
 
@@ -510,19 +507,19 @@ with dbm.open("../_static/tmp/usuarios", "r") as db:
     print(db["luis"].decode("utf-8"))  # "computacion"
 ```
 
-### Ventajas de `dbm`{l=python}
+### Ventajas de `dbm`
 
 - Muy rápido y ligero.
 - Ideal para guardar pares clave-valor simples (cadenas).
 - Compatible con múltiples implementaciones de bases de datos en sistemas Unix.
 
-### Limitaciones de `dbm`{l=python}
+### Limitaciones de `dbm`
 
 - Solo admite bytes como claves y valores.
 - No guarda estructuras complejas de Python (habría que serializarlas manualmente).
 - Menos flexible que shelve.
 
-## Ejemplo de una agenda con `shelve`{l=python} y `pickle`{l=python}
+## Ejemplo de una agenda con `shelve` y `pickle`
 
 Ejemplo de una agenda simple que permite gestionar contactos con nombre, apellido, correos electrónicos y teléfonos. Para copiar, modificar y ejecutar:
 
@@ -531,7 +528,7 @@ Ejemplo de una agenda simple que permite gestionar contactos con nombre, apellid
 
 ## Recursos para profundizar
 
-- [Working with JSON data in Python (Real Python)](https://realpython.com/python-json/){target="\_blank"}
-- [JSON de Python (W3Schools)](https://www.w3schools.com/python/python_json.asp){target="\_blank"}
-- [Serialize your data with Python (Real Python)](https://realpython.com/python-serialize-data/){target="\_blank"}
-- [Tutorial de Pickle en Python: Serialización de objetos (DataCamp)](https://www.datacamp.com/es/tutorial/pickle-python-tutorial){target="\_blank"}
+- [Working with JSON data in Python (Real Python)](https://realpython.com/python-json/)
+- [JSON de Python (W3Schools)](https://www.w3schools.com/python/python_json.asp)
+- [Serialize your data with Python (Real Python)](https://realpython.com/python-serialize-data/)
+- [Tutorial de Pickle en Python: Serialización de objetos (DataCamp)](https://www.datacamp.com/es/tutorial/pickle-python-tutorial)

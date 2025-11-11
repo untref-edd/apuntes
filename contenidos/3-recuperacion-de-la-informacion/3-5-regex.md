@@ -14,7 +14,7 @@ kernelspec:
 
 ```{code-cell} python
 ---
-tags: [hide-output, remove-cell]
+tags: hide-output, remove-cell
 ---
 """Borra todos los archivos y carpetas en /tmp"""
 import os
@@ -45,7 +45,7 @@ En el contexto de las estructuras de datos y la recuperación de información, l
 
 ## ¿Qué son las expresiones regulares?
 
-Una expresión regular es un patrón que describe un conjunto de cadenas de texto. Por ejemplo, el patrón `r"\d{3}-\d{4}"`{l=python} describe cualquier cadena que tenga tres dígitos, seguidos de un guion, seguidos de cuatro dígitos (como `"123-4567"`{l=python}).
+Una expresión regular es un patrón que describe un conjunto de cadenas de texto. Por ejemplo, el patrón `r"\d{3}-\d{4}"` describe cualquier cadena que tenga tres dígitos, seguidos de un guion, seguidos de cuatro dígitos (como `"123-4567"`).
 
 Las expresiones regulares utilizan una sintaxis especial con **metacaracteres** que tienen significados especiales. Estos metacaracteres permiten definir patrones complejos de forma concisa.
 
@@ -53,7 +53,7 @@ Las expresiones regulares utilizan una sintaxis especial con **metacaracteres** 
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import re
 
@@ -77,7 +77,7 @@ Los caracteres normales (letras, números) se buscan literalmente:
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import re
 
@@ -124,7 +124,7 @@ if re.search(patron, texto):
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import re
 
@@ -160,7 +160,7 @@ Los cuantificadores especifican cuántas veces debe aparecer el patrón anterior
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import re
 
@@ -197,7 +197,7 @@ Las clases de caracteres permiten definir conjuntos de caracteres válidos:
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import re
 
@@ -246,7 +246,7 @@ Python proporciona atajos para clases de caracteres comunes:
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import re
 
@@ -296,7 +296,7 @@ Python proporciona el módulo `re` para trabajar con expresiones regulares. Este
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import re
 
@@ -322,7 +322,7 @@ Cuando se usa un patrón múltiples veces, es más eficiente compilarlo:
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import re
 
@@ -347,7 +347,7 @@ Los paréntesis `()` crean grupos de captura que permiten extraer partes especí
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import re
 
@@ -369,7 +369,7 @@ Se pueden asignar nombres a los grupos para mayor claridad:
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import re
 
@@ -401,7 +401,7 @@ Las miradas alrededor permiten hacer coincidir un patrón solo si está precedid
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import re
 
@@ -421,7 +421,7 @@ Las expresiones regulares son fundamentales en la recuperación y procesamiento 
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import re
 
@@ -455,7 +455,7 @@ print(f"URL válida: {validar_url('https://www.ejemplo.com/path')}")
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import re
 
@@ -486,7 +486,7 @@ for linea in log.strip().split("\n"):
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import re
 
@@ -525,7 +525,7 @@ print(limpiar_texto(texto_sucio))
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import re
 
@@ -538,7 +538,7 @@ def tokenizar(texto):
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 # Contar frecuencia de palabras
 from collections import Counter
@@ -558,7 +558,7 @@ print(f"Palabras más comunes: {frecuencias.most_common(3)}")
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import re
 
@@ -598,7 +598,7 @@ for num, linea in resultados:
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import re
 
@@ -638,7 +638,7 @@ for i, prod in enumerate(productos, 1):
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import re
 
@@ -675,7 +675,7 @@ print(anonimizar_datos(texto_sensible))
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import re
 from collections import Counter
@@ -751,7 +751,7 @@ Las expresiones regulares en Python admiten varios flags que modifican su compor
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import re
 
@@ -788,7 +788,7 @@ print(patron_email.match("usuario@ejemplo.com"))
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import re
 
@@ -832,7 +832,7 @@ for pwd in contraseñas:
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import re
 
@@ -872,7 +872,7 @@ print(f"URLs: {info['urls']}")
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import re
 
@@ -924,7 +924,7 @@ Cuando se usa un patrón múltiples veces, es más eficiente compilarlo:
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import re
 import time
@@ -955,7 +955,7 @@ Algunas expresiones pueden causar backtracking excesivo y ser muy lentas:
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import re
 
@@ -975,7 +975,7 @@ Siempre usar raw strings (`r"..."`) para evitar problemas con caracteres de esca
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import re
 
@@ -998,7 +998,7 @@ Las expresiones regulares se integran naturalmente con las estructuras de datos 
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import re
 from collections import defaultdict
@@ -1049,7 +1049,7 @@ print(f"Documentos con 'python': {docs}")
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import re
 
@@ -1161,11 +1161,11 @@ No consumen caracteres, se quedan paradas donde ocurrió el matching
 
 Para profundizar en expresiones regulares:
 
-- [Documentación oficial de `re` en Python](https://docs.python.org/es/3/library/re.html){target="\_blank"}
-- [Regular Expression HOWTO](https://docs.python.org/es/3/howto/regex.html){target="\_blank"}
-- [Regex101](https://regex101.com/){target="\_blank"} - Herramienta online para probar regex
-- [RegExr](https://regexr.com/){target="\_blank"} - Otra herramienta interactiva
-- [Python Regular Expressions (Real Python)](https://realpython.com/regex-python/){target="\_blank"}
+- [Documentación oficial de `re` en Python](https://docs.python.org/es/3/library/re.html)
+- [Regular Expression HOWTO](https://docs.python.org/es/3/howto/regex.html)
+- [Regex101](https://regex101.com/) - Herramienta online para probar regex
+- [RegExr](https://regexr.com/) - Otra herramienta interactiva
+- [Python Regular Expressions (Real Python)](https://realpython.com/regex-python/)
 
 ```{admonition} Resumen
 Las expresiones regulares son una herramienta poderosa para:

@@ -13,7 +13,4 @@ kernelspec:
 # Bibliografía
 
 ```{bibliography}
----
-all:
----
 ```

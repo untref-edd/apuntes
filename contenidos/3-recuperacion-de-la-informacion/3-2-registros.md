@@ -14,7 +14,7 @@ kernelspec:
 
 ```{code-cell} python
 ---
-tags: [hide-output, remove-cell]
+tags: hide-output, remove-cell
 ---
 """Borra todos los archivos y carpetas en /tmp"""
 import os
@@ -41,9 +41,7 @@ Supongamos que queremos crear una **agenda** para almacenar datos de contactos: 
 
 ```{code-cell} python
 ---
-tags: [hide-output]
-mystnb:
-  number_source_lines: true
+tags: hide-output
 ---
 class Agenda:
     def __init__(self, archivo):
@@ -76,9 +74,7 @@ Una forma de organizar los registros es asignar una longitud fija a cada campo. 
 
 ```{code-cell} python
 ---
-tags: [hide-output]
-mystnb:
-  number_source_lines: true
+tags: hide-output
 ---
 import os
 import struct
@@ -145,16 +141,12 @@ class Agenda:
 ```
 
 ```{note}
-Los métodos `encode()`{l=python} y `decode()`{l=python} convierten entre cadenas de texto y secuencias de bytes. Por defecto utilizan la codificación UTF-8, que es capaz de representar todos los caracteres Unicode. Si se utilizan caracteres especiales (como tildes o ñ), es importante asegurarse de que la codificación sea la misma al guardar y al leer los datos.
+Los métodos `encode()` y `decode()` convierten entre cadenas de texto y secuencias de bytes. Por defecto utilizan la codificación UTF-8, que es capaz de representar todos los caracteres Unicode. Si se utilizan caracteres especiales (como tildes o ñ), es importante asegurarse de que la codificación sea la misma al guardar y al leer los datos.
 ```
 
 A continuación definimos el iterador para la agenda:
 
 ```{code-cell} python
----
-mystnb:
-  number_source_lines: true
----
 class AgendaIterator:
     """Iterador para la agenda de registros de longitud fija"""
 
@@ -204,14 +196,14 @@ class AgendaIterator:
 ```
 
 ```{note}
-El método `strip()`{l=python} elimina espacios en blanco y caracteres de nueva línea al inicio y al final de una cadena. En este caso, se utiliza para eliminar los caracteres nulos (`\x00`) que se utilizan para rellenar los campos cuando son más cortos que la longitud asignada.
+El método `strip()` elimina espacios en blanco y caracteres de nueva línea al inicio y al final de una cadena. En este caso, se utiliza para eliminar los caracteres nulos (`\x00`) que se utilizan para rellenar los campos cuando son más cortos que la longitud asignada.
 ```
 
 Ejemplo de uso con el iterador
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 agenda = Agenda("agenda_fixed.dat")
 agenda.guardar_contacto("March", "Simpson", "555-1234", "march@example.com")
@@ -231,7 +223,7 @@ Si observamos el contenido del archivo `agenda_fixed.dat` con un editor hexadeci
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 with open("agenda_fixed.dat", "rb") as f:
     contenido = f.read()
@@ -258,9 +250,7 @@ El carácter delimitador no puede aparecer en los datos, ya que se interpretarí
 
 ```{code-cell} python
 ---
-tags: [hide-output]
-mystnb:
-  number_source_lines: true
+tags: hide-output
 ---
 class Agenda:
     def __init__(self, archivo, campos, len_registro=100):
@@ -311,16 +301,12 @@ class Agenda:
 ```
 
 ```{note}
-`registro.encode()`{l=python} convierte la cadena a bytes, y `ljust`{l=python} rellena con nulos a la derecha, hasta alcanzar la longitud fija del registro. Algunos caracteres como vocales con tildes o la letra ñ pueden ocupar más de un byte (por ejemplo `é` se codifica como `b'\xc3\xa9'`), por lo que es importante medir la longitud en bytes y no en caracteres (línea 27).
+`registro.encode()` convierte la cadena a bytes, y `ljust` rellena con nulos a la derecha, hasta alcanzar la longitud fija del registro. Algunos caracteres como vocales con tildes o la letra ñ pueden ocupar más de un byte (por ejemplo `é` se codifica como `b'\xc3\xa9'`), por lo que es importante medir la longitud en bytes y no en caracteres (línea 27).
 ```
 
 A continuación definimos el iterador para la agenda:
 
 ```{code-cell} python
----
-mystnb:
-  number_source_lines: true
----
 class AgendaIterator:
     """Iterador para la agenda de registros de longitud fija y campos de longitud variable"""
 
@@ -366,16 +352,16 @@ class AgendaIterator:
 ```
 
 ```{note}
-El método `rstrip(b'\x00')`{l=python} elimina los caracteres nulos (`\x00`) al final de la cadena de bytes, que se utilizan para rellenar el registro cuando es más corto que la longitud asignada. Luego, `decode(errors="replace")`{l=python} convierte los bytes a una cadena de texto, reemplazando cualquier byte inválido con el carácter de reemplazo (`�`).
+El método `rstrip(b'\x00')` elimina los caracteres nulos (`\x00`) al final de la cadena de bytes, que se utilizan para rellenar el registro cuando es más corto que la longitud asignada. Luego, `decode(errors="replace")` convierte los bytes a una cadena de texto, reemplazando cualquier byte inválido con el carácter de reemplazo (`�`).
 
-La función `zip`{l=python} combina dos listas en una lista de tuplas, donde cada tupla contiene un elemento de cada lista. En este caso, se utiliza para combinar la lista de nombres de campos con la lista de valores correspondientes, y luego se convierte en un diccionario.
+La función `zip` combina dos listas en una lista de tuplas, donde cada tupla contiene un elemento de cada lista. En este caso, se utiliza para combinar la lista de nombres de campos con la lista de valores correspondientes, y luego se convierte en un diccionario.
 ```
 
 Ejemplo de uso con el iterador
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 agenda = Agenda("agenda.dat", ["nombre", "apellido", "telefono", "email"])
 agenda.guardar_contacto("Juan", "Pérez", "123456789", "juan@example.com")
@@ -390,7 +376,7 @@ Si observamos el contenido del archivo `agenda.dat` con un editor hexadecimal, v
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 with open("agenda.dat", "rb") as f:
     contenido = f.read()
@@ -410,9 +396,7 @@ Para implementar este tipo de registro se puede preceder cada registro con un en
 
 ```{code-cell} python
 ---
-tags: [hide-output]
-mystnb:
-  number_source_lines: true
+tags: hide-output
 ---
 import struct
 
@@ -485,10 +469,6 @@ class Agenda:
 A continuación definimos el iterador para la agenda:
 
 ```{code-cell} python
----
-mystnb:
-  number_source_lines: true
----
 class AgendaIterator:
     """Iterador para la agenda de registros de longitud variable"""
 
@@ -552,7 +532,7 @@ Ejemplo de uso con el iterador
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 campos = ["nombre", "apellido", "telefono", "email"]
 agenda = Agenda("agenda_var.dat", campos)
@@ -572,7 +552,7 @@ Si observamos el contenido del archivo `agenda_var.dat` con un editor hexadecima
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 with open("agenda_var.dat", "rb") as f:
     contenido = f.read()
@@ -606,9 +586,7 @@ La primera línea del archivo puede contener los nombres de los campos, lo cual 
 
 ```{code-cell} python
 ---
-tags: [hide-output]
-mystnb:
-  number_source_lines: true
+tags: hide-output
 ---
 import csv
 import os
@@ -673,10 +651,6 @@ class Agenda:
 A continuación definimos el iterador para la agenda:
 
 ```{code-cell} python
----
-mystnb:
-  number_source_lines: true
----
 class AgendaIterator:
     """Iterador para la agenda de registros en formato CSV con cabecera"""
 
@@ -714,7 +688,7 @@ Ejemplo de uso con el iterador
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 campos = ["nombre", "apellido", "telefono", "email"]
 agenda = Agenda("agenda.csv", campos)
@@ -732,7 +706,7 @@ Si observamos el contenido del archivo `agenda.csv`, vemos que los datos están 
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 with open("agenda.csv", "r") as f:
     contenido = f.read()

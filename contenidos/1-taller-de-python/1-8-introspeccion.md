@@ -22,30 +22,30 @@ Reflexión
 : Va un paso más allá: no solo inspecciona, sino que **modifica el comportamiento o la estructura** de objetos, clases o módulos en tiempo de ejecución.
 
 ```{note}
-En **Java** estas capacidades existen mediante *Reflection API*, mientras que en **Go** se logran con el paquete `reflect`{l=go}. En Python, estas herramientas están integradas en el propio lenguaje y son mucho más accesibles.
+En **Java** estas capacidades existen mediante *Reflection API*, mientras que en **Go** se logran con el paquete `reflect`. En Python, estas herramientas están integradas en el propio lenguaje y son mucho más accesibles.
 ```
 
 ## Herramientas comunes de introspección y reflexión
 
-| Función                                   | Descripción                                             |
-| ----------------------------------------- | ------------------------------------------------------- |
-| `type(obj)`{l=python}                     | Devuelve el tipo del objeto.                            |
-| `dir(obj)`{l=python}                      | Lista atributos y métodos disponibles.                  |
-| `id(obj)`{l=python}                       | Identificador único en memoria.                         |
-| `vars(obj)`{l=python}                     | Diccionario de atributos de instancia.                  |
-| `getattr(obj, name[, default])`{l=python} | Obtiene un atributo dinámicamente.                      |
-| `setattr(obj, name, value)`{l=python}     | Asigna un atributo dinámicamente.                       |
-| `hasattr(obj, name)`{l=python}            | Verifica si un atributo existe.                         |
-| `callable(obj)`{l=python}                 | Indica si el objeto es invocable como función o método. |
-| `help(obj)`{l=python}                     | Muestra la documentación.                               |
+| Función                         | Descripción                                             |
+| ------------------------------- | ------------------------------------------------------- |
+| `type(obj)`                     | Devuelve el tipo del objeto.                            |
+| `dir(obj)`                      | Lista atributos y métodos disponibles.                  |
+| `id(obj)`                       | Identificador único en memoria.                         |
+| `vars(obj)`                     | Diccionario de atributos de instancia.                  |
+| `getattr(obj, name[, default])` | Obtiene un atributo dinámicamente.                      |
+| `setattr(obj, name, value)`     | Asigna un atributo dinámicamente.                       |
+| `hasattr(obj, name)`            | Verifica si un atributo existe.                         |
+| `callable(obj)`                 | Indica si el objeto es invocable como función o método. |
+| `help(obj)`                     | Muestra la documentación.                               |
 
-______________________________________________________________________
+---
 
 ## Ejemplo básico de introspección
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 class Persona:
     """Clase simple para ejemplo de introspección."""
@@ -85,7 +85,7 @@ Esto otorga flexibilidad, pero puede volver el código difícil de mantener si s
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import types
 
@@ -121,13 +121,13 @@ juan.saludar()
 ana.saludar()
 ```
 
-## Uso de `help()`{l=python} para documentación
+## Uso de `help()` para documentación
 
-`help()`{l=python} es una función incorporada en Python que proporciona información sobre objetos, funciones y módulos. Es especialmente útil para obtener documentación sobre cómo usar un objeto o qué métodos y atributos tiene.
+`help()` es una función incorporada en Python que proporciona información sobre objetos, funciones y módulos. Es especialmente útil para obtener documentación sobre cómo usar un objeto o qué métodos y atributos tiene.
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 class Persona:
     """Clase simple para ejemplo de documentación."""
@@ -148,11 +148,11 @@ alice = Persona("Alice", 30)
 help(alice)
 ```
 
-## Uso de `eval()`{l=python} para evaluar expresiones
+## Uso de `eval()` para evaluar expresiones
 
-La función `eval()`{l=python} permite ejecutar expresiones Python desde una cadena de texto. Esto puede ser útil para evaluar dinámicamente código, pero **debe usarse con extrema precaución** debido a implicaciones de seguridad.
+La función `eval()` permite ejecutar expresiones Python desde una cadena de texto. Esto puede ser útil para evaluar dinámicamente código, pero **debe usarse con extrema precaución** debido a implicaciones de seguridad.
 
-Por ejemplo, el siguiente código es peligroso si la variable `expresion`{l=python} proviene de un usuario no confiable:
+Por ejemplo, el siguiente código es peligroso si la variable `expresion` proviene de un usuario no confiable:
 
 ```python
 expresion = input("Introduce una expresión: ")
@@ -162,13 +162,13 @@ resultado = eval(
 print("Resultado de la expresión:", resultado)
 ```
 
-```{Important} Advertencia de seguridad
-Nunca se debe utilizar `eval()`{l=python} con entradas que provengan de usuarios o fuentes no confiables. Hacerlo puede permitir la ejecución de código malicioso y comprometer la seguridad del sistema.
+```{important} Advertencia de seguridad
+Nunca se debe utilizar `eval()` con entradas que provengan de usuarios o fuentes no confiables. Hacerlo puede permitir la ejecución de código malicioso y comprometer la seguridad del sistema.
 ```
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 x = 10
 expresion = "x * 2"
@@ -178,7 +178,7 @@ print("Resultado de la expresión:", resultado)
 
 ## Buenas Prácticas
 
-La introspección y reflexión son herramientas poderosas pero que se deben utilizar con responsabilidad para construir ***código flexible*** y no ***código frágil***. Algunas recomendaciones son:
+La introspección y reflexión son herramientas poderosas pero que se deben utilizar con responsabilidad para construir **_código flexible_** y no **_código frágil_**. Algunas recomendaciones son:
 
 - Usar introspección para depuración
 - No usar introspección y reflexión como sustituto de un buen diseño
@@ -190,5 +190,5 @@ La introspección y reflexión son herramientas poderosas pero que se deben util
 
 ## Recursos para profundizar
 
-- [Documentación oficial de Python sobre introspección](https://docs.python.org/es/3.13/library/inspect.html){target="\_blank"}
-- [Artículos sobre metaprogramación en Python (Real Python)](https://realpython.com/learning-paths/metaprogramming-in-python/){target="\_blank"}
+- [Documentación oficial de Python sobre introspección](https://docs.python.org/es/3.13/library/inspect.html)
+- [Artículos sobre metaprogramación en Python (Real Python)](https://realpython.com/learning-paths/metaprogramming-in-python/)

@@ -38,11 +38,11 @@ Constructor
 
 ## Clases y objetos
 
-En Python, una clase es una plantilla para crear objetos, similar a los `struct`{l=go} de Go, una clase permite definir nuevos tipos de datos. Un objeto, en cambio, es una instancia de una clase y puede tener atributos (datos) y métodos (funciones). Pueden existir múltiples objetos de la misma clase, cada uno con sus propios valores para los atributos.
+En Python, una clase es una plantilla para crear objetos, similar a los `struct` de Go, una clase permite definir nuevos tipos de datos. Un objeto, en cambio, es una instancia de una clase y puede tener atributos (datos) y métodos (funciones). Pueden existir múltiples objetos de la misma clase, cada uno con sus propios valores para los atributos.
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 class Persona:
     def __init__(self, nombre, edad):
@@ -59,11 +59,11 @@ persona1.saludar()
 print(type(persona1))
 ```
 
-En el fragmento de código anterior, se define una clase `Persona`{l=python} con un constructor (`__init__`{l=python}) que inicializa los atributos `nombre`{l=python} y `edad`{l=python}. También se define un método `saludar`{l=python} que imprime un saludo. Luego, se crea un objeto `persona1`{l=python} de la clase `Persona`{l=python} y se llama al método `saludar`{l=python}.
+En el fragmento de código anterior, se define una clase `Persona` con un constructor (`__init__`) que inicializa los atributos `nombre` y `edad`. También se define un método `saludar` que imprime un saludo. Luego, se crea un objeto `persona1` de la clase `Persona` y se llama al método `saludar`.
 
-El constructor en Python siempre es `__init__`{l=python} y se utiliza para inicializar los atributos del objeto. Si no se declara explícitamente, Python proporcionará un constructor por defecto que no hace nada.
+El constructor en Python siempre es `__init__` y se utiliza para inicializar los atributos del objeto. Si no se declara explícitamente, Python proporcionará un constructor por defecto que no hace nada.
 
-El primer parámetro de los métodos de instancia es siempre `self`{l=python}, que se refiere a la instancia actual del objeto. Esto permite acceder a los atributos y métodos del objeto dentro de la clase. Es similar al `this`{l=python} de Java.
+El primer parámetro de los métodos de instancia es siempre `self`, que se refiere a la instancia actual del objeto. Esto permite acceder a los atributos y métodos del objeto dentro de la clase. Es similar al `this` de Java.
 
 ## Herencia
 
@@ -71,10 +71,7 @@ Una clase puede heredar de otra clase, o dicho de otra manera, puede extender ot
 
 ```{code-cell} python
 ---
-tags: [hide-output]
-
-mystnb:
-  number_source_lines: true
+tags: hide-output
 ---
 class Docente(Persona):
     def __init__(self, nombre, edad, materia):
@@ -92,19 +89,19 @@ docente1.presentar()
 print(type(docente1))
 ```
 
-En el ejemplo anterior, la clase `Docente`{l=python} hereda de la clase `Persona`{l=python}. Es decir un `Docente`{l=python} ***es una*** `Persona`{l=python} y por lo tanto tiene todos los atributos y métodos de cualquier `Persona`{l=python} y además tiene nuevos atributos y métodos como `Docente`{l=python}.
+En el ejemplo anterior, la clase `Docente` hereda de la clase `Persona`. Es decir un `Docente` ***es una*** `Persona` y por lo tanto tiene todos los atributos y métodos de cualquier `Persona` y además tiene nuevos atributos y métodos como `Docente`.
 
-El constructor de la clase `Docente`{l=python} espera todos los parámetros para poder instanciar un nuevo objeto del tipo `Docente`{l=python}, esto es el `nombre`{l=python} y la `edad`{l=python} de la `Persona`{l=python} y la `materia`{l=python} de la que es `Docente`{l=python}.
+El constructor de la clase `Docente` espera todos los parámetros para poder instanciar un nuevo objeto del tipo `Docente`, esto es el `nombre` y la `edad` de la `Persona` y la `materia` de la que es `Docente`.
 
-Lo primero que hace el constructor de la clase `Docente`{l=python} es llamar al constructor de la clase base `Persona`{l=python} (línea 3) utilizando `super().__init__(nombre, edad)`{l=python} Esto asegura que los atributos `nombre`{l=python} y `edad`{l=python} se inicialicen correctamente en el objeto `Docente`{l=python}.
+Lo primero que hace el constructor de la clase `Docente` es llamar al constructor de la clase base `Persona` (línea 3) utilizando `super().__init__(nombre, edad)` Esto asegura que los atributos `nombre` y `edad` se inicialicen correctamente en el objeto `Docente`.
 
-`super()`{l=python} es una función que permite llamar a métodos de la clase base desde una subclase. Cuando se invoca `super().__init__(nombre, edad)`{l=python}, se está llamando al constructor de la clase base `Persona`{l=python}.
+`super()` es una función que permite llamar a métodos de la clase base desde una subclase. Cuando se invoca `super().__init__(nombre, edad)`, se está llamando al constructor de la clase base `Persona`.
 
-En este caso como tanto `Docente`{l=python} como `Persona`{l=python} tienen un constructor, `__init__`{l=python}, es necesario usar `super()`{l=python} para llamar al constructor de la clase base, caso contrario, se estaría llamando al constructor de la clase `Docente`{l=python}.
+En este caso como tanto `Docente` como `Persona` tienen un constructor, `__init__`, es necesario usar `super()` para llamar al constructor de la clase base, caso contrario, se estaría llamando al constructor de la clase `Docente`.
 
 Con esta estrategia se evita la duplicación de código y se asegura que los atributos de la clase base se inicialicen correctamente. Además, si por algún motivo hay que modificar el constructor de la clase base, no es necesario cambiar el código de la subclase.
 
-En el método `presentar`{l=python}, se llama al método `saludar`{l=python} de la clase base `Persona`{l=python} utilizando `self.saludar()`{l=python}, lo que permite reutilizar el comportamiento definido en la clase base. En este caso como el método `saludar`{l=python} no fue ***sobreescrito*** en la clase `Docente`{l=python}, directamente se puede utilizar `self.saludar()`{l=python} para llamar al método de la clase base, sin problemas.
+En el método `presentar`, se llama al método `saludar` de la clase base `Persona` utilizando `self.saludar()`, lo que permite reutilizar el comportamiento definido en la clase base. En este caso como el método `saludar` no fue ***sobreescrito*** en la clase `Docente`, directamente se puede utilizar `self.saludar()` para llamar al método de la clase base, sin problemas.
 
 ### Herencia múltiple
 
@@ -112,10 +109,7 @@ Python va más allá que otros lenguajes de programación orientados a objetos y
 
 ```{code-cell} python
 ---
-tags: [hide-output]
-
-mystnb:
-  number_source_lines: true
+tags: hide-output
 ---
 class Persona:
     def __init__(self, nombre, edad):
@@ -201,7 +195,7 @@ ayudante1.actualizar_legajo(12345)
 ayudante1.pagar()
 ```
 
-En el fragmento anterior se definen cuatro clases: `Persona`{l=python}, `Docente`{l=python}, `Estudiante`{l=python} y `Ayudante`{l=python}. `Docente`{l=python} y `Estudiante`{l=python} heredan de `Persona`{l=python}, mientras que `Ayudante`{l=python} hereda de `Estudiante`{l=python} y `Docente`{l=python} a través de la herencia múltiple. Lo que le permite a un `Ayudante`{l=python} heredar el comportamiento de ambas clases además de sumar sus propios atributos y métodos.
+En el fragmento anterior se definen cuatro clases: `Persona`, `Docente`, `Estudiante` y `Ayudante`. `Docente` y `Estudiante` heredan de `Persona`, mientras que `Ayudante` hereda de `Estudiante` y `Docente` a través de la herencia múltiple. Lo que le permite a un `Ayudante` heredar el comportamiento de ambas clases además de sumar sus propios atributos y métodos.
 
 En el siguiente *diagrama de clases* se puede observar la relación entre las clases y los atributos y métodos de cada una.
 
@@ -212,21 +206,21 @@ name: ayudante-diagrama
 Diagrama de clases de Ayudante
 ```
 
-```{Note}
-Un ***diagrama de clases***, es un diagrama estático que muestra la estructura de un sistema mediante las clases que lo componen y sus relaciones. Una flecha con una línea continua y un triángulo en la punta indica herencia, y en cada clase se pueden ver los atributos y métodos que se definen en cada una. En general no se muestran los atributos y métodos heredados, ni los constructores, pero si los métodos que se sobrescriben, es decir, que se redefinen en una subclase. En el diagrama anterior el método `presentar`{l=python} de la clase `Ayudante`{l=python} sobrescribe el método `presentar`{l=python} de las clases `Docente`{l=python} y `Estudiante`{l=python}.
+```{note}
+Un ***diagrama de clases***, es un diagrama estático que muestra la estructura de un sistema mediante las clases que lo componen y sus relaciones. Una flecha con una línea continua y un triángulo en la punta indica herencia, y en cada clase se pueden ver los atributos y métodos que se definen en cada una. En general no se muestran los atributos y métodos heredados, ni los constructores, pero si los métodos que se sobrescriben, es decir, que se redefinen en una subclase. En el diagrama anterior el método `presentar` de la clase `Ayudante` sobrescribe el método `presentar` de las clases `Docente` y `Estudiante`.
 ```
 
-Cuando hay herencia múltiple se recomienda utilizar el nombre de la clase base explícitamente en el constructor de la subclase en lugar de `super()`. En la clase `Docente`{l=python}, línea 12 se utiliza directamente `Persona`{l=python} en lugar de usar `super()`, y en la línea 26 de la clase `Estudiante`{l=python} también, para evitar ambigüedades en la resolución de métodos y atributos.
+Cuando hay herencia múltiple se recomienda utilizar el nombre de la clase base explícitamente en el constructor de la subclase en lugar de `super()`. En la clase `Docente`, línea 12 se utiliza directamente `Persona` en lugar de usar `super()`, y en la línea 26 de la clase `Estudiante` también, para evitar ambigüedades en la resolución de métodos y atributos.
 
-En el ejemplo anterior, tanto `Docente`{l=python} como `Estudiante`{l=python} tienen un atributo `legajo`{l=python}, por lo que al crear un objeto de la clase `Ayudante`{l=python}, se debe especificar explícitamente a qué clase base se está llamando.
+En el ejemplo anterior, tanto `Docente` como `Estudiante` tienen un atributo `legajo`, por lo que al crear un objeto de la clase `Ayudante`, se debe especificar explícitamente a qué clase base se está llamando.
 
-`Ayudante`{l=python} hereda de ambas clases que tienen un atributo `legajo`{l=python}, sin embargo el atributo `legajo`{l=python} no se duplica en un objeto de la clase `Ayudante`{l=python}. Lo que permite que con el mismo `legajo`{l=python} de `Estudiante`{l=python} se pueda pagar al `Docente`{l=python}.
+`Ayudante` hereda de ambas clases que tienen un atributo `legajo`, sin embargo el atributo `legajo` no se duplica en un objeto de la clase `Ayudante`. Lo que permite que con el mismo `legajo` de `Estudiante` se pueda pagar al `Docente`.
 
-El siguiente fragmento de código inspecciona los atributos del objeto `ayudante1`{l=python} y los imprime en la consola (En [Instrospección](1-8-introspeccion.md) veremos más en detalle como los objetos pueden observarse y modificarse a si mismos en tiempo de ejecución)
+El siguiente fragmento de código inspecciona los atributos del objeto `ayudante1` y los imprime en la consola (En [Instrospección](1-8-introspeccion.md) veremos más en detalle como los objetos pueden observarse y modificarse a si mismos en tiempo de ejecución)
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 print("Atributos de ayudante1:")
 atributos = vars(ayudante1)
@@ -238,13 +232,13 @@ for key, value in atributos.items():
 
 El polimorfismo es un concepto clave en la POO que permite que diferentes clases implementen métodos con el mismo nombre, pero con comportamientos diferentes. Esto significa que se puede tratar a objetos de diferentes clases de manera uniforme, utilizando el mismo nombre de método.
 
-En el ejemplo anterior el método `presentar`{l=python} se define tanto en `Docente`{l=python} como en `Estudiante`{l=python}. La clase `Ayudante`{l=python} hereda ambos métodos y además lo sobreescribe.
+En el ejemplo anterior el método `presentar` se define tanto en `Docente` como en `Estudiante`. La clase `Ayudante` hereda ambos métodos y además lo sobreescribe.
 
 Cuando hay herencia múltiple se debe tener cuidado como se resuelve el polimorfismo, ya que puede haber ambigüedades si dos clases base tienen un método con el mismo nombre. En Python, se utiliza el **Orden de Resolución de Métodos (MRO)** para determinar qué método se llama en caso de ambigüedad.
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 print("Orden de Resolución de Métodos (MRO) de Ayudante:")
 orden = Ayudante.__mro__
@@ -252,14 +246,14 @@ for cls in orden:
     print(cls.__name__)
 ```
 
-Es decir cuando se invoca un método cualquier de un objeto de la clase `Ayudante`{l=python}, Python primero busca el método en la propia clase `Ayudante`{l=python}, luego en `Estudiante`{l=python}, luego en `Docente`{l=python}, luego en `Persona`{l=python} y finalmente en `object`{l=python}.
+Es decir cuando se invoca un método cualquier de un objeto de la clase `Ayudante`, Python primero busca el método en la propia clase `Ayudante`, luego en `Estudiante`, luego en `Docente`, luego en `Persona` y finalmente en `object`.
 
-Por ese motivo no se puede usar `super()`{l=python} en el constructor de la clase `Estudiante`{l=python} ya que si se hiciera, se generaría una ambigüedad en la resolución del método a llamar, ya que `super()`{l=python} buscaría el siguiente método en la jerarquía de clases, que en este caso sería el constructor de `Docente`{l=python}, lo que no es lo que se desea.
+Por ese motivo no se puede usar `super()` en el constructor de la clase `Estudiante` ya que si se hiciera, se generaría una ambigüedad en la resolución del método a llamar, ya que `super()` buscaría el siguiente método en la jerarquía de clases, que en este caso sería el constructor de `Docente`, lo que no es lo que se desea.
 
-```{Note}
-`object`{l=python} es la clase base de todas las clases en Python. Todas las clases heredan de `object`{l=python}, lo que significa que todas las instancias de clases en Python son también instancias de `object`{l=python}. Esto proporciona una serie de métodos y atributos comunes a todas las clases.
+```{note}
+`object` es la clase base de todas las clases en Python. Todas las clases heredan de `object`, lo que significa que todas las instancias de clases en Python son también instancias de `object`. Esto proporciona una serie de métodos y atributos comunes a todas las clases.
 
-Por eso cuando se dice que en Python todo es un objeto, se refiere a que todas las clases heredan de `object`{l=python}, y por lo tanto, todas las instancias de clases son también instancias de `object`{l=python}. Esto permite que todas las clases tengan un comportamiento común, como la capacidad de ser comparadas, impresas, etc.
+Por eso cuando se dice que en Python todo es un objeto, se refiere a que todas las clases heredan de `object`, y por lo tanto, todas las instancias de clases son también instancias de `object`. Esto permite que todas las clases tengan un comportamiento común, como la capacidad de ser comparadas, impresas, etc.
 ```
 
 ### *Duck typing*
@@ -276,7 +270,7 @@ Este concepto es muy poderoso en Python, ya que permite que diferentes objetos p
 
 ### Ejemplo
 
-En el siguiente ejemplo, cuyo diagrama de clases se muestra a continuación. Primero se define `Punto`{l=python} que representa un punto en el plano cartesiano y luego se definen las Figuras Geométricas `Cuadrado`{l=python}, `Punto`{l=python} `Elipse`{l=python}y `Punto`{l=python} que están ***compuestas*** por `Punto`{l=python}. Cada figura tiene un método `area`{l=python} que calcula su área, pero cada figura lo implementa de manera diferente.
+En el siguiente ejemplo, cuyo diagrama de clases se muestra a continuación. Primero se define `Punto` que representa un punto en el plano cartesiano y luego se definen las Figuras Geométricas `Cuadrado`, `Punto` `Elipse`y `Punto` que están ***compuestas*** por `Punto`. Cada figura tiene un método `area` que calcula su área, pero cada figura lo implementa de manera diferente.
 
 ```{figure} ../assets/images/diagrama_figuras.png
 ---
@@ -295,15 +289,15 @@ caption: Programación Orientada a Objetos - Figuras Geométricas
 
 ```{code-cell} python
 ---
-tags: [hide-input, remove-input, hide-output]
+tags: remove-input, hide-output
 ---
 %run ../_static/code/figuras/main.py
 ```
 
-[Descargar código completo de Figuras Geométricas](https://github.com/untref-edd/apuntes/tree/main/contenidos/_static/code/figuras){target="\_blank"}
+[Descargar código completo de Figuras Geométricas](https://github.com/untref-edd/apuntes/tree/main/contenidos/_static/code/figuras)
 
 ## Recursos para profundizar
 
-- [Tutorial de Python - Clases](https://docs.python.org/es/3.13/tutorial/classes.html){target="\_blank"}
-- [Programación Orientada a Objetos (Hektor Profe)](https://hektorprofe.github.io/python/programacion-orientada-a-objetos/){target="\_blank"}
-- [Python - Clases y Objetos (W3Schools)](https://www.w3schools.com/python/python_classes.asp){target="\_blank"}
+- [Tutorial de Python - Clases](https://docs.python.org/es/3.13/tutorial/classes.html)
+- [Programación Orientada a Objetos (Hektor Profe)](https://hektorprofe.github.io/python/programacion-orientada-a-objetos/)
+- [Python - Clases y Objetos (W3Schools)](https://www.w3schools.com/python/python_classes.asp)

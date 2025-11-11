@@ -14,7 +14,7 @@ kernelspec:
 
 ```{code-cell} python
 ---
-tags: [hide-output, remove-cell]
+tags: hide-output, remove-cell
 ---
 """Borra todos los archivos y carpetas en /tmp"""
 import os
@@ -35,10 +35,10 @@ for filename in os.listdir(tmp_dir):
 
 Con los índices invertidos hemos visto cómo organizar la información para acelerar las búsquedas por términos. Sin embargo, en muchos casos es necesario realizar búsquedas con comodines o rangos, como por ejemplo:
 
-- Buscar todos los documentos que contengan términos que empiecen con `"comput*"`{l=python}.
-- Buscar documentos con fechas entre `"2020-01-01"`{l=python} y `"2020-12-31"`{l=python}.
-- Buscar productos con precios entre `100`{l=python} y `500`{l=python}.
-- Buscar nombres de usuarios que contengan la cadena `"admin"`{l=python}.
+- Buscar todos los documentos que contengan términos que empiecen con `"comput*"`.
+- Buscar documentos con fechas entre `"2020-01-01"` y `"2020-12-31"`.
+- Buscar productos con precios entre `100` y `500`.
+- Buscar nombres de usuarios que contengan la cadena `"admin"`.
 
 Para estos casos, los índices invertidos no son la mejor opción, ya que están optimizados para búsquedas exactas de términos. En su lugar, se utilizan **índices ordenados** basados en estructuras de datos como los **árboles B**.
 
@@ -66,7 +66,7 @@ Para construir índices usaremos árboles B+, una variante de los árboles B en 
 
 ## Ejemplo de árbol B+
 
-Consideremos un árbol B+ de orden 3 (cada nodo puede tener hasta 3 hijos) que almacena las siguientes palabras: `"PACO"`{l=python}, `"POCO"`{l=python}, `"PECA"`{l=python}, `"PICO"`{l=python}, `"PALA"`{l=python}, `"POLO"`{l=python}, `"PIEL"`{l=python} y `"PIPA"`{l=python}. El árbol se vería así:
+Consideremos un árbol B+ de orden 3 (cada nodo puede tener hasta 3 hijos) que almacena las siguientes palabras: `"PACO"`, `"POCO"`, `"PECA"`, `"PICO"`, `"PALA"`, `"POLO"`, `"PIEL"` y `"PIPA"`. El árbol se vería así:
 
 ```{figure} ../assets/images/bplus1.png
 ---
@@ -81,7 +81,7 @@ En cada nodo pueden haber como máximo 2 claves (orden 3) y como mínimo 1 clave
 
 En los nodos intermedios y en la raíz se repiten palabras que ya están en las hojas, de tal manera que las palabras estrictamente menores a una clave dada se encuentran en el subárbol izquierdo y las palabras mayores o iguales a esa clave se encuentran en su subárbol derecho.
 
-En el ejemplo si se busca `"PILA"`{l=python} como es mayor que la clave en la raíz, la búsqueda continúa en el subárbol derecho. El nodo intermedio contiene las palabras `"PIEL"`{l=python}|`"POCO"`{l=python}, como `"PILA"`{l=python} es mayor que `"PIEL"`{l=python}, pero menor que `"POCO"`{l=python}, la búsqueda continúa en el subárbol del medio. Al llegar a la hoja con las palabras `"PIEL"`{l=python}|`"PIPA"`{l=python}, se determina que `"PILA"`{l=python} no está en el árbol.
+En el ejemplo si se busca `"PILA"` como es mayor que la clave en la raíz, la búsqueda continúa en el subárbol derecho. El nodo intermedio contiene las palabras `"PIEL"`|`"POCO"`, como `"PILA"` es mayor que `"PIEL"`, pero menor que `"POCO"`, la búsqueda continúa en el subárbol del medio. Al llegar a la hoja con las palabras `"PIEL"`|`"PIPA"`, se determina que `"PILA"` no está en el árbol.
 
 ## Inserción en un Árbol B+
 
@@ -93,27 +93,27 @@ La inserción de un nuevo valor en un árbol B+ sigue estos pasos:
 4. **Actualizar el nodo padre**: Si el nodo padre también está lleno, se repite el proceso de división y promoción hacia arriba hasta llegar a la raíz.
 5. **Crear una nueva raíz si es necesario**: Si la raíz se divide, se crea una nueva raíz con la clave promovida.
 
-![Inserción en hoja](../assets/images/bplus2.png){align=center}
+![Inserción en hoja](../assets/images/bplus2.png)
 
 {.centered}
-Se encuentra la hoja donde se debe insertar `"PILA"`{l=python}.
+Se encuentra la hoja donde se debe insertar `"PILA"`.
 
-![División de hoja](../assets/images/bplus3.png){align=center}
-
-{.centered}
-Al insertar `"PILA"`{l=python}, la hoja se divide en dos, la primera contiene `"PIEL"`{l=python} y la segunda `"PILA"`{l=python}|`"PIPA"`{l=python}.
-
-![Promoción hacia arriba](../assets/images/bplus4.png){align=center}
+![División de hoja](../assets/images/bplus3.png)
 
 {.centered}
-Como `"PILA"`{l=python}, es la primera clave del segundo nodo que se partió, se promueve hacia arriba.
+Al insertar `"PILA"`, la hoja se divide en dos, la primera contiene `"PIEL"` y la segunda `"PILA"`|`"PIPA"`.
 
-![Nueva raíz](../assets/images/bplus5.png){align=center}
+![Promoción hacia arriba](../assets/images/bplus4.png)
 
 {.centered}
-El nodo intermedio también se parte y finalmente se promueve `"PILA"`{l=python} a la raíz.
+Como `"PILA"`, es la primera clave del segundo nodo que se partió, se promueve hacia arriba.
 
-Se puede usar un [visualizador interactivo](https://www.cs.usfca.edu/~galles/visualization/BPlusTree.html){target="\_blank"} para observar cómo se realiza la inserción en un árbol B+.
+![Nueva raíz](../assets/images/bplus5.png)
+
+{.centered}
+El nodo intermedio también se parte y finalmente se promueve `"PILA"` a la raíz.
+
+Se puede usar un [visualizador interactivo](https://www.cs.usfca.edu/~galles/visualization/BPlusTree.html) para observar cómo se realiza la inserción en un árbol B+.
 
 ## Ejercicio interactivo
 
@@ -129,29 +129,27 @@ En la siguiente simulación presionar en que nodo insertar el nuevo valor y obse
 
 ## Índices con árboles B+ en Python
 
-Para implementar índices basados en árboles B+ en Python, utilizaremos la librería `BTrees`{l=python} del proyecto ZODB (_Zope Object DataBase_). Esta librería proporciona implementaciones maduras y eficientes de árboles B+ que pueden persistirse en disco. `BTrees`{l=python} ofrece varias variantes según el tipo de claves y valores:
+Para implementar índices basados en árboles B+ en Python, utilizaremos la librería `BTrees` del proyecto ZODB (_Zope Object DataBase_). Esta librería proporciona implementaciones maduras y eficientes de árboles B+ que pueden persistirse en disco. `BTrees` ofrece varias variantes según el tipo de claves y valores:
 
-`OOBTree`{l=python}
+`OOBTree`
 : Claves y valores como objetos Python
 
-`OIBTree`{l=python}
+`OIBTree`
 : Claves como objetos, valores como enteros
 
-`IOBTree`{l=python}
+`IOBTree`
 : Claves como enteros, valores como objetos
 
-`IIBTree`{l=python}
+`IIBTree`
 : Claves y valores como enteros
 
-Para nuestros ejemplos usaremos `OOBTree`{l=python} que permite usar _strings_ tanto para claves como para valores.
+Para nuestros ejemplos usaremos `OOBTree` que permite usar _strings_ tanto para claves como para valores.
 
 A continuación se muestra un ejemplo básico de cómo crear un árbol B+, insertar valores y realizar búsquedas.
 
 ```{code-cell} python
 ---
-tags: [hide-output]
-mystnb:
-  number_source_lines: true
+tags: hide-output
 ---
 from BTrees.OOBTree import OOBTree
 import pickle
@@ -191,9 +189,9 @@ class: note
 ---
 - Implementación madura del proyecto ZODB (_Zope Object DataBase_).
 - Mantiene las claves ordenadas automáticamente usando árboles B+.
-- Interfaz similar a diccionarios de Python (`dict`{l=python}).
+- Interfaz similar a diccionarios de Python (`dict`).
 - Eficiente para grandes volúmenes de datos.
-- Puede persistirse fácilmente con `pickle`{l=python} o integrarse con ZODB.
+- Puede persistirse fácilmente con `pickle` o integrarse con ZODB.
 ```
 
 ```{admonition} Características de los árboles B+ en BTrees
@@ -209,13 +207,11 @@ class: note
 
 ### Búsquedas con rangos y comodines
 
-Los árboles B+ en BTrees permiten realizar búsquedas eficientes por rangos gracias a que mantienen los datos ordenados. Podemos usar los métodos `keys()`{l=python}, `values()`{l=python} e `items()`{l=python} con parámetros de rango:
+Los árboles B+ en BTrees permiten realizar búsquedas eficientes por rangos gracias a que mantienen los datos ordenados. Podemos usar los métodos `keys()`, `values()` e `items()` con parámetros de rango:
 
 ```{code-cell} python
 ---
-tags: [hide-output]
-mystnb:
-  number_source_lines: true
+tags: hide-output
 ---
 from BTrees.OOBTree import OOBTree
 import pickle
@@ -257,27 +253,25 @@ for palabra in btree.keys(min="PO", max="POZ"):
 ---
 class: note
 ---
-1. **Búsquedas exactas** (`"PACO" in btree`{l=python}): $O(\log{n})$
-2. **Búsquedas por rango** (`keys(min="A", max="Z")`{l=python}): $O(\log{n + k})$ donde $k$ es el número de resultados
-3. **Recorrido completo** (`keys()`{l=python}): $O(n)$
+1. **Búsquedas exactas** (`"PACO" in btree`): $O(\log{n})$
+2. **Búsquedas por rango** (`keys(min="A", max="Z")`): $O(\log{n + k})$ donde $k$ es el número de resultados
+3. **Recorrido completo** (`keys()`): $O(n)$
 
-El método `keys(min, max)`{l=python} es muy eficiente porque:
+El método `keys(min, max)` es muy eficiente porque:
 - Usa el índice B+ para localizar el punto de inicio en $O(\log{n})$
 - Recorre secuencialmente las hojas enlazadas para obtener los k resultados
 - No necesita cargar todo el árbol en memoria
 
-**Importante:** El parámetro `max`{l=python} es exclusivo, es decir, `keys(min="A", max="B")`{l=python} devuelve claves `"A" <= x < "B"`{l=python}. Para incluir el límite superior, se puede usar un valor ligeramente mayor (como `"PICOZ"`{l=python} para incluir `"PICO"`{l=python}).
+**Importante:** El parámetro `max` es exclusivo, es decir, `keys(min="A", max="B")` devuelve claves `"A" <= x < "B"`. Para incluir el límite superior, se puede usar un valor ligeramente mayor (como `"PICOZ"` para incluir `"PICO"`).
 ```
 
-### Búsqueda con comodín `"?"`{l=python} (un solo caracter)
+### Búsqueda con comodín `"?"` (un solo caracter)
 
-Para buscar `"P?CO"`{l=python} (donde `"?"`{l=python} representa un solo caracter), podemos iterar sobre un rango amplio y filtrar las claves que coincidan con el patrón:
+Para buscar `"P?CO"` (donde `"?"` representa un solo caracter), podemos iterar sobre un rango amplio y filtrar las claves que coincidan con el patrón:
 
 ```{code-cell} python
 ---
-tags: [hide-output]
-mystnb:
-  number_source_lines: true
+tags: hide-output
 ---
 from BTrees.OOBTree import OOBTree
 import pickle
@@ -310,29 +304,27 @@ print(f"Claves que coinciden con 'P?CO': {', '.join(palabras_encontradas)}")
 ---
 class: note
 ---
-1. Usar `keys(min, max)`{l=python} para obtener un rango que incluya todas las posibles coincidencias
+1. Usar `keys(min, max)` para obtener un rango que incluya todas las posibles coincidencias
 2. Aplicar filtros adicionales en Python (longitud, sufijo, regex, etc.)
 3. El árbol B+ sigue siendo eficiente porque:
    - Solo lee los nodos necesarios del rango especificado
    - No carga todo el árbol en memoria
    - Aprovecha el orden lexicográfico de las claves
 
-En este ejemplo, `"P?CO"`{l=python} coincide con `"PACO"`{l=python}, `"PICO"`{l=python} y `"POCO"`{l=python}, que son las únicas palabras de 4 caracteres que empiezan con `"P"`{l=python} y terminan con `"CO"`{l=python} en nuestro conjunto de datos.
+En este ejemplo, `"P?CO"` coincide con `"PACO"`, `"PICO"` y `"POCO"`, que son las únicas palabras de 4 caracteres que empiezan con `"P"` y terminan con `"CO"` en nuestro conjunto de datos.
 
 Para patrones más complejos, se pueden usar expresiones regulares para el filtrado.
 ```
 
-### Búsqueda con comodín `"*"`{l=python} al inicio de la palabra
+### Búsqueda con comodín `"*"` al inicio de la palabra
 
-Para búsquedas con comodines al inicio de la palabra (como `"*CO"`{l=python}), los árboles B+ tradicionales no son eficientes ya que están optimizados para búsquedas que comienzan desde el inicio de la clave, es decir de prefijos.
+Para búsquedas con comodines al inicio de la palabra (como `"*CO"`), los árboles B+ tradicionales no son eficientes ya que están optimizados para búsquedas que comienzan desde el inicio de la clave, es decir de prefijos.
 
-Una estrategia efectiva es mantener un **índice adicional con palabras invertidas** en otro árbol B+. De esta manera, una búsqueda como `"*CO"`{l=python} se transforma en una búsqueda por prefijo `"OC*"`{l=python} en el índice invertido.
+Una estrategia efectiva es mantener un **índice adicional con palabras invertidas** en otro árbol B+. De esta manera, una búsqueda como `"*CO"` se transforma en una búsqueda por prefijo `"OC*"` en el índice invertido.
 
 ```{code-cell} python
 ---
-tags: [hide-output]
-mystnb:
-  number_source_lines: true
+tags: hide-output
 ---
 from BTrees.OOBTree import OOBTree
 import pickle
@@ -380,7 +372,7 @@ print(f"Palabras que terminan en 'CO': {', '.join(sorted(resultados))}")
 ```{note}
 **Ventajas del índice con palabras invertidas usando árboles B+:**
 
-- Convierte búsquedas por sufijo (`"*CO"`{l=python}) en búsquedas por prefijo (`"OC*"`{l=python})
+- Convierte búsquedas por sufijo (`"*CO"`) en búsquedas por prefijo (`"OC*"`)
 - Cada índice es un árbol B+ independiente con sus propias optimizaciones
 - Ambos árboles pueden persistirse en disco de forma independiente
 - Aprovecha la eficiencia de los árboles B+ para búsquedas por prefijo
@@ -389,7 +381,7 @@ print(f"Palabras que terminan en 'CO': {', '.join(sorted(resultados))}")
 
 - Requiere espacio adicional (aproximadamente el doble de almacenamiento)
 - Necesita mantener dos árboles sincronizados al insertar/eliminar
-- Para comodines en posiciones intermedias (`"P*CO"`{l=python}), se requieren técnicas más avanzadas
+- Para comodines en posiciones intermedias (`"P*CO"`), se requieren técnicas más avanzadas
 
 **Alternativas para búsquedas más complejas:**
 
@@ -401,19 +393,17 @@ print(f"Palabras que terminan en 'CO': {', '.join(sorted(resultados))}")
 La elección de la estructura de datos depende del tipo de búsquedas más frecuentes en la aplicación.
 ```
 
-### Búsquedas con comodín `"*"`{l=python} en posiciones intermedias
+### Búsquedas con comodín `"*"` en posiciones intermedias
 
-Para búsquedas con el comodín `"*"`{l=python} en el medio de una palabra (como `"P*CO"`{l=python}), se puede aprovechar tanto el árbol B+ normal como el árbol de palabras invertidas. La estrategia consiste en dividir la búsqueda en dos partes:
+Para búsquedas con el comodín `"*"` en el medio de una palabra (como `"P*CO"`), se puede aprovechar tanto el árbol B+ normal como el árbol de palabras invertidas. La estrategia consiste en dividir la búsqueda en dos partes:
 
-1. Buscar en el árbol normal las palabras que comienzan con el prefijo antes del `"*"`{l=python} (en este caso `"P"`{l=python}).
-2. Buscar en el árbol invertido las palabras que terminan con el sufijo después del `"*"`{l=python} (en este caso `"OC"`{l=python}).
+1. Buscar en el árbol normal las palabras que comienzan con el prefijo antes del `"*"` (en este caso `"P"`).
+2. Buscar en el árbol invertido las palabras que terminan con el sufijo después del `"*"` (en este caso `"OC"`).
 3. Intersectar los resultados de ambas búsquedas para obtener las coincidencias finales.
 
 ```{code-cell} python
 ---
-tags: [hide-output]
-mystnb:
-  number_source_lines: true
+tags: hide-output
 ---
 from BTrees.OOBTree import OOBTree
 import pickle
@@ -454,4 +444,4 @@ print(f"\nTotal de resultados: {len(resultados_finales)}")
 
 ## Implementación completa
 
-En [IndiceOrdenado](https://github.com/untref-edd/IndiceOrdenado){target="\_blank"} se encuentra una implementación completa de un índice basado en árboles B+ utilizando la librería `BTrees` de ZODB.
+En [IndiceOrdenado](https://github.com/untref-edd/IndiceOrdenado) se encuentra una implementación completa de un índice basado en árboles B+ utilizando la librería `BTrees` de ZODB.

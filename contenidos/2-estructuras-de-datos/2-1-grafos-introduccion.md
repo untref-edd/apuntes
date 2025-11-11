@@ -52,7 +52,7 @@ Ejemplo de un grafo
 
 Si entre cada par de vértices se puede tener más de una arista, entonces se trata de un **multigrafo**. En esta materia no vamos a estudiar **multigrafos**.
 
-[Ver más sobre multigrafos](https://es.wikipedia.org/wiki/Multigrafo){target="\_blank"}
+[Ver más sobre multigrafos](https://es.wikipedia.org/wiki/Multigrafo)
 
 ## Grafos dirigidos y no dirigidos
 
@@ -124,7 +124,6 @@ Por ejemplo, en la siguiente tabla se observa el peso de las aristas que compone
 
 ```{table}
 ---
-width: 180px
 align: center
 ---
 |  Arista  | Peso |
@@ -176,7 +175,7 @@ Es un vértice cuyo grado de entrada es 0
 
 Es un vértice cuyo grado de salida es 0
 
-```{Important}
+```{important}
 Un ***DAG*** siempre tiene al menos un vértice ***fuente*** y un vértice ***sumidero***.
 
 En el grafo de la figura anterior, el vértice $V_2$ es una fuente y el vértice $V_5$ es un sumidero.
@@ -216,7 +215,6 @@ Se numeran los vértices del grafo desde $0$ hasta $n-1$ y se genera una matriz 
 
 ```{table}
 ---
-width: 320px
 align: center
 ---
 |           | **$V_0$** | **$V_1$** | **$V_2$** | **$V_3$** | **$V_4$** | **$V_5$** | **$V_6$** |
@@ -249,7 +247,6 @@ Grafo no dirigido
 
 ```{table}
 ---
-width: 240px
 align: center
 ---
 |         | **$A$** | **$B$** | **$C$** | **$D$** | **$E$** |
@@ -305,32 +302,32 @@ Los vértices deben ser de tipos _hashables_, es decir, cualquier tipo que pueda
 
 Existen varias formas de crear un grafo. A continuación algunas de las que más usaremos:
 
-`Graph()`{l=python}
+`Graph()`
 : Para crear un grafo simple, vacío y no dirigido.
 
-`DiGraph()`{l=python}
+`DiGraph()`
 : Para crear un grafo dirigido incialmente vacío.
 
 Para agregar aristas se puede usar:
 
-`add_edge(u, v, weight=w)`{l=python}
-: Para agregar una arista desde el nodo `u`{l=python} al nodo `v`{l=python} con un peso `w`{l=python}.
+`add_edge(u, v, weight=w)`
+: Para agregar una arista desde el nodo `u` al nodo `v` con un peso `w`.
 Si el grafo es no dirigido, también se agregará la arista en la dirección opuesta.
-Si los nodos `u`{l=python} y `v`{l=python} no existen en el grafo, se agregarán automáticamente.
+Si los nodos `u` y `v` no existen en el grafo, se agregarán automáticamente.
 
-`add_weighted_edges_from(iterable)`{l=python}
-: Para agregar múltiples aristas de una sola vez desde un `iterable`{l=python} de tuplas `(u, v, w)`{l=python}. Si se omite el peso, se asumirá un peso de 1.
+`add_weighted_edges_from(iterable)`
+: Para agregar múltiples aristas de una sola vez desde un `iterable` de tuplas `(u, v, w)`. Si se omite el peso, se asumirá un peso de 1.
 
-`add_edges_from(iterable)`{l=python}
-: Para agregar múltiples aristas de una sola vez desde `iterable`{l=python} de tuplas `(u, v, d)`{l=python}. El último parámetro, opcional, puede ser un diccionario con atributos de la arista.
+`add_edges_from(iterable)`
+: Para agregar múltiples aristas de una sola vez desde `iterable` de tuplas `(u, v, d)`. El último parámetro, opcional, puede ser un diccionario con atributos de la arista.
 
 También se pueden agregar nodos individuales
 
-`add_node(n)`{l=python}
-: Para agregar un nodo `n`{l=python} al grafo.
+`add_node(n)`
+: Para agregar un nodo `n` al grafo.
 
-`add_nodes_from(iterable)`{l=python}
-: Para agregar múltiples nodos desde un `iterable`{l=python}. Cada elemento puede ser un nodo o una tupla de la forma `(n, d)`{l=python}, donde `n`{l=python} es el nodo y `d`{l=python} es un diccionario con los atributos opcionales.
+`add_nodes_from(iterable)`
+: Para agregar múltiples nodos desde un `iterable`. Cada elemento puede ser un nodo o una tupla de la forma `(n, d)`, donde `n` es el nodo y `d` es un diccionario con los atributos opcionales.
 
 ### Graficar grafos
 
@@ -340,7 +337,7 @@ La interfaz `networkx.drawing.nx_pylab` provee funciones que permiten crear y us
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 import networkx as nx
 import matplotlib.pyplot as plt  # permite crear figuras, mostrarlas, etc.
@@ -376,23 +373,23 @@ plt.show()  # Mostrar la figura
 
 Un _**layout**_ es un diccionario {nodo: (x, y)} con la posición de cada vértice. **NetworkX** incluye varios algoritmos para calcular layouts.
 
-`spring_layout`{l=python}
+`spring_layout`
 : Posiciona nodos con un modelo de fuerzas.
 
-`circular_layout`{l=python}
+`circular_layout`
 : Posiciona nodos en un círculo.
 
-`shell_layout`{l=python}
+`shell_layout`
 : Posiciona nodos en capas concéntricas.
 
-`kamada_kawai_layout`{l=python}
+`kamada_kawai_layout`
 : Posiciona nodos minimizando la energía de un sistema de resortes.
 
 ### Ejemplo: Grafo de una red de transporte
 
 ```{code-cell} python
 ---
-tags: [hide-input]
+tags: hide-input
 ---
 import networkx as nx
 import matplotlib.pyplot as plt
@@ -485,7 +482,7 @@ plt.show()
 
 ## Recursos para profundizar
 
-- [Documentación de NetworkX](https://networkx.org/documentation/stable/index.html){target="\_blank"}
-- [Tutorial de Matplotlib](https://matplotlib.org/stable/tutorials/index.html){target="\_blank"}
-- [Introducción a grafos y redes con Python](https://cienciadedatos.net/documentos/pygml01-introduccion-grafos-redes-python){target="\_blank"}
-- [NetworkX Tutorial](https://www.kaggle.com/code/alireza151/networkx-tutorial){target="\_blank"}
+- [Documentación de NetworkX](https://networkx.org/documentation/stable/index.html)
+- [Tutorial de Matplotlib](https://matplotlib.org/stable/tutorials/index.html)
+- [Introducción a grafos y redes con Python](https://cienciadedatos.net/documentos/pygml01-introduccion-grafos-redes-python)
+- [NetworkX Tutorial](https://www.kaggle.com/code/alireza151/networkx-tutorial)

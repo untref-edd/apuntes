@@ -14,7 +14,7 @@ kernelspec:
 
 ```{code-cell} python
 ---
-tags: [hide-output, remove-cell]
+tags: hide-output, remove-cell
 ---
 """Borra todos los archivos y carpetas en /tmp"""
 import os
@@ -146,7 +146,7 @@ Ejemplo de uso:
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 agenda = Agenda("agenda.json")
 agenda.guardar_contacto("Juan", "123456789", "juan@example.com")
@@ -164,7 +164,7 @@ Si vemos el contenido del archivo `agenda.json`, se observa que los datos están
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 with open("agenda.json", "r") as f:
     contenido = f.read()
@@ -207,7 +207,7 @@ Ejemplo de uso:
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 agenda = AgendaGeneral("agenda_general.json")
 agenda.guardar_contacto(
@@ -271,7 +271,7 @@ Archivo `agenda_general.json`:
 
 ```{code-cell} python
 ---
-tags: [hide-output]
+tags: hide-output
 ---
 with open("agenda_general.json", "r") as f:
     contenido = f.read()

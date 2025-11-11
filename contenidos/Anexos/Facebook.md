@@ -8,7 +8,7 @@ El primer paso es crear una cuenta de desarrollador en la plataforma Meta.
 
 1. Ir al Portal de Desarrolladores
 
-   - Abrir un navegador web y acceder al portal oficial: [https://developers.facebook.com/](https://developers.facebook.com/){target="\_blank"}.
+   - Abrir un navegador web y acceder al portal oficial: [https://developers.facebook.com/](https://developers.facebook.com/).
 
 2. Iniciar Sesión
 
@@ -362,16 +362,16 @@ FACEBOOK_RATE_LIMIT_DELAY=1
 
 ### Documentación Oficial
 
-- [Meta for Developers - Getting Started](https://developers.facebook.com/docs/development/create-an-app/){target="\_blank"}
-- [Graph API Reference](https://developers.facebook.com/docs/graph-api/){target="\_blank"}
-- [Graph API Explorer](https://developers.facebook.com/tools/explorer/){target="\_blank"}
-- [Facebook SDK for Python](https://facebook-sdk.readthedocs.io/){target="\_blank"}
+- [Meta for Developers - Getting Started](https://developers.facebook.com/docs/development/create-an-app/)
+- [Graph API Reference](https://developers.facebook.com/docs/graph-api/)
+- [Graph API Explorer](https://developers.facebook.com/tools/explorer/)
+- [Facebook SDK for Python](https://facebook-sdk.readthedocs.io/)
 
 ### Librerías de Python Recomendadas
 
-- [**facebook-sdk**](https://facebook-sdk.readthedocs.io/){target="\_blank"}: SDK de terceros/comunidad para interactuar con Graph API en Python
-- [**requests**](https://requests.readthedocs.io/){target="\_blank"}: Para llamadas HTTP directas (recomendado para máxima compatibilidad)
-- [**python-facebook-api**](https://github.com/sns-sdks/python-facebook){target="\_blank"}: Alternativa moderna mantenida por la comunidad
+- [**facebook-sdk**](https://facebook-sdk.readthedocs.io/): SDK de terceros/comunidad para interactuar con Graph API en Python
+- [**requests**](https://requests.readthedocs.io/): Para llamadas HTTP directas (recomendado para máxima compatibilidad)
+- [**python-facebook-api**](https://github.com/sns-sdks/python-facebook): Alternativa moderna mantenida por la comunidad
 
 ### Herramientas de Desarrollo
 
@@ -389,5 +389,5 @@ FACEBOOK_RATE_LIMIT_DELAY=1
 - **Eventos**: `/me/events`
 
 ```{important}
-**Nota sobre privacidad y cambios recientes**: La API de Facebook Graph ha limitado significativamente el acceso a datos de usuarios desde el escándalo de [Cambridge Analytica en 2018](https://es.wikipedia.org/wiki/Cambridge_Analytica){target="_blank"}. Actualmente, solo se puede acceder a datos del propio usuario autenticado y datos públicos. Muchas funcionalidades que antes estaban disponibles ahora requieren revisión de aplicación y justificación detallada del caso de uso.
+**Nota sobre privacidad y cambios recientes**: La API de Facebook Graph ha limitado significativamente el acceso a datos de usuarios desde el escándalo de [Cambridge Analytica en 2018](https://es.wikipedia.org/wiki/Cambridge_Analytica). Actualmente, solo se puede acceder a datos del propio usuario autenticado y datos públicos. Muchas funcionalidades que antes estaban disponibles ahora requieren revisión de aplicación y justificación detallada del caso de uso.
 ```

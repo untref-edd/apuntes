@@ -1,0 +1,67 @@
+# See docs at: https://mystmd.org/guide/frontmatter
+version: 1
+project:
+  id: baa50ab6-944d-49f8-84e9-438fc17cb67a
+  title: Apuntes de Estructuras de Datos
+  # description:
+  # keywords: []
+  # authors:
+  #   - name: Cátedra de Estructuras de Datos
+  github: untref-edd/apuntes
+  # To autogenerate a Table of Contents, run "jupyter book init --write-toc"
+  copyright: "2025"
+  bibliography:
+    - references.bib
+  exports:
+    - format: typst
+      # template: ieee-typst
+      template: lapreprint-typst
+      output: exports/apunte.pdf
+  toc:
+    - file: introduccion.md
+    - title: Taller de Python
+      children:
+        - file: 1-taller-de-python/1-1-introduccion-python.md
+        - file: 1-taller-de-python/1-2-tipos-de-datos.md
+        - file: 1-taller-de-python/1-3-estructuras-de-control.md
+        - file: 1-taller-de-python/1-4-ambitos-ejecucion.md
+        - file: 1-taller-de-python/1-5-funciones.md
+        - file: 1-taller-de-python/1-6-poo.md
+        - file: 1-taller-de-python/1-7-excepciones.md
+        - file: 1-taller-de-python/1-8-introspeccion.md
+        - file: 1-taller-de-python/1-9-archivos.md
+        - file: 1-taller-de-python/1-10-persistencia.md
+    - title: Grafos
+      children:
+        - file: 2-estructuras-de-datos/2-1-grafos-introduccion.md
+        - file: 2-estructuras-de-datos/2-2-grafos-orden-topologico.md
+        - file: 2-estructuras-de-datos/2-3-grafos-caminos-minimos.md
+        - file: 2-estructuras-de-datos/2-4-grafos-recorridos.md
+    - title: Recuperación de la Información
+      children:
+        - file: 3-recuperacion-de-la-informacion/3-1-recuperacion.md
+        - file: 3-recuperacion-de-la-informacion/3-2-registros.md
+        - file: 3-recuperacion-de-la-informacion/3-3-json.md
+        - file: 3-recuperacion-de-la-informacion/3-4-xml.md
+        - file: 3-recuperacion-de-la-informacion/3-5-regex.md
+        - file: 3-recuperacion-de-la-informacion/3-6-web-apis.md
+        - file: 3-recuperacion-de-la-informacion/3-7-web-scraping.md
+        - file: 3-recuperacion-de-la-informacion/3-8-redes-sociales.md
+        - file: 3-recuperacion-de-la-informacion/3-9-indices-invertidos.md
+        - file: 3-recuperacion-de-la-informacion/3-10-compresion-indices.md
+        - file: 3-recuperacion-de-la-informacion/3-11-indices-arboles-b.md
+    - title: Anexos
+      children:
+        - file: Anexos/GitBash.md
+        - file: Anexos/Facebook.md
+        - file: Anexos/Twitter.md
+    - title: Referencias
+      children:
+        - file: bibliografia.md
+
+site:
+  template: book-theme
+  options:
+    folders: true
+    logo: assets/images/untref-logo.svg
+    style: _static/css/custom.css
