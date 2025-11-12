@@ -123,7 +123,7 @@ print(saludar())  # Salida: Hola, mundo!
 print(saludar("Juan"))  # Salida: Hola, Juan!
 ```
 
-```{Important}
+```{important}
 Si en una misma función se utilizan parámetros posicionnales, nombreados, posicionales variables y nombrados variables, los parámetros deben seguir el siguiente orden:
 1. Parámetros posicionales
 2. Parámetros nombrados
@@ -408,7 +408,7 @@ while True:
         break
 ```
 
-```{Note}
+```{note}
 En el capitulo [Excepciones](1-7-excepciones.md) veremos en más detalle el manejo de excepciones en Python. Por ahora basta con saber que una excepción interrumpe el flujo normal del programa protegido por un bloque `try`{l=python} y pasa el control al bloque `except`{l=python} correspondiente. En este caso el bloque `except`{l=python} captura la excepción `StopIteration`{l=python} para finalizar la iteración.
 
 La sentencia `break`{l=python} se utiliza para romper y salir del bucle infinito `while True`{l=python}.
@@ -443,7 +443,7 @@ funcion_decorada(5)
 
 La función `decorador`{l=python} toma una función `func`{l=python} como argumento y devuelve una nueva función, `funcion_decorada`{l=python} que agrega el mensaje _El resultado de la operación es:_ al resultado de la función original.
 
-```{Note}
+```{note}
 En este ejemplo se ultiliza `*args`{l=python} y `**kwargs`{l=python} para permitir que la función decorada acepte cualquier número de argumentos posicionales y nombrados, lo que la hace más flexible. En la línea 7, la expresión `func(*args, **kwargs)`{l=python} invoca a la función original con los argumentos que le pasaron a la función decorada.
 ```
 

@@ -162,7 +162,7 @@ resultado = eval(
 print("Resultado de la expresión:", resultado)
 ```
 
-```{Important} Advertencia de seguridad
+```{important} Advertencia de seguridad
 Nunca se debe utilizar `eval()`{l=python} con entradas que provengan de usuarios o fuentes no confiables. Hacerlo puede permitir la ejecución de código malicioso y comprometer la seguridad del sistema.
 ```
 

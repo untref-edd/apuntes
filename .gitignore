@@ -149,3 +149,7 @@ tmp/
 
 # Ignore temporary blocks from BSBI algorithm
 temp_blocks/
+
+# Jupyter Book 2 migration backup files
+*.bak
+.*.bak

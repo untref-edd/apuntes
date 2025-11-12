@@ -15,20 +15,20 @@ fmt:
 	mdformat --number contenidos/**/*.md
 	black --line-length 120 .
 
-## build: compila el libro
+## build: compila el libro (Jupyter Book 2)
 .PHONY: build
 build:
-	jupyter-book build contenidos
+	cd contenidos && jupyter-book build
 
 ## clean: elimina los archivos generados
 .PHONY: clean
 clean:
-	jupyter-book clean contenidos
+	rm -rf contenidos/_build
 
 # Puerto por defecto para levantar el servidor http
 PORT ?= 8080
 
-## server: levanta un servidor http para visualizar el libro
+## server: levanta un servidor http para visualizar el libro (Jupyter Book 2)
 .PHONY: server
 server:
-	python -m http.server $(PORT) --directory contenidos/_build/html
+	python -m http.server $(PORT) --directory contenidos/_build/site/public

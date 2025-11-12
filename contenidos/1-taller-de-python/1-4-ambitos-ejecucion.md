@@ -125,7 +125,7 @@ Variables privadas
 Variables especiales
 : Se definen con dos guiones bajos al inicio y al final del nombre, estos son conocidos en la comunidad Python como _dunder methods_ (ej. `__init__`{l=python}). Estas son utilizadas por Python para definir métodos especiales y no deben ser modificadas directamente.
 
-```{Warning}
+```{warning}
 Todas las variables en Python son accesibles desde fuera del módulo o clase, incluso las privadas. La convención de nomenclatura es solo una guía para los desarrolladores y no impide el acceso a las variables.
 ```
 
@@ -197,7 +197,7 @@ mi_funcion()  # Llama a la función que modifica el mensaje global
 print(mensaje)  # Acceso a la variable global modificada
 ```
 
-```{Warning}
+```{warning}
 El uso excesivo de global o de ocultamiento de variables puede llevar a código difícil de mantener y depurar. Preferiblemente, se deben pasar las variables como argumentos a las funciones y las funciones deben devolver valores explicitos.
 ```
 
@@ -242,7 +242,7 @@ Al ejecutar el fragmento anterior ocurre lo siguiente:
 
 5. `incrementar_2(5)` retorna 7 al ámbito global, y `print`{l=python} lo muestra en la salida.
 
-```{Important}
+```{important}
 Para Python todas las variables son referencias, incluido los nombres de las funciones. Al colocar paréntesis luego del nombre de la misma, se invoca la función y se ejecuta el código que contiene. Si no se colocan paréntesis, se obtiene una referencia a la función, que es un objeto más en memoria.
 ```
 
@@ -296,7 +296,7 @@ El ámbito _built-in_ contiene nombres predefinidos por Python, como funciones y
 
 Si se intenta redefinir un nombre _built-in_, se creará una variable local o global que ocultará temporalmente el nombre _built-in_, pero no se eliminará del ámbito _built-in_.
 
-```{Warning}
+```{warning}
 No se recomienda bajo ningún punto de vista, redefinir nombres _built-in_, ya que esto puede causar confusión y errores difíciles de depurar. Es mejor utilizar nombres descriptivos y evitar conflictos con los nombres predefinidos de Python.
 ```
 
