@@ -64,4 +64,5 @@ site:
   options:
     folders: true
     logo: assets/images/untref-logo.svg
+    logo_dark: assets/images/untref-logo-white.svg
     style: _static/css/custom.css
