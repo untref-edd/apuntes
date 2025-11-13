@@ -9,26 +9,23 @@ help:
 install:
 	pip install --requirement requirements.txt
 
-## fmt: formatea todos el contenido del libro
+## fmt: formatea todo el contenido del libro y código
 .PHONY: fmt
 fmt:
 	mdformat --number contenidos/**/*.md
 	black --line-length 120 .
 
-## build: compila el libro
+## build: compila el libro ejecutando las celdas
 .PHONY: build
 build:
-	jupyter-book build contenidos
+	cd contenidos && myst build --execute
 
-## clean: elimina los archivos generados
+## clean: elimina todos los archivos generados por la compilación
 .PHONY: clean
 clean:
-	jupyter-book clean contenidos
+	cd contenidos && myst clean --all
 
-# Puerto por defecto para levantar el servidor http
-PORT ?= 8080
-
-## server: levanta un servidor http para visualizar el libro
-.PHONY: server
-server:
-	python -m http.server $(PORT) --directory contenidos/_build/html
+## start: inicia el servidor de desarrollo ejecutando las celdas
+.PHONY: start
+start:
+	cd contenidos && myst start --execute
