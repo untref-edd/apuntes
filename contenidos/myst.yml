@@ -4,7 +4,14 @@ project:
   id: baa50ab6-944d-49f8-84e9-438fc17cb67a
   title: Apuntes de Estructuras de Datos
   description: Apuntes de la materia Estructuras de Datos - UNTREF
-  keywords: ["estructuras de datos", "python", "algoritmos", "untref", "ingenieria en computación"]
+  keywords:
+    [
+      "estructuras de datos",
+      "python",
+      "algoritmos",
+      "untref",
+      "ingenieria en computación",
+    ]
   authors:
     - name: Cátedra de Estructuras de Datos
   github: untref-edd/apuntes
@@ -35,22 +42,26 @@ project:
     - title: Grafos
       children:
         - file: 2-estructuras-de-datos/2-1-grafos-introduccion.md
-        - file: 2-estructuras-de-datos/2-2-grafos-orden-topologico.md
-        - file: 2-estructuras-de-datos/2-3-grafos-caminos-minimos.md
-        - file: 2-estructuras-de-datos/2-4-grafos-recorridos.md
+        - file: 2-estructuras-de-datos/2-2-grafos-recorridos.md
+        - file: 2-estructuras-de-datos/2-3-grafos-orden-topologico.md
+        - file: 2-estructuras-de-datos/2-4-grafos-caminos-minimos.md
+    - title: Representación y Adquisición de Datos
+      children:
+        - file: 3-representacion-datos/3-1-registros.md
+        - file: 3-representacion-datos/3-2-json.md
+        - file: 3-representacion-datos/3-3-xml.md
+        - file: 3-representacion-datos/3-4-regex.md
+        - file: 3-representacion-datos/3-5-web-apis.md
+        - file: 3-representacion-datos/3-6-web-scraping.md
     - title: Recuperación de la Información
       children:
-        - file: 3-recuperacion-de-la-informacion/3-1-recuperacion.md
-        - file: 3-recuperacion-de-la-informacion/3-2-registros.md
-        - file: 3-recuperacion-de-la-informacion/3-3-json.md
-        - file: 3-recuperacion-de-la-informacion/3-4-xml.md
-        - file: 3-recuperacion-de-la-informacion/3-5-regex.md
-        - file: 3-recuperacion-de-la-informacion/3-6-web-apis.md
-        - file: 3-recuperacion-de-la-informacion/3-7-web-scraping.md
-        - file: 3-recuperacion-de-la-informacion/3-8-redes-sociales.md
-        - file: 3-recuperacion-de-la-informacion/3-9-indices-invertidos.md
-        - file: 3-recuperacion-de-la-informacion/3-10-compresion-indices.md
-        - file: 3-recuperacion-de-la-informacion/3-11-indices-arboles-b.md
+        - file: 4-recuperacion-informacion/4-1-introduccion-ri.md
+        - file: 4-recuperacion-informacion/4-2-indices-invertidos.md
+        - file: 4-recuperacion-informacion/4-3-compresion-indices.md
+        - file: 4-recuperacion-informacion/4-4-indices-arboles-b.md
+    - title: Aplicaciones
+      children:
+        - file: 5-aplicaciones/5-1-redes-sociales.md
     - title: Anexos
       children:
         - file: Anexos/GitBash.md
