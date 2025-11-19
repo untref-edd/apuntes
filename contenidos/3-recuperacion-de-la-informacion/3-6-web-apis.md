@@ -181,7 +181,7 @@ El intercambio entre cliente y servidor puede verse en *"crudo"* utilizando herr
 curl -v https://untref.edu.ar/
 ```
 
-```{note}
+```{note} Nota
 cURL es una herramienta de línea de comandos, gratuita y de código abierto, para transferir datos usando diversas URLs y protocolos, comúnmente utilizada para interactuar con APIs, descargar archivos y probar recursos web. Es compatible con una amplia gama de protocolos como HTTP, HTTPS, FTP y SMB. cURL está disponible de forma nativa en sistemas operativos basados en Unix, incluyendo Linux y macOS, y está preinstalado en las versiones modernas de Windows.
 ```
 
@@ -332,7 +332,7 @@ La respuesta de la API es un JSON con los resultados detallados para Tres de Feb
 
 Muchas APIs REST proporcionan datos estructurados útiles. Vamos a consultar OpenStreetMap (OSM) que ofrece datos geográficos.
 
-```{note}
+```{note} Nota
  [OpenStreetMap](https://www.openstreetmap.org/about) es un proyecto colaborativo para crear un mapa libre y editable del mundo. Los datos son aportados por voluntarios y están disponibles bajo la licencia [Open Database License (ODbL)](https://es.wikipedia.org/wiki/Licencia_Abierta_de_Bases_de_Datos).
 ```
 
@@ -438,7 +438,7 @@ La función principal (main) obtiene el GeoJSON de un "way" específico, en este
 
 overpass-api.de es un servicio web que permite consultar y extraer datos de OpenStreetMap mediante un lenguaje de consultas específico (Overpass QL). Se usa para obtener información geográfica detallada, como nodos, caminos y relaciones, de la base de datos de OSM.
 
-```{note}
+```{note} Nota
 [GeoJSON](https://es.wikipedia.org/wiki/GeoJSON) es un formato basado en JSON para representar datos geográficos. Define varias estructuras como Point, LineString, Polygon, MultiPoint, MultiLineString, MultiPolygon y GeometryCollection para describir diferentes tipos de geometrías espaciales.
 ```
 

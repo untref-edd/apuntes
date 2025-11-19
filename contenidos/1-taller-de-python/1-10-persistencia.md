@@ -249,7 +249,7 @@ print(mensaje_cifrado("secreto"))
 
 ## Serialización de objetos y la seguridad de la información
 
-```{warning} Importante
+```{danger} Peligro
 Los módulos `pickle` y `dill` no son seguros ya que se puede construir datos maliciosos que ejecuten código arbitrario durante el proceso de deserialización. Por lo tanto, es fundamental tener precaución al utilizar estos módulos y evitar cargar datos de fuentes no confiables.
 ```
 
@@ -457,7 +457,8 @@ Para resolver esto, Python ofrece módulos como `shelve` y `dbm`, que permiten o
 
 ## Módulo `shelve`
 
-```{note} Una analogía útil
+```{admonition} Una analogía útil
+:class: note
 Los `pickles` son conservas que se guardan en frascos; a esos frascos se les puede agregar eneldo (`dill`) para darles más sabor, y finalmente todos los frascos se organizan y etiquetan en una estantería (`shelve`).
 ```
 

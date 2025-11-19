@@ -369,7 +369,7 @@ print(f"\nTotal de resultados: {len(resultados)}")
 print(f"Palabras que terminan en 'CO': {', '.join(sorted(resultados))}")
 ```
 
-```{note}
+```{note} Nota
 **Ventajas del índice con palabras invertidas usando árboles B+:**
 
 - Convierte búsquedas por sufijo (`"*CO"`) en búsquedas por prefijo (`"OC*"`)

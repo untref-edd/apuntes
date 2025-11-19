@@ -40,7 +40,7 @@ En este capítulo exploraremos diferentes técnicas y herramientas para recupera
 1. **Facebook**: Modelado de redes sociales como grafos y recorrido mediante algoritmos de búsqueda en profundidad (DFS).
 2. **Twitter**: Procesamiento de streams de tweets en tiempo real y análisis de datos históricos en formato JSON.
 
-```{note}
+```{note} Nota
 Es importante mencionar que al trabajar con datos de redes sociales, debemos respetar los términos de servicio de cada plataforma, las leyes de protección de datos personales, y considerar las implicaciones éticas del uso de información pública.
 ```
 
@@ -436,7 +436,7 @@ print("\nDocumentación: https://developer.twitter.com/en/docs/twitter-api/data-
 
 Cuando trabajamos con datos históricos de Twitter, comúnmente recibimos archivos en formato JSONL (JSON Lines), donde cada línea es un objeto JSON independiente. Esto facilita el procesamiento de grandes volúmenes de datos.
 
-```{note}
+```{note} Nota
 **Datos de práctica**: Los siguientes ejemplos usan datos simulados con la estructura real de la API de Twitter v2. Para trabajar con datos reales, sigue los pasos de registro y autenticación descritos anteriormente y usa los ejemplos de código con Tweepy.
 ```
 

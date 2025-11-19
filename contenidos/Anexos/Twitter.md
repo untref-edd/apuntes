@@ -14,7 +14,7 @@ El primer paso es crear una cuenta de desarrollador en la plataforma X.
 
    - Hacer clic en el botón **"Sign up"** en la esquina superior derecha e iniciar sesión con una cuenta personal de X (Twitter).
 
-   ```{note}
+   ```{note} Nota
    **Requisito importante**: Necesitas tener una cuenta de X/Twitter verificada con un número de teléfono válido para poder solicitar acceso como desarrollador.
    ```
 
@@ -86,7 +86,7 @@ Este es el paso más importante: generar las ***"llaves"*** para acceder a los d
 
      - **Direct Messages**: Para acceder a mensajes directos (raramente necesario).
 
-   ```{important}
+   ```{important} Importante
    Para análisis de datos, generalmente solo necesitas permisos de **"Read"**.
    ```
 
@@ -98,7 +98,7 @@ Este es el paso más importante: generar las ***"llaves"*** para acceder a los d
 
    - **Copiar y guardar** inmediatamente el Bearer Token en un lugar seguro.
 
-   ```{warning}
+   ```{warning} Advertencia
    El Bearer Token se muestra solo una vez. Si lo pierdes, deberás regenerar uno nuevo.
    ```
 
@@ -259,6 +259,6 @@ ACCESS_TOKEN = os.getenv("TWITTER_ACCESS_TOKEN")
 ACCESS_TOKEN_SECRET = os.getenv("TWITTER_ACCESS_TOKEN_SECRET")
 ```
 
-```{important}
+```{important} Importante
 **Nota sobre cambios recientes**: Desde la adquisición por Elon Musk en 2022, X ha modificado significativamente sus políticas de API. El acceso gratuito está más limitado y muchas funcionalidades requieren suscripciones pagadas. Siempre verificar la documentación oficial para conocer las limitaciones actuales.
 ```

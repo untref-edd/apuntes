@@ -120,7 +120,7 @@ Como el ***algoritmo de Dijkstra*** se basa en extraer de la cola de prioridad e
 
 Si hay alguna arista negativa ***Dijkstra*** puede fallar o no según el vértice que se considere como origen y la topología del grafo, por lo tanto para asegurar que el algoritmo funciona siempre:
 
-```{important}
+```{important} Importante
 El algoritmo de ***Dijkstra*** no admite grafos con aristas con pesos negativos para poder asegurar su correcto funcionamiento
 ```
 

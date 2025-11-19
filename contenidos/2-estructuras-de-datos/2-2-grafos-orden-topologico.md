@@ -77,7 +77,7 @@ Pueden existir múltiples ordenamientos topológicos para un mismo grafo. El ord
 
 La complejidad del algoritmo de Kahn es $O(|V|+|E|)$. Esto se debe a que cada vértice y cada arista se procesan una sola vez.
 
-```{note}
+```{note} Nota
 En los algoritmos de grafos se acostumbra a utilizar tanto la cantidad de vértices $|V|$ como la cantidad de aristas $|E|$ para analizar la complejidad temporal ya que si bien se puede acotar $|E|$ en función de $|V|$, expresarlo en función de ambas variables brinda más información sobre el comportamiento del algoritmo en diferentes tipos de grafos.
 ```
 

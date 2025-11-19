@@ -297,7 +297,7 @@ print("Índice invertido:")
 print(indice)
 ```
 
-```{note}
+```{note} Nota
 `defaultdict` de la librería estándar de Python se utiliza para simplificar la creación del diccionario de listas de postings. Cada vez que se accede a una clave que no existe, se crea automáticamente un conjunto vacío sin necesidad de inicializarlo con `setdefault` como un diccionario estándar.
 
 Para realizar búsquedas booleanas, conviene representar las listas de postings como conjuntos (`set`) para aprovechar las operaciones de intersección, unión y diferencia que son eficientes en conjuntos.

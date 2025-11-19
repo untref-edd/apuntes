@@ -97,7 +97,8 @@ finally:
     print("Bloque finally ejecutado")
 ```
 
-```{hint} Actividad
+```{admonition} Actividad
+:class: hint
 Copia el fragmento anterior y modficalo para que divida por 0. Por ejemplo podés probar asignando distintos valores a `divisor` como ser "0", la cadena "cero", números enteros, números decimales, y todo lo que se te ocurra.
 
 ¿Qué pasa en cada caso? ¿Es buena idea tener un bloque `except` genérico?

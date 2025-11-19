@@ -140,7 +140,7 @@ class Agenda:
         return AgendaIterator(self)
 ```
 
-```{note}
+```{note} Nota
 Los métodos `encode()` y `decode()` convierten entre cadenas de texto y secuencias de bytes. Por defecto utilizan la codificación UTF-8, que es capaz de representar todos los caracteres Unicode. Si se utilizan caracteres especiales (como tildes o ñ), es importante asegurarse de que la codificación sea la misma al guardar y al leer los datos.
 ```
 
@@ -195,7 +195,7 @@ class AgendaIterator:
         )
 ```
 
-```{note}
+```{note} Nota
 El método `strip()` elimina espacios en blanco y caracteres de nueva línea al inicio y al final de una cadena. En este caso, se utiliza para eliminar los caracteres nulos (`\x00`) que se utilizan para rellenar los campos cuando son más cortos que la longitud asignada.
 ```
 
@@ -244,7 +244,7 @@ Tampoco permite almacenar datos que superen la longitud asignada, ya que se trun
 
 Otra forma de organizar los registros es asignar una longitud fija a cada registro, pero permitir que los campos tengan longitud variable. Para ello, se puede utilizar un delimitador para separar los campos dentro del registro. Por ejemplo, podemos utilizar el carácter `|` como delimitador. Este tipo de organización es más eficiente en términos de espacio, ya que no se desperdicia espacio si los campos son más cortos que la longitud asignada. Sin embargo, tiene la desventaja de que no se pueden almacenar registros que superen la longitud asignada, ya que se truncan.
 
-```{note}
+```{note} Nota
 El carácter delimitador no puede aparecer en los datos, ya que se interpretaría como el final de un campo. Si es necesario que este caracter sea parte de los datos, se puede utilizar un mecanismo de escape, como por ejemplo, duplicar el carácter (`||` se interpreta como un solo `|` en los datos).
 ```
 
@@ -300,7 +300,7 @@ class Agenda:
         return AgendaIterator(self)
 ```
 
-```{note}
+```{note} Nota
 `registro.encode()` convierte la cadena a bytes, y `ljust` rellena con nulos a la derecha, hasta alcanzar la longitud fija del registro. Algunos caracteres como vocales con tildes o la letra ñ pueden ocupar más de un byte (por ejemplo `é` se codifica como `b'\xc3\xa9'`), por lo que es importante medir la longitud en bytes y no en caracteres (línea 27).
 ```
 
@@ -351,7 +351,7 @@ class AgendaIterator:
         return dict(zip(self._agenda._campos, campos[: len(self._agenda._campos)]))
 ```
 
-```{note}
+```{note} Nota
 El método `rstrip(b'\x00')` elimina los caracteres nulos (`\x00`) al final de la cadena de bytes, que se utilizan para rellenar el registro cuando es más corto que la longitud asignada. Luego, `decode(errors="replace")` convierte los bytes a una cadena de texto, reemplazando cualquier byte inválido con el carácter de reemplazo (`�`).
 
 La función `zip` combina dos listas en una lista de tuplas, donde cada tupla contiene un elemento de cada lista. En este caso, se utiliza para combinar la lista de nombres de campos con la lista de valores correspondientes, y luego se convierte en un diccionario.
@@ -580,7 +580,7 @@ Otra forma común de organizar los registros es utilizar el formato CSV (*Comma-
 
 Python cuenta con un módulo estándar llamado `csv` que facilita la lectura y escritura de archivos en formato CSV. Veamos cómo implementar la clase `Agenda` utilizando este formato.
 
-```{note}
+```{note} Nota
 La primera línea del archivo puede contener los nombres de los campos, lo cual facilita la interpretación de los datos. El módulo `csv` puede manejar esto automáticamente si se utiliza la clase `DictReader` para leer y `DictWriter` para escribir.
 ```
 

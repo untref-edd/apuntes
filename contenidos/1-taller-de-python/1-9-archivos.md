@@ -179,7 +179,8 @@ archivos_md = list(Path(".").glob("**/*.md"))
 print(f"Archivos Markdown encontrados: {len(archivos_md)}")
 ```
 
-```{hint} Recomendación
+```{admonition} Recomendación
+:class: hint
 Para código nuevo, se recomienda usar `pathlib` ya que es más legible y moderno. Para compatibilidad con código antiguo o scripts simples, `os.path` sigue siendo válido.
 ```
 

@@ -14,7 +14,7 @@ El primer paso es crear una cuenta de desarrollador en la plataforma Meta.
 
    - Hacer clic en el botón **"Empezar"** en la esquina superior derecha e iniciar sesión con una cuenta personal de Facebook.
 
-   ```{note}
+   ```{note} Nota
    **Requisito importante**: Necesitas tener una cuenta de Facebook activa y verificada para poder solicitar acceso como desarrollador.
    ```
 
@@ -119,7 +119,7 @@ Este es el paso más importante: obtener la ***"llave"*** para acceder a los dat
 
    - **Copiar inmediatamente** el token haciendo clic en el icono de copiar.
 
-   ```{warning}
+   ```{warning} Advertencia
    Los tokens de usuario tienen duración limitada. Para uso prolongado, considera generar tokens de larga duración o implementar renovación automática.
    ```
 
@@ -155,7 +155,7 @@ El Explorador de Graph API permite probar diferentes consultas antes de implemen
    /me/friends?fields=name,id
    ```
 
-   ```{note}
+   ```{note} Nota
    Solo devuelve amigos que también usan la aplicación debido a restricciones de privacidad.
    ```
 
@@ -388,6 +388,6 @@ FACEBOOK_RATE_LIMIT_DELAY=1
 - **Publicaciones de página**: `/{page-id}/posts`
 - **Eventos**: `/me/events`
 
-```{important}
+```{important} Importante
 **Nota sobre privacidad y cambios recientes**: La API de Facebook Graph ha limitado significativamente el acceso a datos de usuarios desde el escándalo de [Cambridge Analytica en 2018](https://es.wikipedia.org/wiki/Cambridge_Analytica). Actualmente, solo se puede acceder a datos del propio usuario autenticado y datos públicos. Muchas funcionalidades que antes estaban disponibles ahora requieren revisión de aplicación y justificación detallada del caso de uso.
 ```
