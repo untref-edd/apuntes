@@ -8,6 +8,7 @@ kernelspec:
   display_name: Python 3
   language: python
   name: python3
+description: Estructuras de control en Python, condicionales, ciclos y manejo de excepciones.
 ---
 
 # Estructuras de control en Python

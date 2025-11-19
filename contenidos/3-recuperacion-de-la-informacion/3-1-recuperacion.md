@@ -8,6 +8,7 @@ kernelspec:
   display_name: Python 3
   language: python
   name: python3
+description: Introducción a la recuperación de la información, historia, tipos de información y componentes de un sistema de RI.
 ---
 
 # Introducción a la recuperación de la información

@@ -8,6 +8,7 @@ kernelspec:
   display_name: Python 3
   language: python
   name: python3
+description: Ámbitos de ejecución en Python, regla LEGB, variables locales, globales y clausuras.
 ---
 
 # Ámbitos de ejecución

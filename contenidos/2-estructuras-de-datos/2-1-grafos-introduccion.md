@@ -8,6 +8,7 @@ kernelspec:
   display_name: Python 3
   language: python
   name: python3
+description: Introducción a la teoría de grafos, definiciones básicas, tipos de grafos y representación en Python.
 ---
 
 # Grafos
