@@ -17,7 +17,13 @@ Este capítulo profundizaremos sobre el manejo de variables en Python, contrast�
 
 ## Variables y asignación
 
-En Go y Java, la declaración de variables a menudo implica especificar explícitamente el tipo de dato (aunque Go ofrece inferencia de tipo). Python, por otro lado, es un lenguaje de tipado dinámico. Esto significa que no se declara el tipo de una variable; el tipo se infiere en tiempo de ejecución según el valor que se le asigna.
+En Go y Java, la declaración de variables a menudo implica especificar explícitamente el tipo de dato (aunque Go ofrece [inferencia de tipos](https://go.dev/blog/type-inference)). Python, por otro lado, es un lenguaje de tipado dinámico. Esto significa que no se declara el tipo de una variable; el tipo se infiere en tiempo de ejecución según el valor que se le asigna.
+
+````{dropdown} Inferencia de tipos
+::: {.note} Nota
+**Inferencia de tipos:** Es la capacidad de un lenguaje de programación para deducir automáticamente el tipo de una expresión o variable en tiempo de compilación o ejecución, sin que el programador tenga que declararlo explícitamente. Para más información, consulta la [Wikipedia](https://es.wikipedia.org/wiki/Inferencia_de_tipos).
+:::
+````
 
 Una diferencia clave es que en Python, las variables son esencialmente referencias a objetos en memoria. Cuando se reasigna una variable, simplemente esa referencia pasa a apuntar a un objeto diferente, en lugar de cambiar el valor (esto es crucial para entender la inmutabilidad de ciertos tipos).
 
@@ -30,14 +36,13 @@ Python garantiza que los pasos anteriores para asignar una variable son **_atóm
 
 Si la variable ya tenía una referencia a otro objeto, esa referencia se pierde (el objeto anterior puede ser desalojado de la memoria por el recolector de basura si no hay otras referencias a él).
 
-<iframe
-    src="../_static/ppts/1-AsignacionDeVariables.pdf#page=1&toolbar=0&navpanes=0&scrollbar=0&view=FitH"
-    frameborder="0"
-    width="100%"
-    height="569"
-    allowfullscreen="true"
-    mozallowfullscreen="true"
-    webkitallowfullscreen="true">
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQGUKbcH4y_LdrQK7IPvm1oC6rCwunw7bVTwno4calT4rMfzFQWDIirr_kDjgEs_5a4Q6n7Ey1QECJR/pubembed?start=false&loop=false&delayms=3000"
+frameborder="0"
+width="960"
+ height="569"
+ allowfullscreen="true"
+ mozallowfullscreen="true"
+ webkitallowfullscreen="true">
 </iframe>
 
 Esto contrasta con Go y Java, donde la asignación de una variable puede implicar la creación de una copia del valor (especialmente para tipos primitivos).
@@ -67,14 +72,13 @@ s1 += " mundo"  # Esto crea una nueva cadena "hola mundo" y s1 ahora referencia 
 print(f"s1: {s1}, s2: {s2}")  # Salida: s1: hola mundo, s2: hola
 ```
 
-<iframe
-    src="../_static/ppts/2-DatosInmutables.pdf#page=1&toolbar=0&navpanes=0&scrollbar=0&view=FitH"
-    frameborder="0"
-    width="100%"
-    height="569"
-    allowfullscreen="true"
-    mozallowfullscreen="true"
-    webkitallowfullscreen="true">
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQydZhHj0SEQ_4XiOtImIWE2ytxbuz-vITs5jaNdcLla9IRH2FkfKqYVlzsH_Ouey2b01wz-AFS33hb/pubembed?start=false&loop=false&delayms=3000"
+frameborder="0"
+width="960"
+height="569"
+allowfullscreen="true"
+mozallowfullscreen="true"
+webkitallowfullscreen="true">
 </iframe>
 
 En este fragmento, `s1` y `s2` inicialmente referencian al mismo objeto, la cadena `"hola"`. Al modificar `s1`, se crea un nuevo objeto cadena `"hola mundo"`, y `s1` ahora apunta a este nuevo objeto, mientras que `s2` sigue apuntando al antiguo objeto `"hola"`.
@@ -98,14 +102,13 @@ lista1.append(4)  # Modifica la lista original
 print(f"lista1: {lista1}, lista2: {lista2}")
 ```
 
-<iframe
-    src="../_static/ppts/3-DatosMutables.pdf#page=1&toolbar=0&navpanes=0&scrollbar=0&view=FitH"
-    frameborder="0"
-    width="100%"
-    height="569"
-    allowfullscreen="true"
-    mozallowfullscreen="true"
-    webkitallowfullscreen="true">
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTcp124w_M3ci7cSerRIXS4rn0rOZQMLARvuBE1AL9M8LZ-eX6Q364SrrOYKq_a6DaisNBEfvKJpVNi/pubembed?start=false&loop=false&delayms=3000"
+frameborder="0"
+width="960"
+height="569"
+allowfullscreen="true"
+mozallowfullscreen="true"
+webkitallowfullscreen="true">
 </iframe>
 
 En este caso, `lista1` y `lista2` referencian al mismo objeto lista. Al modificar `lista1`, `lista2` refleja el cambio porque ambas variables apuntan al mismo objeto en memoria.
@@ -126,7 +129,7 @@ Variables privadas
 Variables especiales
 : Se definen con dos guiones bajos al inicio y al final del nombre, estos son conocidos en la comunidad Python como _dunder methods_ (ej. `__init__`). Estas son utilizadas por Python para definir métodos especiales y no deben ser modificadas directamente.
 
-```{warning}
+```{warning} Importante
 Todas las variables en Python son accesibles desde fuera del módulo o clase, incluso las privadas. La convención de nomenclatura es solo una guía para los desarrolladores y no impide el acceso a las variables.
 ```
 
@@ -149,10 +152,8 @@ _Built-in_ (B)
 Cuando Python busca un nombre, sigue este orden: primero busca en el ámbito _Local_, luego en el _Enclosing_, después en el _Global_ y finalmente en el _Built-in_.
 
 ```{figure} ../assets/images/ambitos.png
----
-name: ambitos
----
-Ámbitos de Ejecución
+:alt: Ámbitos de Ejecución
+:loading: lazy
 ```
 
 ### Ámbito _Local_ (L)
@@ -198,7 +199,7 @@ mi_funcion()  # Llama a la función que modifica el mensaje global
 print(mensaje)  # Acceso a la variable global modificada
 ```
 
-```{warning}
+```{warning} Importante
 El uso excesivo de global o de ocultamiento de variables puede llevar a código difícil de mantener y depurar. Preferiblemente, se deben pasar las variables como argumentos a las funciones y las funciones deben devolver valores explicitos.
 ```
 
@@ -240,7 +241,7 @@ Al ejecutar el fragmento anterior ocurre lo siguiente:
 
 5. `incrementar_2(5)` retorna 7 al ámbito global, y `print` lo muestra en la salida.
 
-```{important}
+```{warning} Importante
 Para Python todas las variables son referencias, incluido los nombres de las funciones. Al colocar paréntesis luego del nombre de la misma, se invoca la función y se ejecuta el código que contiene. Si no se colocan paréntesis, se obtiene una referencia a la función, que es un objeto más en memoria.
 ```
 
@@ -293,7 +294,7 @@ El ámbito _built-in_ contiene nombres predefinidos por Python, como funciones y
 
 Si se intenta redefinir un nombre _built-in_, se creará una variable local o global que ocultará temporalmente el nombre _built-in_, pero no se eliminará del ámbito _built-in_.
 
-```{warning}
+```{warning} Importante
 No se recomienda bajo ningún punto de vista, redefinir nombres _built-in_, ya que esto puede causar confusión y errores difíciles de depurar. Es mejor utilizar nombres descriptivos y evitar conflictos con los nombres predefinidos de Python.
 ```
 

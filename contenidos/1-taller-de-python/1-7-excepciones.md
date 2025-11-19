@@ -8,6 +8,7 @@ kernelspec:
   display_name: Python 3
   language: python
   name: python3
+  descripcion: Manejo de Excepciones
 ---
 
 # Manejo de excepciones
@@ -96,8 +97,8 @@ finally:
     print("Bloque finally ejecutado")
 ```
 
-```{hint}
-Activa **Live Code** (icono de un cohete en la parte superior derecha) para ejecutar el código anterior. Por ejemplo podés probar asignando distintos valores a `divisor` como ser "0", la cadena "cero", números enteros, números decimales, y todo lo que se te ocurra.
+```{hint} Actividad
+Copia el fragmento anterior y modficalo para que divida por 0. Por ejemplo podés probar asignando distintos valores a `divisor` como ser "0", la cadena "cero", números enteros, números decimales, y todo lo que se te ocurra.
 
 ¿Qué pasa en cada caso? ¿Es buena idea tener un bloque `except` genérico?
 ```
@@ -240,7 +241,7 @@ El lanzamiento se realiza cuando surge una situación excepcional que el program
 
 La captura la realiza el *usuario* de nuestro programa. Este *usuario* puede intentar manejar la excepción y recuperarse. Si una excepción no se captura, entonces el programa se detendrá y mostrará un mensaje de error.
 
-```{important}
+```{important} Importante
 Si nuestro programa lanza una excepción y la atrapa en el mismo módulo es probable que la lógica de manejo de excepciones no sea adecuada. Ya que si lanzó un excepción es porque no podía manejar la situación, entonces si luego en el mismo bloque la atrapa entonces desde el principio no era una situación inmanejable como para lanzar una excepción
 ```
 

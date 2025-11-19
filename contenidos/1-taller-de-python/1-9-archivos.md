@@ -8,6 +8,7 @@ kernelspec:
   display_name: Python 3
   language: python
   name: python3
+  description: Archivos y carpetas
 ---
 
 # Archivos
@@ -178,7 +179,7 @@ archivos_md = list(Path(".").glob("**/*.md"))
 print(f"Archivos Markdown encontrados: {len(archivos_md)}")
 ```
 
-```{admonition} Recomendación
+```{hint} Recomendación
 Para código nuevo, se recomienda usar `pathlib` ya que es más legible y moderno. Para compatibilidad con código antiguo o scripts simples, `os.path` sigue siendo válido.
 ```
 

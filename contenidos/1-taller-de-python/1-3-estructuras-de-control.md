@@ -363,9 +363,9 @@ for empleado in empleados:
 | Delimitadores              | Indentación                                      | `{`, `}`                                     |
 | Operadores lógicos         | `and`, `or`, `not`                               | `&&`, `\|\|`, `!`                            |
 | Ciclo for                  | `for item in collection:`                        | `for (type item : collection)`               |
-| `else` en ciclos           | ✅ Disponible                                    | ❌ No disponible                             |
+| `else` en ciclos           | `Si`                                             | ` No`                             |
 | Operador ternario          | `value_if_true if condition else value_if_false` | `condition ? value_if_true : value_if_false` |
-| switch/match               | `if`-`elif` o `match`-`case` (3.10+)             | `switch`                                     |
+| switch/match               | `if - elif` o `match - case` (Python 3.10+)      | `switch`                                     |
 
 La sintaxis de Python prioriza la legibilidad y expresividad, usando palabras en inglés en lugar de símbolos cuando es posible.
 

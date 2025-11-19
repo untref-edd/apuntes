@@ -8,6 +8,7 @@ kernelspec:
   display_name: Python 3
   language: python
   name: python3
+  description: Introspección y reflexión
 ---
 
 # Introspección y reflexión
@@ -21,7 +22,7 @@ Introspección
 Reflexión
 : Va un paso más allá: no solo inspecciona, sino que **modifica el comportamiento o la estructura** de objetos, clases o módulos en tiempo de ejecución.
 
-```{note}
+```{note} Nota
 En **Java** estas capacidades existen mediante *Reflection API*, mientras que en **Go** se logran con el paquete `reflect`. En Python, estas herramientas están integradas en el propio lenguaje y son mucho más accesibles.
 ```
 

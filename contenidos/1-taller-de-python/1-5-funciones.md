@@ -8,6 +8,8 @@ kernelspec:
   display_name: Python 3
   language: python
   name: python3
+description: Funciones, paradigma funcional y funciones anónimas
+
 ---
 
 # Funciones y paradigma funcional
@@ -21,7 +23,12 @@ Las funciones se definen utilizando la palabra clave `def`, seguida del nombre d
 Python permite varios tipos de pasajes de parámetros a funciones:
 
 ```python
-def funcion(posicionales, nombrados, *posicionales_variables, **nombrados_variables):
+def funcion(
+    posicionales,
+    nombrados,
+    *posicionales_variables,
+    **nombrados_variables
+):
     pass  # sentencia que no hace nada
 ```
 
@@ -65,7 +72,8 @@ def concatenar_cadenas(cadena1, cadena2):
     return cadena1 + cadena2
 
 
-print(concatenar_cadenas(cadena2="mundo!", cadena1="Hola, "))  # Salida: Hola, mundo!
+print(concatenar_cadenas(cadena2="mundo!", cadena1="Hola, "))
+# Salida: Hola, mundo! 
 ```
 
 ### Parámetros Posicionales Variables
@@ -123,7 +131,7 @@ print(saludar())  # Salida: Hola, mundo!
 print(saludar("Juan"))  # Salida: Hola, Juan!
 ```
 
-```{important}
+```{important} Importante
 Si en una misma función se utilizan parámetros posicionnales, nombreados, posicionales variables y nombrados variables, los parámetros deben seguir el siguiente orden:
 1. Parámetros posicionales
 2. Parámetros nombrados
@@ -408,7 +416,7 @@ while True:
         break
 ```
 
-```{note}
+```{note} Nota
 En el capitulo [Excepciones](1-7-excepciones.md) veremos en más detalle el manejo de excepciones en Python. Por ahora basta con saber que una excepción interrumpe el flujo normal del programa protegido por un bloque `try` y pasa el control al bloque `except` correspondiente. En este caso el bloque `except` captura la excepción `StopIteration` para finalizar la iteración.
 
 La sentencia `break` se utiliza para romper y salir del bucle infinito `while True`.
@@ -443,7 +451,7 @@ funcion_decorada(5)
 
 La función `decorador` toma una función `func` como argumento y devuelve una nueva función, `funcion_decorada` que agrega el mensaje _El resultado de la operación es:_ al resultado de la función original.
 
-```{note}
+```{note} Nota
 En este ejemplo se ultiliza `*args` y `**kwargs` para permitir que la función decorada acepte cualquier número de argumentos posicionales y nombrados, lo que la hace más flexible. En la línea 7, la expresión `func(*args, **kwargs)` invoca a la función original con los argumentos que le pasaron a la función decorada.
 ```
 

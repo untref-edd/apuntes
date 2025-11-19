@@ -20,7 +20,6 @@ Python es un lenguaje de programación multipropósito, creado a fines de los a�
 :width: 200px
 ```
 
-````{admonition} [Wikipedia: Python > Historia](https://es.wikipedia.org/wiki/Python#Historia)
 Guido Van Rossum es el principal autor de Python, y su continuo rol central en decidir la dirección de Python es reconocido, refiriéndose a él como Benevolente Dictador Vitalicio (en inglés: _Benevolent Dictator For Life_, BDFL); sin embargo el 12 de julio de 2018 declinó de dicha situación de honor sin dejar un sucesor o sucesora y con una declaración altisonante:
 
 ```{blockquote}
@@ -28,7 +27,8 @@ Guido Van Rossum es el principal autor de Python, y su continuo rol central en d
 
 -- Guido Van Rossum
 ```
-````
+
+Más sobre la historia de Python en [Wikipedia](https://es.wikipedia.org/wiki/Python#Historia).
 
 ## El zen de Python
 

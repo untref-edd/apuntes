@@ -8,6 +8,7 @@ kernelspec:
   display_name: Python 3
   language: python
   name: python3
+  description: Persistencia de datos, serialización y deserialización, pickle, dill, json
 ---
 
 # Persistencia de datos
@@ -248,7 +249,7 @@ print(mensaje_cifrado("secreto"))
 
 ## Serialización de objetos y la seguridad de la información
 
-```{important}
+```{warning} Importante
 Los módulos `pickle` y `dill` no son seguros ya que se puede construir datos maliciosos que ejecuten código arbitrario durante el proceso de deserialización. Por lo tanto, es fundamental tener precaución al utilizar estos módulos y evitar cargar datos de fuentes no confiables.
 ```
 
@@ -258,7 +259,7 @@ A continuación se crea un archivo `log.log` en el directorio de trabajo actual 
 
 ```{code-cell} python
 ---
-tags: hide-output
+tags: remove-output
 ---
 with open("../_static/tmp/log.log", "w") as f:
     f.write("Este es un archivo de registro.\n")
@@ -268,6 +269,9 @@ with open("../_static/tmp/log.log", "w") as f:
 Podemos ver que el archivo existe y se puede leer.
 
 ```{code-cell} python
+---
+tags: hide-output
+---
 with open("../_static/tmp/log.log", "r") as f:
     contenido = f.read()
     print(contenido)
@@ -328,7 +332,7 @@ with open("../_static/tmp/log.log", "r") as f:
 
 El módulo `json` se basa en el estandar **JSON** (JavaScript Object Notation) y presenta un enfoque diferente al de `pickle` y `dill`, ya que se basa en texto plano y no permite la ejecución de código al deserializar. Esto lo convierte en una opción más segura para la serialización y el intercambio de datos simples, como diccionarios y listas. Los archivos JSON son legibles por humanos y pueden ser fácilmente compartidos entre diferentes lenguajes de programación.
 
-```{note}
+```{note} Nota
 **JSON** (_JavaScript Object Notation_) es un **formato de intercambio de datos basado en texto**.
 Se originó en el ecosistema de **JavaScript**, pero rápidamente se convirtió en un **estándar independiente del lenguaje** debido a su simplicidad y legibilidad.
 ```
@@ -406,7 +410,7 @@ print(lista_usuarios)
 print(lista_usuarios[0]["nombre"])  # Acceso al primer usuario
 ```
 
-```{note}
+```{note} Nota
 Existe un formato derivado de **JSON** denominado **JSONL** (_JSON Lines_), que consiste en una serie de objetos JSON separados por saltos de línea. Es útil para el procesamiento de grandes volúmenes de datos, ya que permite leer y escribir un objeto a la vez.
 
 Este enfoque es muy usado en big data y machine learning, porque permite procesar el archivo registro por registro sin necesidad de cargarlo entero en memoria.
