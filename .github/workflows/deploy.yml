@@ -33,20 +33,28 @@ jobs:
         with:
           python-version: 3.13
 
-      - name: Install dependencies
+      - name: Install Python dependencies
         run: |
           pip install -r requirements.txt
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install MyST
+        run: npm install -g mystmd
 
       # Build the book
       - name: Build the book
         run: |
-          jupyter-book build contenidos
+          cd contenidos && myst build --execute
 
       # Upload the book's HTML as an artifact
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: contenidos/_build/html
+          path: contenidos/_build/site
 
       # Deploy the book's HTML to GitHub Pages
       - name: Deploy to GitHub Pages

@@ -8,6 +8,7 @@ kernelspec:
   display_name: Python 3
   language: python
   name: python3
+description: Introducción al lenguaje de programación Python, historia, características principales y guía de instalación.
 ---
 
 # Introducción a Python
@@ -50,24 +51,25 @@ Permite usar diferentes estilos de programación según las necesidades del proy
 La programación imperativa se basa en la ejecución secuencial de instrucciones. Para realizar una tarea se debe programar paso a paso especificando ***como*** se debe hacer.
 
 ```{code-cell} python
+---
+tags: hide-output
+---
 # Programación imperativa
 def factorial(n):
     resultado = 1
     for i in range(1, n + 1):
         resultado *= i
     return resultado
-```
 
-```{code-cell} python
----
-tags: hide-output
----
 print(f"Factorial de 5: {factorial(5)}")
 ```
 
 La programación funcional se basa en el uso de funciones puras y evita el estado mutable. Se enfoca en ***que*** se debe hacer, utilizando funciones de orden superior y evitando efectos secundarios. En el capítulo de funciones profundizaremos un poco más en este paradigma.
 
 ```{code-cell} python
+---
+tags: hide-output
+---
 # Quicksort en una línea (expresión)
 qs = lambda lst: (
     lst
@@ -76,12 +78,7 @@ qs = lambda lst: (
     + [lst[0]]
     + qs([x for x in lst[1:] if x >= lst[0]])
 )
-```
 
-```{code-cell} python
----
-tags: hide-output
----
 lista = [3, 6, 8, 10, 1, 2, 1]
 print(f"Lista ordenada: {qs(lista)}")
 ```

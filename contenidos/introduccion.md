@@ -8,6 +8,7 @@ kernelspec:
   display_name: Python 3
   language: python
   name: python3
+description: Introducción a la materia Estructuras de Datos, objetivos, metodología de cursada y equipo docente.
 ---
 
 # Estructuras de Datos
@@ -58,4 +59,4 @@ Para aprobar la materia además hay que aprobar un examen final, para poder rend
 - [Github Classroom](https://classroom.github.com/classrooms/220222794-untref-edd-2025)
 - [Meet para encuentros virtuales](https://meet.google.com/rzj-hjek-npx)
 
-<h1 class="align-center">¡Bienvenidos a Estructuras de Datos!</h1>
+***¡Bienvenidos a Estructuras de Datos!***

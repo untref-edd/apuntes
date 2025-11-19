@@ -6,7 +6,6 @@ facebook-sdk
 feedparser
 folium
 geopandas
-jupyter-book
 jupyterlab
 lxml
 matplotlib
