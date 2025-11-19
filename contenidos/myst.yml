@@ -3,13 +3,14 @@ version: 1
 project:
   id: baa50ab6-944d-49f8-84e9-438fc17cb67a
   title: Apuntes de Estructuras de Datos
-  # description:
-  # keywords: []
-  # authors:
-  #   - name: Cátedra de Estructuras de Datos
+  description: Apuntes de la materia Estructuras de Datos - UNTREF
+  keywords: ["estructuras de datos", "python", "algoritmos", "untref", "ingenieria en computación"]
+  authors:
+    - name: Cátedra de Estructuras de Datos
   github: untref-edd/apuntes
   # To autogenerate a Table of Contents, run "jupyter book init --write-toc"
   copyright: "2025"
+  license: CC-BY-SA-4.0
   bibliography:
     - references.bib
   exports:
@@ -65,4 +66,37 @@ site:
     folders: true
     logo: assets/images/untref-logo.svg
     logo_dark: assets/images/untref-logo-white.svg
+    # favicon: assets/images/favicon.ico # TODO: Add favicon file
     style: _static/css/custom.css
+  actions:
+    - type: github
+      text: Edit on GitHub
+      url: https://github.com/untref-edd/apuntes/edit/main/contenidos
+    - type: github
+      text: Report an Issue
+      url: https://github.com/untref-edd/apuntes/issues/new
+
+myst:
+  enable_extensions:
+    - amsmath
+    - colon_fence
+    - deflist
+    - dollarmath
+    - html_admonition
+    - html_image
+    - linkify
+    - replacements
+    - smartquotes
+    - tasklist
+
+execute:
+  execute_notebooks: cache
+
+numbering:
+  equation: true
+  figure: true
+  table: true
+  code: true
+  heading_1: true
+  heading_2: true
+  heading_3: true
