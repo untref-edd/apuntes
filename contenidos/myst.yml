@@ -66,7 +66,7 @@ site:
     folders: true
     logo: assets/images/untref-logo.svg
     logo_dark: assets/images/untref-logo-white.svg
-    # favicon: assets/images/favicon.ico # TODO: Add favicon file
+    favicon: assets/images/untref-favicon.ico
     style: _static/css/custom.css
   actions:
     - type: github
