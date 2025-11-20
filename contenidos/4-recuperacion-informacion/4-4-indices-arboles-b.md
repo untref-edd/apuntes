@@ -354,7 +354,8 @@ print("\nÍndice con palabras invertidas creado y persistido")
 print("\n" + "=" * 60)
 print("Búsqueda con patrón '*CO' (palabras que terminan en 'CO'):")
 print("=" * 60)
-print("Estrategia: Buscar prefijo 'OC' en el índice con palabras invertidas")
+print("Estrategia: Buscar prefijo 'OC' en el índice")
+print("con palabras invertidas\n")
 
 resultados = []
 # Buscar en el índice invertido palabras que empiecen con "OC"
@@ -363,7 +364,7 @@ for palabra_invertida in btree_invertido.keys(min="OC", max="OCZ"):
         # Recuperar la palabra original
         palabra_original = btree_invertido[palabra_invertida]
         resultados.append(palabra_original)
-        print(f"  ✓ Encontrado: '{palabra_invertida}' → '{palabra_original}'")
+        print(f"Encontrado: '{palabra_invertida}' → '{palabra_original}'")
 
 print(f"\nTotal de resultados: {len(resultados)}")
 print(f"Palabras que terminan en 'CO': {', '.join(sorted(resultados))}")

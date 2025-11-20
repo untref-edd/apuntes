@@ -81,7 +81,8 @@ class Persona:
         self.nombre = nombre
 
     def __str__(self):
-        """Permite que al imprimir una instancia de Persona se muestre su nombre."""
+        """Permite que al imprimir una instancia de Persona
+        se muestre su nombre."""
         return self.nombre
 
 
@@ -90,12 +91,16 @@ if __name__ == "__main__":
     juan = Persona("Juan Perez")
     carla = Persona("Carla Sanchez")
 
-    with open("../_static/tmp/personas.p", "wb") as contenedor:
+    with open(
+        "../_static/tmp/personas.p", "wb"
+    ) as contenedor:
         pickle.dump(ana, contenedor)
         pickle.dump(juan, contenedor)
         pickle.dump(carla, contenedor)
 
-    with open("../_static/tmp/personas.p", "rb") as contenedor:
+    with open(
+        "../_static/tmp/personas.p", "rb"
+    ) as contenedor:
         for linea in contenedor:
             print(linea)
             print()
@@ -135,13 +140,15 @@ import pickle
 
 
 class Persona:
-    """Nueva versión de la clase Persona, se agrega el atributo dni y el método get_dni"""
+    """Nueva versión de la clase Persona, se agrega el atributo dni y el método
+    get_dni"""
 
     def __init__(self, dni=""):
         self.dni = dni
 
     def __str__(self):
-        """Permite que al imprimir una instancia de Persona se muestre su nombre."""
+        """Permite que al imprimir una instancia de Persona se muestre su
+        dni."""
 
         return self.dni
 

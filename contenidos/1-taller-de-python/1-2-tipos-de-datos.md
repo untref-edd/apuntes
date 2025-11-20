@@ -214,7 +214,8 @@ print(texto.lower())  # Convierte a minúsculas
 tags: hide-output
 ---
 texto = "Hola mundo"
-print(texto.replace("mundo", "Python"))  # Reemplaza las apariciones de "mundo" por "Python"
+# Reemplaza las apariciones de "mundo" por "Python"
+print(texto.replace("mundo", "Python")) 
 ```
 
 ```{code-cell} python
@@ -222,7 +223,8 @@ print(texto.replace("mundo", "Python"))  # Reemplaza las apariciones de "mundo" 
 tags: hide-output
 ---
 texto = "Hola mundo"
-print(texto.split())  # Divide la cadena en una lista de palabras, separando por espacios
+# Divide la cadena en una lista de palabras, separando por espacios
+print(texto.split())
 ```
 
 ```{code-cell} python
@@ -671,7 +673,8 @@ print(persona.values())  # Devuelve una lista con los valores del diccionario
 tags: hide-output
 ---
 persona = {"nombre": "Ana", "email": "ana@mail.com"}
-print(persona.items())  # Devuelve una lista de tuplas con los pares clave-valor
+# Devuelve una lista de tuplas con los pares clave-valor
+print(persona.items())
 ```
 
 Un método muy útil es `get()`, que permite acceder a un valor sin generar un error si la clave no existe:
@@ -692,7 +695,8 @@ print(persona.get("edad", "No encontrado"))  # Devuelve "No encontrado"
 tags: hide-output
 ---
 persona = {"nombre": "Ana", "email": "ana@mail.com"}
-print(persona.setdefault("edad", 30))  # Devuelve 30 y añade la clave "edad" con valor 30
+# Devuelve 30 y añade la clave "edad" con valor 30
+print(persona.setdefault("edad", 30))
 print(persona)
 ```
 
@@ -701,7 +705,8 @@ print(persona)
 tags: hide-output
 ---
 persona = {"nombre": "Ana", "edad": 30, "email": "ana@mail.com"}
-lista = persona.setdefault("telefonos", [])  # Añade la clave "telefonos" con una lista vacía
+# Añade la clave "telefonos" con una lista vacía
+lista = persona.setdefault("telefonos", [])
 lista.append("123-456-7890")  # Añade un teléfono a la lista
 print(persona)
 ```
@@ -864,8 +869,10 @@ tags: hide-output
 # Diferencia simétrica
 conjunto1 = {1, 2, 3, 4, 5, 6}
 conjunto2 = {4, 5, 6, 7}
-print(conjunto1, " diferencia simetrica ", conjunto2, "=", conjunto1 ^ conjunto2)
-print(conjunto2, " diferencia simetrica ", conjunto1, "=", conjunto2 ^ conjunto1)
+print(f"{conjunto1} diferencia simetrica {conjunto2} = "
+      f"{conjunto1 ^ conjunto2}")
+print(f"{conjunto2} diferencia simetrica {conjunto1} = "
+      f"{conjunto2 ^ conjunto1}")
 ```
 
 ```{code-cell} python

@@ -168,12 +168,13 @@ tags: hide-output
 import requests
 
 # Realizar una solicitud GET
-response = requests.get("https://untref.edu.ar/")
+response = requests.get("https://untref.edu.ar/", timeout=10)
 
 print(f"Código de estado: {response.status_code}")
 for k, v in response.headers.items():
     print(f"{k}: {v}")
-print(f"\nPrimeros 200 caracteres del contenido (página html):\n{response.text[:200]}")
+print(f"\nPrimeros 200 caracteres del contenido (página html):")
+print(f"{response.text[:200]}")
 ```
 
 El intercambio entre cliente y servidor puede verse en *"crudo"* utilizando herramientas como `curl` en la línea de comandos. Aquí hay un ejemplo de cómo se vería una solicitud y respuesta HTTP:
@@ -303,7 +304,10 @@ import json
 
 # Realizar una solicitud GET a la API del Ministerio del Interior
 response = requests.get(
-    "https://resultados.mininterior.gob.ar/api/resultados/getResultados?anioEleccion=2019&tipoRecuento=1&tipoEleccion=2&categoriaId=1&distritoId=2&seccionProvincialId=1&seccionId=118"
+    "https://resultados.mininterior.gob.ar/api/resultados/getResultados?"
+    "anioEleccion=2019&tipoRecuento=1&tipoEleccion=2&categoriaId=1&"
+    "distritoId=2&seccionProvincialId=1&seccionId=118",
+    timeout=10
 )
 if response.status_code == 200:
     datos = response.json()
@@ -346,7 +350,9 @@ from lxml import etree as ET
 
 # Realizar una solicitud GET a la API de Open Maps
 # Way Id = 1275831310 (Sede Caseros I de la UNTREF)
-response = requests.get("https://api.openstreetmap.org/api/0.6/way/1275831310")
+response = requests.get(
+    "https://api.openstreetmap.org/api/0.6/way/1275831310", timeout=10
+)
 if response.status_code == 200:
     # Parsear la respuesta XML
     root = ET.fromstring(response.content)
@@ -476,10 +482,6 @@ En general, antes de poder consultar una API, es necesario registrarse y obtener
 - [HTTP Documentation (MDN)](https://developer.mozilla.org/es/docs/Web/HTTP)
 - [REST API Tutorial](https://restfulapi.net/)
 
-### Libros y Referencias Académicas
-
-- Manning, C. D., Raghavan, P., & Schütze, H. (2008). *Introduction to Information Retrieval*. Cambridge University Press. Capítulo 19: Web Search Basics.{cite:p}`irbook`
-
 ### APIs Públicas para Practicar
 
 - [JSONPlaceholder](https://jsonplaceholder.typicode.com/) - API REST falsa para testing
@@ -487,3 +489,7 @@ En general, antes de poder consultar una API, es necesario registrarse y obtener
 - [OpenWeatherMap](https://openweathermap.org/api) - Datos meteorológicos
 - [The Star Wars API](https://swapi.dev/) - Datos de Star Wars
 - [PokéAPI](https://pokeapi.co/) - Información sobre Pokémon
+
+### Libros y Referencias Académicas
+
+- En el capítulo 19: Web Search Basics del libro {cite:p}`irbook` se presenta la estructura de la Web y los protocolos HTTP. Este libro se encuentra gratis en formato PDF y html en el sitio web de la Universidad de Stanford.

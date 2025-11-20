@@ -223,20 +223,24 @@ def es_mismo_dominio(url, dominio_base):
     """Verifica si la URL pertenece al mismo dominio base."""
     return urlparse(url).netloc == dominio_base
 
-def crawler_frontera(url_semilla, max_paginas=50, retraso=1, archivo_csv='enlaces.csv'):
+def crawler_frontera(url_semilla,
+                     max_paginas=50,
+                     retraso=1,
+                     archivo_csv='enlaces.csv'):
     """
     Función para realizar crawling web utilizando una frontera de enlaces tipo
     FIFO (cola).
-    Recorre páginas web comenzando desde una URL semilla, siguiendo enlaces encontrados
-    hasta un máximo de páginas.
+    Recorre páginas web comenzando desde una URL semilla, siguiendo enlaces
+    encontrados hasta un máximo de páginas.
 
     Parámetros:
     - url_semilla (str): URL inicial desde donde comienza el crawling.
-    - max_paginas (int, opcional): Número máximo de páginas a visitar (por defecto 50).
-    - retraso (int o float, opcional): Tiempo de espera (en segundos) entre solicitudes
-    para evitar sobrecargar el servidor (por defecto 1).
-    - archivo_csv (str, opcional): Nombre del archivo CSV donde se guardarán los enlaces
-    encontrados (por defecto 'enlaces.csv').
+    - max_paginas (int, opcional): Número máximo de páginas a visitar 
+      (por defecto 50).
+    - retraso (int o float, opcional): Tiempo de espera (en segundos) entre
+      solicitudes para evitar sobrecargar el servidor (por defecto 1).    
+    - archivo_csv (str, opcional): Nombre del archivo CSV donde se
+      guardarán los enlaces encontrados (por defecto 'enlaces.csv').
     """
     frontera = [url_semilla]
     visitadas = set()
@@ -252,12 +256,16 @@ def crawler_frontera(url_semilla, max_paginas=50, retraso=1, archivo_csv='enlace
         print(f"Visitando: {url_actual}")
         try:
             response = requests.get(url_actual, timeout=10, headers={
-                # Es recomendable configurar el encabezado 'User-Agent' con un valor descriptivo que
-                # identifique el crawler y proporcione información de contacto.
-                # Esto ayuda a los administradores de los sitios web a identificar el origen de las solicitudes
-                # y contactar al responsable en caso necesario.
-                # Además, usar un User-Agent personalizado demuestra buenas prácticas y respeto por las
-                #  políticas del sitio.
+                """
+                Es recomendable configurar el encabezado 'User-Agent' con un
+                valor descriptivo que identifique el crawler y proporcione
+                información de contacto.
+                Esto ayuda a los administradores de los sitios web a
+                identificar el origen de las solicitudes y contactar al
+                responsable en caso necesario.
+                Además, usar un User-Agent personalizado demuestra buenas
+                prácticas y respeto por las políticas del sitio.
+                """
                 'User-Agent': 'MiCrawler/1.0 (contacto@ejemplo.com)'
             })
             response.raise_for_status()
@@ -274,9 +282,11 @@ def crawler_frontera(url_semilla, max_paginas=50, retraso=1, archivo_csv='enlace
             url_encontrada = urljoin(url_actual, enlace['href'])
             url_encontrada = url_encontrada.split('#')[0]  # Quitar fragmentos
             if es_mismo_dominio(url_encontrada, dominio_base):
-                if url_encontrada not in visitadas and url_encontrada not in frontera:
+                if url_encontrada not in visitadas \
+                   and url_encontrada not in frontera:
                     frontera.append(url_encontrada)
-                enlaces_extraidos.append({'pagina': url_actual, 'enlace': url_encontrada})
+                enlaces_extraidos.append({'pagina': url_actual,
+                                        'enlace': url_encontrada})
 
         time.sleep(retraso)  # Ser respetuoso con el servidor
 
@@ -290,7 +300,8 @@ def crawler_frontera(url_semilla, max_paginas=50, retraso=1, archivo_csv='enlace
     print(f"Enlaces guardados en: {archivo_csv}")
 
 # Ejemplo de uso:
-crawler_frontera('https://quotes.toscrape.com/', max_paginas=10, archivo_csv='enlaces_quotes.csv')
+crawler_frontera('https://quotes.toscrape.com/', max_paginas=10,
+                 archivo_csv='enlaces_quotes.csv')
 ```
 
 En el siguiente enlace se puede descargar el archivo .csv generado por el ***crawler***: [`enlaces_quotes.csv`](enlaces_quotes.csv)
@@ -420,57 +431,59 @@ from books_scraper.items import BookItem
 
 
 class BooksSpider(scrapy.Spider):
-    name = "books"
-    allowed_domains = ["books.toscrape.com"]
-    start_urls = [
-        "https://books.toscrape.com/catalogue/category/books/horror_31/index.html"
-    ]
+  name = "books"
+  allowed_domains = ["books.toscrape.com"]
+  start_urls = [
+    "https://books.toscrape.com/catalogue/category/books/horror_31/index.html"
+  ]
 
-    def parse(self, response):
-        """Extrae información de libros de la página actual"""
+  def parse(self, response):
+    """Extrae información de libros de la página actual"""
 
-        # Extraer todos los libros de la página
-        books = response.xpath("//article[contains(@class,'product_pod')]")
+    # Extraer todos los libros de la página
+    books = response.xpath("//article[contains(@class,'product_pod')]")
 
-        for book in books:
-            item = BookItem()
+    for book in books:
+      item = BookItem()
 
-            # Extraer título
-            item["title"] = book.xpath(".//h3/a/@title").get().strip()
+      # Extraer título
+      item["title"] = book.xpath(".//h3/a/@title").get().strip()
 
-            # Extraer precio
-            price_text = (
-                book.xpath(".//p[contains(@class,'price_color')]/text()").get().strip()
-            )
-            item["price"] = price_text.replace("£", "") if price_text else None
+      # Extraer precio
+      price_text = (
+        book.xpath(".//p[contains(@class,'price_color')]/text()").get().strip()
+      )
+      item["price"] = price_text.replace("£", "") if price_text else None
 
-            # Extraer disponibilidad
-            availability = book.xpath(
-                ".//p[contains(@class,'instock') and contains(@class,'availability')]/text()"
-            ).getall()
-            item["availability"] = (
-                "".join(availability).strip() if availability else None
-            )
+      # Extraer disponibilidad
+      availability_xpath = (
+          ".//p[contains(@class,'instock') and contains(@class,'availability')]"
+          "/text()"
+      )
+      availability = book.xpath(availability_xpath).getall()
+      item["availability"] = (
+          "".join(availability).strip() if availability else None
+      )
 
-            # Extraer calificación
-            rating_class = book.xpath(
-                ".//p[contains(@class,'star-rating')]/@class"
-            ).get()
-            if rating_class:
-                rating = rating_class.split()[-1]
-                item["rating"] = rating
-            else:
-                item["rating"] = None
+      # Extraer calificación
+      rating_class = book.xpath(
+        ".//p[contains(@class,'star-rating')]/@class"
+      ).get()
+      if rating_class:
+        rating = rating_class.split()[-1]
+        item["rating"] = rating
+      else:
+        item["rating"] = None
 
-            item["category"] = "Horror"
+      item["category"] = "Horror"
 
-            yield item
+      yield item
 
-        # Seguir a la siguiente página si existe
-        next_page = response.xpath("//li[contains(@class,'next')]/a/@href").get()
-        if next_page:
-            next_page_url = response.urljoin(next_page)
-            yield scrapy.Request(next_page_url, callback=self.parse)
+    # Seguir a la siguiente página si existe
+    next_page = response.xpath("//li[contains(@class,'next')]/a/@href").get()
+    if next_page:
+      next_page_url = response.urljoin(next_page)
+      yield scrapy.Request(next_page_url, callback=self.parse)
 ```
 
 ### Paso 5: Configurar Pipeline para CSV
@@ -657,11 +670,6 @@ header-rows: 1
 - [Beautiful Soup Documentation](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
 - [Scrapy Documentation](https://docs.scrapy.org/)
 
-### Libros y Referencias Académicas
-
-- Manning, C. D., Raghavan, P., & Schütze, H. (2008). *Introduction to Information Retrieval*. Cambridge University Press. Capítulo 20: Web Crawling and Indexes.{cite:p}`irbook`
-- Ryan Mitchell, *Web Scraping with Python*, 3rd Edition, O'Reilly Media, 2024.{cite:p}`Mitchell2024`
-
 ### Sitios para Practicar Web Scraping
 
 - [Quotes to Scrape](https://quotes.toscrape.com/) - Sitio diseñado para practicar scraping
@@ -672,3 +680,8 @@ header-rows: 1
 
 - [Can I scrape your website?](https://blog.apify.com/is-web-scraping-legal/)
 - [Understanding robots.txt](https://developers.google.com/search/docs/crawling-indexing/robots/intro)
+
+### Libros y Referencias Académicas
+
+- En el capítulo 20: Web crawling and indexes del libro {cite:p}`irbook` se explican los conceptos básicos de web scraping. 
+- En el libro {cite:p}`Mitchell2024` se profundiza en el tema de web scraping con Python. Este libro se puede leer online en formato html, por un tiempo limitado.

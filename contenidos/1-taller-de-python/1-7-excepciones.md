@@ -26,11 +26,12 @@ except ExceptionType1:
     print("ocurrió una excepción del tipo ExceptionType1")
 
 except (ExceptionType2, ExceptionType3):
-    print("ocurrió una excepción que puede ser de tipo ExceptionType2 o ExcepcionType3")
+    print("ocurrió una excepción que puede ser de tipo ExceptionType2 o "
+          "ExcepcionType3")
 
 except ExceptionType4 as e:
-    # Manejador de excepciones del tipo ExceptionType4. `e` es una variable con
-    # información sobre la excepción que se puede usar dentro del handler
+    # Manejador de excepciones del tipo ExceptionType4. `e` es una variable
+    # con información sobre la excepción que se puede usar dentro del handler
     print("ocurrió un error del tipo ExceptionType4 con mensaje", e)
 
 except:

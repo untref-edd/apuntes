@@ -57,8 +57,12 @@ class Agenda:
 
 
 agenda = Agenda("agenda.txt")
-agenda.guardar_contacto("Ana", "Calle Falsa 123", "555-1234", "ana@example.com")
-agenda.guardar_contacto("Bart", "Calle Falsa 123", "555-5678", "bart@example.com")
+agenda.guardar_contacto(
+    "Ana", "Calle Falsa 123", "555-1234", "ana@example.com"
+)
+agenda.guardar_contacto(
+    "Bart", "Calle Falsa 123", "555-5678", "bart@example.com"
+)
 
 with open("agenda.txt") as datos:
     for linea in datos:
@@ -74,16 +78,18 @@ Existen varios formatos para organizar los registros en un archivo, veamos algun
 Una forma de organizar los registros es asignar una longitud fija a cada campo. Por ejemplo, podemos decidir que el campo **nombre** tendrá 20 caracteres, el campo **apellido** 30 caracteres, el campo **teléfono** 15 caracteres y el campo **email** 40 caracteres. Si un dato es más corto que la longitud asignada, se rellena con espacios en blanco o nulos. Si un dato es más largo, se trunca.
 
 ```{code-cell} python
----
-tags: hide-output
----
 import os
 import struct
 
 
 class Agenda:
     def __init__(
-        self, archivo, len_nombre=20, len_apellido=30, len_telefono=15, len_email=40
+        self,
+        archivo,
+        len_nombre=20,
+        len_apellido=30,
+        len_telefono=15,
+        len_email=40,
     ):
         self._archivo = archivo
         # Formato del registro: cada campo tiene longitud fija en bytes.
@@ -107,7 +113,9 @@ class Agenda:
         except FileNotFoundError:
             self._cant_registros = 0
 
-    def guardar_contacto(self, nombre, apellido, telefono="", email=""):
+    def guardar_contacto(
+        self, nombre, apellido, telefono="", email=""
+    ):
         """
         Guarda un registro en el archivo.
         Nombre y apellido son obligatorios.
@@ -118,8 +126,9 @@ class Agenda:
         # Abre el archivo en modo append binario. Lo crea si no existe.
         with open(self._archivo, "ab") as registros:
             # struct.pack convierte los datos en una secuencia de bytes
-            # según el formato definido. Cada campo se codifica y se rellena
-            # o trunca para ocupar la cantidad de bytes especificada.
+            # según el formato definido. Cada campo se codifica y se
+            # rellena o trunca para ocupar la cantidad de bytes
+            # especificada.
             registro = struct.pack(
                 self._formato,
                 nombre.encode(),
@@ -161,7 +170,8 @@ class AgendaIterator:
     def __next__(self):
         """
         Devuelve:
-          dict: Un diccionario con el siguiente conjunto de datos o valores en la iteración.
+          dict: Un diccionario con el siguiente conjunto de datos o
+                valores en la iteración.
         """
         # Si no quedan más registros finalizamos la iteración
         if self._index >= self._agenda._cant_registros:
@@ -250,9 +260,6 @@ El carácter delimitador no puede aparecer en los datos, ya que se interpretarí
 ```
 
 ```{code-cell} python
----
-tags: hide-output
----
 class Agenda:
     def __init__(self, archivo, campos, len_registro=100):
         self._archivo = archivo
@@ -309,7 +316,9 @@ A continuación definimos el iterador para la agenda:
 
 ```{code-cell} python
 class AgendaIterator:
-    """Iterador para la agenda de registros de longitud fija y campos de longitud variable"""
+    """Iterador para la agenda de registros de longitud fija y campos de
+    longitud variable
+    """
 
     def __init__(self, agenda):
         self._agenda = agenda
@@ -321,7 +330,8 @@ class AgendaIterator:
     def __next__(self):
         """
         Devuelve:
-          dict: Un diccionario con el siguiente conjunto de datos o valores en la iteración.
+          dict: Un diccionario con el siguiente conjunto de datos o valores
+                en la iteración.
         """
         # Si no quedan más registros finalizamos la iteración
         if self._index >= self._agenda._cant_registros:
@@ -349,7 +359,8 @@ class AgendaIterator:
             campos.append("")
 
         # Devuelve un diccionario con claves nombre de los campos
-        return dict(zip(self._agenda._campos, campos[: len(self._agenda._campos)]))
+        return dict(zip(self._agenda._campos,
+                        campos[: len(self._agenda._campos)]))
 ```
 
 ```{note} Nota
@@ -396,10 +407,8 @@ print(
 Para implementar este tipo de registro se puede preceder cada registro con un entero que indique la longitud del registro en bytes. De esta forma, al leer el archivo, se lee primero la longitud del registro y luego se lee el registro completo. Analogamente, se puede preceder cada campo con un entero que indique la longitud del campo en bytes.
 
 ```{code-cell} python
----
-tags: hide-output
----
 import struct
+import os
 
 
 class Agenda:
@@ -416,16 +425,16 @@ class Agenda:
                 # Recorre el archivo desde el inicio hasta el final
                 while pos < tam_archivo:
                     f.seek(pos)
-                    # Lee los primeros 4 bytes que indican la longitud del registro
+                    # Los primeros 4 bytes indican la longitud del registro
                     # 4 bytes para un entero sin signo (unsigned int)
                     len_bytes = f.read(4)
 
                     if len(len_bytes) < 4:
                         break  # fin de archivo o registro corrupto
 
-                    # Convierte los 4 bytes en un entero (longitud del registro)
+                    # Convierte los 4 bytes en un int (longitud del registro)
                     (len_registro,) = struct.unpack("I", len_bytes)
-                    # Avanza la posición: 4 bytes de longitud + longitud del registro
+                    # Avanza la pos: 4 bytes + longitud del registro
                     pos += 4 + len_registro
                     # Incrementa el contador de registros
                     self._cant_registros += 1
@@ -439,7 +448,9 @@ class Agenda:
         La cantidad de campos debe coincidir con la definición.
         """
         if len(campos) != len(self._campos):
-            raise ValueError("La cantidad de campos no coincide con la " "definición")
+            raise ValueError(
+                "La cantidad de campos no coincide con la " "definición"
+            )
 
         registro = b""
         for campo in campos:
@@ -451,8 +462,7 @@ class Agenda:
         len_registro = len(registro)
 
         with open(self._archivo, "ab") as registros:
-            # struct.pack("I", len_registro) convierte el entero en 4 bytes
-            # Luego se concatenan los 4 bytes de longitud y los bytes del registro
+            # Se concatenan los 4 bytes de longitud y los bytes del registro
             registros.write(struct.pack("I", len_registro))
             registros.write(registro)
 
@@ -509,7 +519,8 @@ class AgendaIterator:
 
         # offset es la posición dentro del registro
         offset = 0
-        while offset < len_registro and len(campos) < len(self._agenda._campos):
+        while (offset < len_registro) and \
+              (len(campos) < len(self._agenda._campos)):
             len_campo_bytes = registro_bytes[offset : offset + 4]
 
             if len(len_campo_bytes) < 4:
@@ -586,9 +597,6 @@ La primera línea del archivo puede contener los nombres de los campos, lo cual 
 ```
 
 ```{code-cell} python
----
-tags: hide-output
----
 import csv
 import os
 
@@ -603,14 +611,16 @@ class Agenda:
         # Escribir cabecera si el archivo no existe o está vacío
         if not os.path.exists(archivo) or os.path.getsize(archivo) == 0:
             with open(archivo, "w", newline="") as f:
-                # DictWriter escribe el encabezado usando los nombres de los campos
-                writer = csv.DictWriter(f, fieldnames=campos, delimiter=separador)
+                # Escribir el encabezado usando los nombres de los campos
+                writer = csv.DictWriter(f, fieldnames=campos,\
+                                        delimiter=separador)
                 writer.writeheader()  # escribe la cabecera en la primera línea
 
         # Contar registros (excluyendo la cabecera)
         try:
             with open(archivo, "r", newline="") as f:
-                reader = csv.DictReader(f, fieldnames=campos, delimiter=separador)
+                reader = csv.DictReader(f, fieldnames=campos,\
+                                        delimiter=separador)
 
                 next(reader, None)  # saltar cabecera
 
@@ -621,7 +631,8 @@ class Agenda:
 
     def guardar_contacto(self, *valores):
         """
-        Guarda un registro. La cantidad de valores debe coincidir con la cantidad de campos.
+        Guarda un registro. La cantidad de valores debe coincidir con
+        la cantidad de campos.
         Se arma el registro como un diccionario: {campo: valor}
         """
         if len(valores) != len(self._campos):
@@ -630,7 +641,7 @@ class Agenda:
         if not valores[0] or not valores[1]:
             raise ValueError("Nombre y apellido son obligatorios")
 
-        registro = dict(zip(self._campos, valores))  # crea el registro como dict
+        registro = dict(zip(self._campos, valores)) # registro como dict
 
         with open(self._archivo, "a", newline="") as f:
             writer = csv.DictWriter(

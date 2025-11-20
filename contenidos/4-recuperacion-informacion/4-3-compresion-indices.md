@@ -53,8 +53,10 @@ num_terminos = 10_000_000
 docs_por_termino = 10_000
 bytes_por_id = 4  # Entero de 32 bits
 
-tamaño_postings_gb = (num_terminos * docs_por_termino * bytes_por_id) / (1024**3)
-print(f"Tamaño estimado de postings sin compresión: {tamaño_postings_gb:.2f} GB")
+tamaño_postings_gb =\
+    (num_terminos * docs_por_termino * bytes_por_id) / (1024**3)
+print(f"Tamaño estimado de postings sin compresión: {tamaño_postings_gb:.2f}\
+     GB")
 
 # Con compresión típica (factor 4x)
 tamaño_comprimido_gb = tamaño_postings_gb / 4
@@ -145,7 +147,8 @@ def front_encode_block(terms):
 
 
 def front_decode_block(encoded):
-    """Decodifica la cadena generada por front_encode_block y devuelve la lista de términos."""
+    """Decodifica la cadena generada por front_encode_block y
+    devuelve la lista de términos."""
     import re
 
     if not encoded:
@@ -194,7 +197,8 @@ decoded = front_decode_block(encoded)
 print("Palabras originales:", palabras)
 print("Encoded:", encoded)
 print("Decoded:", decoded)
-assert decoded == palabras, "La decodificación no coincide con las palabras originales"
+assert decoded == palabras, "La decodificación no coincide con las\
+     palabras originales"
 
 # Estadísticas de compresión (bytes en UTF-8)
 original_bytes = sum(len(p.encode("utf-8")) for p in palabras)
@@ -332,7 +336,8 @@ for num in numeros:
 # Ejemplo de compresión de una lista completa
 print("\n\nCompresión de lista de postings:")
 postings = [3, 12, 15, 27, 35, 89, 142, 156, 299, 312]
-gaps = [postings[0]] + [postings[i] - postings[i - 1] for i in range(1, len(postings))]
+gaps = [postings[0]]
+gaps.extend(postings[i] - postings[i - 1] for i in range(1, len(postings)))
 
 print(f"Postings originales: {postings}")
 print(f"Gaps: {gaps}")
@@ -381,11 +386,8 @@ En sistemas reales como Lucene/Elasticsearch, se combinan múltiples técnicas p
 
 ## Referencias y Recursos Adicionales
 
-### Bibliografía Principal
+### Colecciones de Datos
 
-- Manning, C. D., Raghavan, P., & Schütze, H. (2008). *Introduction to Information Retrieval*. Cambridge University Press. Capítulo 5.{cite:p}`irbook`
-- Zobel, J., & Moffat, A. (2006). "Inverted files for text search engines". *ACM Computing Surveys (CSUR)*, 38(2), 1-56.{cite:p}`zobel2006`
-- Witten, I. H., Moffat, A., & Bell, T. C. (1999). *Managing Gigabytes: Compressing and Indexing Documents and Images*. Morgan Kaufmann. Capítulo 7.{cite:p}`witten1999`
 - [ClueWeb Dataset](https://lemurproject.org/clueweb09/): Colección grande para experimentación
 - [TREC Collections](https://trec.nist.gov/data.html): Colecciones estándar para IR
 - [Lemur Project](https://www.lemurproject.org/): Herramientas y librerías para IR
@@ -394,3 +396,9 @@ En sistemas reales como Lucene/Elasticsearch, se combinan múltiples técnicas p
 
 - [Information Retrieval - Stanford CS276](https://web.stanford.edu/class/cs276/): Incluye material sobre compresión
 - [Text Compression - University of Melbourne](https://people.eng.unimelb.edu.au/ammoffat/): Recursos de Alistair Moffat
+
+### Bibliografía Principal
+
+- El Capítulo 5 del libro {cite:p}`irbook` presenta los conceptos de compresión de índices.
+- El siguiente artículo estudia los índices para motores de búsqueda de texto.{cite:p}`zobel2006`
+- En el artículo se presenta la compresión de índices e imágenes {cite:p}`witten1999`. Está disponible en internet.

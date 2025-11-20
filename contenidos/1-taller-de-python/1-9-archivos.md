@@ -122,14 +122,15 @@ os.chdir("/tmp")
 # Crear estructura de carpetas
 if not os.path.exists("datos"):
     os.makedirs("datos/procesados")
-    print(f"Estructura de carpetas creada: {os.path.abspath('datos/procesados')}")
+    print(f"Estructura de carpetas creada: "
+          f"{os.path.abspath('datos/procesados')}")
 
 # Trabajar con rutas
 # Construir una ruta a un archivo.
 # Se recomienda usar `os.path.join` y no concatenar cadenas ya que el módulo
-# `os` puede construir rutas de forma portable para cualquier sistema operativo.
-# Es decir este programa funcionará en cualquier sistema operativo sin
-# modificaciones.
+# `os` puede construir rutas de forma portable para cualquier sistema
+# operativo. Es decir este programa funcionará en cualquier sistema operativo
+# sin modificaciones.
 ruta_archivo = os.path.join("datos", "archivo.txt")
 print(f"Ruta construida: {ruta_archivo}")
 print(f"Ruta absoluta: {os.path.abspath(ruta_archivo)}")
@@ -271,7 +272,9 @@ tags: hide-output
 archivo = "../_static/code/archivos/edd.txt"
 
 try:
-    f = open(archivo, "r", encoding="utf-8")  # Puede levantar FileNotFoundError
+    f = open(
+        archivo, "r", encoding="utf-8"
+    )  # Puede levantar FileNotFoundError
 except FileNotFoundError:
     print("Archivo no encontrado")
 else:
@@ -293,7 +296,9 @@ tags: hide-output
 archivo = "../_static/code/archivos/edd.txt"
 
 try:
-    f = open(archivo, "r", encoding="utf-8")  # Puede levantar FileNotFoundError
+    f = open(
+        archivo, "r", encoding="utf-8"
+    )  # Puede levantar FileNotFoundError
 except FileNotFoundError:
     print("Archivo no encontrado")
 else:
@@ -316,12 +321,14 @@ tags: hide-output
 archivo = "../_static/code/archivos/edd.txt"
 
 try:
-    f = open(archivo, "r", encoding="utf-8")  # Puede levantar FileNotFoundError
+    f = open(
+        archivo, "r", encoding="utf-8"
+    )  # Puede levantar FileNotFoundError
 except FileNotFoundError:
     print("Archivo no encontrado")
 else:
     try:
-        while linea := f.readline():
+        while (linea := f.readline()):
             print(linea)
     except Exception as e:
         print(f"Error inesperado: {e}")
@@ -338,7 +345,8 @@ tags: hide-output
 archivo = "../_static/code/archivos/edd.txt"
 
 try:
-    f = open(archivo, "r", encoding="utf-8")  # Puede levantar FileNotFoundError
+    f = open(archivo, "r", encoding="utf-8")
+    # Puede levantar FileNotFoundError
 except FileNotFoundError:
     print("Archivo no encontrado")
 else:
@@ -360,7 +368,7 @@ tags: hide-output
 archivo = "../_static/code/archivos/edd.txt"
 
 try:
-    f = open(archivo, "r", encoding="utf-8")  # Puede levantar FileNotFoundError
+    f = open(archivo, "r", encoding="utf-8") # Puede levantar FileNotFoundError
 except FileNotFoundError:
     print("Archivo no encontrado")
 else:

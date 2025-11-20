@@ -190,7 +190,9 @@ class AgendaGeneral:
 
     def guardar_contacto(self, **kwargs):
         if "nombre" not in kwargs or "apellido" not in kwargs:
-            raise ValueError("Los campos 'nombre' y 'apellido' son obligatorios")
+            raise ValueError(
+                "Los campos 'nombre' y 'apellido' son obligatorios"
+            )
 
         self._contactos.append(kwargs)
 
@@ -218,7 +220,10 @@ agenda.guardar_contacto(
     email="juan.perez@example.com",
 )
 agenda.guardar_contacto(
-    nombre="Ana", apellido="García", telefono="987654321", cumpleaños="1990-01-01"
+    nombre="Ana",
+    apellido="García",
+    telefono="987654321",
+    cumpleaños="1990-01-01"
 )
 agenda.guardar_contacto(
     nombre="Homero",

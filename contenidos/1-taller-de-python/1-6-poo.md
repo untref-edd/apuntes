@@ -132,7 +132,8 @@ class Docente(Persona):
         print(f"Soy docente de {self.materia}")
 
     def pagar(self):
-        print(f"Pago realizado al docente {self.nombre}, con legajo {self.legajo}.")
+        print(f"Pago realizado al docente {self.nombre}, "
+              f"con legajo {self.legajo}.")
 
 
 class Estudiante(Persona):
@@ -160,7 +161,8 @@ class Ayudante(Estudiante, Docente):
 
     def presentar(self):
         self.saludar()
-        print(f"Soy estudiante de {self.carrera} y ayudante en {self.materia}")
+        print(f"Soy estudiante de {self.carrera} y ayudante en "
+              f"{self.materia}")
 
 
 # Crear un objeto de la clase Docente

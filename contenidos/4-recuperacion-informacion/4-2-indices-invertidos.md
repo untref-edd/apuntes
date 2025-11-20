@@ -240,7 +240,8 @@ class IndiceInvertido:
         self.documentos[doc_id] = texto
 
         # Tokenizar o separar el documento como una lista de palabras
-        # Las palabras se normalizan a minúsculas y se eliminan signos de puntuación básicos
+        # Las palabras se normalizan a minúsculas y se eliminan signos
+        # de puntuación básicos
         palabras = texto.lower().split()
 
         # Agregar cada palabra al índice salvo las stopwords indicadas
@@ -254,7 +255,8 @@ class IndiceInvertido:
             self.indice[palabra].add(doc_id)
 
     def buscar(self, termino):
-        """Busca documentos que contienen el término (normaliza a minúsculas)"""
+        """Busca documentos que contienen el término 
+        (normaliza a minúsculas)"""
         termino = termino.lower().strip(".,;:!?()[]{}\"'")
         return self.indice.get(termino, set())
 
@@ -373,7 +375,8 @@ def normalizar_texto(texto):
     """Normaliza un texto para indexación usando NLTK para tokenizar."""
     # Convertir a minúsculas
     texto = texto.lower()
-    # Reemplazar signos de puntuación por espacios (dejando letras, números y espacios)
+    # Reemplazar signos de puntuación por espacios
+    # (dejando letras, números y espacios)
     texto = re.sub(r"[^\w\s]", " ", texto)
     # Tokenizar con NLTK (maneja mejor cliticos, contracciones, etc.)
     tokens = word_tokenize(texto, language="spanish")
@@ -501,16 +504,16 @@ def lemmatize_tokens_en(tokens):
 
 
 # Ejemplos
-palabras_es = ["programación", "programar", "programador", "estudiante", "estudiar"]
-stems = stem_tokens_es(palabras_es)
+pal_es = ["programación","programar","programador","estudiante","estudiar"]
+stems = stem_tokens_es(pal_es)
 print("Stemming (es):")
-for p, s in zip(palabras_es, stems):
+for p, s in zip(pal_es, stems):
     print(f"{p} → {s}")
 
-palabras_en = ["runners", "run", "philosophy", "philosophical", "philosopher"]
-lemmas_en = lemmatize_tokens_en(palabras_en)
+pal_en = ["runners", "run", "philosophy", "philosophical", "philosopher"]
+lemmas_en = lemmatize_tokens_en(pal_en)
 print("\nLematización (en, WordNet):")
-for p, l in zip(palabras_en, lemmas_en):
+for p, l in zip(pal_en, lemmas_en):
     print(f"{p} → {l}")
 ```
 
@@ -549,29 +552,66 @@ A continuación se muestra un ejemplo de uso de spaCy para tokenización y lemat
 tags: hide-output
 ---
 import spacy
-import textwrap  # Para imprimir en 80 columnas
+import textwrap  # Para imprimir en 77 columnas
 
 # Cargar modelo en español
 nlp = spacy.load("es_core_news_sm")
 
 # Texto de ejemplo (puede reutilizarse el texto definido anteriormente)
-texto = """La recuperación de la información en Python combina técnicas de procesamiento de texto con estructuras de datos eficientes para permitir búsquedas rápidas y relevantes sobre colecciones de documentos. En la práctica se sigue un pipeline que incluye: 1) extracción y normalización del texto (minúsculas, eliminación de acentos y puntuación), 2) tokenización (dividir en tokens o palabras), 3) eliminación de stopwords, 4) stemming o lematización para agrupar formas de una misma palabra, y 5) construcción de una estructura de índice invertido que asocia cada término a una lista de documentos (postings).
+texto = """La recuperación de la información en Python combina técnicas de
+procesamiento de texto con estructuras de datos eficientes para permitir
+búsquedas rápidas y relevantes sobre colecciones de documentos. En la práctica
+se sigue un pipeline que incluye: 1) extracción y normalización del texto
+(minúsculas, eliminación de acentos y puntuación), 2) tokenización (dividir en
+tokens o palabras), 3) eliminación de stopwords, 4) stemming o lematización
+para agrupar formas de una misma palabra, y 5) construcción de una estructura
+de índice invertido que asocia cada término a una lista de documentos
+(postings).
 
-Para implementar esto en Python existen herramientas y bibliotecas útiles: NLTK y spaCy para tokenización, stopwords y lematización; scikit-learn para transformar colecciones en matrices TF-IDF y calcular similitud coseno; y bibliotecas especializadas como Whoosh o clientes para motores externos (Elasticsearch) cuando la escala crece. Un índice invertido básico se puede representar con dicts y sets (término -> set(doc_id)) o con listas ordenadas de postings para operaciones booleanas y de fusión eficientes.
+Para implementar esto en Python existen herramientas y bibliotecas útiles:
+NLTK y spaCy para tokenización, stopwords y lematización; scikit-learn para
+transformar colecciones en matrices TF-IDF y calcular similitud coseno;
+y bibliotecas especializadas como Whoosh o clientes para motores externos
+(Elasticsearch) cuando la escala crece. Un índice invertido básico se puede
+representar con dicts y sets (término -> set(doc_id)) o con listas ordenadas
+de postings para operaciones booleanas y de fusión eficientes.
 
-En el modelo de recuperación ponderada, se suele representar cada documento como un vector en un espacio de términos usando TF-IDF. Con scikit-learn, TfidfVectorizer facilita la tokenización, normalización y cálculo de pesos; luego, para una consulta, se transforma la consulta al mismo espacio y se calculan similitudes (por ejemplo, coseno) para ordenar resultados por relevancia. Para colecciones grandes se deben considerar técnicas de dimensionalidad y búsqueda aproximada (ANN) para acelerar consultas.
+En el modelo de recuperación ponderada, se suele representar cada documento
+como un vector en un espacio de términos usando TF-IDF. Con scikit-learn,
+TfidfVectorizer facilita la tokenización, normalización y cálculo de pesos;
+luego, para una consulta, se transforma la consulta al mismo espacio y se
+calculan similitudes (por ejemplo, coseno) para ordenar resultados por
+relevancia. Para colecciones grandes se deben considerar técnicas de
+dimensionalidad y búsqueda aproximada (ANN) para acelerar consultas.
 
-Cuando la colección no cabe en memoria, se aplican algoritmos como BSBI y SPIMI para construir índices por bloques y luego fusionarlos; en entornos distribuidos se emplea MapReduce o motores distribuidos (Elasticsearch, Solr) que gestionan particionado, replicación y tolerancia a fallos. Además, la compresión de postings (delta encoding, gamma codes, varint) reduce drásticamente el espacio en disco y mejora la transferencia I/O.
+Cuando la colección no cabe en memoria, se aplican algoritmos como BSBI y SPIMI
+para construir índices por bloques y luego fusionarlos; en entornos
+distribuidos se emplea MapReduce o motores distribuidos (Elasticsearch, Solr)
+que gestionan particionado, replicación y tolerancia a fallos. Además, la
+compresión de postings (delta encoding, gamma codes, varint) reduce
+drásticamente el espacio en disco y mejora la transferencia I/O.
 
-En proyectos reales conviene mantener separación clara entre fases: extracción (parsing de documentos), normalización y tokenización (pipelines reutilizables), construcción del índice (API clara para agregar/eliminar documentos) y la capa de búsqueda (consultas booleanas y ponderadas, paginación y highlights). También es crucial añadir pruebas automáticas, métricas de evaluación (precisión, recall, MAP, NDCG) y pipelines de validación para comparar variantes de preprocesamiento y ponderación.
+En proyectos reales conviene mantener separación clara entre fases:
+extracción (parsing de documentos), normalización y tokenización (pipelines
+reutilizables), construcción del índice (API clara para agregar/eliminar
+documentos) y la capa de búsqueda (consultas booleanas y ponderadas, paginación
+y highlights). También es crucial añadir pruebas automáticas, métricas de
+evaluación (precisión, recall, MAP, NDCG) y pipelines de validación para
+comparar variantes de preprocesamiento y ponderación.
 
-Finalmente, en Python es habitual prototipar con estructuras sencillas (dicts, sets) para validar ideas y luego migrar a soluciones más robustas: persistencia del índice (SQLite, LevelDB, archivos binarios), servicios de búsqueda (Elasticsearch) o bindings a Lucene para producción. Estas decisiones dependen de requisitos de latencia, volumen de datos y la necesidad de actualizaciones en tiempo real."""
+Finalmente, en Python es habitual prototipar con estructuras sencillas
+(dicts, sets) para validar ideas y luego migrar a soluciones más robustas:
+persistencia del índice (SQLite, LevelDB, archivos binarios), servicios de
+búsqueda (Elasticsearch) o bindings a Lucene para producción. Estas decisiones
+dependen de requisitos de latencia, volumen de datos y la necesidad de
+actualizaciones en tiempo real."""
 
 # Procesar texto
 doc = nlp(texto)
 
 # Filtrar tokens y lemas: excluir stopwords, puntuación y tokens no alfabéticos
-tokens_sin_stop = [token.text for token in doc if not token.is_stop and token.is_alpha]
+tokens_sin_stop = [
+    token.text for token in doc if not token.is_stop and token.is_alpha]
 lemmas_sin_stop = [
     token.lemma_ for token in doc if not token.is_stop and token.is_alpha
 ]
@@ -580,13 +620,17 @@ lemmas_sin_stop = [
 label = "Tokens (sin stopwords): "
 s = ", ".join(tokens_sin_stop)
 print(
-    textwrap.fill(s, width=80, initial_indent=label, subsequent_indent=" " * len(label))
+    textwrap.fill(s, width=77,
+    initial_indent=label,
+    subsequent_indent=" " * len(label))
 )
 
 label = "Lemas (sin stopwords): "
 s = ", ".join(lemmas_sin_stop)
 print(
-    textwrap.fill(s, width=80, initial_indent=label, subsequent_indent=" " * len(label))
+    textwrap.fill(s, width=77,
+    initial_indent=label,
+    subsequent_indent=" " * len(label))
 )
 ```
 

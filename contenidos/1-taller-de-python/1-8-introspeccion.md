@@ -111,7 +111,8 @@ ana.domicilio = "La Merced 123"
 # Agregar un método personalizado solo a 'juan'
 def saludar_con_telefono(self):
     print(
-        f"Hola, soy {self.nombre}, tengo {self.edad} años y mi teléfono es {self.telefono}."
+        f"Hola, soy {self.nombre}, tengo {self.edad} años y mi teléfono es "
+        f"{self.telefono}."
     )
 
 

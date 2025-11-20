@@ -205,16 +205,16 @@ import re
 texto = "El código postal es A1234BCZ"
 
 # Letras mayúsculas
-print(re.findall(r"[A-Z]", texto))  # ['E', 'A', 'B', 'C', 'Z']
+print(re.findall(r"[A-Z]", texto))
 
 # Dígitos
-print(re.findall(r"[0-9]+", texto))  # ['1234']
+print(re.findall(r"[0-9]+", texto))
 
 # Letras y números
-print(re.findall(r"[A-Z0-9]+", texto))  # ['A1234BCZ']
+print(re.findall(r"[A-Z0-9]+", texto))
 
 # Todo excepto espacios
-print(re.findall(r"[^ ]+", texto))  # ['El', 'código', 'postal', 'es', 'A1234BCZ']
+print(re.findall(r"[^ ]+", texto))
 ```
 
 ### Secuencias especiales
@@ -462,13 +462,16 @@ import re
 
 # Texto de ejemplo: log de servidor web
 log = """
-192.168.1.1 - - [15/Mar/2024:10:30:45 +0000] "GET /index.html HTTP/1.1" 200 1234
-10.0.0.5 - - [15/Mar/2024:10:31:12 +0000] "POST /api/data HTTP/1.1" 201 567
-192.168.1.1 - - [15/Mar/2024:10:32:33 +0000] "GET /styles.css HTTP/1.1" 200 8910
+192.168.1.1- -[15/Mar/2024:10:30:45 +0000] "GET /index.html HTTP/1.1" 200 1234
+10.0.0.5- -[15/Mar/2024:10:31:12 +0000] "POST /api/data HTTP/1.1" 201 567
+192.168.1.1- -[15/Mar/2024:10:32:33 +0000] "GET /styles.css HTTP/1.1" 200 8910
 """
 
 # Patrón para extraer información del log
-patron = r'(\d+\.\d+\.\d+\.\d+).*?\[([^\]]+)\]\s+"(\w+)\s+([^\s]+).*?"\s+(\d+)\s+(\d+)'
+patron = (
+    r'(\d+\.\d+\.\d+\.\d+).*?\[([^\]]+)\]'  # IP y fecha
+    r'\s+"(\w+)\s+([^\s]+).*?"\s+(\d+)\s+(\d+)' # Método, ruta, código y tamaño
+)
 
 for linea in log.strip().split("\n"):
     match = re.search(patron, linea)
@@ -622,12 +625,16 @@ def extraer_productos(html):
     """Extrae información de productos del HTML"""
     # Patrón para encontrar bloques de productos
     patron_producto = (
-        r'<div class="producto">.*?<h2>(.*?)</h2>.*?<p class="precio">\$([\d.]+)</p>'
+        r'<div class="producto">.*?<h2>(.*?)</h2>.*?'
+        r'<p class="precio">\$([\d.]+)</p>'
     )
 
     productos = re.findall(patron_producto, html, re.DOTALL)
 
-    return [{"nombre": nombre, "precio": float(precio)} for nombre, precio in productos]
+    return [
+        {"nombre": nombre, "precio": float(precio)}
+        for nombre, precio in productos
+    ]
 
 
 productos = extraer_productos(html)
@@ -648,14 +655,17 @@ def anonimizar_datos(texto):
     """Anonimiza datos sensibles en un texto"""
     # Anonimizar emails
     texto = re.sub(
-        r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b", "[EMAIL]", texto
+        r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b",
+        "[EMAIL]",
+        texto
     )
 
     # Anonimizar teléfonos (formato: xxx-xxxx o (xxx) xxx-xxxx)
     texto = re.sub(r"\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}", "[TELÉFONO]", texto)
 
     # Anonimizar números de tarjeta (grupos de 4 dígitos)
-    texto = re.sub(r"\b\d{4}[-\s]?\d{4}[-\s]?\d{4}[-\s]?\d{4}\b", "[TARJETA]", texto)
+    texto = re.sub(r"\b\d{4}[-\s]?\d{4}[-\s]?\d{4}[-\s]?\d{4}\b", "[TARJETA]",
+                   texto)
 
     return texto
 
@@ -700,7 +710,8 @@ def analizar_texto(texto):
     numeros = re.findall(r"\b\d+\b", texto)
 
     # Detectar emails
-    emails = re.findall(r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b", texto)
+    emails = re.findall(r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+"
+                        r"\.[A-Z|a-z]{2,}\b", texto)
 
     # Detectar URLs
     urls = re.findall(r"https?://[^\s]+", texto)
@@ -758,7 +769,7 @@ import re
 
 # IGNORECASE
 texto = "Python python PYTHON"
-print(re.findall(r"python", texto, re.IGNORECASE))  # ['Python', 'python', 'PYTHON']
+print(re.findall(r"python", texto, re.IGNORECASE))
 
 # MULTILINE
 texto_multilinea = """Primera línea
@@ -842,7 +853,11 @@ def extraer_informacion_contacto(texto):
     """Extrae emails, teléfonos y URLs de un texto"""
 
     # Patrón para emails
-    emails = re.findall(r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b", texto)
+    email_pattern = (
+        r"\b[A-Za-z0-9._%+-]+"
+        r"@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b"
+    )
+    emails = re.findall(email_pattern, texto)
 
     # Patrón para teléfonos (varios formatos)
     telefonos = re.findall(
@@ -1020,7 +1035,8 @@ class IndiceInvertido:
             self.indice[palabra].add(doc_id)
 
     def buscar(self, patron):
-        """Busca documentos que contengan palabras que coincidan con el patrón"""
+        """Busca documentos que contengan palabras que coincidan
+        con el patrón"""
         patron_compilado = re.compile(patron, re.IGNORECASE)
         documentos = set()
 
@@ -1068,7 +1084,9 @@ archivos = [
 def filtrar_archivos(archivos, patron):
     """Filtra archivos que coincidan con el patrón"""
     patron_compilado = re.compile(patron)
-    return [archivo for archivo in archivos if patron_compilado.search(archivo)]
+    return [
+        archivo for archivo in archivos if patron_compilado.search(archivo)
+    ]
 
 
 # Filtrar archivos de texto
@@ -1169,6 +1187,7 @@ Para profundizar en expresiones regulares:
 - [Python Regular Expressions (Real Python)](https://realpython.com/regex-python/)
 
 ```{admonition} Resumen
+:class: note
 Las expresiones regulares son una herramienta poderosa para:
 - Validar formatos de datos
 - Extraer información de textos no estructurados

@@ -22,7 +22,9 @@ Las funciones se definen utilizando la palabra clave `def`, seguida del nombre d
 Python permite varios tipos de pasajes de parámetros a funciones:
 
 ```python
-def funcion(posicionales, nombrados, *posicionales_variables, **nombrados_variables):
+def funcion(posicionales, nombrados,
+            *posicionales_variables,
+            **nombrados_variables):
     pass  # sentencia que no hace nada
 ```
 
@@ -371,7 +373,8 @@ from functools import reduce
 
 numeros = [x for x in range(10)]
 suma_total = reduce(lambda x, y: x + y, numeros)
-print(f"Suma total: {suma_total}")  # (((((((((0+1)+2)+3)+4)+5)+6)+7)+8)+9) = 45
+# (((((((((0+1)+2)+3)+4)+5)+6)+7)+8)+9) = 45
+print(f"Suma total: {suma_total}")
 ```
 
 La función de reducción es la función anónima `lambda x, y: x + y`, que toma dos argumentos y devuelve su suma. No hace falta utilizar `return` ya que la última expresión evaluada es justamente la suma de `x` e `y`.

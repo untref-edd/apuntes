@@ -80,15 +80,20 @@ def demo_herencia():
     circulo = Circulo(Punto(0, 0), 3)
 
     print("Relaciones de herencia:")
-    print(f"¿Cuadrado es instancia de Rectángulo? {isinstance(cuadrado, Rectangulo)}")
-    print(f"¿Círculo es instancia de Elipse? {isinstance(circulo, Elipse)}")
-    print(f"¿Rectángulo es instancia de Cuadrado? {isinstance(rectangulo, Cuadrado)}")
+    print(f"¿Cuadrado es instancia de Rectángulo? "
+          f"{isinstance(cuadrado, Rectangulo)}")
+    print(f"¿Círculo es instancia de Elipse? "
+          f"{isinstance(circulo, Elipse)}")
+    print(f"¿Rectángulo es instancia de Cuadrado? "
+          f"{isinstance(rectangulo, Cuadrado)}")
     print()
 
     # Mostrar jerarquías de clases
     print("Jerarquías de clases:")
-    print(f"Cuadrado MRO: {[cls.__name__ for cls in Cuadrado.__mro__]}")
-    print(f"Círculo MRO: {[cls.__name__ for cls in Circulo.__mro__]}")
+    print(f"Cuadrado MRO: "
+          f"{[cls.__name__ for cls in Cuadrado.__mro__]}")
+    print(f"Círculo MRO: "
+          f"{[cls.__name__ for cls in Circulo.__mro__]}")
 
 
 def demo_casos_especiales():
@@ -99,7 +104,9 @@ def demo_casos_especiales():
 
     # Figuras con valores por defecto
     print("Figuras con valores por defecto:")
-    figuras_default = [Rectangulo(), Cuadrado(), Circulo(), Elipse(), Triangulo()]
+    figuras_default = [
+        Rectangulo(), Cuadrado(), Circulo(), Elipse(), Triangulo()
+    ]
 
     for figura in figuras_default:
         print(f"{figura} -> Área: {figura.area():.2f}")
