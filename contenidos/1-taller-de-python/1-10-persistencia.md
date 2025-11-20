@@ -8,7 +8,7 @@ kernelspec:
   display_name: Python 3
   language: python
   name: python3
-  description: Persistencia de datos, serialización y deserialización, pickle, dill, json
+description: Persistencia de datos, serialización y deserialización, pickle, dill, json
 ---
 
 # Persistencia de datos
@@ -453,12 +453,14 @@ Para resolver esto, Python ofrece módulos como `shelve` y `dbm`, que permiten o
 `dbm`
 : Proporciona acceso a una familia de bases de datos simples, en las que cada clave se asocia a un valor binario. A diferencia de `shelve`, en `dbm` tanto las claves como los valores deben ser **cadenas de bytes** (`bytes`). Es más básico y portable, pero no admite directamente objetos de Python, sólo datos crudos en forma de texto o binario.
 
----
+______________________________________________________________________
 
 ## Módulo `shelve`
 
 ```{admonition} Una analogía útil
-:class: note
+---
+class: note
+---
 Los `pickles` son conservas que se guardan en frascos; a esos frascos se les puede agregar eneldo (`dill`) para darles más sabor, y finalmente todos los frascos se organizan y etiquetan en una estantería (`shelve`).
 ```
 

@@ -8,7 +8,7 @@ kernelspec:
   display_name: Python 3
   language: python
   name: python3
-  description: Programación Orientada a Objetos (POO), herencia múltiple
+description: Programación Orientada a Objetos (POO), herencia múltiple
 ---
 
 # Programación Orientada a Objetos (POO)

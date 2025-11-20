@@ -19,11 +19,9 @@ Este capítulo profundizaremos sobre el manejo de variables en Python, contrast�
 
 En Go y Java, la declaración de variables a menudo implica especificar explícitamente el tipo de dato (aunque Go ofrece [inferencia de tipos](https://go.dev/blog/type-inference)). Python, por otro lado, es un lenguaje de tipado dinámico. Esto significa que no se declara el tipo de una variable; el tipo se infiere en tiempo de ejecución según el valor que se le asigna.
 
-````{dropdown} Inferencia de tipos
-::: {.note} Nota
+```{dropdown} Inferencia de tipos
 **Inferencia de tipos:** Es la capacidad de un lenguaje de programación para deducir automáticamente el tipo de una expresión o variable en tiempo de compilación o ejecución, sin que el programador tenga que declararlo explícitamente. Para más información, consulta la [Wikipedia](https://es.wikipedia.org/wiki/Inferencia_de_tipos).
-:::
-````
+```
 
 Una diferencia clave es que en Python, las variables son esencialmente referencias a objetos en memoria. Cuando se reasigna una variable, simplemente esa referencia pasa a apuntar a un objeto diferente, en lugar de cambiar el valor (esto es crucial para entender la inmutabilidad de ciertos tipos).
 
@@ -152,8 +150,9 @@ _Built-in_ (B)
 Cuando Python busca un nombre, sigue este orden: primero busca en el ámbito _Local_, luego en el _Enclosing_, después en el _Global_ y finalmente en el _Built-in_.
 
 ```{figure} ../assets/images/ambitos.png
-:alt: Ámbitos de Ejecución
-:loading: lazy
+---
+alt: Ámbitos de Ejecución
+---
 ```
 
 ### Ámbito _Local_ (L)

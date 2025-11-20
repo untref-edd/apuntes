@@ -8,6 +8,7 @@ kernelspec:
   display_name: Python 3
   language: python
   name: python3
+description: Introducción a Git y GitHub
 ---
 
 # Activación automática de entorno virtual en Git Bash

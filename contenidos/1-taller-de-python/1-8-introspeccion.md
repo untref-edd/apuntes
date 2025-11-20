@@ -8,7 +8,7 @@ kernelspec:
   display_name: Python 3
   language: python
   name: python3
-  description: Introspección y reflexión
+description: Introspección y reflexión
 ---
 
 # Introspección y reflexión
@@ -40,7 +40,7 @@ En **Java** estas capacidades existen mediante *Reflection API*, mientras que en
 | `callable(obj)`                 | Indica si el objeto es invocable como función o método. |
 | `help(obj)`                     | Muestra la documentación.                               |
 
----
+______________________________________________________________________
 
 ## Ejemplo básico de introspección
 
@@ -164,7 +164,9 @@ print("Resultado de la expresión:", resultado)
 ```
 
 ```{admonition} Advertencia de seguridad
-:class: warning
+---
+class: warning
+---
 Nunca se debe utilizar `eval()` con entradas que provengan de usuarios o fuentes no confiables. Hacerlo puede permitir la ejecución de código malicioso y comprometer la seguridad del sistema.
 ```
 

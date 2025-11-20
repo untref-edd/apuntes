@@ -8,7 +8,7 @@ kernelspec:
   display_name: Python 3
   language: python
   name: python3
-  description: Archivos y carpetas
+description: Archivos y carpetas
 ---
 
 # Archivos
@@ -180,7 +180,9 @@ print(f"Archivos Markdown encontrados: {len(archivos_md)}")
 ```
 
 ```{admonition} Recomendación
-:class: hint
+---
+class: hint
+---
 Para código nuevo, se recomienda usar `pathlib` ya que es más legible y moderno. Para compatibilidad con código antiguo o scripts simples, `os.path` sigue siendo válido.
 ```
 

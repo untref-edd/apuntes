@@ -8,6 +8,7 @@ kernelspec:
   display_name: Python 3
   language: python
   name: python3
+description: Facebook y Twitter (X)
 ---
 
 # Recuperación de la Información de las Redes Sociales

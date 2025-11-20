@@ -8,6 +8,7 @@ kernelspec:
   display_name: Python 3
   language: python
   name: python3
+description: Recorridos de grafos, BFS, DFS
 ---
 
 # Recorridos

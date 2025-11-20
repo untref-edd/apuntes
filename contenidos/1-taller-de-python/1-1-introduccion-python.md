@@ -16,8 +16,10 @@ description: Introducción al lenguaje de programación Python, historia, caract
 Python es un lenguaje de programación multipropósito, creado a fines de los años 80 por [Guido van Rossum](https://es.wikipedia.org/wiki/Guido_van_Rossum).
 
 ```{figure} ../assets/images/python-logo-generic.svg
-:align: center
-:width: 200px
+---
+align: center
+width: 200px
+---
 ```
 
 Guido Van Rossum es el principal autor de Python, y su continuo rol central en decidir la dirección de Python es reconocido, refiriéndose a él como Benevolente Dictador Vitalicio (en inglés: _Benevolent Dictator For Life_, BDFL); sin embargo el 12 de julio de 2018 declinó de dicha situación de honor sin dejar un sucesor o sucesora y con una declaración altisonante:

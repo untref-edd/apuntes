@@ -8,6 +8,7 @@ kernelspec:
   display_name: Python 3
   language: python
   name: python3
+description: Registros de datos, organización lógica de datos, archivos
 ---
 
 # Registros de datos

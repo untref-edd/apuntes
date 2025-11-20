@@ -8,6 +8,7 @@ kernelspec:
   display_name: Python 3
   language: python
   name: python3
+description: Crawler, Spider, Scrapy, Beatifulsoup
 ---
 
 # Web Scraping

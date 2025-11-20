@@ -26,8 +26,7 @@ project:
       # template: ieee-typst
       template: lapreprint-typst
       output: exports/apunte.pdf
-  execute:
-    execute_notebooks: cache
+
   numbering:
     equation: true
     figure: true
