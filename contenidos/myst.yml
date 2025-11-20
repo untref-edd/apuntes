@@ -20,11 +20,22 @@ project:
   license: CC-BY-SA-4.0
   bibliography:
     - references.bib
+
   exports:
     - format: typst
       # template: ieee-typst
       template: lapreprint-typst
       output: exports/apunte.pdf
+  execute:
+    execute_notebooks: cache
+  numbering:
+    equation: true
+    figure: true
+    table: true
+    code: true
+    heading_1: true
+    heading_2: true
+    heading_3: true
   toc:
     - file: introduccion.md
     - title: Taller de Python
@@ -79,35 +90,3 @@ site:
     logo_dark: assets/images/untref-logo-white.svg
     favicon: assets/images/untref-favicon.ico
     style: _static/css/custom.css
-  actions:
-    - type: github
-      text: Edit on GitHub
-      url: https://github.com/untref-edd/apuntes/edit/main/contenidos
-    - type: github
-      text: Report an Issue
-      url: https://github.com/untref-edd/apuntes/issues/new
-
-myst:
-  enable_extensions:
-    - amsmath
-    - colon_fence
-    - deflist
-    - dollarmath
-    - html_admonition
-    - html_image
-    - linkify
-    - replacements
-    - smartquotes
-    - tasklist
-
-execute:
-  execute_notebooks: cache
-
-numbering:
-  equation: true
-  figure: true
-  table: true
-  code: true
-  heading_1: true
-  heading_2: true
-  heading_3: true

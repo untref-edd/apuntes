@@ -197,20 +197,31 @@ from datetime import datetime
 
 # Ejemplo de uso de os.walk()
 for raiz, dirs, archivos in os.walk("."):
+    # Excluir directorios ocultos (como .ipynb_checkpoints)
+    dirs[:] = [d for d in dirs if not d.startswith('.')]
+    
     print(f"Carpeta: {raiz}")
     for archivo in archivos:
+        if archivo.startswith('.'):
+            continue
+            
+        ruta_completa = os.path.join(raiz, archivo)
+        
         # Obtener información del archivo
-        info = os.stat(archivo)
-
-        print(f""" - {archivo}
-   Ruta absoluta: {os.path.abspath(archivo)}")
-
-   Tamaño: {info.st_size} bytes
-   Última modificación: {datetime.fromtimestamp(info.st_mtime)}
-   Permisos: {info.st_mode & 0o777:#o}
-   Propietario: {info.st_uid}
-   Grupo: {info.st_gid}
-""")
+        try:
+            info = os.stat(ruta_completa)
+            
+            print(f""" - {archivo}
+       Ruta absoluta: {os.path.abspath(ruta_completa)}
+    
+       Tamaño: {info.st_size} bytes
+       Última modificación: {datetime.fromtimestamp(info.st_mtime)}
+       Permisos: {info.st_mode & 0o777:#o}
+       Propietario: {info.st_uid}
+       Grupo: {info.st_gid}
+    """)
+        except FileNotFoundError:
+            print(f" - {archivo} (No encontrado)")
 ```
 
 ## Operaciones básicas sobre archivos

@@ -1,3 +1,21 @@
 details[open] .details-body {
     margin-top: 10px !important;
 }
+
+.hidden-citations {
+    display: none;
+}
+
+/* Ocultar el título "References" generado automáticamente */
+#references header {
+    display: none !important;
+}
+
+/* Aumentar el tamaño de letra de las referencias */
+li[id^="cite-"],
+.bibliography li,
+.myst-bibliography li {
+    font-size: 1rem !important;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
