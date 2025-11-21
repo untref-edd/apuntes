@@ -66,7 +66,8 @@ tags: hide-output
 ---
 s1 = "hola"
 s2 = s1
-s1 += " mundo"  # Esto crea una nueva cadena "hola mundo" y s1 ahora referencia a ella
+s1 += " mundo"  # Esto crea una nueva cadena "hola mundo"
+                # y s1 ahora referencia a ella
 print(f"s1: {s1}, s2: {s2}")  # Salida: s1: hola mundo, s2: hola
 ```
 
@@ -149,10 +150,14 @@ _Built-in_ (B)
 
 Cuando Python busca un nombre, sigue este orden: primero busca en el ámbito _Local_, luego en el _Enclosing_, después en el _Global_ y finalmente en el _Built-in_.
 
-```{figure} ../assets/images/ambitos.png
----
-alt: Ámbitos de Ejecución
----
+```{figure} ../assets/images/ambitos_light.svg
+:class: only-light-mode
+Ámbitos de Ejecución
+```
+
+```{figure} ../assets/images/ambitos_dark.svg
+:class: only-dark-mode
+Ámbitos de Ejecución
 ```
 
 ### Ámbito _Local_ (L)

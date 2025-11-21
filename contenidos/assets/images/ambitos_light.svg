@@ -1,0 +1,54 @@
+<svg width="800" height="450" viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      /* ==================================================================
+         DEFINICIÓN DE COLORES (MODO CLARO)
+         ================================================================== */
+      :root {
+        --box-stroke: #1565C0; /* Azul oscuro vibrante para los bordes */
+        --box-fill: rgba(33, 150, 243, 0.05); /* Relleno azul casi transparente */
+        --text-title: #0D47A1; /* Azul muy oscuro, casi negro, para títulos */
+        --text-body: #161d20ff;  /* Gris azulado oscuro para el texto del cuerpo */
+      }
+
+      text {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      }
+      /* Estilos Base */
+      .box {
+        fill: var(--box-fill) !important;
+        stroke: var(--box-stroke) !important;
+        stroke-width: 2 !important;
+        rx: 8px; /* Bordes redondeados */
+      }
+      /* Estilo de los títulos */
+      .title {
+        font-weight: 700;
+        font-size: 18px;
+        fill: var(--text-title) !important;
+      }
+      /* Estilo de las descripciones */
+      .desc {
+        font-size: 16px;
+        fill: var(--text-body) !important;
+      }
+    </style>
+  </defs>
+
+  <rect x="10" y="10" width="780" height="430" class="box" />
+  <text x="30" y="40" class="title">Built-in (Python)</text>
+  <text x="30" y="65" class="desc">Nombres preasignados en el entorno Python. Ej: open, range, etc.</text>
+
+  <rect x="40" y="90" width="720" height="330" class="box" />
+  <text x="60" y="120" class="title">Global (Módulo)</text>
+  <text x="60" y="145" class="desc">Nombres declarados en la parte superior de un módulo</text>
+
+  <rect x="70" y="170" width="660" height="230" class="box" />
+  <text x="90" y="200" class="title">Ámbito de ejecución de una función. Clausura:</text>
+  <text x="90" y="225" class="desc">Nombres visibles en el ámbito de ejecución de una función. Funciones anidadas</text>
+
+  <rect x="100" y="250" width="600" height="130" class="box" />
+  <text x="120" y="280" class="title">Locales</text>
+  <text x="120" y="305" class="desc">Nombres declarados dentro de una función.</text>
+
+</svg>
