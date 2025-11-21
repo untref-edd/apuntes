@@ -34,14 +34,15 @@ Python garantiza que los pasos anteriores para asignar una variable son **_atóm
 
 Si la variable ya tenía una referencia a otro objeto, esa referencia se pierde (el objeto anterior puede ser desalojado de la memoria por el recolector de basura si no hay otras referencias a él).
 
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQGUKbcH4y_LdrQK7IPvm1oC6rCwunw7bVTwno4calT4rMfzFQWDIirr_kDjgEs_5a4Q6n7Ey1QECJR/pubembed?start=false&loop=false&delayms=3000"
-frameborder="0"
-width="960"
- height="569"
- allowfullscreen="true"
- mozallowfullscreen="true"
- webkitallowfullscreen="true">
-</iframe>
+```{figure} ../assets/images/asignacion_light.svg
+:class: only-light-mode
+Asignación de Variables
+```
+
+```{figure} ../assets/images/asignacion_dark.svg
+:class: only-dark-mode
+Asignación de Variables
+```
 
 Esto contrasta con Go y Java, donde la asignación de una variable puede implicar la creación de una copia del valor (especialmente para tipos primitivos).
 
@@ -71,14 +72,15 @@ s1 += " mundo"  # Esto crea una nueva cadena "hola mundo"
 print(f"s1: {s1}, s2: {s2}")  # Salida: s1: hola mundo, s2: hola
 ```
 
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQydZhHj0SEQ_4XiOtImIWE2ytxbuz-vITs5jaNdcLla9IRH2FkfKqYVlzsH_Ouey2b01wz-AFS33hb/pubembed?start=false&loop=false&delayms=3000"
-frameborder="0"
-width="960"
-height="569"
-allowfullscreen="true"
-mozallowfullscreen="true"
-webkitallowfullscreen="true">
-</iframe>
+```{figure} ../assets/images/inmutabilidad_light.svg
+:class: only-light-mode
+Inmutabilidad (Strings)
+```
+
+```{figure} ../assets/images/inmutabilidad_dark.svg
+:class: only-dark-mode
+Inmutabilidad (Strings)
+```
 
 En este fragmento, `s1` y `s2` inicialmente referencian al mismo objeto, la cadena `"hola"`. Al modificar `s1`, se crea un nuevo objeto cadena `"hola mundo"`, y `s1` ahora apunta a este nuevo objeto, mientras que `s2` sigue apuntando al antiguo objeto `"hola"`.
 
@@ -101,14 +103,15 @@ lista1.append(4)  # Modifica la lista original
 print(f"lista1: {lista1}, lista2: {lista2}")
 ```
 
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTcp124w_M3ci7cSerRIXS4rn0rOZQMLARvuBE1AL9M8LZ-eX6Q364SrrOYKq_a6DaisNBEfvKJpVNi/pubembed?start=false&loop=false&delayms=3000"
-frameborder="0"
-width="960"
-height="569"
-allowfullscreen="true"
-mozallowfullscreen="true"
-webkitallowfullscreen="true">
-</iframe>
+```{figure} ../assets/images/mutabilidad_light.svg
+:class: only-light-mode
+Mutabilidad (Listas)
+```
+
+```{figure} ../assets/images/mutabilidad_dark.svg
+:class: only-dark-mode
+Mutabilidad (Listas)
+```
 
 En este caso, `lista1` y `lista2` referencian al mismo objeto lista. Al modificar `lista1`, `lista2` refleja el cambio porque ambas variables apuntan al mismo objeto en memoria.
 

@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+  <!-- Background -->
+  <rect width="800" height="400" fill="#ffffff"/>
+  
+  <!-- Title -->
+  <text x="400" y="40" font-family="Arial" font-size="24" text-anchor="middle" fill="#333333">Asignación de Variables</text>
+
+  <!-- Step 1: Initial Assignment -->
+  <g transform="translate(50, 100)">
+    <text x="100" y="-20" font-family="Arial" font-size="18" fill="#333333" text-anchor="middle">1. x = 10</text>
+    
+    <!-- Variable x -->
+    <rect x="20" y="20" width="80" height="50" rx="5" fill="#e1f5ff" stroke="#4682b4" stroke-width="2"/>
+    <text x="60" y="52" font-family="Arial" font-size="20" fill="#333333" text-anchor="middle">x</text>
+    
+    <!-- Arrow -->
+    <path d="M 110 45 L 190 45" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)"/>
+    
+    <!-- Object 10 -->
+    <circle cx="230" cy="45" r="30" fill="#ffe1e1" stroke="#e9967a" stroke-width="2"/>
+    <text x="230" y="52" font-family="Arial" font-size="20" fill="#333333" text-anchor="middle">10</text>
+  </g>
+
+  <!-- Step 2: Reassignment -->
+  <g transform="translate(450, 100)">
+    <text x="100" y="-20" font-family="Arial" font-size="18" fill="#333333" text-anchor="middle">2. x = 20</text>
+    
+    <!-- Variable x -->
+    <rect x="20" y="20" width="80" height="50" rx="5" fill="#e1f5ff" stroke="#4682b4" stroke-width="2"/>
+    <text x="60" y="52" font-family="Arial" font-size="20" fill="#333333" text-anchor="middle">x</text>
+    
+    <!-- Arrow to new object -->
+    <path d="M 110 45 L 190 45" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)"/>
+    
+    <!-- Object 20 -->
+    <circle cx="230" cy="45" r="30" fill="#ffe1e1" stroke="#e9967a" stroke-width="2"/>
+    <text x="230" y="52" font-family="Arial" font-size="20" fill="#333333" text-anchor="middle">20</text>
+    
+    <!-- Old Object 10 (faded) -->
+    <circle cx="230" cy="150" r="30" fill="#f0f0f0" stroke="#cccccc" stroke-width="2" stroke-dasharray="5,5"/>
+    <text x="230" y="157" font-family="Arial" font-size="20" fill="#999999" text-anchor="middle">10</text>
+    
+    <!-- X mark on old reference -->
+    <path d="M 80 70 L 200 130" stroke="#cc0000" stroke-width="2" stroke-dasharray="5,5" opacity="0.5"/>
+  </g>
+
+  <!-- Definitions -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333333"/>
+    </marker>
+  </defs>
+</svg>
