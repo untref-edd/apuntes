@@ -229,7 +229,7 @@ def fabrica_incrementos(y):
     return incrementar  # Retorna la función interna
 
 
-incrementar_2 = fabrica_incrementos(2)  # Crea una función que incrementa en 2
+incrementar_2 = fabrica_incrementos(2)# Crea una función que incrementa en 2
 print(incrementar_2(5))  # Salida: 7
 ```
 
