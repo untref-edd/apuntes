@@ -13,6 +13,22 @@ description: Archivos y carpetas
 
 # Archivos
 
+```{code-cell} python
+---
+tags: hide-output, remove-cell
+---
+"""Borra todos los archivos y carpetas en /tmp/edd_archivos"""
+import os
+import shutil
+
+original_cwd = os.getcwd()
+tmp_dir = "/tmp/edd_archivos"
+if os.path.exists(tmp_dir):
+    shutil.rmtree(tmp_dir)
+os.makedirs(tmp_dir, exist_ok=True)
+os.chdir(tmp_dir)
+```
+
 En casi cualquier lenguaje de programación, interactuar con archivos es fundamental. En **Java** y **Go**, esto se hace a través de librerías específicas (`java.io`, `os`), pero en **Python** es mucho más directo y expresivo.
 
 ## Representación de archivos y carpetas
@@ -117,7 +133,7 @@ for archivo in os.listdir("."):
     print(f" - {archivo}")
 
 # Cambia al directorio temporal
-os.chdir("/tmp")
+os.chdir(tmp_dir)
 
 # Crear estructura de carpetas
 if not os.path.exists("datos"):
@@ -168,7 +184,7 @@ directorio_actual = Path.cwd()
 print(f"Directorio act: {directorio_actual}")
 
 # Crear ruta de forma elegante
-archivo = Path("/tmp") / "datos" / "ejemplo.txt"
+archivo = Path(tmp_dir) / "datos" / "ejemplo.txt"
 print(f"Ruta del archivo: {archivo}")
 
 # Crear directorio si no existe
@@ -269,7 +285,7 @@ El archivo de texto que vamos a usar de prueba tiene texto en castellano y en ch
 ---
 tags: hide-output
 ---
-archivo = "../_static/code/archivos/edd.txt"
+archivo = os.path.join(original_cwd, "../_static/code/archivos/edd.txt")
 
 try:
     f = open(
@@ -293,7 +309,7 @@ else:
 ---
 tags: hide-output
 ---
-archivo = "../_static/code/archivos/edd.txt"
+archivo = os.path.join(original_cwd, "../_static/code/archivos/edd.txt")
 
 try:
     f = open(
@@ -318,7 +334,7 @@ else:
 tags: hide-output
 ---
 # Iterar con while
-archivo = "../_static/code/archivos/edd.txt"
+archivo = os.path.join(original_cwd, "../_static/code/archivos/edd.txt")
 
 try:
     f = open(
@@ -342,7 +358,7 @@ tags: hide-output
 ---
 # Iterar con for
 
-archivo = "../_static/code/archivos/edd.txt"
+archivo = os.path.join(original_cwd, "../_static/code/archivos/edd.txt")
 
 try:
     f = open(archivo, "r", encoding="utf-8")
@@ -365,7 +381,7 @@ else:
 ---
 tags: hide-output
 ---
-archivo = "../_static/code/archivos/edd.txt"
+archivo = os.path.join(original_cwd, "../_static/code/archivos/edd.txt")
 
 try:
     f = open(archivo, "r", encoding="utf-8") # Puede levantar FileNotFoundError
@@ -393,7 +409,7 @@ Si leemos el mismo archivo de texto pero en formato binario veremos dígitos en 
 ---
 tags: hide-output
 ---
-archivo = "../_static/code/archivos/edd.txt"
+archivo = os.path.join(original_cwd, "../_static/code/archivos/edd.txt")
 
 try:
     f = open(archivo, "rb")  # Puede levantar FileNotFoundError
@@ -419,7 +435,7 @@ De forma similar a la lectura, podemos escribir en un archivo utilizando el modo
 ---
 tags: hide-output
 ---
-archivo = "../_static/code/archivos/texto.txt"
+archivo = "texto.txt"
 
 try:
     f = open(archivo, "w", encoding="utf-8")
@@ -442,7 +458,7 @@ else:
 ---
 tags: hide-output
 ---
-archivo = "../_static/code/archivos/texto.txt"
+archivo = "texto.txt"
 
 try:
     f = open(archivo, "w", encoding="utf-8")
@@ -466,7 +482,7 @@ else:
 ---
 tags: hide-output
 ---
-archivo = "../_static/code/archivos/texto.txt"
+archivo = "texto.txt"
 
 try:
     f = open(archivo, "a", encoding="utf-8")
@@ -509,9 +525,9 @@ def mostrar_archivo(archivo):
 
 # Copiamos texto.txt a copia.txt
 copiar_archivo(
-    "../_static/code/archivos/texto.txt", "../_static/code/archivos/copia.txt"
+    "texto.txt", "copia.txt"
 )
-mostrar_archivo("../_static/code/archivos/copia.txt")
+mostrar_archivo("copia.txt")
 ```
 
 El siguiente script nos permite comparar _byte_ a _byte_ dos archivos para ver si son iguales
@@ -535,7 +551,7 @@ def comparar_archivos(archivo1, archivo2):
 
 # Comparamos texto.txt con copia.txt
 comparar_archivos(
-    "../_static/code/archivos/texto.txt", "../_static/code/archivos/copia.txt"
+    "texto.txt", "copia.txt"
 )
 ```
 

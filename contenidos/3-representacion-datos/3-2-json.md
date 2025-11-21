@@ -17,22 +17,15 @@ description: json como formato de intercambio de datos
 ---
 tags: hide-output, remove-cell
 ---
-"""Borra todos los archivos y carpetas en /tmp"""
+"""Borra todos los archivos y carpetas en /tmp/edd_json"""
 import os
 import shutil
 
-tmp_dir = "/tmp"
+tmp_dir = "/tmp/edd_json"
+if os.path.exists(tmp_dir):
+    shutil.rmtree(tmp_dir)
+os.makedirs(tmp_dir, exist_ok=True)
 os.chdir(tmp_dir)
-
-for filename in os.listdir(tmp_dir):
-    file_path = os.path.join(tmp_dir, filename)
-    try:
-        if os.path.isfile(file_path) or os.path.islink(file_path):
-            os.remove(file_path)
-        elif os.path.isdir(file_path):
-            shutil.rmtree(file_path)
-    except Exception as e:
-        print(f"No se pudo borrar {file_path}: {e}")
 ```
 
 JSON (*JavaScript Object Notation*) es un formato ligero de intercambio de datos que es fácil de leer y escribir para los humanos, y fácil de parsear y generar para las máquinas. Es un formato de texto que utiliza una sintaxis basada en objetos y arrays de JavaScript.

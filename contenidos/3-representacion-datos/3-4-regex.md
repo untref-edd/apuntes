@@ -17,21 +17,15 @@ description: Expresiones Regulares, regex
 ---
 tags: hide-output, remove-cell
 ---
-"""Borra todos los archivos y carpetas en /tmp"""
+"""Borra todos los archivos y carpetas en /tmp/edd_regex"""
 import os
 import shutil
 
-tmp_dir = "/tmp"
+tmp_dir = "/tmp/edd_regex"
+if os.path.exists(tmp_dir):
+    shutil.rmtree(tmp_dir)
+os.makedirs(tmp_dir, exist_ok=True)
 os.chdir(tmp_dir)
-for filename in os.listdir(tmp_dir):
-    file_path = os.path.join(tmp_dir, filename)
-    try:
-        if os.path.isfile(file_path) or os.path.islink(file_path):
-            os.remove(file_path)
-        elif os.path.isdir(file_path):
-            shutil.rmtree(file_path)
-    except Exception as e:
-        print(f"No se pudo borrar {file_path}: {e}")
 ```
 
 Las **expresiones regulares** (también conocidas como _regex_ o _regexp_) son secuencias de caracteres que forman un patrón de búsqueda. Son una herramienta fundamental para el procesamiento de texto y la recuperación de información, permitiendo buscar, validar, extraer y manipular cadenas de texto de forma eficiente y flexible.

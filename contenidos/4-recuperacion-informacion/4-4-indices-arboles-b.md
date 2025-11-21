@@ -16,21 +16,15 @@ kernelspec:
 ---
 tags: hide-output, remove-cell
 ---
-"""Borra todos los archivos y carpetas en /tmp"""
+"""Borra todos los archivos y carpetas en /tmp/edd_arboles_b"""
 import os
 import shutil
 
-tmp_dir = "/tmp"
+tmp_dir = "/tmp/edd_arboles_b"
+if os.path.exists(tmp_dir):
+    shutil.rmtree(tmp_dir)
+os.makedirs(tmp_dir, exist_ok=True)
 os.chdir(tmp_dir)
-for filename in os.listdir(tmp_dir):
-    file_path = os.path.join(tmp_dir, filename)
-    try:
-        if os.path.isfile(file_path) or os.path.islink(file_path):
-            os.remove(file_path)
-        elif os.path.isdir(file_path):
-            shutil.rmtree(file_path)
-    except Exception as e:
-        print(f"No se pudo borrar {file_path}: {e}")
 ```
 
 Con los índices invertidos hemos visto cómo organizar la información para acelerar las búsquedas por términos. Sin embargo, en muchos casos es necesario realizar búsquedas con comodines o rangos, como por ejemplo:
@@ -95,22 +89,18 @@ La inserción de un nuevo valor en un árbol B+ sigue estos pasos:
 
 ![Inserción en hoja](../assets/images/bplus2.png)
 
-{.centered}
 Se encuentra la hoja donde se debe insertar `"PILA"`.
 
 ![División de hoja](../assets/images/bplus3.png)
 
-{.centered}
 Al insertar `"PILA"`, la hoja se divide en dos, la primera contiene `"PIEL"` y la segunda `"PILA"`|`"PIPA"`.
 
 ![Promoción hacia arriba](../assets/images/bplus4.png)
 
-{.centered}
 Como `"PILA"`, es la primera clave del segundo nodo que se partió, se promueve hacia arriba.
 
 ![Nueva raíz](../assets/images/bplus5.png)
 
-{.centered}
 El nodo intermedio también se parte y finalmente se promueve `"PILA"` a la raíz.
 
 Se puede usar un [visualizador interactivo](https://www.cs.usfca.edu/~galles/visualization/BPlusTree.html) para observar cómo se realiza la inserción en un árbol B+.
@@ -164,7 +154,7 @@ for palabra in palabras:
     btree[palabra] = 1
 
 # Persistir el árbol en disco usando pickle
-with open("/tmp/btree.pkl", "wb") as f:
+with open(os.path.join(tmp_dir, "btree.pkl"), "wb") as f:
     pickle.dump(btree, f)
 
 print("Árbol B+ creado y persistido en disco")
@@ -217,7 +207,7 @@ from BTrees.OOBTree import OOBTree
 import pickle
 
 # Cargar el árbol B+ desde disco
-with open("/tmp/btree.pkl", "rb") as f:
+with open(os.path.join(tmp_dir, "btree.pkl"), "rb") as f:
     btree = pickle.load(f)
 
 # Búsqueda exacta
@@ -277,7 +267,7 @@ from BTrees.OOBTree import OOBTree
 import pickle
 
 # Cargar el árbol B+ desde disco
-with open("/tmp/btree.pkl", "rb") as f:
+with open(os.path.join(tmp_dir, "btree.pkl"), "rb") as f:
     btree = pickle.load(f)
 
 # Búsqueda con patrón "P?CO" (donde ? es un caracter cualquiera)
@@ -330,7 +320,7 @@ from BTrees.OOBTree import OOBTree
 import pickle
 
 # Cargar el árbol B+ normal
-with open("/tmp/btree.pkl", "rb") as f:
+with open(os.path.join(tmp_dir, "btree.pkl"), "rb") as f:
     btree = pickle.load(f)
 
 # Crear un árbol B+ adicional para palabras invertidas
@@ -345,7 +335,7 @@ for palabra in btree.keys():
     print(f"  {palabra} → {palabra_invertida}")
 
 # Persistir el árbol invertido
-with open("/tmp/btree_invertido.pkl", "wb") as f:
+with open(os.path.join(tmp_dir, "btree_invertido.pkl"), "wb") as f:
     pickle.dump(btree_invertido, f)
 
 print("\nÍndice con palabras invertidas creado y persistido")
@@ -410,10 +400,10 @@ from BTrees.OOBTree import OOBTree
 import pickle
 
 # Cargar ambos árboles B+ desde disco
-with open("/tmp/btree.pkl", "rb") as f:
+with open(os.path.join(tmp_dir, "btree.pkl"), "rb") as f:
     btree = pickle.load(f)
 
-with open("/tmp/btree_invertido.pkl", "rb") as f:
+with open(os.path.join(tmp_dir, "btree_invertido.pkl"), "rb") as f:
     btree_invertido = pickle.load(f)
 
 # Búsqueda con patrón "P*CO" (comodín en el medio)

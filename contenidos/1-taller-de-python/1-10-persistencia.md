@@ -13,6 +13,21 @@ description: Persistencia de datos, serialización y deserialización, pickle, d
 
 # Persistencia de datos
 
+```{code-cell} python
+---
+tags: hide-output, remove-cell
+---
+"""Borra todos los archivos y carpetas en /tmp/edd_persistencia"""
+import os
+import shutil
+
+tmp_dir = "/tmp/edd_persistencia"
+if os.path.exists(tmp_dir):
+    shutil.rmtree(tmp_dir)
+os.makedirs(tmp_dir, exist_ok=True)
+os.chdir(tmp_dir)
+```
+
 En programación, **persistencia** se refiere a la capacidad de un programa para **almacenar datos más allá de su ejecución**. Cuando un programa finaliza, normalmente los datos almacenados en memoria (RAM) se pierden. Para conservarlos, es necesario guardarlos en un medio de almacenamiento **persistente** como un archivo, una base de datos o la nube.
 
 Ejemplos comunes de persistencia:
@@ -92,14 +107,14 @@ if __name__ == "__main__":
     carla = Persona("Carla Sanchez")
 
     with open(
-        "../_static/tmp/personas.p", "wb"
+        os.path.join(tmp_dir, "personas.p"), "wb"
     ) as contenedor:
         pickle.dump(ana, contenedor)
         pickle.dump(juan, contenedor)
         pickle.dump(carla, contenedor)
 
     with open(
-        "../_static/tmp/personas.p", "rb"
+        os.path.join(tmp_dir, "personas.p"), "rb"
     ) as contenedor:
         for linea in contenedor:
             print(linea)
@@ -116,7 +131,7 @@ import pickle
 
 lista = []
 
-with open("../_static/tmp/personas.p", "rb") as contenedor:
+with open(os.path.join(tmp_dir, "personas.p"), "rb") as contenedor:
     try:
         while contenedor:
             obj = pickle.load(contenedor)
@@ -158,7 +173,7 @@ class Persona:
 
 lista = []
 
-with open("../_static/tmp/personas.p", "rb") as contenedor:
+with open(os.path.join(tmp_dir, "personas.p"), "rb") as contenedor:
     try:
         while contenedor:
             obj = pickle.load(contenedor)
@@ -228,7 +243,7 @@ def cifrar_mensaje(msj, password):
 
 mensaje_cifrado = cifrar_mensaje("Este es el mensaje cifrado", "secreto")
 
-with open("../_static/tmp/msj_cifrado.dill", "wb") as contenedor:
+with open(os.path.join(tmp_dir, "msj_cifrado.dill"), "wb") as contenedor:
     dill.dump(mensaje_cifrado, contenedor)
 ```
 
@@ -247,7 +262,7 @@ tags: hide-output
 ---
 import dill
 
-with open("../_static/tmp/msj_cifrado.dill", "rb") as contenedor:
+with open(os.path.join(tmp_dir, "msj_cifrado.dill"), "rb") as contenedor:
     mensaje_cifrado = dill.load(contenedor)
 
 print(mensaje_cifrado("incorrecto"))
@@ -268,7 +283,7 @@ A continuación se crea un archivo `log.log` en el directorio de trabajo actual 
 ---
 tags: remove-output
 ---
-with open("../_static/tmp/log.log", "w") as f:
+with open(os.path.join(tmp_dir, "log.log"), "w") as f:
     f.write("Este es un archivo de registro.\n")
     f.write("La información registrada es muy sensible y se debe resguardar\n")
 ```
@@ -279,7 +294,7 @@ Podemos ver que el archivo existe y se puede leer.
 ---
 tags: hide-output
 ---
-with open("../_static/tmp/log.log", "r") as f:
+with open(os.path.join(tmp_dir, "log.log"), "r") as f:
     contenido = f.read()
     print(contenido)
 ```
@@ -294,11 +309,11 @@ import os
 
 class Malicioso:
     def __reduce__(self):
-        return (os.remove, ("../_static/tmp/log.log",))
+        return (os.remove, (os.path.join(tmp_dir, "log.log"),))
 
 
 # Serializa el objeto malicioso
-with open("../_static/tmp/malicioso.p", "wb") as f:
+with open(os.path.join(tmp_dir, "malicioso.p"), "wb") as f:
     pickle.dump(Malicioso(), f)
 ```
 
@@ -307,7 +322,7 @@ Si alguien deserializa este archivo sin saber su contenido borra el archivo `log
 ```{code-cell} python
 import pickle
 
-with open("../_static/tmp/malicioso.p", "rb") as f:
+with open(os.path.join(tmp_dir, "malicioso.p"), "rb") as f:
     obj = pickle.load(f)  # Esto borra log.log
 ```
 
@@ -317,7 +332,7 @@ Al intentar leer de nuevo el archivo `log.log` vemos que no existe más
 ---
 tags: raises-exception, hide-output
 ---
-with open("../_static/tmp/log.log", "r") as f:
+with open(os.path.join(tmp_dir, "log.log"), "r") as f:
     contenido = f.read()
     print(contenido)
 ```
@@ -372,11 +387,11 @@ import json
 datos = {"nombre": "Juan", "edad": 30, "ciudad": "Madrid"}
 
 # Serializar a JSON
-with open("../_static/tmp/datos.json", "w") as f:
+with open(os.path.join(tmp_dir, "datos.json"), "w") as f:
     json.dump(datos, f)
 
 # leer el archivo como texto
-with open("../_static/tmp/datos.json", "r") as f:
+with open(os.path.join(tmp_dir, "datos.json"), "r") as f:
     contenido = f.read()
     print(contenido)
 ```
@@ -386,7 +401,7 @@ with open("../_static/tmp/datos.json", "r") as f:
 tags: hide-output
 ---
 # Deserializar de JSON
-with open("../_static/tmp/datos.json", "r") as f:
+with open(os.path.join(tmp_dir, "datos.json"), "r") as f:
     datos_cargados = json.load(f)
     print(datos_cargados)
 ```
@@ -406,11 +421,11 @@ usuarios = [
 ]
 
 # Guardamos todo en un solo archivo JSON
-with open("../_static/tmp/usuarios.json", "w") as f:
+with open(os.path.join(tmp_dir, "usuarios.json"), "w") as f:
     json.dump(usuarios, f, indent=4)
 
 # Recuperamos
-with open("../_static/tmp/usuarios.json", "r") as f:
+with open(os.path.join(tmp_dir, "usuarios.json"), "r") as f:
     lista_usuarios = json.load(f)
 
 print(lista_usuarios)
@@ -480,12 +495,12 @@ tags: hide-output
 import shelve
 
 # Abrir (o crear) una "base de datos"
-with shelve.open("../_static/tmp/estudiantes.db") as db:
+with shelve.open(os.path.join(tmp_dir, "estudiantes.db")) as db:
     db["123"] = {"nombre": "Ana", "carrera": "Ingeniería Informática"}
     db["456"] = {"nombre": "Luis", "carrera": "Computación"}
 
 # Recuperar los datos
-with shelve.open("../_static/tmp/estudiantes.db") as db:
+with shelve.open(os.path.join(tmp_dir, "estudiantes.db")) as db:
     print(db["123"])  # {'nombre': 'Ana', 'carrera': 'Ingeniería Informática'}
 ```
 
@@ -511,12 +526,12 @@ tags: hide-output
 import dbm
 
 # Crear y guardar pares clave-valor
-with dbm.open("../_static/tmp/usuarios", "c") as db:
+with dbm.open(os.path.join(tmp_dir, "usuarios"), "c") as db:
     db["ana"] = "ingenieria"
     db["luis"] = "computacion"
 
 # Recuperar datos
-with dbm.open("../_static/tmp/usuarios", "r") as db:
+with dbm.open(os.path.join(tmp_dir, "usuarios"), "r") as db:
     print(db["ana"].decode("utf-8"))  # "ingenieria"
     print(db["luis"].decode("utf-8"))  # "computacion"
 ```

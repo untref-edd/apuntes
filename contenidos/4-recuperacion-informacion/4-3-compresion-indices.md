@@ -16,21 +16,15 @@ kernelspec:
 ---
 tags: hide-output, remove-cell
 ---
-"""Borra todos los archivos y carpetas en /tmp"""
+"""Borra todos los archivos y carpetas en /tmp/edd_compresion_indices"""
 import os
 import shutil
 
-tmp_dir = "/tmp"
+tmp_dir = "/tmp/edd_compresion_indices"
+if os.path.exists(tmp_dir):
+    shutil.rmtree(tmp_dir)
+os.makedirs(tmp_dir, exist_ok=True)
 os.chdir(tmp_dir)
-for filename in os.listdir(tmp_dir):
-    file_path = os.path.join(tmp_dir, filename)
-    try:
-        if os.path.isfile(file_path) or os.path.islink(file_path):
-            os.remove(file_path)
-        elif os.path.isdir(file_path):
-            shutil.rmtree(file_path)
-    except Exception as e:
-        print(f"No se pudo borrar {file_path}: {e}")
 ```
 
 La **compresión de índices** es una técnica fundamental para reducir el espacio ocupado por índices invertidos. Cuando trabajamos con colecciones grandes de documentos (como un motor de búsqueda web que indexa miles de millones de páginas), el tamaño del índice puede ser enorme. Comprimir el índice no solo ahorra espacio en disco, sino que también puede mejorar el rendimiento al reducir las transferencias de datos entre disco y memoria.

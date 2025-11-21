@@ -23,7 +23,7 @@ build:
 ## clean: elimina todos los archivos generados por la compilación
 .PHONY: clean
 clean:
-	cd contenidos && myst clean --all
+	cd contenidos && myst clean --all --yes
 
 ## start: inicia el servidor de desarrollo ejecutando las celdas
 .PHONY: start

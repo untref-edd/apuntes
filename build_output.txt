@@ -1,0 +1,107 @@
+cd contenidos && myst build --execute
+🌎 Building MyST site
+💿 Executing notebook (1-taller-de-python/1-1-introduccion-python.md) [no execution cache found]
+🚀 Starting new Jupyter server
+💿 Executing notebook (1-taller-de-python/1-2-tipos-de-datos.md) [no execution cache found]
+💿 Executing notebook (1-taller-de-python/1-3-estructuras-de-control.md) [no execution cache found]
+💿 Executing notebook (1-taller-de-python/1-4-ambitos-ejecucion.md) [no execution cache found]
+💿 Executing notebook (1-taller-de-python/1-5-funciones.md) [no execution cache found]
+💿 Executing notebook (1-taller-de-python/1-6-poo.md) [no execution cache found]
+💿 Executing notebook (1-taller-de-python/1-7-excepciones.md) [no execution cache found]
+💿 Executing notebook (1-taller-de-python/1-8-introspeccion.md) [no execution cache found]
+💿 Executing notebook (1-taller-de-python/1-9-archivos.md) [no execution cache found]
+💿 Executing notebook (1-taller-de-python/1-10-persistencia.md) [no execution cache found]
+💿 Executing notebook (2-estructuras-de-datos/2-1-grafos-introduccion.md) [no execution cache found]
+📖 Built 2-estructuras-de-datos/2-2-grafos-recorridos.md in 194 ms.
+💿 Executing notebook (2-estructuras-de-datos/2-3-grafos-orden-topologico.md) [no execution cache found]
+💿 Executing notebook (2-estructuras-de-datos/2-4-grafos-caminos-minimos.md) [no execution cache found]
+💿 Executing notebook (3-representacion-datos/3-1-registros.md) [no execution cache found]
+💿 Executing notebook (3-representacion-datos/3-2-json.md) [no execution cache found]
+💿 Executing notebook (3-representacion-datos/3-3-xml.md) [no execution cache found]
+💿 Executing notebook (3-representacion-datos/3-4-regex.md) [no execution cache found]
+💿 Executing notebook (3-representacion-datos/3-5-web-apis.md) [no execution cache found]
+💿 Executing notebook (3-representacion-datos/3-6-web-scraping.md) [no execution cache found]
+📖 Built 4-recuperacion-informacion/4-1-introduccion-ri.md in 178 ms.
+💿 Executing notebook (4-recuperacion-informacion/4-2-indices-invertidos.md) [no execution cache found]
+💿 Executing notebook (4-recuperacion-informacion/4-3-compresion-indices.md) [no execution cache found]
+💿 Executing notebook (4-recuperacion-informacion/4-4-indices-arboles-b.md) [no execution cache found]
+💿 Executing notebook (5-aplicaciones/5-1-redes-sociales.md) [no execution cache found]
+📖 Built Anexos/GitBash.md in 165 ms.
+📖 Built Anexos/Facebook.md in 179 ms.
+📖 Built Anexos/Twitter.md in 189 ms.
+📖 Built introduccion.md in 307 ms.
+📖 Built bibliografia.md in 363 ms.
+🪐 Jupyter server started
+   http://localhost:8888/?token=2f71cd990c50890f6ac3c140a4f0147d346f06558e0f9222
+Starting WebSocket: ws://localhost:8888/api/kernels/b25f03a6-f86b-4154-9c7a-e0fa97a8a1d4
+Starting WebSocket: ws://localhost:8888/api/kernels/d5c25eca-62ab-4a46-b89e-708d832856f2
+Starting WebSocket: ws://localhost:8888/api/kernels/4cb9c0f8-4a81-4b2a-a7d4-a45b36f27529
+Starting WebSocket: ws://localhost:8888/api/kernels/4c249710-0714-4e9c-914a-ba6ae128e15f
+Starting WebSocket: ws://localhost:8888/api/kernels/6622fff8-2c46-44a2-9df1-f368c6840cd2
+Starting WebSocket: ws://localhost:8888/api/kernels/337b4f44-6abb-4941-9108-d3470f6bd14a
+Starting WebSocket: ws://localhost:8888/api/kernels/f225d4e0-e66f-42c6-844b-88ac5a5e465f
+Starting WebSocket: ws://localhost:8888/api/kernels/c62e717a-a6d8-4008-aad5-1a5b1369a707
+Starting WebSocket: ws://localhost:8888/api/kernels/3a9b001b-721a-40f5-87b2-1d2e955ddb09
+Starting WebSocket: ws://localhost:8888/api/kernels/b517bfd2-8dbb-491c-aaa6-5ed2439394f0
+Starting WebSocket: ws://localhost:8888/api/kernels/27bbc3ed-3c82-44cc-9390-4cf89eab4294
+Starting WebSocket: ws://localhost:8888/api/kernels/3acb009c-af59-424e-aa33-8380b746fd12
+Starting WebSocket: ws://localhost:8888/api/kernels/62a9a501-4ce9-4674-8fbe-6fd4d198dc15
+Starting WebSocket: ws://localhost:8888/api/kernels/259367d6-83ae-41f5-b3a8-d80e0decc6a3
+Starting WebSocket: ws://localhost:8888/api/kernels/f38c9950-256e-4874-abdf-3f5de09c7e9a
+Starting WebSocket: ws://localhost:8888/api/kernels/649a53b2-9c58-455b-b5b8-43da613fc1cf
+Starting WebSocket: ws://localhost:8888/api/kernels/36c2371a-76ac-42da-b0b3-7aa18c10a65f
+Starting WebSocket: ws://localhost:8888/api/kernels/03456a5f-ace7-453f-9466-e170f2dfe759
+Starting WebSocket: ws://localhost:8888/api/kernels/d482a316-5cb6-4b5e-a582-63cda8ac190b
+Starting WebSocket: ws://localhost:8888/api/kernels/e5f09880-db29-4eed-abef-af5565b72fd0
+Starting WebSocket: ws://localhost:8888/api/kernels/b20eb995-bd2e-4c4d-a0e1-f0b885ec629d
+Starting WebSocket: ws://localhost:8888/api/kernels/89228e99-cf14-44bc-ae0e-7ea527434a98
+Starting WebSocket: ws://localhost:8888/api/kernels/802b1d1b-da18-4cbf-91f1-d69df0117f7e
+📖 Built 2-estructuras-de-datos/2-3-grafos-orden-topologico.md in 2.12 s.
+📖 Built 1-taller-de-python/1-7-excepciones.md in 2.16 s.
+📖 Built 3-representacion-datos/3-3-xml.md in 2.32 s.
+📖 Built 2-estructuras-de-datos/2-1-grafos-introduccion.md in 2.64 s.
+📖 Built 3-representacion-datos/3-6-web-scraping.md in 2.77 s.
+⛔️ 4-recuperacion-informacion/4-4-indices-arboles-b.md An exception occurred during code execution, halting further execution:
+
+[31m---------------------------------------------------------------------------[39m
+[31mFileNotFoundError[39m                         Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[3][39m[32m, line 5[39m
+[32m      2[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mpickle[39;00m
+[32m      4[39m [38;5;66;03m# Cargar el árbol B+ desde disco[39;00m
+[32m----> [39m[32m5[39m [38;5;28;01mwith[39;00m [38;5;28;43mopen[39;49m[43m([49m[33;43m"[39;49m[33;43m/tmp/btree.pkl[39;49m[33;43m"[39;49m[43m,[49m[43m [49m[33;43m"[39;49m[33;43mrb[39;49m[33;43m"[39;49m[43m)[49m [38;5;28;01mas[39;00m f:
+[32m      6[39m     btree = pickle.load(f)
+[32m      8[39m [38;5;66;03m# Búsqueda exacta[39;00m
+
+[36mFile [39m[32m~/.pyenv/versions/apuntes/lib/python3.13/site-packages/IPython/core/interactiveshell.py:343[39m, in [36m_modified_open[39m[34m(file, *args, **kwargs)[39m
+[32m    336[39m [38;5;28;01mif[39;00m file [38;5;129;01min[39;00m {[32m0[39m, [32m1[39m, [32m2[39m}:
+[32m    337[39m     [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m(
+[32m    338[39m         [33mf[39m[33m"[39m[33mIPython won[39m[33m'[39m[33mt let you open fd=[39m[38;5;132;01m{[39;00mfile[38;5;132;01m}[39;00m[33m by default [39m[33m"[39m
+[32m    339[39m         [33m"[39m[33mas it is likely to crash IPython. If you know what you are doing, [39m[33m"[39m
+[32m    340[39m         [33m"[39m[33myou can use builtins[39m[33m'[39m[33m open.[39m[33m"[39m
+[32m    341[39m     )
+[32m--> [39m[32m343[39m [38;5;28;01mreturn[39;00m [43mio_open[49m[43m([49m[43mfile[49m[43m,[49m[43m [49m[43m*[49m[43margs[49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mkwargs[49m[43m)[49m
+
+[31mFileNotFoundError[39m: [Errno 2] No such file or directory: '/tmp/btree.pkl'
+📖 Built 4-recuperacion-informacion/4-4-indices-arboles-b.md in 2.77 s.
+📖 Built 1-taller-de-python/1-8-introspeccion.md in 2.93 s.
+📖 Built 4-recuperacion-informacion/4-3-compresion-indices.md in 3.08 s.
+Kernel: dead (c62e717a-a6d8-4008-aad5-1a5b1369a707)
+📖 Built 5-aplicaciones/5-1-redes-sociales.md in 3.23 s.
+📖 Built 1-taller-de-python/1-4-ambitos-ejecucion.md in 3.6 s.
+📖 Built 1-taller-de-python/1-9-archivos.md in 3.67 s.
+📖 Built 1-taller-de-python/1-5-funciones.md in 3.76 s.
+📖 Built 1-taller-de-python/1-6-poo.md in 3.97 s.
+📖 Built 3-representacion-datos/3-2-json.md in 3.99 s.
+📖 Built 1-taller-de-python/1-1-introduccion-python.md in 4.15 s.
+📖 Built 1-taller-de-python/1-3-estructuras-de-control.md in 4.21 s.
+📖 Built 1-taller-de-python/1-10-persistencia.md in 4.59 s.
+📖 Built 3-representacion-datos/3-1-registros.md in 4.98 s.
+📖 Built 3-representacion-datos/3-4-regex.md in 5.06 s.
+📖 Built 3-representacion-datos/3-5-web-apis.md in 5.48 s.
+📖 Built 2-estructuras-de-datos/2-4-grafos-caminos-minimos.md in 8.26 s.
+📖 Built 1-taller-de-python/1-2-tipos-de-datos.md in 8.34 s.
+📖 Built 4-recuperacion-informacion/4-2-indices-invertidos.md in 8.93 s.
+📚 Built 30 pages for project in 9.61 s.
+🔍 Querying template metadata from https://api.mystmd.org/templates/site/myst/book-theme
+🐕 Fetching template from https://github.com/myst-templates/book-theme/archive/refs/heads/main.zip
+💾 Saved template to path _build/templates/site/myst/book-theme

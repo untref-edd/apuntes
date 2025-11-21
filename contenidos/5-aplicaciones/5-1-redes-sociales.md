@@ -17,21 +17,15 @@ description: Facebook y Twitter (X)
 ---
 tags: hide-output, remove-cell
 ---
-"""Borra todos los archivos y carpetas en /tmp"""
+"""Borra todos los archivos y carpetas en /tmp/edd_redes_sociales"""
 import os
 import shutil
 
-tmp_dir = "/tmp"
+tmp_dir = "/tmp/edd_redes_sociales"
+if os.path.exists(tmp_dir):
+    shutil.rmtree(tmp_dir)
+os.makedirs(tmp_dir, exist_ok=True)
 os.chdir(tmp_dir)
-for filename in os.listdir(tmp_dir):
-    file_path = os.path.join(tmp_dir, filename)
-    try:
-        if os.path.isfile(file_path) or os.path.islink(file_path):
-            os.remove(file_path)
-        elif os.path.isdir(file_path):
-            shutil.rmtree(file_path)
-    except Exception as e:
-        print(f"No se pudo borrar {file_path}: {e}")
 ```
 
 Las redes sociales se han convertido en una de las fuentes más importantes de información en la actualidad. Plataformas como Facebook, Twitter e Instagram generan enormes volúmenes de datos cada segundo, que pueden ser analizados para obtener insights valiosos sobre comportamientos, tendencias y patrones sociales.
@@ -260,7 +254,7 @@ def buscar_tweets_recientes(query="python", max_results=10):
         print(f"Encontrados {len(tweets.data)} tweets")
 
         # Procesar y mostrar resultados
-        archivo_salida = f"/tmp/tweets_{query.replace(' ', '_')}.jsonl"
+        archivo_salida = os.path.join(tmp_dir, f"tweets_{query.replace(' ', '_')}.jsonl")
 
         with open(archivo_salida, "w", encoding="utf-8") as f:
             for tweet in tweets.data:
@@ -508,7 +502,7 @@ print(f"\nPrimer tweet:\n{json.dumps(tweets[0], indent=2, ensure_ascii=False)}")
 tags: hide-output
 ---
 # Guardar tweets en formato JSONL
-archivo_tweets = "/tmp/tweets_historicos.jsonl"
+archivo_tweets = os.path.join(tmp_dir, "tweets_historicos.jsonl")
 
 with open(archivo_tweets, 'w', encoding='utf-8') as f:
     for tweet in tweets:

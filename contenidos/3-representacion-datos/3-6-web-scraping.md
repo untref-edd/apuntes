@@ -17,22 +17,16 @@ description: Crawler, Spider, Scrapy, Beatifulsoup
 ---
 tags: hide-output, remove-cell
 ---
-"""Borra todos los archivos y carpetas en /tmp"""
+"""Borra todos los archivos y carpetas en /tmp/edd_scraping"""
 import os
 import shutil
 
 csv_path = os.path.join(os.getcwd(), '../_static/code/scraping/books_scraper/horror_books.csv')
-tmp_dir = "/tmp"
+tmp_dir = "/tmp/edd_scraping"
+if os.path.exists(tmp_dir):
+    shutil.rmtree(tmp_dir)
+os.makedirs(tmp_dir, exist_ok=True)
 os.chdir(tmp_dir)
-for filename in os.listdir(tmp_dir):
-    file_path = os.path.join(tmp_dir, filename)
-    try:
-        if os.path.isfile(file_path) or os.path.islink(file_path):
-            os.remove(file_path)
-        elif os.path.isdir(file_path):
-            shutil.rmtree(file_path)
-    except Exception as e:
-        print(f"No se pudo borrar {file_path}: {e}")
 ```
 
 Web scraping es el proceso de extraer información de sitios web de forma automatizada.
