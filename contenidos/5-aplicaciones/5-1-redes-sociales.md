@@ -8,7 +8,7 @@ kernelspec:
   display_name: Python 3
   language: python
   name: python3
-description: Facebook y Twitter (X)
+description: Facebook y Twitter (X), JSONL
 ---
 
 # Recuperación de la Información de las Redes Sociales
@@ -63,11 +63,10 @@ linenos:
 ---
 import facebook # Importamos la nueva librería
 
-
 def get_all_likes_sdk(token):
     """
-    Obtiene todas las páginas que le han gustado a un usuario usando el facebook-sdk.
-    La paginación es manejada automáticamente por la librería.
+    Obtiene todas las páginas que le han gustado a un usuario usando el
+    facebook-sdk. La paginación es manejada automáticamente por la librería.
 
     Args:
         token (str): El token de acceso de usuario con el permiso 'user_likes'.
@@ -81,8 +80,9 @@ def get_all_likes_sdk(token):
 
         print("Obteniendo tus 'Me gusta' con el SDK de Facebook...")
 
-        # 2. Usamos get_all_connections para manejar la paginación automáticamente.
-        #    La librería se encargará de hacer todas las llamadas necesarias.
+        # 2. Usamos get_all_connections para manejar la paginación
+        #    automáticamente. La librería se encargará de hacer todas las
+        #    llamadas necesarias.
         pages_generator = graph.get_all_connections(
             id='me',
             connection_name='likes',
@@ -113,13 +113,16 @@ if __name__ == "__main__":
         likes = get_all_likes_sdk(USER_ACCESS_TOKEN)
 
         if likes:
-            print(f"\n¡Se encontraron un total de {len(likes)} páginas que te gustan!")
+            print(f"\n¡Se encontraron un total de {len(likes)} páginas "
+                  "que te gustan!")
             print("\n--- Ejemplo de los primeros 100 resultados: ---")
             for i, page in enumerate(likes[:100]):
                 category = page.get('category', 'Sin categoría')
-                print(f"{i+1}. Nombre: {page['name']} | Categoría: {category}")
+                print(f"{i+1}. Nombre: {page['name']} | Categoría: "
+                      f"{category}")
         else:
-            print("\nNo se encontraron 'Me gusta' o ocurrió un error durante el proceso.")
+            print("\nNo se encontraron 'Me gusta' o ocurrió un error "
+                  "durante el proceso.")
 
 ```
 
@@ -218,9 +221,11 @@ def verificar_credenciales():
     if not bearer_token:
         print("Error: TWITTER_BEARER_TOKEN no encontrado en variables de entorno")
         print("\nPara configurar las credenciales:")
-        print("1. Obtén un Bearer Token siguiendo el instructivo en contenidos/Anexos/Twitter.md")
+        print("1. Obtén un Bearer Token siguiendo el instructivo en "
+              "contenidos/Anexos/Twitter.md")
         print("2. Ejecuta: export TWITTER_BEARER_TOKEN='tu_bearer_token_aqui'")
-        print("3. O crea un archivo .env con: TWITTER_BEARER_TOKEN=tu_bearer_token_aqui")
+        print("3. O crea un archivo .env con: "
+              "TWITTER_BEARER_TOKEN=tu_bearer_token_aqui")
         return None
 
     return bearer_token
@@ -248,13 +253,15 @@ def buscar_tweets_recientes(query="python", max_results=10):
         )
 
         if not tweets.data:
-            print("No se encontraron tweets. Verifica tu Bearer Token y cuota de API.")
+            print("No se encontraron tweets. Verifica tu Bearer Token y cuota "
+                  "de API.")
             return
 
         print(f"Encontrados {len(tweets.data)} tweets")
 
         # Procesar y mostrar resultados
-        archivo_salida = os.path.join(tmp_dir, f"tweets_{query.replace(' ', '_')}.jsonl")
+        archivo_salida = os.path.join(tmp_dir, 
+                                      f"tweets_{query.replace(' ', '_')}.jsonl")
 
         with open(archivo_salida, "w", encoding="utf-8") as f:
             for tweet in tweets.data:
@@ -282,7 +289,8 @@ def buscar_tweets_recientes(query="python", max_results=10):
                     "author": {
                         "username": author.username if author else "unknown",
                         "name": author.name if author else "unknown",
-                        "followers": author.public_metrics["followers_count"] if author else 0
+                        "followers": (author.public_metrics["followers_count"]
+                                      if author else 0)
                     } if author else None,
                     "metrics": tweet.public_metrics,
                     "lang": tweet.lang,
@@ -329,11 +337,13 @@ def mostrar_estadisticas_api():
         )
 
         print("Autenticación exitosa")
-        print(f"• Resultados de búsqueda de prueba: {response.meta.get('result_count', 0)} tweets encontrados")
+        print(f"• Resultados de búsqueda de prueba: "
+              f"{response.meta.get('result_count', 0)} tweets encontrados")
         print("\nInformación de la API:")
         print("• API Version: v2")
         print("• Search Recent: Disponible")
-        print("• Para información actualizada sobre límites y tiers de la API, consulta la documentación oficial:")
+        print("• Para información actualizada sobre límites y tiers de la API,"
+              " consulta la documentación oficial:")
         print("  https://developer.twitter.com/en/docs/twitter-api/rate-limits")
 
     except Exception as e:
@@ -372,7 +382,7 @@ if __name__ == "__main__":
 
 ### Estructura de un Tweet en JSON (API v2)
 
-La API v2 de Twitter devuelve tweets en formato JSON con esta estructura:
+La API v2 de Twitter devuelve tweets en formato JSON. Para más información sobre los campos que se pueden consultar la [documentación oficial](https://developer.twitter.com/en/docs/twitter-api/data-dictionary/object-model/tweet):
 
 ```{code-cell} python
 ---
@@ -382,11 +392,12 @@ import json
 from datetime import datetime
 
 # Ejemplo de tweet en formato JSON (estructura real de API v2)
-# Basado en la documentación oficial: https://developer.twitter.com/en/docs/twitter-api/data-dictionary/object-model/tweet
+# Basado en la documentación oficial:
 tweet_ejemplo_api_v2 = {
     "data": {
         "id": "1234567890123456789",
-        "text": "Las estructuras de datos son fundamentales en programación! #EDD #Python",
+        "text": ("Las estructuras de datos son fundamentales en programación! "
+                 "#EDD #Python"),
         "created_at": "2024-01-15T10:30:00.000Z",
         "author_id": "987654321",
         "lang": "es",
@@ -424,7 +435,9 @@ tweet_ejemplo_api_v2 = {
 
 print("=== Estructura de un Tweet (Twitter API v2) ===")
 print(json.dumps(tweet_ejemplo_api_v2, indent=2, ensure_ascii=False))
-print("\nDocumentación: https://developer.twitter.com/en/docs/twitter-api/data-dictionary/object-model/tweet")
+print("\nDocumentación: "
+      "https://developer.twitter.com/en/docs/twitter-api/data-dictionary/"
+      "object-model/tweet")
 ```
 
 ### Procesamiento de Tweets Históricos
@@ -440,6 +453,17 @@ Cuando trabajamos con datos históricos de Twitter, comúnmente recibimos archiv
 tags: hide-output
 ---
 import random
+import json
+import os # Assuming os is already imported or available in the environment
+
+# Assuming tmp_dir is defined elsewhere, e.g., tmp_dir = "temp_data"
+# For this example, let's define it if not present.
+try:
+    tmp_dir
+except NameError:
+    tmp_dir = "temp_data"
+    if not os.path.exists(tmp_dir):
+        os.makedirs(tmp_dir)
 
 def generar_tweets_ejemplo(n=20):
     """
@@ -447,19 +471,29 @@ def generar_tweets_ejemplo(n=20):
     Simula datos que se obtendrían usando tweepy.Client.search_recent_tweets()
     """
     usuarios = [
-        {"id": "1001", "name": "Ana García", "username": "ana_tech", "followers": 2341},
-        {"id": "1002", "name": "Bruno Silva", "username": "bruno_code", "followers": 1523},
-        {"id": "1003", "name": "Clara Ruiz", "username": "clara_dev", "followers": 3421},
-        {"id": "1004", "name": "Diego Mendoza", "username": "diego_data", "followers": 987},
-        {"id": "1005", "name": "Elena Torres", "username": "elena_ai", "followers": 5432},
+        {"id": "1001", "name": "Ana García", "username": "ana_tech",
+         "followers": 2341},
+        {"id": "1002", "name": "Bruno Silva", "username": "bruno_code",
+         "followers": 1523},
+        {"id": "1003", "name": "Clara Ruiz", "username": "clara_dev",
+         "followers": 3421},
+        {"id": "1004", "name": "Diego Mendoza", "username": "diego_data",
+         "followers": 987},
+        {"id": "1005", "name": "Elena Torres", "username": "elena_ai",
+         "followers": 5432},
     ]
 
     temas = [
-        ("Las estructuras de datos son fundamentales", ["EDD", "Programación"]),
-        ("Python es un lenguaje muy versátil", ["Python", "Desarrollo"]),
-        ("Los grafos tienen muchas aplicaciones prácticas", ["Grafos", "Algoritmos"]),
-        ("El análisis de redes sociales es fascinante", ["RedesSociales", "DataScience"]),
-        ("Machine learning está revolucionando el mundo", ["ML", "IA"]),
+        ("Las estructuras de datos son fundamentales",
+         ["EDD", "Programación"]),
+        ("Python es un lenguaje muy versátil",
+         ["Python", "Desarrollo"]),
+        ("Los grafos tienen muchas aplicaciones prácticas",
+         ["Grafos", "Algoritmos"]),
+        ("El análisis de redes sociales es fascinante",
+         ["RedesSociales", "DataScience"]),
+        ("Machine learning está revolucionando el mundo",
+         ["ML", "IA"]),
     ]
 
     tweets = []
@@ -471,7 +505,9 @@ def generar_tweets_ejemplo(n=20):
         tweet = {
             "id": str(1000000000000000000 + i),
             "author_id": usuario["id"],
-            "created_at": f"2024-01-{random.randint(10,20):02d}T{random.randint(0,23):02d}:{random.randint(0,59):02d}:00.000Z",
+            "created_at": (f"2024-01-{random.randint(10,20):02d}T"
+                           f"{random.randint(0,23):02d}:"
+                           f"{random.randint(0,59):02d}:00.000Z"),
             "text": f"{tema} #{' #'.join(hashtags)}",
             "lang": "es",
             "public_metrics": {
@@ -485,7 +521,8 @@ def generar_tweets_ejemplo(n=20):
                 "hashtags": [{"tag": tag} for tag in hashtags]
             },
             # Metadatos adicionales para procesamiento
-            "_user": usuario  # No viene en API real, lo agregamos para simplificar ejemplos
+            # No viene en API real, lo agregamos para simplificar ejemplos
+            "_user": usuario
         }
         tweets.append(tweet)
 
@@ -493,14 +530,11 @@ def generar_tweets_ejemplo(n=20):
 
 # Generar tweets de ejemplo
 tweets = generar_tweets_ejemplo(20)
-print(f"Generados {len(tweets)} tweets de ejemplo (estructura Twitter API v2)")
-print(f"\nPrimer tweet:\n{json.dumps(tweets[0], indent=2, ensure_ascii=False)}")
-```
+print(f"Generados {len(tweets)} tweets de ejemplo "
+      f"(estructura Twitter API v2)")
+print(f"\nPrimer tweet:\n"
+      f"{json.dumps(tweets[0], indent=2, ensure_ascii=False)}")
 
-```{code-cell} python
----
-tags: hide-output
----
 # Guardar tweets en formato JSONL
 archivo_tweets = os.path.join(tmp_dir, "tweets_historicos.jsonl")
 
@@ -530,8 +564,9 @@ tags: hide-output
 ---
 def procesar_tweets_jsonl(archivo):
     """
-    Procesa un archivo JSONL de tweets (formato Twitter API v2) y extrae estadísticas.
-    Compatible con la estructura real que devuelve tweepy.
+    Procesa un archivo JSONL de tweets (formato Twitter API v2)
+    y extrae estadísticas. Compatible con la estructura real que
+    devuelve tweepy.
     """
     estadisticas = {
         "total_tweets": 0,
@@ -566,9 +601,11 @@ def procesar_tweets_jsonl(archivo):
             # Métricas públicas (estructura real de API v2)
             if "public_metrics" in tweet:
                 metrics = tweet["public_metrics"]
-                estadisticas["total_retweets"] += metrics.get("retweet_count", 0)
+                estadisticas["total_retweets"] += metrics.get(
+                    "retweet_count", 0)
                 estadisticas["total_likes"] += metrics.get("like_count", 0)
-                estadisticas["total_replies"] += metrics.get("reply_count", 0)
+                estadisticas["total_replies"] += metrics.get(
+                    "reply_count", 0)
 
     # Convertir set a lista para serialización
     estadisticas["usuarios_unicos"] = list(estadisticas["usuarios_unicos"])
@@ -586,12 +623,14 @@ print(f"Total de likes: {stats['total_likes']}")
 print(f"Total de replies: {stats['total_replies']}")
 
 print("\n=== Hashtags más populares ===")
-hashtags_ordenados = sorted(stats["hashtags"].items(), key=lambda x: x[1], reverse=True)
+hashtags_ordenados = sorted(stats["hashtags"].items(),
+                            key=lambda x: x[1], reverse=True)
 for hashtag, count in hashtags_ordenados[:5]:
     print(f"#{hashtag}: {count} veces")
 
 print("\n=== Usuarios más activos ===")
-usuarios_ordenados = sorted(stats["tweets_por_usuario"].items(), key=lambda x: x[1], reverse=True)
+usuarios_ordenados = sorted(stats["tweets_por_usuario"].items(),
+                            key=lambda x: x[1], reverse=True)
 for usuario, count in usuarios_ordenados[:5]:
     print(f"@{usuario}: {count} tweets")
 ```
