@@ -2,11 +2,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
   
   <defs>
-    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#333333" />
+    <marker id="arrowhead" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto">
+      <polygon points="0 0, 6 2.5, 0 5" fill="#333333" />
     </marker>
-    <marker id="diamond" markerWidth="12" markerHeight="12" refX="12" refY="6" orient="auto">
-      <polygon points="0 6, 6 0, 12 6, 6 12" fill="#ffffff" stroke="#333333" stroke-width="1" />
+    <marker id="diamond" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto">
+      <polygon points="0 0, 6 2.5, 0 5" fill="#ffffff" stroke="#333333" stroke-width="1" />
     </marker>
   </defs>
 

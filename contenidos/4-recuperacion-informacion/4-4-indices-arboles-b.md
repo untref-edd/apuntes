@@ -43,7 +43,7 @@ Un árbol B es una estructura de datos autoequilibrada que mantiene los datos or
 Un árbol-B de orden $M$ (el máximo número de hijos que puede tener cada nodo) es un árbol que satisface las siguientes propiedades:
 
 - Cada nodo tiene como máximo $M$ hijos.
-- Cada nodo (excepto la raíz) tiene como mínimo $\left\lceil \frac{M}{2} \right\rceil$ claves.
+- Cada nodo (excepto la raíz) tiene como mínimo $⌈ \frac{M}{2} ⌉$ claves.
 - Si la raíz no es una hoja, entonces debe tener al menos 2 hijos.
 - Todos los nodos hoja aparecen al mismo nivel.
 - Un nodo no hoja con $k$ hijos contiene $k-1$ elementos o claves almacenados.
@@ -74,7 +74,7 @@ Consideremos un árbol B+ de orden 3 (cada nodo puede tener hasta 3 hijos) que a
 
 En la figura se observa que los nodos internos contienen las claves que guían la búsqueda, mientras que las hojas contienen las palabras completas. Además, las hojas están enlazadas entre sí para facilitar la búsqueda secuencial, lo que facilita la búsqueda con comodines o rangos.
 
-En cada nodo pueden haber como máximo 2 claves (orden 3) y como mínimo 1 clave ($\left\lceil \frac{3}{2} \right\rceil - 1 = 1$) y las palabras dentro de cada nodo están ordenadas alfabéticamente.
+En cada nodo pueden haber como máximo 2 claves (orden 3) y como mínimo 1 clave ($⌈ \frac{3}{2} ⌉ - 1 = 1$) y las palabras dentro de cada nodo están ordenadas alfabéticamente.
 
 En los nodos intermedios y en la raíz se repiten palabras que ya están en las hojas, de tal manera que las palabras estrictamente menores a una clave dada se encuentran en el subárbol izquierdo y las palabras mayores o iguales a esa clave se encuentran en su subárbol derecho.
 

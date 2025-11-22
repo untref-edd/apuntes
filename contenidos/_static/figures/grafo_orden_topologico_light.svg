@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -100 700 600">
   
   <defs>
-    <marker id="arrowhead-light" markerWidth="8" markerHeight="6" refX="18.5" refY="3" orient="auto">
-      <polygon points="0 0, 8 3, 0 6" fill="#333333" />
+    <marker id="arrowhead-light" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto">
+      <polygon points="0 0, 6 2.5, 0 5" fill="#333333" />
     </marker>
   </defs>
 
@@ -28,7 +28,7 @@
   </g>
 
   <g class="node-circle">
-    <circle cx="50"  cy="50"  r="20" />
+    <circle cx="50" cy="50" r="20" />
     <circle cx="140" cy="110" r="20" />
     <circle cx="230" cy="170" r="20" />
     <circle cx="320" cy="230" r="20" />
@@ -38,7 +38,7 @@
   </g>
 
   <g class="label-node">
-    <text x="50"  y="50">V2</text>
+    <text x="50" y="50">V2</text>
     <text x="140" y="110">V0</text>
     <text x="230" y="170">V1</text>
     <text x="320" y="230">V3</text>

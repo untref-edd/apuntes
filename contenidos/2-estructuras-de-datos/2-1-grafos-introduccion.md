@@ -148,7 +148,7 @@ $$
 
 ### Grafo Dirigido Acíclico
 
-Es un grafo cuyas aristas son dirigidas y no presenta ciclos, también conocidos como _**DAG**_ por su sigla en inglés (_**D**irected **A**cyclic **G**raph_). Los _**DAG**_ son un tipo de grafo con amplias aplicaciones y se utilizan en diversas áreas como la informática, la biología, etc.
+Es un grafo cuyas aristas son dirigidas y no presenta ciclos, también conocidos como _**DAG**_ por su sigla en inglés (_Directed Acyclic Graph_). Los _**DAG**_ son un tipo de grafo con amplias aplicaciones y se utilizan en diversas áreas como la informática, la biología, etc.
 
 Visto de otra forma si partimos de un vértice cualquiera del grafo no existe ningún camino que permita regresar al mismo vértice.
 

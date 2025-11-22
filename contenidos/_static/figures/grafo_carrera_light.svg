@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1400">
   <defs>
-    <marker id="arrowhead-light" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#333333"/>
+    <marker id="arrowhead-light" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto">
+      <polygon points="0 0, 6 2.5, 0 5" fill="#333333" />
     </marker>
   </defs>
 
-  <rect width="1200" height="1400" fill="#ffffff"/>
+  <rect width="1200" height="1400" fill="#ffffff" />
 
   <g font-family="Arial" font-size="14" text-anchor="middle" fill="#333333">
 
@@ -53,27 +53,27 @@
     <line x1="100" y1="1150" x2="1100" y2="1150" stroke="#333333" stroke-width="2" stroke-dasharray="5,5" />
 
     <g stroke="#4682b4" stroke-width="2" fill="#e1f5ff">
-        <rect x="180" y="100" width="240" height="80" rx="8"/>
-        <rect x="480" y="100" width="240" height="80" rx="8"/>
-        <rect x="180" y="250" width="240" height="80" rx="8"/>
-        <rect x="480" y="250" width="240" height="80" rx="8"/>
-        <rect x="180" y="400" width="240" height="80" rx="8"/>
-        <rect x="480" y="400" width="240" height="80" rx="8"/>
-        <rect x="780" y="400" width="240" height="80" rx="8"/>
-        <rect x="180" y="550" width="240" height="80" rx="8"/>
-        <rect x="480" y="550" width="240" height="80" rx="8"/>
-        <rect x="780" y="550" width="240" height="80" rx="8"/>
-        <rect x="180" y="700" width="240" height="80" rx="8"/>
-        <rect x="480" y="700" width="240" height="80" rx="8"/>
-        <rect x="780" y="700" width="240" height="80" rx="8"/>
-        <rect x="180" y="850" width="240" height="80" rx="8"/>
-        <rect x="480" y="850" width="240" height="80" rx="8"/>
-        <rect x="780" y="850" width="240" height="80" rx="8"/>
-        <rect x="180" y="1000" width="240" height="80" rx="8"/>
-        <rect x="480" y="1000" width="280" height="80" rx="8"/>
-        <rect x="780" y="1000" width="240" height="80" rx="8"/>
-        <rect x="180" y="1200" width="400" height="80" rx="8"/>
-        <rect x="620" y="1200" width="400" height="80" rx="8"/>
+        <rect x="180" y="100" width="240" height="80" rx="8" />
+        <rect x="480" y="100" width="240" height="80" rx="8" />
+        <rect x="180" y="250" width="240" height="80" rx="8" />
+        <rect x="480" y="250" width="240" height="80" rx="8" />
+        <rect x="180" y="400" width="240" height="80" rx="8" />
+        <rect x="480" y="400" width="240" height="80" rx="8" />
+        <rect x="780" y="400" width="240" height="80" rx="8" />
+        <rect x="180" y="550" width="240" height="80" rx="8" />
+        <rect x="480" y="550" width="240" height="80" rx="8" />
+        <rect x="780" y="550" width="240" height="80" rx="8" />
+        <rect x="180" y="700" width="240" height="80" rx="8" />
+        <rect x="480" y="700" width="240" height="80" rx="8" />
+        <rect x="780" y="700" width="240" height="80" rx="8" />
+        <rect x="180" y="850" width="240" height="80" rx="8" />
+        <rect x="480" y="850" width="240" height="80" rx="8" />
+        <rect x="780" y="850" width="240" height="80" rx="8" />
+        <rect x="180" y="1000" width="240" height="80" rx="8" />
+        <rect x="480" y="1000" width="280" height="80" rx="8" />
+        <rect x="780" y="1000" width="240" height="80" rx="8" />
+        <rect x="180" y="1200" width="400" height="80" rx="8" />
+        <rect x="620" y="1200" width="400" height="80" rx="8" />
     </g>
 
     <g fill="#333333">

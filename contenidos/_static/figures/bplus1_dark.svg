@@ -1,87 +1,88 @@
+<?xml version='1.0' encoding='utf-8'?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300">
-  <rect width="800" height="300" fill="#1e1e1e"/>
+  <rect width="800" height="300" fill="#1e1e1e" />
   <defs>
     <marker id="arrowhead" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto">
       <polygon points="0 0, 6 2.5, 0 5" fill="#e0e0e0" />
     </marker>
   </defs>
 
-  <!-- Root -->
+  
   <g transform="translate(350, 20)">
-    <rect width="60" height="30" fill="#2d3748" stroke="#63b3ed" stroke-width="2"/>
+    <rect width="60" height="30" fill="#2d3748" stroke="#63b3ed" stroke-width="2" />
     <text x="30" y="20" font-family="Arial" font-size="12" fill="#e0e0e0" text-anchor="middle">PICO</text>
   </g>
 
-  <!-- Level 1 -->
-  <!-- Left Child [PALA] -->
+  
+  
   <g transform="translate(150, 100)">
-    <rect width="60" height="30" fill="#2d3748" stroke="#63b3ed" stroke-width="2"/>
+    <rect width="60" height="30" fill="#2d3748" stroke="#63b3ed" stroke-width="2" />
     <text x="30" y="20" font-family="Arial" font-size="12" fill="#e0e0e0" text-anchor="middle">PALA</text>
   </g>
 
-  <!-- Right Child [PIEL | POCO] -->
+  
   <g transform="translate(550, 100)">
-    <rect width="120" height="30" fill="#2d3748" stroke="#63b3ed" stroke-width="2"/>
-    <line x1="60" y1="0" x2="60" y2="30" stroke="#63b3ed" stroke-width="2"/>
+    <rect width="120" height="30" fill="#2d3748" stroke="#63b3ed" stroke-width="2" />
+    <line x1="60" y1="0" x2="60" y2="30" stroke="#63b3ed" stroke-width="2" />
     <text x="30" y="20" font-family="Arial" font-size="12" fill="#e0e0e0" text-anchor="middle">PIEL</text>
     <text x="90" y="20" font-family="Arial" font-size="12" fill="#e0e0e0" text-anchor="middle">POCO</text>
   </g>
 
-  <!-- Level 2 (Leaves) -->
-  <!-- Leaf 1 [PACO] -->
+  
+  
   <g transform="translate(50, 200)">
-    <rect width="60" height="30" fill="#4a5568" stroke="#fc8181" stroke-width="2"/>
+    <rect width="60" height="30" fill="#4a5568" stroke="#fc8181" stroke-width="2" />
     <text x="30" y="20" font-family="Arial" font-size="12" fill="#e0e0e0" text-anchor="middle">PACO</text>
   </g>
 
-  <!-- Leaf 2 [PALA | PECA] -->
+  
   <g transform="translate(150, 200)">
-    <rect width="120" height="30" fill="#4a5568" stroke="#fc8181" stroke-width="2"/>
-    <line x1="60" y1="0" x2="60" y2="30" stroke="#fc8181" stroke-width="2"/>
+    <rect width="120" height="30" fill="#4a5568" stroke="#fc8181" stroke-width="2" />
+    <line x1="60" y1="0" x2="60" y2="30" stroke="#fc8181" stroke-width="2" />
     <text x="30" y="20" font-family="Arial" font-size="12" fill="#e0e0e0" text-anchor="middle">PALA</text>
     <text x="90" y="20" font-family="Arial" font-size="12" fill="#e0e0e0" text-anchor="middle">PECA</text>
   </g>
 
-  <!-- Leaf 3 [PICO] -->
+  
   <g transform="translate(350, 200)">
-    <rect width="60" height="30" fill="#4a5568" stroke="#fc8181" stroke-width="2"/>
+    <rect width="60" height="30" fill="#4a5568" stroke="#fc8181" stroke-width="2" />
     <text x="30" y="20" font-family="Arial" font-size="12" fill="#e0e0e0" text-anchor="middle">PICO</text>
   </g>
 
-  <!-- Leaf 4 [PIEL | PIPA] -->
+  
   <g transform="translate(450, 200)">
-    <rect width="120" height="30" fill="#4a5568" stroke="#fc8181" stroke-width="2"/>
-    <line x1="60" y1="0" x2="60" y2="30" stroke="#fc8181" stroke-width="2"/>
+    <rect width="120" height="30" fill="#4a5568" stroke="#fc8181" stroke-width="2" />
+    <line x1="60" y1="0" x2="60" y2="30" stroke="#fc8181" stroke-width="2" />
     <text x="30" y="20" font-family="Arial" font-size="12" fill="#e0e0e0" text-anchor="middle">PIEL</text>
     <text x="90" y="20" font-family="Arial" font-size="12" fill="#e0e0e0" text-anchor="middle">PIPA</text>
   </g>
 
-  <!-- Leaf 5 [POCO | POLO] -->
+  
   <g transform="translate(650, 200)">
-    <rect width="120" height="30" fill="#4a5568" stroke="#fc8181" stroke-width="2"/>
-    <line x1="60" y1="0" x2="60" y2="30" stroke="#fc8181" stroke-width="2"/>
+    <rect width="120" height="30" fill="#4a5568" stroke="#fc8181" stroke-width="2" />
+    <line x1="60" y1="0" x2="60" y2="30" stroke="#fc8181" stroke-width="2" />
     <text x="30" y="20" font-family="Arial" font-size="12" fill="#e0e0e0" text-anchor="middle">POCO</text>
     <text x="90" y="20" font-family="Arial" font-size="12" fill="#e0e0e0" text-anchor="middle">POLO</text>
   </g>
 
-  <!-- Edges -->
-  <!-- Root to Children -->
-  <line x1="350" y1="50" x2="180" y2="100" stroke="#e0e0e0" stroke-width="2" marker-end="url(#arrowhead)"/>
-  <line x1="410" y1="50" x2="610" y2="100" stroke="#e0e0e0" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  
+  <line x1="350" y1="50" x2="180" y2="100" stroke="#e0e0e0" stroke-width="2" marker-end="url(#arrowhead)" />
+  <line x1="410" y1="50" x2="610" y2="100" stroke="#e0e0e0" stroke-width="2" marker-end="url(#arrowhead)" />
 
-  <!-- Left Child to Leaves -->
-  <line x1="150" y1="130" x2="80" y2="200" stroke="#e0e0e0" stroke-width="2" marker-end="url(#arrowhead)"/>
-  <line x1="210" y1="130" x2="210" y2="200" stroke="#e0e0e0" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <line x1="150" y1="130" x2="80" y2="200" stroke="#e0e0e0" stroke-width="2" marker-end="url(#arrowhead)" />
+  <line x1="210" y1="130" x2="210" y2="200" stroke="#e0e0e0" stroke-width="2" marker-end="url(#arrowhead)" />
 
-  <!-- Right Child to Leaves -->
-  <line x1="550" y1="130" x2="380" y2="200" stroke="#e0e0e0" stroke-width="2" marker-end="url(#arrowhead)"/>
-  <line x1="610" y1="130" x2="510" y2="200" stroke="#e0e0e0" stroke-width="2" marker-end="url(#arrowhead)"/>
-  <line x1="670" y1="130" x2="710" y2="200" stroke="#e0e0e0" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <line x1="550" y1="130" x2="380" y2="200" stroke="#e0e0e0" stroke-width="2" marker-end="url(#arrowhead)" />
+  <line x1="610" y1="130" x2="510" y2="200" stroke="#e0e0e0" stroke-width="2" marker-end="url(#arrowhead)" />
+  <line x1="670" y1="130" x2="710" y2="200" stroke="#e0e0e0" stroke-width="2" marker-end="url(#arrowhead)" />
 
-  <!-- Leaf Links -->
-  <line x1="110" y1="215" x2="150" y2="215" stroke="#fc8181" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#arrowhead)"/>
-  <line x1="270" y1="215" x2="350" y2="215" stroke="#fc8181" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#arrowhead)"/>
-  <line x1="410" y1="215" x2="450" y2="215" stroke="#fc8181" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#arrowhead)"/>
-  <line x1="570" y1="215" x2="650" y2="215" stroke="#fc8181" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#arrowhead)"/>
+  
+  <line x1="110" y1="215" x2="150" y2="215" stroke="#fc8181" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#arrowhead)" />
+  <line x1="270" y1="215" x2="350" y2="215" stroke="#fc8181" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#arrowhead)" />
+  <line x1="410" y1="215" x2="450" y2="215" stroke="#fc8181" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#arrowhead)" />
+  <line x1="570" y1="215" x2="650" y2="215" stroke="#fc8181" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#arrowhead)" />
 
 </svg>
