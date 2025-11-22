@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 200">
+  <rect width="700" height="200" fill="#1e1e1e"/>
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#e0e0e0"/>
+    </marker>
+  </defs>
+
+  <!-- Memory Block -->
+  <rect x="50" y="80" width="600" height="40" fill="#2d3748" stroke="#63b3ed" stroke-width="2"/>
+  
+  <!-- Characters -->
+  <text x="55" y="105" font-family="Monospace" font-size="14" fill="#e0e0e0" xml:space="preserve">p r o g r a m a p r o g r a m a b l e p r o g r a m a c i ó n</text>
+
+  <!-- Pointers -->
+  <!-- programa (start 0) -->
+  <line x1="100" y1="30" x2="55" y2="75" stroke="#fc8181" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <rect x="80" y="10" width="80" height="25" rx="3" fill="#4a5568" stroke="#fc8181" stroke-width="1"/>
+  <text x="120" y="27" font-family="Arial" font-size="12" fill="#e0e0e0" text-anchor="middle">Ptr 1 (0)</text>
+
+  <!-- programable (start 8 chars * approx width) -->
+  <line x1="250" y1="30" x2="170" y2="75" stroke="#fc8181" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <rect x="230" y="10" width="80" height="25" rx="3" fill="#4a5568" stroke="#fc8181" stroke-width="1"/>
+  <text x="270" y="27" font-family="Arial" font-size="12" fill="#e0e0e0" text-anchor="middle">Ptr 2 (8)</text>
+
+  <!-- programación (start 8+11 = 19 chars) -->
+  <line x1="400" y1="30" x2="330" y2="75" stroke="#fc8181" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <rect x="380" y="10" width="80" height="25" rx="3" fill="#4a5568" stroke="#fc8181" stroke-width="1"/>
+  <text x="420" y="27" font-family="Arial" font-size="12" fill="#e0e0e0" text-anchor="middle">Ptr 3 (19)</text>
+
+  <!-- Terms List (Legend) -->
+  <text x="50" y="150" font-family="Arial" font-size="12" fill="#aaaaaa">Términos almacenados:</text>
+  <text x="50" y="170" font-family="Arial" font-size="12" fill="#e0e0e0">1. programa</text>
+  <text x="200" y="170" font-family="Arial" font-size="12" fill="#e0e0e0">2. programable</text>
+  <text x="350" y="170" font-family="Arial" font-size="12" fill="#e0e0e0">3. programación</text>
+
+</svg>

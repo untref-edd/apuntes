@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#1e1e1e"/>
+  
+  <!-- Edges -->
+  <line x1="100" y1="150" x2="200" y2="50" stroke="#e0e0e0" stroke-width="2"/>
+  <line x1="100" y1="150" x2="200" y2="250" stroke="#e0e0e0" stroke-width="2"/>
+  <line x1="200" y1="50" x2="300" y2="150" stroke="#e0e0e0" stroke-width="2"/>
+  <line x1="200" y1="250" x2="300" y2="150" stroke="#e0e0e0" stroke-width="2"/>
+  <line x1="100" y1="150" x2="300" y2="150" stroke="#e0e0e0" stroke-width="2"/>
+
+  <!-- Nodes -->
+  <circle cx="100" cy="150" r="20" fill="#2d3748" stroke="#63b3ed" stroke-width="2"/>
+  <text x="100" y="155" font-family="Arial" font-size="14" fill="#e0e0e0" text-anchor="middle">1</text>
+
+  <circle cx="200" cy="50" r="20" fill="#2d3748" stroke="#63b3ed" stroke-width="2"/>
+  <text x="200" y="55" font-family="Arial" font-size="14" fill="#e0e0e0" text-anchor="middle">2</text>
+
+  <circle cx="200" cy="250" r="20" fill="#2d3748" stroke="#63b3ed" stroke-width="2"/>
+  <text x="200" y="255" font-family="Arial" font-size="14" fill="#e0e0e0" text-anchor="middle">3</text>
+
+  <circle cx="300" cy="150" r="20" fill="#2d3748" stroke="#63b3ed" stroke-width="2"/>
+  <text x="300" y="155" font-family="Arial" font-size="14" fill="#e0e0e0" text-anchor="middle">4</text>
+</svg>

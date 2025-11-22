@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 350">
+  <rect width="600" height="350" fill="#1e1e1e"/>
+  
+  <!-- Root Node: Poema -->
+  <rect x="250" y="20" width="100" height="40" rx="5" fill="#2d3748" stroke="#63b3ed" stroke-width="2"/>
+  <text x="300" y="45" font-family="Arial" font-size="14" fill="#e0e0e0" text-anchor="middle">poema</text>
+
+  <!-- Attributes -->
+  <text x="360" y="30" font-family="Arial" font-size="10" fill="#aaaaaa">@fecha="Abril de 1915"</text>
+  <text x="360" y="45" font-family="Arial" font-size="10" fill="#aaaaaa">@lugar="Granada"</text>
+
+  <!-- Level 1 Nodes -->
+  <!-- Titulo -->
+  <rect x="50" y="100" width="100" height="40" rx="5" fill="#2d3748" stroke="#63b3ed" stroke-width="2"/>
+  <text x="100" y="125" font-family="Arial" font-size="14" fill="#e0e0e0" text-anchor="middle">titulo</text>
+  
+  <!-- Versos -->
+  <rect x="170" y="100" width="80" height="40" rx="5" fill="#2d3748" stroke="#63b3ed" stroke-width="2"/>
+  <text x="210" y="125" font-family="Arial" font-size="14" fill="#e0e0e0" text-anchor="middle">verso</text>
+
+  <rect x="270" y="100" width="80" height="40" rx="5" fill="#2d3748" stroke="#63b3ed" stroke-width="2"/>
+  <text x="310" y="125" font-family="Arial" font-size="14" fill="#e0e0e0" text-anchor="middle">verso</text>
+
+  <rect x="370" y="100" width="80" height="40" rx="5" fill="#2d3748" stroke="#63b3ed" stroke-width="2"/>
+  <text x="410" y="125" font-family="Arial" font-size="14" fill="#e0e0e0" text-anchor="middle">verso</text>
+
+  <rect x="470" y="100" width="80" height="40" rx="5" fill="#2d3748" stroke="#63b3ed" stroke-width="2"/>
+  <text x="510" y="125" font-family="Arial" font-size="14" fill="#e0e0e0" text-anchor="middle">verso</text>
+
+  <!-- Edges -->
+  <line x1="300" y1="60" x2="100" y2="100" stroke="#e0e0e0" stroke-width="2"/>
+  <line x1="300" y1="60" x2="210" y2="100" stroke="#e0e0e0" stroke-width="2"/>
+  <line x1="300" y1="60" x2="310" y2="100" stroke="#e0e0e0" stroke-width="2"/>
+  <line x1="300" y1="60" x2="410" y2="100" stroke="#e0e0e0" stroke-width="2"/>
+  <line x1="300" y1="60" x2="510" y2="100" stroke="#e0e0e0" stroke-width="2"/>
+
+  <!-- Content (Leaves) -->
+  <rect x="50" y="180" width="100" height="40" rx="5" fill="#4a5568" stroke="#fc8181" stroke-width="2"/>
+  <text x="100" y="205" font-family="Arial" font-size="12" fill="#e0e0e0" text-anchor="middle">"Alba"</text>
+
+  <rect x="170" y="180" width="80" height="60" rx="5" fill="#4a5568" stroke="#fc8181" stroke-width="2"/>
+  <text x="210" y="200" font-family="Arial" font-size="10" fill="#e0e0e0" text-anchor="middle">"Mi corazón</text>
+  <text x="210" y="215" font-family="Arial" font-size="10" fill="#e0e0e0" text-anchor="middle">oprimido"</text>
+
+  <rect x="270" y="250" width="80" height="80" rx="5" fill="#4a5568" stroke="#fc8181" stroke-width="2"/>
+  <text x="310" y="275" font-family="Arial" font-size="10" fill="#e0e0e0" text-anchor="middle">"siente junto</text>
+  <text x="310" y="290" font-family="Arial" font-size="10" fill="#e0e0e0" text-anchor="middle">a la</text>
+  <text x="310" y="305" font-family="Arial" font-size="10" fill="#e0e0e0" text-anchor="middle">alborada"</text>
+
+  <rect x="370" y="180" width="80" height="60" rx="5" fill="#4a5568" stroke="#fc8181" stroke-width="2"/>
+  <text x="410" y="200" font-family="Arial" font-size="10" fill="#e0e0e0" text-anchor="middle">"el dolor de</text>
+  <text x="410" y="215" font-family="Arial" font-size="10" fill="#e0e0e0" text-anchor="middle">sus amores"</text>
+
+  <rect x="470" y="250" width="80" height="80" rx="5" fill="#4a5568" stroke="#fc8181" stroke-width="2"/>
+  <text x="510" y="275" font-family="Arial" font-size="10" fill="#e0e0e0" text-anchor="middle">"y el sueño</text>
+  <text x="510" y="290" font-family="Arial" font-size="10" fill="#e0e0e0" text-anchor="middle">de las</text>
+  <text x="510" y="305" font-family="Arial" font-size="10" fill="#e0e0e0" text-anchor="middle">distancias."</text>
+
+  <!-- Edges to content -->
+  <line x1="100" y1="140" x2="100" y2="180" stroke="#e0e0e0" stroke-width="2"/>
+  <line x1="210" y1="140" x2="210" y2="180" stroke="#e0e0e0" stroke-width="2"/>
+  <line x1="310" y1="140" x2="310" y2="250" stroke="#e0e0e0" stroke-width="2"/>
+  <line x1="410" y1="140" x2="410" y2="180" stroke="#e0e0e0" stroke-width="2"/>
+  <line x1="510" y1="140" x2="510" y2="250" stroke="#e0e0e0" stroke-width="2"/>
+
+</svg>

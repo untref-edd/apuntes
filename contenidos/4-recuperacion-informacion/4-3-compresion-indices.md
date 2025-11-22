@@ -74,9 +74,11 @@ La primera técnica consiste en almacenar todos los términos como si fueran una
 - Se le asocia una estructura de datos de longitud fija para la frecuencia, la referencia a la lista de apariciones (postings) y la referencia al término en la cadena.
 - La referencia al próximo término marca el final del término corriente.
 
-```{figure} ../assets/images/IICompresionTerminos.png
+```{figure} ../_static/figuras/compresion_terminos_light.svg
 ---
 name: ii-compresion-terminos
+width: 90%
+figclass: dark-light
 ---
 Compresión del diccionario de términos usando una cadena única.
 ```

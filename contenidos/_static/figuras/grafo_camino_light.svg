@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 200">
+  <rect width="600" height="200" fill="#ffffff"/>
+  
+  <!-- Edges -->
+  <line x1="50" y1="100" x2="150" y2="100" stroke="#333333" stroke-width="2"/>
+  <line x1="150" y1="100" x2="250" y2="100" stroke="#333333" stroke-width="2"/>
+  <line x1="250" y1="100" x2="350" y2="100" stroke="#333333" stroke-width="2"/>
+  <line x1="350" y1="100" x2="450" y2="100" stroke="#333333" stroke-width="2"/>
+
+  <!-- Nodes -->
+  <circle cx="50" cy="100" r="20" fill="#e1f5ff" stroke="#4682b4" stroke-width="2"/>
+  <text x="50" y="105" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle">A</text>
+
+  <circle cx="150" cy="100" r="20" fill="#e1f5ff" stroke="#4682b4" stroke-width="2"/>
+  <text x="150" y="105" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle">B</text>
+
+  <circle cx="250" cy="100" r="20" fill="#e1f5ff" stroke="#4682b4" stroke-width="2"/>
+  <text x="250" y="105" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle">C</text>
+
+  <circle cx="350" cy="100" r="20" fill="#e1f5ff" stroke="#4682b4" stroke-width="2"/>
+  <text x="350" y="105" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle">D</text>
+
+  <circle cx="450" cy="100" r="20" fill="#e1f5ff" stroke="#4682b4" stroke-width="2"/>
+  <text x="450" y="105" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle">E</text>
+
+  <!-- Disconnected Node G -->
+  <circle cx="550" cy="100" r="20" fill="#e1f5ff" stroke="#4682b4" stroke-width="2"/>
+  <text x="550" y="105" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle">G</text>
+</svg>

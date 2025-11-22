@@ -39,64 +39,13 @@ Los buscadores web utilizan ***crawlers*** para indexar el contenido de la web y
 
 El siguiente diagrama ilustra la arquitectura básica de un ***crawler***:
 
-```{mermaid}
+```{figure} ../_static/figuras/crawler_diagram_light.svg
 ---
 name: crawler_diagram
+width: 90%
+figclass: dark-light
 ---
-flowchart TB
-    %% Definición del flujo principal (de arriba a abajo para mejor alineación visual)
-    subgraph Entrada[" "]
-        A[URLs semilla] --> B[Frontera de URLs]
-    end
-
-    subgraph Descarga_y_Analisis[" "]
-        B --> C[Obtenedor de HTML]
-        C --> D[Analizador HTML]
-        D --> E[Detección de duplicados]
-    end
-
-    subgraph Extraccion_y_Gestion[" "]
-        E --> F[Extractor de URLs]
-        F --> G[Filtro de URLs]
-        G --> H[Cargador/Detector de URLs]
-        H --> I[(Almacenamiento de URLs)]
-        H --> B
-    end
-
-    %% Módulos auxiliares arriba del flujo principal
-    subgraph Auxiliares[" "]
-        direction LR
-        J[Resolutor DNS] --> K[Cacheo] --> L[(Almacenamiento de datos)]
-    end
-
-    %% Conexiones auxiliares
-    C --> J
-    E --> K
-    E --> L
-    K --> L
-
-    %% Colores principales
-    style A fill:#b6e8b0,stroke:#2e8b57,stroke-width:2px,color:#000
-    style B fill:#b6e8b0,stroke:#2e8b57,stroke-width:2px,color:#000
-
-    style C fill:#add8e6,stroke:#4682b4,stroke-width:2px,color:#000
-    style D fill:#add8e6,stroke:#4682b4,stroke-width:2px,color:#000
-    style E fill:#add8e6,stroke:#4682b4,stroke-width:2px,color:#000
-    style F fill:#add8e6,stroke:#4682b4,stroke-width:2px,color:#000
-    style G fill:#add8e6,stroke:#4682b4,stroke-width:2px,color:#000
-    style H fill:#add8e6,stroke:#4682b4,stroke-width:2px,color:#000
-
-    style J fill:#d8b0ff,stroke:#7b68ee,stroke-width:2px,color:#000
-    style K fill:#d8b0ff,stroke:#7b68ee,stroke-width:2px,color:#000
-
-    style I fill:#ffe599,stroke:#c9a602,stroke-width:2px,color:#000
-    style L fill:#ffe599,stroke:#c9a602,stroke-width:2px,color:#000
-
-    %% Fondo de grupos
-    style Entrada fill:#fff9c4,stroke:#fff9c4
-    style Descarga_y_Analisis fill:#fff9c4,stroke:#fff9c4
-    style Extraccion_y_Gestion fill:#fff9c4,stroke:#fff9c4
-    style Auxiliares fill:#fff9c4,stroke:#fff9c4
+Arquitectura básica de un crawler
 ```
 
 URLs semilla

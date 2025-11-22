@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450">
+  <!-- Background -->
+  <rect width="600" height="450" fill="#ffffff"/>
+
+  <!-- Definitions -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333333"/>
+    </marker>
+  </defs>
+
+  <!-- Class: Persona -->
+  <g transform="translate(225, 20)">
+    <rect x="0" y="0" width="150" height="80" fill="#e1f5ff" stroke="#4682b4" stroke-width="2"/>
+    <text x="75" y="25" font-family="Arial" font-size="16" font-weight="bold" fill="#333333" text-anchor="middle">Persona</text>
+    <line x1="0" y1="35" x2="150" y2="35" stroke="#4682b4" stroke-width="1"/>
+    <text x="5" y="55" font-family="Arial" font-size="12" fill="#333333">nombre</text>
+    <text x="5" y="70" font-family="Arial" font-size="12" fill="#333333">edad</text>
+  </g>
+
+  <!-- Class: Docente -->
+  <g transform="translate(50, 150)">
+    <rect x="0" y="0" width="160" height="100" fill="#e1f5ff" stroke="#4682b4" stroke-width="2"/>
+    <text x="80" y="25" font-family="Arial" font-size="16" font-weight="bold" fill="#333333" text-anchor="middle">Docente</text>
+    <line x1="0" y1="35" x2="160" y2="35" stroke="#4682b4" stroke-width="1"/>
+    <text x="5" y="55" font-family="Arial" font-size="12" fill="#333333">legajo</text>
+    <text x="5" y="70" font-family="Arial" font-size="12" fill="#333333">materia</text>
+    <line x1="0" y1="75" x2="160" y2="75" stroke="#4682b4" stroke-width="1"/>
+    <text x="5" y="90" font-family="Arial" font-size="12" fill="#333333">presentar()</text>
+  </g>
+
+  <!-- Class: Estudiante -->
+  <g transform="translate(390, 150)">
+    <rect x="0" y="0" width="160" height="100" fill="#e1f5ff" stroke="#4682b4" stroke-width="2"/>
+    <text x="80" y="25" font-family="Arial" font-size="16" font-weight="bold" fill="#333333" text-anchor="middle">Estudiante</text>
+    <line x1="0" y1="35" x2="160" y2="35" stroke="#4682b4" stroke-width="1"/>
+    <text x="5" y="55" font-family="Arial" font-size="12" fill="#333333">legajo</text>
+    <text x="5" y="70" font-family="Arial" font-size="12" fill="#333333">carrera</text>
+    <line x1="0" y1="75" x2="160" y2="75" stroke="#4682b4" stroke-width="1"/>
+    <text x="5" y="90" font-family="Arial" font-size="12" fill="#333333">presentar()</text>
+  </g>
+
+  <!-- Class: Ayudante -->
+  <g transform="translate(220, 320)">
+    <rect x="0" y="0" width="160" height="80" fill="#e1f5ff" stroke="#4682b4" stroke-width="2"/>
+    <text x="80" y="25" font-family="Arial" font-size="16" font-weight="bold" fill="#333333" text-anchor="middle">Ayudante</text>
+    <line x1="0" y1="35" x2="160" y2="35" stroke="#4682b4" stroke-width="1"/>
+    <text x="5" y="55" font-family="Arial" font-size="12" fill="#333333"></text>
+    <line x1="0" y1="60" x2="160" y2="60" stroke="#4682b4" stroke-width="1"/>
+    <text x="5" y="75" font-family="Arial" font-size="12" fill="#333333">presentar()</text>
+  </g>
+
+  <!-- Inheritance Arrows -->
+  <!-- Docente -> Persona -->
+  <path d="M 130 150 L 225 80" stroke="#333333" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Estudiante -> Persona -->
+  <path d="M 470 150 L 375 80" stroke="#333333" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+
+  <!-- Ayudante -> Docente -->
+  <path d="M 300 320 L 130 250" stroke="#333333" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+
+  <!-- Ayudante -> Estudiante -->
+  <path d="M 300 320 L 470 250" stroke="#333333" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+
+</svg>

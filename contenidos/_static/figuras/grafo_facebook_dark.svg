@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 300">
+  <rect width="500" height="300" fill="#1e1e1e"/>
+  <defs>
+    <!-- No arrowheads for undirected graph -->
+  </defs>
+
+  <!-- Edges -->
+  <g stroke="#e0e0e0" stroke-width="2">
+    <!-- A connections -->
+    <line x1="80" y1="150" x2="180" y2="80"/> <!-- A-B -->
+    <line x1="80" y1="150" x2="180" y2="150"/> <!-- A-C -->
+    <line x1="80" y1="150" x2="180" y2="220"/> <!-- A-D -->
+    
+    <!-- B connections -->
+    <line x1="180" y1="80" x2="180" y2="150"/> <!-- B-C -->
+    <line x1="180" y1="80" x2="300" y2="80"/> <!-- B-E -->
+    
+    <!-- C connections -->
+    <line x1="180" y1="150" x2="300" y2="180"/> <!-- C-F -->
+    
+    <!-- D connections -->
+    <line x1="180" y1="220" x2="300" y2="180"/> <!-- D-F -->
+    
+    <!-- E connections -->
+    <line x1="300" y1="80" x2="300" y2="180"/> <!-- E-F -->
+    
+    <!-- F connections -->
+    <line x1="300" y1="180" x2="420" y2="150"/> <!-- F-G -->
+  </g>
+
+  <!-- Nodes -->
+  <!-- A: Ana -->
+  <g transform="translate(50, 135)">
+    <rect width="80" height="30" rx="15" fill="#2d3748" stroke="#63b3ed" stroke-width="2"/>
+    <text x="40" y="20" font-family="Arial" font-size="12" fill="#e0e0e0" text-anchor="middle">Ana</text>
+  </g>
+
+  <!-- B: Bruno -->
+  <g transform="translate(140, 65)">
+    <rect width="80" height="30" rx="15" fill="#2d3748" stroke="#63b3ed" stroke-width="2"/>
+    <text x="40" y="20" font-family="Arial" font-size="12" fill="#e0e0e0" text-anchor="middle">Bruno</text>
+  </g>
+
+  <!-- C: Clara -->
+  <g transform="translate(140, 135)">
+    <rect width="80" height="30" rx="15" fill="#2d3748" stroke="#63b3ed" stroke-width="2"/>
+    <text x="40" y="20" font-family="Arial" font-size="12" fill="#e0e0e0" text-anchor="middle">Clara</text>
+  </g>
+
+  <!-- D: Diego -->
+  <g transform="translate(140, 205)">
+    <rect width="80" height="30" rx="15" fill="#2d3748" stroke="#63b3ed" stroke-width="2"/>
+    <text x="40" y="20" font-family="Arial" font-size="12" fill="#e0e0e0" text-anchor="middle">Diego</text>
+  </g>
+
+  <!-- E: Elena -->
+  <g transform="translate(260, 65)">
+    <rect width="80" height="30" rx="15" fill="#2d3748" stroke="#63b3ed" stroke-width="2"/>
+    <text x="40" y="20" font-family="Arial" font-size="12" fill="#e0e0e0" text-anchor="middle">Elena</text>
+  </g>
+
+  <!-- F: Fernando -->
+  <g transform="translate(260, 165)">
+    <rect width="80" height="30" rx="15" fill="#2d3748" stroke="#63b3ed" stroke-width="2"/>
+    <text x="40" y="20" font-family="Arial" font-size="12" fill="#e0e0e0" text-anchor="middle">Fernando</text>
+  </g>
+
+  <!-- G: Gabriela -->
+  <g transform="translate(380, 135)">
+    <rect width="80" height="30" rx="15" fill="#2d3748" stroke="#63b3ed" stroke-width="2"/>
+    <text x="40" y="20" font-family="Arial" font-size="12" fill="#e0e0e0" text-anchor="middle">Gabriela</text>
+  </g>
+
+</svg>

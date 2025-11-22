@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <rect width="800" height="500" fill="#1e1e1e"/>
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="19" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#e0e0e0"/>
+    </marker>
+  </defs>
+
+  <!-- Groups -->
+  <!-- Procesamiento Documentos (P1) -->
+  <rect x="20" y="20" width="760" height="120" rx="10" fill="#222" stroke="#444" stroke-width="1" stroke-dasharray="5,5"/>
+  <text x="30" y="40" font-family="Arial" font-size="12" fill="#aaaaaa" font-weight="bold">Procesamiento de Documentos</text>
+
+  <!-- Procesamiento Consultas (P2) -->
+  <rect x="350" y="160" width="430" height="320" rx="10" fill="#222" stroke="#444" stroke-width="1" stroke-dasharray="5,5"/>
+  <text x="360" y="180" font-family="Arial" font-size="12" fill="#aaaaaa" font-weight="bold">Procesamiento de Consultas</text>
+
+  <!-- Nodes P1 -->
+  <rect x="40" y="60" width="140" height="50" rx="5" fill="#2d3748" stroke="#63b3ed" stroke-width="2"/>
+  <text x="110" y="90" font-family="Arial" font-size="14" fill="#e0e0e0" text-anchor="middle">Colección Docs</text>
+
+  <rect x="220" y="60" width="140" height="50" rx="5" fill="#2d3748" stroke="#63b3ed" stroke-width="2"/>
+  <text x="290" y="90" font-family="Arial" font-size="14" fill="#e0e0e0" text-anchor="middle">Preprocesamiento</text>
+
+  <rect x="400" y="60" width="140" height="50" rx="5" fill="#2d3748" stroke="#63b3ed" stroke-width="2"/>
+  <text x="470" y="90" font-family="Arial" font-size="14" fill="#e0e0e0" text-anchor="middle">Indexación</text>
+
+  <rect x="580" y="60" width="140" height="50" rx="5" fill="#2d3748" stroke="#63b3ed" stroke-width="2"/>
+  <text x="650" y="90" font-family="Arial" font-size="14" fill="#e0e0e0" text-anchor="middle">Índice</text>
+
+  <!-- Nodes User -->
+  <circle cx="150" cy="250" r="40" fill="#7b341e" stroke="#ed8936" stroke-width="2"/>
+  <text x="150" y="255" font-family="Arial" font-size="14" fill="#e0e0e0" text-anchor="middle">Usuario</text>
+
+  <rect x="100" y="350" width="100" height="40" rx="5" fill="#7b341e" stroke="#ed8936" stroke-width="2"/>
+  <text x="150" y="375" font-family="Arial" font-size="14" fill="#e0e0e0" text-anchor="middle">Consulta</text>
+
+  <rect x="220" y="350" width="100" height="40" rx="5" fill="#7b341e" stroke="#ed8936" stroke-width="2"/>
+  <text x="270" y="375" font-family="Arial" font-size="14" fill="#e0e0e0" text-anchor="middle">Feedback</text>
+
+  <!-- Nodes P2 -->
+  <rect x="400" y="200" width="180" height="50" rx="5" fill="#22543d" stroke="#48bb78" stroke-width="2"/>
+  <text x="490" y="230" font-family="Arial" font-size="14" fill="#e0e0e0" text-anchor="middle">Proc. Consulta</text>
+
+  <rect x="400" y="280" width="180" height="50" rx="5" fill="#22543d" stroke="#48bb78" stroke-width="2"/>
+  <text x="490" y="310" font-family="Arial" font-size="14" fill="#e0e0e0" text-anchor="middle">Motor de Búsqueda</text>
+
+  <rect x="400" y="360" width="180" height="50" rx="5" fill="#22543d" stroke="#48bb78" stroke-width="2"/>
+  <text x="490" y="390" font-family="Arial" font-size="14" fill="#e0e0e0" text-anchor="middle">Ranking</text>
+
+  <rect x="650" y="360" width="100" height="50" rx="5" fill="#22543d" stroke="#48bb78" stroke-width="2"/>
+  <text x="700" y="390" font-family="Arial" font-size="14" fill="#e0e0e0" text-anchor="middle">Resultados</text>
+
+  <!-- Edges P1 -->
+  <path d="M 180 85 L 220 85" stroke="#e0e0e0" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M 360 85 L 400 85" stroke="#e0e0e0" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M 540 85 L 580 85" stroke="#e0e0e0" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+
+  <!-- Edges User -->
+  <path d="M 150 290 L 150 350" stroke="#e0e0e0" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <text x="160" y="320" font-family="Arial" font-size="10" fill="#e0e0e0">Realiza</text>
+
+  <path d="M 190 250 Q 270 250 270 350" stroke="#e0e0e0" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <text x="280" y="300" font-family="Arial" font-size="10" fill="#e0e0e0">Da</text>
+
+  <!-- Edges P2 -->
+  <path d="M 200 370 L 400 225" stroke="#e0e0e0" stroke-width="2" stroke-dasharray="5,5" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M 320 370 L 400 225" stroke="#e0e0e0" stroke-width="2" stroke-dasharray="5,5" fill="none" marker-end="url(#arrowhead)"/>
+
+  <path d="M 490 250 L 490 280" stroke="#e0e0e0" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M 490 330 L 490 360" stroke="#e0e0e0" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M 580 385 L 650 385" stroke="#e0e0e0" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+
+  <!-- Index to Motor -->
+  <path d="M 650 110 L 650 305 L 580 305" stroke="#e0e0e0" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <text x="660" y="200" font-family="Arial" font-size="10" fill="#e0e0e0">Índice</text>
+
+  <!-- Results to User -->
+  <path d="M 700 410 Q 700 480 150 480 L 150 290" stroke="#e0e0e0" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <text x="400" y="470" font-family="Arial" font-size="10" fill="#e0e0e0" text-anchor="middle">Muestra a</text>
+
+</svg>

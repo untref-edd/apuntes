@@ -21,16 +21,13 @@ La Web es una de las fuentes de información más grandes y diversas disponibles
 
 La World Wide Web funciona bajo un modelo cliente-servidor. El siguiente diagrama ilustra cómo interactúan estos componentes:
 
-```{mermaid}
-flowchart LR
-    A[Cliente<br/>Navegador] -->|1- Consulta DNS| C[Servidor DNS]
-    C -->|2- Dirección IP| A
-    A -->|3- Solicitud HTTP| B[Servidor Web]
-    B -->|4- Respuesta HTTP| A
-
-    style A fill:#e1f5ff
-    style B fill:#ffe1e1
-    style C fill:#e1ffe1
+```{figure} ../_static/figuras/arquitectura_cliente_servidor_light.svg
+---
+name: arquitectura_cliente_servidor
+width: 80%
+figclass: dark-light
+---
+Arquitectura Cliente-Servidor
 ```
 
 Los componentes principales son:
@@ -58,15 +55,13 @@ El protocolo HTTP sigue un modelo de solicitud-respuesta (*request-response*), d
 
 En el siguiente diagrama de secuencia se muestra una interacción típica entre un cliente y un servidor utilizando HTTP:
 
-```{mermaid}
-sequenceDiagram
-    participant C as Cliente
-    participant S as Servidor
-
-    C->>S: GET /index.html HTTP/1.1
-    Note over C,S: Solicitud HTTP
-    S->>C: HTTP/1.1 200 OK
-    Note over C,S: Respuesta HTTP con contenido
+```{figure} ../_static/figuras/secuencia_http_light.svg
+---
+name: secuencia_http
+width: 80%
+figclass: dark-light
+---
+Interacción HTTP Cliente-Servidor
 ```
 
 **Petición enviada:**
@@ -231,19 +226,13 @@ HTTPS (HTTP Secure) es la versión segura de HTTP que utiliza encriptación TLS/
 
 Las APIs (*Application Programming Interfaces*) son interfaces que permiten que diferentes aplicaciones se comuniquen entre sí de manera programática. En el contexto web, las APIs proporcionan puntos de acceso (*endpoints*) que los desarrolladores pueden usar para acceder a datos y funcionalidades de un servicio.
 
-```{mermaid}
-flowchart TB
-    A[Aplicación Cliente] -->|Solicitud HTTP| B[API REST]
-    B -->|JSON/XML| A
-    B --> C[Base de Datos]
-    B --> D[Servicios Externos]
-    B --> E[Lógica de Negocio]
-
-    style A fill:#e1f5ff
-    style B fill:#ffe1e1
-    style C fill:#fff4e1
-    style D fill:#e1ffe1
-    style E fill:#f5e1ff
+```{figure} ../_static/figuras/arquitectura_api_light.svg
+---
+name: arquitectura_api
+width: 80%
+figclass: dark-light
+---
+Arquitectura de una API REST
 ```
 
 Una aplicación cliente (por ejemplo una aplicación web o móvil) realiza solicitudes HTTP a una API REST, que procesa la solicitud, interactúa con bases de datos u otros servicios, y devuelve los datos en formatos como JSON o XML.

@@ -137,52 +137,13 @@ Un índice invertido consta de dos componentes principales:
 
 <div style="width:100%; display:flex; justify-content:center;">
 
-```{mermaid}
+```{figure} ../_static/figuras/indice_invertido_light.svg
 ---
 name: indice-invertido-matriz
+width: 80%
+figclass: dark-light
 ---
-%%{init: {'flowchart': {'nodeSpacing': 0, 'rankSpacing': 0, 'useMaxWidth': true}}}%%
-flowchart LR
-
-  subgraph Vocabulario["Vocabulario (términos)"]
-    direction TB
-    T_PY["python"]
-    T_LENG["lenguaje"]
-    T_PROG["programación"]
-    T_JAVA["java"]
-    T_ORIENT["orientado"]
-    T_OBJ["objetos"]
-    T_LENGS["lenguajes"]
-    T_POP["populares"]
-    T_MACHINE["machine"]
-    T_LEARN["learning"]
-  end
-
-  subgraph Postings["Postings (listas de doc_id)"]
-    direction TB
-    P_PY["[1, 3, 4]"]
-    P_LENG["[1, 2]"]
-    P_PROG["[1]"]
-    P_JAVA["[2, 3]"]
-    P_ORIENT["[2]"]
-    P_OBJ["[2]"]
-    P_LENGS["[3]"]
-    P_POP["[3]"]
-    P_MACHINE["[4]"]
-    P_LEARN["[4]"]
-  end
-
-  %% Relaciones: vocabulario → postings
-  T_PY --> P_PY
-  T_LENG --> P_LENG
-  T_PROG --> P_PROG
-  T_JAVA --> P_JAVA
-  T_ORIENT --> P_ORIENT
-  T_OBJ --> P_OBJ
-  T_LENGS --> P_LENGS
-  T_POP --> P_POP
-  T_MACHINE --> P_MACHINE
-  T_LEARN --> P_LEARN
+Estructura de un índice invertido
 ```
 
 </div>

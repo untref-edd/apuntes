@@ -130,36 +130,13 @@ if __name__ == "__main__":
 
 En Facebook las relaciones de amistad son simétricas o bidireccionales, por lo tanto se pueden representar con un grafo no dirigido. A continuación, mostramos un ejemplo simple de una red social con varios usuarios y sus conexiones:
 
-```{mermaid}
+```{figure} ../_static/figuras/grafo_facebook_light.svg
 ---
 name: grafo-facebook
+width: 80%
+figclass: dark-light
 ---
-graph LR
-    A[Ana]
-    B[Bruno]
-    C[Clara]
-    D[Diego]
-    E[Elena]
-    F[Fernando]
-    G[Gabriela]
-
-    A <--> B
-    A <--> C
-    A <--> D
-    B <--> C
-    B <--> E
-    C <--> F
-    D <--> F
-    E <--> F
-    F <--> G
-
-    style A fill:#ffcccc,stroke:#cc0000,stroke-width:2px
-    style B fill:#ccffcc,stroke:#00cc00,stroke-width:2px
-    style C fill:#ccccff,stroke:#0000cc,stroke-width:2px
-    style D fill:#ffffcc,stroke:#cccc00,stroke-width:2px
-    style E fill:#ffccff,stroke:#cc00cc,stroke-width:2px
-    style F fill:#ccffff,stroke:#00cccc,stroke-width:2px
-    style G fill:#ffddcc,stroke:#cc6600,stroke-width:2px
+Grafo de amistades en una red social
 ```
 
 En Facebook se puede acceder online a Graph API Explorer para probar consultas y explorar la estructura de datos: [Graph API Explorer](https://developers.facebook.com/tools/explorer/).

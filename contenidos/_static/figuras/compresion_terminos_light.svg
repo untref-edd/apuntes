@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 200">
+  <rect width="700" height="200" fill="#ffffff"/>
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333333"/>
+    </marker>
+  </defs>
+
+  <!-- Memory Block -->
+  <rect x="50" y="80" width="600" height="40" fill="#e1f5ff" stroke="#4682b4" stroke-width="2"/>
+  
+  <!-- Characters -->
+  <text x="55" y="105" font-family="Monospace" font-size="14" fill="#333333" xml:space="preserve">p r o g r a m a p r o g r a m a b l e p r o g r a m a c i ó n</text>
+
+  <!-- Grid lines for characters (approximate) -->
+  <g stroke="#add8e6" stroke-width="1">
+    <line x1="50" y1="80" x2="50" y2="120"/>
+    <!-- ... I won't draw every single line, just the block structure -->
+  </g>
+
+  <!-- Pointers -->
+  <!-- programa (start 0) -->
+  <line x1="100" y1="30" x2="55" y2="75" stroke="#e9967a" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <rect x="80" y="10" width="80" height="25" rx="3" fill="#ffe1e1" stroke="#e9967a" stroke-width="1"/>
+  <text x="120" y="27" font-family="Arial" font-size="12" fill="#333333" text-anchor="middle">Ptr 1 (0)</text>
+
+  <!-- programable (start 8 chars * approx width) -->
+  <!-- Let's assume monospaced font, approx 12px width per char? -->
+  <!-- "programa" is 8 chars. Next starts at char 8. -->
+  <!-- 55 + 8 * 14 (approx spacing) -->
+  <!-- I'll just point visually to the 'p' of programable -->
+  
+  <line x1="250" y1="30" x2="170" y2="75" stroke="#e9967a" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <rect x="230" y="10" width="80" height="25" rx="3" fill="#ffe1e1" stroke="#e9967a" stroke-width="1"/>
+  <text x="270" y="27" font-family="Arial" font-size="12" fill="#333333" text-anchor="middle">Ptr 2 (8)</text>
+
+  <!-- programación (start 8+11 = 19 chars) -->
+  <line x1="400" y1="30" x2="330" y2="75" stroke="#e9967a" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <rect x="380" y="10" width="80" height="25" rx="3" fill="#ffe1e1" stroke="#e9967a" stroke-width="1"/>
+  <text x="420" y="27" font-family="Arial" font-size="12" fill="#333333" text-anchor="middle">Ptr 3 (19)</text>
+
+  <!-- Terms List (Legend) -->
+  <text x="50" y="150" font-family="Arial" font-size="12" fill="#555555">Términos almacenados:</text>
+  <text x="50" y="170" font-family="Arial" font-size="12" fill="#333333">1. programa</text>
+  <text x="200" y="170" font-family="Arial" font-size="12" fill="#333333">2. programable</text>
+  <text x="350" y="170" font-family="Arial" font-size="12" fill="#333333">3. programación</text>
+
+</svg>

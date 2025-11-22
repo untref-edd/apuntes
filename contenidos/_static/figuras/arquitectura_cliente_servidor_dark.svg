@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 250">
+  <rect width="600" height="250" fill="#1e1e1e"/>
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="19" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#e0e0e0"/>
+    </marker>
+  </defs>
+
+  <!-- Nodes -->
+  <!-- Client (A) - Blueish -->
+  <rect x="50" y="100" width="120" height="60" rx="5" fill="#2d3748" stroke="#63b3ed" stroke-width="2"/>
+  <text x="110" y="125" font-family="Arial" font-size="14" fill="#e0e0e0" text-anchor="middle">Cliente</text>
+  <text x="110" y="145" font-family="Arial" font-size="12" fill="#e0e0e0" text-anchor="middle">Navegador</text>
+
+  <!-- DNS Server (C) - Greenish -->
+  <rect x="250" y="20" width="120" height="60" rx="5" fill="#22543d" stroke="#48bb78" stroke-width="2"/>
+  <text x="310" y="55" font-family="Arial" font-size="14" fill="#e0e0e0" text-anchor="middle">Servidor DNS</text>
+
+  <!-- Web Server (B) - Reddish -->
+  <rect x="450" y="100" width="120" height="60" rx="5" fill="#4a5568" stroke="#fc8181" stroke-width="2"/>
+  <text x="510" y="135" font-family="Arial" font-size="14" fill="#e0e0e0" text-anchor="middle">Servidor Web</text>
+
+  <!-- Edges -->
+  <!-- 1- Consulta DNS (A -> C) -->
+  <path d="M 110 100 Q 150 50 250 50" stroke="#e0e0e0" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <text x="150" y="60" font-family="Arial" font-size="10" fill="#e0e0e0">1- Consulta DNS</text>
+
+  <!-- 2- Dirección IP (C -> A) -->
+  <path d="M 310 80 Q 250 130 170 130" stroke="#e0e0e0" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <text x="250" y="120" font-family="Arial" font-size="10" fill="#e0e0e0">2- Dirección IP</text>
+
+  <!-- 3- Solicitud HTTP (A -> B) -->
+  <path d="M 170 110 L 450 110" stroke="#e0e0e0" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <text x="310" y="100" font-family="Arial" font-size="10" fill="#e0e0e0" text-anchor="middle">3- Solicitud HTTP</text>
+
+  <!-- 4- Respuesta HTTP (B -> A) -->
+  <path d="M 450 150 L 170 150" stroke="#e0e0e0" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <text x="310" y="170" font-family="Arial" font-size="10" fill="#e0e0e0" text-anchor="middle">4- Respuesta HTTP</text>
+
+</svg>

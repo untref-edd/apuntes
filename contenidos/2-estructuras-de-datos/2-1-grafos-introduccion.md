@@ -42,7 +42,7 @@ $$
 |E| ≤ |V|^2
 $$
 
-```{figure} ../assets/images/grafo_ejemplo.png
+```{figure} ../_static/figuras/grafo_ejemplo_light.svg
 ---
 name: grafo_ejemplo
 width: 60%
@@ -61,7 +61,7 @@ Los grafos se pueden clasificar en dirigidos y no dirigidos. En un grafo dirigid
 
 Por ejemplo, en la siguiente imagen se observa las relaciones de amistad en una red social, donde las relaciones son simétricas, es decir, si A es amigo de B, entonces B es amigo de A. Estas relaciones se pueden representar con un grafo no dirigido.
 
-```{figure} ../assets/images/grafo_red.png
+```{figure} ../_static/figuras/grafo_red_light.svg
 ---
 name: grafo_red
 width: 60%
@@ -72,7 +72,7 @@ Grafo de amistades en una red social
 
 Los grafos dirigidos permiten representar relaciones asimétricas entre dos nodos. Por ejemplo el plan de estudios de una carrera se puede modelar con un grafo dirigido, donde las materias son los nodos y las aristas indican las correlativas que se deben aprobar antes de cursar una materia.
 
-```{figure} ../assets/images/grafo_carrera.png
+```{figure} ../_static/figuras/grafo_carrera_light.svg
 ---
 name: grafo_carrera
 width: 80%
@@ -93,7 +93,7 @@ $$
 
 Un grafo se dice que es **ponderado** si cada arista tiene un peso o costo asociado. Este peso puede representar diferentes cosas, como la distancia entre dos nodos o el tiempo necesario para recorrer una arista. Por otro lado, un grafo es **no ponderado** si sus aristas no tienen pesos.
 
-```{figure} ../assets/images/grafo_con_pesos.png
+```{figure} ../_static/figuras/grafo_con_pesos_light.svg
 ---
 name: grafo_con_pesos
 width: 60%
@@ -108,7 +108,7 @@ Grafo ponderado con costos en las aristas
 
 Un camino en un grafo es una secuencia de vértices en la que cada par de vértices adyacentes está conectado por una arista. Un camino puede ser **simple** (sin vértices repetidos) o tener **ciclos** (vértices repetidos). En general cuando se habla sólo de camino se refiere a un **camino simple** sin ciclos.
 
-```{figure} ../assets/images/grafo_camino.png
+```{figure} ../_static/figuras/grafo_camino_light.svg
 ---
 name: grafo_camino
 width: 60%
@@ -147,7 +147,7 @@ Es un grafo cuyas aristas son dirigidas y no presenta ciclos, también conocidos
 
 Visto de otra forma si partimos de un vértice cualquiera del grafo no existe ningún camino que permita regresar al mismo vértice.
 
-```{figure} ../assets/images/grafo_dag.png
+```{figure} ../_static/figuras/grafo_dag_light.svg
 ---
 name: grafo_dag
 width: 60%
@@ -203,7 +203,7 @@ A=\{(V_0, V_1, 2), (V_0, V_3, 1), (V_1, V_3, 3), (V_1, V_4, 10), (V_2, V_0, 4), 
 \end{aligned}
 $$
 
-```{figure} ../assets/images/grafo_dirigido.png
+```{figure} ../_static/figuras/grafo_dirigido_light.svg
 ---
 name: grafo_dirigido
 width: 60%
@@ -237,7 +237,7 @@ Para representar grafos no ponderados se acostumbra poner un 1 donde hay una ari
 
 Si el grafo es no dirigido, la matriz de adyacencia será simétrica, por ejemplo la matriz de adyacencia para el siguiente grafo:
 
-```{figure} ../assets/images/grafo_con_pesos.png
+```{figure} ../_static/figuras/grafo_no_dirigido_light.svg
 ---
 name: grafo_no_dirigido
 width: 60%
@@ -265,10 +265,11 @@ La lista de adyacencia es otra forma de representar un grafo. En lugar de usar u
 
 Para el grafo dirigido anterior la lista de adyacencia sería:
 
-```{figure} ../assets/images/grafo_dirigido_lista.svg
+```{figure} ../_static/figuras/grafo_dirigido_lista_light.svg
 ---
 name: grafo_dirigido_lista
 width: 80%
+figclass: dark-light
 ---
 Lista de adyacencia del grafo dirigido
 ```
@@ -277,10 +278,11 @@ En cada nodo de la lista se almacena el par $(vecino, peso)$ que representa la a
 
 A continuación la lista de adyacencia para el grafo no dirigido del punto anterior:
 
-```{figure} ../assets/images/grafo_no_dirigido_lista.svg
+```{figure} ../_static/figuras/grafo_no_dirigido_lista_light.svg
 ---
 name: grafo_no_dirigido_lista
 width: 80%
+figclass: dark-light
 ---
 Lista de adyacencia del grafo no dirigido
 ```

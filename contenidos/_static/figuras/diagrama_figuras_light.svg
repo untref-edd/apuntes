@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#ffffff"/>
+
+  <!-- Definitions -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333333"/>
+    </marker>
+    <marker id="diamond" markerWidth="12" markerHeight="12" refX="12" refY="6" orient="auto">
+      <polygon points="0 6, 6 0, 12 6, 6 12" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+    </marker>
+  </defs>
+
+  <!-- Class: Punto -->
+  <g transform="translate(325, 20)">
+    <rect x="0" y="0" width="150" height="80" fill="#ffe1e1" stroke="#e9967a" stroke-width="2"/>
+    <text x="75" y="25" font-family="Arial" font-size="16" font-weight="bold" fill="#333333" text-anchor="middle">Punto</text>
+    <line x1="0" y1="35" x2="150" y2="35" stroke="#e9967a" stroke-width="1"/>
+    <text x="5" y="55" font-family="Arial" font-size="12" fill="#333333">x</text>
+    <text x="5" y="70" font-family="Arial" font-size="12" fill="#333333">y</text>
+  </g>
+
+  <!-- Class: Rectangulo -->
+  <g transform="translate(50, 150)">
+    <rect x="0" y="0" width="160" height="100" fill="#e1f5ff" stroke="#4682b4" stroke-width="2"/>
+    <text x="80" y="25" font-family="Arial" font-size="16" font-weight="bold" fill="#333333" text-anchor="middle">Rectangulo</text>
+    <line x1="0" y1="35" x2="160" y2="35" stroke="#4682b4" stroke-width="1"/>
+    <text x="5" y="55" font-family="Arial" font-size="12" fill="#333333">p1: Punto</text>
+    <text x="5" y="70" font-family="Arial" font-size="12" fill="#333333">p2: Punto</text>
+    <line x1="0" y1="75" x2="160" y2="75" stroke="#4682b4" stroke-width="1"/>
+    <text x="5" y="90" font-family="Arial" font-size="12" fill="#333333">area(), perimetro()</text>
+  </g>
+
+  <!-- Class: Elipse -->
+  <g transform="translate(320, 150)">
+    <rect x="0" y="0" width="160" height="100" fill="#e1f5ff" stroke="#4682b4" stroke-width="2"/>
+    <text x="80" y="25" font-family="Arial" font-size="16" font-weight="bold" fill="#333333" text-anchor="middle">Elipse</text>
+    <line x1="0" y1="35" x2="160" y2="35" stroke="#4682b4" stroke-width="1"/>
+    <text x="5" y="55" font-family="Arial" font-size="12" fill="#333333">centro: Punto</text>
+    <text x="5" y="70" font-family="Arial" font-size="12" fill="#333333">radio_a, radio_b</text>
+    <line x1="0" y1="75" x2="160" y2="75" stroke="#4682b4" stroke-width="1"/>
+    <text x="5" y="90" font-family="Arial" font-size="12" fill="#333333">area(), perimetro()</text>
+  </g>
+
+  <!-- Class: Triangulo -->
+  <g transform="translate(590, 150)">
+    <rect x="0" y="0" width="160" height="100" fill="#e1f5ff" stroke="#4682b4" stroke-width="2"/>
+    <text x="80" y="25" font-family="Arial" font-size="16" font-weight="bold" fill="#333333" text-anchor="middle">Triangulo</text>
+    <line x1="0" y1="35" x2="160" y2="35" stroke="#4682b4" stroke-width="1"/>
+    <text x="5" y="55" font-family="Arial" font-size="12" fill="#333333">p1, p2, p3: Punto</text>
+    <line x1="0" y1="75" x2="160" y2="75" stroke="#4682b4" stroke-width="1"/>
+    <text x="5" y="90" font-family="Arial" font-size="12" fill="#333333">area(), perimetro()</text>
+  </g>
+
+  <!-- Class: Cuadrado -->
+  <g transform="translate(50, 320)">
+    <rect x="0" y="0" width="160" height="80" fill="#e1f5ff" stroke="#4682b4" stroke-width="2"/>
+    <text x="80" y="25" font-family="Arial" font-size="16" font-weight="bold" fill="#333333" text-anchor="middle">Cuadrado</text>
+    <line x1="0" y1="35" x2="160" y2="35" stroke="#4682b4" stroke-width="1"/>
+    <text x="5" y="55" font-family="Arial" font-size="12" fill="#333333">lado</text>
+    <line x1="0" y1="60" x2="160" y2="60" stroke="#4682b4" stroke-width="1"/>
+    <text x="5" y="75" font-family="Arial" font-size="12" fill="#333333"></text>
+  </g>
+
+  <!-- Class: Circulo -->
+  <g transform="translate(320, 320)">
+    <rect x="0" y="0" width="160" height="80" fill="#e1f5ff" stroke="#4682b4" stroke-width="2"/>
+    <text x="80" y="25" font-family="Arial" font-size="16" font-weight="bold" fill="#333333" text-anchor="middle">Circulo</text>
+    <line x1="0" y1="35" x2="160" y2="35" stroke="#4682b4" stroke-width="1"/>
+    <text x="5" y="55" font-family="Arial" font-size="12" fill="#333333">radio</text>
+    <line x1="0" y1="60" x2="160" y2="60" stroke="#4682b4" stroke-width="1"/>
+    <text x="5" y="75" font-family="Arial" font-size="12" fill="#333333"></text>
+  </g>
+
+  <!-- Inheritance Arrows -->
+  <!-- Cuadrado -> Rectangulo -->
+  <path d="M 130 320 L 130 250" stroke="#333333" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+
+  <!-- Circulo -> Elipse -->
+  <path d="M 400 320 L 400 250" stroke="#333333" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+
+  <!-- Composition (Aggregation) Lines to Punto -->
+  <!-- Rectangulo -> Punto -->
+  <path d="M 130 150 L 325 60" stroke="#333333" stroke-width="1" stroke-dasharray="5,5" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Elipse -> Punto -->
+  <path d="M 400 150 L 400 100" stroke="#333333" stroke-width="1" stroke-dasharray="5,5" fill="none" marker-end="url(#arrowhead)"/>
+
+  <!-- Triangulo -> Punto -->
+  <path d="M 670 150 L 475 60" stroke="#333333" stroke-width="1" stroke-dasharray="5,5" fill="none" marker-end="url(#arrowhead)"/>
+
+</svg>

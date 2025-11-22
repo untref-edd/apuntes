@@ -62,9 +62,11 @@ Para construir índices usaremos árboles B+, una variante de los árboles B en 
 
 Consideremos un árbol B+ de orden 3 (cada nodo puede tener hasta 3 hijos) que almacena las siguientes palabras: `"PACO"`, `"POCO"`, `"PECA"`, `"PICO"`, `"PALA"`, `"POLO"`, `"PIEL"` y `"PIPA"`. El árbol se vería así:
 
-```{figure} ../assets/images/bplus1.png
+```{figure} ../_static/figuras/bplus1_light.svg
 ---
 name: bplus1
+width: 90%
+figclass: dark-light
 ---
 Árbol B+ de orden 3.
 ```
@@ -87,19 +89,47 @@ La inserción de un nuevo valor en un árbol B+ sigue estos pasos:
 4. **Actualizar el nodo padre**: Si el nodo padre también está lleno, se repite el proceso de división y promoción hacia arriba hasta llegar a la raíz.
 5. **Crear una nueva raíz si es necesario**: Si la raíz se divide, se crea una nueva raíz con la clave promovida.
 
-![Inserción en hoja](../assets/images/bplus2.png)
+```{figure} ../_static/figuras/bplus2_light.svg
+---
+name: bplus2
+width: 90%
+figclass: dark-light
+---
+Inserción en hoja
+```
 
 Se encuentra la hoja donde se debe insertar `"PILA"`.
 
-![División de hoja](../assets/images/bplus3.png)
+```{figure} ../_static/figuras/bplus3_light.svg
+---
+name: bplus3
+width: 90%
+figclass: dark-light
+---
+División de hoja
+```
 
 Al insertar `"PILA"`, la hoja se divide en dos, la primera contiene `"PIEL"` y la segunda `"PILA"`|`"PIPA"`.
 
-![Promoción hacia arriba](../assets/images/bplus4.png)
+```{figure} ../_static/figuras/bplus4_light.svg
+---
+name: bplus4
+width: 90%
+figclass: dark-light
+---
+Promoción hacia arriba
+```
 
 Como `"PILA"`, es la primera clave del segundo nodo que se partió, se promueve hacia arriba.
 
-![Nueva raíz](../assets/images/bplus5.png)
+```{figure} ../_static/figuras/bplus5_light.svg
+---
+name: bplus5
+width: 90%
+figclass: dark-light
+---
+Nueva raíz
+```
 
 El nodo intermedio también se parte y finalmente se promueve `"PILA"` a la raíz.
 
