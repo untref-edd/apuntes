@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400">
+  <rect width="500" height="400" fill="#1e1e1e"/>
+
+  <style>
+    .label-node { font-family: Arial; font-size: 16px; text-anchor: middle; dominant-baseline: middle; fill: #e0e0e0; }
+    .label-weight { font-family: Arial; font-size: 16px; text-anchor: middle; dominant-baseline: middle; fill: #e0e0e0; font-weight: bold; }
+  </style>
+
+  <g stroke="#e0e0e0" stroke-width="2">
+    <line x1="80" y1="100" x2="380" y2="60" />   <line x1="80" y1="100" x2="100" y2="280" />  <line x1="100" y1="280" x2="300" y2="350" /> <line x1="300" y1="350" x2="420" y2="220" /> <line x1="420" y1="220" x2="380" y2="60" />  <line x1="100" y1="280" x2="420" y2="220" /> </g>
+
+  <g>
+    <text x="230" y="70" class="label-weight">3</text>
+
+    <text x="75" y="190" class="label-weight">1</text>
+
+    <text x="200" y="335" class="label-weight">4</text>
+
+    <text x="375" y="300" class="label-weight">2</text>
+
+    <text x="415" y="140" class="label-weight">4</text>
+
+    <text x="260" y="240" class="label-weight">5</text>
+  </g>
+
+  <g stroke="#63b3ed" stroke-width="2" fill="#2d3748">
+    <circle cx="100" cy="280" r="20" /> <circle cx="300" cy="350" r="20" /> <circle cx="420" cy="220" r="20" /> <circle cx="380" cy="60"  r="20" /> <circle cx="80"  cy="100" r="20" /> </g>
+
+  <g class="label-node">
+    <text x="100" y="280">A</text>
+    <text x="300" y="350">B</text>
+    <text x="420" y="220">C</text>
+    <text x="380" y="60">D</text>
+    <text x="80" y="100">E</text>
+  </g>
+
+</svg>

@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+  
+  <text x="400" y="40" font-family="Arial" font-size="24" text-anchor="middle" fill="#333333">Inmutabilidad (Strings)</text>
+
+  
+  <g transform="translate(50, 100)">
+    <text x="100" y="-20" font-family="Arial" font-size="18" fill="#333333" text-anchor="middle">1. s1 = "hola", s2 = s1</text>
+    
+    
+    <rect x="20" y="20" width="60" height="40" rx="5" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
+    <text x="50" y="45" font-family="Arial" font-size="18" fill="#333333" text-anchor="middle">s1</text>
+    
+    
+    <rect x="20" y="80" width="60" height="40" rx="5" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
+    <text x="50" y="105" font-family="Arial" font-size="18" fill="#333333" text-anchor="middle">s2</text>
+    
+    
+    <path d="M 90 40 L 170 70" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
+    <path d="M 90 100 L 170 70" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
+    
+    
+    <rect x="180" y="50" width="100" height="40" rx="5" fill="#ffe1e1" stroke="#e9967a" stroke-width="2" />
+    <text x="230" y="75" font-family="Arial" font-size="18" fill="#333333" text-anchor="middle">"hola"</text>
+  </g>
+
+  
+  <g transform="translate(400, 100)">
+    <text x="150" y="-20" font-family="Arial" font-size="18" fill="#333333" text-anchor="middle">2. s1 += " mundo"</text>
+    
+    
+    <rect x="20" y="20" width="60" height="40" rx="5" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
+    <text x="50" y="45" font-family="Arial" font-size="18" fill="#333333" text-anchor="middle">s1</text>
+    
+    
+    <rect x="20" y="140" width="60" height="40" rx="5" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
+    <text x="50" y="165" font-family="Arial" font-size="18" fill="#333333" text-anchor="middle">s2</text>
+    
+    
+    <path d="M 90 40 L 170 40" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
+    
+    
+    <path d="M 90 160 L 170 160" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
+    
+    
+    <rect x="180" y="20" width="160" height="40" rx="5" fill="#ffe1e1" stroke="#e9967a" stroke-width="2" />
+    <text x="260" y="45" font-family="Arial" font-size="18" fill="#333333" text-anchor="middle">"hola mundo"</text>
+    
+    
+    <rect x="180" y="140" width="100" height="40" rx="5" fill="#ffe1e1" stroke="#e9967a" stroke-width="2" />
+    <text x="230" y="165" font-family="Arial" font-size="18" fill="#333333" text-anchor="middle">"hola"</text>
+  </g>
+
+  
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333333" />
+    </marker>
+  </defs>
+</svg>

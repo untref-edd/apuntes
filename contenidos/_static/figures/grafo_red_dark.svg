@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#1e1e1e"/>
+  
+  <g stroke="#e0e0e0" stroke-width="2">
+    <line x1="150" y1="120" x2="280" y2="280" />
+    <line x1="400" y1="100" x2="280" y2="280" />
+    <line x1="400" y1="100" x2="520" y2="280" />
+    <line x1="650" y1="180" x2="520" y2="280" />
+    <line x1="650" y1="180" x2="700" y2="450" />
+    <line x1="280" y1="280" x2="520" y2="280" />
+    <line x1="280" y1="280" x2="150" y2="450" />
+    <line x1="280" y1="280" x2="400" y2="450" />
+    <line x1="520" y1="280" x2="400" y2="450" />
+    <line x1="520" y1="280" x2="550" y2="520" />
+    <line x1="150" y1="450" x2="400" y2="450" />
+    <line x1="400" y1="450" x2="550" y2="520" />
+  </g>
+
+  <g font-family="Arial" font-size="20" text-anchor="middle" dominant-baseline="middle" fill="#e0e0e0">
+
+    <circle cx="150" cy="120" r="40" fill="#2d3748" stroke="#63b3ed" stroke-width="2" />
+    <text x="150" y="122">Ana</text>
+
+    <circle cx="400" cy="100" r="40" fill="#2d3748" stroke="#63b3ed" stroke-width="2" />
+    <text x="400" y="102">Leo</text>
+
+    <circle cx="650" cy="180" r="40" fill="#2d3748" stroke="#63b3ed" stroke-width="2" />
+    <text x="650" y="182">Ben</text>
+
+    <circle cx="280" cy="280" r="45" fill="#2d3748" stroke="#63b3ed" stroke-width="2" />
+    <text x="280" y="282">Zoe</text>
+
+    <circle cx="520" cy="280" r="45" fill="#2d3748" stroke="#63b3ed" stroke-width="2" />
+    <text x="520" y="282">Jon</text>
+
+    <circle cx="150" cy="450" r="40" fill="#2d3748" stroke="#63b3ed" stroke-width="2" />
+    <text x="150" y="452">Max</text>
+
+    <circle cx="400" cy="450" r="45" fill="#2d3748" stroke="#63b3ed" stroke-width="2" />
+    <text x="400" y="452">Mia</text>
+
+    <circle cx="550" cy="520" r="40" fill="#2d3748" stroke="#63b3ed" stroke-width="2" />
+    <text x="550" y="522">Eva</text>
+
+    <circle cx="700" cy="450" r="40" fill="#2d3748" stroke="#63b3ed" stroke-width="2" />
+    <text x="700" y="452">Sam</text>
+  </g>
+</svg>

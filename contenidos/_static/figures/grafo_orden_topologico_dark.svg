@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -100 700 600">
+  <rect x="0" y="-100" width="700" height="600" fill="#1e1e1e"/>
+
+  <defs>
+    <marker id="arrowhead-dark" markerWidth="8" markerHeight="6" refX="18.5" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#e0e0e0" />
+    </marker>
+  </defs>
+
+  <style>
+    .label-node { font-family: Arial; font-size: 16px; text-anchor: middle; dominant-baseline: middle; fill: #e0e0e0; }
+    .edge { fill: none; stroke: #e0e0e0; stroke-width: 2; marker-end: url(#arrowhead-dark); }
+    .node-circle { fill: #2d3748; stroke: #63b3ed; stroke-width: 2; }
+  </style>
+
+  <g>
+    <path d="M 50,50 Q 95,-20 140,110" class="edge" />
+    <path d="M 50,50 Q 320,-180 590,410" class="edge" />
+    <path d="M 140,110 Q 185,40 230,170" class="edge" />
+    <path d="M 140,110 Q 230,-10 320,230" class="edge" />
+    <path d="M 230,170 Q 275,120 320,230" class="edge" />
+    <path d="M 230,170 Q 320,60 410,290" class="edge" />
+    <path d="M 320,230 Q 365,190 410,290" class="edge" />
+    <path d="M 320,230 Q 410,100 500,350" class="edge" />
+    <path d="M 320,230 Q 455,0 590,410" class="edge" />
+    <path d="M 410,290 Q 455,250 500,350" class="edge" />
+    <path d="M 500,350 Q 545,310 590,410" class="edge" />
+  </g>
+
+  <g class="node-circle">
+    <circle cx="50"  cy="50"  r="20" />
+    <circle cx="140" cy="110" r="20" />
+    <circle cx="230" cy="170" r="20" />
+    <circle cx="320" cy="230" r="20" />
+    <circle cx="410" cy="290" r="20" />
+    <circle cx="500" cy="350" r="20" />
+    <circle cx="590" cy="410" r="20" />
+  </g>
+
+  <g class="label-node">
+    <text x="50"  y="50">V2</text>
+    <text x="140" y="110">V0</text>
+    <text x="230" y="170">V1</text>
+    <text x="320" y="230">V3</text>
+    <text x="410" y="290">V4</text>
+    <text x="500" y="350">V6</text>
+    <text x="590" y="410">V5</text>
+  </g>
+
+</svg>

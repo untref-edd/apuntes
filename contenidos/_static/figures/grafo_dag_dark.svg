@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400">
+  <rect width="500" height="400" fill="#1e1e1e"/>
+  
+  <defs>
+    <marker id="arrowhead-dark" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#e0e0e0" />
+    </marker>
+  </defs>
+
+  <style>
+    .label-node { font-family: Arial; font-size: 16px; text-anchor: middle; dominant-baseline: middle; fill: #e0e0e0; }
+  </style>
+
+  <g stroke="#e0e0e0" stroke-width="2" marker-end="url(#arrowhead-dark)">
+    <line x1="70" y1="250" x2="165" y2="337" />
+    <line x1="70" y1="250" x2="141" y2="118" />
+    
+    <line x1="180" y1="350" x2="330" y2="332" />
+    <line x1="180" y1="350" x2="251" y2="218" />
+
+    <line x1="350" y1="330" x2="271" y2="216" />
+    <line x1="350" y1="330" x2="412" y2="188" />
+
+    <line x1="260" y1="200" x2="165" y2="113" />
+    <line x1="260" y1="200" x2="295" y2="69" />
+    <line x1="260" y1="200" x2="400" y2="174" />
+
+    <line x1="300" y1="50" x2="169" y2="94" />
+
+    <line x1="420" y1="170" x2="314" y2="64" />
+  </g>
+
+  <g stroke="#63b3ed" stroke-width="2" fill="#2d3748">
+    <circle cx="180" cy="350" r="20" /> <circle cx="350" cy="330" r="20" /> <circle cx="70"  cy="250" r="20" /> <circle cx="260" cy="200" r="20" /> <circle cx="420" cy="170" r="20" /> <circle cx="150" cy="100" r="20" /> <circle cx="300" cy="50"  r="20" /> </g>
+
+  <g class="label-node">
+    <text x="180" y="350">V0</text>
+    <text x="350" y="330">V1</text>
+    <text x="70"  y="250">V2</text>
+    <text x="260" y="200">V3</text>
+    <text x="420" y="170">V4</text>
+    <text x="150" y="100">V5</text>
+    <text x="300" y="50">V6</text>
+  </g>
+
+</svg>

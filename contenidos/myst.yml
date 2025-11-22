@@ -85,7 +85,7 @@ site:
   template: book-theme
   options:
     folders: true
-    logo: assets/images/untref-logo.svg
-    logo_dark: assets/images/untref-logo-white.svg
-    favicon: assets/images/untref-favicon.ico
+    logo: _static/figures/untref-logo.svg
+    logo_dark: _static/figures/untref-logo-white.svg
+    favicon: _static/figures/untref-favicon.ico
     style: _static/css/custom.css

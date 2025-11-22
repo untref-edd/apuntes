@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 350">
+  <defs>
+    <marker id="arrowhead" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto">
+      <polygon points="0 0, 6 2.5, 0 5" fill="#333333" />
+    </marker>
+  </defs>
+
+  
+  <g transform="translate(390, 20)">
+    <rect width="120" height="30" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
+    <line x1="60" y1="0" x2="60" y2="30" stroke="#4682b4" stroke-width="2" />
+    <text x="30" y="20" font-family="Arial" font-size="12" fill="#333333" text-anchor="middle">PICO</text>
+    <text x="90" y="20" font-family="Arial" font-size="12" fill="#333333" text-anchor="middle">PILA</text>
+  </g>
+
+  
+  
+  <g transform="translate(150, 100)">
+    <rect width="60" height="30" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
+    <text x="30" y="20" font-family="Arial" font-size="12" fill="#333333" text-anchor="middle">PALA</text>
+  </g>
+
+  
+  <g transform="translate(420, 100)">
+    <rect width="60" height="30" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
+    <text x="30" y="20" font-family="Arial" font-size="12" fill="#333333" text-anchor="middle">PIEL</text>
+  </g>
+
+  
+  <g transform="translate(690, 100)">
+    <rect width="60" height="30" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
+    <text x="30" y="20" font-family="Arial" font-size="12" fill="#333333" text-anchor="middle">POCO</text>
+  </g>
+
+  
+  
+  <g transform="translate(50, 200)">
+    <rect width="60" height="30" fill="#ffe1e1" stroke="#e9967a" stroke-width="2" />
+    <text x="30" y="20" font-family="Arial" font-size="12" fill="#333333" text-anchor="middle">PACO</text>
+  </g>
+
+  
+  <g transform="translate(150, 200)">
+    <rect width="120" height="30" fill="#ffe1e1" stroke="#e9967a" stroke-width="2" />
+    <line x1="60" y1="0" x2="60" y2="30" stroke="#e9967a" stroke-width="2" />
+    <text x="30" y="20" font-family="Arial" font-size="12" fill="#333333" text-anchor="middle">PALA</text>
+    <text x="90" y="20" font-family="Arial" font-size="12" fill="#333333" text-anchor="middle">PECA</text>
+  </g>
+
+  
+  <g transform="translate(320, 200)">
+    <rect width="60" height="30" fill="#ffe1e1" stroke="#e9967a" stroke-width="2" />
+    <text x="30" y="20" font-family="Arial" font-size="12" fill="#333333" text-anchor="middle">PICO</text>
+  </g>
+
+  
+  <g transform="translate(420, 200)">
+    <rect width="60" height="30" fill="#ffe1e1" stroke="#e9967a" stroke-width="2" />
+    <text x="30" y="20" font-family="Arial" font-size="12" fill="#333333" text-anchor="middle">PIEL</text>
+  </g>
+
+  
+  <g transform="translate(530, 200)">
+    <rect width="120" height="30" fill="#ffe1e1" stroke="#e9967a" stroke-width="2" />
+    <line x1="60" y1="0" x2="60" y2="30" stroke="#e9967a" stroke-width="2" />
+    <text x="30" y="20" font-family="Arial" font-size="12" fill="#333333" text-anchor="middle">PILA</text>
+    <text x="90" y="20" font-family="Arial" font-size="12" fill="#333333" text-anchor="middle">PIPA</text>
+  </g>
+
+  
+  <g transform="translate(700, 200)">
+    <rect width="120" height="30" fill="#ffe1e1" stroke="#e9967a" stroke-width="2" />
+    <line x1="60" y1="0" x2="60" y2="30" stroke="#e9967a" stroke-width="2" />
+    <text x="30" y="20" font-family="Arial" font-size="12" fill="#333333" text-anchor="middle">POCO</text>
+    <text x="90" y="20" font-family="Arial" font-size="12" fill="#333333" text-anchor="middle">POLO</text>
+  </g>
+
+  
+  
+  <line x1="390" y1="50" x2="180" y2="100" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
+  <line x1="450" y1="50" x2="450" y2="100" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
+  <line x1="510" y1="50" x2="720" y2="100" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
+
+  
+  <line x1="150" y1="130" x2="80" y2="200" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
+  <line x1="210" y1="130" x2="210" y2="200" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
+
+  
+  <line x1="420" y1="130" x2="350" y2="200" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
+  <line x1="480" y1="130" x2="450" y2="200" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
+
+  
+  <line x1="690" y1="130" x2="590" y2="200" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
+  <line x1="750" y1="130" x2="760" y2="200" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
+
+  
+  <line x1="110" y1="215" x2="150" y2="215" stroke="#e9967a" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#arrowhead)" />
+  <line x1="270" y1="215" x2="320" y2="215" stroke="#e9967a" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#arrowhead)" />
+  <line x1="380" y1="215" x2="420" y2="215" stroke="#e9967a" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#arrowhead)" />
+  <line x1="480" y1="215" x2="530" y2="215" stroke="#e9967a" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#arrowhead)" />
+  <line x1="650" y1="215" x2="700" y2="215" stroke="#e9967a" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#arrowhead)" />
+
+</svg>

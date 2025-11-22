@@ -69,12 +69,13 @@ Como se puede observar XML permite estructurar la información en forma jerárqu
 
 Los atributos en XML permiten agregar metadatos o información adicional a los elementos, lo que puede ser útil para describir propiedades o características específicas de los datos. Sin embargo, es importante usarlos con moderación y de manera coherente para evitar complicaciones en la interpretación del documento.
 
-```{figure} ../_static/figuras/poema_xml_light.svg
----
-name: xml_tree
-align: center
-figclass: dark-light
----
+```{figure} ../_static/figures/poema_xml_light.svg
+:class: only-light-mode
+Árbol que representa la estructura del poema en XML.
+```
+
+```{figure} ../_static/figures/poema_xml_dark.svg
+:class: only-dark-mode
 Árbol que representa la estructura del poema en XML.
 ```
 

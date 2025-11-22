@@ -75,25 +75,25 @@ La ventaja de este algoritmo es que encuentra el camino más corto (mínimo núm
 Grafo Bipartito
 : Un grafo **no dirigido** es bipartito si los vértices se pueden dividir en dos grupos, de modo tal que las aristas vayan siempre de un vértice de un grupo a un vértice del otro grupo.
 
-```{figure} ../_static/figuras/grafo_bipartito_light.svg
----
-name: grafo-bipartito-simple
-align: center
-width: 60%
-figclass: dark-light
----
+```{figure} ../_static/figures/grafo_bipartito_light.svg
+:class: only-light-mode
+Grafo Bipartito
+```
+
+```{figure} ../_static/figures/grafo_bipartito_dark.svg
+:class: only-dark-mode
 Grafo Bipartito
 ```
 
 Reordenando los vértices de un grafo bipartito se puede ver claramente la división en dos grupos, donde las aristas van siempre de un grupo a otro y no hay aristas entre vértices del mismo grupo.
 
-```{figure} ../_static/figuras/grafo_bipartito_ordenado_light.svg
----
-name: grafo-bipartito-ordenado
-align: center
-width: 60%
-figclass: dark-light
----
+```{figure} ../_static/figures/grafo_bipartito_ordenado_light.svg
+:class: only-light-mode
+Grafo Bipartito Ordenado
+```
+
+```{figure} ../_static/figures/grafo_bipartito_ordenado_dark.svg
+:class: only-dark-mode
 Grafo Bipartito Ordenado
 ```
 

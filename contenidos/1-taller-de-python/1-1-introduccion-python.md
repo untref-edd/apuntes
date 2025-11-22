@@ -15,7 +15,7 @@ description: Introducción al lenguaje de programación Python, historia, caract
 
 Python es un lenguaje de programación multipropósito, creado a fines de los años 80 por [Guido van Rossum](https://es.wikipedia.org/wiki/Guido_van_Rossum).
 
-```{figure} ../assets/images/python-logo-generic.svg
+```{figure} ../_static/figures/python-logo-generic.svg
 ---
 align: center
 width: 200px

@@ -34,12 +34,12 @@ Python garantiza que los pasos anteriores para asignar una variable son **_atóm
 
 Si la variable ya tenía una referencia a otro objeto, esa referencia se pierde (el objeto anterior puede ser desalojado de la memoria por el recolector de basura si no hay otras referencias a él).
 
-```{figure} ../assets/images/asignacion_light.svg
+```{figure} ../_static/figures/asignacion_light.svg
 :class: only-light-mode
 Asignación de Variables
 ```
 
-```{figure} ../assets/images/asignacion_dark.svg
+```{figure} ../_static/figures/asignacion_dark.svg
 :class: only-dark-mode
 Asignación de Variables
 ```
@@ -72,12 +72,12 @@ s1 += " mundo"  # Esto crea una nueva cadena "hola mundo"
 print(f"s1: {s1}, s2: {s2}")  # Salida: s1: hola mundo, s2: hola
 ```
 
-```{figure} ../assets/images/inmutabilidad_light.svg
+```{figure} ../_static/figures/inmutabilidad_light.svg
 :class: only-light-mode
 Inmutabilidad (Strings)
 ```
 
-```{figure} ../assets/images/inmutabilidad_dark.svg
+```{figure} ../_static/figures/inmutabilidad_dark.svg
 :class: only-dark-mode
 Inmutabilidad (Strings)
 ```
@@ -103,12 +103,12 @@ lista1.append(4)  # Modifica la lista original
 print(f"lista1: {lista1}, lista2: {lista2}")
 ```
 
-```{figure} ../assets/images/mutabilidad_light.svg
+```{figure} ../_static/figures/mutabilidad_light.svg
 :class: only-light-mode
 Mutabilidad (Listas)
 ```
 
-```{figure} ../assets/images/mutabilidad_dark.svg
+```{figure} ../_static/figures/mutabilidad_dark.svg
 :class: only-dark-mode
 Mutabilidad (Listas)
 ```
@@ -153,12 +153,12 @@ _Built-in_ (B)
 
 Cuando Python busca un nombre, sigue este orden: primero busca en el ámbito _Local_, luego en el _Enclosing_, después en el _Global_ y finalmente en el _Built-in_.
 
-```{figure} ../assets/images/ambitos_light.svg
+```{figure} ../_static/figures/ambitos_light.svg
 :class: only-light-mode
 Ámbitos de Ejecución
 ```
 
-```{figure} ../assets/images/ambitos_dark.svg
+```{figure} ../_static/figures/ambitos_dark.svg
 :class: only-dark-mode
 Ámbitos de Ejecución
 ```

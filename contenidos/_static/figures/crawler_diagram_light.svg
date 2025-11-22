@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 950">
+  <rect width="1000" height="950" fill="#f0f2f5"/>
+
+  <defs>
+    <marker id="arrowhead-light" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333333" />
+    </marker>
+  </defs>
+
+  <style>
+    .label { font-family: Arial; font-size: 14px; text-anchor: middle; dominant-baseline: middle; fill: #333333; }
+    .title { font-family: Arial; font-size: 18px; text-anchor: middle; fill: #333333; }
+    .edge { fill: none; stroke: #333333; stroke-width: 2; marker-end: url(#arrowhead-light); }
+    
+    /* Grupos contenedores (Borde punteado) */
+    .group-box { fill: #fff9c4; stroke: #fbc02d; stroke-width: 2; stroke-dasharray: 5,5; }
+
+    /* NUEVA PALETA PASTEL (Basada en el ejemplo) */
+    /* Verde Pastel */
+    .box-green { fill: #e1ffe1; stroke: #48bb78; stroke-width: 2; }
+    /* Azul Pastel */
+    .box-blue { fill: #e1f5ff; stroke: #4682b4; stroke-width: 2; }
+    /* Violeta Pastel */
+    .box-purple { fill: #f5e1ff; stroke: #9f7aea; stroke-width: 2; }
+    /* Naranja/Amarillo Pastel (para almacenamiento) */
+    .box-yellow { fill: #fff4e1; stroke: #f6ad55; stroke-width: 2; }
+  </style>
+
+  <text x="500" y="25" class="title">Diagrama de un Crawler</text>
+
+  <rect x="680" y="40" width="280" height="180" class="group-box" rx="10" /> <rect x="380" y="250" width="400" height="280" class="group-box" rx="10" /> <rect x="40" y="450" width="320" height="320" class="group-box" rx="10" /> <rect x="480" y="570" width="400" height="350" class="group-box" rx="10" /> <g>
+    <path d="M 820,120 V 150" class="edge" />
+    <path d="M 820,210 V 230 H 580 V 270" class="edge" />
+    <path d="M 580,310 V 340" class="edge" />
+    <path d="M 580,380 V 410" class="edge" />
+    <path d="M 580,450 V 590" class="edge" />
+    <path d="M 480,430 H 360 V 570 H 300" class="edge" /> 
+    <path d="M 480,430 H 340 V 660 H 300" class="edge" />
+    <path d="M 680,630 V 660" class="edge" />
+    <path d="M 680,700 V 730" class="edge" />
+    <path d="M 680,770 V 800" class="edge" />
+    <path d="M 780,750 H 940 V 180 H 890" class="edge" />
+    <path d="M 480,290 H 200 V 480" class="edge" />
+    <path d="M 200,520 V 550" class="edge" />
+    <path d="M 200,590 V 630" class="edge" />
+  </g>
+
+  <g>
+    <rect x="750" y="80" width="140" height="40" class="box-green" />
+    <text x="820" y="100" class="label">URLs semilla</text>
+
+    <rect x="750" y="150" width="140" height="60" class="box-green" />
+    <text x="820" y="180" class="label">Frontera de URLs</text>
+
+    <rect x="480" y="270" width="200" height="40" class="box-blue" />
+    <text x="580" y="290" class="label">Obtenedor de HTML</text>
+
+    <rect x="480" y="340" width="200" height="40" class="box-blue" />
+    <text x="580" y="360" class="label">Analizador HTML</text>
+
+    <rect x="480" y="410" width="200" height="40" class="box-blue" />
+    <text x="580" y="430" class="label">Detección de duplicados</text>
+
+    <rect x="580" y="590" width="200" height="40" class="box-blue" />
+    <text x="680" y="610" class="label">Extractor de URLs</text>
+
+    <rect x="580" y="660" width="200" height="40" class="box-blue" />
+    <text x="680" y="680" class="label">Filtro de URLs</text>
+
+    <rect x="580" y="730" width="200" height="40" class="box-blue" />
+    <text x="680" y="750" class="label">Cargador/Detector de URLs</text>
+
+    <path d="M 580,810 V 860 C 580,880 780,880 780,860 V 810 C 780,790 580,790 580,810 Z" class="box-yellow" />
+    <ellipse cx="680" cy="810" rx="100" ry="10" class="box-yellow" />
+    <text x="680" y="840" class="label">Almacenamiento de URLs</text>
+
+    <rect x="100" y="480" width="200" height="40" class="box-purple" />
+    <text x="200" y="500" class="label">Resolutor DNS</text>
+
+    <rect x="100" y="550" width="200" height="40" class="box-purple" />
+    <text x="200" y="570" class="label">Cacheo</text>
+
+    <path d="M 100,630 V 680 C 100,700 300,700 300,680 V 630 C 300,610 100,610 100,630 Z" class="box-yellow" />
+    <ellipse cx="200" cy="630" rx="100" ry="10" class="box-yellow" />
+    <text x="200" y="660" class="label">Almacenamiento de datos</text>
+  </g>
+
+</svg>

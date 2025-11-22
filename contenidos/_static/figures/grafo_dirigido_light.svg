@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="19" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333333" />
+    </marker>
+  </defs>
+
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  <line x1="300" y1="50" x2="450" y2="100" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
+  <text x="380" y="70" font-family="Arial" font-size="12" fill="#333333">2</text>
+  
+  
+  <line x1="300" y1="50" x2="300" y2="150" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
+  <text x="310" y="100" font-family="Arial" font-size="12" fill="#333333">1</text>
+
+  
+  <line x1="450" y1="100" x2="300" y2="150" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
+  <text x="380" y="140" font-family="Arial" font-size="12" fill="#333333">3</text>
+
+  
+  <line x1="450" y1="100" x2="500" y2="250" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
+  <text x="490" y="180" font-family="Arial" font-size="12" fill="#333333">10</text>
+
+  
+  <line x1="150" y1="100" x2="300" y2="50" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
+  <text x="210" y="70" font-family="Arial" font-size="12" fill="#333333">4</text>
+
+  
+  <line x1="150" y1="100" x2="100" y2="250" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
+  <text x="110" y="180" font-family="Arial" font-size="12" fill="#333333">5</text>
+
+  
+  <line x1="300" y1="150" x2="150" y2="100" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
+  <text x="220" y="140" font-family="Arial" font-size="12" fill="#333333">2</text>
+
+  
+  <line x1="300" y1="150" x2="500" y2="250" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
+  <text x="410" y="210" font-family="Arial" font-size="12" fill="#333333">2</text>
+
+  
+  <line x1="300" y1="150" x2="100" y2="250" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
+  <text x="190" y="210" font-family="Arial" font-size="12" fill="#333333">8</text>
+
+  
+  <line x1="300" y1="150" x2="300" y2="350" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
+  <text x="310" y="250" font-family="Arial" font-size="12" fill="#333333">4</text>
+
+  
+  <line x1="500" y1="250" x2="300" y2="350" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
+  <text x="410" y="310" font-family="Arial" font-size="12" fill="#333333">5</text>
+
+  
+  <line x1="300" y1="350" x2="100" y2="250" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
+  <text x="190" y="310" font-family="Arial" font-size="12" fill="#333333">1</text>
+
+  
+  <circle cx="300" cy="50" r="20" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
+  <text x="300" y="55" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle">V0</text>
+
+  <circle cx="450" cy="100" r="20" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
+  <text x="450" y="105" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle">V1</text>
+
+  <circle cx="150" cy="100" r="20" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
+  <text x="150" y="105" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle">V2</text>
+
+  <circle cx="300" cy="150" r="20" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
+  <text x="300" y="155" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle">V3</text>
+
+  <circle cx="500" cy="250" r="20" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
+  <text x="500" y="255" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle">V4</text>
+
+  <circle cx="100" cy="250" r="20" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
+  <text x="100" y="255" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle">V5</text>
+
+  <circle cx="300" cy="350" r="20" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
+  <text x="300" y="355" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle">V6</text>
+</svg>

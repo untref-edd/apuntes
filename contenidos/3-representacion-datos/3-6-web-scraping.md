@@ -39,12 +39,13 @@ Los buscadores web utilizan ***crawlers*** para indexar el contenido de la web y
 
 El siguiente diagrama ilustra la arquitectura básica de un ***crawler***:
 
-```{figure} ../_static/figuras/crawler_diagram_light.svg
----
-name: crawler_diagram
-width: 90%
-figclass: dark-light
----
+```{figure} ../_static/figures/crawler_diagram_light.svg
+:class: only-light-mode
+Arquitectura básica de un crawler
+```
+
+```{figure} ../_static/figures/crawler_diagram_dark.svg
+:class: only-dark-mode
 Arquitectura básica de un crawler
 ```
 

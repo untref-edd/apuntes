@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 750 300"
+   version="1.1"
+   id="svg13"
+   sodipodi:docname="compresion_terminos_light.svg"
+   inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview13"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="2.271227"
+     inkscape:cx="373.36647"
+     inkscape:cy="173.47452"
+     inkscape:window-width="2560"
+     inkscape:window-height="1387"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg13" />
+  <defs
+     id="defs1">
+    <marker
+       id="arrowhead-small-light"
+       markerWidth="5"
+       markerHeight="5"
+       refX="2.5"
+       refY="2.5"
+       orient="auto">
+      <polygon
+         points="0 0, 5 2.5, 0 5"
+         fill="#333333"
+         id="polygon1" />
+    </marker>
+  </defs>
+  <style
+     id="style1">
+    .label { font-family: Arial; font-size: 14px; text-anchor: middle; dominant-baseline: middle; fill: #333333; }
+    .label-text { font-family: Arial; font-size: 16px; text-anchor: start; dominant-baseline: text-bottom; fill: #333333; }
+    .label-number { font-family: Arial; font-size: 14px; text-anchor: end; dominant-baseline: middle; fill: #333333; }
+    
+    .edge-curve { fill: none; stroke: #333333; stroke-width: 1.2; marker-end: url(#arrowhead-small-light); }
+    
+    .header-box { fill: #e1f5ff; stroke: #4682b4; stroke-width: 2; }
+    .arrow-block { fill: #e1f5ff; stroke: #4682b4; stroke-width: 1.5; }
+    
+    .marker-dot { fill: red; }
+  </style>
+  <path
+     d="m 220,120 q 82,0 82,-72"
+     class="edge-curve"
+     id="path8" />
+  <path
+     d="M 220,160 Q 373,160 373,48"
+     class="edge-curve"
+     id="path9" />
+  <path
+     d="m 220.02663,200.02686 q 240.9491,0 240.9491,-152.052889"
+     class="edge-curve"
+     id="path10" />
+  <path
+     d="m 220.03323,240.03373 q 337.73383,0 337.73383,-192.066622"
+     class="edge-curve"
+     id="path11" />
+  <text
+     x="300"
+     y="40"
+     class="label-text"
+     id="text1">programaprogramableprogramaciónprogramadorprogramar</text>
+  <g
+     id="g5"
+     transform="translate(20,70)">
+    <rect
+       x="0"
+       y="0"
+       width="80"
+       height="25"
+       class="header-box"
+       id="rect5" />
+    <text
+       x="40"
+       y="14"
+       class="label"
+       font-size="12px"
+       id="text5">Frecuencia</text>
+  </g>
+  <g
+     transform="translate(105,70)"
+     id="g6">
+    <rect
+       x="0"
+       y="0"
+       width="70"
+       height="25"
+       class="header-box"
+       id="rect6" />
+    <text
+       x="35"
+       y="14"
+       class="label"
+       font-size="12px"
+       id="text6">Postings</text>
+  </g>
+  <g
+     transform="translate(180,70)"
+     id="g7">
+    <rect
+       x="0"
+       y="0"
+       width="70"
+       height="25"
+       class="header-box"
+       id="rect7" />
+    <text
+       x="35"
+       y="14"
+       class="label"
+       font-size="12px"
+       id="text7">Término</text>
+  </g>
+  <text
+     x="80"
+     y="120"
+     class="label-number"
+     id="text8">12</text>
+  <g
+     transform="translate(120,120)"
+     id="g8">
+    <polygon
+       points="25,-8 40,0 25,8 25,4 0,4 0,-4 25,-4 "
+       class="arrow-block"
+       id="polygon8" />
+  </g>
+  <text
+     x="80"
+     y="160"
+     class="label-number"
+     id="text9">92</text>
+  <g
+     transform="translate(120,160)"
+     id="g9">
+    <polygon
+       points="25,-8 40,0 25,8 25,4 0,4 0,-4 25,-4 "
+       class="arrow-block"
+       id="polygon9" />
+  </g>
+  <text
+     x="80"
+     y="200"
+     class="label-number"
+     id="text10">17</text>
+  <g
+     transform="translate(120,200)"
+     id="g10">
+    <polygon
+       points="25,-8 40,0 25,8 25,4 0,4 0,-4 25,-4 "
+       class="arrow-block"
+       id="polygon10" />
+  </g>
+  <text
+     x="80"
+     y="240"
+     class="label-number"
+     id="text11">114</text>
+  <g
+     transform="translate(120,240)"
+     id="g11">
+    <polygon
+       points="25,-8 40,0 25,8 25,4 0,4 0,-4 25,-4 "
+       class="arrow-block"
+       id="polygon11" />
+  </g>
+  <text
+     x="80"
+     y="280"
+     class="label-number"
+     id="text12">87</text>
+  <g
+     transform="translate(120,280)"
+     id="g12">
+    <polygon
+       points="25,-8 40,0 25,8 25,4 0,4 0,-4 25,-4 "
+       class="arrow-block"
+       id="polygon12" />
+  </g>
+  <path
+     d="m 219.72842,278.79522 q 430.96184,0 430.96184,-232.080271"
+     class="edge-curve"
+     id="path12" />
+</svg>

@@ -135,18 +135,17 @@ Un índice invertido consta de dos componentes principales:
 1. **Diccionario (o vocabulario)**: Contiene todos los términos únicos que aparecen en la colección
 2. **Listas de postings**: Para cada término del diccionario, una lista de documentos donde aparece
 
-<div style="width:100%; display:flex; justify-content:center;">
-
-```{figure} ../_static/figuras/indice_invertido_light.svg
----
-name: indice-invertido-matriz
-width: 80%
-figclass: dark-light
----
+```{figure} ../_static/figures/indice_invertido_light.svg
+:class: only-light-mode
+:width: 100%
 Estructura de un índice invertido
 ```
 
-</div>
+```{figure} ../_static/figures/indice_invertido_dark.svg
+:class: only-dark-mode
+:width: 100%
+Estructura de un índice invertido
+```
 
 A continuación se muestra una implementación simple de un índice invertido en Python que permite agregar documentos y realizar búsquedas booleanas.
 
@@ -782,62 +781,16 @@ Para colecciones masivas (terabytes o petabytes), se usa procesamiento distribui
 
 #### Diagrama MapReduce para Construcción de Índices
 
-```{mermaid}
----
-name: mapreduce-indexing
----
-flowchart TB
-    subgraph Input[Entrada]
-        D1[Documento 1]
-        D2[Documento 2]
-        D3[Documento 3]
-        D4[Documento N]
-    end
-
-    subgraph Map[Fase Map]
-        M1[Mapper 1]
-        M2[Mapper 2]
-        M3[Mapper 3]
-        M4[Mapper N]
-    end
-
-    subgraph Shuffle[Shuffle & Sort]
-        S1[Agrupa por término]
-        S2[Ordena postings]
-    end
-
-    subgraph Reduce[Fase Reduce]
-        R1[Reducer 1<br/>términos a-f]
-        R2[Reducer 2<br/>términos g-m]
-        R3[Reducer 3<br/>términos n-z]
-    end
-
-    subgraph Output[Salida]
-        I1[Índice parcial 1]
-        I2[Índice parcial 2]
-        I3[Índice parcial 3]
-    end
-
-    D1 --> M1
-    D2 --> M2
-    D3 --> M3
-    D4 --> M4
-
-    M1 -->|"(término, doc_id)"| S1
-    M2 -->|"(término, doc_id)"| S1
-    M3 -->|"(término, doc_id)"| S1
-    M4 -->|"(término, doc_id)"| S1
-
-    S1 --> S2
-
-    S2 -->|término: a-f| R1
-    S2 -->|término: g-m| R2
-    S2 -->|término: n-z| R3
-
-    R1 --> I1
-    R2 --> I2
-    R3 --> I3
+```{figure} ../_static/figures/map_reduce_dark.svg
+:class: only-dark-mode
+Indexado con Map-Reduce
 ```
+
+```{figure} ../_static/figures/map_reduce_light.svg
+:class: only-light-mode
+Indexado con Map-Reduce
+```
+
 
 #### Componentes de MapReduce
 

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  
+  <style>
+    .label-node { font-family: Arial; font-size: 18px; text-anchor: middle; dominant-baseline: middle; fill: #333333; }
+    .label-weight { font-family: Arial; font-size: 16px; text-anchor: middle; dominant-baseline: middle; fill: #333333; font-weight: bold; }
+    /* Estilo para pesos resaltados */
+    .highlight-weight { fill: #ef6c00; } 
+  </style>
+
+  <g stroke-width="3">
+    <g stroke="#ef6c00" stroke-width="4">
+        <line x1="150" y1="350" x2="320" y2="450" /> <line x1="320" y1="450" x2="450" y2="300" /> <line x1="450" y1="300" x2="380" y2="100" /> <line x1="380" y1="100" x2="100" y2="150" /> </g>
+
+    <g stroke="#333333" stroke-width="2">
+        <line x1="100" y1="150" x2="150" y2="350" /> <line x1="150" y1="350" x2="450" y2="300" /> <line x1="550" y1="60"  x2="650" y2="180" /> <line x1="650" y1="180" x2="720" y2="350" /> </g>
+  </g>
+
+  <g>
+    <text x="220" y="425" class="label-weight highlight-weight">4</text> <text x="405" y="390" class="label-weight highlight-weight">2</text> <text x="435" y="200" class="label-weight highlight-weight">4</text> <text x="240" y="115" class="label-weight highlight-weight">3</text> <text x="105" y="250" class="label-weight">1</text> <text x="300" y="315" class="label-weight">5</text> <text x="615" y="110" class="label-weight">1</text> <text x="700" y="250" class="label-weight">2</text> </g>
+
+  <g stroke-width="2" fill="#e1f5ff" stroke="#4682b4">
+      <circle cx="150" cy="350" r="25" /> <circle cx="320" cy="450" r="25" /> <circle cx="450" cy="300" r="25" /> <circle cx="380" cy="100" r="25" /> <circle cx="100" cy="150" r="25" /> <circle cx="550" cy="60"  r="25" /> <circle cx="650" cy="180" r="25" /> <circle cx="720" cy="350" r="25" /> </g>
+
+  <g class="label-node">
+      <text x="150" y="350">A</text>
+      <text x="320" y="450">B</text>
+      <text x="450" y="300">C</text>
+      <text x="380" y="100">D</text>
+      <text x="100" y="150">E</text>
+      <text x="550" y="60">F</text>
+      <text x="650" y="180">G</text>
+      <text x="720" y="350">H</text>
+  </g>
+
+</svg>
