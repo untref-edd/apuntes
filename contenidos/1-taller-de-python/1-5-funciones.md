@@ -22,9 +22,7 @@ Las funciones se definen utilizando la palabra clave `def`, seguida del nombre d
 Python permite varios tipos de pasajes de parámetros a funciones:
 
 ```python
-def funcion(posicionales, nombrados,
-            *posicionales_variables,
-            **nombrados_variables):
+def funcion(posicionales, nombrados, *posicionales_variables, **nombrados_variables):
     pass  # sentencia que no hace nada
 ```
 

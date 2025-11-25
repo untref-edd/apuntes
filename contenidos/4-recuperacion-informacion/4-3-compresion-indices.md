@@ -75,12 +75,16 @@ La primera técnica consiste en almacenar todos los términos como si fueran una
 - La referencia al próximo término marca el final del término corriente.
 
 ```{figure} ../_static/figures/compresion_terminos_light.svg
-:class: only-light-mode
+---
+class: only-light-mode
+---
 Compresión del diccionario de términos usando una cadena única.
 ```
 
 ```{figure} ../_static/figures/compresion_terminos_dark.svg
-:class: only-dark-mode
+---
+class: only-dark-mode
+---
 Compresión del diccionario de términos usando una cadena única.
 ```
 

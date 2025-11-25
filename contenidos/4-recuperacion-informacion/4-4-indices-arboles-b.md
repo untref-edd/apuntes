@@ -63,12 +63,16 @@ Para construir índices usaremos árboles B+, una variante de los árboles B en 
 Consideremos un árbol B+ de orden 3 (cada nodo puede tener hasta 3 hijos) que almacena las siguientes palabras: `"PACO"`, `"POCO"`, `"PECA"`, `"PICO"`, `"PALA"`, `"POLO"`, `"PIEL"` y `"PIPA"`. El árbol se vería así:
 
 ```{figure} ../_static/figures/bplus1_light.svg
-:class: only-light-mode
+---
+class: only-light-mode
+---
 Árbol B+ de orden 3.
 ```
 
 ```{figure} ../_static/figures/bplus1_dark.svg
-:class: only-dark-mode
+---
+class: only-dark-mode
+---
 Árbol B+ de orden 3.
 ```
 
@@ -91,48 +95,64 @@ La inserción de un nuevo valor en un árbol B+ sigue estos pasos:
 5. **Crear una nueva raíz si es necesario**: Si la raíz se divide, se crea una nueva raíz con la clave promovida.
 
 ```{figure} ../_static/figures/bplus2_light.svg
-:class: only-light-mode
+---
+class: only-light-mode
+---
 Inserción en hoja
 ```
 
 ```{figure} ../_static/figures/bplus2_dark.svg
-:class: only-dark-mode
+---
+class: only-dark-mode
+---
 Inserción en hoja
 ```
 
 Se encuentra la hoja donde se debe insertar `"PILA"`.
 
 ```{figure} ../_static/figures/bplus3_light.svg
-:class: only-light-mode
+---
+class: only-light-mode
+---
 División de hoja
 ```
 
 ```{figure} ../_static/figures/bplus3_dark.svg
-:class: only-dark-mode
+---
+class: only-dark-mode
+---
 División de hoja
 ```
 
 Al insertar `"PILA"`, la hoja se divide en dos, la primera contiene `"PIEL"` y la segunda `"PILA"`|`"PIPA"`.
 
 ```{figure} ../_static/figures/bplus4_light.svg
-:class: only-light-mode
+---
+class: only-light-mode
+---
 Promoción hacia arriba
 ```
 
 ```{figure} ../_static/figures/bplus4_dark.svg
-:class: only-dark-mode
+---
+class: only-dark-mode
+---
 Promoción hacia arriba
 ```
 
 Como `"PILA"`, es la primera clave del segundo nodo que se partió, se promueve hacia arriba.
 
 ```{figure} ../_static/figures/bplus5_light.svg
-:class: only-light-mode
+---
+class: only-light-mode
+---
 Nueva raíz
 ```
 
 ```{figure} ../_static/figures/bplus5_dark.svg
-:class: only-dark-mode
+---
+class: only-dark-mode
+---
 Nueva raíz
 ```
 

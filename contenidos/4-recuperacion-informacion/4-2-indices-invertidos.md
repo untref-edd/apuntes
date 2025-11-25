@@ -136,14 +136,18 @@ Un índice invertido consta de dos componentes principales:
 2. **Listas de postings**: Para cada término del diccionario, una lista de documentos donde aparece
 
 ```{figure} ../_static/figures/indice_invertido_light.svg
-:class: only-light-mode
-:width: 100%
+---
+class: only-light-mode
+width: 100%
+---
 Estructura de un índice invertido
 ```
 
 ```{figure} ../_static/figures/indice_invertido_dark.svg
-:class: only-dark-mode
-:width: 100%
+---
+class: only-dark-mode
+width: 100%
+---
 Estructura de un índice invertido
 ```
 
@@ -782,15 +786,18 @@ Para colecciones masivas (terabytes o petabytes), se usa procesamiento distribui
 #### Diagrama MapReduce para Construcción de Índices
 
 ```{figure} ../_static/figures/map_reduce_dark.svg
-:class: only-dark-mode
+---
+class: only-dark-mode
+---
 Indexado con Map-Reduce
 ```
 
 ```{figure} ../_static/figures/map_reduce_light.svg
-:class: only-light-mode
+---
+class: only-light-mode
+---
 Indexado con Map-Reduce
 ```
-
 
 #### Componentes de MapReduce
 

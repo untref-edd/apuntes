@@ -131,12 +131,16 @@ if __name__ == "__main__":
 En Facebook las relaciones de amistad son simétricas o bidireccionales, por lo tanto se pueden representar con un grafo no dirigido. A continuación, mostramos un ejemplo simple de una red social con varios usuarios y sus conexiones:
 
 ```{figure} ../_static/figures/grafo_facebook_light.svg
-:class: only-light-mode
+---
+class: only-light-mode
+---
 Grafo de amistades en una red social
 ```
 
 ```{figure} ../_static/figures/grafo_facebook_dark.svg
-:class: only-dark-mode
+---
+class: only-dark-mode
+---
 Grafo de amistades en una red social
 ```
 

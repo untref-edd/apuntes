@@ -78,12 +78,16 @@ Información no estructurada
 Un sistema de IR típico consta de varios componentes interconectados. Primero se procesan los documentos para crear un índice que facilite la búsqueda. Luego, cuando un usuario realiza una consulta, el sistema la procesa y utiliza el índice para encontrar y clasificar los documentos relevantes. El feedback del usuario ayuda a mejorar futuros resultados.
 
 ```{figure} ../_static/figures/recuperacion_informacion_light.svg
-:class: only-light-mode
+---
+class: only-light-mode
+---
 Componentes de un sistema de recuperación de información
 ```
 
 ```{figure} ../_static/figures/recuperacion_informacion_dark.svg
-:class: only-dark-mode
+---
+class: only-dark-mode
+---
 Componentes de un sistema de recuperación de información
 ```
 

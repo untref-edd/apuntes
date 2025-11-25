@@ -1181,7 +1181,9 @@ Para profundizar en expresiones regulares:
 - [Python Regular Expressions (Real Python)](https://realpython.com/regex-python/)
 
 ```{admonition} Resumen
-:class: note
+---
+class: note
+---
 Las expresiones regulares son una herramienta poderosa para:
 - Validar formatos de datos
 - Extraer información de textos no estructurados

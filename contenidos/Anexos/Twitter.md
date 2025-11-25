@@ -10,6 +10,7 @@ kernelspec:
   name: python3
 description: Obtener acceso a la API de Twitter para análisis de datos de redes sociales
 ---
+
 # Registrarse como Desarrollador de X (Twitter)
 
 Este instructivo detalla el proceso completo para registrarse como desarrollador de X (anteriormente Twitter), crear una aplicación y generar las credenciales necesarias (Bearer Token y Access Token) para realizar análisis de datos y acceder tanto a tweets históricos como a streams en tiempo real usando Python.

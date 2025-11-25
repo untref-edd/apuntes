@@ -203,12 +203,16 @@ En el fragmento anterior se definen cuatro clases: `Persona`, `Docente`, `Estudi
 En el siguiente *diagrama de clases* se puede observar la relación entre las clases y los atributos y métodos de cada una.
 
 ```{figure} ../_static/figures/diagrama_ayudante_light.svg
-:class: only-light-mode
+---
+class: only-light-mode
+---
 Diagrama de clases de Ayudante
 ```
 
 ```{figure} ../_static/figures/diagrama_ayudante_dark.svg
-:class: only-dark-mode
+---
+class: only-dark-mode
+---
 Diagrama de clases de Ayudante
 ```
 
@@ -279,12 +283,16 @@ Este concepto es muy poderoso en Python, ya que permite que diferentes objetos p
 En el siguiente ejemplo, cuyo diagrama de clases se muestra a continuación. Primero se define `Punto` que representa un punto en el plano cartesiano y luego se definen las Figuras Geométricas `Cuadrado`, `Punto` `Elipse`y `Punto` que están ***compuestas*** por `Punto`. Cada figura tiene un método `area` que calcula su área, pero cada figura lo implementa de manera diferente.
 
 ```{figure} ../_static/figures/diagrama_figuras_light.svg
-:class: only-light-mode
+---
+class: only-light-mode
+---
 Diagrama de clases de Figuras Geométricas
 ```
 
 ```{figure} ../_static/figures/diagrama_figuras_dark.svg
-:class: only-dark-mode
+---
+class: only-dark-mode
+---
 Diagrama de clases de Figuras Geométricas
 ```
 

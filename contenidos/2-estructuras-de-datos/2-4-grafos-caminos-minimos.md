@@ -18,13 +18,15 @@ Un camino mínimo en un grafo es una secuencia de aristas que conecta dos vérti
 Por ejemplo dado el siguiente grafo:
 
 ```{figure} ../_static/figures/grafo_dijkstra_light.svg
-:class: only-light-mode
-
+---
+class: only-light-mode
+---
 ```
 
 ```{figure} ../_static/figures/grafo_dijkstra_dark.svg
-:class: only-dark-mode
-
+---
+class: only-dark-mode
+---
 ```
 
 En la siguiente tabla encontramos los caminos mínimos desde el vértice $A$ a los demás vértices:

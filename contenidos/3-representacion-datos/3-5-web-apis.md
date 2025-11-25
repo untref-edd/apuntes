@@ -22,12 +22,16 @@ La Web es una de las fuentes de información más grandes y diversas disponibles
 La World Wide Web funciona bajo un modelo cliente-servidor. El siguiente diagrama ilustra cómo interactúan estos componentes:
 
 ```{figure} ../_static/figures/arquitectura_cliente_servidor_light.svg
-:class: only-light-mode
+---
+class: only-light-mode
+---
 Arquitectura Cliente-Servidor
 ```
 
 ```{figure} ../_static/figures/arquitectura_cliente_servidor_dark.svg
-:class: only-dark-mode
+---
+class: only-dark-mode
+---
 Arquitectura Cliente-Servidor
 ```
 
@@ -57,12 +61,16 @@ El protocolo HTTP sigue un modelo de solicitud-respuesta (*request-response*), d
 En el siguiente diagrama de secuencia se muestra una interacción típica entre un cliente y un servidor utilizando HTTP:
 
 ```{figure} ../_static/figures/secuencia_http_light.svg
-:class: only-light-mode
+---
+class: only-light-mode
+---
 Interacción HTTP Cliente-Servidor
 ```
 
 ```{figure} ../_static/figures/secuencia_http_dark.svg
-:class: only-dark-mode
+---
+class: only-dark-mode
+---
 Interacción HTTP Cliente-Servidor
 ```
 
@@ -229,12 +237,16 @@ HTTPS (HTTP Secure) es la versión segura de HTTP que utiliza encriptación TLS/
 Las APIs (*Application Programming Interfaces*) son interfaces que permiten que diferentes aplicaciones se comuniquen entre sí de manera programática. En el contexto web, las APIs proporcionan puntos de acceso (*endpoints*) que los desarrolladores pueden usar para acceder a datos y funcionalidades de un servicio.
 
 ```{figure} ../_static/figures/arquitectura_api_light.svg
-:class: only-light-mode
+---
+class: only-light-mode
+---
 Arquitectura de una API REST
 ```
 
 ```{figure} ../_static/figures/arquitectura_api_dark.svg
-:class: only-dark-mode
+---
+class: only-dark-mode
+---
 Arquitectura de una API REST
 ```
 

@@ -40,12 +40,16 @@ Los buscadores web utilizan ***crawlers*** para indexar el contenido de la web y
 El siguiente diagrama ilustra la arquitectura básica de un ***crawler***:
 
 ```{figure} ../_static/figures/crawler_diagram_light.svg
-:class: only-light-mode
+---
+class: only-light-mode
+---
 Arquitectura básica de un crawler
 ```
 
 ```{figure} ../_static/figures/crawler_diagram_dark.svg
-:class: only-dark-mode
+---
+class: only-dark-mode
+---
 Arquitectura básica de un crawler
 ```
 
@@ -375,59 +379,59 @@ from books_scraper.items import BookItem
 
 
 class BooksSpider(scrapy.Spider):
-  name = "books"
-  allowed_domains = ["books.toscrape.com"]
-  start_urls = [
-    "https://books.toscrape.com/catalogue/category/books/horror_31/index.html"
-  ]
+    name = "books"
+    allowed_domains = ["books.toscrape.com"]
+    start_urls = [
+        "https://books.toscrape.com/catalogue/category/books/horror_31/index.html"
+    ]
 
-  def parse(self, response):
-    """Extrae información de libros de la página actual"""
+    def parse(self, response):
+        """Extrae información de libros de la página actual"""
 
-    # Extraer todos los libros de la página
-    books = response.xpath("//article[contains(@class,'product_pod')]")
+        # Extraer todos los libros de la página
+        books = response.xpath("//article[contains(@class,'product_pod')]")
 
-    for book in books:
-      item = BookItem()
+        for book in books:
+            item = BookItem()
 
-      # Extraer título
-      item["title"] = book.xpath(".//h3/a/@title").get().strip()
+            # Extraer título
+            item["title"] = book.xpath(".//h3/a/@title").get().strip()
 
-      # Extraer precio
-      price_text = (
-        book.xpath(".//p[contains(@class,'price_color')]/text()").get().strip()
-      )
-      item["price"] = price_text.replace("£", "") if price_text else None
+            # Extraer precio
+            price_text = (
+                book.xpath(".//p[contains(@class,'price_color')]/text()").get().strip()
+            )
+            item["price"] = price_text.replace("£", "") if price_text else None
 
-      # Extraer disponibilidad
-      availability_xpath = (
-          ".//p[contains(@class,'instock') and contains(@class,'availability')]"
-          "/text()"
-      )
-      availability = book.xpath(availability_xpath).getall()
-      item["availability"] = (
-          "".join(availability).strip() if availability else None
-      )
+            # Extraer disponibilidad
+            availability_xpath = (
+                ".//p[contains(@class,'instock') and contains(@class,'availability')]"
+                "/text()"
+            )
+            availability = book.xpath(availability_xpath).getall()
+            item["availability"] = (
+                "".join(availability).strip() if availability else None
+            )
 
-      # Extraer calificación
-      rating_class = book.xpath(
-        ".//p[contains(@class,'star-rating')]/@class"
-      ).get()
-      if rating_class:
-        rating = rating_class.split()[-1]
-        item["rating"] = rating
-      else:
-        item["rating"] = None
+            # Extraer calificación
+            rating_class = book.xpath(
+                ".//p[contains(@class,'star-rating')]/@class"
+            ).get()
+            if rating_class:
+                rating = rating_class.split()[-1]
+                item["rating"] = rating
+            else:
+                item["rating"] = None
 
-      item["category"] = "Horror"
+            item["category"] = "Horror"
 
-      yield item
+            yield item
 
-    # Seguir a la siguiente página si existe
-    next_page = response.xpath("//li[contains(@class,'next')]/a/@href").get()
-    if next_page:
-      next_page_url = response.urljoin(next_page)
-      yield scrapy.Request(next_page_url, callback=self.parse)
+        # Seguir a la siguiente página si existe
+        next_page = response.xpath("//li[contains(@class,'next')]/a/@href").get()
+        if next_page:
+            next_page_url = response.urljoin(next_page)
+            yield scrapy.Request(next_page_url, callback=self.parse)
 ```
 
 ### Paso 5: Configurar Pipeline para CSV
@@ -627,5 +631,5 @@ header-rows: 1
 
 ### Libros y Referencias Académicas
 
-- En el capítulo 20: Web crawling and indexes del libro {cite:p}`irbook` se explican los conceptos básicos de web scraping. 
+- En el capítulo 20: Web crawling and indexes del libro {cite:p}`irbook` se explican los conceptos básicos de web scraping.
 - En el libro {cite:p}`Mitchell2024` se profundiza en el tema de web scraping con Python. Este libro se puede leer online en formato html, por un tiempo limitado.
