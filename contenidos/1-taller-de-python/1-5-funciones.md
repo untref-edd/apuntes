@@ -126,7 +126,7 @@ print(saludar("Juan"))  # Salida: Hola, Juan!
 ```
 
 ```{important} Importante
-Si en una misma función se utilizan parámetros posicionnales, nombreados, posicionales variables y nombrados variables, los parámetros deben seguir el siguiente orden:
+Si en una misma función se utilizan parámetros posicionales, nombrados, posicionales variables y nombrados variables, los parámetros deben seguir el siguiente orden:
 1. Parámetros posicionales
 2. Parámetros nombrados
 3. Parámetros posicionales variables (`*args`)
