@@ -47,7 +47,7 @@
   font: "Libertinus Serif", 
   fontsize: 11pt,
 
-  theme: red.darken(30%),
+  theme: blue.darken(30%),
   colorheadings: black,
   
   // The book's content.
