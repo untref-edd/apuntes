@@ -21,12 +21,23 @@ tags: hide-output, remove-cell
 import os
 import shutil
 
-csv_path = os.path.join(os.getcwd(), '../_static/code/scraping/books_scraper/horror_books.csv')
+original_cwd = os.getcwd()
+
+# Definir directorio temporal
 tmp_dir = "/tmp/edd_scraping"
 if os.path.exists(tmp_dir):
     shutil.rmtree(tmp_dir)
 os.makedirs(tmp_dir, exist_ok=True)
 os.chdir(tmp_dir)
+
+# Definir path para el CSV de libros (usado más adelante)
+csv_path = os.path.join(tmp_dir, 'books_scraper/horror_books.csv')
+
+# Copiar el archivo estático si no existe (para que funcione el build)
+static_csv = os.path.join(original_cwd, '../_static/code/scraping/books_scraper/horror_books.csv')
+if not os.path.exists(csv_path) and os.path.exists(static_csv):
+    os.makedirs(os.path.dirname(csv_path), exist_ok=True)
+    shutil.copy(static_csv, csv_path)
 ```
 
 Web scraping es el proceso de extraer información de sitios web de forma automatizada.
@@ -204,16 +215,6 @@ def crawler_frontera(url_semilla,
         print(f"Visitando: {url_actual}")
         try:
             response = requests.get(url_actual, timeout=10, headers={
-                """
-                Es recomendable configurar el encabezado 'User-Agent' con un
-                valor descriptivo que identifique el crawler y proporcione
-                información de contacto.
-                Esto ayuda a los administradores de los sitios web a
-                identificar el origen de las solicitudes y contactar al
-                responsable en caso necesario.
-                Además, usar un User-Agent personalizado demuestra buenas
-                prácticas y respeto por las políticas del sitio.
-                """
                 'User-Agent': 'MiCrawler/1.0 (contacto@ejemplo.com)'
             })
             response.raise_for_status()
@@ -252,7 +253,23 @@ crawler_frontera('https://quotes.toscrape.com/', max_paginas=10,
                  archivo_csv='enlaces_quotes.csv')
 ```
 
-En el siguiente enlace se puede descargar el archivo .csv generado por el ***crawler***: [`enlaces_quotes.csv`](enlaces_quotes.csv)
+````{dropdown} Contenido de enlaces_quotes.csv
+A continuación se muestra el contenido del archivo generado:
+
+```{code-cell} python
+---
+tags: remove-input
+---
+import pandas as pd
+import os
+
+if os.path.exists('enlaces_quotes.csv'):
+    df_links = pd.read_csv('enlaces_quotes.csv')
+    print(df_links.head(10).to_markdown(index=False))
+else:
+    print("El archivo no existe (el código anterior no se ejecutó).")
+```
+````
 
 ## Scrapy
 
