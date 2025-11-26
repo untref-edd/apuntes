@@ -20,6 +20,11 @@ fmt:
 build:
 	cd contenidos && myst build --execute
 
+## pdf: compila el libro en formato PDF
+.PHONY: pdf
+pdf:
+	cd contenidos && myst build --pdf
+
 ## clean: elimina todos los archivos generados por la compilación
 .PHONY: clean
 clean:

@@ -9,7 +9,6 @@ kernelspec:
   language: python
   name: python3
 ---
-
 # Bibliografía
 
 ```{div}
