@@ -23,7 +23,7 @@ build:
 ## pdf: compila el libro en formato PDF
 .PHONY: pdf
 pdf:
-	cd contenidos && myst build --pdf
+	python3 scripts/build_pdf.py
 
 ## clean: elimina todos los archivos generados por la compilación
 .PHONY: clean

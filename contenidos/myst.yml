@@ -1,9 +1,6 @@
 # See docs at: https://mystmd.org/guide/frontmatter
 version: 1
-parse:
-  myst_enable_extensions:
-    - admonition
-    - colon_fence
+
 project:
   id: baa50ab6-944d-49f8-84e9-438fc17cb67a
   title: Apuntes de Estructuras de Datos

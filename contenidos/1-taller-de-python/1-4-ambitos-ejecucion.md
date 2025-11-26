@@ -320,7 +320,7 @@ El ámbito _built-in_ contiene nombres predefinidos por Python, como funciones y
 
 Si se intenta redefinir un nombre _built-in_, se creará una variable local o global que ocultará temporalmente el nombre _built-in_, pero no se eliminará del ámbito _built-in_.
 
-```{warning} Advertencia
+```{danger} Peligro
 No se recomienda bajo ningún punto de vista, redefinir nombres _built-in_, ya que esto puede causar confusión y errores difíciles de depurar. Es mejor utilizar nombres descriptivos y evitar conflictos con los nombres predefinidos de Python.
 ```
 

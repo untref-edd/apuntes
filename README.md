@@ -22,7 +22,7 @@ Si deseas desarrollar y/o compilar el apunte de Estructuras de Datos, debes:
 4. Para compilar el libre ejecutar:
 
    ```sh
-   jupyter-book build contenidos
+   myst build contenidos
    ```
 
    Una versión HTML completamente renderizada del libro se construirá en `contenidos/_build/html`.
@@ -49,6 +49,7 @@ Una vez que tenemos `make` disponible, podemos ejecutar los siguientes comandos:
 
 - `make install`: Instala las dependencias del proyecto.
 - `make build`: Compila el libro.
-- `make server`: Sirve el libro en un servidor web local.
+- `make pdf`: Compila el libro en formato PDF (requiere Typst).
+- `make start`: Inicia el servidor de desarrollo.
 
 Esto simplifica el proceso de desarrollo y permite que cualquier persona pueda compilar y servir el libro sin tener que recordar los comandos de Python o Jupyter Book.
