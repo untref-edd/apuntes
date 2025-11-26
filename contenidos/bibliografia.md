@@ -12,9 +12,6 @@ kernelspec:
 
 # Bibliografía
 
-```{bibliography}
-```
-
 ```{div}
 :class: hidden-citations
 
