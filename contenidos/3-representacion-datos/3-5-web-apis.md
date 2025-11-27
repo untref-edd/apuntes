@@ -395,7 +395,7 @@ def obtener_geojson_way(osm_way_id):
     >;
     out meta;
     """
-    response = requests.get(url, params={"data": query})
+    response = requests.get(url, params={"data": query}, timeout=10)
     response.raise_for_status()
     return response.json()
 
