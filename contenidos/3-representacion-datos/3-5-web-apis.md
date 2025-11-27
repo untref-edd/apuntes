@@ -172,14 +172,17 @@ tags: hide-output
 ---
 import requests
 
-# Realizar una solicitud GET
-response = requests.get("https://untref.edu.ar/", timeout=10)
+try:
+    # Realizar una solicitud GET
+    response = requests.get("https://untref.edu.ar/", timeout=30)
 
-print(f"Código de estado: {response.status_code}")
-for k, v in response.headers.items():
-    print(f"{k}: {v}")
-print(f"\nPrimeros 200 caracteres del contenido (página html):")
-print(f"{response.text[:200]}")
+    print(f"Código de estado: {response.status_code}")
+    for k, v in response.headers.items():
+        print(f"{k}: {v}")
+    print(f"\nPrimeros 200 caracteres del contenido (página html):")
+    print(f"{response.text[:200]}")
+except requests.exceptions.RequestException as e:
+    print(f"No se pudo conectar a untref.edu.ar: {e}")
 ```
 
 El intercambio entre cliente y servidor puede verse en *"crudo"* utilizando herramientas como `curl` en la línea de comandos. Aquí hay un ejemplo de cómo se vería una solicitud y respuesta HTTP:
@@ -306,19 +309,22 @@ tags: hide-output
 import requests
 import json
 
-# Realizar una solicitud GET a la API del Ministerio del Interior
-response = requests.get(
-    "https://resultados.mininterior.gob.ar/api/resultados/getResultados?"
-    "anioEleccion=2019&tipoRecuento=1&tipoEleccion=2&categoriaId=1&"
-    "distritoId=2&seccionProvincialId=1&seccionId=118",
-    timeout=10
-)
-if response.status_code == 200:
-    datos = response.json()
-    print(json.dumps(datos, indent=2, ensure_ascii=False))
-else:
-    print(f"Error al acceder a la API: {response.status_code}")
-    print(json.dumps(response.json(), indent=2, ensure_ascii=False))
+try:
+    # Realizar una solicitud GET a la API del Ministerio del Interior
+    response = requests.get(
+        "https://resultados.mininterior.gob.ar/api/resultados/getResultados?"
+        "anioEleccion=2019&tipoRecuento=1&tipoEleccion=2&categoriaId=1&"
+        "distritoId=2&seccionProvincialId=1&seccionId=118",
+        timeout=30
+    )
+    if response.status_code == 200:
+        datos = response.json()
+        print(json.dumps(datos, indent=2, ensure_ascii=False))
+    else:
+        print(f"Error al acceder a la API: {response.status_code}")
+        print(json.dumps(response.json(), indent=2, ensure_ascii=False))
+except requests.exceptions.RequestException as e:
+    print(f"No se pudo conectar a resultados.mininterior.gob.ar: {e}")
 ```
 
 En la solicitud anterior, se puede ver que se utilizan varios parámetros en la URL para especificar los datos que se quieren consultar
@@ -352,27 +358,32 @@ tags: hide-output
 import requests
 from lxml import etree as ET
 
-# Realizar una solicitud GET a la API de Open Maps
-# Way Id = 1275831310 (Sede Caseros I de la UNTREF)
-response = requests.get(
-    "https://api.openstreetmap.org/api/0.6/way/1275831310", timeout=10
-)
-if response.status_code == 200:
-    # Parsear la respuesta XML
-    root = ET.fromstring(response.content)
-    # Recorrer el XML de OpenStreetMap
+try:
+    # Realizar una solicitud GET a la API de Open Maps
+    # Way Id = 1275831310 (Sede Caseros I de la UNTREF)
+    response = requests.get(
+        "https://api.openstreetmap.org/api/0.6/way/1275831310", timeout=30
+    )
+    if response.status_code == 200:
+        # Parsear la respuesta XML
+        root = ET.fromstring(response.content)
+        # Recorrer el XML de OpenStreetMap
 
-    # Buscar el elemento <way>
-    way = root.find("way")
-    if way is not None:
-        print(f"ID del way: {way.get('id')}")
-        print("Etiquetas asociadas:")
-        for tag in way.findall("tag"):
-            clave = tag.get("k")
-            valor = tag.get("v")
-            print(f"  {clave}: {valor}")
+        # Buscar el elemento <way>
+        way = root.find("way")
+        if way is not None:
+            print(f"ID del way: {way.get('id')}")
+            print("Etiquetas asociadas:")
+            for tag in way.findall("tag"):
+                clave = tag.get("k")
+                valor = tag.get("v")
+                print(f"  {clave}: {valor}")
+        else:
+            print("No se encontró el elemento <way> en la respuesta.")
     else:
-        print("No se encontró el elemento <way> en la respuesta.")
+        print(f"Error al acceder a la API: {response.status_code}")
+except requests.exceptions.RequestException as e:
+    print(f"No se pudo conectar a api.openstreetmap.org: {e}")
 ```
 
 La documentación de la API de OpenStreetMap está disponible en [https://wiki.openstreetmap.org/wiki/API_v0.6](https://wiki.openstreetmap.org/wiki/API_v0.6).
@@ -395,7 +406,7 @@ def obtener_geojson_way(osm_way_id):
     >;
     out meta;
     """
-    response = requests.get(url, params={"data": query}, timeout=10)
+    response = requests.get(url, params={"data": query}, timeout=30)
     response.raise_for_status()
     return response.json()
 
@@ -428,10 +439,15 @@ def construir_mapa(geojson_data):
 
 def main():
     osm_way_id = 1275831310  # el way de la Sede Caseros I
-    geojson = obtener_geojson_way(osm_way_id)
-    mapa = construir_mapa(geojson)
-    # Mostrar el mapa en el notebook
-    display(mapa)
+    try:
+        geojson = obtener_geojson_way(osm_way_id)
+        mapa = construir_mapa(geojson)
+        # Mostrar el mapa en el notebook
+        display(mapa)
+    except requests.exceptions.RequestException as e:
+        print(f"No se pudo obtener datos de Overpass API: {e}")
+    except RuntimeError as e:
+        print(f"Error al construir el mapa: {e}")
 
 
 if __name__ == "__main__":
