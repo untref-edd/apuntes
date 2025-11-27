@@ -20,7 +20,7 @@
   title: "Book Title",
   subtitle: none,
   authors: "Your name",
-  cover: none,            // <— path to cover "images/cover.png"
+  cover: "untref-logo.svg",            // <— path to cover "images/cover.png"
   cover_width: 12cm,    
   coverposition: 1cm,
   justification: false,

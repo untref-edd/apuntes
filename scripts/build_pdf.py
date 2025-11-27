@@ -135,44 +135,6 @@ def build_typst(target_file=None):
         print(f"Error during build: {e}")
         sys.exit(1)
 
-def post_process_typst():
-    """Injects 'Salida:' label before code outputs in generated .typ files."""
-    print("Post-processing Typst files...")
-    
-    # Find the generated typst directory
-    # It's usually in _build/temp/mystXXXXXX/
-    build_temp_dir = os.path.join(TEMP_DIR, "_build", "temp")
-    if not os.path.exists(build_temp_dir):
-        print(f"Error: Build temp directory {build_temp_dir} not found.")
-        sys.exit(1)
-
-    # Find all .typ files recursively
-    typ_files = []
-    for root, dirs, files in os.walk(build_temp_dir):
-        for file in files:
-            if file.endswith(".typ"):
-                typ_files.append(os.path.join(root, file))
-
-    # Regex to find code block followed by output block
-    # Group 1: Python code block (```python ... ```)
-    # Group 2: Whitespace between blocks
-    # Group 3: Start of output block (```)
-    # We use dotall=True (re.DOTALL) so . matches newlines
-    output_pattern = re.compile(r'(```python[\s\S]*?```)(\s+)(```)', re.DOTALL)
-
-    for typ_file in typ_files:
-        with open(typ_file, 'r', encoding='utf-8') as f:
-            content = f.read()
-        
-        if output_pattern.search(content):
-            print(f"Injecting 'Salida:' in {typ_file}")
-            # Inject #strong("Salida:") before the output block
-            # We add a newline after the label just in case
-            new_content = output_pattern.sub(r'\1\2#strong("Salida:")\n\3', content)
-            
-            with open(typ_file, 'w', encoding='utf-8') as f:
-                f.write(new_content)
-
 def compile_pdf():
     """Compiles the final PDF using typst."""
     print("Compiling final PDF...")
@@ -222,7 +184,6 @@ def main():
     setup_temp_dir()
     process_directory(TEMP_DIR)
     build_typst(args.chapter)
-    post_process_typst()
     generated_pdf = compile_pdf()
     
     if not args.chapter:

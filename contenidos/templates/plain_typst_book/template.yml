@@ -10,6 +10,7 @@ files:
   - aside_style.typ
   - admonitionstyling.typ
   - LICENSE
+  - untref-logo.svg
   
 authors:
   - name: Freek Pols
