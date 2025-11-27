@@ -99,8 +99,7 @@ x = 5 + "10"
 
 Una cadena es una secuencia **inmutable** de caracteres.
 
-Inmutable
-: Un objeto inmutable es aquel cuyo contenido no puede ser modificado una vez creado. En el caso de las cadenas, esto significa que no se pueden cambiar los caracteres individuales de una cadena después de su creación.
+Un objeto **inmutable** es aquel cuyo contenido no puede ser modificado una vez creado. En el caso de las cadenas, esto significa que no se pueden cambiar los caracteres individuales de una cadena después de su creación.
 
 ```{code-cell} python
 ---
@@ -130,7 +129,7 @@ Las cadenas de caracteres están indexadas, es decir, que se puede manipular cad
 tags: hide-output
 ---
 nombre = "Python"
-print(nombre[0])
+print(nombre[0]) # 'P'
 ```
 
 ```{code-cell} python
@@ -138,7 +137,7 @@ print(nombre[0])
 tags: hide-output
 ---
 nombre = "Python"
-print(nombre[-1])
+print(nombre[-1]) # 'n'
 ```
 
 ```{code-cell} python
@@ -146,7 +145,7 @@ print(nombre[-1])
 tags: hide-output
 ---
 nombre = "Python"
-print(nombre[1:4])
+print(nombre[1:4]) # 'yth'
 ```
 
 ```{code-cell} python
@@ -154,7 +153,7 @@ print(nombre[1:4])
 tags: hide-output
 ---
 nombre = "Python"
-print(nombre[:2])
+print(nombre[:2]) # 'Py'
 ```
 
 ```{code-cell} python
@@ -162,7 +161,7 @@ print(nombre[:2])
 tags: hide-output
 ---
 nombre = "Python"
-print(nombre[2:])
+print(nombre[2:]) # 'thon'
 ```
 
 ```{code-cell} python
@@ -170,7 +169,7 @@ print(nombre[2:])
 tags: hide-output
 ---
 nombre = "Python"
-print(nombre[-3:])
+print(nombre[-3:]) # 'hon'
 ```
 
 Las tajadas o _slices_ en Python tienen un tercer parámetro opcional que indica el paso entre los índices. Por ejemplo, `nombre[::2]` devuelve cada segundo carácter de la cadena.
@@ -180,7 +179,7 @@ Las tajadas o _slices_ en Python tienen un tercer parámetro opcional que indica
 tags: hide-output
 ---
 nombre = "Python"
-print(nombre[::2])  # cadena con paso 2
+print(nombre[::2])  # cadena con paso 2: 'Pto'
 ```
 
 ```{code-cell} python
@@ -188,7 +187,7 @@ print(nombre[::2])  # cadena con paso 2
 tags: hide-output
 ---
 nombre = "Python"
-print(nombre[::-1])  # invierte la cadena
+print(nombre[::-1])  # invierte la cadena: 'nohtyP'
 ```
 
 ### Métodos útiles para manipular cadenas
@@ -198,7 +197,7 @@ print(nombre[::-1])  # invierte la cadena
 tags: hide-output
 ---
 texto = "Hola mundo"
-print(texto.upper())  # Convierte a mayúsculas
+print(texto.upper())  # Convierte a mayúsculas: 'HOLA MUNDO'
 ```
 
 ```{code-cell} python
@@ -206,7 +205,7 @@ print(texto.upper())  # Convierte a mayúsculas
 tags: hide-output
 ---
 texto = "Hola mundo"
-print(texto.lower())  # Convierte a minúsculas
+print(texto.lower())  # Convierte a minúsculas: 'hola mundo'
 ```
 
 ```{code-cell} python
@@ -252,7 +251,7 @@ Las cadenas se pueden concatenar usando el operador `+` o multiplicar por un nú
 tags: hide-output
 ---
 saludo = "Hola " + "mundo"
-print(saludo)
+print(saludo) # 'Hola mundo'
 ```
 
 ```{code-cell} python
@@ -261,7 +260,7 @@ tags: hide-output
 ---
 saludo = "Hola mundo"
 saludo2 = saludo * 3  # saludo+saludo+saludo
-print(saludo2)
+print(saludo2) # 'Hola mundoHola mundoHola mundo'
 ```
 
 ```{code-cell} python
@@ -270,7 +269,7 @@ tags: hide-output
 ---
 saludo = "Hola mundo"
 saludo3 = (saludo + ". ") * 3  # Agrega un punto y un espacio al final
-print(saludo3)
+print(saludo3) # 'Hola mundo. Hola mundo. Hola mundo. '
 ```
 
 ### Iteración sobre cadenas de caracteres
@@ -282,7 +281,7 @@ Las cadenas de caracteres son **iterables**, lo que significa que se pueden reco
 tags: hide-output
 ---
 for caracter in "Python":
-    print(caracter)
+    print(caracter) # 'P', 'y', 't', 'h', 'o', 'n'
 ```
 
 ### Formateo de cadenas
@@ -298,7 +297,7 @@ tags: hide-output
 nombre = "Juan"
 edad = 30
 mensaje = "Hola, mi nombre es {} y tengo {} años.".format(nombre, edad)
-print(mensaje)
+print(mensaje) # 'Hola, mi nombre es Juan y tengo 30 años.'
 ```
 
 - Usando f-strings (Python 3.6+)
@@ -310,7 +309,7 @@ tags: hide-output
 nombre = "Ana"
 edad = 32
 mensaje = f"Hola, mi nombre es {nombre} y tengo {edad} años."
-print(mensaje)
+print(mensaje) # 'Hola, mi nombre es Ana y tengo 32 años.'
 ```
 
 La letra `f` antes de la cadena indica que es una f-string, lo que permite insertar variables directamente dentro de llaves `{}`.
@@ -324,7 +323,7 @@ tags: hide-output
 nombre = "Eva"
 edad = 28
 mensaje = "Hola, mi nombre es %s y tengo %d años." % (nombre, edad)
-print(mensaje)
+print(mensaje) # 'Hola, mi nombre es Eva y tengo 28 años.'
 ```
 
 El caracter `%` se usa para formatear cadenas, donde `%s` es un marcador de posición para una cadena y `%d` para un número entero, pero es menos legible y flexible que las otras opciones.
@@ -348,7 +347,7 @@ Otra forma de usar comillas dobles en una cadena es usar comillas simples para d
 tags: hide-output
 ---
 mensaje = 'Hola, "mundo".\n¿Cómo estás?'
-print(mensaje)
+print(mensaje) 
 ```
 
 ```{code-cell} python
@@ -356,7 +355,7 @@ print(mensaje)
 tags: hide-output
 ---
 mensaje = "Hola, \tmundo."  # \t inserta una tabulación
-print(mensaje)
+print(mensaje) 
 ```
 
 ## Listas (`list`)
@@ -380,7 +379,7 @@ tags: hide-output
 ---
 numeros = [1, 2, 3, 4]  # Lista de números
 numeros.append(5)  # Añade un elemento al final
-print(numeros)
+print(numeros) # [1, 2, 3, 4, 5]
 ```
 
 ```{code-cell} python
@@ -388,7 +387,7 @@ print(numeros)
 tags: hide-output
 ---
 numeros = [1, 2, 3, 4]  # Lista de números
-print(numeros[0])
+print(numeros[0]) # 1
 ```
 
 ```{code-cell} python
@@ -396,7 +395,7 @@ print(numeros[0])
 tags: hide-output
 ---
 numeros = [1, 2, 3, 4]  # Lista de números
-print(numeros[1:3])
+print(numeros[1:3]) # [2, 3]
 ```
 
 ```{code-cell} python
@@ -405,7 +404,7 @@ tags: hide-output
 ---
 numeros = [1, 2, 3, 4]  # Lista de números
 numeros.remove(3)  # Elimina el primer elemento que coincida con el valor
-print(numeros)
+print(numeros) # [1, 2, 4]
 ```
 
 ```{code-cell} python
@@ -414,17 +413,17 @@ tags: hide-output
 ---
 mezcla = [1, "dos", 3.0, True]  # Lista con diferentes tipos de datos
 mezcla[0] = "uno"  # Modifica el primer elemento
-print(mezcla)
+print(mezcla) # ['uno', 'dos', 3.0, True]
 ```
 
 ```{code-cell} python
 ---
 tags: hide-output
 ---
-numeros = [1, 2, 3, 4]  # Lista de números
+umeros = [1, 2, 3, 4]  # Lista de números
 mezcla = [1, "dos", 3.0, True]  # Lista con diferentes tipos de datos
 mezcla = mezcla + numeros  # Concatenación de listas
-print(mezcla)
+print(mezcla) # [1, 'dos', 3.0, True, 1, 2, 3, 4]
 ```
 
 ```{code-cell} python
@@ -433,7 +432,7 @@ tags: hide-output
 ---
 numeros = [1, 2, 3, 4]  # Lista de números
 numeros = numeros * 2  # Repite la lista
-print(numeros)
+print(numeros) # [1, 2, 3, 4, 1, 2, 3, 4]
 ```
 
 La lista vacía se puede definir con corchetes vacíos `[]` o con la función `list()`:
@@ -443,7 +442,7 @@ La lista vacía se puede definir con corchetes vacíos `[]` o con la función `l
 tags: hide-output
 ---
 lista_vacia = []  # Lista vacía
-print(lista_vacia)
+print(lista_vacia) # []
 ```
 
 ```{code-cell} python
@@ -451,7 +450,7 @@ print(lista_vacia)
 tags: hide-output
 ---
 lista_vacia2 = list()  # Otra forma de crear una lista vacía
-print(lista_vacia2)
+print(lista_vacia2) # []
 ```
 
 ### Iteración sobre listas
@@ -462,7 +461,7 @@ tags: hide-output
 ---
 numeros = [1, 2, 3, 4]  # Lista de números
 for n in numeros:
-    print(n)
+    print(n) # 1, 2, 3, 4
 ```
 
 ## 4. Tuplas (`tuple`)
@@ -474,7 +473,7 @@ Son similares a las listas, **ordenadas** y **polimórficas**, pero **inmutables
 tags: hide-output
 ---
 coordenadas = (10.0, 20.5, 1)
-print(type(coordenadas))
+print(type(coordenadas)) # <class 'tuple'>
 ```
 
 Se definen con paréntesis y pueden contener diferentes tipos de datos, mientras que las listas se definen con corchetes.
@@ -486,7 +485,7 @@ Se definen con paréntesis y pueden contener diferentes tipos de datos, mientras
 tags: hide-output
 ---
 coordenadas = (10.0, 20.5, 1)
-print(coordenadas[0])
+print(coordenadas[0]) # 10.0
 ```
 
 ```{code-cell} python
@@ -494,7 +493,7 @@ print(coordenadas[0])
 tags: hide-output
 ---
 coordenadas = (10.0, 20.5, 1)
-print(coordenadas[-1])
+print(coordenadas[-1]) # 1
 ```
 
 ```{code-cell} python
@@ -502,7 +501,7 @@ print(coordenadas[-1])
 tags: hide-output
 ---
 coordenadas = (10.0, 20.5, 1)
-print(coordenadas[1:])
+print(coordenadas[1:]) # (20.5, 1)
 ```
 
 ### Ventajas
@@ -517,10 +516,10 @@ La forma de empaquetar y desempaquetar tuplas es similar a las listas:
 tags: hide-output
 ---
 coordenadas = (10.0, 20.5, 1)
-a, b, c = coordenadas  # Desempaquetado
-print("a = ", a)
-print("b = ", b)
-print("c = ", c)
+a, b, c = coordenadas  # Desempaquetado 
+print("a = ", a) # 10.0
+print("b = ", b) # 20.5
+print("c = ", c) # 1
 ```
 
 ```{code-cell} python
@@ -531,7 +530,7 @@ a = 10.0
 b = 20.5
 c = 1
 tupla2 = (a, b, c)  # Empaquetado
-print(tupla2)
+print(tupla2) # (10.0, 20.5, 1)
 ```
 
 La tupla vacía se puede definir con paréntesis vacíos `()` o con la función `tuple()`:
@@ -541,7 +540,7 @@ La tupla vacía se puede definir con paréntesis vacíos `()` o con la función 
 tags: hide-output
 ---
 tupla_vacia = ()  # Tupla vacía
-print(tupla_vacia)
+print(tupla_vacia) # ()
 ```
 
 ```{code-cell} python
@@ -549,7 +548,7 @@ print(tupla_vacia)
 tags: hide-output
 ---
 tupla_vacia2 = tuple()  # Otra forma de crear una tupla vacía
-print(tupla_vacia2)
+print(tupla_vacia2) # ()
 ```
 
 ### Anidamiento
@@ -562,7 +561,7 @@ tags: hide-output
 ---
 tupla_anidada = (1, 2, (3, 4), [5, 6])
 for elemento in tupla_anidada:
-    print(elemento)
+    print(elemento) # 1, 2, (3, 4), [5, 6]
 ```
 
 ```{code-cell} python
@@ -570,7 +569,7 @@ for elemento in tupla_anidada:
 tags: hide-output
 ---
 tupla_anidada = (1, 2, (3, 4), [5, 6])
-print(tupla_anidada[3][0])  # Accede al primer elemento de la lista anidada
+print(tupla_anidada[3][0])  # Accede al primer elemento de la lista anidada: 5
 ```
 
 ```{code-cell} python
@@ -579,7 +578,7 @@ tags: hide-output
 ---
 tupla_anidada = (1, 2, (3, 4), [5, 6])
 tupla_anidada[3].append(7)  # Modifica la lista anidada
-print(tupla_anidada)
+print(tupla_anidada) # (1, 2, (3, 4), [5, 6, 7])
 ```
 
 La tupla no se modificó, sigue teniendo 4 elementos, pero la lista que está adentro de la tupla si se puede modificar.
@@ -598,7 +597,7 @@ d = dict()  # Crear un diccionario vacío
 d["clave1"] = "valor1"  # Añadir un par clave-valor
 d[25] = "valor2"
 d[(1, 2)] = "valor3"  # Añadir una clave de tipo tupla
-print(d)
+print(d) # {'clave1': 'valor1', 25: 'valor2', (1, 2): 'valor3'}
 ```
 
 También se pueden crear diccionarios, de forma explícita, usando llaves `{}`:
@@ -608,7 +607,7 @@ También se pueden crear diccionarios, de forma explícita, usando llaves `{}`:
 tags: hide-output
 ---
 persona = {"nombre": "Ana", "edad": 30}
-print(persona)
+print(persona) # {'nombre': 'Ana', 'edad': 30}
 ```
 
 ### Acceso y modificación
@@ -620,7 +619,7 @@ Los diccionarios permiten acceder a los valores mediante sus claves. También se
 tags: hide-output
 ---
 persona = {"nombre": "Ana", "edad": 30}
-print(persona["nombre"])
+print(persona["nombre"]) # Ana
 ```
 
 ```{code-cell} python
@@ -629,7 +628,7 @@ tags: hide-output
 ---
 persona = {"nombre": "Ana", "edad": 30}
 persona["edad"] = 31  # Modifica el valor asociado a la clave "edad"
-print(persona)
+print(persona) # {'nombre': 'Ana', 'edad': 31}
 ```
 
 ```{code-cell} python
@@ -638,7 +637,7 @@ tags: hide-output
 ---
 persona = {"nombre": "Ana", "edad": 30}
 persona["email"] = "ana@mail.com"  # Añade una nueva clave-valor
-print(persona)
+print(persona) # {'nombre': 'Ana', 'edad': 31, 'email': 'ana@mail.com'}
 ```
 
 ```{code-cell} python
@@ -647,7 +646,7 @@ tags: hide-output
 ---
 persona = {"nombre": "Ana", "edad": 30, "email": "ana@mail.com"}
 del persona["edad"]  # Elimina la clave "edad"
-print(persona)
+print(persona) # {'nombre': 'Ana', 'email': 'ana@mail.com'}
 ```
 
 ### Métodos útiles
@@ -657,7 +656,8 @@ print(persona)
 tags: hide-output
 ---
 persona = {"nombre": "Ana", "email": "ana@mail.com"}
-print(persona.keys())  # Devuelve una lista con las claves del diccionario
+# Devuelve una lista con las claves del diccionario
+print(persona.keys())  # dict_keys(['nombre', 'email'])
 ```
 
 ```{code-cell} python
@@ -674,7 +674,7 @@ tags: hide-output
 ---
 persona = {"nombre": "Ana", "email": "ana@mail.com"}
 # Devuelve una lista de tuplas con los pares clave-valor
-print(persona.items())
+print(persona.items())  # dict_items([('nombre', 'Ana'), ('email', 'ana@mail.com')])
 ```
 
 Un método muy útil es `get()`, que permite acceder a un valor sin generar un error si la clave no existe:
@@ -697,7 +697,7 @@ tags: hide-output
 persona = {"nombre": "Ana", "email": "ana@mail.com"}
 # Devuelve 30 y añade la clave "edad" con valor 30
 print(persona.setdefault("edad", 30))
-print(persona)
+print(persona) # {'nombre': 'Ana', 'email': 'ana@mail.com', 'edad': 30}
 ```
 
 ```{code-cell} python
@@ -708,7 +708,7 @@ persona = {"nombre": "Ana", "edad": 30, "email": "ana@mail.com"}
 # Añade la clave "telefonos" con una lista vacía
 lista = persona.setdefault("telefonos", [])
 lista.append("123-456-7890")  # Añade un teléfono a la lista
-print(persona)
+print(persona) 
 ```
 
 ### Iteración sobre diccionarios
@@ -720,7 +720,7 @@ Los diccionarios se pueden iterar para acceder a las claves y valores.
 tags: hide-output
 ---
 for clave, valor in persona.items():  # Itera sobre los pares clave-valor
-    print(f"{clave}: {valor}")
+    print(f"{clave}: {valor}") # nombre: Ana, email: ana@mail.com, edad: 30
 ```
 
 ## Conjuntos (`set`)
@@ -732,7 +732,7 @@ Los conjuntos son colecciones **no ordenadas** de elementos únicos. No permiten
 tags: hide-output
 ---
 conjunto = {1, 2, 3, 4, 5}
-print(conjunto)
+print(conjunto) # {1, 2, 3, 4, 5}
 ```
 
 El conjunto vacío se puede definir con la función `set()`:
@@ -742,7 +742,7 @@ El conjunto vacío se puede definir con la función `set()`:
 tags: hide-output
 ---
 conjunto_vacio = set()  # Conjunto vacío
-print(type(conjunto_vacio))
+print(conjunto_vacio) # set()
 ```
 
 ```{code-cell} python
@@ -750,7 +750,7 @@ print(type(conjunto_vacio))
 tags: hide-output
 ---
 conjunto_vacio2 = {}  # Esto crea un diccionario vacío, no un conjunto
-print(type(conjunto_vacio2))
+print(conjunto_vacio2) # {}
 ```
 
 Para agregar un elemento a un conjunto, se utiliza el método `add()`:
@@ -761,7 +761,7 @@ tags: hide-output
 ---
 conjunto = {1, 2, 3, 4, 5}
 conjunto.add(6)  # Añade el elemento 6 al conjunto
-print(conjunto)
+print(conjunto) # {1, 2, 3, 4, 5, 6}
 ```
 
 Si intentamos agregar un elemento que ya existe, no se producirá un error, pero el conjunto no cambiará:
@@ -772,7 +772,7 @@ tags: hide-output
 ---
 conjunto = {1, 2, 3, 4, 5, 6}
 conjunto.add(6)  # No se añade, ya que 6 ya está en el conjunto
-print(conjunto)
+print(conjunto) # {1, 2, 3, 4, 5, 6}
 ```
 
 Se puede crear un conjunto a partir de una lista o tupla usando la función `set()`:
@@ -794,7 +794,7 @@ tags: hide-output, raises-exception
 ---
 conjunto = {1, 2, 3, 4, 5, 6}
 conjunto.remove(7)  # Genera un error, ya que 7 no está en el conjunto
-print(conjunto)
+print(conjunto) 
 ```
 
 ```{code-cell} python
@@ -803,7 +803,7 @@ tags: hide-output
 ---
 conjunto = {1, 2, 3, 4, 5, 6}
 conjunto.discard(7)  # No genera error
-print(conjunto)
+print(conjunto) # {1, 2, 3, 4, 5, 6}
 ```
 
 el operador `in` se puede usar para verificar si un elemento está en un conjunto:
@@ -813,7 +813,7 @@ el operador `in` se puede usar para verificar si un elemento está en un conjunt
 tags: hide-output
 ---
 conjunto = {1, 2, 3, 4, 5, 6}
-print(3 in conjunto)
+print(3 in conjunto) # True
 ```
 
 No se puede acceder a los elementos de un conjunto por índice, ya que no están ordenados. Sin embargo, se pueden iterar:
@@ -824,7 +824,7 @@ tags: hide-output
 ---
 conjunto = {1, 2, 3, 4, 5, 6}
 for elemento in conjunto:
-    print(elemento)
+    print(elemento) # 1, 2, 3, 4, 5, 6
 ```
 
 Los conjuntos son útiles para realizar operaciones matemáticas como unión, intersección, diferencia y diferencia simétrica.
@@ -838,7 +838,8 @@ tags: hide-output
 # Unión
 conjunto1 = {1, 2, 3, 4, 5, 6}
 conjunto2 = {4, 5, 6, 7}
-print(conjunto1, " union ", conjunto2, "=", conjunto1 | conjunto2)
+print(conjunto1, " union ", conjunto2, "=", conjunto1 | conjunto2) 
+# {1, 2, 3, 4, 5, 6, 7}
 ```
 
 ```{code-cell} python
@@ -849,6 +850,7 @@ tags: hide-output
 conjunto1 = {1, 2, 3, 4, 5, 6}
 conjunto2 = {4, 5, 6, 7}
 print(conjunto1, " interseccion ", conjunto2, "=", conjunto1 & conjunto2)
+# {4, 5, 6}
 ```
 
 ```{code-cell} python
@@ -859,7 +861,9 @@ tags: hide-output
 conjunto1 = {1, 2, 3, 4, 5, 6}
 conjunto2 = {4, 5, 6, 7}
 print(conjunto1, " diferencia ", conjunto2, "=", conjunto1 - conjunto2)
+# {1, 2, 3}
 print(conjunto2, " diferencia ", conjunto1, "=", conjunto2 - conjunto1)
+# {7}
 ```
 
 ```{code-cell} python
@@ -871,8 +875,10 @@ conjunto1 = {1, 2, 3, 4, 5, 6}
 conjunto2 = {4, 5, 6, 7}
 print(f"{conjunto1} diferencia simetrica {conjunto2} = "
       f"{conjunto1 ^ conjunto2}")
+# {1, 2, 3, 7}
 print(f"{conjunto2} diferencia simetrica {conjunto1} = "
       f"{conjunto2 ^ conjunto1}")
+# {1, 2, 3, 7}
 ```
 
 ```{code-cell} python
@@ -883,6 +889,7 @@ conjunto = {1, 2, 3, 4, 5, 6}
 # Subconjunto
 es_subconjunto = {1, 2} <= conjunto
 print("{1, 2} es subconjunto de", conjunto, "?: ", es_subconjunto)
+# True
 ```
 
 ```{code-cell} python
@@ -893,6 +900,7 @@ conjunto = {1, 2, 3, 4, 5, 6}
 # Superconjunto
 es_superconjunto = {1, 2} >= conjunto
 print("{1, 2} es superconjunto de", conjunto, "?: ", es_superconjunto)
+# False
 ```
 
 Existen otros tipos de conjuntos que permiten almacenar elementos únicos, pero que una vez creados no se pueden modificar, se llaman **conjuntos inmutables** o **frozensets**. Se crean usando la función `frozenset()`:
@@ -903,6 +911,7 @@ tags: hide-output
 ---
 conjunto_inmutable = frozenset([1, 2, 3, 4, 5])
 print(conjunto_inmutable)
+# frozenset({1, 2, 3, 4, 5})
 ```
 
 Los conjuntos inmutables son útiles cuando se necesita un conjunto que no cambie a lo largo del tiempo, por ejemplo, como claves en un diccionario o elementos en otro conjunto.
@@ -934,7 +943,7 @@ tags: hide-output
 ---
 numeros = [x for x in range(1, 6)]  # Lista de números del 1 al 5
 cuadrados = [x**2 for x in numeros]
-print(cuadrados)  # Salida: [1, 4, 9, 16, 25]
+print(cuadrados)  #  [1, 4, 9, 16, 25]
 ```
 
 Si en lugar de corchetes `[]` se usan paréntesis `()`, se crea un generador en lugar de una lista:
@@ -945,7 +954,7 @@ tags: hide-output
 ---
 numeros = (x for x in range(1, 6))  # Tupla de números del 1 al 5
 cuadrados = (x**2 for x in numeros)
-print(cuadrados)  # Salida: (1, 4, 9, 16, 25)
+print(cuadrados)  # (1, 4, 9, 16, 25)
 ```
 
 Si se usan llaves `{}`, se crea un conjunto o un diccionario, dependiendo de si se especifica una clave o un par clave-valor:
@@ -956,7 +965,7 @@ tags: hide-output
 ---
 numeros = {x for x in range(1, 6)}  # Conjunto de números del 1 al 5
 cuadrados = {x**2 for x in numeros}
-print(cuadrados)  # Salida: {1, 4, 9, 16, 25}
+print(cuadrados)  # {1, 4, 9, 16, 25}
 ```
 
 ```{code-cell} python
@@ -965,7 +974,7 @@ tags: hide-output
 ---
 numeros = {"uno": 1, "dos": 2, "tres": 3}
 cuadrados = {clave: valor**2 for clave, valor in numeros.items()}
-print(cuadrados)  # Salida: {'uno': 1, 'dos': 4, 'tres': 9}
+print(cuadrados)  # {'uno': 1, 'dos': 4, 'tres': 9}
 ```
 
 ```{code-cell} python
@@ -974,7 +983,7 @@ tags: hide-output
 ---
 diccionario = {"nombre": "Ana", "edad": 30, "email": "ana@example.com"}
 tuplas = [(clave, valor) for clave, valor in diccionario.items()]
-print(tuplas)
+print(tuplas) # [('nombre', 'Ana'), ('edad', 30), ('email', 'ana@example.com')]
 ```
 
 La comprensión es una característica funcional de Python muy poderosa.
