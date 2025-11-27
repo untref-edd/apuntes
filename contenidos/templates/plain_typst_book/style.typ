@@ -17,9 +17,9 @@
 
 #let template(
   // FRONTPAGE.
-  title: "Book Title",
-  subtitle: none,
-  authors: "Your name",
+  title: "Apunte Estructuras de Datos",
+  subtitle: "Ingeniería en Computación",
+  authors: "Cátedra de Estructuras de Datos",
   cover: "untref-logo.svg",            // <— path to cover "images/cover.png"
   cover_width: 12cm,    
   coverposition: 1cm,
@@ -36,7 +36,7 @@
   paper-size: "a4",       // https://typst.app/docs/reference/layout/page/#parameters-paper
   margin: (),                          
   linespacing: .5em,
-  show_pagenumber: false,
+  show_pagenumber: true,
   margin_top: 2cm,
   margin_bottom: 2cm,
   margin_left: 20%,
@@ -44,11 +44,11 @@
   logo: none,
   logo_width: 10%,
   
-  font: "Libertinus Serif", 
-  fontsize: 11pt,
+  font: ("New Computer Modern", "Noto Color Emoji"), 
+  fontsize: 10pt,
 
   theme: blue.darken(30%),
-  colorheadings: black,
+  colorheadings: blue.darken(30%),
   
   // The book's content.
   body
@@ -96,7 +96,7 @@
   align(center, text(17pt, weight: "bold", fill: theme, title))
   if subtitle != none {
     parbreak()
-    box(text(14pt, fill: gray.darken(30%), subtitle))
+    align(center, text(14pt, fill: gray.darken(30%), subtitle))
   }
 
     if cover != none {
@@ -148,13 +148,23 @@
 
 //RESETING NUMBERING
   show heading.where(level: 1): it => {
-    pagebreak()
+    pagebreak(weak: true)
     // Reset all counters with a new chapter
     counter(figure).update(0)                // all figures (irrespective of kind)
     counter(figure.where(kind: table)).update(0) // specific for tables
     counter(math.equation).update(0)
     
+    set align(center + horizon)
+    set text(size: 24pt)
     it
+    pagebreak()
+  }
+
+  show heading.where(level: 2): it => {
+    set align(center)
+    set text(size: 18pt)
+    block(it)
+    v(1em)
   }
 
   //Heading colors
@@ -164,6 +174,12 @@
 // PAGE LAY OUT OF CONTENT
   set page(
     numbering: if show_pagenumber == true {"1"} else {none},         //turn on numbering
+    footer: context [
+      #set align(right)
+      #if show_pagenumber {
+        [Página #counter(page).display("1") de #counter(page).final().last()]
+      }
+    ],
     margin: (
       top: margin_top,
       bottom: margin_bottom,
@@ -185,5 +201,53 @@
   counter(page).update(1)   //set number to 1
 
   // Display the book's contents.
+  // Code block styling
+  show raw.where(block: true): it => {
+    let lang = if it.has("lang") { it.lang } else { none }
+    let title = if lang != none {
+      if lang == "python" { "Python" }
+      else if lang == "rust" { "Rust" }
+      else if lang == "cpp" { "C++" }
+      else if lang == "c" { "C" }
+      else if lang == "java" { "Java" }
+      else if lang == "js" or lang == "javascript" { "JavaScript" }
+      else if lang == "ts" or lang == "typescript" { "TypeScript" }
+      else if lang == "html" { "HTML" }
+      else if lang == "css" { "CSS" }
+      else if lang == "sql" { "SQL" }
+      else if lang == "bash" or lang == "sh" { "Shell" }
+      else if lang == "json" { "JSON" }
+      else if lang == "yaml" or lang == "yml" { "YAML" }
+      else if lang == "xml" { "XML" }
+      else if lang == "typ" or lang == "typst" { "Typst" }
+      else { lang }
+    } else { none }
+
+    block(
+      fill: luma(240),
+      inset: 0pt,
+      radius: 4pt,
+      stroke: 0.5pt + luma(200),
+      width: 100%,
+      clip: true,
+      {
+        if title != none {
+            block(
+                fill: luma(220),
+                width: 100%,
+                inset: 8pt,
+                stroke: (bottom: 0.5pt + luma(200)),
+                text(weight: "bold", font: "New Computer Modern", size: 10pt, title)
+            )
+        }
+        block(
+            inset: 8pt,
+            width: 100%,
+            text(font: "DejaVu Sans Mono", size: 8pt, it)
+        )
+      }
+    )
+  }
+
   [#body]
 }

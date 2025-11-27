@@ -29,13 +29,14 @@
   warning: "⚠️",
   important: "❗",
   caution: "🚧",
+  danger: "🔥",
 )
 
 // Algemene builder
 #let admonition(body, kind: "note", title: none, icon: none) = {
   let bg = admonition-colors.at(kind, default: luma(240))
   let heading = if title != none { title } else { admonition-titles.at(kind, default: kind) }
-  let mark = if icon != none { icon } else { admonition-icons.at(kind, default: "ℹ️") }
+
 
   // Breekbare container zodat grote admonitions over pagina's mogen
   block(
@@ -46,8 +47,8 @@
     radius: 4pt,
   )[
     // Headerregel met icoon + titel in bold
-    #block(inset: 4pt, bottom-edge: 6pt)[
-      #text(10pt, strong([#mark  #heading]))
+    #block(inset: 4pt)[
+      #text(10pt, strong(heading))
     ]
     // Inhoud
     #body

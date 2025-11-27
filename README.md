@@ -5,7 +5,7 @@
 Si deseas desarrollar y/o compilar el apunte de Estructuras de Datos, debes:
 
 > [!TIP]
-> Para esta guía se asume que Python.
+> Para esta guía se asume que tienes **Python** instalado.
 >
 > Se recomienda crear un entorno virtual de Python para trabajar con este proyecto.
 
@@ -19,7 +19,7 @@ Si deseas desarrollar y/o compilar el apunte de Estructuras de Datos, debes:
 
 3. (Opcional) Edita los archivos fuente del libro ubicados en el directorio `contenidos`
 
-4. Para compilar el libre ejecutar:
+4. Para compilar el libro ejecutar:
 
    ```sh
    myst build contenidos
@@ -31,6 +31,12 @@ Si deseas desarrollar y/o compilar el apunte de Estructuras de Datos, debes:
 
    ```sh
    python -m http.server --directory contenidos/_build/html
+   ```
+
+   O utilizando el comando de `myst`:
+
+   ```sh
+   myst start contenidos
    ```
 
 ### Ejecutando comando con `make`
@@ -48,8 +54,8 @@ winget install -e --id GnuWin32.Make
 Una vez que tenemos `make` disponible, podemos ejecutar los siguientes comandos:
 
 - `make install`: Instala las dependencias del proyecto.
-- `make build`: Compila el libro.
-- `make pdf`: Compila el libro en formato PDF (requiere Typst).
+- `make build`: Compila el libro en formato HTML.
+- `make pdf`: Compila el libro en formato PDF (requiere [Typst](https://typst.app/) instalado).
 - `make start`: Inicia el servidor de desarrollo.
 
-Esto simplifica el proceso de desarrollo y permite que cualquier persona pueda compilar y servir el libro sin tener que recordar los comandos de Python o Jupyter Book.
+Esto simplifica el proceso de desarrollo y permite que cualquier persona pueda compilar y servir el libro sin tener que recordar los comandos de Python o MyST.

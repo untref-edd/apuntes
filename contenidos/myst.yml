@@ -78,9 +78,7 @@ project:
         - file: Anexos/GitBash.md
         - file: Anexos/Facebook.md
         - file: Anexos/Twitter.md
-    - title: Referencias
-      children:
-        - file: bibliografia.md
+
 
 site:
   template: book-theme

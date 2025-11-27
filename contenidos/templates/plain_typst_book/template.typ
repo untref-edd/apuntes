@@ -119,7 +119,14 @@
 
 [# if doc.bibtex #]
 #{
+  show heading.where(level: 1): it => {
+    pagebreak(weak: true)
+    v(12pt, weak: true)
+    text(18pt, weight: "bold", fill: blue.darken(30%), it.body)
+    v(1em)
+  }
+  heading(level: 1, numbering: none, "Referencias")
   show bibliography: set text(8pt)
-  bibliography("[-doc.bibtex-]", title: text(10pt, "Bibliografía"), style: "apa")
+  bibliography("[-doc.bibtex-]", title: none, style: "apa", full: true)
 }
 [# endif #]

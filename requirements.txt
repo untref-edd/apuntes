@@ -22,7 +22,7 @@ sphinx-proof
 sphinx-thebe
 sphinxcontrib-mermaid
 tweepy
-jupyter-book>=2.0.0
+mystmd
 
 # Paquetes locales del curso
 # Incluye: grafos (algoritmos de grafos), ii (índices invertidos)
