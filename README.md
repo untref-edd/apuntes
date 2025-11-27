@@ -25,12 +25,12 @@ Si deseas desarrollar y/o compilar el apunte de Estructuras de Datos, debes:
    myst build contenidos
    ```
 
-   Una versión HTML completamente renderizada del libro se construirá en `contenidos/_build/html`.
+   Una versión HTML completamente renderizada del libro se construirá en `contenidos/_build/site`.
 
 5. (Opcional) Se puede servir este HTML utilizando el siguiente comando de Python:
 
    ```sh
-   python -m http.server --directory contenidos/_build/html
+   python -m http.server --directory contenidos/_build/site
    ```
 
    O utilizando el comando de `myst`:
