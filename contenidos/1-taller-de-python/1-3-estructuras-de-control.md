@@ -34,7 +34,7 @@ elif edad < 65:
 else:
     categoria = "jubilado"
 
-print(f"Categoría: {categoria}")
+print(f"Categoría: {categoria}") # adulto solvente
 ```
 
 ### Operadores lógicos y comparación
