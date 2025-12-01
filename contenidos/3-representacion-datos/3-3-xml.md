@@ -232,41 +232,109 @@ El operador `|` es el operador de unión permite seleccionar distintos caminos e
 `/biblioteca//libro[precio + 100 > 600]`
 : Selecciona los nodos `libro` donde el valor del elemento `precio` sumado a 100 es mayor que 600.
 
+## Características de XPath 2.0
+
+XPath 2.0 introduce mejoras significativas sobre la versión 1.0, incluyendo un sistema de tipos más rico, soporte para secuencias, expresiones condicionales y cuantificadores, así como una amplia biblioteca de funciones.
+
+```{note} Nota
+Para utilizar estas características en Python, es necesario usar bibliotecas que soporten XPath 2.0, como `elementpath`. La biblioteca estándar `xml.etree.ElementTree` solo soporta un subconjunto de XPath 1.0.
+```
+
+### Funciones integradas
+
+XPath 2.0 ofrece una gran cantidad de funciones para manipular cadenas, números, fechas y secuencias.
+
+| Función | Descripción | Ejemplo |
+| :--- | :--- | :--- |
+| `count(nodos)` | Cuenta el número de nodos en una secuencia | `count(//libro)` |
+| `sum(nodos)` | Suma los valores numéricos de los nodos | `sum(//precio)` |
+| `avg(nodos)` | Calcula el promedio de los valores | `avg(//precio)` |
+| `min(nodos)` | Devuelve el valor mínimo | `min(//precio)` |
+| `max(nodos)` | Devuelve el valor máximo | `max(//precio)` |
+| `contains(s1, s2)` | Verdadero si s1 contiene s2 | `contains(titulo, 'XML')` |
+| `starts-with(s1, s2)` | Verdadero si s1 empieza con s2 | `starts-with(titulo, 'A')` |
+| `ends-with(s1, s2)` | Verdadero si s1 termina con s2 | `ends-with(titulo, '.')` |
+| `upper-case(s)` | Convierte la cadena a mayúsculas | `upper-case('hola')` |
+| `string-length(s)` | Devuelve la longitud de la cadena | `string-length('abc')` |
+| `matches(s, regex)` | Verdadero si la cadena cumple con la expresión regular | `matches('123', '^\d+$')` |
+
+### Secuencias
+
+En XPath 2.0, todo es una secuencia. Un valor simple es una secuencia de un solo elemento. Las secuencias se pueden construir con paréntesis y comas.
+
+- `(1, 2, 3)`: Una secuencia de tres enteros.
+- `(1 to 5)`: Genera la secuencia `(1, 2, 3, 4, 5)`.
+- `//libro/titulo`: Devuelve una secuencia con todos los nodos título.
+
+### Expresiones condicionales (`if-then-else`)
+
+Permiten evaluar condiciones y devolver diferentes resultados.
+
+```xpath
+if (@precio > 500) then 'Caro' else 'Barato'
+```
+
+### Cuantificadores (`some` y `every`)
+
+Permiten verificar si alguno o todos los elementos de una secuencia cumplen una condición.
+
+- **some**: Verdadero si al menos un elemento cumple la condición.
+  ```xpath
+  some $x in //precio satisfies $x > 1000
+  ```
+
+- **every**: Verdadero si todos los elementos cumplen la condición.
+  ```xpath
+  every $x in //precio satisfies $x > 0
+  ```
+
+### Tablas de referencia rápida
+
+Descargar la [Hoja de Referencia de XPath 2.0](../_static/docs/referencias_xpath.pdf) en PDF.
+
+
 ## XML y Python
 
-Python ofrece varias bibliotecas para trabajar con XML, siendo las más comunes `xml.etree.ElementTree`, `lxml` y `xml.dom.minidom`. En los ejemplos usaremos `lxml` que es muy potente y flexible.
+Python ofrece varias bibliotecas para trabajar con XML, siendo las más comunes `xml.etree.ElementTree` (nativa), `lxml` y `xml.dom.minidom`.
 
-Para instalar `lxml`, se puede usar pip:
+Si bien `xml.etree.ElementTree` es parte de la biblioteca estándar, su soporte para XPath es limitado (solo soporta XPath 1.0 simplificado). Para utilizar todas las capacidades de XPath 2.0 (incluyendo funciones), utilizaremos la biblioteca `elementpath` en conjunto con `xml.etree.ElementTree`.
+
+[`elementpath`](https://elementpath.readthedocs.io/en/latest/) es una biblioteca de Python que implementa completamente el estándar XPath 2.0 (y versiones posteriores) para la navegación y consulta de documentos XML. Complementa a `xml.etree.ElementTree` al permitir el uso de expresiones XPath más complejas y potentes que las que soporta la implementación nativa de Python.
+
+Para instalar `elementpath`, se puede usar pip:
 
 ```bash
-pip install lxml
+pip install elementpath
 ```
 
 ```{code-cell} python
 ---
 tags: hide-output
 ---
-from lxml import etree
+from xml.etree import ElementTree
+import elementpath
 
 # Cargar el documento XML
-tree = etree.parse("../_static/code/xml/biblioteca.xml")
+tree = ElementTree.parse("../_static/code/xml/biblioteca.xml")
 root = tree.getroot()
 
 # Realizar una consulta XPath
 # Seleccionar todos los títulos de libros
-titulos = root.xpath("/biblioteca/libro/titulo/text()")
+titulos = elementpath.select(root, "/biblioteca/libro/titulo/text()")
 print("Títulos de libros:")
 for titulo in titulos:
     print(titulo)
 
 # Seleccionar todos los autores con fecha de nacimiento
-autores_con_fecha = root.xpath("//autor[@fechaNacimiento]/text()")
+autores_con_fecha = elementpath.select(
+    root, "//autor[@fechaNacimiento]/text()")
 print("\nAutores con fecha de nacimiento:")
 for autor in autores_con_fecha:
     print(autor)
 
 # Seleccionar libros con precio menor a 300
-libros_baratos = root.xpath("/biblioteca/libro[precio < 300]/titulo/text()")
+libros_baratos = elementpath.select(
+    root, "/biblioteca/libro[precio < 300]/titulo/text()")
 print("\nLibros con precio menor a 300:")
 for libro in libros_baratos:
     print(libro)
@@ -278,22 +346,94 @@ Otro ejemplo: Calcular el precio total de los libros
 ---
 tags: hide-output
 ---
-from lxml import etree
 
-# Cargar el documento XML
-tree = etree.parse("../_static/code/xml/biblioteca.xml")
-root = tree.getroot()
-
-# Calcular el precio total de todos los libros
-precios = root.xpath("/biblioteca/libro/precio/text()")
-total_precio = sum(float(precio) for precio in precios)
+# Calcular el precio total de todos los libros usando la función sum
+# de XPath 2.0
+total_precio = elementpath.select(root, "sum(/biblioteca/libro/precio)")
 
 print(f"\nPrecio total de todos los libros: {total_precio:.2f}")
 ```
 
-### Noticias con RSS y Atom
+### Ejemplos avanzados con XPath 2.0
 
-**RSS** (Really Simple Syndication o Rich Site Summary) es un formato basado en XML que se utiliza para distribuir y compartir contenido web, como noticias, blogs, podcasts y otros tipos de información actualizada regularmente. Los archivos RSS permiten a los usuarios suscribirse a fuentes de contenido y recibir actualizaciones automáticas cuando se publica nuevo contenido. A continuación se muestra un ejemplo de lectura del feed RSS con las últimas noticias del diario Clarin:
+A continuación, veremos cómo utilizar funciones avanzadas, cuantificadores y expresiones condicionales con `elementpath`.
+
+```{code-cell} python
+---
+tags: hide-output
+---
+# Funciones de cadena: starts-with
+# Seleccionar libros cuyo título comienza con "La"
+libros_la = elementpath.select(
+    root, "/biblioteca/libro[starts-with(titulo, 'La')]/titulo/text()"
+)
+print("Libros que empiezan con 'La':")
+for libro in libros_la:
+    print(f"- {libro}")
+
+print("\n---")
+
+# Cuantificadores: some
+# Verificar si hay algún libro con precio mayor a 500
+hay_caros = elementpath.select(root, "some $x in //precio satisfies $x > 500")
+print(f"¿Hay libros caros (>500)? {hay_caros}")
+
+# Cuantificadores: every
+# Verificar si todos los precios son positivos
+todos_positivos = elementpath.select(root, "every $x in //precio satisfies $x > 0")
+print(f"¿Todos los precios son positivos? {todos_positivos}")
+
+print("\n---")
+
+# Expresiones condicionales: if-then-else
+# Categorizar libros según su precio
+categorias = elementpath.select(root,
+    "for $libro in /biblioteca/libro return "
+    "concat($libro/titulo, ': ', "
+    "if ($libro/precio > 500) then 'Caro' else 'Barato')"
+)
+print("Categorización de libros:")
+for cat in categorias:
+    print(f"- {cat}")
+```
+
+### Sindicación de Contenidos: RSS y Atom
+
+La sindicación de contenidos es una forma de distribuir información actualizada de sitios web a usuarios que se han suscrito a ellos. Los dos formatos más populares para esto son **RSS** y **Atom**, ambos basados en XML.
+
+```{note} Sindicación de contenidos
+La sindicación de contenidos es el proceso mediante el cual el contenido de un sitio web se pone a disposición de otros sitios o usuarios de forma automatizada.
+```
+
+#### RSS (Really Simple Syndication)
+
+RSS es una familia de formatos de fuentes web estandarizados que se utilizan para publicar trabajos actualizados con frecuencia, como entradas de blogs, titulares de noticias, audio y vídeo. El formato RSS permite a los editores sindicar datos de forma automática. La versión actual es RSS 2.0.
+
+#### Atom
+
+Atom es un estándar más reciente, desarrollado como una alternativa a RSS para solucionar algunas de sus ambigüedades y limitaciones. Fue estandarizado por el IETF ([RFC 4287](https://datatracker.ietf.org/doc/html/rfc4287)). Atom suele ser más robusto y consistente en su estructura.
+
+#### Comparación: RSS vs Atom
+
+| Característica | RSS 2.0 | Atom 1.0 |
+| :--- | :--- | :--- |
+| **Estandarización** | No estandarizado formalmente (mantenido por Harvard) | Estándar IETF (RFC 4287) |
+| **Fecha de publicación** | Elemento `<pubDate>` (formato RFC 822) | Elemento `<updated>` (formato ISO 8601) |
+| **Contenido** | Solo soporta texto plano o HTML escapado | Soporta texto, HTML, XHTML y contenido binario (Base64) |
+| **Identificación** | `<guid>` (opcional) | `<id>` (obligatorio y único) |
+| **Autor** | `<author>` (email del autor) | `<author>` (estructura con nombre, email, uri) |
+
+#### Lectura de Feeds con Python
+
+La biblioteca `feedparser` es la herramienta estándar en Python para analizar tanto feeds RSS como Atom de manera transparente.
+
+Para instalar `feedparser`:
+
+```bash
+pip install feedparser
+```
+
+##### Ejemplo 1: Leyendo noticias (RSS)
 
 ```{code-cell} python
 ---
@@ -304,13 +444,42 @@ import feedparser
 # URL del feed RSS de Clarin
 rss_url = "https://www.clarin.com/rss/lo-ultimo/"
 
-# Parsear el feed RSS
+# Parsear el feed
 feed = feedparser.parse(rss_url)
 
-# Mostrar los títulos y enlaces de las últimas noticias
-print("Últimas noticias de Clarin:\n")
-for entry in feed.entries[:5]:  # Mostrar solo las primeras 5 noticias
+print(f"Fuente: {feed.feed.title}")
+print("Últimas noticias:\n")
+
+for entry in feed.entries[:3]:
     print(f"Título: {entry.title}")
-    print(f"Fecha de publicación: {entry.published}")
-    print(f"Enlace: {entry.link}\n")
+    print(f"Link: {entry.link}")
+    print("---")
+```
+
+##### Ejemplo 2: Leyendo Gmail (Atom)
+
+Gmail proporciona un feed Atom de los correos no leídos. Dado que requiere autenticación, este ejemplo muestra cómo se estructuraría la petición (nota: por seguridad, Gmail requiere contraseñas de aplicación si tienes 2FA activado).
+
+```{code-block}python
+
+import feedparser
+
+# Reemplazar con tus credenciales (usar contraseña de aplicación)
+username = "tu_usuario@gmail.com"
+password = "tu_contraseña_de_aplicacion"
+
+# URL del feed Atom de Gmail
+gmail_url = f"https://{username}:{password}@mail.google.com/mail/feed/atom"
+
+# Parsear el feed
+feed = feedparser.parse(gmail_url)
+
+print(f"Correos no leídos en: {feed.feed.title}")
+print(f"Cantidad: {feed.feed.fullcount}\n")
+
+for entry in feed.entries[:3]:
+    print(f"De: {entry.author}")
+    print(f"Asunto: {entry.title}")
+    print(f"Resumen: {entry.summary}")
+    print("---")
 ```

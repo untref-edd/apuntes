@@ -1,0 +1,127 @@
+\documentclass[a4paper, 8pt]{extarticle}
+\usepackage[margin=1cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+% \usepackage[spanish]{babel}
+\usepackage[T1]{fontenc}
+\renewcommand{\familydefault}{\sfdefault}
+
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{xcolor}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\section*{XPath 2.0: Referencia Rápida}
+
+\subsection*{Selectores y Ejes}
+
+\begin{longtable}{@{} p{2.5cm} p{7cm} p{3.5cm} p{4.5cm} @{}}
+\toprule
+\textbf{Expresión} & \textbf{Descripción} & \textbf{Ejemplo} & \textbf{Resultado} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Expresión} & \textbf{Descripción} & \textbf{Ejemplo} & \textbf{Resultado} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\bottomrule
+\endlastfoot
+
+\centering \verb!/! & Selecciona desde el nodo raíz & \verb!/biblioteca! & Elemento raíz biblioteca \\
+\centering \verb!//! & Selecciona nodos en cualquier parte del documento & \verb!//libro! & Todos los libros \\
+\centering \verb!.! & Selecciona el nodo actual & \verb!./titulo! & Título del nodo actual \\
+\centering \verb!..! & Selecciona el padre del nodo actual & \verb!../autor! & Autor hermano del actual \\
+\centering \verb!@! & Selecciona atributos & \verb!@id! & Atributo id \\
+\centering \verb!*! & Comodín para cualquier elemento & \verb!/biblioteca/*! & Todos los hijos de biblioteca \\
+\centering \verb!@*! & Comodín para cualquier atributo & \verb!//libro/@*! & Todos los atributos de libros \\
+\centering \verb!node()! & Cualquier tipo de nodo & \verb!//libro/node()! & Hijos de libro (elem. y texto) \\
+\centering \verb!text()! & Nodo de texto & \verb!//titulo/text()! & Texto del título \\
+\end{longtable}
+
+\subsection*{Predicados y Operadores}
+
+\begin{longtable}{@{} p{2.5cm} p{7cm} p{3.5cm} p{4.5cm} @{}}
+\toprule
+\textbf{Expresión} & \textbf{Descripción} & \textbf{Ejemplo} & \textbf{Resultado} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Expresión} & \textbf{Descripción} & \textbf{Ejemplo} & \textbf{Resultado} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\bottomrule
+\endlastfoot
+
+\centering \verb![n]! & Selecciona el n-ésimo elemento & \verb!//libro[1]! & Primer libro \\
+\centering \verb![last()]! & Selecciona el último elemento & \verb!//libro[last()]! & Último libro \\
+\centering \verb![@attr]! & Filtra por presencia de atributo & \verb!//libro[@idioma]! & Libros con atributo idioma \\
+\centering \verb![@attr='val']! & Filtra por valor de atributo & \verb!//libro[@id='1']! & Libro con id 1 \\
+\centering \verb!+ - * div mod! & Operadores aritméticos & \verb!//libro[precio > 100]! & Libros caros \\
+\centering \verb!= != < >! & Operadores de comparación & \verb!//libro[precio <= 50]! & Libros baratos \\
+\centering \verb!and or not()! & Operadores lógicos & \verb!//libro[precio>10 and @id]! & Libros caros con id \\
+\end{longtable}
+
+\subsection*{Funciones de XPath 2.0}
+
+\begin{longtable}{@{} p{3.5cm} p{6cm} p{4cm} p{4cm} @{}}
+\toprule
+\textbf{Función} & \textbf{Descripción} & \textbf{Ejemplo} & \textbf{Resultado} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Función} & \textbf{Descripción} & \textbf{Ejemplo} & \textbf{Resultado} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\bottomrule
+\endlastfoot
+
+\centering \verb!count(nodos)! & Cuenta el número de nodos & \verb!count(//libro)! & Cantidad de libros \\
+\centering \verb!sum(nodos)! & Suma los valores numéricos & \verb!sum(//precio)! & Precio total \\
+\centering \verb!avg(nodos)! & Calcula el promedio & \verb!avg(//precio)! & Precio promedio \\
+\centering \verb!min(nodos)! & Valor mínimo & \verb!min(//precio)! & Precio mínimo \\
+\centering \verb!max(nodos)! & Valor máximo & \verb!max(//precio)! & Precio máximo \\
+\centering \verb!contains(s1, s2)! & Verdadero si s1 contiene s2 & \verb!//libro[contains(titulo, 'XML')]! & Libros sobre XML \\
+\centering \verb!starts-with(s1, s2)! & Verdadero si s1 empieza con s2 & \verb!//libro[starts-with(titulo, 'A')]! & Títulos que empiezan con A \\
+\centering \verb!ends-with(s1, s2)! & Verdadero si s1 termina con s2 & \verb!//libro[ends-with(titulo, '.')]! & Títulos que terminan en punto \\
+\centering \verb!upper-case(s)! & Convierte a mayúsculas & \verb!upper-case('hola')! & 'HOLA' \\
+\centering \verb!lower-case(s)! & Convierte a minúsculas & \verb!lower-case('HOLA')! & 'hola' \\
+\centering \verb!string-length(s)! & Longitud de la cadena & \verb!string-length('abc')! & 3 \\
+\centering \verb!substring(s, ini, len)! & Extrae subcadena & \verb!substring('abcdef', 2, 3)! & 'bcd' \\
+\centering \verb!matches(s, regex)! & Verdadero si cumple la regex & \verb!matches('123', '^\d+$')! & true \\
+\end{longtable}
+
+\subsection*{Secuencias y Control de Flujo (XPath 2.0)}
+
+\begin{longtable}{@{} p{3.5cm} p{6cm} p{4cm} p{4cm} @{}}
+\toprule
+\textbf{Expresión} & \textbf{Descripción} & \textbf{Ejemplo} & \textbf{Resultado} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Expresión} & \textbf{Descripción} & \textbf{Ejemplo} & \textbf{Resultado} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\bottomrule
+\endlastfoot
+
+\centering \verb!(1, 2, 3)! & Construye una secuencia & \verb!count((1, 2, 3))! & 3 \\
+\centering \verb!1 to 5! & Rango de enteros & \verb!1 to 3! & (1, 2, 3) \\
+\centering \verb!if (cond) then A else B! & Condicional & \verb!if (@precio > 100) then 'Caro' else 'Barato'! & 'Caro' o 'Barato' \\
+\centering \verb!for $x in seq return expr! & Iteración & \verb!for $x in (1, 2) return $x * 2! & (2, 4) \\
+\centering \verb!some $x in seq satisfies cond! & Cuantificador existencial & \verb!some $x in //precio satisfies $x > 1000! & true si hay alguno > 1000 \\
+\centering \verb!every $x in seq satisfies cond! & Cuantificador universal & \verb!every $x in //precio satisfies $x > 0! & true si todos son > 0 \\
+\end{longtable}
+
+\end{document}
