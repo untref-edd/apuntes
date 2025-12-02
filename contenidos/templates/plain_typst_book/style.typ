@@ -20,34 +20,34 @@
   title: "Apunte Estructuras de Datos",
   subtitle: "Ingeniería en Computación",
   authors: "Cátedra de Estructuras de Datos",
-  cover: "untref-logo.svg",            // <— path to cover "images/cover.png"
+  cover: "untref-logo.svg",
   cover_width: 12cm,
   coverposition: 1cm,
-  justification: false,
+  justification: true,
 
   // TOC
-  ToC_depth: 2,
+  ToC_depth: 3,
   show_ToC: true,
 
   // PREFACE
   preface: none,
 
   // SPECIFICATION of output
-  paper-size: "a4",       // https://typst.app/docs/reference/layout/page/#parameters-paper
+  paper-size: "a4",
   margin: (),
-  linespacing: .5em,
+  linespacing: .65em,
   show_pagenumber: true,
-  margin_top: 2cm,
-  margin_bottom: 2cm,
-  margin_left: 20%,
-  margin_right: 10%,
+  margin_top: 2.5cm,
+  margin_bottom: 2.5cm,
+  margin_left: 3cm,
+  margin_right: 2cm,
   logo: none,
   logo_width: 10%,
 
   font: ("New Computer Modern", "Noto Color Emoji"),
-  fontsize: 10pt,
+  fontsize: 11pt,
 
-  theme: blue.darken(30%),
+  theme: blue.darken(30%),  // Blue color
   colorheadings: blue.darken(30%),
 
   // The book's content.
@@ -71,8 +71,8 @@
 
   set figure(numbering: (..args) => {
     // get current chapter number (first level of heading)
-    let chapter = counter(heading).display((..nums) => nums.pos().at(0)) // nums is array of all levels, at(0) is first level, display formats it.
-    let fig = counter(figure).display("1")    // counter counts, display formats it
+    let chapter = counter(heading).display((..nums) => nums.pos().at(0))
+    let fig = counter(figure).display("1")
     [#chapter.#fig]
   })
 
@@ -80,7 +80,7 @@
   // Configure equation numbering and spacing.
   set math.equation(numbering: (..args) => {
     let chapter = counter(heading).display((..nums) => nums.pos().at(0))
-    [(#chapter.#numbering("1)", ..args.pos())]
+    [(#chapter.#numbering("1)", ..args.pos()))]
   })
   show math.equation: set block(spacing: 1em)
 
@@ -92,39 +92,47 @@
 
 
 // COVERPAGE
-  // Title, subtitle,
-  align(center, text(17pt, weight: "bold", fill: theme, title))
+  // Title in orange box
+  align(center,
+    block(
+      fill: theme,
+      inset: 20pt,
+      radius: 4pt,
+      width: 80%,
+      text(24pt, weight: "bold", fill: white, title)
+    )
+  )
+
   if subtitle != none {
-    parbreak()
-    align(center, text(14pt, fill: gray.darken(30%), subtitle))
+    v(1em)
+    align(center, text(16pt, fill: gray.darken(30%), weight: "semibold", subtitle))
   }
 
-    if cover != none {
-      v(coverposition)
-      align(center, image((cover), width: cover_width))
-    }
+  if cover != none {
+    v(coverposition)
+    align(center, image((cover), width: cover_width))
+  }
 
   //author
   v(1em)
 
   // authors in gray
   if authors != none {
-  place(bottom + right,
-    text(12pt, fill: gray.darken(50%), authors)
-  )
-
+    place(bottom + center,
+      text(14pt, fill: gray.darken(50%), weight: "medium", authors)
+    )
   }
 
 
-// PREFACE,
+// PREFACE
   if preface != none {
     pagebreak()
     place(top + left,
-      text(14pt, fill: theme, "Prefacio")
+      text(18pt, fill: theme, weight: "bold", "Prefacio")
     )
-    v(1em)
+    v(2em)
     set par(justify: true)
-    align(center, box(width: 70%, text(11pt, overhang: true, font:  "New Computer Modern", fill: gray.darken(30%), preface)))
+    align(left, box(width: 100%, text(11pt, font: "New Computer Modern", fill: gray.darken(30%), preface)))
   }
 
 
@@ -133,76 +141,147 @@
   if show_ToC == true {
 
     show outline.entry.where(level: 1): it => {
-      v(12pt, weak: true)
-
-      strong(it)
+      v(15pt, weak: true)
+      text(weight: "bold", size: 11pt, fill: theme, it)
     }
-    // setting outline in themecolor
-    outline(
-    title: strong(text(fill: theme, "Índice")),
-    depth: ToC_depth,
-    indent: auto,
-  )
 
+    show outline.entry.where(level: 2): it => {
+      text(size: 10pt, it)
+    }
+
+    // setting outline in themecolor
+    text(size: 20pt, weight: "bold", fill: theme, "Índice")
+    v(1em)
+    line(length: 100%, stroke: 2pt + theme)
+    v(1em)
+    outline(
+      title: none,  // Remove default "Content" title
+      depth: ToC_depth,
+      indent: 1.5em,
+    )
   }
 
-//RESETING NUMBERING
+//RESETING NUMBERING AND CHAPTER STYLING
   show heading.where(level: 1): it => {
     pagebreak(weak: true)
     // Reset all counters with a new chapter
-    counter(figure).update(0)                // all figures (irrespective of kind)
-    counter(figure.where(kind: table)).update(0) // specific for tables
+    counter(figure).update(0)
+    counter(figure.where(kind: table)).update(0)
     counter(math.equation).update(0)
 
-    //set align(center + horizon)
-    set align(horizon)
-    set text(size: 24pt)
-    it
-    pagebreak()
+    v(3em)
+
+    // Orange box with chapter number and title
+    block(
+      fill: theme,
+      inset: (x: 20pt, y: 15pt),
+      radius: 0pt,
+      width: 100%,
+      {
+        text(size: 32pt, weight: "bold", fill: white, it)
+      }
+    )
+
+    v(2em)
   }
 
   show heading.where(level: 2): it => {
-    //set align(center)
-    set text(size: 18pt)
-    block(it)
-    v(1em)
+    v(1.8em)
+
+    // Section number in left margin
+    place(
+      left,
+      dx: -2.5cm,
+      text(size: 16pt, weight: "bold", fill: theme)[
+        #counter(heading).display()
+      ]
+    )
+
+    text(size: 16pt, weight: "bold", it.body)
+    v(0.5em)
+    line(length: 40%, stroke: 1pt + theme.lighten(40%))
+    v(1.2em)
   }
 
-  //Heading colors
-  show heading: set text(colorheadings)
+  show heading.where(level: 3): it => {
+    v(1.5em)
+
+    // Subsection with small orange marker
+    box(width: 3pt, height: 1em, fill: theme, radius: 1pt)
+    h(6pt)
+    text(size: 13pt, weight: "semibold", fill: theme.darken(10%), it.body)
+    v(0.8em)
+  }
+
+  //Heading colors for level 1 and 2 are handled above
+  // Level 3+ use the theme color
+  show heading.where(level: 4): set text(colorheadings, size: 11pt, weight: "semibold")
+  show heading.where(level: 5): set text(colorheadings, size: 10pt, weight: "semibold")
 
 
 // PAGE LAY OUT OF CONTENT
   set page(
-    numbering: if show_pagenumber == true {"1"} else {none},         //turn on numbering
+    numbering: if show_pagenumber == true {"1"} else {none},
     footer: context [
-      #set align(right)
-      #if show_pagenumber {
-        [Página #counter(page).display("1") de #counter(page).final().last()]
-      }
+      #line(length: 100%, stroke: 0.5pt + theme.lighten(60%))
+      #v(0.4em)
+      #grid(
+        columns: (1fr, auto, 1fr),
+        align: (left, center, right),
+        [
+          #text(size: 9pt, fill: gray.darken(20%), style: "italic")[
+            #context {
+              let headings = query(selector(heading.where(level: 1)).before(here()))
+              if headings.len() > 0 {
+                let last-heading = headings.last()
+                last-heading.body
+              }
+            }
+          ]
+        ],
+        [],
+        [
+          #if show_pagenumber {
+            // Page number in orange circle
+            box(
+              fill: theme,
+              inset: (x: 8pt, y: 4pt),
+              radius: 3pt,
+              text(size: 9pt, fill: white, weight: "bold")[#counter(page).display("1")]
+            )
+          }
+        ]
+      )
     ],
     margin: (
       top: margin_top,
       bottom: margin_bottom,
       left: margin_left,
       right: margin_right
-      ),    //set left margin
-    header: if logo != none { align(center)[#image(logo, width: logo_width)] } else { none },//include logo
+    ),
+    header: if logo != none {
+      v(0.5em)
+      line(length: 100%, stroke: 0.5pt + theme.lighten(60%))
+      v(0.3em)
+      align(center)[#image(logo, width: logo_width)]
+      v(0.3em)
+      line(length: 100%, stroke: 0.5pt + theme.lighten(60%))
+    } else { none },
   )
 
   set text(
     font: font,
     size: fontsize
-    )
+  )
   set par(
     leading: linespacing,
     justify: justification
-    )
+  )
 
-  counter(page).update(1)   //set number to 1
+  counter(page).update(1)
 
   // Display the book's contents.
-  // Code block styling
+  // Code block styling with orange theme
   show raw.where(block: true): it => {
     let lang = if it.has("lang") { it.lang } else { none }
     let title = if lang != none {
@@ -225,28 +304,44 @@
     } else { none }
 
     block(
-      fill: luma(240),
+      fill: luma(245),
       inset: 0pt,
-      radius: 4pt,
-      stroke: 0.5pt + luma(200),
+      radius: 3pt,
+      stroke: 0.5pt + theme.lighten(60%),
       width: 100%,
       clip: true,
       {
         if title != none {
-            block(
-                fill: luma(220),
-                width: 100%,
-                inset: 8pt,
-                stroke: (bottom: 0.5pt + luma(200)),
-                text(weight: "bold", font: "New Computer Modern", size: 10pt, title)
-            )
+          block(
+            fill: theme.lighten(85%),
+            width: 100%,
+            inset: (x: 12pt, y: 8pt),
+            stroke: (bottom: 0.5pt + theme.lighten(50%)),
+            text(weight: "bold", fill: theme.darken(10%), font: "New Computer Modern", size: 9pt, title)
+          )
         }
         block(
-            inset: 8pt,
-            width: 100%,
-            text(font: "DejaVu Sans Mono", size: 8pt, it)
+          inset: 12pt,
+          width: 100%,
+          text(font: "DejaVu Sans Mono", size: 8.5pt, it)
         )
       }
+    )
+  }
+
+  // Style for admonitions/notes
+  show figure.where(kind: "admonition"): it => {
+    block(
+      fill: theme.lighten(90%),
+      stroke: (left: 3pt + theme),
+      radius: 2pt,
+      inset: 12pt,
+      width: 100%,
+      [
+        #text(weight: "bold", fill: theme, size: 10pt)[#it.caption]
+        #v(0.5em)
+        #it.body
+      ]
     )
   }
 
