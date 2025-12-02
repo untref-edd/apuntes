@@ -22,23 +22,39 @@ width: 200px
 ---
 ```
 
-Guido Van Rossum es el principal autor de Python, y su continuo rol central en decidir la dirección de Python es reconocido, refiriéndose a él como Benevolente Dictador Vitalicio (en inglés: _Benevolent Dictator For Life_, BDFL); sin embargo el 12 de julio de 2018 declinó de dicha situación de honor sin dejar un sucesor o sucesora y con una declaración altisonante:
+Python fue concebido a finales de los años 80 como sucesor del [lenguaje ABC](https://es.wikipedia.org/wiki/ABC_(lenguaje_de_programaci%C3%B3n)), con el objetivo de crear un lenguaje más legible y fácil de usar. La primera versión pública (0.9.0) fue lanzada en 1991, y desde entonces ha evolucionado significativamente. Python 2.0 llegó en 2000 con importantes mejoras como la recolección de basura y soporte para Unicode. En 2008 se lanzó Python 3.0, una revisión mayor del lenguaje que rompió la compatibilidad hacia atrás para corregir defectos fundamentales del diseño. Aunque la transición fue gradual y a veces controvertida, Python 3 es ahora el estándar, con Python 2 oficialmente descontinuado desde 2020.
 
-```{blockquote}
-"Entonces, ¿qué van a hacer todos ustedes? ¿Crear una democracia? ¿Anarquía? ¿Una dictadura? ¿Una federación?"
+Guido van Rossum lideró el desarrollo de Python hasta 2018, cuando renunció como "Benevolente Dictador Vitalicio" (BDFL). Desde entonces, Python es gobernado por un Consejo Directivo elegido por la comunidad. Para más detalles sobre la historia de Python, consulta [Wikipedia](https://es.wikipedia.org/wiki/Python#Historia).
 
--- Guido Van Rossum
-```
+## Ventajas de Python
 
-Más sobre la historia de Python en [Wikipedia](https://es.wikipedia.org/wiki/Python#Historia).
+Python ofrece numerosas ventajas que lo han convertido en uno de los lenguajes de programación más populares:
+
+*   **Sintaxis clara y legible:** Su diseño enfatiza la legibilidad del código, lo que facilita su aprendizaje y mantenimiento.
+*   **Versatilidad:** Es un lenguaje multipropósito, utilizado en desarrollo web, ciencia de datos, inteligencia artificial, automatización, scripting y más.
+*   **Gran comunidad y ecosistema:** Cuenta con una comunidad activa y una vasta colección de librerías y frameworks (como Django, Flask, NumPy, Pandas, TensorFlow) que aceleran el desarrollo.
+*   **Multiplataforma:** Puede ejecutarse en diversos sistemas operativos como Windows, macOS y Linux sin necesidad de modificar el código.
+*   **Gratuito y de código abierto:** Es de uso libre y su código fuente está disponible para que cualquiera pueda inspeccionarlo y modificarlo.
+*   **Alta productividad:** Permite escribir menos líneas de código para realizar tareas complejas en comparación con otros lenguajes, lo que aumenta la eficiencia del desarrollador.
 
 ## El zen de Python
 
 El Zen de Python es una colección de principios que guían el diseño y la filosofía del lenguaje:
 
 ```{code-cell} python
+---
+tags: remove-input
+---
 import this
 ```
+
+````{admonition} Zen de Python
+:class: hint
+Para ver el Zen de Python en el intérprete de Python, puedes ejecutar el siguiente comando:
+```{code-block} python
+import this
+```
+````
 
 Estos principios enfatizan la importancia de escribir código claro, legible y elegante.
 
@@ -50,7 +66,7 @@ Python es un lenguaje de programación **orientado a objetos**, **introspectivo 
 
 Permite usar diferentes estilos de programación según las necesidades del proyecto, incluso combinando varios estilos en un mismo proyecto.
 
-La programación imperativa se basa en la ejecución secuencial de instrucciones. Para realizar una tarea se debe programar paso a paso especificando ***como*** se debe hacer.
+La programación imperativa se basa en la ejecución secuencial de instrucciones. Para realizar una tarea se debe programar paso a paso especificando ***cómo*** se debe hacer.
 
 ```{code-cell} python
 ---
@@ -66,7 +82,13 @@ def factorial(n):
 print(f"Factorial de 5: {factorial(5)}")
 ```
 
-La programación funcional se basa en el uso de funciones puras y evita el estado mutable. Se enfoca en ***que*** se debe hacer, utilizando funciones de orden superior y evitando efectos secundarios. En el capítulo de funciones profundizaremos un poco más en este paradigma.
+La programación funcional se basa en el uso de funciones puras. Este paradigma se enfoca en ***qué*** se debe hacer, utilizando funciones de orden superior y minimizando la dependencia de estados mutables para evitar efectos secundarios. En el capítulo de funciones profundizaremos un poco más en este paradigma.
+
+```{admonition} Funciones puras
+:class: hint
+Una función pura es aquella que, para los mismos argumentos de entrada, siempre produce el mismo resultado y no causa ningún efecto secundario observable fuera de su ámbito (como modificar variables externas o realizar operaciones de entrada/salida).
+```
+A continuación se muestra un ejemplo de una función pura que ordena una lista de números utilizando el algoritmo Quicksort, utilizando ténicas de la programación funcional.
 
 ```{code-cell} python
 ---
@@ -106,6 +128,8 @@ resultado_correcto = int("5") + 3
 print(f"Resultado correcto: {resultado_correcto}")
 ```
 
+El **tipado dinámico** de Python permite que las variables cambien de tipo a lo largo del tiempo, lo que puede ser beneficioso en ciertos casos pero también puede llevar a errores difíciles de depurar si no se maneja correctamente.
+
 ```{code-cell} python
 ---
 tags: hide-output
@@ -121,7 +145,7 @@ variable = [1, 2, 3]  # list
 print(f"Tipo: {type(variable)}, Valor: {variable}")
 ```
 
-En este fragmento el mismo identificador `variable` se liga a diferentes tipos de datos a lo largo del tiempo, demostrando el tipado dinámico de Python. No hace falta declarar el tipo de la variable al momento de su creación, Python lo infiere automáticamente.
+En este fragmento el mismo identificador `variable` se liga a diferentes tipos de datos a lo largo del tiempo. En cada asignación Python infiere el tipo de la variable automáticamente.
 
 ### Sintaxis clara y legible
 
@@ -161,7 +185,7 @@ Los bloques de código se delimitan por indentación, lo que mejora la legibilid
 
 En la línea 1 se define una función `es_numero_primo` que recibe un número entero `n` y devuelve `True` si es primo, o `False` en caso contrario. La definición de una función se realiza con la palabra clave `def`, seguida del nombre de la función, los parámetros entre paréntesis y dos puntos (`:`). Los dos puntos indican el inicio de un bloque de código que debe estar indentado, en este caso el cuerpo de la función.
 
-El cuerpo de la función se extiende hasta la línea 18 a partir de la cual el código vuelve a estar alineado a la izquierda, indicando que ya no forma parte del bloque de la función.
+El cuerpo de la función se extiende hasta la línea 18, a partir de la cual el código vuelve a estar alineado a la izquierda, indicando que ya no forma parte del bloque de la función.
 
 Entre las líneas 2 y 10 encontramos la documentación de la función, que explica su propósito, los argumentos que recibe y el valor que devuelve. Esta documentación se escribe entre comillas triples (`"""`) y es accesible a través de la función `help(es_numero_primo)`. `help` es una función de Python que muestra la documentación de un objeto.
 
@@ -172,9 +196,9 @@ tags: hide-output
 help(es_numero_primo)
 ```
 
-Esta forma de documentar el código junto con el código mismo es una buena práctica que facilita la comprensión y el mantenimiento del código.
+Esta forma de documentar junto con el código mismo es una buena práctica que facilita la comprensión y el mantenimiento del código.
 
-La forma de identar los bloques de código es fundamental en Python. A diferencia de otros lenguajes que utilizan llaves (`{`, `}`) o palabras clave como `begin` y `end`, Python utiliza la indentación para definir el alcance de los bloques de código. Esto significa que todos los bloques deben estar correctamente indentados para evitar errores de sintaxis. Por ejemplo la identación puede ser de 4 espacios, que es la convención más común en Python.
+La forma de indentar los bloques de código es fundamental en Python. A diferencia de otros lenguajes que utilizan llaves (`{`, `}`) o palabras clave como `begin` y `end`, Python utiliza la indentación para definir el alcance de los bloques de código. Esto significa que todos los bloques deben estar correctamente indentados para evitar errores de sintaxis. Por ejemplo, la indentación puede ser de 4 espacios, que es la convención más común en Python.
 
 ## Aplicaciones de Python
 
@@ -206,22 +230,6 @@ header-rows: 1
 
 ## Instalación y configuración
 
-### Verificación de la instalación
-
-Primero, verifica si Python ya está instalado:
-
-```{code-cell} python
----
-tags: hide-output
----
-import sys
-
-print(f"Versión de Python: {sys.version}")
-print(f"Plataforma: {sys.platform}")
-```
-
-### Instalación por sistema operativo
-
 `````{tab-set}
 ````{tab-item} Windows
 1. Descarga el instalador desde <a href="https://www.python.org/downloads/" target="_blank">python.org</a>
@@ -233,6 +241,10 @@ print(f"Plataforma: {sys.platform}")
    pip --version
    ```
 ````
+
+El siguiente fragmento muestra la instalación de Python en Linux (Ubuntu/Debian).
+
+
 ````{tab-item} Linux (Ubuntu/Debian)
 ```bash
 # Actualizar repositorios

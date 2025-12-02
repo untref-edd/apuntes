@@ -44,14 +44,14 @@ y = 10 / 3  # división (devuelve float)
 u = 10 // 3  # división entera
 w = 2**3  # potencia
 v = 10 % 3  # módulo (resto de la división)
-z = math.sqrt(-1)  # Núemero complejo (0+j)
+z = math.sqrt(-1)  # Número complejo (0+j)
 z2 = complex(0, 1)  # También se puede crear un número complejo directamente
 z3 = 1j  # Representación alternativa de un número complejo
 ```
 
 ### Conversión de tipos
 
-En python los tipos númericos se pueden convertir entre sí, ya sea de forma explícita o implícita.
+En Python los tipos numéricos se pueden convertir entre sí, ya sea de forma explícita o implícita.
 
 ```{code-cell} python
 ---
@@ -85,7 +85,8 @@ y = 10 + (2 - 3j)  # (12-3j)
 print(type(y))
 ```
 
-No hay que confundir la conversión implícita de tipos con tipado dinámico. En Python, el tipo de una variable se determina en tiempo de ejecución, pero las operaciones entre tipos incompatibles generarán un error.
+Es importante no confundir el tipado dinámico de Python con un tipado débil. Aunque el tipo de una variable se determina en tiempo de ejecución, Python es un lenguaje fuertemente tipado, lo que significa que las operaciones entre tipos incompatibles generarán un error.
+
 
 ```{code-cell} python
 ---
@@ -94,6 +95,20 @@ tags: hide-output, raises-exception
 # Esto generará un error de tipo
 x = 5 + "10"
 ```
+
+````{admonition} Tipado débil vs fuertemente tipado
+:class: hint
+El tipado débil se puede definir, por oposición a fuertemente tipado, como la capacidad de realizar operaciones entre tipos incompatibles. Por ejemplo en lenguajes como JavaScript, se puede sumar un número con una cadena de caracteres.
+```{code-block} javascript
+x = 5 + "10"
+console.log("El valor de x es:", x);
+console.log("El tipo de dato de x es:", typeof x);
+```
+```text
+El valor de x es: 510
+El tipo de dato de x es: string
+```
+````
 
 ## Cadenas de caracteres (`str`)
 
@@ -117,12 +132,14 @@ tags: hide-output
 ---
 mensaje = "Hola, mundo"
 mensaje = "h" + mensaje[1:]  # Crea una nueva cadena
-print(mensaje)
+print(mensaje) # 'hola, mundo'
 ```
+
+En la segunda línea se crea una nueva cadena con el contenido deseado y se asigna nuevamente a la variable `mensaje`, lo que da la sensación de que se ha modificado la cadena original, pero en realidad se ha creado una nueva cadena, y el contenido original de `mensaje` se ha perdido.
 
 ### Indexado y _slicing_
 
-Las cadenas de caracteres están indexadas, es decir, que se puede manipular cada carácter por su posición. El primer carácter tiene índice 0, el segundo 1, y así sucesivamente. También se pueden usar índices negativos para acceder a los caracteres desde el final de la cadena y tajadas o slicing para obtener subcadenas. En las tajadas, el primer parámetro es el índice inicial y el segundo es el índice final (no incluido), similar a Go.
+Las cadenas de caracteres están indexadas, es decir, que se puede manipular cada carácter por su posición. El primer carácter tiene índice 0, el segundo 1, y así sucesivamente. También se pueden usar índices negativos para acceder a los caracteres desde el final de la cadena, y tajadas o *slicing* para obtener subcadenas. En las tajadas, el primer parámetro es el índice inicial y el segundo es el índice final (no incluido), similar a Go.
 
 ```{code-cell} python
 ---
@@ -214,7 +231,7 @@ tags: hide-output
 ---
 texto = "Hola mundo"
 # Reemplaza las apariciones de "mundo" por "Python"
-print(texto.replace("mundo", "Python")) 
+print(texto.replace("mundo", "Python"))
 ```
 
 ```{code-cell} python
@@ -223,7 +240,7 @@ tags: hide-output
 ---
 texto = "Hola mundo"
 # Divide la cadena en una lista de palabras, separando por espacios
-print(texto.split())
+print(texto.split()) # ['Hola', 'mundo']
 ```
 
 ```{code-cell} python
@@ -326,9 +343,9 @@ mensaje = "Hola, mi nombre es %s y tengo %d años." % (nombre, edad)
 print(mensaje) # 'Hola, mi nombre es Eva y tengo 28 años.'
 ```
 
-El caracter `%` se usa para formatear cadenas, donde `%s` es un marcador de posición para una cadena y `%d` para un número entero, pero es menos legible y flexible que las otras opciones.
+El carácter `%` se usa para formatear cadenas, donde `%s` es un marcador de posición para una cadena y `%d` para un número entero, pero es menos legible y flexible que las otras opciones.
 
-El caracter de escape `\` se utiliza para insertar caracteres especiales en una cadena, como comillas, saltos de línea o tabulaciones.
+El carácter de escape `\` se utiliza para insertar caracteres especiales en una cadena, como comillas, saltos de línea o tabulaciones.
 
 ```{code-cell} python
 ---
@@ -347,7 +364,7 @@ Otra forma de usar comillas dobles en una cadena es usar comillas simples para d
 tags: hide-output
 ---
 mensaje = 'Hola, "mundo".\n¿Cómo estás?'
-print(mensaje) 
+print(mensaje)
 ```
 
 ```{code-cell} python
@@ -355,7 +372,7 @@ print(mensaje)
 tags: hide-output
 ---
 mensaje = "Hola, \tmundo."  # \t inserta una tabulación
-print(mensaje) 
+print(mensaje)
 ```
 
 ## Listas (`list`)
@@ -420,7 +437,7 @@ print(mezcla) # ['uno', 'dos', 3.0, True]
 ---
 tags: hide-output
 ---
-umeros = [1, 2, 3, 4]  # Lista de números
+numeros = [1, 2, 3, 4]  # Lista de números
 mezcla = [1, "dos", 3.0, True]  # Lista con diferentes tipos de datos
 mezcla = mezcla + numeros  # Concatenación de listas
 print(mezcla) # [1, 'dos', 3.0, True, 1, 2, 3, 4]
@@ -516,7 +533,7 @@ La forma de empaquetar y desempaquetar tuplas es similar a las listas:
 tags: hide-output
 ---
 coordenadas = (10.0, 20.5, 1)
-a, b, c = coordenadas  # Desempaquetado 
+a, b, c = coordenadas  # Desempaquetado
 print("a = ", a) # 10.0
 print("b = ", b) # 20.5
 print("c = ", c) # 1
@@ -612,7 +629,7 @@ print(persona) # {'nombre': 'Ana', 'edad': 30}
 
 ### Acceso y modificación
 
-Los diccionarios permiten acceder a los valores mediante sus claves. También se pueden modificar, añadir o eliminar pares clave-valor. La sintáxis es similar a las listas o tuplas, pero en lugar de índices, se utilizan claves.
+Los diccionarios permiten acceder a los valores mediante sus claves. También se pueden modificar, añadir o eliminar pares clave-valor. La sintaxis es similar a las listas o tuplas, pero en lugar de índices, se utilizan claves.
 
 ```{code-cell} python
 ---
@@ -708,7 +725,7 @@ persona = {"nombre": "Ana", "edad": 30, "email": "ana@mail.com"}
 # Añade la clave "telefonos" con una lista vacía
 lista = persona.setdefault("telefonos", [])
 lista.append("123-456-7890")  # Añade un teléfono a la lista
-print(persona) 
+print(persona)
 ```
 
 ### Iteración sobre diccionarios
@@ -794,7 +811,7 @@ tags: hide-output, raises-exception
 ---
 conjunto = {1, 2, 3, 4, 5, 6}
 conjunto.remove(7)  # Genera un error, ya que 7 no está en el conjunto
-print(conjunto) 
+print(conjunto)
 ```
 
 ```{code-cell} python
@@ -806,7 +823,7 @@ conjunto.discard(7)  # No genera error
 print(conjunto) # {1, 2, 3, 4, 5, 6}
 ```
 
-el operador `in` se puede usar para verificar si un elemento está en un conjunto:
+El operador `in` se puede usar para verificar si un elemento está en un conjunto:
 
 ```{code-cell} python
 ---
@@ -838,7 +855,7 @@ tags: hide-output
 # Unión
 conjunto1 = {1, 2, 3, 4, 5, 6}
 conjunto2 = {4, 5, 6, 7}
-print(conjunto1, " union ", conjunto2, "=", conjunto1 | conjunto2) 
+print(conjunto1, " union ", conjunto2, "=", conjunto1 | conjunto2)
 # {1, 2, 3, 4, 5, 6, 7}
 ```
 
