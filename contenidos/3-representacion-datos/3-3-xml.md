@@ -460,7 +460,7 @@ for entry in feed.entries[:3]:
 
 Gmail proporciona un feed Atom de los correos no leídos. Dado que requiere autenticación, este ejemplo muestra cómo se estructuraría la petición (nota: por seguridad, Gmail requiere contraseñas de aplicación si tienes 2FA activado).
 
-```{code-block}python
+```{code-block} python
 
 import feedparser
 
