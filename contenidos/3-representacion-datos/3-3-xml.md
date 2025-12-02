@@ -401,7 +401,7 @@ for cat in categorias:
 
 La sindicación de contenidos es una forma de distribuir información actualizada de sitios web a usuarios que se han suscrito a ellos. Los dos formatos más populares para esto son **RSS** y **Atom**, ambos basados en XML.
 
-```{note} Sindicación de contenidos
+```{note} Sindicación de Contenidos
 La sindicación de contenidos es el proceso mediante el cual el contenido de un sitio web se pone a disposición de otros sitios o usuarios de forma automatizada.
 ```
 
