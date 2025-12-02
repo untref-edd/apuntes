@@ -88,6 +88,11 @@ site:
     logo_dark: _static/figures/untref-logo-white.svg
     favicon: _static/figures/untref-favicon.ico
     style: _static/css/custom.css
+  nav:
+    - title: Slack
+      url: https://untref-edd.slack.com
+    - title: Guías
+      url: https://github.com/untref-edd/Guias-EDD
   actions:
     - title: Descargar PDF
       url: exports/apunte-edd.pdf
