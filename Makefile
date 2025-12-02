@@ -17,7 +17,7 @@ fmt:
 
 ## build: compila el libro ejecutando las celdas
 .PHONY: build
-build:
+build: clean pdf
 	cd contenidos && myst build --execute
 
 ## pdf: compila el libro en formato PDF
