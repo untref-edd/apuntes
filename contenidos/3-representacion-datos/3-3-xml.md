@@ -397,7 +397,7 @@ for cat in categorias:
     print(f"- {cat}")
 ```
 
-### Sindicación de Contenidos: RSS y Atom
+### Sindicación de contenidos: RSS y Atom
 
 La sindicación de contenidos es una forma de distribuir información actualizada de sitios web a usuarios que se han suscrito a ellos. Los dos formatos más populares para esto son **RSS** y **Atom**, ambos basados en XML.
 
