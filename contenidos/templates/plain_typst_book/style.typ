@@ -1,4 +1,4 @@
-  
+
 #let leftCaption(it) = {
   set text(size: 8pt)
   set align(left)
@@ -21,7 +21,7 @@
   subtitle: "Ingeniería en Computación",
   authors: "Cátedra de Estructuras de Datos",
   cover: "untref-logo.svg",            // <— path to cover "images/cover.png"
-  cover_width: 12cm,    
+  cover_width: 12cm,
   coverposition: 1cm,
   justification: false,
 
@@ -34,7 +34,7 @@
 
   // SPECIFICATION of output
   paper-size: "a4",       // https://typst.app/docs/reference/layout/page/#parameters-paper
-  margin: (),                          
+  margin: (),
   linespacing: .5em,
   show_pagenumber: true,
   margin_top: 2cm,
@@ -43,13 +43,13 @@
   margin_right: 10%,
   logo: none,
   logo_width: 10%,
-  
-  font: ("New Computer Modern", "Noto Color Emoji"), 
+
+  font: ("New Computer Modern", "Noto Color Emoji"),
   fontsize: 10pt,
 
   theme: blue.darken(30%),
   colorheadings: blue.darken(30%),
-  
+
   // The book's content.
   body
 ) = {
@@ -58,24 +58,24 @@
     numbering: none,
     paper-size,
     ) //numbering off until first chapter
-  
+
   set heading(numbering: (..args) => {
     let nums = args.pos()
     let level = nums.len()
     if level == 1 {[#numbering("1.", ..nums)]} else {[#numbering("1.1.1", ..nums)]}
-    },   
-    
+    },
+
 )
 
   // Set figure numbering to x.y where x is chapter number and y is figure number within chapter
 
   set figure(numbering: (..args) => {
     // get current chapter number (first level of heading)
-    let chapter = counter(heading).display((..nums) => nums.pos().at(0)) // nums is array of all levels, at(0) is first level, display formats it.  
+    let chapter = counter(heading).display((..nums) => nums.pos().at(0)) // nums is array of all levels, at(0) is first level, display formats it.
     let fig = counter(figure).display("1")    // counter counts, display formats it
     [#chapter.#fig]
   })
-  
+
 
   // Configure equation numbering and spacing.
   set math.equation(numbering: (..args) => {
@@ -92,7 +92,7 @@
 
 
 // COVERPAGE
-  // Title, subtitle, 
+  // Title, subtitle,
   align(center, text(17pt, weight: "bold", fill: theme, title))
   if subtitle != none {
     parbreak()
@@ -109,17 +109,17 @@
 
   // authors in gray
   if authors != none {
-  place(bottom + right, 
+  place(bottom + right,
     text(12pt, fill: gray.darken(50%), authors)
   )
 
   }
 
 
-// PREFACE, 
+// PREFACE,
   if preface != none {
     pagebreak()
-    place(top + left, 
+    place(top + left,
       text(14pt, fill: theme, "Prefacio")
     )
     v(1em)
@@ -131,10 +131,10 @@
 //OUTLINE OF THE BOOK
   pagebreak()
   if show_ToC == true {
-      
+
     show outline.entry.where(level: 1): it => {
       v(12pt, weak: true)
-      
+
       strong(it)
     }
     // setting outline in themecolor
@@ -153,15 +153,16 @@
     counter(figure).update(0)                // all figures (irrespective of kind)
     counter(figure.where(kind: table)).update(0) // specific for tables
     counter(math.equation).update(0)
-    
-    set align(center + horizon)
+
+    //set align(center + horizon)
+    set align(horizon)
     set text(size: 24pt)
     it
     pagebreak()
   }
 
   show heading.where(level: 2): it => {
-    set align(center)
+    //set align(center)
     set text(size: 18pt)
     block(it)
     v(1em)
@@ -169,7 +170,7 @@
 
   //Heading colors
   show heading: set text(colorheadings)
-  
+
 
 // PAGE LAY OUT OF CONTENT
   set page(
@@ -184,10 +185,10 @@
       top: margin_top,
       bottom: margin_bottom,
       left: margin_left,
-      right: margin_right 
+      right: margin_right
       ),    //set left margin
     header: if logo != none { align(center)[#image(logo, width: logo_width)] } else { none },//include logo
-  )   
+  )
 
   set text(
     font: font,
