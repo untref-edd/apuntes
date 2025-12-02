@@ -13,9 +13,9 @@ description: Introducción a la materia Estructuras de Datos, objetivos, metodol
 
 # Estructuras de Datos
 
-## De que va la materia
+## De qué va la materia
 
-En esta asignatura estudiaremos como buscar y recuperar información, así como en las estructuras de datos necesarias para almacenarla y manipularla. La principal motiviación para incursionar en esta disciplina es el constante y creciente volumen de información publicada en Internet y en redes sociales, junto con la necesidad de procesarla y analizarla para extraer conocimiento valioso. Se considera que esta disciplina es precursora de la ciencia de datos y base fundamental para el desarrollo de aplicaciones inteligentes y sistemas de toma de decisiones basados en datos y nos permitirá entender como funcionan una amplia gama de aplicaciones, desde sistemas de bases de datos y motores de búsqueda, hasta redes sociales y plataformas de comercio electrónico.
+En esta asignatura estudiaremos como buscar y recuperar información, así como en las estructuras de datos necesarias para almacenarla y manipularla. La principal motivación para incursionar en esta disciplina es el constante y creciente volumen de información publicada en Internet y en redes sociales, junto con la necesidad de procesarla y analizarla para extraer conocimiento valioso. Se considera que esta disciplina es precursora de la ciencia de datos y base fundamental para el desarrollo de aplicaciones inteligentes y sistemas de toma de decisiones basados en datos y nos permitirá entender cómo funcionan una amplia gama de aplicaciones, desde sistemas de bases de datos y motores de búsqueda, hasta redes sociales y plataformas de comercio electrónico.
 
 ## Objetivos
 
@@ -41,9 +41,9 @@ La metodología de enseñanza se basa en el aprendizaje práctico, donde los est
 
 ### Evaluaciones
 
-Para poder regularizar la cursada es necesario aprobar dos parciales, cada parcial se aprueba con 4 o más y presentar y aprobar un proyecto grupal, el cual tendrá entregas parciales y una presentación final oral y escrita. Además se deberá cumplir con un 75% de asistencia a las clases.
+Para poder regularizar la cursada es necesario aprobar dos parciales (se aprueban con 4 o más) y presentar y aprobar un proyecto grupal, el cual tendrá entregas parciales y una presentación final oral y escrita. Además se deberá cumplir con un 75% de asistencia a las clases.
 
-Para aprobar la materia además hay que aprobar un examen final, para poder rendirlo es necesario tener aprobada Algoritmos y Programación II.
+Para aprobar la materia, hay que aprobar un examen final. Para poder rendirlo, es necesario tener aprobada Algoritmos y Programación II.
 
 ### Docentes
 
@@ -51,12 +51,5 @@ Para aprobar la materia además hay que aprobar un examen final, para poder rend
 - [Valeria Becker](mailto:valeriabecker@untref.edu.ar)
 - [Santiago Rojo](mailto:tiagox@gmail.com)
 - [Fabián Lagorio](mailto:falago@gmail.com)
-
-### Herramientas para cursar
-
-- [Google Classroom](https://classroom.google.com/c/NzAwMzMxODY0NzIx)
-- [Slack](https://untref-edd.slack.com/)
-- [Github Classroom](https://classroom.github.com/classrooms/220222794-untref-edd-2025)
-- [Meet para encuentros virtuales](https://meet.google.com/rzj-hjek-npx)
 
 ***¡Bienvenidos a Estructuras de Datos!***
