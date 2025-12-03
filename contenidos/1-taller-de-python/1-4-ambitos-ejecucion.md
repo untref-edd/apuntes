@@ -33,7 +33,7 @@ Cada vez que se asigna un valor a una variable, Python sigue los siguientes paso
 1. Crea un objeto en memoria (si no existe ya).
 2. Asigna una referencia a ese objeto.
 
-Python garantiza que los pasos anteriores para asignar una variable son **_atómicos_**, es decir se ejecutan uno tras otro sin interrupciones, lo que asegura la consistencia del estado de las variables en un entorno multihilo.
+Python garantiza que los pasos anteriores son **_atómicos_**, es decir se ejecutan uno tras otro sin interrupciones, lo que asegura la consistencia del estado de las variables en un entorno multihilo.
 
 Si la variable ya tenía una referencia a otro objeto, esa referencia se pierde (el objeto anterior puede ser desalojado de la memoria por el recolector de basura si no hay otras referencias a él).
 
@@ -54,6 +54,14 @@ Asignación de Variables
 Esto contrasta con Go y Java, donde la asignación de una variable puede implicar la creación de una copia del valor (especialmente para tipos primitivos).
 
 ## Tipos de datos y mutabilidad
+
+```{admonition} Mutabilidad
+---
+class: hint
+---
+En programación, la mutabilidad se refiere a la capacidad de un objeto para ser modificado después de su creación. Un objeto **mutable** puede cambiar su estado o valor, mientras que un objeto **inmutable** no puede ser alterado una vez creado. Para más información, consulta [Wikipedia](https://es.wikipedia.org/wiki/Objeto_inmutable).
+```
+
 
 En Python **todo es un objeto**, por lo tanto podemos pensar que todas las variables son referencias a objetos en el _heap_. La distinción importante es si un objeto es mutable o inmutable.
 
@@ -144,7 +152,7 @@ Variables privadas
 : Se definen con dos guiones bajos al inicio del nombre (ej. `__variable`). Esto activa el _name mangling_, lo que significa que el nombre de la variable se modifica internamente para evitar conflictos con nombres en subclases.
 
 Variables especiales
-: Se definen con dos guiones bajos al inicio y al final del nombre, estos son conocidos en la comunidad Python como _dunder methods_ (ej. `__init__`). Estas son utilizadas por Python para definir métodos especiales y no deben ser modificadas directamente.
+: Se definen con dos guiones bajos al inicio y al final del nombre, estos son conocidos en la comunidad Python como _dunder methods_ (_dunders es un acrónimo de double underscore_). Estas son utilizadas por Python para definir métodos especiales y no deben ser modificadas directamente. Por ejemplo, el método `__init__` es el constructor de una clase.
 
 ```{warning} Advertencia
 Todas las variables en Python son accesibles desde fuera del módulo o clase, incluso las privadas. La convención de nomenclatura es solo una guía para los desarrolladores y no impide el acceso a las variables.
