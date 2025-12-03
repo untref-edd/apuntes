@@ -28,3 +28,4 @@ mystmd
 # Incluye: grafos (algoritmos de grafos), ii (índices invertidos)
 --editable contenidos/_static/code
 elementpath
+jupytext

@@ -1,0 +1,2 @@
+# Pair ipynb notebooks with myst markdown
+formats = "ipynb,md:myst"
