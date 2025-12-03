@@ -55,7 +55,7 @@ Esto contrasta con Go y Java, donde la asignación de una variable puede implica
 
 ## Tipos de datos y mutabilidad
 
-En Python **todo es un objeto**, por lo tanto tanto podemos pensar que todas las variables son referencias a objetos en el _heap_. La distinción importante es si un objeto es mutable o inmutable.
+En Python **todo es un objeto**, por lo tanto podemos pensar que todas las variables son referencias a objetos en el _heap_. La distinción importante es si un objeto es mutable o inmutable.
 
 ### Tipos inmutables (como los "primitivos" en Java/Go)
 
@@ -226,7 +226,7 @@ print(mensaje)  # Acceso a la variable global modificada
 ```
 
 ```{warning} Advertencia
-El uso excesivo de global o de ocultamiento de variables puede llevar a código difícil de mantener y depurar. Preferiblemente, se deben pasar las variables como argumentos a las funciones y las funciones deben devolver valores explicitos.
+El uso excesivo de global o de ocultamiento de variables puede llevar a código difícil de mantener y depurar. Preferiblemente, se deben pasar las variables como argumentos a las funciones y las funciones deben devolver valores explícitos.
 ```
 
 ### Ámbito _Enclosing_ (E) / Clausuras
@@ -263,12 +263,12 @@ Al ejecutar el fragmento anterior ocurre lo siguiente:
 
 3. El valor devuelto por `fabrica_incrementos` es una función que queda ligada a la variable `incrementar_2`. `incrementar_2` contiene el valor de `y`, al momento de su creación, en su clausura. Esto significa que `incrementar_2` "recuerda" el valor de `y` aunque `fabrica_incrementos` ya haya terminado su ejecución.
 
-4. En la línea 7, se ejecuta `incrementar_2`. `incrementar_2` toma un parámetro `x` y retorna la suma de `x` más `y`. Si bien `fabrica_incrementos` ya ha terminado su ejecución y por lo tanto los valores de sus parámetros no están en la memoria, la referencia a `y` se mantiene en la clausura. La función realiza la operación `5 + 2`, donde `5` es el valor ligado al parámetro `x` y `2` es el valor de `y`, al momento de la creación de `incrementar_2`que se guardó en la clausura.
+4. En la línea 7, se ejecuta `incrementar_2`. `incrementar_2` toma un parámetro `x` y retorna la suma de `x` más `y`. Si bien `fabrica_incrementos` ya ha terminado su ejecución y por lo tanto los valores de sus parámetros no están en la memoria, la referencia a `y` se mantiene en la clausura. La función realiza la operación `5 + 2`, donde `5` es el valor ligado al parámetro `x` y `2` es el valor de `y`, al momento de la creación de `incrementar_2` que se guardó en la clausura.
 
 5. `incrementar_2(5)` retorna 7 al ámbito global, y `print` lo muestra en la salida.
 
 ```{warning} Advertencia
-Para Python todas las variables son referencias, incluido los nombres de las funciones. Al colocar paréntesis luego del nombre de la misma, se invoca la función y se ejecuta el código que contiene. Si no se colocan paréntesis, se obtiene una referencia a la función, que es un objeto más en memoria.
+Para Python todas las variables son referencias, incluidos los nombres de las funciones. Al colocar paréntesis luego del nombre de la misma, se invoca la función y se ejecuta el código que contiene. Si no se colocan paréntesis, se obtiene una referencia a la función, que es un objeto más en memoria.
 ```
 
 ### Ámbito _Global_ (G)
@@ -293,7 +293,7 @@ print(math.nan)  # Imprime el valor de NaN (Not a Number)
 
 Para definir un módulo propio se crea un archivo con extensión `.py` y se pueden definir variables y funciones que serán accesibles desde otros módulos al importarlos. El nombre del módulo es el nombre del archivo sin la extensión `.py`.
 
-A modo de ejemplo, se muestra un módulo simple que implementa una pila (_stack_) utilizando una lista y Objetos. Más adelante veremos en detalle la [Programación Orientada a Objetos (POO)](1-6-poo.md) en Python, pero aquí se muestra un ejemplo de un módulo y como se documenta cada parte del código.
+A modo de ejemplo, se muestra un módulo simple que implementa una pila (_stack_) utilizando una lista y objetos. Más adelante veremos en detalle la [Programación Orientada a Objetos (POO)](1-6-poo.md) en Python, pero aquí se muestra un ejemplo de un módulo y como se documenta cada parte del código.
 
 ````{dropdown} Click para ver el código
 ```{include} ../_static/code/stack/stack.py
@@ -321,7 +321,7 @@ El ámbito _built-in_ contiene nombres predefinidos por Python, como funciones y
 Si se intenta redefinir un nombre _built-in_, se creará una variable local o global que ocultará temporalmente el nombre _built-in_, pero no se eliminará del ámbito _built-in_.
 
 ```{danger} Peligro
-No se recomienda bajo ningún punto de vista, redefinir nombres _built-in_, ya que esto puede causar confusión y errores difíciles de depurar. Es mejor utilizar nombres descriptivos y evitar conflictos con los nombres predefinidos de Python.
+No se recomienda bajo ningún punto de vista redefinir nombres _built-in_, ya que esto puede causar confusión y errores difíciles de depurar. Es mejor utilizar nombres descriptivos y evitar conflictos con los nombres predefinidos de Python.
 ```
 
 ```{code-cell} python

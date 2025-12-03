@@ -71,7 +71,7 @@ int(3.7)
 ---
 tags: hide-output
 ---
-x = 10 + 5.5  # Implicitamente convierte el int a float
+x = 10 + 5.5  # Implícitamente convierte el int a float
 print(x)
 ```
 
@@ -481,7 +481,7 @@ for n in numeros:
     print(n) # 1, 2, 3, 4
 ```
 
-## 4. Tuplas (`tuple`)
+## Tuplas (`tuple`)
 
 Son similares a las listas, **ordenadas** y **polimórficas**, pero **inmutables**, es decir, una vez creada no se puede modificar.
 
@@ -598,11 +598,11 @@ tupla_anidada[3].append(7)  # Modifica la lista anidada
 print(tupla_anidada) # (1, 2, (3, 4), [5, 6, 7])
 ```
 
-La tupla no se modificó, sigue teniendo 4 elementos, pero la lista que está adentro de la tupla si se puede modificar.
+La tupla no se modificó, sigue teniendo 4 elementos, pero la lista que está adentro de la tupla sí se puede modificar.
 
 Las tuplas se pueden iterar de la misma manera que las listas.
 
-## 5. Diccionarios (`dict`)
+## Diccionarios (`dict`)
 
 Almacenan pares clave-valor. Las claves deben ser únicas e inmutables (por ejemplo, strings, números o tuplas).
 
@@ -963,14 +963,14 @@ cuadrados = [x**2 for x in numeros]
 print(cuadrados)  #  [1, 4, 9, 16, 25]
 ```
 
-Si en lugar de corchetes `[]` se usan paréntesis `()`, se crea un generador en lugar de una lista:
+Si en lugar de corchetes `[]` se usan paréntesis `()`, se crea un **generador**, no una tupla. Para obtener una tupla, debemos usar el constructor `tuple()`:
 
 ```{code-cell} python
 ---
 tags: hide-output
 ---
-numeros = (x for x in range(1, 6))  # Tupla de números del 1 al 5
-cuadrados = (x**2 for x in numeros)
+numeros = tuple(x for x in range(1, 6))  # Tupla de números del 1 al 5
+cuadrados = tuple(x**2 for x in numeros)
 print(cuadrados)  # (1, 4, 9, 16, 25)
 ```
 

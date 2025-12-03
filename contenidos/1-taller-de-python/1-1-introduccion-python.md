@@ -88,7 +88,7 @@ La programación funcional se basa en el uso de funciones puras. Este paradigma 
 :class: hint
 Una función pura es aquella que, para los mismos argumentos de entrada, siempre produce el mismo resultado y no causa ningún efecto secundario observable fuera de su ámbito (como modificar variables externas o realizar operaciones de entrada/salida).
 ```
-A continuación se muestra un ejemplo de una función pura que ordena una lista de números utilizando el algoritmo Quicksort, utilizando ténicas de la programación funcional.
+A continuación se muestra un ejemplo de una función pura que ordena una lista de números utilizando el algoritmo Quicksort, utilizando técnicas de la programación funcional.
 
 ```{code-cell} python
 ---
@@ -241,10 +241,6 @@ header-rows: 1
    pip --version
    ```
 ````
-
-El siguiente fragmento muestra la instalación de Python en Linux (Ubuntu/Debian).
-
-
 ````{tab-item} Linux (Ubuntu/Debian)
 ```bash
 # Actualizar repositorios

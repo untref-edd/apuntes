@@ -323,6 +323,27 @@ else:
 print(resultado)
 ```
 
+El mismo ejemplo con `match`-`case`:
+
+```{code-cell} python
+---
+tags: hide-output
+---
+opcion = "b"
+
+match opcion:
+    case "a":
+        resultado = "Opción A"
+    case "b":
+        resultado = "Opción B"
+    case "c" | "d":
+        resultado = "Opción C o D"
+    case _:
+        resultado = "Opción desconocida"
+
+print(resultado)
+```
+
 ## Ejemplo práctico: procesamiento de datos
 
 ```{code-cell} python
@@ -363,7 +384,7 @@ for empleado in empleados:
 | Delimitadores      | Indentación                                      | `{`, `}`                                     |
 | Operadores lógicos | `and`, `or`, `not`                               | `&&`, `\|\|`, `!`                            |
 | Ciclo for          | `for item in collection:`                        | `for (type item : collection)`               |
-| `else` en ciclos   | `Si`                                             | ` No`                                        |
+| `else` en ciclos   | Sí                                               | No                                           |
 | Operador ternario  | `value_if_true if condition else value_if_false` | `condition ? value_if_true : value_if_false` |
 | switch/match       | `if - elif` o `match - case` (Python 3.10+)      | `switch`                                     |
 
@@ -374,4 +395,4 @@ La sintaxis de Python prioriza la legibilidad y expresividad, usando palabras en
 - [Tutorial de Python - Estructuras de control](https://docs.python.org/es/3/tutorial/controlflow.html)
 - [Python for Loops (W3Schools)](https://www.w3schools.com/python/python_for_loops.asp)
 - [Python While Loops (W3Schools)](https://www.w3schools.com/python/python_while_loops.asp)
-- [Pyhhon Match Statement (W3Schools)](https://www.w3schools.com/python/python_match.asp)
+- [Python Match Statement (W3Schools)](https://www.w3schools.com/python/python_match.asp)

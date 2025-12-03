@@ -252,7 +252,7 @@ doble_cuadrado = componer(cuadrado, doble)
 print(doble_cuadrado(3))  # Salida: 18
 ```
 
-En este ejemplo, `componer` es una función de orden superior que toma dos funciones como argumentos y devuelve una nueva función que es la composición de las dos. Para poder elevar un número al cuadrado y luego duplicarlo, se utiliza `doble_cuadrado`, que es el resultado de componer `cuadrado` y `doble`. Hay que prestar atención a que el orden en que se componen las funciones, ya que se aplica primero `cuadrado` y luego `doble`.
+En este ejemplo, `componer` es una función de orden superior que toma dos funciones como argumentos y devuelve una nueva función que es la composición de las dos. Para poder elevar un número al cuadrado y luego duplicarlo, se utiliza `doble_cuadrado`, que es el resultado de componer `cuadrado` y `doble`. Hay que prestar atención al orden en que se componen las funciones, ya que se aplica primero `cuadrado` y luego `doble`.
 
 ### Funciones anónimas (`lambda`)
 
@@ -282,7 +282,7 @@ doble_cuadrado = componer(lambda x: x * x, lambda x: x + x)
 print(doble_cuadrado(3))  # Salida:
 ```
 
-Las funciones de orden superior, las funciones anónimas, la generación de datos por comprensión y las clausuras son características del paradigma funcional que hacen de Python un lenguaje versátil y poderoso. Algunas de los usos habituales de la programación funcional en Python incluyen:
+Las funciones de orden superior, las funciones anónimas, la generación de datos por comprensión y las clausuras son características del paradigma funcional que hacen de Python un lenguaje versátil y poderoso. Algunos de los usos habituales de la programación funcional en Python incluyen:
 
 Mapeo
 : Aplicar una función a cada elemento de una colección.
@@ -412,7 +412,7 @@ while True:
 ```
 
 ```{note} Nota
-En el capitulo [Excepciones](1-7-excepciones.md) veremos en más detalle el manejo de excepciones en Python. Por ahora basta con saber que una excepción interrumpe el flujo normal del programa protegido por un bloque `try` y pasa el control al bloque `except` correspondiente. En este caso el bloque `except` captura la excepción `StopIteration` para finalizar la iteración.
+En el capítulo [Excepciones](1-7-excepciones.md) veremos en más detalle el manejo de excepciones en Python. Por ahora basta con saber que una excepción interrumpe el flujo normal del programa protegido por un bloque `try` y pasa el control al bloque `except` correspondiente. En este caso el bloque `except` captura la excepción `StopIteration` para finalizar la iteración.
 
 La sentencia `break` se utiliza para romper y salir del bucle infinito `while True`.
 ```
@@ -447,7 +447,7 @@ funcion_decorada(5)
 La función `decorador` toma una función `func` como argumento y devuelve una nueva función, `funcion_decorada` que agrega el mensaje _El resultado de la operación es:_ al resultado de la función original.
 
 ```{note} Nota
-En este ejemplo se ultiliza `*args` y `**kwargs` para permitir que la función decorada acepte cualquier número de argumentos posicionales y nombrados, lo que la hace más flexible. En la línea 7, la expresión `func(*args, **kwargs)` invoca a la función original con los argumentos que le pasaron a la función decorada.
+En este ejemplo se utiliza `*args` y `**kwargs` para permitir que la función decorada acepte cualquier número de argumentos posicionales y nombrados, lo que la hace más flexible. En la línea 7, la expresión `func(*args, **kwargs)` invoca a la función original con los argumentos que le pasaron a la función decorada.
 ```
 
 Python proporciona una sintaxis especial para aplicar decoradores a funciones utilizando el símbolo `@` antes de la definición de la función. Esto es equivalente a decorar la función manualmente como se mostró anteriormente.
@@ -527,7 +527,7 @@ print(siguiente())  # Salida: 1
 print(siguiente())  # Salida: 2
 ```
 
-La clave está en utilizar `nonlocal` para modificar la variable `i` dentro de la función interna `siguiente`, permitiendo que se mantenga el estado entre llamadas. `i` se almacena en la clausura de siguiente, lo que permite que su valor persista entre invocaciones.
+La clave está en utilizar `nonlocal` para modificar la variable `i` dentro de la función interna `siguiente`, permitiendo que se mantenga el estado entre llamadas. `i` se almacena en la clausura de `siguiente`, lo que permite que su valor persista entre invocaciones.
 
 ## Recursos para profundizar
 
