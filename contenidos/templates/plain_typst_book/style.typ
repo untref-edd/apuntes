@@ -44,7 +44,7 @@
   logo: none,
   logo_width: 10%,
 
-  font: ("New Computer Modern", "Noto Color Emoji"),
+  font: ("Roboto", "Noto Color Emoji"),
   fontsize: 11pt,
 
   theme: blue.darken(30%),  // Blue color
@@ -80,7 +80,7 @@
   // Configure equation numbering and spacing.
   set math.equation(numbering: (..args) => {
     let chapter = counter(heading).display((..nums) => nums.pos().at(0))
-    [(#chapter.#numbering("1)", ..args.pos()))]
+    [(#chapter.#numbering("1", ..args.pos()))]
   })
   show math.equation: set block(spacing: 1em)
 
@@ -132,7 +132,7 @@
     )
     v(2em)
     set par(justify: true)
-    align(left, box(width: 100%, text(11pt, font: "New Computer Modern", fill: gray.darken(30%), preface)))
+    align(left, box(width: 100%, text(11pt, font: "Roboto", fill: gray.darken(30%), preface)))
   }
 
 
@@ -317,7 +317,7 @@
             width: 100%,
             inset: (x: 12pt, y: 8pt),
             stroke: (bottom: 0.5pt + theme.lighten(50%)),
-            text(weight: "bold", fill: theme.darken(10%), font: "New Computer Modern", size: 9pt, title)
+            text(weight: "bold", fill: theme.darken(10%), font: "Roboto", size: 9pt, title)
           )
         }
         block(
