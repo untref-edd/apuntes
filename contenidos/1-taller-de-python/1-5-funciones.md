@@ -148,6 +148,8 @@ def funcion_ejemplo(param1, param2="valor_por_defecto", *args, **kwargs):
 funcion_ejemplo(1, 2, 3, 4, clave1="valor1", clave2="valor2")
 ```
 
+En el siguiente ejemplo `args` queda ligado a la tupla vacía, ya que `param2` quedará ligado a la tupla `(2, 3)`.
+
 ```{code-cell} python
 ---
 tags: hide-output
@@ -159,19 +161,6 @@ def funcion_ejemplo(param1, param2="valor_por_defecto", *args, **kwargs):
 
 
 funcion_ejemplo(1, (2, 3), clave1="valor1", clave2="valor2")
-```
-
-```{code-cell} python
----
-tags: hide-output
----
-def funcion_ejemplo(param1, param2="valor_por_defecto", *args, **kwargs):
-    print(f"param1: {param1}, param2: {param2}")
-    print(f"args: {args}")
-    print(f"kwargs: {kwargs}")
-
-
-funcion_ejemplo(1, clave1="valor1", clave2="valor2")
 ```
 
 ### Devolución de valores
@@ -215,7 +204,7 @@ En el fragmento anterior, la función `sumar` está anotada para indicar que esp
 
 ## Paradigma funcional
 
-La **programación funcional** es un paradigma de programación declarativo basado en el uso de funciones verdaderamente matemáticas. En este estilo de programación las funciones son _ciudadanas de primera clase_, porque sus expresiones pueden ser asignadas a variables como se haría con cualquier otro valor; además de que pueden crearse funciones de orden superior.
+La **programación funcional** es un paradigma de programación declarativo basado en el uso de funciones verdaderamente matemáticas. En este estilo de programación las funciones son _ciudadanas de primera clase_, porque sus expresiones pueden ser asignadas a variables como se haría con cualquier otro valor; las funciones también pueden crearse en tiempo de ejecución, por ejemplo dentro de otra función.
 
 ```{admonition} Funciones de orden superior
 Son aquellas que pueden:
@@ -225,7 +214,7 @@ Son aquellas que pueden:
 - Ser asignadas a variables.
 ```
 
-En el paradigma funcional en general (y a diferencia del imperativo), la programación consiste en especificar el **Qué** y no el **Cómo** se resuelve un problema.
+En el paradigma funcional en general (y a diferencia del imperativo), la programación consiste en especificar el **Qué** queremos resolver y no el **Cómo** se resuelve el problema.
 
 Por ejemplo:
 
@@ -249,7 +238,7 @@ def doble(x):
 
 
 doble_cuadrado = componer(cuadrado, doble)
-print(doble_cuadrado(3))  # Salida: 18
+print(doble_cuadrado(3))  # Salida: 3² x 2 = 18
 ```
 
 En este ejemplo, `componer` es una función de orden superior que toma dos funciones como argumentos y devuelve una nueva función que es la composición de las dos. Para poder elevar un número al cuadrado y luego duplicarlo, se utiliza `doble_cuadrado`, que es el resultado de componer `cuadrado` y `doble`. Hay que prestar atención al orden en que se componen las funciones, ya que se aplica primero `cuadrado` y luego `doble`.
@@ -263,7 +252,7 @@ Las funciones anónimas, también conocidas como funciones _lambda_, son funcion
 tags: hide-output
 ---
 suma = lambda x, y: x + y
-print(suma(3, 5))  # Salida: 8
+print(suma(3, 5))  # Salida: 3 + 5 = 8
 ```
 
 Define una función que recibe dos argumentos `x` e `y` y retorna su suma. Esta función queda asociada a la variable `suma`, que se puede utilizar para invocarla.
@@ -279,7 +268,7 @@ def componer(func1, func2):
 
 
 doble_cuadrado = componer(lambda x: x * x, lambda x: x + x)
-print(doble_cuadrado(3))  # Salida:
+print(doble_cuadrado(3))  # Salida: 3² x 2 = 18
 ```
 
 Las funciones de orden superior, las funciones anónimas, la generación de datos por comprensión y las clausuras son características del paradigma funcional que hacen de Python un lenguaje versátil y poderoso. Algunos de los usos habituales de la programación funcional en Python incluyen:
@@ -303,7 +292,7 @@ def mapear(func, iterable):
 
 numeros = [x for x in range(10)]
 cuadrados = mapear(lambda x: x**2, numeros)
-print(f"Cuadrados: {cuadrados}")
+print(f"Cuadrados: {cuadrados}") # [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
 ```
 
 Python proporciona la función `map` para realizar mapeo de manera más concisa y que permite devolver un iterador en lugar de una lista. Como todo iterador, una vez que se consume, es decir que se itera sobre él, no se puede volver a utilizar. Por lo tanto, es común convertirlo a una lista o tupla para conservar los resultados.
@@ -316,7 +305,7 @@ numeros = [x for x in range(10)]
 cuadrados = map(lambda x: x**2, numeros)
 print(type(cuadrados))  # <class 'map'>
 tupla = tuple(cuadrados)  # Convierte el iterador a tupla
-print(f"Cuadrados: {tupla}")
+print(f"Cuadrados: {tupla}") # (0, 1, 4, 9, 16, 25, 36, 49, 64, 81)
 ```
 
 Filtrado
@@ -338,7 +327,7 @@ def filtrar(func, iterable):
 
 numeros = [x for x in range(10)]
 pares = filtrar(lambda x: x % 2 == 0, numeros)
-print(f"Números pares: {pares}")
+print(f"Números pares: {pares}") # [0, 2, 4, 6, 8]
 ```
 
 En este caso la función de filtrado es una función anónima `lambda x: x % 2 == 0`. Las funciones anónimas siempre devuelven el resultado de la última expresión evaluada, por lo que no es necesario utilizar `return`.
@@ -353,7 +342,7 @@ numeros = [x for x in range(10)]
 pares = filter(lambda x: x % 2 == 0, numeros)
 print(type(pares))  # <class 'filter'>
 lista = list(pares)  # Convierte el iterador a lista
-print(f"Números pares: {lista}")  #
+print(f"Números pares: {lista}")  # [0, 2, 4, 6, 8]
 ```
 
 Reducción
@@ -372,7 +361,7 @@ from functools import reduce
 numeros = [x for x in range(10)]
 suma_total = reduce(lambda x, y: x + y, numeros)
 # (((((((((0+1)+2)+3)+4)+5)+6)+7)+8)+9) = 45
-print(f"Suma total: {suma_total}")
+print(f"Suma total: {suma_total}") # 45
 ```
 
 La función de reducción es la función anónima `lambda x, y: x + y`, que toma dos argumentos y devuelve su suma. No hace falta utilizar `return` ya que la última expresión evaluada es justamente la suma de `x` e `y`.
@@ -412,7 +401,7 @@ while True:
 ```
 
 ```{note} Nota
-En el capítulo [Excepciones](1-7-excepciones.md) veremos en más detalle el manejo de excepciones en Python. Por ahora basta con saber que una excepción interrumpe el flujo normal del programa protegido por un bloque `try` y pasa el control al bloque `except` correspondiente. En este caso el bloque `except` captura la excepción `StopIteration` para finalizar la iteración.
+En el capítulo [Excepciones](1-7-excepciones.md) veremos en más detalle el manejo de excepciones en Python. Por ahora basta con saber que una excepción interrumpe el flujo normal del programa protegido por un bloque `try` y pasa el control al bloque `except` correspondiente. En este caso el bloque `except` captura la excepción `StopIteration`.
 
 La sentencia `break` se utiliza para romper y salir del bucle infinito `while True`.
 ```
@@ -469,7 +458,7 @@ def funcion_original(x):
     return x * 2
 
 
-print(funcion_original(5))
+print(funcion_original(5)) # El resultado de la operación es: 10
 
 
 @decorador
@@ -477,7 +466,7 @@ def funcion_suma(a, b):
     return a + b
 
 
-print(funcion_suma(3, 4))
+print(funcion_suma(3, 4)) # El resultado de la operación es: 7
 ```
 
 Generadores
@@ -496,9 +485,9 @@ def contador():
 
 contador_gen = contador()
 print(type(contador_gen))  # <class 'generator'>
-print(next(contador_gen))  # Salida: 0
-print(next(contador_gen))  # Salida: 1
-print(next(contador_gen))  # Salida: 2
+print(next(contador_gen))  # 0
+print(next(contador_gen))  # 1
+print(next(contador_gen))  # 2
 ```
 
 Este generador nos permite, de alguna manera, tener una lista infinita de números enteros, ya que cada vez que se llama a `next`, se obtiene el siguiente número en la secuencia, lo cual es posible gracias a la palabra clave `yield`, que suspende la ejecución de la función en ese punto, devuelve el valor actual de `i`, y guarda el estado de la función para que pueda reanudarse en la siguiente llamada a `next`. En este caso `next` no levantará una excepción `StopIteration` porque el generador está diseñado para ser infinito.
@@ -522,9 +511,9 @@ def contador():
 
 
 siguiente = contador()
-print(siguiente())  # Salida: 0
-print(siguiente())  # Salida: 1
-print(siguiente())  # Salida: 2
+print(siguiente())  # 0
+print(siguiente())  # 1
+print(siguiente())  # 2
 ```
 
 La clave está en utilizar `nonlocal` para modificar la variable `i` dentro de la función interna `siguiente`, permitiendo que se mantenga el estado entre llamadas. `i` se almacena en la clausura de `siguiente`, lo que permite que su valor persista entre invocaciones.
