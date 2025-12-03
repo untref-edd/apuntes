@@ -1,12 +1,14 @@
 BTrees
 beautifulsoup4
-dill
 bokeh
+dill
+elementpath
 facebook-sdk
 feedparser
 folium
 geopandas
 jupyterlab
+jupytext
 lxml
 matplotlib
 mdformat
@@ -27,5 +29,4 @@ mystmd
 # Paquetes locales del curso
 # Incluye: grafos (algoritmos de grafos), ii (índices invertidos)
 --editable contenidos/_static/code
-elementpath
-jupytext
+
