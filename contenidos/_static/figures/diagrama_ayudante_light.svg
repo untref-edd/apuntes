@@ -2,8 +2,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450">
   
   <defs>
-    <marker id="arrowhead" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto">
-      <polygon points="0 0, 6 2.5, 0 5" fill="#333333" />
+    <marker id="arrowhead" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="#ffffff" stroke="#333333" stroke-width="1" />
     </marker>
   </defs>
 
@@ -50,15 +50,15 @@
 
   
   
-  <path d="M 130 150 L 225 80" stroke="#333333" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
+  <path d="M 130 150 L 130 125 L 300 125 L 300 100" stroke="#333333" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
   
   
-  <path d="M 470 150 L 375 80" stroke="#333333" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
+  <path d="M 470 150 L 470 125 L 300 125 L 300 100" stroke="#333333" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
 
   
-  <path d="M 300 320 L 130 250" stroke="#333333" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
+  <path d="M 300 320 L 300 285 L 130 285 L 130 250" stroke="#333333" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
 
   
-  <path d="M 300 320 L 470 250" stroke="#333333" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
+  <path d="M 300 320 L 300 285 L 470 285 L 470 250" stroke="#333333" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
 
 </svg>

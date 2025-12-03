@@ -216,8 +216,11 @@ class: only-dark-mode
 Diagrama de clases de Ayudante
 ```
 
-```{note} Nota
+```{admonition} Diagrama de clases
+:class: hint
 Un ***diagrama de clases***, es un diagrama estático que muestra la estructura de un sistema mediante las clases que lo componen y sus relaciones. Una flecha con una línea continua y un triángulo en la punta indica herencia, y en cada clase se pueden ver los atributos y métodos que se definen en cada una. En general no se muestran los atributos y métodos heredados, ni los constructores, pero si los métodos que se sobrescriben, es decir, que se redefinen en una subclase. En el diagrama anterior el método `presentar` de la clase `Ayudante` sobrescribe el método `presentar` de las clases `Docente` y `Estudiante`.
+
+La relación de herencia se puede leer desde abajo hacia arriba como "es un", es decir, "Ayudante es un Docente" y "Ayudante es un Estudiante" ambas cosas al mismo tiempo y desde arriba hacia abajo como "hereda de" es decir, "Ayudante hereda de Docente" y "Ayudante hereda de Estudiante".
 ```
 
 Cuando hay herencia múltiple se recomienda utilizar el nombre de la clase base explícitamente en el constructor de la subclase en lugar de `super()`. En la clase `Docente`, línea 12 se utiliza directamente `Persona` en lugar de usar `super()`, y en la línea 26 de la clase `Estudiante` también, para evitar ambigüedades en la resolución de métodos y atributos.
@@ -256,11 +259,12 @@ for cls in orden:
     print(cls.__name__)
 ```
 
-Es decir cuando se invoca un método cualquier de un objeto de la clase `Ayudante`, Python primero busca el método en la propia clase `Ayudante`, luego en `Estudiante`, luego en `Docente`, luego en `Persona` y finalmente en `object`.
+Es decir cuando un objeto de la clase `Ayudante` invoca a un método, Python primero busca el método en la propia clase `Ayudante`, luego en `Estudiante`, luego en `Docente`, luego en `Persona` y finalmente en `object`.
 
-Por ese motivo no se puede usar `super()` en el constructor de la clase `Estudiante` ya que si se hiciera, se generaría una ambigüedad en la resolución del método a llamar, ya que `super()` buscaría el siguiente método en la jerarquía de clases, que en este caso sería el constructor de `Docente`, lo que no es lo que se desea.
+Por eso no se puede usar `super()` en el constructor de la clase `Estudiante` ya que si se hiciera, se generaría una ambigüedad en la resolución del método a llamar, ya que `super()` buscaría el siguiente método en la jerarquía de clases, que en este caso sería el constructor de `Docente`. Por lo tanto, se debe usar el nombre de la clase base explícitamente en el constructor de la subclase.
 
-```{note} Nota
+```{admonition} object
+:class: hint
 `object` es la clase base de todas las clases en Python. Todas las clases heredan de `object`, lo que significa que todas las instancias de clases en Python son también instancias de `object`. Esto proporciona una serie de métodos y atributos comunes a todas las clases.
 
 Por eso cuando se dice que en Python todo es un objeto, se refiere a que todas las clases heredan de `object`, y por lo tanto, todas las instancias de clases son también instancias de `object`. Esto permite que todas las clases tengan un comportamiento común, como la capacidad de ser comparadas, impresas, etc.
@@ -296,6 +300,15 @@ class: only-dark-mode
 Diagrama de clases de Figuras Geométricas
 ```
 
+```{admonition} Diagrama de clases de Figuras Geométricas
+:class: hint
+El diagrama de clases de Figuras Geométricas ilustra la relación de **composición** entre la clase `Punto` y las clases `Cuadrado`, `Círculo` y `Elipse`.  Un diamante relleno en el extremo que toca a `Cuadrado`, `Círculo` y `Elipse` y una línea que conecta a estas figuras con `Punto` indica que estas figuras están compuestas por uno o más `Punto`. 
+
+La **composición** es un tipo fuerte de relación "tiene un" (has-a), donde un objeto es parte de otro objeto más grande. Por ejemplo, un `Cuadrado` "tiene un" `Punto` que representa su esquina superior izquierda, un `Círculo` y una `Elipse` "tienen un" `Punto` que representa su centro. En este tipo de relación, el objeto "parte" (`Punto`) no puede existir de forma independiente sin el objeto "todo" (`Cuadrado`, `Círculo`, `Elipse`). La vida útil del objeto `Punto` está ligada a la vida útil de la figura geométrica que lo contiene.
+
+En el código, esto se refleja en los constructores de `Cuadrado`, `Círculo` y `Elipse`, que reciben uno o más `Punto` como parámetros para inicializar sus atributos de posición.
+```
+
 ```{literalinclude} ../_static/code/figuras/main.py
 ---
 language: python
@@ -312,6 +325,66 @@ tags: remove-input, hide-output
 ```
 
 [Descargar código completo de Figuras Geométricas](https://github.com/untref-edd/apuntes/tree/main/contenidos/_static/code/figuras)
+
+## Jerarquías de clases
+
+El siguiente fragmento de código muestra la jerarquía de clases en Python:
+
+```{code-cell} python
+---
+tags: hide-output
+---
+import builtins
+
+def print_class_tree(cls, prefix="", is_last=True, current_depth=0, max_depth=4):
+    """
+    Imprime el árbol de herencia de clases.
+    
+    :param cls: La clase raíz desde donde empezar.
+    :param prefix: Prefijo para el formato visual (usado en recursión).
+    :param is_last: Si es el último nodo de su rama (usado en recursión).
+    :param current_depth: Profundidad actual (usado en recursión).
+    :param max_depth: Nivel máximo de profundidad a mostrar.
+    """
+    
+    # Si superamos la profundidad máxima, paramos esta rama
+    if current_depth > max_depth:
+        return
+
+    # Imprimir el nodo actual
+    if current_depth == 0:
+        print(cls.__name__)
+        new_prefix = ""
+    else:
+        connector = "└── " if is_last else "├── "
+        print(f"{prefix}{connector}{cls.__name__}")
+        new_prefix = prefix + ("    " if is_last else "│   ")
+
+    # Obtener subclases directas
+    try:
+        subclasses = cls.__subclasses__()
+    except TypeError:
+        return
+
+    # Filtrar solo clases del módulo 'builtins' (nativas de Python)
+    # Esto elimina clases de librerías externas que ensucian el árbol.
+    subclasses = [s for s in subclasses if s.__module__ == "builtins"]
+    
+    # Ordenar alfabéticamente para que la salida sea predecible
+    subclasses.sort(key=lambda x: x.__name__)
+
+    # Llamada recursiva para los hijos
+    count = len(subclasses)
+    for i, sub in enumerate(subclasses):
+        is_last_sub = (i == count - 1)
+        print_class_tree(sub, new_prefix, is_last_sub, current_depth + 1, max_depth)
+
+# --- Ejecución ---
+if __name__ == "__main__":
+    # max_depth=4 muestra hasta Exception -> ArithmeticError -> ZeroDivisionError
+    print_class_tree(object, max_depth=4)
+
+```
 
 ## Recursos para profundizar
 

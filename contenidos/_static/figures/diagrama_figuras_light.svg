@@ -2,11 +2,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
   
   <defs>
-    <marker id="arrowhead" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto">
-      <polygon points="0 0, 6 2.5, 0 5" fill="#333333" />
+    <marker id="arrowhead" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="#ffffff" stroke="#333333" stroke-width="1" />
     </marker>
-    <marker id="diamond" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto">
-      <polygon points="0 0, 6 2.5, 0 5" fill="#ffffff" stroke="#333333" stroke-width="1" />
+    <marker id="diamond" markerWidth="12" markerHeight="10" refX="12" refY="5" orient="auto">
+      <polygon points="0 5, 6 0, 12 5, 6 10" fill="#333333" stroke="none" />
     </marker>
   </defs>
 
@@ -80,12 +80,12 @@
 
   
   
-  <path d="M 130 150 L 325 60" stroke="#333333" stroke-width="1" stroke-dasharray="5,5" fill="none" marker-end="url(#arrowhead)" />
+  <path d="M 400 100 L 400 125 L 130 125 L 130 150" stroke="#333333" stroke-width="2" fill="none" marker-end="url(#diamond)" />
   
   
-  <path d="M 400 150 L 400 100" stroke="#333333" stroke-width="1" stroke-dasharray="5,5" fill="none" marker-end="url(#arrowhead)" />
+  <path d="M 400 100 L 400 150" stroke="#333333" stroke-width="2" fill="none" marker-end="url(#diamond)" />
 
   
-  <path d="M 670 150 L 475 60" stroke="#333333" stroke-width="1" stroke-dasharray="5,5" fill="none" marker-end="url(#arrowhead)" />
+  <path d="M 400 100 L 400 125 L 670 125 L 670 150" stroke="#333333" stroke-width="2" fill="none" marker-end="url(#diamond)" />
 
 </svg>

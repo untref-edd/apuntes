@@ -3,10 +3,9 @@
   
   <rect width="600" height="450" fill="#1e1e1e" />
 
-  
   <defs>
-    <marker id="arrowhead" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto">
-      <polygon points="0 0, 6 2.5, 0 5" fill="#e0e0e0" />
+    <marker id="arrowhead" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="#1e1e1e" stroke="#e0e0e0" stroke-width="1" />
     </marker>
   </defs>
 
@@ -53,15 +52,15 @@
 
   
   
-  <path d="M 130 150 L 225 80" stroke="#e0e0e0" stroke-width="2" marker-end="url(#arrowhead)" />
+  <path d="M 130 150 L 130 125 L 300 125 L 300 100" stroke="#e0e0e0" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
   
   
-  <path d="M 470 150 L 375 80" stroke="#e0e0e0" stroke-width="2" marker-end="url(#arrowhead)" />
+  <path d="M 470 150 L 470 125 L 300 125 L 300 100" stroke="#e0e0e0" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
 
   
-  <path d="M 300 320 L 130 250" stroke="#e0e0e0" stroke-width="2" marker-end="url(#arrowhead)" />
+  <path d="M 300 320 L 300 285 L 130 285 L 130 250" stroke="#e0e0e0" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
 
   
-  <path d="M 300 320 L 470 250" stroke="#e0e0e0" stroke-width="2" marker-end="url(#arrowhead)" />
+  <path d="M 300 320 L 300 285 L 470 285 L 470 250" stroke="#e0e0e0" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
 
 </svg>

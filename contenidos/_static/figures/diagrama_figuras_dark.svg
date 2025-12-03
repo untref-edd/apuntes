@@ -3,13 +3,12 @@
   
   <rect width="800" height="500" fill="#1e1e1e" />
 
-  
   <defs>
-    <marker id="arrowhead" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto">
-      <polygon points="0 0, 6 2.5, 0 5" fill="#e0e0e0" />
+    <marker id="arrowhead" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="#1e1e1e" stroke="#e0e0e0" stroke-width="1" />
     </marker>
-    <marker id="diamond" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto">
-      <polygon points="0 0, 6 2.5, 0 5" fill="#e0e0e0" stroke="#e0e0e0" stroke-width="1" />
+    <marker id="diamond" markerWidth="12" markerHeight="10" refX="12" refY="5" orient="auto">
+      <polygon points="0 5, 6 0, 12 5, 6 10" fill="#e0e0e0" stroke="none" />
     </marker>
   </defs>
 
@@ -77,18 +76,18 @@
   
   
   <path d="M 130 320 L 130 250" stroke="#e0e0e0" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
-
+  
   
   <path d="M 400 320 L 400 250" stroke="#e0e0e0" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
 
   
   
-  <path d="M 130 150 L 325 60" stroke="#e0e0e0" stroke-width="1" stroke-dasharray="5,5" fill="none" marker-end="url(#arrowhead)" />
+  <path d="M 400 100 L 400 125 L 130 125 L 130 150" stroke="#e0e0e0" stroke-width="2" fill="none" marker-end="url(#diamond)" />
   
   
-  <path d="M 400 150 L 400 100" stroke="#e0e0e0" stroke-width="1" stroke-dasharray="5,5" fill="none" marker-end="url(#arrowhead)" />
+  <path d="M 400 100 L 400 150" stroke="#e0e0e0" stroke-width="2" fill="none" marker-end="url(#diamond)" />
 
   
-  <path d="M 670 150 L 475 60" stroke="#e0e0e0" stroke-width="1" stroke-dasharray="5,5" fill="none" marker-end="url(#arrowhead)" />
+  <path d="M 400 100 L 400 125 L 670 125 L 670 150" stroke="#e0e0e0" stroke-width="2" fill="none" marker-end="url(#diamond)" />
 
 </svg>
