@@ -19,7 +19,7 @@ El mecanismo de manejo de excepciones se basa en el uso de bloques `try`, `excep
 
 ```{code-block} python
 try:
-    # Bloque protegido: Código que puede generar una excepciones
+    # Bloque protegido: Código que puede generar excepciones
     llamado_a_funcion_que_puede_fallar()
 
 except ExceptionType1:
@@ -271,14 +271,14 @@ if __name__ == "__main__":
 
 ## Consideraciones en el diseño y uso de excepciones en Python
 
-Limitar el alcance del bloque`try`
-: Colocar dentro del`try` solo el código que pueda generar la excepción que se desea manejar para evitar atrapar errores no relacionados y facilitar la identificación de la causa.
+Limitar el alcance del bloque `try`
+: Colocar dentro del `try` solo el código que pueda generar la excepción que se desea manejar para evitar atrapar errores no relacionados y facilitar la identificación de la causa.
 
 Evitar atrapar excepciones genéricas sin necesidad
 : No usar `except Exception:` ni `except:` a menos que realmente se quiera interceptar cualquier excepción. Atrapar todo oculta errores y dificulta el depurado.
 
 Usar excepciones específicas primero
-: Ordenar los`except` de más específico a más genérico, ya que Python ejecuta el primero que coincide. Ejemplo:
+: Ordenar los `except` de más específico a más genérico, ya que Python ejecuta el primero que coincide. Ejemplo:
 
 ```{code-block} python
 except FileNotFoundError:
