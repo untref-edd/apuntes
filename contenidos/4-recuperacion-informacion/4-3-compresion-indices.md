@@ -265,22 +265,22 @@ Otra técnica popular es Variable Byte encoding, que usa uno o más bytes para r
 
 Asi por ejemplo la representación de los siguientes gaps `[15478, 396, 2076, 32173, 111, 9767]` sería:
 
-- 15478 → `10000011 10111110 00101110` (3 bytes)
-- 396 → `10000010 01100100` (2 bytes)
-- 2076 → `10000010 00001000 00000100` (3 bytes)
-- 32173 → `10000011 11111010 00101101` (3 bytes)
+- 15478 → `11111000 01110110` (2 bytes)
+- 396 → `10000011 00001100` (2 bytes)
+- 2076 → `10010000 00011100` (2 bytes)
+- 32173 → `10000001 11111011 00101101` (3 bytes)
 - 111 → `01101111` (1 byte)
-- 9767 → `10000010 00101110 00000111` (3 bytes)
+- 9767 → `11001100 00100111` (2 bytes)
 
 Se parte de la representación en binario del número y se divide en grupos de 7 bits, cada grupo se almacena en un byte. El bit más significativo, es decir el primer bit del un byte de 8 bits, se usa para indicar si hay más bytes (1) o si es el último (0).
 
 Por ejemplo 15478 en binario es `11110001110110`. Dividido en grupos de 7 bits desde la derecha:
 
-- `0000011_0111100_0001110`
+- `1111000_1110110`
 
 Se utliza el bit más significativo para indicar si hay más bytes:
 
-- `10000011_10111100_00000011`
+- `11111000_01110110`
 
 ```{code-cell} python
 ---
@@ -319,7 +319,7 @@ def vb_decode(bytes_list):
 
 
 # Ejemplos
-numeros = [5, 127, 128, 130, 1000, 16383]
+numeros = [15478, 396, 2076, 32173, 111, 9767]
 
 print("Variable Byte Encoding:")
 print(f"{'Número':<10} {'Bytes VB':<25} {'Bits originales':<20} {'Bits VB'}")
