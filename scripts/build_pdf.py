@@ -35,7 +35,7 @@ def process_file(filepath):
     discard_block = False
     
     # Regex patterns
-    block_start_pattern = re.compile(r'^(\s*)(`{3,}|:{3,})\{(\w+)\}(.*)$')
+    block_start_pattern = re.compile(r'^(\s*)(`{3,}|:{3,})\{([\w-]+)\}(.*)$')
     block_end_pattern = re.compile(r'^(\s*)(`{3,}|:{3,})\s*$')
     
     dark_mode_pattern = re.compile(r'class:.*only-dark-mode')
@@ -71,6 +71,22 @@ def process_file(filepath):
                             else:
                                 new_lines.extend(buffer)
 
+                        elif block_type == 'code-cell':
+                            # Check if the cell content contains the interactive widgets that break PDF build
+                            content = "".join(buffer)
+                            if "show_dijkstra_step_by_step" in content or "show_bellman_ford_step_by_step" in content:
+                                # We need to inject the remove-output tag
+                                # buffer[0] is the header, e.g. ```{code-cell} python
+                                # We insert the YAML block for tags after the header
+                                new_lines.append(buffer[0])
+                                indent = buffer[0][:len(buffer[0]) - len(buffer[0].lstrip())]
+                                new_lines.append(f"{indent}---\n")
+                                new_lines.append(f"{indent}tags: [remove-output]\n")
+                                new_lines.append(f"{indent}---\n")
+                                new_lines.extend(buffer[1:])
+                            else:
+                                new_lines.extend(buffer)
+
                         else:
                             new_lines.extend(buffer)
                     
@@ -79,6 +95,7 @@ def process_file(filepath):
                     buffer = []
                     discard_block = False
                     block_type = None
+                    block_header = ""
                     block_fence = ""
             
         else:
@@ -95,6 +112,8 @@ def process_file(filepath):
                     block_type = 'admonition'
                 elif directive == 'dropdown':
                     block_type = 'dropdown'
+                elif directive == 'code-cell':
+                    block_type = 'code-cell'
                 else:
                     block_type = 'other'
             else:
@@ -184,10 +203,30 @@ def main():
     setup_temp_dir()
     process_directory(TEMP_DIR)
     build_typst(args.chapter)
+    post_process_typst()
     generated_pdf = compile_pdf()
     
     if not args.chapter:
         move_exports(generated_pdf)
+
+def post_process_typst():
+    """Replaces arrow.r and arrow.r.double in generated typst files."""
+    print("Post-processing Typst files...")
+    build_temp_dir = os.path.join(TEMP_DIR, "_build", "temp")
+    
+    for root, dirs, files in os.walk(build_temp_dir):
+        for file in files:
+            if file.endswith(".typ"):
+                filepath = os.path.join(root, file)
+                with open(filepath, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                
+                new_content = content.replace("arrow.r.double", "=>").replace("arrow.r", "->")
+                
+                if content != new_content:
+                    print(f"Fixed arrows in {file}")
+                    with open(filepath, 'w', encoding='utf-8') as f:
+                        f.write(new_content)
 
 if __name__ == "__main__":
     main()
