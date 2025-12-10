@@ -1,2 +1,3 @@
 # Pair ipynb notebooks with myst markdown
+# Necesario para abrir archivos .md directamente en jupyter lab
 formats = "ipynb,md:myst"
