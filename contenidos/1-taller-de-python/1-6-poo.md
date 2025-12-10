@@ -276,8 +276,8 @@ El ***duck typing*** es un concepto en Python que se basa en la idea de que el t
 
 ```{epigraph}
 "Si camina como un pato, nada como un pato y grazna como un pato, entonces probablemente sea un pato."
----
-Principio fundamental del _duck typing_ en Python
+
+-- Principio fundamental del _duck typing_ en Python
 ```
 
 Este concepto es muy poderoso en Python, ya que permite que diferentes objetos puedan ser utilizados de manera intercambiable si cumplen con la interfaz esperada, sin necesidad de heredar de una clase específica. Todo ocurre de manera implícita, sin necesidad de declarar explícitamente que un objeto es de un tipo específico y sin necesidad de especificar interfaces o clases abstractas como en Java o Go. Esta versatilidad es gracias al sistema de tipos dinámico de Python.

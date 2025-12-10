@@ -92,7 +92,7 @@ site:
     - title: Slack
       url: https://untref-edd.slack.com
     - title: Guías
-      url: https://github.com/untref-edd/Guias-EDD
+      url: https://github.com/untref-edd/Guias-2026
   actions:
     - title: Descargar PDF
       url: exports/apunte-edd.pdf
