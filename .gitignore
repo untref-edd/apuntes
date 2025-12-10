@@ -136,6 +136,7 @@ dmypy.json
 
 # VSCode config
 .vscode
+*.code-workspace
 
 # PyCharm config
 .idea
