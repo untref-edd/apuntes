@@ -87,7 +87,6 @@ print(type(y))
 
 Es importante no confundir el tipado dinámico de Python con un tipado débil. Aunque el tipo de una variable se determina en tiempo de ejecución, Python es un lenguaje fuertemente tipado, lo que significa que las operaciones entre tipos incompatibles generarán un error.
 
-
 ```{code-cell} python
 ---
 tags: hide-output, raises-exception
@@ -97,7 +96,9 @@ x = 5 + "10"
 ```
 
 ````{admonition} Tipado débil vs fuertemente tipado
-:class: hint
+---
+class: hint
+---
 El tipado débil se puede definir, por oposición a fuertemente tipado, como la capacidad de realizar operaciones entre tipos incompatibles. Por ejemplo en lenguajes como JavaScript, se puede sumar un número con una cadena de caracteres.
 ```{code-block} javascript
 x = 5 + "10"

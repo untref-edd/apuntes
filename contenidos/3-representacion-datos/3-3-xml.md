@@ -244,19 +244,19 @@ Para utilizar estas características en Python, es necesario usar bibliotecas qu
 
 XPath 2.0 ofrece una gran cantidad de funciones para manipular cadenas, números, fechas y secuencias.
 
-| Función | Descripción | Ejemplo |
-| :--- | :--- | :--- |
-| `count(nodos)` | Cuenta el número de nodos en una secuencia | `count(//libro)` |
-| `sum(nodos)` | Suma los valores numéricos de los nodos | `sum(//precio)` |
-| `avg(nodos)` | Calcula el promedio de los valores | `avg(//precio)` |
-| `min(nodos)` | Devuelve el valor mínimo | `min(//precio)` |
-| `max(nodos)` | Devuelve el valor máximo | `max(//precio)` |
-| `contains(s1, s2)` | Verdadero si s1 contiene s2 | `contains(titulo, 'XML')` |
-| `starts-with(s1, s2)` | Verdadero si s1 empieza con s2 | `starts-with(titulo, 'A')` |
-| `ends-with(s1, s2)` | Verdadero si s1 termina con s2 | `ends-with(titulo, '.')` |
-| `upper-case(s)` | Convierte la cadena a mayúsculas | `upper-case('hola')` |
-| `string-length(s)` | Devuelve la longitud de la cadena | `string-length('abc')` |
-| `matches(s, regex)` | Verdadero si la cadena cumple con la expresión regular | `matches('123', '^\d+$')` |
+| Función               | Descripción                                            | Ejemplo                    |
+| :-------------------- | :----------------------------------------------------- | :------------------------- |
+| `count(nodos)`        | Cuenta el número de nodos en una secuencia             | `count(//libro)`           |
+| `sum(nodos)`          | Suma los valores numéricos de los nodos                | `sum(//precio)`            |
+| `avg(nodos)`          | Calcula el promedio de los valores                     | `avg(//precio)`            |
+| `min(nodos)`          | Devuelve el valor mínimo                               | `min(//precio)`            |
+| `max(nodos)`          | Devuelve el valor máximo                               | `max(//precio)`            |
+| `contains(s1, s2)`    | Verdadero si s1 contiene s2                            | `contains(titulo, 'XML')`  |
+| `starts-with(s1, s2)` | Verdadero si s1 empieza con s2                         | `starts-with(titulo, 'A')` |
+| `ends-with(s1, s2)`   | Verdadero si s1 termina con s2                         | `ends-with(titulo, '.')`   |
+| `upper-case(s)`       | Convierte la cadena a mayúsculas                       | `upper-case('hola')`       |
+| `string-length(s)`    | Devuelve la longitud de la cadena                      | `string-length('abc')`     |
+| `matches(s, regex)`   | Verdadero si la cadena cumple con la expresión regular | `matches('123', '^\d+$')`  |
 
 ### Secuencias
 
@@ -279,11 +279,13 @@ if (@precio > 500) then 'Caro' else 'Barato'
 Permiten verificar si alguno o todos los elementos de una secuencia cumplen una condición.
 
 - **some**: Verdadero si al menos un elemento cumple la condición.
+
   ```xpath
   some $x in //precio satisfies $x > 1000
   ```
 
 - **every**: Verdadero si todos los elementos cumplen la condición.
+
   ```xpath
   every $x in //precio satisfies $x > 0
   ```
@@ -291,7 +293,6 @@ Permiten verificar si alguno o todos los elementos de una secuencia cumplen una 
 ### Tablas de referencia rápida
 
 Descargar la [Hoja de Referencia de XPath 2.0](../_static/docs/referencias_xpath.pdf) en PDF.
-
 
 ## XML y Python
 
@@ -346,7 +347,6 @@ Otro ejemplo: Calcular el precio total de los libros
 ---
 tags: hide-output
 ---
-
 # Calcular el precio total de todos los libros usando la función sum
 # de XPath 2.0
 total_precio = elementpath.select(root, "sum(/biblioteca/libro/precio)")
@@ -415,13 +415,13 @@ Atom es un estándar más reciente, desarrollado como una alternativa a RSS para
 
 #### Comparación: RSS vs Atom
 
-| Característica | RSS 2.0 | Atom 1.0 |
-| :--- | :--- | :--- |
-| **Estandarización** | No estandarizado formalmente (mantenido por Harvard) | Estándar IETF (RFC 4287) |
-| **Fecha de publicación** | Elemento `<pubDate>` (formato RFC 822) | Elemento `<updated>` (formato ISO 8601) |
-| **Contenido** | Solo soporta texto plano o HTML escapado | Soporta texto, HTML, XHTML y contenido binario (Base64) |
-| **Identificación** | `<guid>` (opcional) | `<id>` (obligatorio y único) |
-| **Autor** | `<author>` (email del autor) | `<author>` (estructura con nombre, email, uri) |
+| Característica           | RSS 2.0                                              | Atom 1.0                                                |
+| :----------------------- | :--------------------------------------------------- | :------------------------------------------------------ |
+| **Estandarización**      | No estandarizado formalmente (mantenido por Harvard) | Estándar IETF (RFC 4287)                                |
+| **Fecha de publicación** | Elemento `<pubDate>` (formato RFC 822)               | Elemento `<updated>` (formato ISO 8601)                 |
+| **Contenido**            | Solo soporta texto plano o HTML escapado             | Soporta texto, HTML, XHTML y contenido binario (Base64) |
+| **Identificación**       | `<guid>` (opcional)                                  | `<id>` (obligatorio y único)                            |
+| **Autor**                | `<author>` (email del autor)                         | `<author>` (estructura con nombre, email, uri)          |
 
 #### Lectura de Feeds con Python
 

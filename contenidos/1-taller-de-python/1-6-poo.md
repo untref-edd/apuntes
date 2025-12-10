@@ -217,7 +217,9 @@ Diagrama de clases de Ayudante
 ```
 
 ```{admonition} Diagrama de clases
-:class: hint
+---
+class: hint
+---
 Un ***diagrama de clases***, es un diagrama estático que muestra la estructura de un sistema mediante las clases que lo componen y sus relaciones. Una flecha con una línea continua y un triángulo en la punta indica herencia, y en cada clase se pueden ver los atributos y métodos que se definen en cada una. En general no se muestran los atributos y métodos heredados, ni los constructores, pero si los métodos que se sobrescriben, es decir, que se redefinen en una subclase. En el diagrama anterior el método `presentar` de la clase `Ayudante` sobrescribe el método `presentar` de las clases `Docente` y `Estudiante`.
 
 La relación de herencia se puede leer desde abajo hacia arriba como "es un", es decir, "Ayudante es un Docente" y "Ayudante es un Estudiante" ambas cosas al mismo tiempo y desde arriba hacia abajo como "hereda de" es decir, "Ayudante hereda de Docente" y "Ayudante hereda de Estudiante".
@@ -264,7 +266,9 @@ Es decir cuando un objeto de la clase `Ayudante` invoca a un método, Python pri
 Por eso no se puede usar `super()` en el constructor de la clase `Estudiante` ya que si se hiciera, se generaría una ambigüedad en la resolución del método a llamar, ya que `super()` buscaría el siguiente método en la jerarquía de clases, que en este caso sería el constructor de `Docente`. Por lo tanto, se debe usar el nombre de la clase base explícitamente en el constructor de la subclase.
 
 ```{admonition} object
-:class: hint
+---
+class: hint
+---
 `object` es la clase base de todas las clases en Python. Todas las clases heredan de `object`, lo que significa que todas las instancias de clases en Python son también instancias de `object`. Esto proporciona una serie de métodos y atributos comunes a todas las clases.
 
 Por eso cuando se dice que en Python todo es un objeto, se refiere a que todas las clases heredan de `object`, y por lo tanto, todas las instancias de clases son también instancias de `object`. Esto permite que todas las clases tengan un comportamiento común, como la capacidad de ser comparadas, impresas, etc.
@@ -301,7 +305,9 @@ Diagrama de clases de Figuras Geométricas
 ```
 
 ```{admonition} Diagrama de clases de Figuras Geométricas
-:class: hint
+---
+class: hint
+---
 El diagrama de clases de Figuras Geométricas ilustra la relación de **composición** entre la clase `Punto` y las clases `Cuadrado`, `Círculo` y `Elipse`.  Un diamante relleno en el extremo que toca a `Cuadrado`, `Círculo` y `Elipse` y una línea que conecta a estas figuras con `Punto` indica que estas figuras están compuestas por uno o más `Punto`. 
 
 La **composición** es un tipo fuerte de relación "tiene un" (has-a), donde un objeto es parte de otro objeto más grande. Por ejemplo, un `Cuadrado` "tiene un" `Punto` que representa su esquina superior izquierda, un `Círculo` y una `Elipse` "tienen un" `Punto` que representa su centro. En este tipo de relación, el objeto "parte" (`Punto`) no puede existir de forma independiente sin el objeto "todo" (`Cuadrado`, `Círculo`, `Elipse`). La vida útil del objeto `Punto` está ligada a la vida útil de la figura geométrica que lo contiene.

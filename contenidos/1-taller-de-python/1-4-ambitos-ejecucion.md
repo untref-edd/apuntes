@@ -62,7 +62,6 @@ class: hint
 En programación, la mutabilidad se refiere a la capacidad de un objeto para ser modificado después de su creación. Un objeto **mutable** puede cambiar su estado o valor, mientras que un objeto **inmutable** no puede ser alterado una vez creado. Para más información, consulta [Wikipedia](https://es.wikipedia.org/wiki/Objeto_inmutable).
 ```
 
-
 En Python **todo es un objeto**, por lo tanto podemos pensar que todas las variables son referencias a objetos en el _heap_. La distinción importante es si un objeto es mutable o inmutable.
 
 ### Tipos inmutables (como los "primitivos" en Java/Go)

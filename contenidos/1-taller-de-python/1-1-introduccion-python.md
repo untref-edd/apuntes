@@ -22,7 +22,7 @@ width: 200px
 ---
 ```
 
-Python fue concebido a finales de los años 80 como sucesor del [lenguaje ABC](https://es.wikipedia.org/wiki/ABC_(lenguaje_de_programaci%C3%B3n)), con el objetivo de crear un lenguaje más legible y fácil de usar. La primera versión pública (0.9.0) fue lanzada en 1991, y desde entonces ha evolucionado significativamente. Python 2.0 llegó en 2000 con importantes mejoras como la recolección de basura y soporte para Unicode. En 2008 se lanzó Python 3.0, una revisión mayor del lenguaje que rompió la compatibilidad hacia atrás para corregir defectos fundamentales del diseño. Aunque la transición fue gradual y a veces controvertida, Python 3 es ahora el estándar, con Python 2 oficialmente descontinuado desde 2020.
+Python fue concebido a finales de los años 80 como sucesor del [lenguaje ABC](<https://es.wikipedia.org/wiki/ABC_(lenguaje_de_programaci%C3%B3n)>), con el objetivo de crear un lenguaje más legible y fácil de usar. La primera versión pública (0.9.0) fue lanzada en 1991, y desde entonces ha evolucionado significativamente. Python 2.0 llegó en 2000 con importantes mejoras como la recolección de basura y soporte para Unicode. En 2008 se lanzó Python 3.0, una revisión mayor del lenguaje que rompió la compatibilidad hacia atrás para corregir defectos fundamentales del diseño. Aunque la transición fue gradual y a veces controvertida, Python 3 es ahora el estándar, con Python 2 oficialmente descontinuado desde 2020.
 
 Guido van Rossum lideró el desarrollo de Python hasta 2018, cuando renunció como "Benevolente Dictador Vitalicio" (BDFL). Desde entonces, Python es gobernado por un Consejo Directivo elegido por la comunidad. Para más detalles sobre la historia de Python, consulta [Wikipedia](https://es.wikipedia.org/wiki/Python#Historia).
 
@@ -30,12 +30,12 @@ Guido van Rossum lideró el desarrollo de Python hasta 2018, cuando renunció co
 
 Python ofrece numerosas ventajas que lo han convertido en uno de los lenguajes de programación más populares:
 
-*   **Sintaxis clara y legible:** Su diseño enfatiza la legibilidad del código, lo que facilita su aprendizaje y mantenimiento.
-*   **Versatilidad:** Es un lenguaje multipropósito, utilizado en desarrollo web, ciencia de datos, inteligencia artificial, automatización, scripting y más.
-*   **Gran comunidad y ecosistema:** Cuenta con una comunidad activa y una vasta colección de librerías y frameworks (como Django, Flask, NumPy, Pandas, TensorFlow) que aceleran el desarrollo.
-*   **Multiplataforma:** Puede ejecutarse en diversos sistemas operativos como Windows, macOS y Linux sin necesidad de modificar el código.
-*   **Gratuito y de código abierto:** Es de uso libre y su código fuente está disponible para que cualquiera pueda inspeccionarlo y modificarlo.
-*   **Alta productividad:** Permite escribir menos líneas de código para realizar tareas complejas en comparación con otros lenguajes, lo que aumenta la eficiencia del desarrollador.
+- **Sintaxis clara y legible:** Su diseño enfatiza la legibilidad del código, lo que facilita su aprendizaje y mantenimiento.
+- **Versatilidad:** Es un lenguaje multipropósito, utilizado en desarrollo web, ciencia de datos, inteligencia artificial, automatización, scripting y más.
+- **Gran comunidad y ecosistema:** Cuenta con una comunidad activa y una vasta colección de librerías y frameworks (como Django, Flask, NumPy, Pandas, TensorFlow) que aceleran el desarrollo.
+- **Multiplataforma:** Puede ejecutarse en diversos sistemas operativos como Windows, macOS y Linux sin necesidad de modificar el código.
+- **Gratuito y de código abierto:** Es de uso libre y su código fuente está disponible para que cualquiera pueda inspeccionarlo y modificarlo.
+- **Alta productividad:** Permite escribir menos líneas de código para realizar tareas complejas en comparación con otros lenguajes, lo que aumenta la eficiencia del desarrollador.
 
 ## El zen de Python
 
@@ -49,7 +49,9 @@ import this
 ```
 
 ````{admonition} Zen de Python
-:class: hint
+---
+class: hint
+---
 Para ver el Zen de Python en el intérprete de Python, puedes ejecutar el siguiente comando:
 ```{code-block} python
 import this
@@ -85,9 +87,12 @@ print(f"Factorial de 5: {factorial(5)}")
 La programación funcional se basa en el uso de funciones puras. Este paradigma se enfoca en ***qué*** se debe hacer, utilizando funciones de orden superior y minimizando la dependencia de estados mutables para evitar efectos secundarios. En el capítulo de funciones profundizaremos un poco más en este paradigma.
 
 ```{admonition} Funciones puras
-:class: hint
+---
+class: hint
+---
 Una función pura es aquella que, para los mismos argumentos de entrada, siempre produce el mismo resultado y no causa ningún efecto secundario observable fuera de su ámbito (como modificar variables externas o realizar operaciones de entrada/salida).
 ```
+
 A continuación se muestra un ejemplo de una función pura que ordena una lista de números utilizando el algoritmo Quicksort, utilizando técnicas de la programación funcional.
 
 ```{code-cell} python
