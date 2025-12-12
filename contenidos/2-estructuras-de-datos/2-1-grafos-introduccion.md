@@ -23,18 +23,15 @@ $$
 
 donde:
 
-$V$
-: Conjunto de vértices
+**$V$**: Conjunto de vértices
 
-$E$
-: Conjunto de aristas. Las aristas conectan pares de vértices.
-: Ademas se cumple que $E ⊆ V × V$
+**$E$**: Conjunto de aristas. Las aristas conectan pares de vértices.
 
-$|V|$
-: Cardinal de V (denota la cantidad de vértices del grafo).
+Además se cumple que $E \subseteq V \times V$. Esto quiere decir que cada arista une un par de vértices.
 
-$|E|$
-: Cardinal de E (denota la cantidad de aristas).
+**$|V|$**: Cardinal de V (denota la cantidad de vértices del grafo).
+
+**$|E|$**: Cardinal de E (denota la cantidad de aristas).
 
 Entre un par cualquiera de vértices sólo puede haber una arista. Por lo tanto siempre se cumple que:
 
@@ -45,6 +42,7 @@ $$
 ```{figure} ../_static/figures/grafo_ejemplo_light.svg
 ---
 class: only-light-mode
+width: 60%
 ---
 Ejemplo de un grafo
 ```
@@ -52,6 +50,7 @@ Ejemplo de un grafo
 ```{figure} ../_static/figures/grafo_ejemplo_dark.svg
 ---
 class: only-dark-mode
+width: 60%
 ---
 Ejemplo de un grafo
 ```
@@ -69,6 +68,7 @@ Por ejemplo, en la siguiente imagen se observa las relaciones de amistad en una 
 ```{figure} ../_static/figures/grafo_red_light.svg
 ---
 class: only-light-mode
+width: 70%
 ---
 Grafo de amistades en una red social
 ```
@@ -76,11 +76,14 @@ Grafo de amistades en una red social
 ```{figure} ../_static/figures/grafo_red_dark.svg
 ---
 class: only-dark-mode
+width: 70%
 ---
 Grafo de amistades en una red social
 ```
 
-Los grafos dirigidos permiten representar relaciones asimétricas entre dos nodos. Por ejemplo el plan de estudios de una carrera se puede modelar con un grafo dirigido, donde las materias son los nodos y las aristas indican las correlativas que se deben aprobar antes de cursar una materia.
+Los grafos dirigidos permiten representar relaciones asimétricas entre dos nodos, por ejemplo en la red social X (anteriormente Twitter), si A sigue a B, las publicaciones de B aparecerán en el *feed* de A, pero si B no sigue a A, las publicaciones de A no aparecerán en el *feed* de B.
+
+El plan de estudios de una carrera es otro ejemplo que se puede modelar con un grafo dirigido, donde las materias son los nodos y las aristas indican las correlativas que se deben aprobar antes de cursar una materia.
 
 ```{figure} ../_static/figures/grafo_carrera_light.svg
 ---
@@ -98,11 +101,57 @@ Grafo de correlativas en un plan de estudios
 
 Los **grafos dirigidos** también se denominan **digrafos**.
 
-Como se observa en la última figura hay vértices que no están conectados a otros vértices. Un grafo puede tener vértices _"desconectados"_. Un grafo se dice que es **conexo** si existe un camino entre cada par de vértices, es decir, para cualquier par de vértices, se puede llegar de uno al otro siguiendo las aristas del grafo. Para grafos conexos, se cumple que
+Como se observa en la última figura hay vértices que no están conectados a otros vértices. Un grafo puede tener vértices _"desconectados"_. 
+
+## Grafos conexos
+
+Un grafo no dirigido se dice **conexo** si existe un camino entre cada par de vértices, es decir, para cualquier par de vértices, se puede llegar de uno al otro siguiendo las aristas del grafo. Para grafos conexos no dirigidos se cumple que:
 
 $$
-|V| - 1 ≤ |E| ≤ |V|^2
+V - 1 \leq |E| \leq \frac{V \times (V - 1)}{2}
 $$
+
+```{figure} ../_static/figures/grafos_conexos_light.svg
+---
+class: only-light-mode
+---
+Grafos conexos no dirigidos
+```
+
+```{figure} ../_static/figures/grafos_conexos_dark.svg
+---
+class: only-dark-mode
+---
+Grafos conexos no dirigidos
+```
+
+En grafos dirigidos como las aristas tiene un sentido, se puede distinguir entre grafos dirigidos **fuertemente conexos** o **debilmente conexos**
+
+Un grafo dirigido es **fuertemente conexo** si, para cualquier par de vértices elegidos al azar ($u$ y $v$), existe:
+
+1. Un camino dirigido que va desde $u$ hasta $v$.
+2. Un camino dirigido que va desde $v$ hasta $u$.
+
+Mientras se considera que un grafo dirigido es **debilmente conexo** si el **grafo subyacente** es conexo.
+
+```{admonition} Definición
+:class: hint
+El **grafo subyacente** de un grafo dirigido es el grafo no dirigido que se obtiene al eliminar las direcciones de las aristas del grafo dirigido.
+```
+
+```{figure} ../_static/figures/grafos_conexos_dirigidos_light.svg
+---
+class: only-light-mode
+---
+Grafos conexos dirigidos
+```
+
+```{figure} ../_static/figures/grafos_conexos_dirigidos_dark.svg
+---
+class: only-dark-mode
+---
+Grafos conexos dirigidos
+```
 
 ## Grafos ponderados y no ponderados
 
@@ -111,6 +160,7 @@ Un grafo se dice que es **ponderado** si cada arista tiene un peso o costo asoci
 ```{figure} ../_static/figures/grafo_con_pesos_light.svg
 ---
 class: only-light-mode
+width: 60%
 ---
 Grafo ponderado con costos en las aristas
 ```
@@ -118,6 +168,7 @@ Grafo ponderado con costos en las aristas
 ```{figure} ../_static/figures/grafo_con_pesos_dark.svg
 ---
 class: only-dark-mode
+width: 60%
 ---
 Grafo ponderado con costos en las aristas
 ```
@@ -126,44 +177,40 @@ Grafo ponderado con costos en las aristas
 
 ### Camino
 
-Un camino en un grafo es una secuencia de vértices en la que cada par de vértices adyacentes está conectado por una arista. Un camino puede ser **simple** (sin vértices repetidos) o tener **ciclos** (vértices repetidos). En general cuando se habla sólo de camino se refiere a un **camino simple** sin ciclos.
+Un camino en un grafo (dirigido o no dirigido) es una secuencia de vértices en la que cada par de vértices adyacentes está conectado por una arista. Un camino puede ser **simple** (sin vértices repetidos) o tener **ciclos** (vértices repetidos). En general cuando se habla sólo de camino se refiere a un **camino simple** sin ciclos.
 
 ```{figure} ../_static/figures/grafo_camino_light.svg
 ---
 class: only-light-mode
 ---
-Grafo que representa un camino simple. El camino conecta los vértices A, B, C, D y E. Se observa que no hay ningún camino entre los vértices A y G por ejemplo.
+Caminos en grafos
 ```
 
 ```{figure} ../_static/figures/grafo_camino_dark.svg
 ---
 class: only-dark-mode
 ---
-Grafo que representa un camino simple. El camino conecta los vértices A, B, C, D y E. Se observa que no hay ningún camino entre los vértices A y G por ejemplo.
+Caminos en grafos
 ```
 
-### Costo de un camino
+#### Costo de un camino
 
 El costo de un camino en un grafo ponderado es la suma de los pesos de las aristas que lo componen. En un grafo no ponderado, se puede considerar que todas las aristas tienen el mismo costo (costo de 1) y el costo del camino representa la cantidad de aristas que lo componen.
 
-Por ejemplo, en la siguiente tabla se observa el peso de las aristas que componen el camino $A-E$:
-
-```{table}
----
-align: center
----
-|  Arista  | Peso |
-| :------: | :--: |
-| $(A, B)$ |  4   |
-| $(B, C)$ |  2   |
-| $(C, D)$ |  4   |
-| $(D, E)$ |  3   |
-```
-
-por lo tanto el costo del camino $A-E$ es:
+En la figura anterior el costo del camino $A-E$ en el grafo no dirgido es:
 
 $$
+\begin{equation*}
 4 + 2 + 4 + 3 = 13
+\end{equation*}
+$$
+
+mientras que el costo del ciclo en el grafo dirigido es:
+
+$$
+\begin{equation*}
+4 + 2 + 5 = 11
+\end{equation*}
 $$
 
 ### Grafo Dirigido Acíclico
@@ -175,6 +222,7 @@ Visto de otra forma si partimos de un vértice cualquiera del grafo no existe ni
 ```{figure} ../_static/figures/grafo_dag_light.svg
 ---
 class: only-light-mode
+width: 60%
 ---
 Grafo Dirigido Acíclico
 ```
@@ -182,6 +230,7 @@ Grafo Dirigido Acíclico
 ```{figure} ../_static/figures/grafo_dag_dark.svg
 ---
 class: only-dark-mode
+width: 60%
 ---
 Grafo Dirigido Acíclico
 ```
@@ -198,11 +247,11 @@ El grado de salida de un vértice en un grafo dirigido es el número de aristas 
 
 Por ejemplo en el grafo anterior el grado de salida del vértice $V_5$ es 0
 
-### Fuente
+#### Fuente
 
 Es un vértice cuyo grado de entrada es 0
 
-### Sumidero
+#### Sumidero
 
 Es un vértice cuyo grado de salida es 0
 
@@ -214,7 +263,7 @@ En el grafo de la figura anterior, el vértice $V_2$ es una fuente y el vértice
 
 ## Representación de grafos
 
-En una computadora hay al menos dos formas de representar un grafo. Usando una **lista de adyacencia** o una **matriz de adyacencia**.
+En estructuras de datos hay al menos dos formas de representar un grafo. Usando una **lista de adyacencia** o una **matriz de adyacencia**.
 
 ### Matriz de adyacencia
 
@@ -223,14 +272,18 @@ Dado el siguiente grafo $G=(V, A)$
 donde
 
 $$
+\begin{equation*}
 V=\{V_0, V_1, V_2, V_3, V_4, V_5, V_6\}
+\end{equation*}
 $$
 
 $$
+\begin{equation*}
 \begin{aligned}
 A=\{(V_0, V_1, 2), (V_0, V_3, 1), (V_1, V_3, 3), (V_1, V_4, 10), (V_2, V_0, 4), (V_2, V_5, 5),\\
    (V_3, V_2, 2), (V_3, V_4, 2), (V_3, V_5, 8), (V_3, V_6, 4), (V_4, V_6, 5), (V_6, V_5, 1)\}
 \end{aligned}
+\end{equation*}
 $$
 
 ```{figure} ../_static/figures/grafo_dirigido_light.svg
@@ -275,6 +328,7 @@ Si el grafo es no dirigido, la matriz de adyacencia será simétrica, por ejempl
 ```{figure} ../_static/figures/grafo_no_dirigido_light.svg
 ---
 class: only-light-mode
+width: 60%
 ---
 Grafo no dirigido
 ```
@@ -282,6 +336,7 @@ Grafo no dirigido
 ```{figure} ../_static/figures/grafo_no_dirigido_dark.svg
 ---
 class: only-dark-mode
+width: 60%
 ---
 Grafo no dirigido
 ```
@@ -308,6 +363,7 @@ Para el grafo dirigido anterior la lista de adyacencia sería:
 ```{figure} ../_static/figures/grafo_dirigido_lista_light.svg
 ---
 class: only-light-mode
+width: 80%
 ---
 Lista de adyacencia del grafo dirigido
 ```
@@ -315,6 +371,7 @@ Lista de adyacencia del grafo dirigido
 ```{figure} ../_static/figures/grafo_dirigido_lista_dark.svg
 ---
 class: only-dark-mode
+width: 80%
 ---
 Lista de adyacencia del grafo dirigido
 ```
@@ -326,6 +383,7 @@ A continuación la lista de adyacencia para el grafo no dirigido del punto anter
 ```{figure} ../_static/figures/grafo_no_dirigido_lista_light.svg
 ---
 class: only-light-mode
+width: 80%
 ---
 Lista de adyacencia del grafo no dirigido
 ```
@@ -333,6 +391,7 @@ Lista de adyacencia del grafo no dirigido
 ```{figure} ../_static/figures/grafo_no_dirigido_lista_dark.svg
 ---
 class: only-dark-mode
+width: 80%
 ---
 Lista de adyacencia del grafo no dirigido
 ```
@@ -349,11 +408,11 @@ Ambas bibliotecas se deben instalar previamente.
 pip install networkx matplotlib
 ```
 
-Los vértices deben ser de tipos _hashables_, es decir, cualquier tipo que pueda ser clave de un diccionario. Los tipos inmutables como cadenas, números o tuplas suelen ser una buena elección porque son hashables y funcionan bien como identificadores de nodos.
+Los vértices deben ser de tipos _hashables_, es decir, cualquier tipo que pueda ser clave de un diccionario. Los tipos inmutables como cadenas, números o tuplas suelen ser una buena elección para usarlos como identificadores de nodos.
 
 ### Crear grafos
 
-Existen varias formas de crear un grafo. A continuación algunas de las que más usaremos:
+Existen varias formas de crear un grafo. A continuación algunas de las más usuales:
 
 `Graph()`
 : Para crear un grafo simple, vacío y no dirigido.
@@ -410,15 +469,18 @@ nx.draw(
     G,
     pos,
     with_labels=True,  # etiquetar nodos
-    node_size=700,  # tamaño de los nodos
-    node_color="lightblue",  # color de los nodos
+    node_size=800,  # tamaño de los nodos
+    node_color="#e1f5ff",  # color de los nodos (azul claro)
+    edgecolors="#4682b4",  # color del borde de los nodos (azul acero)
+    linewidths=2,  # grosor del borde de los nodos
     font_size=12,  # tamaño de la fuente
-    edge_color="gray",  # color de las aristas
+    font_color="#333333",  # color de la fuente
+    edge_color="#333333",  # color de las aristas
     width=2,  # grosor de las aristas
 )
 edge_labels = nx.get_edge_attributes(G, "weight")  # Obtener los pesos de las aristas
 nx.draw_networkx_edge_labels(
-    G, pos, edge_labels=edge_labels
+    G, pos, edge_labels=edge_labels, font_color="#333333"
 )  # Dibujar las etiquetas de las aristas
 plt.title("Grafo Dirigido")  # Título de la figura
 plt.show()  # Mostrar la figura
@@ -454,24 +516,32 @@ G = nx.DiGraph()
 # 1) Agregar estaciones (nodos) con atributos
 G.add_node("Central", tipo="Terminal", linea="Roja")
 G.add_node("Parque", tipo="Normal", linea="Roja")
-G.add_node("Universidad", tipo="Normal", linea="Roja")
+G.add_node("Puerto", tipo="Normal", linea="Roja")
 G.add_node("Museo", tipo="Normal", linea="Verde")
 G.add_node("Plaza", tipo="Terminal", linea="Verde")
 G.add_node("Estadio", tipo="Normal", linea="Verde")
 
 # 2) Agregar conexiones (aristas) con atributos
 G.add_edge("Central", "Parque", distancia=2.5, tipo="normal")
-G.add_edge("Parque", "Universidad", distancia=3.0, tipo="express")
-G.add_edge("Universidad", "Museo", distancia=4.0, tipo="normal")
+G.add_edge("Parque", "Puerto", distancia=3.0, tipo="express")
+G.add_edge("Puerto", "Museo", distancia=4.0, tipo="normal")
 G.add_edge("Museo", "Plaza", distancia=2.0, tipo="normal")
 G.add_edge("Plaza", "Estadio", distancia=3.5, tipo="express")
 G.add_edge("Parque", "Museo", distancia=5.0, tipo="normal")
 
 # 3) Dibujar grafo
-pos = nx.spring_layout(G, seed=42)
+# Definimos posiciones manualmente para mejorar la visualización y cumplir requerimientos
+pos = {
+    "Puerto": (0, 0),
+    "Parque": (5, 0),
+    "Museo": (2, 2.5),
+    "Plaza": (0, 5),
+    "Central": (6, 5),
+    "Estadio": (-2, 7),
+}
 
 # Colores de nodos según línea
-colores_lineas = {"Roja": "red", "Verde": "green"}
+colores_lineas = {"Roja": "#ffcdd2", "Verde": "#c8e6c9"}
 node_colors = [colores_lineas[G.nodes[n]["linea"]] for n in G.nodes()]
 
 # Grosor y estilo de aristas según tipo de vía
@@ -481,7 +551,9 @@ edge_styles = [
 ]
 
 # Dibujar nodos
-nx.draw_networkx_nodes(G, pos, node_color=node_colors, node_size=1200)
+nx.draw_networkx_nodes(
+    G, pos, node_color=node_colors, node_size=1200, edgecolors="#333333"
+)
 
 # Dibujar aristas
 for i, (u, v) in enumerate(G.edges()):
@@ -492,44 +564,50 @@ for i, (u, v) in enumerate(G.edges()):
         width=edge_widths[i],
         style=edge_styles[i],
         arrows=True,
+        edge_color="#333333",
     )
 
 # Etiquetas de nodos
 nx.draw_networkx_labels(G, pos, font_size=9)
 
 # Etiquetas de aristas (distancia)
-edge_labels = {(u, v): f'{G[u][v]["distancia"]} km' for u, v in G.edges()}
-nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels, font_color="blue")
+edge_labels = {(u, v): f'{G[u][v]["distancia"]}' for u, v in G.edges()}
+nx.draw_networkx_edge_labels(
+    G, pos, edge_labels=edge_labels, font_color="#333333", font_size=8
+)
 
 # Leyenda
 legend_elements = [
     Line2D(
         [0],
         [0],
-        color="red",
+        color="#ffcdd2",
         marker="o",
         linestyle="None",
         markersize=12,
         label="Línea Roja",
+        markeredgecolor="#333333",
     ),
     Line2D(
         [0],
         [0],
-        color="green",
+        color="#c8e6c9",
         marker="o",
         linestyle="None",
         markersize=12,
         label="Línea Verde",
+        markeredgecolor="#333333",
     ),
     Line2D([0], [0], color="gray", linewidth=2, linestyle="solid", label="Vía normal"),
     Line2D(
         [0], [0], color="gray", linewidth=2, linestyle="dashed", label="Vía express"
     ),
 ]
-plt.legend(handles=legend_elements, loc="lower left", fontsize=10)
+plt.legend(handles=legend_elements, loc="upper right", fontsize=10)
 
 plt.title("Mini-Red de Transporte Urbano", fontsize=14)
 plt.axis("off")
+plt.margins(0.2)  # Márgenes para evitar recortes
 plt.show()
 ```
 

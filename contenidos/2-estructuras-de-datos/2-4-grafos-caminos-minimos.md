@@ -20,12 +20,14 @@ Por ejemplo dado el siguiente grafo:
 ```{figure} ../_static/figures/grafo_dijkstra_light.svg
 ---
 class: only-light-mode
+width: 60%
 ---
 ```
 
 ```{figure} ../_static/figures/grafo_dijkstra_dark.svg
 ---
 class: only-dark-mode
+width: 60%
 ---
 ```
 

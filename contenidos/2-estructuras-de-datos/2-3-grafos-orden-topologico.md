@@ -52,6 +52,7 @@ Por ejemplo dado el siguiente grafo:
 ```{figure} ../_static/figures/grafo_dag_light.svg
 ---
 class: only-light-mode
+width: 60%
 ---
 Grafo Dirigido Acíclico
 ```
@@ -59,6 +60,7 @@ Grafo Dirigido Acíclico
 ```{figure} ../_static/figures/grafo_dag_dark.svg
 ---
 class: only-dark-mode
+width: 60%
 ---
 Grafo Dirigido Acíclico
 ```
@@ -68,6 +70,7 @@ Un orden topológico posible es: $V_2$, $V_0$, $V_1$, $V_3$, $V_4$, $V_6$, $V_5$
 ```{figure} ../_static/figures/grafo_orden_topologico_light.svg
 ---
 class: only-light-mode
+width: 80%
 ---
 Ordenamiento Topológico
 ```
@@ -75,6 +78,7 @@ Ordenamiento Topológico
 ```{figure} ../_static/figures/grafo_orden_topologico_dark.svg
 ---
 class: only-dark-mode
+width: 80%
 ---
 Ordenamiento Topológico
 ```

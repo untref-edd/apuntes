@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300">
+  <defs>
+    <marker id="arrowhead" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto">
+      <polygon points="0 0, 6 2.5, 0 5" fill="#333333" />
+    </marker>
+  </defs>
+  <text x="150" y="40" font-family="Arial" font-size="16" fill="#333333" text-anchor="middle">Debilmente conexo</text>
+  <text x="450" y="40" font-family="Arial" font-size="16" fill="#333333" text-anchor="middle">Fuertemente conexo</text>
+  <line x1="162.13525491562422" y1="88.8167787843871" x2="213.94926638798808" y2="126.46186166561712" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
+  <line x1="221.44926638798808" y1="149.54448819443152" x2="201.65807509902208" y2="210.45551180556848" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
+  <line x1="182.02282018339787" y1="224.72135954999578" x2="117.97717981660216" y2="224.72135954999578" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
+  <line x1="98.34192490097794" y1="210.45551180556848" x2="78.55073361201192" y2="149.54448819443152" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
+  <line x1="462.1352549156242" y1="88.8167787843871" x2="513.9492663879881" y2="126.46186166561712" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
+  <line x1="521.4492663879881" y1="149.54448819443152" x2="501.6580750990221" y2="210.45551180556848" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
+  <line x1="482.02282018339787" y1="224.72135954999578" x2="417.9771798166022" y2="224.72135954999578" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
+  <line x1="398.341924900978" y1="210.45551180556848" x2="378.5507336120119" y2="149.54448819443152" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
+  <line x1="386.0507336120119" y1="126.46186166561712" x2="437.8647450843758" y2="88.8167787843871" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
+  <circle cx="150.0" cy="80.0" r="15" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
+  <circle cx="226.0845213036123" cy="135.27864045000422" r="15" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
+  <circle cx="197.02282018339787" cy="224.72135954999578" r="15" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
+  <circle cx="102.97717981660216" cy="224.72135954999578" r="15" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
+  <circle cx="73.91547869638771" cy="135.27864045000422" r="15" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
+  <circle cx="450.0" cy="80.0" r="15" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
+  <circle cx="526.0845213036123" cy="135.27864045000422" r="15" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
+  <circle cx="497.02282018339787" cy="224.72135954999578" r="15" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
+  <circle cx="402.9771798166022" cy="224.72135954999578" r="15" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
+  <circle cx="373.9154786963877" cy="135.27864045000422" r="15" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
+</svg>

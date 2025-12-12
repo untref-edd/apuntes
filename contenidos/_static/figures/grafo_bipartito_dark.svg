@@ -1,27 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
-  <rect width="400" height="300" fill="#1e1e1e"/>
-  
-  <!-- Edges -->
-  <line x1="100" y1="100" x2="300" y2="50" stroke="#e0e0e0" stroke-width="2"/>
-  <line x1="100" y1="100" x2="250" y2="200" stroke="#e0e0e0" stroke-width="2"/>
-  <line x1="200" y1="150" x2="300" y2="50" stroke="#e0e0e0" stroke-width="2"/>
-  <line x1="150" y1="250" x2="250" y2="200" stroke="#e0e0e0" stroke-width="2"/>
-
-  <!-- Nodes (Mixed positions) -->
-  <!-- Set U (Blueish) -->
-  <circle cx="100" cy="100" r="20" fill="#2d3748" stroke="#63b3ed" stroke-width="2"/>
-  <text x="100" y="105" font-family="Arial" font-size="14" fill="#e0e0e0" text-anchor="middle">U1</text>
-
-  <circle cx="200" cy="150" r="20" fill="#2d3748" stroke="#63b3ed" stroke-width="2"/>
-  <text x="200" y="155" font-family="Arial" font-size="14" fill="#e0e0e0" text-anchor="middle">U2</text>
-
-  <circle cx="150" cy="250" r="20" fill="#2d3748" stroke="#63b3ed" stroke-width="2"/>
-  <text x="150" y="255" font-family="Arial" font-size="14" fill="#e0e0e0" text-anchor="middle">U3</text>
-
-  <!-- Set V (Reddish) -->
-  <circle cx="300" cy="50" r="20" fill="#4a5568" stroke="#fc8181" stroke-width="2"/>
-  <text x="300" y="55" font-family="Arial" font-size="14" fill="#e0e0e0" text-anchor="middle">V1</text>
-
-  <circle cx="250" cy="200" r="20" fill="#4a5568" stroke="#fc8181" stroke-width="2"/>
-  <text x="250" y="205" font-family="Arial" font-size="14" fill="#e0e0e0" text-anchor="middle">V2</text>
+  <rect width="400" height="300" fill="#1e1e1e" />
+  <line x1="220" y1="80" x2="80" y2="50" stroke="#e0e0e0" stroke-width="2" />
+  <line x1="220" y1="80" x2="320" y2="220" stroke="#e0e0e0" stroke-width="2" />
+  <line x1="180" y1="180" x2="80" y2="50" stroke="#e0e0e0" stroke-width="2" />
+  <line x1="180" y1="260" x2="320" y2="220" stroke="#e0e0e0" stroke-width="2" />
+  <line x1="180" y1="180" x2="320" y2="220" stroke="#e0e0e0" stroke-width="2" />
+  <line x1="180" y1="260" x2="80" y2="50" stroke="#e0e0e0" stroke-width="2" />
+  <circle cx="220" cy="80" r="20" fill="#2d3748" stroke="#63b3ed" stroke-width="2" />
+  <text x="220" y="85" font-family="Arial" font-size="14" fill="#e0e0e0" text-anchor="middle">U1</text>
+  <circle cx="180" cy="180" r="20" fill="#2d3748" stroke="#63b3ed" stroke-width="2" />
+  <text x="180" y="185" font-family="Arial" font-size="14" fill="#e0e0e0" text-anchor="middle">U2</text>
+  <circle cx="180" cy="260" r="20" fill="#2d3748" stroke="#63b3ed" stroke-width="2" />
+  <text x="180" y="265" font-family="Arial" font-size="14" fill="#e0e0e0" text-anchor="middle">U3</text>
+  <circle cx="80" cy="50" r="20" fill="#4a5568" stroke="#fc8181" stroke-width="2" />
+  <text x="80" y="55" font-family="Arial" font-size="14" fill="#e0e0e0" text-anchor="middle">V1</text>
+  <circle cx="320" cy="220" r="20" fill="#4a5568" stroke="#fc8181" stroke-width="2" />
+  <text x="320" y="225" font-family="Arial" font-size="14" fill="#e0e0e0" text-anchor="middle">V2</text>
 </svg>
