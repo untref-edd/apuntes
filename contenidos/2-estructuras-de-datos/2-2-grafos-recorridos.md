@@ -15,7 +15,7 @@ description: Recorridos de grafos, BFS, DFS
 
 En esta sección veremos algoritmos para recorrer grafos. Basicamente hay dos formas de recorrer un grafo: a lo ancho y en profundidad.
 
-Recorrer un grafo significa visitar todos sus vértices y aristas de una manera sistemática y ordenada. 
+Recorrer un grafo significa visitar todos sus vértices y aristas de una manera sistemática y ordenada.
 
 Los recorridos de grafos son fundamentales en muchas aplicaciones, como la búsqueda de caminos, la detección de ciclos, la planificación de tareas y la optimización de redes.
 
@@ -49,8 +49,8 @@ El tiempo de ejecución del algoritmo BFS es $O(|V| + |A|)$ cuando el grafo se r
 
 Esto se debe a que:
 
-1.  Cada vértice se encola y desencola a lo sumo una vez. Las operaciones en la cola toman tiempo constante $O(1)$, por lo que el tiempo total dedicado a estas operaciones es $O(|V|)$.
-2.  Al procesar un vértice $u$, el algoritmo recorre su lista de adyacencia. Como cada arista $(u, v)$ se considera una vez si el grafo es dirigido o dos veces si el grafo es no dirigido, el tiempo total dedicado a recorrer las listas de adyacencia es proporcional al número total de aristas, es decir $O(|A|)$. Esto es importante porque hace que obtener los vértices adyacentes tome tiempo proporcional al número de aristas incidentes en el vértice y no al número total de vértices.
+1. Cada vértice se encola y desencola a lo sumo una vez. Las operaciones en la cola toman tiempo constante $O(1)$, por lo que el tiempo total dedicado a estas operaciones es $O(|V|)$.
+2. Al procesar un vértice $u$, el algoritmo recorre su lista de adyacencia. Como cada arista $(u, v)$ se considera una vez si el grafo es dirigido o dos veces si el grafo es no dirigido, el tiempo total dedicado a recorrer las listas de adyacencia es proporcional al número total de aristas, es decir $O(|A|)$. Esto es importante porque hace que obtener los vértices adyacentes tome tiempo proporcional al número de aristas incidentes en el vértice y no al número total de vértices.
 
 Por lo tanto, la complejidad total es la suma de los tiempos para procesar vértices y aristas: $O(|V| + |A|)$.
 
@@ -127,7 +127,7 @@ width: 60%
 Grafo Bipartito Ordenado
 ```
 
-El algoritmo para verificar si un grafo es bipartito, se puede implementar usando los valores `True` y `False` para *pintar* los vértices y verificar que no haya aristas entre vértices del mismo color. El recorrido a lo ancho es ideal para este problema ya que va visitando los vértices por capas, es decir, va visitando los vértices que están a una distancia 1, luego los vértices que están a una distancia 2, y así sucesivamente.
+El algoritmo para verificar si un grafo es bipartito, se puede implementar usando los valores `True` y `False` para _pintar_ los vértices y verificar que no haya aristas entre vértices del mismo color. El recorrido a lo ancho es ideal para este problema ya que va visitando los vértices por capas, es decir, va visitando los vértices que están a una distancia 1, luego los vértices que están a una distancia 2, y así sucesivamente.
 
 ```text
 ES_BIPARTITO (s: Vertice):
@@ -189,7 +189,7 @@ $$
 
 El recorrido en profundidad (DFS) es muy útil para detectar si un grafo contiene ciclos.
 
-En un grafo dirigido, existe un ciclo si durante el DFS encontramos una arista que va hacia un vértice que está siendo visitado actualmente (es decir, que está en la pila de recursión). Esto se conoce como una **arista de retroceso** (*back edge*).
+En un grafo dirigido, existe un ciclo si durante el DFS encontramos una arista que va hacia un vértice que está siendo visitado actualmente (es decir, que está en la pila de recursión). Esto se conoce como una **_arista de retroceso_** (_back edge_).
 
 ```text
 TIENE_CICLO(G):
