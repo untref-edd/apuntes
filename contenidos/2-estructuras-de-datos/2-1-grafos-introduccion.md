@@ -101,7 +101,7 @@ Grafo de correlativas en un plan de estudios
 
 Los **grafos dirigidos** también se denominan **digrafos**.
 
-Como se observa en la última figura hay vértices que no están conectados a otros vértices. Un grafo puede tener vértices _"desconectados"_. 
+Como se observa en la última figura hay vértices que no están conectados a otros vértices. Un grafo puede tener vértices _"desconectados"_.
 
 ## Grafos conexos
 
@@ -135,7 +135,9 @@ Un grafo dirigido es **fuertemente conexo** si, para cualquier par de vértices 
 Mientras se considera que un grafo dirigido es **debilmente conexo** si el **grafo subyacente** es conexo.
 
 ```{admonition} Definición
-:class: hint
+---
+class: hint
+---
 El **grafo subyacente** de un grafo dirigido es el grafo no dirigido que se obtiene al eliminar las direcciones de las aristas del grafo dirigido.
 ```
 

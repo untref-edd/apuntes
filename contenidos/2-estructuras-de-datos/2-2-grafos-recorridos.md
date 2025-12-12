@@ -55,7 +55,9 @@ Esto se debe a que:
 Por lo tanto, la complejidad total es la suma de los tiempos para procesar vértices y aristas: $O(|V| + |A|)$.
 
 ```{admonition} Importante
-:class: important
+---
+class: important
+---
 Si el grafo se representa mediante una **matriz de adyacencia**, para encontrar los vértices adyacentes a $u$ debemos recorrer toda la fila correspondiente en la matriz, lo cual toma tiempo $O(|V|)$. Como esto se hace para cada uno de los $|V|$ vértices, la complejidad total se convierte en **$O(|V|^2)$**. Por lo tanto, el algoritmo BFS es $O(|V|^2)$ cuando el grafo se representa mediante una matriz de adyacencia.
 ```
 
