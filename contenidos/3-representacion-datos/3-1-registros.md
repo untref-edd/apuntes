@@ -30,9 +30,15 @@ os.chdir(tmp_dir)
 
 En esta sección vamos a ver distintos formatos para organizar la información en archivos, es decir de la organización lógica de los datos. Estos formatos son independientes del lenguaje de programación que utilicemos, y en muchos casos son independientes del software que utilicemos.
 
-Los registros permiten estructurar la información de una forma que facilita su almacenamiento, recuperación y manipulación. Un registro es un conjunto de datos relacionados que se almacenan juntos y representan una entidad o un objeto específico. Cada registro está compuesto por varios campos, donde cada campo contiene un dato específico.
+Los registros permiten estructurar la información de una forma que facilita su almacenamiento, recuperación y manipulación.
 
-Supongamos que queremos crear una **agenda** para almacenar datos de contactos: **nombre**, **apellido**, **teléfono** y **email**. Una primera aproximación sería guardar los datos sin ningún tipo de organización, simplemente uno detrás de otro:
+```{admonition} Definición
+Un **registro** es un conjunto de datos relacionados entre sí, que se almacenan juntos y representan una entidad o un objeto específico. Cada **registro** está compuesto por varios **campos**, donde cada **campo** contiene un dato específico.
+```
+
+Supongamos que queremos crear una **agenda** para almacenar datos de contactos: **nombre**, **apellido**, **teléfono** y **email**. En este caso un registro sería el conjunto de datos de un contacto, y los campos serían nombre, apellido, teléfono y email.
+
+Una primera aproximación sería guardar los datos sin ningún tipo de organización, simplemente uno detrás de otro:
 
 ```{code-cell} python
 ---
@@ -64,6 +70,10 @@ with open("agenda.txt") as datos:
 ```
 
 Si observamos el contenido del archivo `agenda.txt`, vemos que los datos están todos juntos, sin ningún tipo de organización. Se ha perdido **la integridad de los datos**, ya que no sabemos dónde termina un dato y empieza otro. Además, si queremos buscar un contacto, tenemos que leer todo el archivo y buscar el nombre, lo cual es muy ineficiente.
+
+```{important} Integridad de datos
+La **integridad de datos** se refiere a la exactitud, consistencia y confiabilidad de la información. En el contexto de la organización de archivos, mantener la integridad significa asegurar que la estructura elegida permita recuperar cada campo y cada registro de manera unívoca, sin ambigüedades ni pérdida de información.
+```
 
 Existen varios formatos para organizar los registros en un archivo, veamos algunos de ellos.
 
@@ -243,7 +253,7 @@ print(
 )
 ```
 
-Tampoco permite almacenar datos que superen la longitud asignada, ya que se truncan. Por ejemplo, si intentamos guardar un nombre con más de 20 caracteres, se perderán los caracteres adicionales.
+Este tipo de registros, no permite almacenar datos que superen la longitud asignada, ya que se truncan. Por ejemplo, si intentamos guardar un nombre con más de 20 caracteres, se perderán los caracteres adicionales. Por otro lado, si el dato es más corto que la longitud asignada, se rellena con nulos. En el archivo anterior observamos que la mayoría de los caracteres escritos son nulos `x00`.
 
 ## Registros de longitud fija y campos de longitud variable
 
@@ -572,11 +582,23 @@ Esta forma de organizar los registros es la más flexible, ya que permite almace
 
 ## Otras formas de organizar registros
 
-Registros de longitud variable y campos de longitud fija
-: Cada campo tiene una longitud fija, pero el registro puede tener una longitud variable. Se puede utilizar un delimitador para separar los campos dentro del registro, y preceder el registro con un entero que indique la longitud del registro en bytes.
+Se puede usar índices para acceder rápidamente a los registros, para lo que se crea un archivo de índices que contenga la posición de cada registro en el archivo de datos. De esta forma, se puede acceder rápidamente a un registro específico sin tener que leer todo el archivo.
 
-Usar índices para acceder rápidamente a los registros
-: Se puede crear un archivo de índices que contenga la posición de cada registro en el archivo de datos. De esta forma, se puede acceder rápidamente a un registro específico sin tener que leer todo el archivo.
+```{figure} ../_static/figures/archivo_indices_light.svg
+---
+class: only-light-mode
+---
+Archivo de índices
+```
+
+```{figure} ../_static/figures/archivo_indices_dark.svg
+---
+class: only-dark-mode
+---
+Archivo de índices
+```
+
+Los índices permiten acelerar la búsqueda de registros, ya que se puede calcular la posición de un registro en función de su índice.
 
 Cada una de estas formas tiene sus ventajas y desventajas, y la elección depende de las necesidades específicas de la aplicación. En general cuanto mayor flexibilidad se requiere en función del espacio ocupado, mayor es la complejidad de la implementación.
 
@@ -723,9 +745,8 @@ print(f"Cantidad de registros: {agenda.cantidad_registros()}")
 
 ## Comparación de formatos de registros
 
-| Tipo de registro                               | Descripción                                                             | Ventajas                                                                                   | Desventajas                                                                                    |
-| ---------------------------------------------- | ----------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- |
-| Longitud fija, campos de longitud fija         | Cada campo ocupa una cantidad fija de bytes.                            | Acceso rápido por posición.<br>Implementación simple.<br>Uso eficiente de memoria.         | Desperdicio de espacio si los datos son cortos.<br>Trunca datos largos.<br>Poco flexible.      |
-| Longitud fija, campos de longitud variable     | El registro tiene longitud fija, los campos se separan por delimitador. | Mejor aprovechamiento de espacio.<br>Acceso rápido por posición.<br>Implementación simple. | No permite registros largos.<br>El delimitador no puede estar en los datos.<br>Menos flexible. |
-| Longitud variable, campos de longitud variable | Cada registro y campo precedido por su longitud en bytes.               | Máxima flexibilidad.<br>No desperdicia espacio.<br>Permite cualquier longitud de datos.    | Acceso secuencial.<br>Implementación más compleja.<br>Mayor sobrecarga por longitud extra.     |
-| CSV (Comma-Separated Values)                   | Cada registro es una línea, campos separados por comas.                 | Muy utilizado.<br>Fácil de leer y editar.<br>Compatible con muchas herramientas.           | No apto para acceso aleatorio.<br>Problemas con comas en los datos.<br>Menos eficiente.        |
+| Tipo de registro | Descripción | Ventajas | Desventajas |
+| :--- | :--- | :--- | :--- |
+| **Longitud fija** | Cada campo y registro ocupa una cantidad predefinida de bytes. | Acceso directo (random access) muy rápido. Implementación simple. | Desperdicio de espacio (fragmentación). Truncamiento de datos que exceden el tamaño. |
+| **Delimitadores (CSV)** | Los campos se separan por un carácter especial (coma, punto y coma) y los registros por saltos de línea. | Alta flexibilidad y legibilidad humana. Fácil de editar y compatible con muchas herramientas. | Acceso secuencial (lento para grandes volúmenes). Requiere manejo de escapes si el delimitador aparece en los datos. |
+| **Indicadores de longitud** | Cada campo o registro es precedido por un valor numérico que indica su tamaño en bytes. | Uso eficiente del espacio. Permite almacenar cualquier tipo de dato (incluyendo binarios) sin conflictos. | Implementación más compleja. Acceso secuencial. Sobrecarga de almacenamiento por los metadatos de longitud. |

@@ -232,6 +232,20 @@ El operador `|` es el operador de unión permite seleccionar distintos caminos e
 `/biblioteca//libro[precio + 100 > 600]`
 : Selecciona los nodos `libro` donde el valor del elemento `precio` sumado a 100 es mayor que 600.
 
+## Recuperación de Información en XML
+
+En el contexto de la búsqueda académica y profesional {cite:p}`irbook`, la recuperación de información sobre documentos XML se divide principalmente en dos tipos de consultas:
+
+Consultas CO (Content-Only)
+: Tratan al XML como una colección de texto plano, ignorando las etiquetas para la búsqueda pero usándolas quizás para mostrar fragmentos de resultados.
+
+Consultas CAS (Content-and-Structure)
+: Permiten al usuario especificar condiciones tanto sobre el contenido como sobre la estructura. Por ejemplo: *"buscar libros sobre 'Python' donde el autor sea 'Milan Kundera'"*. XPath es la herramienta por excelencia para expresar este tipo de consultas.
+
+### El Modelo de Árbol Extendido
+
+Para procesar estas consultas, los motores de búsqueda suelen modelar el XML como un **árbol extendido** donde cada nodo es una unidad indexable. Un desafío clave es decidir la granularidad del índice: ¿deberíamos indexar el libro completo, cada capítulo o cada párrafo? Esta decisión impacta directamente en la precisión y el *recall* del sistema.
+
 ## Características de XPath 2.0
 
 XPath 2.0 introduce mejoras significativas sobre la versión 1.0, incluyendo un sistema de tipos más rico, soporte para secuencias, expresiones condicionales y cuantificadores, así como una amplia biblioteca de funciones.

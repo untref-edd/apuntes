@@ -50,6 +50,30 @@ En primer lugar el cliente o browser realiza una consulta DNS para obtener la di
 
 Hoy en día a través de la web no solo se puede obtener páginas HTML, sino también se pueden ejecutar aplicaciones web completas, donde el servidor puede enviar datos y código (generalmente JavaScript) que se ejecuta en el navegador del cliente, permitiendo interfaces interactivas y dinámicas.
 
+### Web Estática vs Dinámica
+
+En los inicios de la Web, la mayoría de los sitios eran de naturaleza **estática**: el servidor simplemente enviaba archivos HTML pre-existentes al cliente. Sin embargo, la Web moderna es mayoritariamente **dinámica**.
+
+**Web Estática**
+: El contenido es el mismo para todos los usuarios y solo cambia cuando el desarrollador edita los archivos manualmente. Es eficiente pero limitada.
+
+**Web Dinámica**
+: El contenido se genera en tiempo real (por ejemplo, resultados de búsqueda, perfiles de usuario). El servidor utiliza lenguajes como Python, Java o PHP para consultar bases de datos y construir el HTML justo antes de enviarlo.
+
+Desde la perspectiva de la recuperación de información, la búsqueda en la "web profunda" (deep web) se refiere a este contenido generado dinámicamente que no es fácilmente accesible siguiendo enlaces estáticos.
+
+### Estructura de la Web (The Bow-tie structure)
+
+A gran escala, la estructura de la Web no es una red aleatoria. Investigaciones clásicas {cite:p}`irbook` han demostrado que el grafo de la Web tiene una forma de **moño** o **corbata de moño** (*bow-tie structure*).
+
+Esta estructura se compone de tres partes principales:
+
+1. **IN**: Páginas que tienen enlaces hacia el centro, pero no reciben enlaces desde él.
+2. **SCC (Strongly Connected Component)**: El núcleo central, donde es posible llegar de cualquier página a otra siguiendo enlaces.
+3. **OUT**: Páginas a las que se llega desde el centro, pero que no tienen enlaces de regreso hacia él.
+
+Además, existen "zarcillos" (*tendrils*) y páginas aisladas que no se conectan a estos componentes principales. Entender esta estructura es vital para diseñar algoritmos de crawling eficientes.
+
 ### El Protocolo HTTP
 
 HTTP (*HyperText Transfer Protocol*) es el protocolo de comunicación que permite la transferencia de información en la Web. Define cómo los clientes y servidores intercambian mensajes.
@@ -162,7 +186,20 @@ Las respuestas HTTP incluyen un código de estado que indica el resultado de la 
 : - `502 Bad Gateway`: El servidor actuó como gateway y recibió una respuesta inválida
 : - `503 Service Unavailable`: Servidor no disponible temporalmente
 
-#### Ejemplo de Solicitud HTTP con Python
+#### URL Normalización (Canonicalización)
+
+Un problema común al procesar datos de la Web es que diferentes URLs pueden apuntar al mismo recurso. Por ejemplo:
+
+- `http://www.google.com`
+- `http://google.com/`
+- `https://www.google.com:80`
+
+La **normalización de URLs** es el proceso de convertir URLs a una forma estándar o *canónica*. Esto es fundamental para evitar que un crawler descargue la misma página varias veces. Algunas reglas comunes incluyen:
+
+- Convertir el esquema y el host a minúsculas.
+- Eliminar el puerto si es el estandard (e.g., `:80` para HTTP).
+- Normalizar rutas (e.g., eliminar `/./` o resolver `/../`).
+- Eliminar el fragmento final (`#seccion`).
 
 En Python, la biblioteca `requests` facilita la realización de solicitudes HTTP. Aquí hay un ejemplo básico de cómo hacer una solicitud GET:
 

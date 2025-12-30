@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 350" width="100%" height="auto" preserveAspectRatio="xMidYMid meet">
+  <rect width="600" height="350" fill="#1e1e1e" />
+  <defs>
+    <marker id="arrowhead" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto">
+      <polygon points="0 0, 6 2.5, 0 5" fill="#e0e0e0" />
+    </marker>
+  </defs>
+
+  <!-- Containers -->
+  <rect x="20" y="20" width="180" height="310" rx="10" fill="#222" stroke="#e0e0e0" stroke-width="1" stroke-dasharray="5,5" />
+  <text x="110" y="45" font-family="Arial" font-size="14" fill="#e0e0e0" font-weight="bold" text-anchor="middle">Archivo de Índices</text>
+  <text x="110" y="62" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">(agenda.idx)</text>
+
+  <rect x="350" y="20" width="230" height="310" rx="10" fill="#222" stroke="#e0e0e0" stroke-width="1" stroke-dasharray="5,5" />
+  <text x="465" y="45" font-family="Arial" font-size="14" fill="#e0e0e0" font-weight="bold" text-anchor="middle">Archivo de Datos</text>
+  <text x="465" y="62" font-family="Arial" font-size="10" fill="#aaaaaa" text-anchor="middle">(agenda_var.dat)</text>
+
+  <!-- Index Entries -->
+  <g transform="translate(35, 80)">
+    <!-- Header -->
+    <rect x="0" y="0" width="150" height="25" fill="#2d3748" stroke="#63b3ed" stroke-width="1" />
+    <text x="25" y="17" font-family="monospace" font-size="10" fill="#e0e0e0" font-weight="bold">ID</text>
+    <text x="90" y="17" font-family="monospace" font-size="10" fill="#e0e0e0" font-weight="bold">Offset</text>
+
+    <!-- Entry 0 -->
+    <rect x="0" y="25" width="150" height="25" fill="#1a365d" stroke="#63b3ed" stroke-width="1" />
+    <text x="25" y="42" font-family="monospace" font-size="11" fill="#e0e0e0">0</text>
+    <text x="95" y="42" font-family="monospace" font-size="11" fill="#e0e0e0">0</text>
+
+    <!-- Entry 1 -->
+    <rect x="0" y="50" width="150" height="25" fill="#1a365d" stroke="#63b3ed" stroke-width="1" />
+    <text x="25" y="67" font-family="monospace" font-size="11" fill="#e0e0e0">1</text>
+    <text x="95" y="67" font-family="monospace" font-size="11" fill="#e0e0e0">60</text>
+
+    <!-- Entry 2 -->
+    <rect x="0" y="75" width="150" height="25" fill="#1a365d" stroke="#63b3ed" stroke-width="1" />
+    <text x="25" y="92" font-family="monospace" font-size="11" fill="#e0e0e0">2</text>
+    <text x="95" y="92" font-family="monospace" font-size="11" fill="#e0e0e0">119</text>
+
+    <!-- Entry 3 -->
+    <rect x="0" y="100" width="150" height="25" fill="#1a365d" stroke="#63b3ed" stroke-width="1" />
+    <text x="25" y="117" font-family="monospace" font-size="11" fill="#e0e0e0">3</text>
+    <text x="95" y="117" font-family="monospace" font-size="11" fill="#e0e0e0">160</text>
+  </g>
+
+  <!-- Data Records -->
+  <g transform="translate(365, 80)">
+    <!-- Record 1 -->
+    <rect x="0" y="0" width="200" height="40" rx="4" fill="#1c4532" stroke="#48bb78" stroke-width="1" />
+    <text x="10" y="18" font-family="Arial" font-size="10" fill="#e0e0e0" font-weight="bold">Registro 0 (Pos: 0)</text>
+    <text x="10" y="32" font-family="Arial" font-size="9" fill="#cccccc">Juan Pérez, 123456789, ...</text>
+
+    <!-- Record 2 -->
+    <rect x="0" y="60" width="200" height="40" rx="4" fill="#1c4532" stroke="#48bb78" stroke-width="1" />
+    <text x="10" y="78" font-family="Arial" font-size="10" fill="#e0e0e0" font-weight="bold">Registro 1 (Pos: 60)</text>
+    <text x="10" y="92" font-family="Arial" font-size="9" fill="#cccccc">Ana Gómez, 987654321, ...</text>
+
+    <!-- Record 3 -->
+    <rect x="0" y="120" width="200" height="40" rx="4" fill="#1c4532" stroke="#48bb78" stroke-width="1" />
+    <text x="10" y="138" font-family="Arial" font-size="10" fill="#e0e0e0" font-weight="bold">Registro 2 (Pos: 119)</text>
+    <text x="10" y="152" font-family="Arial" font-size="9" fill="#cccccc">Homero Simpson, 555-8765, ...</text>
+
+    <!-- Record 4 -->
+    <rect x="0" y="180" width="200" height="40" rx="4" fill="#1c4532" stroke="#48bb78" stroke-width="1" />
+    <text x="10" y="198" font-family="Arial" font-size="10" fill="#e0e0e0" font-weight="bold">Registro 3 (Pos: 160)</text>
+    <text x="10" y="212" font-family="Arial" font-size="9" fill="#cccccc">Lisa Simpson, lisa@example.com, ...</text>
+  </g>
+
+  <!-- Arrows -->
+  <g stroke="#e0e0e0" stroke-width="1.5" fill="none" marker-end="url(#arrowhead)">
+    <path d="M 185 117 L 365 100" />
+    <path d="M 185 142 L 365 160" />
+    <path d="M 185 167 L 365 220" />
+    <path d="M 185 192 L 365 280" />
+  </g>
+
+</svg>

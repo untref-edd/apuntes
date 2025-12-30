@@ -534,6 +534,36 @@ def tokenizar(texto):
     return tokens
 ```
 
+### Desafíos en la Tokenización
+
+Aunque parezca simple, la tokenización presenta varios "casos de borde" que deben resolverse según el dominio {cite:p}`irbook`:
+
+- **Apóstrofes**: ¿`vaca's` es un token o dos (`vaca` y `s`)?
+- **Guiones**: ¿`anti-inflamatorio` son dos palabras o una?
+- **Acrónimos**: `U.N.T.R.E.F.` debería ser reconocido como una única entidad.
+- **Extensiones y Números**: Los puntos en las IPs (`192.168.1.1`) o en los archivos (`imagen.png`) no deben ser tratados como fin de oración.
+
+## Normalización y Limpieza con Regex
+
+Más allá de dividir el texto, es necesario _normalizar_ los tokens para que diferentes variantes de una palabra coincidan en el índice.
+
+**Case Folding**
+: Convertir todo a minúsculas (aunque a veces se mantienen mayúsculas en acrónimos como `FED` vs `fed`).
+
+**Eliminación de puntuación y Stopwords**
+: Uso de regex para limpiar caracteres no alfanuméricos redundantes.
+
+```{code-cell} python
+def normalizar_token(token):
+    # Eliminar puntuación al inicio/final del token
+    token = re.sub(r"^[^\w]+|[^\w]+$", "", token)
+    return token.lower()
+```
+
+### El Costo Computacional de Regex
+
+En sistemas de recuperación de información a gran escala (millones de documentos), el uso de expresiones regulares muy complejas (como las que usan _backtracking_) puede ralentizar significativamente la fase de indexación. Siempre se busca un balance entre la precisión del patrón y el tiempo de ejecución.
+
 ```{code-cell} python
 ---
 tags: hide-output

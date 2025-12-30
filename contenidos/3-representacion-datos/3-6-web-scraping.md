@@ -97,6 +97,27 @@ Resolutor DNS
 Cacheo
 : Almacena temporalmente respuestas HTTP para mejorar la eficiencia y reducir la carga en los servidores web.
 
+#### Robustez del Crawler
+
+Un crawler robusto debe estar diseñado para manejar la imprevisibilidad de la Web. Tres desafíos principales son:
+
+**Spider Traps (Trampas de araña)**
+: Son estructuras de sitios web que causan que un crawler entre en un bucle infinito de URLs (común en calendarios generados dinámicamente o directorios anidados).
+
+**Cuellos de botella en DNS**
+: La resolución de nombres de dominio puede ser lenta. Los crawlers de alto rendimiento suelen usar resolutores multi-hilo o caches de DNS locales para evitar que la red sea el limitante.
+
+**Cortesía (Politeness)**
+: Un crawler no debe saturar un servidor. Reglas como esperar un intervalo entre peticiones al mismo host y respetar el archivo `robots.txt` son obligatorias para un comportamiento ético.
+
+#### Estrategias de la Frontera de URLs
+
+La frontera no es simplemente una cola. En sistemas complejos {cite:p}`irbook`, se utilizan esquemas de **priorización**:
+
+- **Frescura**: Priorizar la revisión de páginas que cambian frecuentemente (como sitios de noticias).
+- **Calidad (PageRank)**: Priorizar páginas que son consideradas más importantes o autoritativas.
+- **Detección de duplicados**: Antes de añadir a la frontera, se suele calcular un *hash* (o *shingle*) del contenido para ver si la información ya fue procesada bajo una URL distinta.
+
 Almacenamiento de datos
 : Base de datos o archivo donde se guardan los datos extraídos del contenido web.
 

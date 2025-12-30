@@ -167,6 +167,18 @@ with open("agenda.json", "r") as f:
 
 La principal ventaja de utilizar JSON para organizar registros es que es un formato ampliamente soportado y fácil de leer y escribir. Además, permite almacenar datos estructurados de manera flexible, ya que los objetos pueden tener diferentes campos y tipos de datos.
 
+### JSON y Bases de Datos de Documentos (NoSQL)
+
+El formato JSON es la piedra angular de las bases de datos de **documentos** (como MongoDB), un componente vital en muchos sistemas de recuperación de información modernos {cite:p}`irbook`. A diferencia de las bases de datos relacionales tradicionales, estas permiten almacenar "objetos" complejos sin un esquema rígido predefinido, facilitando la indexación de datos semi-estructurados.
+
+### JSON vs XML en Recuperación de Información
+
+Si bien ambos formatos se utilizan para representar datos semi-estructurados, JSON suele preferirse en entornos web debido a:
+
+- **Menor sobrecarga (overhead)**: No utiliza etiquetas de cierre repetitivas, lo que reduce el tamaño del archivo y el tiempo de transferencia.
+- **Tipado nativo**: Soporta números, booleanos y arrays de forma directa, mientras que en XML todo el contenido es texto por defecto.
+- **Eficiencia de parseo**: Generalmente, parsear JSON es más rápido y requiere menos memoria que construir un árbol DOM completo de un archivo XML equivalente.
+
 A continuación se define una agenda general donde solo los campos nombres y apellidos son obligatorios, y donde cada registro puede tener incluso campos diferentes.
 
 ```{code-cell} python
