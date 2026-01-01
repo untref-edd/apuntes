@@ -88,6 +88,7 @@ site:
     logo_dark: _static/figures/untref-logo-white.svg
     favicon: _static/figures/untref-favicon.ico
     style: _static/css/custom.css
+    toggles: true
   nav:
     - title: Slack
       url: https://untref-edd.slack.com
