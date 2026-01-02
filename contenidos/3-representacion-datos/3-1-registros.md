@@ -28,7 +28,7 @@ os.makedirs(tmp_dir, exist_ok=True)
 os.chdir(tmp_dir)
 ```
 
-En esta sección vamos a ver distintos formatos para organizar la información en archivos, es decir de la organización lógica de los datos. Estos formatos son independientes del lenguaje de programación que utilicemos, y en muchos casos son independientes del software que utilicemos.
+En esta sección vamos a ver distintos formatos para organizar la información en archivos, es decir de la organización lógica de los datos. Estos formatos son independientes del lenguaje de programación que utilicemos.
 
 Los registros permiten estructurar la información de una forma que facilita su almacenamiento, recuperación y manipulación.
 
@@ -36,7 +36,7 @@ Los registros permiten estructurar la información de una forma que facilita su 
 Un **registro** es un conjunto de datos relacionados entre sí, que se almacenan juntos y representan una entidad o un objeto específico. Cada **registro** está compuesto por varios **campos**, donde cada **campo** contiene un dato específico.
 ```
 
-Supongamos que queremos crear una **agenda** para almacenar datos de contactos: **nombre**, **apellido**, **teléfono** y **email**. En este caso un registro sería el conjunto de datos de un contacto, y los campos serían nombre, apellido, teléfono y email.
+Supongamos que queremos crear una **agenda** para almacenar datos de contactos: **nombre**, **apellido**, **teléfono** y **email**. En este caso un registro será el conjunto de datos de un contacto, y los campos serán nombre, apellido, teléfono y email.
 
 Una primera aproximación sería guardar los datos sin ningún tipo de organización, simplemente uno detrás de otro:
 
@@ -69,7 +69,7 @@ with open("agenda.txt") as datos:
         print(linea)
 ```
 
-Si observamos el contenido del archivo `agenda.txt`, vemos que los datos están todos juntos, sin ningún tipo de organización. Se ha perdido **la integridad de los datos**, ya que no sabemos dónde termina un dato y empieza otro. Además, si queremos buscar un contacto, tenemos que leer todo el archivo y buscar el nombre, lo cual es muy ineficiente.
+Si observamos el contenido del archivo `agenda.txt`, vemos que los datos están todos juntos, sin ningún tipo de organización. Se ha perdido **la integridad de los datos**, ya que no sabemos dónde termina un dato y empieza otro. Además, la búsqueda de un contacto es muy ineficiente, ya que debemos leer todo el archivo hasta encontrarlo.
 
 ```{important} Integridad de datos
 La **integridad de datos** se refiere a la exactitud, consistencia y confiabilidad de la información. En el contexto de la organización de archivos, mantener la integridad significa asegurar que la estructura elegida permita recuperar cada campo y cada registro de manera unívoca, sin ambigüedades ni pérdida de información.
@@ -155,7 +155,7 @@ class Agenda:
 ```
 
 ```{note} Nota
-Los métodos `encode()` y `decode()` convierten entre cadenas de texto y secuencias de bytes. Por defecto utilizan la codificación UTF-8, que es capaz de representar todos los caracteres Unicode. Si se utilizan caracteres especiales (como tildes o ñ), es importante asegurarse de que la codificación sea la misma al guardar y al leer los datos.
+Los métodos `encode()` y `decode()` convierten entre cadenas de texto y secuencias de bytes. Por defecto utilizan la codificación UTF-8, que es capaz de representar todos los caracteres Unicode. Si se utilizan caracteres especiales (como tildes o ñ), es importante asegurarse de que la codificación sea la misma al guardar y al leer los datos. Por ejemplo la cadena `"año"` se codifica como `b'a\xc3\xb1o'`
 ```
 
 A continuación definimos el iterador para la agenda:
@@ -253,7 +253,7 @@ print(
 )
 ```
 
-Este tipo de registros, no permite almacenar datos que superen la longitud asignada, ya que se truncan. Por ejemplo, si intentamos guardar un nombre con más de 20 caracteres, se perderán los caracteres adicionales. Por otro lado, si el dato es más corto que la longitud asignada, se rellena con nulos. En el archivo anterior observamos que la mayoría de los caracteres escritos son nulos `x00`.
+Este tipo de registros, no permite almacenar datos que superen la longitud asignada, ya que se truncan. Por ejemplo, si intentamos guardar un nombre con más de 20 caracteres, se perderán los caracteres adicionales. Por otro lado, si el dato es más corto que la longitud asignada, se rellena con nulos. En el archivo anterior observamos que la mayoría de los caracteres escritos son caracteres nulos `x00`, es decir la mayoría del espacio utilizado no contiene información relevante.
 
 ## Registros de longitud fija y campos de longitud variable
 
