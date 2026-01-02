@@ -229,7 +229,7 @@ def post_process_typst():
                 with open(filepath, "r", encoding="utf-8") as f:
                     content = f.read()
 
-                new_content = content.replace("arrow.r.double", "=>").replace("arrow.r", "->")
+                new_content = content.replace("arrow.r.double", "=>").replace("arrow.r", "->").replace("repeat-header: true", "repeat-header: false")
 
                 if content != new_content:
                     print(f"Fixed arrows in {file}")
