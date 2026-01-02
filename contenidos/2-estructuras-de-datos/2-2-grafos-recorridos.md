@@ -158,7 +158,7 @@ ES_BIPARTITO (s: Vertice):
 ### Otras Aplicaciones
 
 Web Crawler
-: Bot que utilizan los motores de búsqueda para descubrir páginas siguiendo los enlaces que hay en ella. Más adelante veremos cómo implementar un web crawler en el capítulo de {doc}`../3-representacion-datos/3-6-web-scraping`.
+: Bot que utilizan los motores de búsqueda para descubrir páginas siguiendo los enlaces que hay en ella. Más adelante veremos cómo implementar un web crawler en el capítulo de [](../3-representacion-datos/3-6-web-scraping).
 
 Sistemas de navegación GPS
 : Para encontrar caminos entre dos puntos en un mapa ponderando distancias, tiempos, etc.

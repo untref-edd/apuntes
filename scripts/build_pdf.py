@@ -83,7 +83,7 @@ def process_file(filepath):
                                 new_lines.append(buffer[0])
                                 indent = buffer[0][: len(buffer[0]) - len(buffer[0].lstrip())]
                                 new_lines.append(f"{indent}---\n")
-                                new_lines.append(f"{indent}tags: [remove-output]\n")
+                                new_lines.append(f"{indent}tags: remove-output\n")
                                 new_lines.append(f"{indent}---\n")
                                 new_lines.extend(buffer[1:])
                             else:
