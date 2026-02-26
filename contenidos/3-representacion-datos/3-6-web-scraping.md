@@ -150,7 +150,7 @@ import requests
 
 # Verificar el archivo robots.txt
 url_robots = 'https://python.org/robots.txt'
-response = requests.get(url_robots)
+response = requests.get(url_robots, timeout=10)
 
 print("Contenido de robots.txt de python.org:")
 print('\n'.join(response.text.split('\n')))
