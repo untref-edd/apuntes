@@ -23,6 +23,7 @@ spacy
 sphinx-proof
 sphinx-thebe
 sphinxcontrib-mermaid
+tabulate
 tweepy
 mystmd
 
