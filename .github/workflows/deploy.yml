@@ -40,7 +40,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: "20"
 
       - name: Install MyST
         run: npm install -g mystmd
@@ -55,13 +55,13 @@ jobs:
       # Build the book
       - name: Build the book
         run: |
-          cd contenidos && myst build --execute
+          cd contenidos && myst build --html --execute
 
       # Upload the book's HTML as an artifact
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: contenidos/_build/site
+          path: contenidos/_build/html
 
       # Deploy the book's HTML to GitHub Pages
       - name: Deploy to GitHub Pages
