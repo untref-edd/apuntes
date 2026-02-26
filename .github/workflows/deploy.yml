@@ -45,23 +45,17 @@ jobs:
       - name: Install MyST
         run: npm install -g mystmd
 
-      - name: Setup Typst
-        uses: typst-community/setup-typst@v3
-
-      - name: Build the PDF
-        run: |
-          python3 scripts/build_pdf.py
-
       # Build the book
       - name: Build the book
         run: |
-          cd contenidos && myst build --html --execute
+          cd contenidos && myst build --execute
+          touch _build/site/.nojekyll
 
       # Upload the book's HTML as an artifact
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: contenidos/_build/html
+          path: contenidos/_build/site
 
       # Deploy the book's HTML to GitHub Pages
       - name: Deploy to GitHub Pages

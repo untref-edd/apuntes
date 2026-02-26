@@ -290,7 +290,7 @@ Una vez obtenido el token, es importante verificar que funciona correctamente.
    import requests
 
    token = "YOUR_ACCESS_TOKEN"
-   response = requests.get(f"https://graph.facebook.com/me?access_token={token}")
+   response = requests.get(f"https://graph.facebook.com/me?access_token={token}", timeout=30)
 
    if response.status_code == 200:
        print("✓ Token válido:", response.json())
