@@ -45,7 +45,7 @@ Si deseas desarrollar y/o compilar el apunte de Estructuras de Datos, debes:
 
 En el apartado anterior hemos explicado como se instalan las dependencies de este proyecto y como "construir" el libro. A continuación se detallan los comandos que se pueden ejecutar con `make`.
 
-Primero debemos asegurarnos de que tenemos `make` disponible en nuestro sistema. En sistemas Unix (como Linux o MacOS) es probable que ya lo tengamos instalado. En Windows, se puede instalar con [`winget`](https://docs.microsoft.com/en-us/windows/package-manager/winget/).
+Primero debemos asegurarnos de que tenemos `make` disponible en nuestro sistema. En sistemas Unix (como Linux o macOS) es probable que ya lo tengamos instalado. En Windows, se puede instalar con [`winget`](https://docs.microsoft.com/en-us/windows/package-manager/winget/).
 
 ```sh
 winget install -e --id GnuWin32.Make

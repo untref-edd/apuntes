@@ -1,10 +1,9 @@
-import os
-import shutil
-import re
 import argparse
+import os
+import re
+import shutil
 import subprocess
 import sys
-import glob
 
 # Configuration
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -104,7 +103,6 @@ def process_file(filepath):
             match = block_start_pattern.match(line)
             if match:
                 in_block = True
-                block_indent = match.group(1)
                 block_fence = match.group(2)
                 directive = match.group(3)
                 block_header = line
@@ -229,7 +227,11 @@ def post_process_typst():
                 with open(filepath, "r", encoding="utf-8") as f:
                     content = f.read()
 
-                new_content = content.replace("arrow.r.double", "=>").replace("arrow.r", "->").replace("repeat-header: true", "repeat-header: false")
+                new_content = (
+                    content.replace("arrow.r.double", "=>")
+                    .replace("arrow.r", "->")
+                    .replace("repeat-header: true", "repeat-header: false")
+                )
 
                 if content != new_content:
                     print(f"Fixed arrows in {file}")
