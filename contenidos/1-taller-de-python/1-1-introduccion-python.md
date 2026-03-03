@@ -32,7 +32,7 @@ Python ofrece numerosas ventajas que lo han convertido en uno de los lenguajes d
 
 - **Sintaxis clara y legible:** Su diseño enfatiza la legibilidad del código, lo que facilita su aprendizaje y mantenimiento.
 - **Versatilidad:** Es un lenguaje multipropósito, utilizado en desarrollo web, ciencia de datos, inteligencia artificial, automatización, scripting y más.
-- **Gran comunidad y ecosistema:** Cuenta con una comunidad activa y una vasta colección de librerías y frameworks (como Django, Flask, NumPy, Pandas, TensorFlow) que aceleran el desarrollo.
+- **Comunidad y ecosistema:** Cuenta con una comunidad activa y una vasta colección de librerías y frameworks (como Django, Flask, NumPy, Pandas, TensorFlow) que aceleran el desarrollo.
 - **Multiplataforma:** Puede ejecutarse en diversos sistemas operativos como Windows, macOS y Linux sin necesidad de modificar el código.
 - **Gratuito y de código abierto:** Es de uso libre y su código fuente está disponible para que cualquiera pueda inspeccionarlo y modificarlo.
 - **Alta productividad:** Permite escribir menos líneas de código para realizar tareas complejas en comparación con otros lenguajes, lo que aumenta la eficiencia del desarrollador.
@@ -68,7 +68,7 @@ Python es un lenguaje de programación **orientado a objetos**, **introspectivo 
 
 Permite usar diferentes estilos de programación según las necesidades del proyecto, incluso combinando varios estilos en un mismo proyecto.
 
-La programación imperativa se basa en la ejecución secuencial de instrucciones. Para realizar una tarea se debe programar paso a paso especificando ***cómo*** se debe hacer.
+La programación imperativa se basa en la ejecución secuencial de instrucciones. Para realizar una tarea se debe programar paso a paso especificando *cómo* se debe hacer.
 
 ```{code-cell} python
 ---
@@ -84,7 +84,7 @@ def factorial(n):
 print(f"Factorial de 5: {factorial(5)}")
 ```
 
-La programación funcional se basa en el uso de funciones puras. Este paradigma se enfoca en ***qué*** se debe hacer, utilizando funciones de orden superior y minimizando la dependencia de estados mutables para evitar efectos secundarios. En el capítulo de funciones profundizaremos un poco más en este paradigma.
+La programación funcional se basa en el uso de funciones puras. Este paradigma se enfoca en *qué* se debe hacer, utilizando funciones de orden superior y minimizando la dependencia de estados mutables para evitar efectos secundarios. En el capítulo de funciones profundizaremos un poco más en este paradigma.
 
 ```{admonition} Funciones puras
 ---
@@ -118,10 +118,9 @@ Python es un lenguaje **fuertemente tipado**, lo que significa que no se permite
 
 ```{code-cell} python
 ---
-tags: raises-exception, hide-output
+tags: raises-exception
 ---
-# Ejemplo de tipado fuerte
-resultado = "5" + 3  # Esto generará un error
+resultado = "5" + 3
 ```
 
 ```{code-cell} python
@@ -129,8 +128,9 @@ resultado = "5" + 3  # Esto generará un error
 tags: hide-output
 ---
 # Conversión explícita necesaria
-resultado_correcto = int("5") + 3
-print(f"Resultado correcto: {resultado_correcto}")
+resultado = int("5") + 3
+
+print(f"Resultado: {resultado}")
 ```
 
 El **tipado dinámico** de Python permite que las variables cambien de tipo a lo largo del tiempo, lo que puede ser beneficioso en ciertos casos pero también puede llevar a errores difíciles de depurar si no se maneja correctamente.
@@ -139,14 +139,20 @@ El **tipado dinámico** de Python permite que las variables cambien de tipo a lo
 ---
 tags: hide-output
 ---
-# Tipado dinámico - las variables pueden cambiar de tipo
-variable = 42  # int
+"""
+Tipado dinámico: las variables pueden cambiar de tipo
+"""
+
+variable = 42
+
 print(f"Tipo: {type(variable)}, Valor: {variable}")
 
 variable = "Python"  # str
+
 print(f"Tipo: {type(variable)}, Valor: {variable}")
 
 variable = [1, 2, 3]  # list
+
 print(f"Tipo: {type(variable)}, Valor: {variable}")
 ```
 
@@ -183,6 +189,7 @@ def es_numero_primo(n):
 # Filtra una lista de números quedándose solo con los primos
 numeros = [2, 3, 4, 5, 17, 25, 29]
 primos = [num for num in numeros if es_numero_primo(num)]
+
 print(f"Números primos: {primos}")
 ```
 
@@ -204,6 +211,18 @@ help(es_numero_primo)
 Esta forma de documentar junto con el código mismo es una buena práctica que facilita la comprensión y el mantenimiento del código.
 
 La forma de indentar los bloques de código es fundamental en Python. A diferencia de otros lenguajes que utilizan llaves (`{`, `}`) o palabras clave como `begin` y `end`, Python utiliza la indentación para definir el alcance de los bloques de código. Esto significa que todos los bloques deben estar correctamente indentados para evitar errores de sintaxis. Por ejemplo, la indentación puede ser de 4 espacios, que es la convención más común en Python.
+
+```{code-cell} python
+---
+tags: raises-exception
+---
+x = 42
+
+if es_numero_primo(x):
+    print("La identación en cada línea de un bloque")
+     print("debe ser identica, de lo contrario el código")
+   print("reportará un error")
+```
 
 ## Aplicaciones de Python
 
@@ -259,7 +278,7 @@ python3 --version
 pip3 --version
 ```
 ````
-````{tab-item} MacOS
+````{tab-item} macOS
 ```bash
 # Usando Homebrew (recomendado)
 brew install python
