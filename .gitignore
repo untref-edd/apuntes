@@ -150,3 +150,5 @@ tmp/
 
 # Ignore temporary blocks from BSBI algorithm
 temp_blocks/
+
+contenidos/exports/*.pdf
