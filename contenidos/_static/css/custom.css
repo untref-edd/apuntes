@@ -47,3 +47,7 @@ body[data-theme="dark"] .only-light-mode,
 body.dark .only-light-mode {
     display: none !important;
 }
+
+details>summary.myst-dropdown-header {
+    font-size: 0.75rem !important;
+}
