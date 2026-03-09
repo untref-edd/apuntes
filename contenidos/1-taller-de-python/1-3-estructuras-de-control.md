@@ -21,7 +21,6 @@ description: Estructuras de control en Python, condicionales, ciclos y manejo de
 ---
 tags: hide-output
 ---
-# Sintaxis completa
 edad = 25
 salario = 45000
 
@@ -34,7 +33,7 @@ elif edad < 65:
 else:
     categoria = "jubilado"
 
-print(f"Categoría: {categoria}") # adulto solvente
+print(f"Categoría: {categoria}")
 ```
 
 ### Operadores lógicos y comparación
@@ -45,13 +44,13 @@ tags: hide-output
 ---
 x, y, z = 5, 10, 15
 
-if x < y and y < z:  # and = && en Java/Go
+if x < y and y < z:  # && en Java/Go
     print("Orden ascendente")
 
-if x == 5 or y == 5:  # or = || en Java/Go
+if x == 5 or y == 5:  # || en Java/Go
     print("Alguno es 5")
 
-if not (x > y):  # not = ! en Java/Go
+if not (x > y):  # ! en Java/Go
     print("x no es mayor que y")
 
 # Comparaciones encadenadas (única de Python)
@@ -65,9 +64,11 @@ if x < y < z:
 ---
 tags: hide-output
 ---
-# Equivalente al operador ?: de Java/Go
 numero = 7
+
+# Equivalente al operador ?: de Java/Go
 resultado = "par" if numero % 2 == 0 else "impar"
+
 print(f"El número {numero} es {resultado}")
 ```
 
@@ -81,6 +82,7 @@ if numero % 2 == 0:
     resultado = "par"
 else:
     resultado = "impar"
+
 print(f"El número {numero} es {resultado}")
 ```
 
@@ -92,9 +94,9 @@ print(f"El número {numero} es {resultado}")
 ---
 tags: hide-output
 ---
-# for-in: itera directamente sobre elementos (no índices)
 frutas = ["manzana", "banana", "naranja"]
 
+# for-in: itera directamente sobre elementos (no índices)
 for fruta in frutas:
     print(fruta)
 ```
@@ -103,9 +105,9 @@ for fruta in frutas:
 ---
 tags: hide-output
 ---
-# Con índices usando enumerate()
 frutas = ["manzana", "banana", "naranja"]
 
+# Con índices usando enumerate()
 for i, fruta in enumerate(frutas):
     print(f"{i}: {fruta}")
 ```
@@ -123,9 +125,9 @@ help(enumerate)
 ---
 tags: hide-output
 ---
-# Equivalente a for(int i=0; i<frutas.length; i++) en Java
 frutas = ["manzana", "banana", "naranja"]
 
+# Equivalente a for(int i=0; i<frutas.length; i++) en Java
 for i in range(len(frutas)):
     print(f"{i}: {frutas[i]}")
 ```
@@ -145,7 +147,7 @@ range(start, stop[, step])
 tags: hide-output
 ---
 # range(stop)
-for i in range(5):  # 0, 1, 2, 3, 4
+for i in range(5):
     print(i)
 ```
 
@@ -154,7 +156,7 @@ for i in range(5):  # 0, 1, 2, 3, 4
 tags: hide-output
 ---
 # range(start, stop)
-for i in range(1, 5):  # 1, 2, 3, 4
+for i in range(1, 5):
     print(i)
 ```
 
@@ -163,7 +165,7 @@ for i in range(1, 5):  # 1, 2, 3, 4
 tags: hide-output
 ---
 # range(start, stop, step)
-for i in range(0, 10, 2):  # 0, 2, 4, 6, 8
+for i in range(0, 10, 2):
     print(i)
 ```
 
@@ -172,7 +174,7 @@ for i in range(0, 10, 2):  # 0, 2, 4, 6, 8
 tags: hide-output
 ---
 # Decremento
-for i in range(10, 0, -1):  # 10, 9, 8, ..., 1
+for i in range(10, 0, -1):
     print(i)
 ```
 
@@ -182,8 +184,9 @@ for i in range(10, 0, -1):  # 10, 9, 8, ..., 1
 ---
 tags: hide-output
 ---
-# Sintaxis similar a otros lenguajes
 contador = 0
+
+# Sintaxis similar a otros lenguajes
 while contador < 5:
     print(f"Contador: {contador}")
     contador += 1
@@ -209,7 +212,8 @@ for i in range(10):
         continue  # Salta a la siguiente iteración
     if i == 7:
         break  # Sale del ciclo
-    print(i)  # Imprime: 0, 1, 2, 4, 5, 6
+
+    print(i)
 ```
 
 ```{code-cell} python
@@ -249,9 +253,9 @@ else:
 ---
 tags: hide-output
 ---
-# Solo claves
 datos = {"nombre": "Ana", "edad": 25, "ciudad": "Madrid"}
 
+# Solo claves
 for clave in datos:
     print(clave)
 ```
@@ -260,9 +264,9 @@ for clave in datos:
 ---
 tags: hide-output
 ---
-# Solo valores
 datos = {"nombre": "Ana", "edad": 25, "ciudad": "Madrid"}
 
+# Solo valores
 for valor in datos.values():
     print(valor)
 ```
@@ -271,22 +275,22 @@ for valor in datos.values():
 ---
 tags: hide-output
 ---
-# Claves y valores
 datos = {"nombre": "Ana", "edad": 25, "ciudad": "Madrid"}
 
+# Claves y valores
 for clave, valor in datos.items():
     print(f"{clave}: {valor}")
 ```
 
-### Listas con múltiples variables
+### Listas con múltiples valores
 
 ```{code-cell} python
 ---
 tags: hide-output
 ---
-# Desempaquetado en ciclos
 puntos = [(1, 2), (3, 4), (5, 6)]
 
+# Desempaquetado en ciclos
 for x, y in puntos:
     print(f"x={x}, y={y}")
 ```
@@ -295,8 +299,9 @@ for x, y in puntos:
 ---
 tags: hide-output
 ---
-# Con enumerate para índice + desempaquetado
 puntos = [(1, 2), (3, 4), (5, 6)]
+
+# Con enumerate para índice + desempaquetado
 for i, (x, y) in enumerate(puntos):
     print(f"Punto {i}: ({x}, {y})")
 ```
@@ -379,14 +384,14 @@ for empleado in empleados:
 
 ## Diferencias sintácticas resumidas
 
-| Característica     | Python                                           | Java/Go                                      |
-| ------------------ | ------------------------------------------------ | -------------------------------------------- |
-| Delimitadores      | Indentación                                      | `{`, `}`                                     |
-| Operadores lógicos | `and`, `or`, `not`                               | `&&`, `\|\|`, `!`                            |
-| Ciclo for          | `for item in collection:`                        | `for (type item : collection)`               |
-| `else` en ciclos   | Sí                                               | No                                           |
-| Operador ternario  | `value_if_true if condition else value_if_false` | `condition ? value_if_true : value_if_false` |
-| switch/match       | `if - elif` o `match - case` (Python 3.10+)      | `switch`                                     |
+| Característica     | Python                                           | Java/Go                                                         |
+| ------------------ | ------------------------------------------------ | --------------------------------------------------------------- |
+| Delimitadores      | Indentación                                      | `{`, `}`                                                        |
+| Operadores lógicos | `and`, `or`, `not`                               | `&&`, `\|\|`, `!`                                               |
+| Ciclo for          | `for item in collection:`                        | `for (type item : collection)` / `for k, v := range collection` |
+| `else` en ciclos   | Sí                                               | No                                                              |
+| Operador ternario  | `value_if_true if condition else value_if_false` | `condition ? value_if_true : value_if_false`                    |
+| switch/match       | `if`-`elif` o `match`-`case` (Python 3.10+)      | `switch`                                                        |
 
 La sintaxis de Python prioriza la legibilidad y expresividad, usando palabras en inglés en lugar de símbolos cuando es posible.
 
