@@ -94,6 +94,8 @@ site:
       url: https://untref-edd.slack.com
     - title: Guías
       url: https://github.com/untref-edd/Guias-2026
+    - title: Classroom 2026
+      url: https://classroom.google.com/c/ODQ2NzA0OTgwNDEy
   actions:
     - title: Descargar PDF
       url: exports/apunte-edd.pdf
