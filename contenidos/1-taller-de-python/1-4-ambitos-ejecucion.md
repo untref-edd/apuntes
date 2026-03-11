@@ -13,7 +13,7 @@ description: Ámbitos de ejecución en Python, regla LEGB, variables locales, gl
 
 # Ámbitos de ejecución
 
-Este capítulo profundizaremos sobre el manejo de variables en Python, contrastándolo con lo que ya conocemos de Go y Java. Aunque los conceptos fundamentales de variables son universales, Python introduce matices importantes en su gestión, especialmente en lo que respecta a la inmutabilidad de ciertos tipos de datos, los ámbitos de ejecución y la poderosa característica de las clausuras.
+En este capítulo profundizaremos sobre el manejo de variables en Python, contrastándolo con lo que ya conocemos de Go y Java. Aunque los conceptos fundamentales de variables son universales, Python introduce matices importantes en su gestión, especialmente en lo que respecta a la inmutabilidad de ciertos tipos de datos, los ámbitos de ejecución y la poderosa característica de las clausuras.
 
 ## Variables y asignación
 
@@ -26,7 +26,7 @@ class: hint
 Es la capacidad de un lenguaje de programación para deducir automáticamente el tipo de una expresión o variable en tiempo de compilación o ejecución, sin que el programador tenga que declararlo explícitamente. Para más información, consulta [Wikipedia](https://es.wikipedia.org/wiki/Inferencia_de_tipos).
 ```
 
-Una diferencia clave es que en Python, las variables son esencialmente referencias a objetos en memoria. Cuando se reasigna una variable, simplemente esa referencia pasa a apuntar a un objeto diferente, en lugar de cambiar el valor (esto es crucial para entender la inmutabilidad de ciertos tipos).
+Una diferencia clave es que en Python, las variables son **referencias** a objetos en memoria. Cuando se reasigna una variable, simplemente esa referencia pasa a apuntar a un objeto diferente, en lugar de cambiar el valor (esto es crucial para entender la inmutabilidad de ciertos tipos).
 
 Cada vez que se asigna un valor a una variable, Python sigue los siguientes pasos:
 
@@ -83,7 +83,8 @@ s1 = "hola"
 s2 = s1
 s1 += " mundo"  # Esto crea una nueva cadena "hola mundo"
                 # y s1 ahora referencia a ella
-print(f"s1: {s1}, s2: {s2}")  # Salida: s1: hola mundo, s2: hola
+
+print(f"s1: {s1}, s2: {s2}")
 ```
 
 ```{figure} ../_static/figures/inmutabilidad_light.svg
@@ -118,6 +119,7 @@ tags: hide-output
 lista1 = [1, 2, 3]
 lista2 = lista1  # lista1 y lista2 referencian a la misma lista
 lista1.append(4)  # Modifica la lista original
+
 print(f"lista1: {lista1}, lista2: {lista2}")
 ```
 
@@ -148,10 +150,10 @@ Variables protegidas
 : Se definen con un guion bajo al inicio del nombre (ej. `_variable`). Indica que la variable es para uso interno del módulo o clase, pero aún es accesible desde fuera.
 
 Variables privadas
-: Se definen con dos guiones bajos al inicio del nombre (ej. `__variable`). Esto activa el _name mangling_, lo que significa que el nombre de la variable se modifica internamente para evitar conflictos con nombres en subclases.
+: Se definen con dos guiones bajos al inicio del nombre (ej. `__variable`). Esto activa el [_name mangling_](https://docs.python.org/es/3.14/tutorial/classes.html#private-variables), lo que significa que el nombre de la variable se modifica internamente para evitar conflictos con nombres en subclases.
 
 Variables especiales
-: Se definen con dos guiones bajos al inicio y al final del nombre, estos son conocidos en la comunidad Python como _dunder methods_ (_dunders es un acrónimo de double underscore_). Estas son utilizadas por Python para definir métodos especiales y no deben ser modificadas directamente. Por ejemplo, el método `__init__` es el constructor de una clase.
+: Se definen con dos guiones bajos al inicio y al final del nombre, estos son conocidos en la comunidad Python como _dunder methods_ (_dunders_ es un acrónimo de _double underscore_). Estas son utilizadas por Python para definir métodos especiales y no deben ser modificadas directamente. Por ejemplo, el método `__init__` es el constructor de una clase.
 
 ```{warning} Advertencia
 Todas las variables en Python son accesibles desde fuera del módulo o clase, incluso las privadas. La convención de nomenclatura es solo una guía para los desarrolladores y no impide el acceso a las variables.
@@ -208,6 +210,7 @@ def mi_funcion():
 
 
 mi_funcion()  # Llama a la función que imprime el mensaje local
+
 print(mensaje)  # Acceso a la variable global
 ```
 
@@ -229,6 +232,7 @@ def mi_funcion():
 
 
 mi_funcion()  # Llama a la función que modifica el mensaje global
+
 print(mensaje)  # Acceso a la variable global modificada
 ```
 
@@ -258,19 +262,20 @@ def fabrica_incrementos(y):
     return incrementar  # Retorna la función interna
 
 
-incrementar_2 = fabrica_incrementos(2)# Crea una función que incrementa en 2
-print(incrementar_2(5))  # Salida: 7
+incrementar_2 = fabrica_incrementos(2) # Crea una función que incrementa en 2
+
+print(incrementar_2(5))
 ```
 
 Al ejecutar el fragmento anterior ocurre lo siguiente:
 
-1. En la línea 1 se define la función `fabrica_incrementos` que recibe un parámetro `y`. El código de la función (hasta la línea 4) se guarda en memoria. Es un valor más. El nombre de la función `fabrica_incrementos` se guarda en el ámbito global y es la referencia que permite acceder al objeto función.
+1. Se define la función `fabrica_incrementos` que recibe un parámetro `y`. El código de la función se guarda en memoria (como si fuera una valor más en la memoria). El nombre de la función `fabrica_incrementos` se guarda en el ámbito global; esta será la referencia que permite acceder al objeto de tipo función.
 
-2. En la línea 6 se llama a `fabrica_incrementos(2)` y el resultado de esa operación (la función interna `incrementar`) se va a asignar a la variable `incrementar_2`. En este momento, `y` tiene el valor 2 y se guarda en la clausura de la función interna `incrementar`.
+2. Luego se invoca `fabrica_incrementos(2)` y el resultado de esa operación (la función interna `incrementar`) se va a asignar a la variable `incrementar_2`. En este momento, `y` tiene el valor `2` y se guarda en la clausura de la función interna `incrementar`.
 
 3. El valor devuelto por `fabrica_incrementos` es una función que queda ligada a la variable `incrementar_2`. `incrementar_2` contiene el valor de `y`, al momento de su creación, en su clausura. Esto significa que `incrementar_2` "recuerda" el valor de `y` aunque `fabrica_incrementos` ya haya terminado su ejecución.
 
-4. En la línea 7, se ejecuta `incrementar_2`. `incrementar_2` toma un parámetro `x` y retorna la suma de `x` más `y`. Si bien `fabrica_incrementos` ya ha terminado su ejecución y por lo tanto los valores de sus parámetros no están en la memoria, la referencia a `y` se mantiene en la clausura. La función realiza la operación `5 + 2`, donde `5` es el valor ligado al parámetro `x` y `2` es el valor de `y`, al momento de la creación de `incrementar_2` que se guardó en la clausura.
+4. Finalmente se ejecuta `incrementar_2` con un parámetro `x` y retorna la suma de `x` más `y`. Si bien `fabrica_incrementos` ya ha terminado su ejecución y por lo tanto los valores de sus parámetros no están en la memoria, la referencia a `y` se mantiene en la clausura. La función realiza la operación `5 + 2`, donde `5` es el valor ligado al parámetro `x` y `2` es el valor de `y`, al momento de la creación de `incrementar_2` que se guardó en la clausura.
 
 5. `incrementar_2(5)` retorna 7 al ámbito global, y `print` lo muestra en la salida.
 
@@ -310,7 +315,7 @@ literal: true
 ```
 ````
 
-A partir de la función `demo_stack`, se muestra cómo se puede utilizar el módulo `stack` para crear una pila, agregar elementos y eliminarlos.
+En la función `demo_stack` se muestra cómo se puede utilizar el módulo `stack` para crear una pila, agregar elementos y eliminarlos.
 
 Es común que los módulos tengan un bloque de código al final que se ejecuta solo si el módulo se ejecuta directamente, no cuando se importa. Esto se logra utilizando la siguiente estructura:
 
@@ -323,7 +328,7 @@ Si el módulo se importa desde otro módulo, el bloque `if __name__ == "__main__
 
 ### Ámbito _Built-in_ (B)
 
-El ámbito _built-in_ contiene nombres predefinidos por Python, como funciones y excepciones que están disponibles en todos los módulos sin necesidad de importarlos. Estos nombres son parte del núcleo del lenguaje y se pueden utilizar directamente en cualquier parte del código. Algunos ejemplos son `print`, `len`, `range`, `int`, `str`, entre otros.
+El ámbito _built-in_ contiene nombres predefinidos por Python, como funciones y excepciones que están disponibles en todos los módulos (sin necesidad de importarlos). Estos nombres son parte del núcleo del lenguaje y se pueden utilizar directamente en cualquier parte del código. Algunos ejemplos son `print`, `len`, `range`, `int`, `str`, entre otros.
 
 Si se intenta redefinir un nombre _built-in_, se creará una variable local o global que ocultará temporalmente el nombre _built-in_, pero no se eliminará del ámbito _built-in_.
 
@@ -333,7 +338,7 @@ No se recomienda bajo ningún punto de vista redefinir nombres _built-in_, ya qu
 
 ```{code-cell} python
 ---
-tags: hide-output, raises-exception
+tags: raises-exception
 ---
 print(len("Hola"))  # Llama a la función built-in len
 

@@ -1,54 +1,61 @@
 <?xml version='1.0' encoding='utf-8'?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
-  
-  <rect width="800" height="400" fill="#1e1e1e" />
-  
-  
-  <text x="400" y="40" font-family="Arial" font-size="24" text-anchor="middle" fill="#e0e0e0">Asignación de Variables</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 350">
 
-  
-  <g transform="translate(50, 100)">
-    <text x="100" y="-20" font-family="Arial" font-size="18" fill="#e0e0e0" text-anchor="middle">1. x = 10</text>
-    
-    
-    <rect x="20" y="20" width="80" height="50" rx="5" fill="#2d3748" stroke="#63b3ed" stroke-width="2" />
-    <text x="60" y="52" font-family="Arial" font-size="20" fill="#e0e0e0" text-anchor="middle">x</text>
-    
-    
-    <path d="M 110 45 L 190 45" stroke="#e0e0e0" stroke-width="2" marker-end="url(#arrowhead)" />
-    
-    
-    <circle cx="230" cy="45" r="30" fill="#4a5568" stroke="#fc8181" stroke-width="2" />
-    <text x="230" y="52" font-family="Arial" font-size="20" fill="#e0e0e0" text-anchor="middle">10</text>
-  </g>
-
-  
-  <g transform="translate(450, 100)">
-    <text x="100" y="-20" font-family="Arial" font-size="18" fill="#e0e0e0" text-anchor="middle">2. x = 20</text>
-    
-    
-    <rect x="20" y="20" width="80" height="50" rx="5" fill="#2d3748" stroke="#63b3ed" stroke-width="2" />
-    <text x="60" y="52" font-family="Arial" font-size="20" fill="#e0e0e0" text-anchor="middle">x</text>
-    
-    
-    <path d="M 110 45 L 190 45" stroke="#e0e0e0" stroke-width="2" marker-end="url(#arrowhead)" />
-    
-    
-    <circle cx="230" cy="45" r="30" fill="#4a5568" stroke="#fc8181" stroke-width="2" />
-    <text x="230" y="52" font-family="Arial" font-size="20" fill="#e0e0e0" text-anchor="middle">20</text>
-    
-    
-    <circle cx="230" cy="150" r="30" fill="#2d3748" stroke="#4a5568" stroke-width="2" stroke-dasharray="5,5" />
-    <text x="230" y="157" font-family="Arial" font-size="20" fill="#718096" text-anchor="middle">10</text>
-    
-    
-    <path d="M 80 70 L 200 130" stroke="#fc8181" stroke-width="2" stroke-dasharray="5,5" opacity="0.5" />
-  </g>
-
-  
   <defs>
+    <style>
+      .title { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 20px; text-anchor: middle; fill: #e0e0e0; }
+      .code { font-family: menlo, consola, 'DejaVu Sans Mono'; font-size: 16px; fill: #e0e0e0; text-anchor: middle; }
+      .code-example { font-family: menlo, consola, 'DejaVu Sans Mono'; font-size: 18px; fill: #e0e0e0; text-anchor: start; }
+      .variable-node { fill: #2d3748; stroke: #63b3ed; stroke-width: 2; }
+      .value-node { fill: #4a5568; stroke: #fc8181; stroke-width: 2; }
+      .arrow { stroke: #e0e0e0; stroke-width: 2; marker-end: url(#arrowhead); }
+      .note { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 14px; fill: #a0aec0; text-anchor: middle; font-style: italic; }
+    </style>
     <marker id="arrowhead" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto">
       <polygon points="0 0, 6 2.5, 0 5" fill="#e0e0e0" />
     </marker>
   </defs>
+
+  <rect width="800" height="400" fill="#1e1e1e" />
+
+  <text x="400" y="40" class="title">Asignación de Variables</text>
+
+
+  <g transform="translate(50, 100)">
+    <text x="100" y="-20" class="code-example">x = 10</text>
+
+
+    <rect x="20" y="20" width="80" height="50" rx="5" class="variable-node" />
+    <text x="60" y="52" class="code">x</text>
+
+
+    <path d="M 110 45 L 190 45" class="arrow" />
+
+
+    <circle cx="230" cy="45" r="30" class="value-node" />
+    <text x="230" y="52" class="code">10</text>
+  </g>
+
+
+  <g transform="translate(450, 100)">
+    <text x="100" y="-20" class="code-example">x = 20</text>
+
+
+    <rect x="20" y="20" width="80" height="50" rx="5" class="variable-node" />
+    <text x="60" y="52" class="code">x</text>
+
+
+    <path d="M 110 45 L 190 45" class="arrow" />
+
+
+    <circle cx="230" cy="45" r="30" class="value-node" />
+    <text x="230" y="52" class="code">20</text>
+
+
+    <circle cx="230" cy="150" r="30" fill="#2d3748" stroke="#4a5568" stroke-width="2" stroke-dasharray="5,5" />
+    <text x="230" y="157" class="code" fill="#718096">10</text>
+
+
+    <path d="M 80 70 L 200 130" stroke="#fc8181" stroke-width="2" stroke-dasharray="5,5" opacity="0.5" />
+  </g>
 </svg>
