@@ -13,6 +13,8 @@ install:
 .PHONY: fmt
 fmt:
 	mdformat --number contenidos/**/*.md
+	mdformat --number .opencode/**/*.md
+	mdformat --number *.md
 	black --line-length 120 .
 
 ## build: compila el libro ejecutando las celdas
