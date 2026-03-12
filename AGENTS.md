@@ -15,7 +15,7 @@ Este documento contiene las directivas que deben seguir todos los agentes de int
 - **Build system**: MyST (mystmd) - ver https://mystmd.org/
 - **Licencia**: CC-BY-SA-4.0
 
-______________________________________________________________________
+---
 
 ## 2. Comandos de Build, Lint y Test
 
@@ -72,7 +72,7 @@ python -m mdformat --number contenidos/**/*.md
 - Ejecuta tests con: `pytest contenidos/_static/code/tests/`
 - Para un solo test: `pytest contenidos/_static/code/tests/test_file.py::test_function_name`
 
-______________________________________________________________________
+---
 
 ## 3. Estructura del Proyecto
 
@@ -91,7 +91,7 @@ requirements.txt              # Dependencias Python
 Makefile                      # Comandos de build
 ```
 
-______________________________________________________________________
+---
 
 ## 4. Convenciones de Código Python
 
@@ -136,7 +136,7 @@ from stack_exception import StackException
 | Clases                     | PascalCase                       | `Stack`, `Graph`      |
 | Funciones                  | snake_case                       | `dijkstra_trace_fine` |
 | Variables                  | snake_case                       | `node_colors`         |
-| Métodos privados           | snake_case con `_`               | `_items`              |
+| Métodos privados           | snake*case con `*`               | `_items`              |
 | Constantes                 | MAYÚSCULAS_SNAKE                 | `MAX_ITERATIONS`      |
 | Excepciones personalizadas | PascalCase terminar en Exception | `StackException`      |
 
@@ -178,7 +178,7 @@ def __repr__(self):
 5. Clases
 6. Demo/main (opcional, envuelto en `if __name__ == "__main__":`)
 
-______________________________________________________________________
+---
 
 ## 5. MyST y Contenido
 
@@ -226,7 +226,7 @@ def respuesta():
 ```
 ````
 
-______________________________________________________________________
+---
 
 ## 6. Guías de Estilo de Contenido
 
@@ -256,7 +256,7 @@ ______________________________________________________________________
 - **Tono**: Moderadamente formal, amigable pero serio
 - **Bibliografía**: Agregar a `references.bib` y citar con `{cite}`
 
-______________________________________________________________________
+---
 
 ## 7. Dependencias
 
@@ -266,7 +266,7 @@ Solo usar librerías listadas en `requirements.txt`. Para agregar nuevas:
 2. Verificar compatibilidad con Python 3.11+
 3. Asegurar que sea de propósito general, no dependencia específica de un ejemplo
 
-______________________________________________________________________
+---
 
 ## 8. Errores Comunes a Evitar
 
@@ -275,7 +275,7 @@ ______________________________________________________________________
 - No agregar imágenes fuera de `_static/figures/`
 - No usar librerías no listadas en requirements.txt
 
-______________________________________________________________________
+---
 
 ## 9. Notas Adicionales
 
