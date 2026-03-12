@@ -37,14 +37,14 @@ Python garantiza que los pasos anteriores son **_atómicos_**, es decir se ejecu
 
 Si la variable ya tenía una referencia a otro objeto, esa referencia se pierde (el objeto anterior puede ser desalojado de la memoria por el recolector de basura si no hay otras referencias a él).
 
-```{figure} ../_static/figures/asignacion_light.svg
+```{figure} ../_static/figures/1-taller-de-python/1-4-ambitos-de-ejecucion/asignacion_light.svg
 ---
 class: only-light-mode
 ---
 Asignación de Variables
 ```
 
-```{figure} ../_static/figures/asignacion_dark.svg
+```{figure} ../_static/figures/1-taller-de-python/1-4-ambitos-de-ejecucion/asignacion_dark.svg
 ---
 class: only-dark-mode
 ---
@@ -87,14 +87,14 @@ s1 += " mundo"  # Esto crea una nueva cadena "hola mundo"
 print(f"s1: {s1}, s2: {s2}")
 ```
 
-```{figure} ../_static/figures/inmutabilidad_light.svg
+```{figure} ../_static/figures/1-taller-de-python/1-4-ambitos-de-ejecucion/inmutabilidad_light.svg
 ---
 class: only-light-mode
 ---
 Inmutabilidad (Strings)
 ```
 
-```{figure} ../_static/figures/inmutabilidad_dark.svg
+```{figure} ../_static/figures/1-taller-de-python/1-4-ambitos-de-ejecucion/inmutabilidad_dark.svg
 ---
 class: only-dark-mode
 ---
@@ -123,14 +123,14 @@ lista1.append(4)  # Modifica la lista original
 print(f"lista1: {lista1}, lista2: {lista2}")
 ```
 
-```{figure} ../_static/figures/mutabilidad_light.svg
+```{figure} ../_static/figures/1-taller-de-python/1-4-ambitos-de-ejecucion/mutabilidad_light.svg
 ---
 class: only-light-mode
 ---
 Mutabilidad (Listas)
 ```
 
-```{figure} ../_static/figures/mutabilidad_dark.svg
+```{figure} ../_static/figures/1-taller-de-python/1-4-ambitos-de-ejecucion/mutabilidad_dark.svg
 ---
 class: only-dark-mode
 ---
@@ -177,14 +177,14 @@ _Built-in_ (B)
 
 Cuando Python busca un nombre, sigue este orden: primero busca en el ámbito _Local_, luego en el _Enclosing_, después en el _Global_ y finalmente en el _Built-in_.
 
-```{figure} ../_static/figures/ambitos_light.svg
+```{figure} ../_static/figures/1-taller-de-python/1-4-ambitos-de-ejecucion/ambitos_light.svg
 ---
 class: only-light-mode
 ---
 Ámbitos de Ejecución
 ```
 
-```{figure} ../_static/figures/ambitos_dark.svg
+```{figure} ../_static/figures/1-taller-de-python/1-4-ambitos-de-ejecucion/ambitos_dark.svg
 ---
 class: only-dark-mode
 ---

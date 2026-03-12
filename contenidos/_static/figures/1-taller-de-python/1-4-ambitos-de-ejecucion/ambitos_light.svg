@@ -1,0 +1,25 @@
+<svg width="800" height="450" viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .section-title { font-family: ui-sans-serif, system-ui, sans-serif; font-weight: 700; font-size: 18; fill: #333333; }
+      .description { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 16; fill: #333333; }
+      .scope-box { fill: #e1f5ff; stroke: #4682b4; stroke-width: 2; rx: 8; }
+    </style>
+  </defs>
+
+  <rect x="10" y="10" width="780" height="430" class="scope-box" />
+  <text x="30" y="40" class="section-title">Built-in (Python)</text>
+  <text x="30" y="65" class="description">Nombres preasignados en el entorno Python. Ej: open, range, etc.</text>
+
+  <rect x="40" y="90" width="720" height="330" class="scope-box" />
+  <text x="60" y="120" class="section-title">Global (Módulo)</text>
+  <text x="60" y="145" class="description">Nombres declarados en la parte superior de un módulo</text>
+
+  <rect x="70" y="170" width="660" height="230" class="scope-box" />
+  <text x="90" y="200" class="section-title">Ámbito de ejecución de una función. Clausura:</text>
+  <text x="90" y="225" class="description">Nombres visibles en el ámbito de ejecución de una función. Funciones anidadas</text>
+
+  <rect x="100" y="250" width="600" height="130" class="scope-box" />
+  <text x="120" y="280" class="section-title">Locales</text>
+  <text x="120" y="305" class="description">Nombres declarados dentro de una función.</text>
+</svg>
