@@ -15,6 +15,7 @@ matplotlib
 mdformat
 mdformat-black
 mdformat-myst
+mypy
 myst-parser
 mystmd
 networkx
