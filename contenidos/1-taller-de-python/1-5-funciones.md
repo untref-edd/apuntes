@@ -13,13 +13,27 @@ description: Funciones, paradigma funcional y funciones anónimas
 
 # Funciones y paradigma funcional
 
-En Python las funciones son ciudadanos de primera clase, lo que le otorga al lenguaje ciertas características del paradigma funcional. En este capítulo, exploraremos cómo definir y utilizar funciones, los diferentes tipos de pasajes de parámetros, y cómo Python implementa el paradigma funcional a través de funciones de orden superior, funciones anónimas (_lambda_), y más.
+En Python las funciones son "ciudadanos de primera clase", lo que le otorga al lenguaje ciertas características del paradigma funcional. En este capítulo, exploraremos cómo definir y utilizar funciones, los diferentes tipos de pasajes de parámetros, y cómo Python implementa el paradigma funcional a través de funciones de orden superior, funciones anónimas (_lambda_), y más.
+
+````{admonition} Ciudadano de primera clase
+Cuando decimos que las "funciones son ciudadanos de primera clase" significa que, en el lenguaje, el "código" de las funciones se almacena en memoria como un valor más, el cual puede ser referenciado, pasado como arcumentos a otra variable y devuelto como valor por otra función.
+
+En Python existe la clase `function`,  que corresponde al tipo de objeto que observamos si hacemos.
+
+```{code-cell} python
+def f(a, b):
+    return lambda x: a*x + b
+
+
+print(type(f))
+```
+````
 
 ## Pasajes de parámetros y devolución de valores
 
-Las funciones se definen utilizando la palabra clave `def`, seguida del nombre de la función y paréntesis que pueden contener parámetros. Las funciones pueden retornar valores utilizando la palabra clave `return`.
+Las funciones se definen utilizando la palabra clave `def`, seguida del nombre de la función y paréntesis que pueden (o no) contener parámetros. Las funciones pueden retornar valores utilizando la palabra clave `return`.
 
-Python permite varios tipos de pasajes de parámetros a funciones:
+Python permite pasar varios tipos de parámetros a funciones:
 
 ```python
 def funcion(posicionales, nombrados, *posicionales_variables, **nombrados_variables):
@@ -27,7 +41,7 @@ def funcion(posicionales, nombrados, *posicionales_variables, **nombrados_variab
 ```
 
 Posicionales
-: Los parámetros se pasan en el orden en que están definidos.
+: Los parámetros se deben pasan en el orden en que están definidos.
 
 Nombrados
 : Los parámetros se pasan utilizando su nombre, lo que permite especificar solo algunos de ellos.
@@ -50,8 +64,8 @@ def concatenar_cadenas(cadena1, cadena2):
     return cadena1 + cadena2
 
 
-print(concatenar_cadenas("Hola, ", "mundo!"))  # Salida: Hola, mundo!
-print(concatenar_cadenas("mundo!", "Hola, "))  # Salida: mundo!Hola,
+print(concatenar_cadenas("Hola, ", "mundo!"))
+print(concatenar_cadenas("mundo!", "Hola, "))
 ```
 
 ### Parámetros Nombrados
@@ -67,7 +81,6 @@ def concatenar_cadenas(cadena1, cadena2):
 
 
 print(concatenar_cadenas(cadena2="mundo!", cadena1="Hola, "))
-# Salida: Hola, mundo! 
 ```
 
 ### Parámetros Posicionales Variables
@@ -79,16 +92,16 @@ Los parámetros posicionales variables se definen utilizando un asterisco (`*`) 
 tags: hide-output
 ---
 def sumar(*numeros):
-    print(f"Se recibieron {len(numeros)} numeros")
-    print(f"El tipo de numeros es: {type(numeros)}")
+    print(f"{sumar.__name__}: Se recibieron {len(numeros)} numeros")
+    print(f"{sumar.__name__}: El tipo de numeros es: {type(numeros)}")
     suma = 0
     for num in numeros:
         suma += num
     return suma
 
 
-print(sumar(1, 2, 3))  # Salida: 6
-print(sumar(4, 5, 6, 7, 8))  # Salida: 30
+print(sumar(1, 2, 3))
+print(sumar(4, 5, 6, 7, 8))
 ```
 
 ### Parámetros Nombrados Variables
@@ -100,10 +113,9 @@ Los parámetros nombrados variables se definen utilizando dos asteriscos (`**`) 
 tags: hide-output
 ---
 def mostrar_info(**info):
-    print(f"Se recibieron {len(info)} argumentos nombrados")
-    print(f"El tipo de info es: {type(info)}")
-    for clave, valor in info.items():
-        print(f"{clave}: {valor}")
+    print(f"{mostrar_info.__name__}: Se recibieron {len(info)} argumentos nombrados.")
+    print(f"{mostrar_info.__name__}: El tipo de `info` es: {type(info)}")
+    print(f"{mostrar_info.__name__}: {info = }")
 
 
 mostrar_info(nombre="Juan", edad=30, ciudad="Madrid")
@@ -121,12 +133,13 @@ def saludar(nombre="mundo"):
     return f"Hola, {nombre}!"
 
 
-print(saludar())  # Salida: Hola, mundo!
-print(saludar("Juan"))  # Salida: Hola, Juan!
+print(saludar())
+print(saludar("Juan"))
 ```
 
 ```{important} Importante
 Si en una misma función se utilizan parámetros posicionales, nombrados, posicionales variables y nombrados variables, los parámetros deben seguir el siguiente orden:
+
 1. Parámetros posicionales
 2. Parámetros nombrados
 3. Parámetros posicionales variables (`*args`)
@@ -136,15 +149,16 @@ Si en una misma función se utilizan parámetros posicionales, nombrados, posici
 Por ejemplo:
 
 ```{code-cell} python
----
-tags: hide-output
----
 def funcion_ejemplo(param1, param2="valor_por_defecto", *args, **kwargs):
     print(f"param1: {param1}, param2: {param2}")
     print(f"args: {args}")
     print(f"kwargs: {kwargs}")
+```
 
-
+```{code-cell} python
+---
+tags: hide-output
+---
 funcion_ejemplo(1, 2, 3, 4, clave1="valor1", clave2="valor2")
 ```
 
@@ -154,12 +168,6 @@ En el siguiente ejemplo `args` queda ligado a la tupla vacía, ya que `param2` q
 ---
 tags: hide-output
 ---
-def funcion_ejemplo(param1, param2="valor_por_defecto", *args, **kwargs):
-    print(f"param1: {param1}, param2: {param2}")
-    print(f"args: {args}")
-    print(f"kwargs: {kwargs}")
-
-
 funcion_ejemplo(1, (2, 3), clave1="valor1", clave2="valor2")
 ```
 
@@ -178,6 +186,7 @@ def division_y_resto(dividendo, divisor):
 
 
 cociente, resto = division_y_resto(10, 3)
+
 print(f"Cociente: {cociente}, Resto: {resto}")
 ```
 
@@ -194,13 +203,24 @@ def sumar(a: int, b: int) -> int:
     return a + b
 
 
-print(sumar(3, 5))  # Salida: 8
-print(sumar("a", "b"))  # Salida: ab
+print(sumar(3, 5))
+print(sumar("a", "b"))
 ```
 
 Las anotaciones de tipo son opcionales y no afectan el comportamiento de la función, pero pueden ser útiles para la documentación y la verificación de tipos en tiempo de desarrollo.
 
 En el fragmento anterior, la función `sumar` está anotada para indicar que espera dos enteros como parámetros y devuelve un entero. Sin embargo, Python no impone estas restricciones en tiempo de ejecución, por lo que se pueden pasar otros tipos de datos sin generar un error.
+
+````{hint} Herramientas
+Existen herramientas que haciendo uso de las anotaciones de tipo sobre nuestro código pueden hacer un chequeo estático de los tipos. Por ejemplo, Si analizamos el ejemplo anterior con [Mypy](https://mypy-lang.org/), reportaría los siguientes errores:
+
+```console
+$ mypy sumar.py
+sumar.py:9: error: Argument 1 to "sumar" has incompatible type "str"; expected "int"  [arg-type]
+sumar.py:9: error: Argument 2 to "sumar" has incompatible type "str"; expected "int"  [arg-type]
+Found 2 errors in 1 file (checked 1 source file)
+```
+````
 
 ## Paradigma funcional
 
@@ -238,21 +258,23 @@ def doble(x):
 
 
 doble_cuadrado = componer(cuadrado, doble)
-print(doble_cuadrado(3))  # Salida: 3² x 2 = 18
+
+doble_cuadrado(3)
 ```
 
 En este ejemplo, `componer` es una función de orden superior que toma dos funciones como argumentos y devuelve una nueva función que es la composición de las dos. Para poder elevar un número al cuadrado y luego duplicarlo, se utiliza `doble_cuadrado`, que es el resultado de componer `cuadrado` y `doble`. Hay que prestar atención al orden en que se componen las funciones, ya que se aplica primero `cuadrado` y luego `doble`.
 
 ### Funciones anónimas (`lambda`)
 
-Las funciones anónimas, también conocidas como funciones _lambda_, son funciones sin nombre que se definen utilizando la palabra clave `lambda`. Son útiles para crear funciones pequeñas y rápidas sin necesidad de definirlas formalmente.
+Las funciones anónimas, también conocidas como expresiones _lambda_, son funciones sin nombre que se definen utilizando la palabra clave `lambda`. Son útiles para crear funciones pequeñas y rápidas sin necesidad de definirlas formalmente.
 
 ```{code-cell} python
 ---
 tags: hide-output
 ---
 suma = lambda x, y: x + y
-print(suma(3, 5))  # Salida: 3 + 5 = 8
+
+suma(3, 5)
 ```
 
 Define una función que recibe dos argumentos `x` e `y` y retorna su suma. Esta función queda asociada a la variable `suma`, que se puede utilizar para invocarla.
@@ -268,7 +290,8 @@ def componer(func1, func2):
 
 
 doble_cuadrado = componer(lambda x: x * x, lambda x: x + x)
-print(doble_cuadrado(3))  # Salida: 3² x 2 = 18
+
+doble_cuadrado(3)
 ```
 
 Las funciones de orden superior, las funciones anónimas, la generación de datos por comprensión y las clausuras son características del paradigma funcional que hacen de Python un lenguaje versátil y poderoso. Algunos de los usos habituales de la programación funcional en Python incluyen:
@@ -292,7 +315,8 @@ def mapear(func, iterable):
 
 numeros = [x for x in range(10)]
 cuadrados = mapear(lambda x: x**2, numeros)
-print(f"Cuadrados: {cuadrados}") # [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+
+print(f"Cuadrados: {cuadrados}")
 ```
 
 Python proporciona la función `map` para realizar mapeo de manera más concisa y que permite devolver un iterador en lugar de una lista. Como todo iterador, una vez que se consume, es decir que se itera sobre él, no se puede volver a utilizar. Por lo tanto, es común convertirlo a una lista o tupla para conservar los resultados.
@@ -303,9 +327,12 @@ tags: hide-output
 ---
 numeros = [x for x in range(10)]
 cuadrados = map(lambda x: x**2, numeros)
-print(type(cuadrados))  # <class 'map'>
-tupla = tuple(cuadrados)  # Convierte el iterador a tupla
-print(f"Cuadrados: {tupla}") # (0, 1, 4, 9, 16, 25, 36, 49, 64, 81)
+
+print(type(cuadrados))
+
+tupla = tuple(cuadrados)
+
+print(f"Cuadrados: {tupla}")
 ```
 
 Filtrado
@@ -327,7 +354,8 @@ def filtrar(func, iterable):
 
 numeros = [x for x in range(10)]
 pares = filtrar(lambda x: x % 2 == 0, numeros)
-print(f"Números pares: {pares}") # [0, 2, 4, 6, 8]
+
+print(f"Números pares: {pares}")
 ```
 
 En este caso la función de filtrado es una función anónima `lambda x: x % 2 == 0`. Las funciones anónimas siempre devuelven el resultado de la última expresión evaluada, por lo que no es necesario utilizar `return`.
@@ -340,9 +368,12 @@ tags: hide-output
 ---
 numeros = [x for x in range(10)]
 pares = filter(lambda x: x % 2 == 0, numeros)
-print(type(pares))  # <class 'filter'>
+
+print(type(pares))
+
 lista = list(pares)  # Convierte el iterador a lista
-print(f"Números pares: {lista}")  # [0, 2, 4, 6, 8]
+
+print(f"Números pares: {lista}")
 ```
 
 Reducción
@@ -360,8 +391,8 @@ from functools import reduce
 
 numeros = [x for x in range(10)]
 suma_total = reduce(lambda x, y: x + y, numeros)
-# (((((((((0+1)+2)+3)+4)+5)+6)+7)+8)+9) = 45
-print(f"Suma total: {suma_total}") # 45
+
+print(f"Suma total: {suma_total}")
 ```
 
 La función de reducción es la función anónima `lambda x, y: x + y`, que toma dos argumentos y devuelve su suma. No hace falta utilizar `return` ya que la última expresión evaluada es justamente la suma de `x` e `y`.
@@ -376,6 +407,7 @@ from functools import reduce
 
 palabras = ["Python", "mundo", "Hola"]
 frase = reduce(lambda x, y: y + " " + x, palabras)
+
 print(f"Frase: {frase}")
 ```
 
@@ -391,7 +423,8 @@ Iteradores
 tags: hide-output
 ---
 numeros = [x for x in range(10)]
-iterador = iter(numeros)  #
+iterador = iter(numeros)
+
 while True:
     try:
         numero = next(iterador)
@@ -430,6 +463,7 @@ def funcion_original(x):
 
 
 funcion_decorada = decorador(funcion_original)
+
 funcion_decorada(5)
 ```
 
@@ -442,31 +476,36 @@ En este ejemplo se utiliza `*args` y `**kwargs` para permitir que la función de
 Python proporciona una sintaxis especial para aplicar decoradores a funciones utilizando el símbolo `@` antes de la definición de la función. Esto es equivalente a decorar la función manualmente como se mostró anteriormente.
 
 ```{code-cell} python
----
-tags: hide-output
----
 def decorador(func):
     def funcion_decorada(*args, **kwargs):
         resultado = f"El resultado de la operación es: {func(*args, **kwargs)}"
         return resultado
 
     return funcion_decorada
+```
 
-
+```{code-cell} python
+---
+tags: hide-output
+---
 @decorador
 def funcion_original(x):
     return x * 2
 
 
-print(funcion_original(5)) # El resultado de la operación es: 10
+funcion_original(5)
+```
 
-
+```{code-cell} python
+---
+tags: hide-output
+---
 @decorador
 def funcion_suma(a, b):
     return a + b
 
 
-print(funcion_suma(3, 4)) # El resultado de la operación es: 7
+funcion_suma(3, 4)
 ```
 
 Generadores
@@ -478,16 +517,19 @@ tags: hide-output
 ---
 def contador():
     i = 0
+
     while True:
         yield i
         i += 1
 
 
 contador_gen = contador()
-print(type(contador_gen))  # <class 'generator'>
-print(next(contador_gen))  # 0
-print(next(contador_gen))  # 1
-print(next(contador_gen))  # 2
+
+print(type(contador_gen))
+
+print(next(contador_gen))
+print(next(contador_gen))
+print(next(contador_gen))
 ```
 
 Este generador nos permite, de alguna manera, tener una lista infinita de números enteros, ya que cada vez que se llama a `next`, se obtiene el siguiente número en la secuencia, lo cual es posible gracias a la palabra clave `yield`, que suspende la ejecución de la función en ese punto, devuelve el valor actual de `i`, y guarda el estado de la función para que pueda reanudarse en la siguiente llamada a `next`. En este caso `next` no levantará una excepción `StopIteration` porque el generador está diseñado para ser infinito.
@@ -511,9 +553,10 @@ def contador():
 
 
 siguiente = contador()
-print(siguiente())  # 0
-print(siguiente())  # 1
-print(siguiente())  # 2
+
+print(siguiente())
+print(siguiente())
+print(siguiente())
 ```
 
 La clave está en utilizar `nonlocal` para modificar la variable `i` dentro de la función interna `siguiente`, permitiendo que se mantenga el estado entre llamadas. `i` se almacena en la clausura de `siguiente`, lo que permite que su valor persista entre invocaciones.

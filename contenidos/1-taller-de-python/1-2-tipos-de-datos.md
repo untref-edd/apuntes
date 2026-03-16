@@ -383,7 +383,7 @@ tags: hide-output
 ---
 mensaje = "Hola, \"mundo\".\n¿Cómo estás?"
 
-print(mensaje)
+mensaje
 ```
 
 `\n` inserta un salto de línea, y `\"` permite incluir comillas dobles dentro de una cadena delimitada por comillas dobles.
@@ -396,7 +396,7 @@ tags: hide-output
 ---
 mensaje = 'Hola, "mundo".\n¿Cómo estás?'
 
-print(mensaje)
+mensaje
 ```
 
 ```{code-cell} python
@@ -405,7 +405,7 @@ tags: hide-output
 ---
 mensaje = "Hola, \tmundo."
 
-print(mensaje)
+mensaje
 ```
 
 ## Listas (`list`)
