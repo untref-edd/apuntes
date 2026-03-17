@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 418">
+
+  <defs>
+    <style>
+      .node-base { fill: #e1f5ff; stroke: #4682b4; stroke-width: 2; }
+      .node-title { font-family: Arial; font-size: 14px; font-weight: bold; fill: #333333; text-anchor: middle; }
+      .node-attr { font-family: Arial; font-size: 12px; fill: #333333; }
+      .line { stroke-width: 1; stroke: #4682b4; }
+      .arrow { stroke: #333333; stroke-width: 2; fill: none; }
+      .arrow-head { fill: #ffffff; stroke: #333333; stroke-width: 1; }
+    </style>
+    <marker id="arrowhead" markerWidth="6" markerHeight="8" refX="6" refY="4" orient="auto">
+      <polygon points="0 0, 6 4, 0 8" class="arrow-head" />
+    </marker>
+  </defs>
+
+
+
+  <g transform="translate(225, 20)">
+    <rect x="0" y="0" width="150" height="72" class="node-base" />
+    <text x="75" y="21" class="node-title">Persona</text>
+    <line x1="0" y1="30" x2="150" y2="30" class="line" />
+    <text x="10" y="46" class="node-attr">nombre</text>
+    <text x="10" y="64" class="node-attr">edad</text>
+  </g>
+
+  <g transform="translate(50, 150)">
+    <rect x="0" y="0" width="160" height="100" class="node-base" />
+    <text x="74" y="21" class="node-title">Docente</text>
+    <line x1="0" y1="30" x2="160" y2="30" class="line" />
+    <text x="10" y="46" class="node-attr">legajo</text>
+    <text x="10" y="64" class="node-attr">materia</text>
+    <line x1="0" y1="72" x2="160" y2="72" class="line" />
+    <text x="10" y="88" class="node-attr">presentar()</text>
+  </g>
+
+  <g transform="translate(390, 150)">
+    <rect x="0" y="0" width="160" height="100" class="node-base" />
+    <text x="74" y="21" class="node-title">Estudiante</text>
+    <line x1="0" y1="30" x2="160" y2="30" class="line" />
+    <text x="10" y="46" class="node-attr">legajo</text>
+    <text x="10" y="64" class="node-attr">carrera</text>
+    <line x1="0" y1="72" x2="160" y2="72" class="line" />
+    <text x="10" y="88" class="node-attr">presentar()</text>
+  </g>
+
+  <g transform="translate(220, 320)">
+    <rect x="0" y="0" width="160" height="78" class="node-base" />
+    <text x="74" y="21" class="node-title">Ayudante</text>
+    <line x1="0" y1="30" x2="160" y2="30" class="line" />
+    <line x1="0" y1="50" x2="160" y2="50" class="line" />
+    <text x="10" y="66" class="node-attr">presentar()</text>
+  </g>
+
+  <path d="M 130 150 L 130 125 L 300 125 L 300 92" class="arrow" marker-end="url(#arrowhead)" />
+  <path d="M 470 150 L 470 125 L 300 125 L 300 92" class="arrow" marker-end="url(#arrowhead)" />
+  <path d="M 300 320 L 300 285 L 130 285 L 130 250" class="arrow" marker-end="url(#arrowhead)" />
+  <path d="M 300 320 L 300 285 L 470 285 L 470 250" class="arrow" marker-end="url(#arrowhead)" />
+</svg>

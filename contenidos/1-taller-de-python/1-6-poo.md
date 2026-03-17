@@ -20,19 +20,20 @@ Las clases permiten definir nuevos tipos de datos, encapsulando atributos (datos
 ## Algunos conceptos clave de la POO
 
 Atributos
-: Son variables que pertenecen a una clase y representan el estado del objeto. Los atributos pueden ser de diferentes tipos, como enteros, cadenas, listas, etc. Cada objeto en memoria tiene sus propios valores para estos atributos. Estos atributos determinan el estado del objeto.
+: Son variables que pertenecen a un objeto y representan su estado interno. Los atributos pueden ser de diferentes tipos, como enteros, cadenas, listas, otros objetos, etc. Cada objeto en memoria tiene sus propios valores para estos atributos. Estos atributos determinan el estado del objeto.
 
-Métodos de Instancia
-: Son funciones definidas dentro de una clase que operan sobre los atributos del objeto.
+Métodos de instancia
+: Son funciones definidas en una clase que operan sobre los atributos del objeto (su estado interno).
 
-Métodos de Clase
-: Son métodos que pertenecen a la clase en sí, no a las instancias de la clase. Es decir, son funciones que pueden ser llamadas sin necesidad de crear un objeto de la clase.
+Métodos de clase
+: Son métodos que pertenecen a la clase en sí, no a las instancias de la clase. Es decir, son funciones que pueden ser llamadas sin necesidad de crear un objeto de la clase. Al ejecutarse en el contexto de la clase, no tiene un vínculo con las instancias que se hayan creado.
 
 Comportamiento
 : Se refiere al conjunto de métodos a los que puede responder un objeto. Los métodos definen cómo interactúa el objeto con otros objetos y cómo se comporta en diferentes situaciones.
 
 Herencia
-: Permite que una clase herede atributos y métodos de otra clase, lo que facilita la reutilización de código y la creación de jerarquías de clases. La clase que hereda se llama "subclase" o "clase derivada", mientras que la clase de la que hereda se llama "superclase" o "clase base". Python soporta herencia múltiple, lo que significa que una clase puede heredar de múltiples clases al mismo tiempo.
+: Permite que una clase herede atributos y métodos de otra clase, lo que facilita la reutilización de código y la creación de jerarquías de clases.
+: La clase que hereda se llama "subclase" o "clase derivada", mientras que la clase de la que hereda se llama "superclase" o "clase base". Python soporta herencia múltiple, lo que significa que una clase puede heredar de múltiples clases al mismo tiempo.
 
 Constructor
 : Es un método especial que se llama automáticamente cuando se crea un objeto de la clase. La finalidad del constructor es inicializar los atributos del objeto.
@@ -42,9 +43,6 @@ Constructor
 En Python, una clase es una plantilla para crear objetos, similar a los `struct` de Go, una clase permite definir nuevos tipos de datos. Un objeto, en cambio, es una instancia de una clase y puede tener atributos (datos) y métodos (funciones). Pueden existir múltiples objetos de la misma clase, cada uno con sus propios valores para los atributos.
 
 ```{code-cell} python
----
-tags: hide-output
----
 class Persona:
     def __init__(self, nombre, edad):
         self.nombre = nombre
@@ -52,19 +50,56 @@ class Persona:
 
     def saludar(self):
         print(f"Hola, mi nombre es {self.nombre} y tengo {self.edad} años.")
-
-
-# Crear un objeto de la clase Persona
-persona1 = Persona("Alice", 30)
-persona1.saludar()
-print(type(persona1))
 ```
 
-En el fragmento de código anterior, se define una clase `Persona` con un constructor (`__init__`) que inicializa los atributos `nombre` y `edad`. También se define un método `saludar` que imprime un saludo. Luego, se crea un objeto `persona1` de la clase `Persona` y se llama al método `saludar`.
+Creamos un objeto de la clase `Persona`.
+
+```{code-cell} python
+---
+tags: hide-output
+---
+persona1 = Persona("Alice", 30)
+persona1.saludar()
+```
+
+Si consultamos el tipo de `persona1` veremos que es la clase `Persona`.
+
+```{code-cell} python
+---
+tags: hide-output
+---
+type(persona1)
+```
+
+En el ejemplo de código anterior, se define una clase `Persona` con un constructor (`__init__`) que inicializa los atributos `nombre` y `edad`. También se define un método `saludar` que imprime un saludo. Luego, se crea un objeto `persona1` de la clase `Persona` y se llama al método `saludar`.
 
 El constructor en Python siempre es `__init__` y se utiliza para inicializar los atributos del objeto. Si no se declara explícitamente, Python proporcionará un constructor por defecto que no hace nada.
 
-El primer parámetro de los métodos de instancia es siempre `self`, que se refiere a la instancia actual del objeto. Esto permite acceder a los atributos y métodos del objeto dentro de la clase. Es similar al `this` de Java.
+````{important}
+El primer parámetro de los métodos de instancia es siempre `self`, que se refiere a la instancia actual del objeto. Esto permite acceder a los atributos y métodos del objeto dentro de la clase. Es similar al `this` de Java, o más parecido a como Go declara el "receptor" al momento de declarar métodos para un tipo de dato creado por nosotros.
+
+```java
+public void saludar() {
+    // La referencia `this` está disponible de forma implicita.
+}
+```
+
+```go
+func (p *Persona) Saludar() {
+    // La referencia a la "instancia" la nombramos nosotros,
+    // por convención usamos las iniciales del nombre del tipo
+    // que declaramos.
+}
+```
+
+```python
+def saludar(self):
+    """
+    `self` es equivalente a `this` y a `p` en los ejemplos anteriores.
+    Se declara de forma explicita, como si fuera el primer argumento del método.
+    """
+```
+````
 
 ## Herencia
 
@@ -82,19 +117,32 @@ class Docente(Persona):
     def presentar(self):
         self.saludar()  # Usa método heredado
         print(f"Soy docente de {self.materia}.")
+```
 
+Creamos un objeto de la clase Docente.
 
-# Crear un objeto de la clase Docente
+```{code-cell} python
+---
+tags: hide-output
+---
 docente1 = Docente("Juan", 25, "Algoritmos y Programación")
 docente1.presentar()
-print(type(docente1))
+```
+
+También podemos consultar su tipo.
+
+```{code-cell} python
+---
+tags: hide-output
+---
+type(docente1)
 ```
 
 En el ejemplo anterior, la clase `Docente` hereda de la clase `Persona`. Es decir un `Docente` ***es una*** `Persona` y por lo tanto tiene todos los atributos y métodos de cualquier `Persona` y además tiene nuevos atributos y métodos como `Docente`.
 
 El constructor de la clase `Docente` espera todos los parámetros para poder instanciar un nuevo objeto del tipo `Docente`, esto es el `nombre` y la `edad` de la `Persona` y la `materia` de la que es `Docente`.
 
-Lo primero que hace el constructor de la clase `Docente` es llamar al constructor de la clase base `Persona` (línea 3) utilizando `super().__init__(nombre, edad)` Esto asegura que los atributos `nombre` y `edad` se inicialicen correctamente en el objeto `Docente`.
+Lo primero que hace el constructor de la clase `Docente` es llamar al constructor de la clase base `Persona` utilizando `super().__init__(nombre, edad)` Esto asegura que los atributos `nombre` y `edad` se inicialicen correctamente en el objeto `Docente`.
 
 `super()` es una función que permite llamar a métodos de la clase base desde una subclase. Cuando se invoca `super().__init__(nombre, edad)`, se está llamando al constructor de la clase base `Persona`.
 
@@ -109,9 +157,6 @@ En el método `presentar`, se llama al método `saludar` de la clase base `Perso
 Python va más allá que otros lenguajes de programación orientados a objetos y permite la herencia múltiple, lo que significa que una clase puede heredar de múltiples clases al mismo tiempo. Esto se logra especificando múltiples clases base en la definición de la clase.
 
 ```{code-cell} python
----
-tags: hide-output
----
 class Persona:
     def __init__(self, nombre, edad):
         self.nombre = nombre
@@ -163,53 +208,89 @@ class Ayudante(Estudiante, Docente):
         self.saludar()
         print(f"Soy estudiante de {self.carrera} y ayudante en "
               f"{self.materia}")
+```
 
+Creamos un objeto de la clase Docente.
 
-# Crear un objeto de la clase Docente
+```{code-cell} python
+---
+tags: hide-output
+---
 docente1 = Docente(64781, "Juan", 30, "Algoritmos y Programación")
 docente1.presentar()
-print()
+```
 
-# Crear un objeto de la clase Estudiante
+Creamos un objeto de la clase Estudiante.
+
+```{code-cell} python
+---
+tags: hide-output
+---
 estudiante1 = Estudiante(30415, "Ana", 20, "Ingeniería en Computación")
 estudiante1.presentar()
-print()
+```
 
-# Crear un objeto de la clase Ayudante
+Creamos un objeto de la clase Ayudante.
+
+```{code-cell} python
+---
+tags: hide-output
+---
 ayudante1 = Ayudante(
     29478, "Luis", 23, "Algoritmos y Programación", "Ingeniería en Sonido"
 )
 ayudante1.presentar()
-print()
-print(type(ayudante1))
+```
 
+```{code-cell} python
+---
+tags: hide-output
+---
+type(ayudante1)
+```
+
+```{code-cell} python
+---
+tags: hide-output
+---
 print("Pagar a docentes")
-for docente in [docente1, ayudante1]:
-    docente.pagar()  # Llama al método pagar de Docente
-print()
 
+for docente in [docente1, ayudante1]:
+    docente.pagar()
+```
+
+```{code-cell} python
+---
+tags: hide-output
+---
 print("Mostrar legajo de estudiantes")
+
 for estudiante in [estudiante1, ayudante1]:
     estudiante.mostrar_legajo()
-print()
+```
 
-# Actualizamos el legajo del ayudante
+Actualizamos el legajo del ayudante
+
+```{code-cell} python
+---
+tags: hide-output
+---
 ayudante1.actualizar_legajo(12345)
 ayudante1.pagar()
 ```
 
-En el fragmento anterior se definen cuatro clases: `Persona`, `Docente`, `Estudiante` y `Ayudante`. `Docente` y `Estudiante` heredan de `Persona`, mientras que `Ayudante` hereda de `Estudiante` y `Docente` a través de la herencia múltiple. Lo que le permite a un `Ayudante` heredar el comportamiento de ambas clases además de sumar sus propios atributos y métodos.
+Hemos definido cuatro clases: `Persona`, `Docente`, `Estudiante` y `Ayudante`. `Docente` y `Estudiante` heredan de `Persona`, mientras que `Ayudante` hereda de `Estudiante` y `Docente` a través de la herencia múltiple. Lo que le permite a un `Ayudante` heredar el comportamiento de ambas clases además de sumar sus propios atributos y métodos.
 
 En el siguiente *diagrama de clases* se puede observar la relación entre las clases y los atributos y métodos de cada una.
 
-```{figure} ../_static/figures/diagrama_ayudante_light.svg
+```{figure} ../_static/figures/1-taller-de-python/1-6-poo/diagrama_ayudante_light.svg
 ---
 class: only-light-mode
 ---
 Diagrama de clases de Ayudante
 ```
 
-```{figure} ../_static/figures/diagrama_ayudante_dark.svg
+```{figure} ../_static/figures/1-taller-de-python/1-6-poo/diagrama_ayudante_dark.svg
 ---
 class: only-dark-mode
 ---
@@ -220,27 +301,31 @@ Diagrama de clases de Ayudante
 ---
 class: hint
 ---
-Un ***diagrama de clases***, es un diagrama estático que muestra la estructura de un sistema mediante las clases que lo componen y sus relaciones. Una flecha con una línea continua y un triángulo en la punta indica herencia, y en cada clase se pueden ver los atributos y métodos que se definen en cada una. En general no se muestran los atributos y métodos heredados, ni los constructores, pero si los métodos que se sobrescriben, es decir, que se redefinen en una subclase. En el diagrama anterior el método `presentar` de la clase `Ayudante` sobrescribe el método `presentar` de las clases `Docente` y `Estudiante`.
+Un ***diagrama de clases***, es un diagrama estático que muestra la estructura de un sistema mediante las clases que lo componen y sus relaciones. Una flecha con una línea continua y un triángulo en la punta indica herencia, y en cada clase se pueden ver los atributos y métodos que se definen en cada una.
+
+En general no se muestran los atributos y métodos heredados, ni los constructores, pero si los métodos que se sobrescriben, es decir, que se redefinen en una subclase. En el diagrama anterior el método `presentar` de la clase `Ayudante` sobrescribe el método `presentar` de las clases `Docente` y `Estudiante`.
 
 La relación de herencia se puede leer desde abajo hacia arriba como "es un", es decir, "Ayudante es un Docente" y "Ayudante es un Estudiante" ambas cosas al mismo tiempo y desde arriba hacia abajo como "hereda de" es decir, "Ayudante hereda de Docente" y "Ayudante hereda de Estudiante".
 ```
 
-Cuando hay herencia múltiple se recomienda utilizar el nombre de la clase base explícitamente en el constructor de la subclase en lugar de `super()`. En la clase `Docente`, línea 12 se utiliza directamente `Persona` en lugar de usar `super()`, y en la línea 26 de la clase `Estudiante` también, para evitar ambigüedades en la resolución de métodos y atributos.
+Cuando hay herencia múltiple se recomienda utilizar el nombre de la clase base explícitamente en el constructor de la subclase en lugar de `super()`. En la clase `Docente`, se utiliza directamente `Persona` en lugar de usar `super()`, y en la clase `Estudiante` también, para evitar ambigüedades en la resolución de métodos y atributos.
 
 En el ejemplo anterior, tanto `Docente` como `Estudiante` tienen un atributo `legajo`, por lo que al crear un objeto de la clase `Ayudante`, se debe especificar explícitamente a qué clase base se está llamando.
 
 `Ayudante` hereda de ambas clases que tienen un atributo `legajo`, sin embargo el atributo `legajo` no se duplica en un objeto de la clase `Ayudante`. Lo que permite que con el mismo `legajo` de `Estudiante` se pueda pagar al `Docente`.
 
-El siguiente fragmento de código inspecciona los atributos del objeto `ayudante1` y los imprime en la consola (En [Instrospección](1-8-introspeccion.md) veremos más en detalle como los objetos pueden observarse y modificarse a si mismos en tiempo de ejecución)
+El siguiente fragmento de código inspecciona los atributos del objeto `ayudante1` y los imprime en la consola (En [Instrospección](1-8-introspeccion.md) veremos más en detalle como los objetos pueden observarse y modificarse a sí mismos en tiempo de ejecución)
 
 ```{code-cell} python
 ---
 tags: hide-output
 ---
 print("Atributos de ayudante1:")
+
 atributos = vars(ayudante1)
+
 for key, value in atributos.items():
-    print(f"{key}: {value}")
+    print(f"\t- {key}: {value}")
 ```
 
 ## Polimorfismo
@@ -256,19 +341,18 @@ Cuando hay herencia múltiple se debe tener cuidado como se resuelve el polimorf
 tags: hide-output
 ---
 print("Orden de Resolución de Métodos (MRO) de Ayudante:")
+
 orden = Ayudante.__mro__
+
 for cls in orden:
-    print(cls.__name__)
+    print(f"\t- {cls.__name__}")
 ```
 
 Es decir cuando un objeto de la clase `Ayudante` invoca a un método, Python primero busca el método en la propia clase `Ayudante`, luego en `Estudiante`, luego en `Docente`, luego en `Persona` y finalmente en `object`.
 
 Por eso no se puede usar `super()` en el constructor de la clase `Estudiante` ya que si se hiciera, se generaría una ambigüedad en la resolución del método a llamar, ya que `super()` buscaría el siguiente método en la jerarquía de clases, que en este caso sería el constructor de `Docente`. Por lo tanto, se debe usar el nombre de la clase base explícitamente en el constructor de la subclase.
 
-```{admonition} object
----
-class: hint
----
+```{hint} <code>object</code>
 `object` es la clase base de todas las clases en Python. Todas las clases heredan de `object`, lo que significa que todas las instancias de clases en Python son también instancias de `object`. Esto proporciona una serie de métodos y atributos comunes a todas las clases.
 
 Por eso cuando se dice que en Python todo es un objeto, se refiere a que todas las clases heredan de `object`, y por lo tanto, todas las instancias de clases son también instancias de `object`. Esto permite que todas las clases tengan un comportamiento común, como la capacidad de ser comparadas, impresas, etc.
@@ -288,16 +372,16 @@ Este concepto es muy poderoso en Python, ya que permite que diferentes objetos p
 
 ### Ejemplo
 
-En el siguiente ejemplo, cuyo diagrama de clases se muestra a continuación. Primero se define `Punto` que representa un punto en el plano cartesiano y luego se definen las Figuras Geométricas `Cuadrado`, `Punto` `Elipse`y `Punto` que están ***compuestas*** por `Punto`. Cada figura tiene un método `area` que calcula su área, pero cada figura lo implementa de manera diferente.
+En el siguiente ejemplo, cuyo diagrama de clases se muestra a continuación. Primero se define `Punto` que representa un punto en el plano cartesiano y luego se definen las Figuras Geométricas `Cuadrado`, `Punto`, `Elipse` y `Punto` que están ***compuestas*** por `Punto`. Cada figura tiene un método `area` que calcula su área, pero cada figura lo implementa de manera diferente.
 
-```{figure} ../_static/figures/diagrama_figuras_light.svg
+```{figure} ../_static/figures/1-taller-de-python/1-6-poo/diagrama_figuras_light.svg
 ---
 class: only-light-mode
 ---
 Diagrama de clases de Figuras Geométricas
 ```
 
-```{figure} ../_static/figures/diagrama_figuras_dark.svg
+```{figure} ../_static/figures/1-taller-de-python/1-6-poo/diagrama_figuras_dark.svg
 ---
 class: only-dark-mode
 ---
@@ -308,7 +392,7 @@ Diagrama de clases de Figuras Geométricas
 ---
 class: hint
 ---
-El diagrama de clases de Figuras Geométricas ilustra la relación de **composición** entre la clase `Punto` y las clases `Cuadrado`, `Círculo` y `Elipse`.  Un diamante relleno en el extremo que toca a `Cuadrado`, `Círculo` y `Elipse` y una línea que conecta a estas figuras con `Punto` indica que estas figuras están compuestas por uno o más `Punto`. 
+El diagrama de clases de Figuras Geométricas ilustra la relación de **composición** entre la clase `Punto` y las clases `Cuadrado`, `Círculo` y `Elipse`.  Un diamante relleno en el extremo que toca a `Cuadrado`, `Círculo` y `Elipse` y una línea que conecta a estas figuras con `Punto` indica que estas figuras están compuestas por uno o más `Punto`.
 
 La **composición** es un tipo fuerte de relación "tiene un" (has-a), donde un objeto es parte de otro objeto más grande. Por ejemplo, un `Cuadrado` "tiene un" `Punto` que representa su esquina superior izquierda, un `Círculo` y una `Elipse` "tienen un" `Punto` que representa su centro. En este tipo de relación, el objeto "parte" (`Punto`) no puede existir de forma independiente sin el objeto "todo" (`Cuadrado`, `Círculo`, `Elipse`). La vida útil del objeto `Punto` está ligada a la vida útil de la figura geométrica que lo contiene.
 
@@ -342,17 +426,18 @@ tags: hide-output
 ---
 import builtins
 
+
 def print_class_tree(cls, prefix="", is_last=True, current_depth=0, max_depth=4):
     """
     Imprime el árbol de herencia de clases.
-    
+
     :param cls: La clase raíz desde donde empezar.
     :param prefix: Prefijo para el formato visual (usado en recursión).
     :param is_last: Si es el último nodo de su rama (usado en recursión).
     :param current_depth: Profundidad actual (usado en recursión).
     :param max_depth: Nivel máximo de profundidad a mostrar.
     """
-    
+
     # Si superamos la profundidad máxima, paramos esta rama
     if current_depth > max_depth:
         return
@@ -375,21 +460,21 @@ def print_class_tree(cls, prefix="", is_last=True, current_depth=0, max_depth=4)
     # Filtrar solo clases del módulo 'builtins' (nativas de Python)
     # Esto elimina clases de librerías externas que ensucian el árbol.
     subclasses = [s for s in subclasses if s.__module__ == "builtins"]
-    
+
     # Ordenar alfabéticamente para que la salida sea predecible
     subclasses.sort(key=lambda x: x.__name__)
 
     # Llamada recursiva para los hijos
     count = len(subclasses)
     for i, sub in enumerate(subclasses):
-        is_last_sub = (i == count - 1)
+        is_last_sub = i == count - 1
         print_class_tree(sub, new_prefix, is_last_sub, current_depth + 1, max_depth)
+
 
 # --- Ejecución ---
 if __name__ == "__main__":
     # max_depth=4 muestra hasta Exception -> ArithmeticError -> ZeroDivisionError
     print_class_tree(object, max_depth=4)
-
 ```
 
 ## Recursos para profundizar

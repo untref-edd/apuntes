@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 394">
+
+  <defs>
+    <style>
+      .node-base { fill: #ffe1e1; stroke: #e9967a; stroke-width: 2; }
+      .node-sub { fill: #e1f5ff; stroke: #4682b4; stroke-width: 2; }
+      .node-title { font-family: Arial; font-size: 14px; font-weight: bold; fill: #333333; text-anchor: middle; }
+      .node-attr { font-family: Arial; font-size: 12px; fill: #333333; }
+      .line { stroke-width: 1; }
+      .line-base { stroke: #e9967a; }
+      .line-sub { stroke: #4682b4; }
+      .arrow { stroke: #333333; stroke-width: 2; fill: none; }
+      .arrow-head { fill: #ffffff; stroke: #333333; stroke-width: 1; }
+      .diamond { fill: #333333; stroke: none; }
+    </style>
+    <marker id="arrowhead" markerWidth="6" markerHeight="8" refX="6" refY="4" orient="auto">
+      <polygon points="0 0, 6 4, 0 8" class="arrow-head" />
+    </marker>
+    <marker id="diamond" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="5 0, 0 4, 5 8, 10 4" class="diamond" />
+    </marker>
+  </defs>
+
+
+
+  <g transform="translate(325, 20)">
+    <rect x="0" y="0" width="150" height="72" class="node-base" />
+    <text x="75" y="21" class="node-title">Punto</text>
+    <line x1="0" y1="30" x2="150" y2="30" class="line line-base" />
+    <text x="10" y="46" class="node-attr">x</text>
+    <text x="10" y="64" class="node-attr">y</text>
+  </g>
+
+  <g transform="translate(50, 150)">
+    <rect x="0" y="0" width="160" height="112" class="node-sub" />
+    <text x="80" y="21" class="node-title">Rectangulo</text>
+    <line x1="0" y1="30" x2="160" y2="30" class="line line-sub" />
+    <text x="10" y="46" class="node-attr">p1: Punto</text>
+    <text x="10" y="64" class="node-attr">p2: Punto</text>
+    <line x1="0" y1="72" x2="160" y2="72" class="line line-sub" />
+    <text x="10" y="88" class="node-attr">area()</text>
+    <text x="10" y="104" class="node-attr">perimetro()</text>
+  </g>
+
+  <g transform="translate(320, 150)">
+    <rect x="0" y="0" width="160" height="132" class="node-sub" />
+    <text x="80" y="21" class="node-title">Elipse</text>
+    <line x1="0" y1="30" x2="160" y2="30" class="line line-sub" />
+    <text x="10" y="46" class="node-attr">centro: Punto</text>
+    <text x="10" y="64" class="node-attr">radio_a</text>
+    <text x="10" y="82" class="node-attr">radio_b</text>
+    <line x1="0" y1="90" x2="160" y2="90" class="line line-sub" />
+    <text x="10" y="106" class="node-attr">area()</text>
+    <text x="10" y="124" class="node-attr">perimetro()</text>
+  </g>
+
+  <g transform="translate(590, 150)">
+    <rect x="0" y="0" width="160" height="132" class="node-sub" />
+    <text x="80" y="21" class="node-title">Triangulo</text>
+    <line x1="0" y1="30" x2="160" y2="30" class="line line-sub" />
+    <text x="10" y="46" class="node-attr">p1: Punto</text>
+    <text x="10" y="64" class="node-attr">p2: Punto</text>
+    <text x="10" y="82" class="node-attr">p3: Punto</text>
+    <line x1="0" y1="90" x2="160" y2="90" class="line line-sub" />
+    <text x="10" y="106" class="node-attr">area()</text>
+    <text x="10" y="124" class="node-attr">perimetro()</text>
+  </g>
+
+  <g transform="translate(50, 320)">
+    <rect x="0" y="0" width="160" height="54" class="node-sub" />
+    <text x="75" y="21" class="node-title">Cuadrado</text>
+    <line x1="0" y1="30" x2="160" y2="30" class="line line-sub" />
+    <text x="10" y="46" class="node-attr">lado</text>
+  </g>
+
+  <g transform="translate(320, 320)">
+    <rect x="0" y="0" width="160" height="54" class="node-sub" />
+    <text x="80" y="21" class="node-title">Circulo</text>
+    <line x1="0" y1="30" x2="160" y2="30" class="line line-sub" />
+    <text x="10" y="46" class="node-attr">radio</text>
+  </g>
+
+  <path d="M 130 320 L 130 262" class="arrow" marker-end="url(#arrowhead)" />
+  <path d="M 400 320 L 400 282" class="arrow" marker-end="url(#arrowhead)" />
+  <path d="M 400 92 L 400 150" class="arrow" marker-end="url(#diamond)" />
+  <path d="M 400 92 L 400 115 L 130 115 L 130 150" class="arrow" marker-end="url(#diamond)" />
+  <path d="M 400 92 L 400 115 L 670 115 L 670 150" class="arrow" marker-end="url(#diamond)" />
+</svg>
