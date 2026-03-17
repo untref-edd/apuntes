@@ -85,6 +85,7 @@ Usar clases CSS en `<defs><style>` para mantener consistencia y facilitar manten
 - Bordes redondeados: `rx="5"` para nodos
 - Flechas: marker tipo triángulo
 - Alineación de texto: `text-anchor="middle"` o `text-anchor="left"`
+- Ruteo de lineas: estilo Manhattan
 
 ## Reglas de Archivos
 
