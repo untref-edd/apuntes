@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 350">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 295">
 
   <defs>
     <style>
@@ -20,42 +20,32 @@
 
   <text x="400" y="40" class="title">Asignación de Variables</text>
 
-
   <g transform="translate(50, 100)">
     <text x="100" y="-20" class="code-example">x = 10</text>
-
 
     <rect x="20" y="20" width="80" height="50" rx="5" class="variable-node" />
     <text x="60" y="52" class="code">x</text>
 
-
     <path d="M 110 45 L 190 45" class="arrow" />
-
 
     <circle cx="230" cy="45" r="30" class="value-node" />
     <text x="230" y="52" class="code">10</text>
   </g>
 
-
   <g transform="translate(450, 100)">
     <text x="100" y="-20" class="code-example">x = 20</text>
-
 
     <rect x="20" y="20" width="80" height="50" rx="5" class="variable-node" />
     <text x="60" y="52" class="code">x</text>
 
-
     <path d="M 110 45 L 190 45" class="arrow" />
-
 
     <circle cx="230" cy="45" r="30" class="value-node" />
     <text x="230" y="52" class="code">20</text>
 
+    <path d="M 110 60 L 200 110" stroke="#cc0000" stroke-width="2" stroke-dasharray="5,5" opacity="0.5" />
 
-    <circle cx="230" cy="150" r="30" fill="#f0f0f0" stroke="#cccccc" stroke-width="2" stroke-dasharray="5,5" />
-    <text x="230" y="157" class="code" fill="#999999">10</text>
-
-
-    <path d="M 80 70 L 200 130" stroke="#cc0000" stroke-width="2" stroke-dasharray="5,5" opacity="0.5" />
+    <circle cx="230" cy="125" r="30" fill="#f0f0f0" stroke="#cccccc" stroke-width="2" stroke-dasharray="5,5" />
+    <text x="230" y="132" class="code" fill="#999999">10</text>
   </g>
 </svg>
