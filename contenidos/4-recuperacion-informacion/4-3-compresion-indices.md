@@ -88,7 +88,7 @@ class: only-dark-mode
 Compresión del diccionario de términos usando una cadena única.
 ```
 
-En la figura anterior se observa como se almacenan los términos "programa", ***"programable"***, ***"programación"***, ***"programador"*** y ***"programar"*** en una sola cadena. Cada término se referencia mediante un puntero que indica su posición inicial, la palabra termina justo antes del siguiente puntero.
+En la figura anterior se observa como se almacenan los términos "programa", **_"programable"_**, **_"programación"_**, **_"programador"_** y **_"programar"_** en una sola cadena. Cada término se referencia mediante un puntero que indica su posición inicial, la palabra termina justo antes del siguiente puntero.
 
 Con este esquema si se utilizan 4 bytes para la frecuencia, 4 bytes para la referencia a la lista de postings y 4 bytes para la referencia al término, se utilizan 12 bytes por término en el diccionario. Si el diccionario tiene 1 millón de términos, se utilizan 12 MB para almacenar el diccionario más el espacio necesario para la cadena de caracteres.
 

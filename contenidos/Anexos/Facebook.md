@@ -15,7 +15,7 @@ description: Obtener acceso a la API de Facebook para análisis de datos de rede
 
 Este instructivo detalla el proceso completo para registrarse como desarrollador de Meta (Facebook), crear una aplicación y generar el Token de Acceso de Usuario necesario para realizar análisis de datos de redes sociales, explorar grafos de amistades y acceder a información pública usando Python.
 
-## Como obtener un ***"Access Token"*** de Facebook para Análisis de Datos
+## Como obtener un **_"Access Token"_** de Facebook para Análisis de Datos
 
 El primer paso es crear una cuenta de desarrollador en la plataforma Meta.
 
@@ -89,9 +89,9 @@ Una vez aprobada tu cuenta de desarrollador, puedes crear aplicaciones para acce
 
 ## Generar y Configurar el Token de Acceso de Usuario
 
-Este es el paso más importante: obtener la ***"llave"*** para acceder a los datos de la Graph API.
+Este es el paso más importante: obtener la **_"llave"_** para acceder a los datos de la Graph API.
 
-1. Abrir el Explorador de la ***API Graph***
+1. Abrir el Explorador de la **_API Graph_**
 
    - En el menú lateral izquierdo del panel de la aplicación, navegar a **Herramientas** > **Explorador de la API Graph**.
 

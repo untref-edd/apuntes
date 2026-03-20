@@ -52,4 +52,4 @@ Para aprobar la materia, hay que aprobar un examen final. Para poder rendirlo, e
 - [Santiago Rojo](mailto:tiagox@gmail.com)
 - [Fabián Lagorio](mailto:falago@gmail.com)
 
-***¡Bienvenidos a Estructuras de Datos!***
+**_¡Bienvenidos a Estructuras de Datos!_**

@@ -138,7 +138,7 @@ tags: hide-output
 type(docente1)
 ```
 
-En el ejemplo anterior, la clase `Docente` hereda de la clase `Persona`. Es decir un `Docente` ***es una*** `Persona` y por lo tanto tiene todos los atributos y métodos de cualquier `Persona` y además tiene nuevos atributos y métodos como `Docente`.
+En el ejemplo anterior, la clase `Docente` hereda de la clase `Persona`. Es decir un `Docente` **_es una_** `Persona` y por lo tanto tiene todos los atributos y métodos de cualquier `Persona` y además tiene nuevos atributos y métodos como `Docente`.
 
 El constructor de la clase `Docente` espera todos los parámetros para poder instanciar un nuevo objeto del tipo `Docente`, esto es el `nombre` y la `edad` de la `Persona` y la `materia` de la que es `Docente`.
 
@@ -150,7 +150,7 @@ En este caso como tanto `Docente` como `Persona` tienen un constructor, `__init_
 
 Con esta estrategia se evita la duplicación de código y se asegura que los atributos de la clase base se inicialicen correctamente. Además, si por algún motivo hay que modificar el constructor de la clase base, no es necesario cambiar el código de la subclase.
 
-En el método `presentar`, se llama al método `saludar` de la clase base `Persona` utilizando `self.saludar()`, lo que permite reutilizar el comportamiento definido en la clase base. En este caso como el método `saludar` no fue ***sobreescrito*** en la clase `Docente`, directamente se puede utilizar `self.saludar()` para llamar al método de la clase base, sin problemas.
+En el método `presentar`, se llama al método `saludar` de la clase base `Persona` utilizando `self.saludar()`, lo que permite reutilizar el comportamiento definido en la clase base. En este caso como el método `saludar` no fue **_sobreescrito_** en la clase `Docente`, directamente se puede utilizar `self.saludar()` para llamar al método de la clase base, sin problemas.
 
 ### Herencia múltiple
 
@@ -301,7 +301,7 @@ Diagrama de clases de Ayudante
 ---
 class: hint
 ---
-Un ***diagrama de clases***, es un diagrama estático que muestra la estructura de un sistema mediante las clases que lo componen y sus relaciones. Una flecha con una línea continua y un triángulo en la punta indica herencia, y en cada clase se pueden ver los atributos y métodos que se definen en cada una.
+Un **_diagrama de clases_**, es un diagrama estático que muestra la estructura de un sistema mediante las clases que lo componen y sus relaciones. Una flecha con una línea continua y un triángulo en la punta indica herencia, y en cada clase se pueden ver los atributos y métodos que se definen en cada una.
 
 En general no se muestran los atributos y métodos heredados, ni los constructores, pero si los métodos que se sobrescriben, es decir, que se redefinen en una subclase. En el diagrama anterior el método `presentar` de la clase `Ayudante` sobrescribe el método `presentar` de las clases `Docente` y `Estudiante`.
 
@@ -360,7 +360,7 @@ Por eso cuando se dice que en Python todo es un objeto, se refiere a que todas l
 
 ### *Duck typing*
 
-El ***duck typing*** es un concepto en Python que se basa en la idea de que el tipo de un objeto se determina por su comportamiento en lugar de su clase. Es decir, si un objeto tiene los métodos y atributos necesarios para realizar una tarea, se puede tratar como si fuera de un tipo específico, sin necesidad de verificar su clase.
+El **_duck typing_** es un concepto en Python que se basa en la idea de que el tipo de un objeto se determina por su comportamiento en lugar de su clase. Es decir, si un objeto tiene los métodos y atributos necesarios para realizar una tarea, se puede tratar como si fuera de un tipo específico, sin necesidad de verificar su clase.
 
 ```{epigraph}
 "Si camina como un pato, nada como un pato y grazna como un pato, entonces probablemente sea un pato."
@@ -372,7 +372,7 @@ Este concepto es muy poderoso en Python, ya que permite que diferentes objetos p
 
 ### Ejemplo
 
-En el siguiente ejemplo, cuyo diagrama de clases se muestra a continuación. Primero se define `Punto` que representa un punto en el plano cartesiano y luego se definen las Figuras Geométricas `Cuadrado`, `Punto`, `Elipse` y `Punto` que están ***compuestas*** por `Punto`. Cada figura tiene un método `area` que calcula su área, pero cada figura lo implementa de manera diferente.
+En el siguiente ejemplo, cuyo diagrama de clases se muestra a continuación. Primero se define `Punto` que representa un punto en el plano cartesiano y luego se definen las Figuras Geométricas `Cuadrado`, `Punto`, `Elipse` y `Punto` que están **_compuestas_** por `Punto`. Cada figura tiene un método `area` que calcula su área, pero cada figura lo implementa de manera diferente.
 
 ```{figure} ../_static/figures/1-taller-de-python/1-6-poo/diagrama_figuras_light.svg
 ---

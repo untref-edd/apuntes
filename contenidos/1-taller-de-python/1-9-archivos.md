@@ -45,7 +45,7 @@ Carpeta (o directorio)
 
 Para que una aplicación o programa pueda crear, leer o escribir un archivo o carpeta debe realizar una solicitud al SO, principal responsable de la gestión del hardware.
 
-El SO responde a la petición con un **descriptor de archivo** (_**file descriptor**_). Este **descriptor de archivo** es un número entero que identifica de manera única un archivo abierto en ese momento.
+El SO responde a la petición con un **descriptor de archivo** (**file descriptor**\_). Este **descriptor de archivo** es un número entero que identifica de manera única un archivo abierto en ese momento.
 
 Mientras la aplicación tiene el archivo abierto, puede leer y escribir en él. Cuando la aplicación ya no necesita más el archivo debe _cerrarlo_. Al cerrar el archivo se notifica al SO que se terminó de utilizar y por lo tanto queda disponible para que otra aplicación o programa pueda manipularlo.
 

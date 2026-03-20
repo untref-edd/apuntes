@@ -62,7 +62,7 @@ Cuando se trata de algoritmos sin pesos en las aristas, se acostumbra definir el
 
 ## Algoritmo de Dijkstra
 
-El ***algoritmo de Dijkstra*** fue propuesto por [Edsger W. Dijkstra](https://es.wikipedia.org/wiki/Edsger_Dijkstra) en 1956 y publicado en 1959. Es un algoritmo ávido o ***greedy*** que encuentra todos los caminos mínimos desde un nodo inicial a todos los demás nodos en un grafo ponderado.
+El **_algoritmo de Dijkstra_** fue propuesto por [Edsger W. Dijkstra](https://es.wikipedia.org/wiki/Edsger_Dijkstra) en 1956 y publicado en 1959. Es un algoritmo ávido o **_greedy_** que encuentra todos los caminos mínimos desde un nodo inicial a todos los demás nodos en un grafo ponderado.
 
 Sigue una estrategia de exploración de los nodos más cercanos al origen, actualizando las distancias mínimas a medida que avanza.
 
@@ -70,7 +70,7 @@ La inicialización del algoritmo consiste a marcar a todos los vértices con dis
 
 En cada ciclo se extrae el vértice con la distancia más corta desde el origen, se lo marca como visitado y se exploran sus vecinos. Si se encuentra un vecino ya visitado, se ignora, ya que no se puede mejorar su distancia. A cada vecino se le actualiza su distancia si se encuentra un camino más corto y se encola.
 
-El paso ***greedy*** del algoritmo consiste en seleccionar el vértice no visitado con la distancia más corta y **marcarlo como visitado**. Es decir el algoritmo considera que esa distancia no se podrá mejorar por ningún otro camino alternativo.
+El paso **_greedy_** del algoritmo consiste en seleccionar el vértice no visitado con la distancia más corta y **marcarlo como visitado**. Es decir el algoritmo considera que esa distancia no se podrá mejorar por ningún otro camino alternativo.
 
 ```{code-block}
 ---
@@ -124,15 +124,15 @@ caminos_minimos.show_dijkstra_step_by_step(G, SOURCE)
 
 ### Aristas negativas
 
-Como el ***algoritmo de Dijkstra*** se basa en extraer de la cola de prioridad el vértice con la menor distancia provisional desde el origen y marcarlo como **visitado** —suponiendo que esa distancia ya no podrá mejorarse—, surge un problema cuando existen aristas con peso negativo ya que podría aparecer más adelante un camino más corto hacia un vértice que ya fue marcado como **visitado**, lo que rompe el supuesto fundamental del algoritmo.
+Como el **_algoritmo de Dijkstra_** se basa en extraer de la cola de prioridad el vértice con la menor distancia provisional desde el origen y marcarlo como **visitado** —suponiendo que esa distancia ya no podrá mejorarse—, surge un problema cuando existen aristas con peso negativo ya que podría aparecer más adelante un camino más corto hacia un vértice que ya fue marcado como **visitado**, lo que rompe el supuesto fundamental del algoritmo.
 
-Si hay alguna arista negativa ***Dijkstra*** puede fallar o no según el vértice que se considere como origen y la topología del grafo, por lo tanto para asegurar que el algoritmo funciona siempre:
+Si hay alguna arista negativa **_Dijkstra_** puede fallar o no según el vértice que se considere como origen y la topología del grafo, por lo tanto para asegurar que el algoritmo funciona siempre:
 
 ```{important} Importante
-El algoritmo de ***Dijkstra*** no admite grafos con aristas con pesos negativos para poder asegurar su correcto funcionamiento
+El algoritmo de **_Dijkstra_** no admite grafos con aristas con pesos negativos para poder asegurar su correcto funcionamiento
 ```
 
-A continuación se muestra un ejemplo con una arista negativa donde el algoritmo de ***Dijkstra*** falla:
+A continuación se muestra un ejemplo con una arista negativa donde el algoritmo de **_Dijkstra_** falla:
 
 ```{code-cell} python
 import networkx as nx
@@ -189,11 +189,11 @@ Cada relajación puede provocar la inserción de un nuevo elemento en la cola de
 
 ## Algoritmo de Bellman-Ford
 
-El ***algoritmo de Bellman-Ford*** fue desarrollado de manera independiente por dos investigadores en la década de 1950: [Richard Bellman](https://es.wikipedia.org/wiki/Richard_Bellman), quien lo publicó en 1958 en el marco de su trabajo sobre programación dinámica, y [Lester R. Ford Jr.](https://en.wikipedia.org/wiki/L._R._Ford_Jr.), que lo había presentado unos años antes (1956).
+El **_algoritmo de Bellman-Ford_** fue desarrollado de manera independiente por dos investigadores en la década de 1950: [Richard Bellman](https://es.wikipedia.org/wiki/Richard_Bellman), quien lo publicó en 1958 en el marco de su trabajo sobre programación dinámica, y [Lester R. Ford Jr.](https://en.wikipedia.org/wiki/L._R._Ford_Jr.), que lo había presentado unos años antes (1956).
 
-Este algoritmo es una alternativa y complemento al ya conocido algoritmo de ***Dijkstra*** (1956) que ofrece una solución eficiente al problema de caminos mínimos desde un origen pero con la restricción de no tener aristas con pesos negativos.
+Este algoritmo es una alternativa y complemento al ya conocido algoritmo de **_Dijkstra_** (1956) que ofrece una solución eficiente al problema de caminos mínimos desde un origen pero con la restricción de no tener aristas con pesos negativos.
 
-En muchos problemas reales pueden aparecer aristas con pesos negativos, por ejemplo, en modelos económicos (pérdidas y ganancias), en análisis de redes de flujo o incluso en ciertas métricas de ingeniería de software o logística. En estos casos, ***Bellman-Ford*** ofrece una solución más general:
+En muchos problemas reales pueden aparecer aristas con pesos negativos, por ejemplo, en modelos económicos (pérdidas y ganancias), en análisis de redes de flujo o incluso en ciertas métricas de ingeniería de software o logística. En estos casos, **_Bellman-Ford_** ofrece una solución más general:
 
 - Permite calcular los caminos mínimos desde un nodo origen a todos los demás, incluso con pesos negativos.
 
@@ -210,7 +210,7 @@ $$
 
 donde $w(u, v)$ es el peso de la arista $u \to w$
 
-***Bellman-Ford*** se basa en la técnica de programación dinámica y en el principio de relajación de aristas:
+**_Bellman-Ford_** se basa en la técnica de programación dinámica y en el principio de relajación de aristas:
 
 La idea central es que, en un grafo sin ciclos negativos, el camino más corto entre dos vértices tiene a lo sumo $|V|−1$ aristas.
 
@@ -248,7 +248,7 @@ BELLMAN_FORD (G: DiGrafo, s: Vertice)
             REPORTAR error: grafo con ciclos negativos
 ```
 
-A continuación se muestra un ejemplo con una arista negativa donde el algoritmo de ***Dijkstra*** falla:
+A continuación se muestra un ejemplo con una arista negativa donde el algoritmo de **_Dijkstra_** falla:
 
 ```{code-cell} python
 import networkx as nx
@@ -272,7 +272,7 @@ caminos_minimos.show_bellman_ford_step_by_step(G, SOURCE)
 
 ### Complejidad del algoritmo de Bellman-Ford
 
-La complejidad temporal del ***algoritmo de Bellman-Ford*** está determinada por los dos ciclos anidados de las líneas 9 y 10. El bucle *REPETIR* se ejecuta $|V| - 1$ veces y el ciclo *PARA* se ejecuta $|A|$ veces y como adentro de los ciclos todas las operaciones son $O(1)$ queda:
+La complejidad temporal del **_algoritmo de Bellman-Ford_** está determinada por los dos ciclos anidados de las líneas 9 y 10. El bucle *REPETIR* se ejecuta $|V| - 1$ veces y el ciclo *PARA* se ejecuta $|A|$ veces y como adentro de los ciclos todas las operaciones son $O(1)$ queda:
 
 $$
 T(n)=O(|V|\times|A|)

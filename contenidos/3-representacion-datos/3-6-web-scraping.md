@@ -44,11 +44,11 @@ Web scraping es el proceso de extraer información de sitios web de forma automa
 
 Mientras que las APIs proporcionan interfaces estructuradas para acceder a datos, el web scraping permite obtener información de sitios que no ofrecen APIs o cuando se necesita acceder a datos que no están disponibles a través de ellas.
 
-Los artefactos que realizan web scraping se conocen comúnmente como ***"scrapers"***, ***"spiders"*** o ***"crawlers"***. Estos programas navegan por las páginas web, descargan su contenido HTML y extraen la información relevante.
+Los artefactos que realizan web scraping se conocen comúnmente como **_"scrapers"_**, **_"spiders"_** o **_"crawlers"_**. Estos programas navegan por las páginas web, descargan su contenido HTML y extraen la información relevante.
 
-Los buscadores web utilizan ***crawlers*** para indexar el contenido de la web y hacer que sea accesible a través de búsquedas. De alguna manera, los crawlers son la columna vertebral de los motores de búsqueda que permite a los buscadores descubrir y organizar la vasta cantidad de información disponible en Internet, almacenando en sus bases de datos no solo las URLs, sino también fragmentos de texto y metadatos asociados a cada página.
+Los buscadores web utilizan **_crawlers_** para indexar el contenido de la web y hacer que sea accesible a través de búsquedas. De alguna manera, los crawlers son la columna vertebral de los motores de búsqueda que permite a los buscadores descubrir y organizar la vasta cantidad de información disponible en Internet, almacenando en sus bases de datos no solo las URLs, sino también fragmentos de texto y metadatos asociados a cada página.
 
-El siguiente diagrama ilustra la arquitectura básica de un ***crawler***:
+El siguiente diagrama ilustra la arquitectura básica de un **_crawler_**:
 
 ```{figure} ../_static/figures/crawler_diagram_light.svg
 ---
@@ -215,10 +215,10 @@ def crawler_frontera(url_semilla,
 
     Parámetros:
     - url_semilla (str): URL inicial desde donde comienza el crawling.
-    - max_paginas (int, opcional): Número máximo de páginas a visitar 
+    - max_paginas (int, opcional): Número máximo de páginas a visitar
       (por defecto 50).
     - retraso (int o float, opcional): Tiempo de espera (en segundos) entre
-      solicitudes para evitar sobrecargar el servidor (por defecto 1).    
+      solicitudes para evitar sobrecargar el servidor (por defecto 1).
     - archivo_csv (str, opcional): Nombre del archivo CSV donde se
       guardarán los enlaces encontrados (por defecto 'enlaces.csv').
     """

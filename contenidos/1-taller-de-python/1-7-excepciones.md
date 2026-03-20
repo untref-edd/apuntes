@@ -47,10 +47,10 @@ finally:
 `try`
 : Este bloque contiene el código que podría generar una excepción. Mientras se ejecuta este bloque, Python *“vigila”* la aparición de errores.
 : Si se produce una excepción, la ejecución del bloque `try` se interrumpe inmediatamente y se transfiere el control al primer `except` que pueda manejarla.
-: Se suele decir que el código dentro de un `try` está ***protegido***, porque ante un error no provoca que el programa finalice abruptamente, sino que permite reaccionar y manejar la situación. Por ejemplo, si debemos dividir dos números cuyo valor no conocemos de antemano, existe la posibilidad de una división por cero; por eso el cálculo puede colocarse dentro de un bloque `try` para atraparlo y manejarlo.
+: Se suele decir que el código dentro de un `try` está **_protegido_**, porque ante un error no provoca que el programa finalice abruptamente, sino que permite reaccionar y manejar la situación. Por ejemplo, si debemos dividir dos números cuyo valor no conocemos de antemano, existe la posibilidad de una división por cero; por eso el cálculo puede colocarse dentro de un bloque `try` para atraparlo y manejarlo.
 
 `except`
-: En Python, un bloque `except` se ejecuta solo si ocurre una excepción en el bloque `try` asociado. Este bloque actúa como un ***manejador de excepciones*** (*exception handler*) y puede realizar diversas acciones: registrar el error en un log, mostrar un mensaje al usuario, o incluso intentar recuperarse ejecutando una operación alternativa.
+: En Python, un bloque `except` se ejecuta solo si ocurre una excepción en el bloque `try` asociado. Este bloque actúa como un **_manejador de excepciones_** (*exception handler*) y puede realizar diversas acciones: registrar el error en un log, mostrar un mensaje al usuario, o incluso intentar recuperarse ejecutando una operación alternativa.
 : El comportamiento del `except` depende del tipo de excepción y de la lógica del programa. Por ejemplo, si se produce una división por cero (`ZeroDivisionError`), el `except` podría mostrar un mensaje de error o sustituir el divisor por un valor por defecto para continuar la ejecución.
 : Si no ocurre ninguna excepción en el bloque `try`, ningún `except` se ejecuta y el flujo continúa normalmente después del `try`/`except`.
 : Cuando se lanza una excepción, Python busca el primer bloque `except` que pueda manejarla.
@@ -239,7 +239,7 @@ Las excepciones se lanzan utilizando la instrucción `raise`, seguida de una ins
 raise StackException("La pila está vacía")
 ```
 
-En el manejo de excepciones hay dos momentos bien definidos, cuando se ***lanza una excepción*** y cuando se ***captura una excepción***.
+En el manejo de excepciones hay dos momentos bien definidos, cuando se **_lanza una excepción_** y cuando se **_captura una excepción_**.
 
 El lanzamiento se realiza cuando surge una situación excepcional que el programa no puede manejar de manera normal. En este punto, se utiliza la instrucción `raise` para generar la excepción y transferir el control a un bloque `except` correspondiente.
 
@@ -290,7 +290,7 @@ except Exception:
 ```
 
 No usar excepciones para control de flujo normal
-: Las excepciones son para manejar situaciones excepcionales, no para reemplazar estructuras de control (if, for, etc.).
+: Las excepciones son para manejar situaciones excepcionales, no para reemplazar estructuras de control (`if`, `for`, etc.).
 
 Registrar o informar el error
 : Si la excepción se maneja sin mostrar o registrar nada, puede ser difícil saber qué ocurrió. Se recomienda usar `logging` o `print` (en entornos simples) para tener contexto de la excepción.

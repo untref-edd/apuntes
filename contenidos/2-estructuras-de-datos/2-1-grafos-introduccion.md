@@ -217,7 +217,7 @@ $$
 
 ### Grafo Dirigido Acíclico
 
-Es un grafo cuyas aristas son dirigidas y no presenta ciclos, también conocidos como _**DAG**_ por su sigla en inglés (_Directed Acyclic Graph_). Los _**DAG**_ son un tipo de grafo con amplias aplicaciones y se utilizan en diversas áreas como la informática, la biología, etc.
+Es un grafo cuyas aristas son dirigidas y no presenta ciclos, también conocidos como **_DAG_** por su sigla en inglés (_Directed Acyclic Graph_). Los **_DAG_** son un tipo de grafo con amplias aplicaciones y se utilizan en diversas áreas como la informática, la biología, etc.
 
 Visto de otra forma si partimos de un vértice cualquiera del grafo no existe ningún camino que permita regresar al mismo vértice.
 
@@ -258,7 +258,7 @@ Es un vértice cuyo grado de entrada es 0
 Es un vértice cuyo grado de salida es 0
 
 ```{important} Importante
-Un ***DAG*** siempre tiene al menos un vértice ***fuente*** y un vértice ***sumidero***.
+Un **_DAG_** siempre tiene al menos un vértice **_fuente_** y un vértice **_sumidero_**.
 
 En el grafo de la figura anterior, el vértice $V_2$ es una fuente y el vértice $V_5$ es un sumidero.
 ```
@@ -488,7 +488,7 @@ plt.title("Grafo Dirigido")  # Título de la figura
 plt.show()  # Mostrar la figura
 ```
 
-Un _**layout**_ es un diccionario {nodo: (x, y)} con la posición de cada vértice. **NetworkX** incluye varios algoritmos para calcular layouts.
+Un **_layout_** es un diccionario {nodo: (x, y)} con la posición de cada vértice. **NetworkX** incluye varios algoritmos para calcular layouts.
 
 `spring_layout`
 : Posiciona nodos con un modelo de fuerzas.
