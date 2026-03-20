@@ -130,7 +130,7 @@ print(f"Directorio actual: {directorio_actual}")
 
 print("Archivos en directorio actual:")
 for archivo in os.listdir("."):
-    print(f" - {archivo}")
+    print(f"\t- {archivo}")
 
 # Cambia al directorio temporal
 os.chdir(tmp_dir)
@@ -138,8 +138,7 @@ os.chdir(tmp_dir)
 # Crear estructura de carpetas
 if not os.path.exists("datos"):
     os.makedirs("datos/procesados")
-    print(f"Estructura de carpetas creada: "
-          f"{os.path.abspath('datos/procesados')}")
+    print(f"Estructura de carpetas creada: " f"{os.path.abspath('datos/procesados')}")
 
 # Trabajar con rutas
 # Construir una ruta a un archivo.
@@ -148,6 +147,7 @@ if not os.path.exists("datos"):
 # operativo. Es decir este programa funcionará en cualquier sistema operativo
 # sin modificaciones.
 ruta_archivo = os.path.join("datos", "archivo.txt")
+
 print(f"Ruta construida: {ruta_archivo}")
 print(f"Ruta absoluta: {os.path.abspath(ruta_archivo)}")
 print(f"¿Existe la ruta?: {os.path.exists(ruta_archivo)}")
@@ -155,7 +155,7 @@ print(f"¿Existe la ruta?: {os.path.exists(ruta_archivo)}")
 os.chdir(directorio_actual)
 ```
 
-### Módulo `pathlib` (Recomendado para proyectos nuevos)
+### Módulo `pathlib`
 
 Python 3.4+ incluye `pathlib`, que ofrece una interfaz más moderna y orientada a objetos:
 
@@ -217,11 +217,11 @@ from datetime import datetime
 # Ejemplo de uso de os.walk()
 for raiz, dirs, archivos in os.walk("."):
     # Excluir directorios ocultos (como .ipynb_checkpoints)
-    dirs[:] = [d for d in dirs if not d.startswith('.')]
+    dirs[:] = [d for d in dirs if not d.startswith(".")]
 
     print(f"Carpeta: {raiz}")
     for archivo in archivos:
-        if archivo.startswith('.'):
+        if archivo.startswith("."):
             continue
 
         ruta_completa = os.path.join(raiz, archivo)
@@ -288,9 +288,7 @@ tags: hide-output
 archivo = os.path.join(original_cwd, "../_static/code/archivos/edd.txt")
 
 try:
-    f = open(
-        archivo, "r", encoding="utf-8"
-    )  # Puede levantar FileNotFoundError
+    f = open(archivo, "r", encoding="utf-8")  # Puede levantar FileNotFoundError
 except FileNotFoundError:
     print("Archivo no encontrado")
 else:
@@ -312,9 +310,7 @@ tags: hide-output
 archivo = os.path.join(original_cwd, "../_static/code/archivos/edd.txt")
 
 try:
-    f = open(
-        archivo, "r", encoding="utf-8"
-    )  # Puede levantar FileNotFoundError
+    f = open(archivo, "r", encoding="utf-8")  # Puede levantar FileNotFoundError
 except FileNotFoundError:
     print("Archivo no encontrado")
 else:
@@ -329,22 +325,21 @@ else:
 
 #### Iterar línea por línea
 
+##### Iterando con `while`
+
 ```{code-cell} python
 ---
 tags: hide-output
 ---
-# Iterar con while
 archivo = os.path.join(original_cwd, "../_static/code/archivos/edd.txt")
 
 try:
-    f = open(
-        archivo, "r", encoding="utf-8"
-    )  # Puede levantar FileNotFoundError
+    f = open(archivo, "r", encoding="utf-8")  # Puede levantar FileNotFoundError
 except FileNotFoundError:
     print("Archivo no encontrado")
 else:
     try:
-        while (linea := f.readline()):
+        while linea := f.readline():
             print(linea)
     except Exception as e:
         print(f"Error inesperado: {e}")
@@ -352,17 +347,16 @@ else:
         f.close()
 ```
 
+##### Iterando con `for`
+
 ```{code-cell} python
 ---
 tags: hide-output
 ---
-# Iterar con for
-
 archivo = os.path.join(original_cwd, "../_static/code/archivos/edd.txt")
 
 try:
-    f = open(archivo, "r", encoding="utf-8")
-    # Puede levantar FileNotFoundError
+    f = open(archivo, "r", encoding="utf-8")  # Puede levantar FileNotFoundError
 except FileNotFoundError:
     print("Archivo no encontrado")
 else:
@@ -384,7 +378,7 @@ tags: hide-output
 archivo = os.path.join(original_cwd, "../_static/code/archivos/edd.txt")
 
 try:
-    f = open(archivo, "r", encoding="utf-8") # Puede levantar FileNotFoundError
+    f = open(archivo, "r", encoding="utf-8")  # Puede levantar FileNotFoundError
 except FileNotFoundError:
     print("Archivo no encontrado")
 else:
@@ -524,9 +518,7 @@ def mostrar_archivo(archivo):
 
 
 # Copiamos texto.txt a copia.txt
-copiar_archivo(
-    "texto.txt", "copia.txt"
-)
+copiar_archivo("texto.txt", "copia.txt")
 mostrar_archivo("copia.txt")
 ```
 
@@ -550,9 +542,7 @@ def comparar_archivos(archivo1, archivo2):
 
 
 # Comparamos texto.txt con copia.txt
-comparar_archivos(
-    "texto.txt", "copia.txt"
-)
+comparar_archivos("texto.txt", "copia.txt")
 ```
 
 ## Recursos para profundizar
