@@ -106,16 +106,12 @@ if __name__ == "__main__":
     juan = Persona("Juan Perez")
     carla = Persona("Carla Sanchez")
 
-    with open(
-        os.path.join(tmp_dir, "personas.p"), "wb"
-    ) as contenedor:
+    with open(os.path.join(tmp_dir, "personas.p"), "wb") as contenedor:
         pickle.dump(ana, contenedor)
         pickle.dump(juan, contenedor)
         pickle.dump(carla, contenedor)
 
-    with open(
-        os.path.join(tmp_dir, "personas.p"), "rb"
-    ) as contenedor:
+    with open(os.path.join(tmp_dir, "personas.p"), "rb") as contenedor:
         for linea in contenedor:
             print(linea)
             print()
@@ -226,7 +222,7 @@ A continuación se serializa y persiste una función que en cuya clausura se enc
 
 ```{code-cell} python
 ---
-tags: hide-output
+tags: remove-output
 ---
 import dill
 
@@ -302,6 +298,9 @@ with open(os.path.join(tmp_dir, "log.log"), "r") as f:
 A continuación se crea un `pickle` con un objeto malicioso que ejecuta un comando.
 
 ```{code-cell} python
+---
+tags: remove-output
+---
 # Este código simula la creación de un archivo malicioso que borra log.log
 import pickle
 import os
@@ -320,6 +319,9 @@ with open(os.path.join(tmp_dir, "malicioso.p"), "wb") as f:
 Si alguien deserializa este archivo sin saber su contenido borra el archivo `log.log`.
 
 ```{code-cell} python
+---
+tags: remove-output
+---
 import pickle
 
 with open(os.path.join(tmp_dir, "malicioso.p"), "rb") as f:
@@ -330,7 +332,7 @@ Al intentar leer de nuevo el archivo `log.log` vemos que no existe más
 
 ```{code-cell} python
 ---
-tags: raises-exception, hide-output
+tags: raises-exception
 ---
 with open(os.path.join(tmp_dir, "log.log"), "r") as f:
     contenido = f.read()
@@ -352,10 +354,10 @@ with open(os.path.join(tmp_dir, "log.log"), "r") as f:
 
 ## Módulo `json`
 
-El módulo `json` se basa en el estandar **JSON** (JavaScript Object Notation) y presenta un enfoque diferente al de `pickle` y `dill`, ya que se basa en texto plano y no permite la ejecución de código al deserializar. Esto lo convierte en una opción más segura para la serialización y el intercambio de datos simples, como diccionarios y listas. Los archivos JSON son legibles por humanos y pueden ser fácilmente compartidos entre diferentes lenguajes de programación.
+El módulo `json` se basa en el estandar [**{abbr}`JSON (JavaScript Object Notation)`**](https://www.json.org/) y presenta un enfoque diferente al de `pickle` y `dill`, ya que se basa en texto plano y no permite la ejecución de código al deserializar. Esto lo convierte en una opción más segura para la serialización y el intercambio de datos simples, como diccionarios y listas. Los archivos JSON son legibles por humanos y pueden ser fácilmente compartidos entre diferentes lenguajes de programación.
 
 ```{note} Nota
-**JSON** (_JavaScript Object Notation_) es un **formato de intercambio de datos basado en texto**.
+**JSON** es un **formato de intercambio de datos basado en texto**.
 Se originó en el ecosistema de **JavaScript**, pero rápidamente se convirtió en un **estándar independiente del lenguaje** debido a su simplicidad y legibilidad.
 ```
 
@@ -406,7 +408,7 @@ with open(os.path.join(tmp_dir, "datos.json"), "r") as f:
     print(datos_cargados)
 ```
 
-Un archivo **_JSON_** solo puede contener un único diccionario o una lista, por lo que si hay que guardar múltiples objetos, se deben agrupar en una lista.
+Un archivo **_JSON_** solo puede contener un único valor (ya sea un número, un string, un diccionario, una lista u otro tipo de dato), por lo que si hay que guardar múltiples valores se podrían agrupar en una lista.
 
 ```{code-cell} python
 ---
@@ -435,7 +437,7 @@ print(lista_usuarios[0]["nombre"])  # Acceso al primer usuario
 ```{note} Nota
 Existe un formato derivado de **JSON** denominado **JSONL** (_JSON Lines_), que consiste en una serie de objetos JSON separados por saltos de línea. Es útil para el procesamiento de grandes volúmenes de datos, ya que permite leer y escribir un objeto a la vez.
 
-Este enfoque es muy usado en big data y machine learning, porque permite procesar el archivo registro por registro sin necesidad de cargarlo entero en memoria.
+Este enfoque es muy usado en _Big Data_ y _Machine learning_, porque permite procesar el archivo registro por registro sin necesidad de cargarlo entero en memoria.
 ```
 
 ### Funciones más usadas del módulo `json`
@@ -450,7 +452,7 @@ Este enfoque es muy usado en big data y machine learning, porque permite procesa
 | `json.JSONDecoder`              | Clase que define cómo convertir JSON en objetos Python. Se puede extender para deserializar estructuras personalizadas.             | [Documentación de `JSONDecoder`](https://docs.python.org/es/3/library/json.html#json.JSONDecoder)         |
 | Excepciones (`JSONDecodeError`) | Excepción que se lanza cuando un documento JSON no tiene el formato correcto.                                                       | [Documentación de `JSONDecodeError`](https://docs.python.org/es/3/library/json.html#json.JSONDecodeError) |
 
-## Tabla Comparativa: `pickle` vs `dill` vs `json`
+## Tabla comparativa: `pickle` vs `dill` vs `json`
 
 | Característica                | `pickle`                            | `dill`                                                      | `json`                                                  |
 | ----------------------------- | ----------------------------------- | ----------------------------------------------------------- | ------------------------------------------------------- |
@@ -474,8 +476,6 @@ Para resolver esto, Python ofrece módulos como `shelve` y `dbm`, que permiten o
 
 `dbm`
 : Proporciona acceso a una familia de bases de datos simples, en las que cada clave se asocia a un valor binario. A diferencia de `shelve`, en `dbm` tanto las claves como los valores deben ser **cadenas de bytes** (`bytes`). Es más básico y portable, pero no admite directamente objetos de Python, sólo datos crudos en forma de texto o binario.
-
-______________________________________________________________________
 
 ## Módulo `shelve`
 
