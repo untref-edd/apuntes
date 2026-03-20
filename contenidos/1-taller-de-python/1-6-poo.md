@@ -43,6 +43,9 @@ Constructor
 En Python, una clase es una plantilla para crear objetos, similar a los `struct` de Go, una clase permite definir nuevos tipos de datos. Un objeto, en cambio, es una instancia de una clase y puede tener atributos (datos) y métodos (funciones). Pueden existir múltiples objetos de la misma clase, cada uno con sus propios valores para los atributos.
 
 ```{code-cell} python
+---
+tags: remove-output
+---
 class Persona:
     def __init__(self, nombre, edad):
         self.nombre = nombre
@@ -107,7 +110,7 @@ Una clase puede heredar de otra clase, o dicho de otra manera, puede extender ot
 
 ```{code-cell} python
 ---
-tags: hide-output
+tags: remove-output
 ---
 class Docente(Persona):
     def __init__(self, nombre, edad, materia):
@@ -157,6 +160,9 @@ En el método `presentar`, se llama al método `saludar` de la clase base `Perso
 Python va más allá que otros lenguajes de programación orientados a objetos y permite la herencia múltiple, lo que significa que una clase puede heredar de múltiples clases al mismo tiempo. Esto se logra especificando múltiples clases base en la definición de la clase.
 
 ```{code-cell} python
+---
+tags: remove-output
+---
 class Persona:
     def __init__(self, nombre, edad):
         self.nombre = nombre

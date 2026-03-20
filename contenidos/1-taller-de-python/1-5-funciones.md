@@ -149,6 +149,9 @@ Si en una misma función se utilizan parámetros posicionales, nombrados, posici
 Por ejemplo:
 
 ```{code-cell} python
+---
+tags: remove-output
+---
 def funcion_ejemplo(param1, param2="valor_por_defecto", *args, **kwargs):
     print(f"param1: {param1}, param2: {param2}")
     print(f"args: {args}")
@@ -476,6 +479,9 @@ En este ejemplo se utiliza `*args` y `**kwargs` para permitir que la función de
 Python proporciona una sintaxis especial para aplicar decoradores a funciones utilizando el símbolo `@` antes de la definición de la función. Esto es equivalente a decorar la función manualmente como se mostró anteriormente.
 
 ```{code-cell} python
+---
+tags: remove-output
+---
 def decorador(func):
     def funcion_decorada(*args, **kwargs):
         resultado = f"El resultado de la operación es: {func(*args, **kwargs)}"

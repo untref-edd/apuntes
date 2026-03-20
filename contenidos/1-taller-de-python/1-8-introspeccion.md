@@ -46,7 +46,7 @@ ______________________________________________________________________
 
 ```{code-cell} python
 ---
-tags: hide-output
+tags: remove-output
 ---
 class Persona:
     """Clase simple para ejemplo de introspección."""

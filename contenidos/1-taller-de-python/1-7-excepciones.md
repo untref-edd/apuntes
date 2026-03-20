@@ -283,8 +283,12 @@ Usar excepciones específicas primero
 ```{code-block} python
 except FileNotFoundError:
     ...
+
+
 except OSError:
     ...
+
+
 except Exception:
     ...
 ```
