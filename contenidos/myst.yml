@@ -4,30 +4,25 @@ version: 1
 project:
   id: baa50ab6-944d-49f8-84e9-438fc17cb67a
   title: Apuntes de Estructuras de Datos
-  description: Apuntes de la materia Estructuras de Datos - UNTREF
+  description: Apuntes de la materia Estructuras de Datos - UNTreF
   keywords:
-    [
-      "estructuras de datos",
-      "python",
-      "algoritmos",
-      "untref",
-      "ingenieria en computación",
-    ]
+    - estructuras de datos
+    - python
+    - algoritmos
+    - untref
+    - ingeniería en computación
   authors:
     - name: Cátedra de Estructuras de Datos
   github: untref-edd/apuntes
-  abstract: "Apuntes de la materia Estructuras de Datos - UNTREF"
-  # To autogenerate a Table of Contents, run "jupyter book init --write-toc"
+  abstract: Apuntes de la materia Estructuras de Datos - UNTreF
   copyright: "2025"
   license: CC-BY-SA-4.0
   bibliography:
     - references.bib
-
   exports:
     - format: typst
       template: templates/plain_typst_book
       output: exports/apunte-edd.pdf
-
   numbering:
     equation: true
     figure: true
@@ -79,16 +74,32 @@ project:
         - file: Anexos/Facebook.md
         - file: Anexos/Twitter.md
 
-
 site:
   template: book-theme
+  # Ref.: https://mystmd.org/guide/website-templates#site-options
   options:
-    folders: true
+    # hide_toc: true
+    # hide_footer_links: true
+    # hide_outline: true
+    # hide_title_block: true
+    hide_authors: true
+    # hide_search: true
+    # outline_maxdepth: 6
+    # twitter: untref_edd
+    favicon: _static/figures/favicon.ico
     logo: _static/figures/untref-logo.svg
     logo_dark: _static/figures/untref-logo-white.svg
-    favicon: _static/figures/favicon.ico
+    # logo_text: Estructuras de Datos - UNTreF
+    # logo_url: https://untref-edd.github.io/apuntes/
+    logo_alt: Estructuras de Datos - UNTreF
+    # analytics_google: UA-XXXXXXXXX-X
+    # analytics_plausible: untref-edd.github.io
+    # numbered_references: true
+    folders: true
+    # internal_domains: untref-edd.github.io
     style: _static/css/custom.css
-    toggles: true
+    # footer:
+    # primary_sidebar_footer:
   nav:
     - title: Slack
       url: https://untref-edd.slack.com
