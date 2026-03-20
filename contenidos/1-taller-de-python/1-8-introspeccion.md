@@ -40,8 +40,6 @@ En **Java** estas capacidades existen mediante *Reflection API*, mientras que en
 | `callable(obj)`                 | Indica si el objeto es invocable como función o método. |
 | `help(obj)`                     | Muestra la documentación.                               |
 
-______________________________________________________________________
-
 ## Ejemplo básico de introspección
 
 ```{code-cell} python
@@ -59,21 +57,38 @@ class Persona:
         print(f"Hola, soy {self.nombre} y tengo {self.edad} años.")
 
 
-# Crear instancia
 persona = Persona("Alice", 30)
+```
 
-# Inspección
+### Inspección
+
+```{code-cell} python
+---
+tags: hide-output
+---
 print("Tipo de objeto:", type(persona))
 print("Atributos de instancia:", vars(persona))
 print("ID (memoria):", id(persona))
 print("¿Tiene atributo 'nombre'?", hasattr(persona, "nombre"))
 print("Nombre:", getattr(persona, "nombre"))
+```
 
-# Modificación controlada
+### Modificación controlada
+
+```{code-cell} python
+---
+tags: hide-output
+---
 setattr(persona, "edad", 31)
 print("Edad actualizada:", getattr(persona, "edad"))
+```
 
-# Verificar invocabilidad
+### Verificar invocabilidad
+
+```{code-cell} python
+---
+tags: hide-output
+---
 print("¿Es 'persona' invocable?", callable(persona))
 print("¿Es 'persona.saludar' invocable?", callable(persona.saludar))
 ```
@@ -100,27 +115,25 @@ class Persona:
         print(f"Hola, soy {self.nombre} y tengo {self.edad} años.")
 
 
-juan = Persona("Juan", 40)
 ana = Persona("Ana", 35)
+juan = Persona("Juan", 40)
 
 # Agregar atributos en tiempo de ejecución
-juan.telefono = "123-456-7890"
 ana.domicilio = "La Merced 123"
+juan.telefono = "123-456-7890"
 
 
 # Agregar un método personalizado solo a 'juan'
 def saludar_con_telefono(self):
     print(
-        f"Hola, soy {self.nombre}, tengo {self.edad} años y mi teléfono es "
-        f"{self.telefono}."
+        f"Hola, soy {self.nombre}, tengo {self.edad} años "
+        f"y mi teléfono es {self.telefono}."
     )
-
 
 juan.saludar = types.MethodType(saludar_con_telefono, juan)
 
-# Uso
-juan.saludar()
 ana.saludar()
+juan.saludar()
 ```
 
 ## Uso de `help()` para documentación
@@ -158,9 +171,10 @@ Por ejemplo, el siguiente código es peligroso si la variable `expresion` provie
 
 ```python
 expresion = input("Introduce una expresión: ")
-resultado = eval(
-    expresion
-)  # ¡Peligroso! El usuario puede ejecutar cualquier código Python.
+
+# ¡Peligroso! El usuario puede ejecutar cualquier código Python.
+resultado = eval(expresion)
+
 print("Resultado de la expresión:", resultado)
 ```
 
@@ -177,7 +191,9 @@ tags: hide-output
 ---
 x = 10
 expresion = "x * 2"
+
 resultado = eval(expresion)
+
 print("Resultado de la expresión:", resultado)
 ```
 
