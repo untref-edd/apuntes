@@ -9,9 +9,8 @@ files:
   - style.typ
   - aside_style.typ
   - admonitionstyling.typ
-  - LICENSE
   - untref-logo.svg
-  
+
 authors:
   - name: Freek Pols
     github: FreekPols
@@ -51,7 +50,7 @@ options:
     description: An image path that is shown in the front page
   - id: coverposition
     type: number
-    description: Sets the vertical position of the cover 
+    description: Sets the vertical position of the cover
   - id: cover_width
     type: number
     description: Sets the width of the coverfigure
@@ -104,12 +103,12 @@ options:
     description: sets the linespancing (default 0.5 (em))
   - id: justification
     type: boolean
-    description: sets the justifcation 
+    description: sets the justifcation
 
  # theme style
   - id: colortheme
     type: string
-    description: theme color 
+    description: theme color
   - id: colorheadings
     type: string
     description: color of the headings

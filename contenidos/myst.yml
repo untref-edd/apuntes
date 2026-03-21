@@ -21,7 +21,7 @@ project:
     - references.bib
   exports:
     - format: typst
-      template: templates/plain_typst_book
+      template: templates/plain_typst_book_edd
       output: exports/apunte-edd.pdf
   numbering:
     equation: true
