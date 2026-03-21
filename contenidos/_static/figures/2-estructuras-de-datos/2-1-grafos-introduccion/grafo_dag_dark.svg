@@ -1,9 +1,19 @@
 <?xml version='1.0' encoding='utf-8'?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400">
-  <rect width="500" height="400" fill="#1e1e1e" />
+  <rect width="100%" height="100%" class="background" />
   
   <defs>
-    <marker id="arrowhead-dark" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto">
+    <style>
+      .edge { stroke: #e0e0e0; stroke-width: 2; }
+      .weight-text { fill: #e0e0e0; font-weight: bold; font-family: Arial; font-size: 14px; }
+      .node-text { fill: #e0e0e0; font-family: Arial; font-size: 14px; }
+      .variable-node { fill: #2d3748; stroke: #63b3ed; stroke-width: 2; }
+      .value-node { fill: #4a5568; stroke: #fc8181; stroke-width: 2; }
+      .highlight-edge { stroke: #ef6c00; stroke-width: 2; }
+      .highlight-text { fill: #ef6c00; font-weight: bold; font-family: Arial; font-size: 14px; }
+      .background { fill: #1e1e1e; }
+    </style>
+    <marker id="arrowhead" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto">
       <polygon points="0 0, 6 2.5, 0 5" fill="#e0e0e0" />
     </marker>
   </defs>
@@ -12,7 +22,7 @@
     .label-node { font-family: Arial; font-size: 16px; text-anchor: middle; dominant-baseline: middle; fill: #e0e0e0; }
   </style>
 
-  <g stroke="#e0e0e0" stroke-width="2" marker-end="url(#arrowhead-dark)">
+  <g stroke="#e0e0e0" stroke-width="2" marker-end="url(#arrowhead)">
     <line x1="70" y1="250" x2="165" y2="337" />
     <line x1="70" y1="250" x2="141" y2="118" />
     

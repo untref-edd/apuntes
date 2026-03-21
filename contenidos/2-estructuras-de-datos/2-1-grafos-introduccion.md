@@ -450,9 +450,6 @@ También se pueden agregar nodos individuales
 La interfaz `networkx.drawing.nx_pylab` provee funciones que permiten crear y usar figuras con ejes de **Matplotlib**.
 
 ```{code-cell} python
----
-tags: hide-output
----
 import networkx as nx
 import matplotlib.pyplot as plt  # permite crear figuras, mostrarlas, etc.
 
@@ -505,9 +502,6 @@ Un **_layout_** es un diccionario {nodo: (x, y)} con la posición de cada vérti
 ### Ejemplo: Grafo de una red de transporte
 
 ```{code-cell} python
----
-tags: hide-input
----
 import networkx as nx
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D

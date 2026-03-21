@@ -1,46 +1,56 @@
 <?xml version='1.0' encoding='utf-8'?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
   <defs>
+    <style>
+      .edge { stroke: #333333; stroke-width: 2; }
+      .weight-text { fill: #333333; font-weight: bold; font-family: Arial; font-size: 14px; }
+      .node-text { fill: #333333; font-family: Arial; font-size: 14px; }
+      .variable-node { fill: #e1f5ff; stroke: #4682b4; stroke-width: 2; }
+      .value-node { fill: #ffe1e1; stroke: #e9967a; stroke-width: 2; }
+      .highlight-edge { stroke: #ef6c00; stroke-width: 2; }
+      .highlight-text { fill: #ef6c00; font-weight: bold; font-family: Arial; font-size: 14px; }
+      .background { fill: #ffffff; }
+    </style>
     <marker id="arrowhead" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto">
       <polygon points="0 0, 6 2.5, 0 5" fill="#333333" />
     </marker>
   </defs>
-  <line x1="318.9736659610103" y1="56.324555320336756" x2="431.0263340389897" y2="93.67544467966324" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
-  <text x="370.25658350974743" y="93.23024947075771" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold">2</text>
-  <line x1="300.0" y1="70.0" x2="300.0" y2="130.0" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
-  <text x="285.0" y="104.0" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold">1</text>
-  <line x1="431.0263340389897" y1="106.32455532033676" x2="318.9736659610103" y2="143.67544467966323" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
-  <text x="370.25658350974743" y="114.76975052924229" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold">3</text>
-  <line x1="456.32455532033674" y1="118.97366596101028" x2="493.67544467966326" y2="231.02633403898972" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
-  <text x="460.7697505292423" y="183.74341649025257" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold">10</text>
-  <line x1="168.97366596101028" y1="93.67544467966324" x2="281.0263340389897" y2="56.324555320336756" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
-  <text x="229.74341649025257" y="93.23024947075771" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold">4</text>
-  <line x1="143.67544467966323" y1="118.97366596101028" x2="106.32455532033676" y2="231.02633403898972" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
-  <text x="110.76975052924229" y="174.25658350974743" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold">5</text>
-  <line x1="281.0263340389897" y1="143.67544467966323" x2="168.97366596101028" y2="106.32455532033676" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
-  <text x="229.74341649025257" y="114.76975052924229" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold">2</text>
-  <line x1="317.8885438199983" y1="158.94427190999915" x2="482.1114561800017" y2="241.05572809000085" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
-  <text x="393.2917960675006" y="217.41640786499875" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold">2</text>
-  <line x1="282.1114561800017" y1="158.94427190999915" x2="117.88854381999832" y2="241.05572809000085" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
-  <text x="193.29179606750063" y="190.58359213500125" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold">8</text>
-  <line x1="300.0" y1="170.0" x2="300.0" y2="330.0" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
-  <text x="285.0" y="254.0" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold">4</text>
-  <line x1="482.1114561800017" y1="258.94427190999915" x2="317.8885438199983" y2="341.05572809000085" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
-  <text x="393.2917960675006" y="290.58359213500125" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold">5</text>
-  <line x1="282.1114561800017" y1="341.05572809000085" x2="117.88854381999832" y2="258.94427190999915" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
-  <text x="206.70820393249937" y="290.58359213500125" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold">1</text>
-  <circle cx="300" cy="50" r="20" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
-  <text x="300" y="55" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle">V0</text>
-  <circle cx="450" cy="100" r="20" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
-  <text x="450" y="105" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle">V1</text>
-  <circle cx="150" cy="100" r="20" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
-  <text x="150" y="105" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle">V2</text>
-  <circle cx="300" cy="150" r="20" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
-  <text x="300" y="155" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle">V3</text>
-  <circle cx="500" cy="250" r="20" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
-  <text x="500" y="255" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle">V4</text>
-  <circle cx="100" cy="250" r="20" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
-  <text x="100" y="255" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle">V5</text>
-  <circle cx="300" cy="350" r="20" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
-  <text x="300" y="355" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle">V6</text>
+  <line class="edge" x1="318.9736659610103" y1="56.324555320336756" x2="431.0263340389897" y2="93.67544467966324" marker-end="url(#arrowhead)" />
+  <text class="weight-text" x="370.25658350974743" y="93.23024947075771" text-anchor="middle">2</text>
+  <line class="edge" x1="300.0" y1="70.0" x2="300.0" y2="130.0" marker-end="url(#arrowhead)" />
+  <text class="weight-text" x="285.0" y="104.0" text-anchor="middle">1</text>
+  <line class="edge" x1="431.0263340389897" y1="106.32455532033676" x2="318.9736659610103" y2="143.67544467966323" marker-end="url(#arrowhead)" />
+  <text class="weight-text" x="370.25658350974743" y="114.76975052924229" text-anchor="middle">3</text>
+  <line class="edge" x1="456.32455532033674" y1="118.97366596101028" x2="493.67544467966326" y2="231.02633403898972" marker-end="url(#arrowhead)" />
+  <text class="weight-text" x="460.7697505292423" y="183.74341649025257" text-anchor="middle">10</text>
+  <line class="edge" x1="168.97366596101028" y1="93.67544467966324" x2="281.0263340389897" y2="56.324555320336756" marker-end="url(#arrowhead)" />
+  <text class="weight-text" x="229.74341649025257" y="93.23024947075771" text-anchor="middle">4</text>
+  <line class="edge" x1="143.67544467966323" y1="118.97366596101028" x2="106.32455532033676" y2="231.02633403898972" marker-end="url(#arrowhead)" />
+  <text class="weight-text" x="110.76975052924229" y="174.25658350974743" text-anchor="middle">5</text>
+  <line class="edge" x1="281.0263340389897" y1="143.67544467966323" x2="168.97366596101028" y2="106.32455532033676" marker-end="url(#arrowhead)" />
+  <text class="weight-text" x="229.74341649025257" y="114.76975052924229" text-anchor="middle">2</text>
+  <line class="edge" x1="317.8885438199983" y1="158.94427190999915" x2="482.1114561800017" y2="241.05572809000085" marker-end="url(#arrowhead)" />
+  <text class="weight-text" x="393.2917960675006" y="217.41640786499875" text-anchor="middle">2</text>
+  <line class="edge" x1="282.1114561800017" y1="158.94427190999915" x2="117.88854381999832" y2="241.05572809000085" marker-end="url(#arrowhead)" />
+  <text class="weight-text" x="193.29179606750063" y="190.58359213500125" text-anchor="middle">8</text>
+  <line class="edge" x1="300.0" y1="170.0" x2="300.0" y2="330.0" marker-end="url(#arrowhead)" />
+  <text class="weight-text" x="285.0" y="254.0" text-anchor="middle">4</text>
+  <line class="edge" x1="482.1114561800017" y1="258.94427190999915" x2="317.8885438199983" y2="341.05572809000085" marker-end="url(#arrowhead)" />
+  <text class="weight-text" x="393.2917960675006" y="290.58359213500125" text-anchor="middle">5</text>
+  <line class="edge" x1="282.1114561800017" y1="341.05572809000085" x2="117.88854381999832" y2="258.94427190999915" marker-end="url(#arrowhead)" />
+  <text class="weight-text" x="206.70820393249937" y="290.58359213500125" text-anchor="middle">1</text>
+  <circle class="variable-node" cx="300" cy="50" r="20" />
+  <text class="node-text" x="300" y="55" text-anchor="middle">V0</text>
+  <circle class="variable-node" cx="450" cy="100" r="20" />
+  <text class="node-text" x="450" y="105" text-anchor="middle">V1</text>
+  <circle class="variable-node" cx="150" cy="100" r="20" />
+  <text class="node-text" x="150" y="105" text-anchor="middle">V2</text>
+  <circle class="variable-node" cx="300" cy="150" r="20" />
+  <text class="node-text" x="300" y="155" text-anchor="middle">V3</text>
+  <circle class="variable-node" cx="500" cy="250" r="20" />
+  <text class="node-text" x="500" y="255" text-anchor="middle">V4</text>
+  <circle class="variable-node" cx="100" cy="250" r="20" />
+  <text class="node-text" x="100" y="255" text-anchor="middle">V5</text>
+  <circle class="variable-node" cx="300" cy="350" r="20" />
+  <text class="node-text" x="300" y="355" text-anchor="middle">V6</text>
 </svg>

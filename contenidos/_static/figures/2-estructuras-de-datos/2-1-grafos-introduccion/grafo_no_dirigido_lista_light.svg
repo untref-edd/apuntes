@@ -1,92 +1,102 @@
 <?xml version='1.0' encoding='utf-8'?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 280">
+  <rect width="100%" height="100%" class="background" />
   <defs>
+    <style>
+      .edge { fill: none; stroke: #333333; stroke-width: 2; }
+      .weight-text { fill: #333333; font-weight: bold; font-family: Arial; font-size: 14px; }
+      .node-text { fill: #333333; font-family: Arial; font-size: 14px; }
+      .variable-node { fill: #e1f5ff; stroke: #4682b4; stroke-width: 2; }
+      .value-node { fill: #ffe1e1; stroke: #e9967a; stroke-width: 2; }
+      .highlight-edge { stroke: #ef6c00; stroke-width: 2; }
+      .highlight-text { fill: #ef6c00; font-weight: bold; font-family: Arial; font-size: 14px; }
+      .background { fill: #ffffff; }
+    </style>
     <marker id="arrowhead" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto">
       <polygon points="0 0, 6 2.5, 0 5" fill="#333333" />
     </marker>
   </defs>
 
-  
+
   <g transform="translate(50, 20)">
-    
-    <rect x="0" y="0" width="50" height="40" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
-    <text x="25" y="25" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle">A</text>
-    
-    <rect x="0" y="50" width="50" height="40" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
-    <text x="25" y="75" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle">B</text>
-    
-    <rect x="0" y="100" width="50" height="40" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
-    <text x="25" y="125" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle">C</text>
-    
-    <rect x="0" y="150" width="50" height="40" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
-    <text x="25" y="175" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle">D</text>
-    
-    <rect x="0" y="200" width="50" height="40" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
-    <text x="25" y="225" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle">E</text>
+    <rect class="variable-node" x="0" y="0" width="50" height="40" />
+    <text class="node-text" x="25" y="25" text-anchor="middle">A</text>
+
+    <rect class="variable-node" x="0" y="50" width="50" height="40" />
+    <text class="node-text" x="25" y="75" text-anchor="middle">B</text>
+
+    <rect class="variable-node" x="0" y="100" width="50" height="40" />
+    <text class="node-text" x="25" y="125" text-anchor="middle">C</text>
+
+    <rect class="variable-node" x="0" y="150" width="50" height="40" />
+    <text class="node-text" x="25" y="175" text-anchor="middle">D</text>
+
+    <rect class="variable-node" x="0" y="200" width="50" height="40" />
+    <text class="node-text" x="25" y="225" text-anchor="middle">E</text>
   </g>
 
-  
-  
+
+
   <g transform="translate(120, 20)">
-    <line x1="-20" y1="20" x2="0" y2="20" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
-    <rect x="0" y="0" width="80" height="40" rx="5" fill="#ffe1e1" stroke="#e9967a" stroke-width="2" />
-    <text x="40" y="25" font-family="Arial" font-size="12" fill="#333333" text-anchor="middle">B, 4</text>
-    
-    <line x1="80" y1="20" x2="100" y2="20" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
-    <rect x="100" y="0" width="80" height="40" rx="5" fill="#ffe1e1" stroke="#e9967a" stroke-width="2" />
-    <text x="140" y="25" font-family="Arial" font-size="12" fill="#333333" text-anchor="middle">C, 5</text>
+    <line class="edge" x1="-20" y1="20" x2="0" y2="20" marker-end="url(#arrowhead)" />
+    <rect class="value-node" x="0" y="0" width="80" height="40" rx="5" />
+    <text class="node-text" x="40" y="25" text-anchor="middle">B, 4</text>
 
-    <line x1="180" y1="20" x2="200" y2="20" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
-    <rect x="200" y="0" width="80" height="40" rx="5" fill="#ffe1e1" stroke="#e9967a" stroke-width="2" />
-    <text x="240" y="25" font-family="Arial" font-size="12" fill="#333333" text-anchor="middle">E, 1</text>
+    <line class="edge" x1="80" y1="20" x2="100" y2="20" marker-end="url(#arrowhead)" />
+    <rect class="value-node" x="100" y="0" width="80" height="40" rx="5" />
+    <text class="node-text" x="140" y="25" text-anchor="middle">C, 5</text>
+
+    <line class="edge" x1="180" y1="20" x2="200" y2="20" marker-end="url(#arrowhead)" />
+    <rect class="value-node" x="200" y="0" width="80" height="40" rx="5" />
+    <text class="node-text" x="240" y="25" text-anchor="middle">E, 1</text>
   </g>
 
-  
+
   <g transform="translate(120, 70)">
-    <line x1="-20" y1="20" x2="0" y2="20" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
-    <rect x="0" y="0" width="80" height="40" rx="5" fill="#ffe1e1" stroke="#e9967a" stroke-width="2" />
-    <text x="40" y="25" font-family="Arial" font-size="12" fill="#333333" text-anchor="middle">A, 4</text>
-    
-    <line x1="80" y1="20" x2="100" y2="20" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
-    <rect x="100" y="0" width="80" height="40" rx="5" fill="#ffe1e1" stroke="#e9967a" stroke-width="2" />
-    <text x="140" y="25" font-family="Arial" font-size="12" fill="#333333" text-anchor="middle">C, 2</text>
+    <line class="edge" x1="-20" y1="20" x2="0" y2="20" marker-end="url(#arrowhead)" />
+    <rect class="value-node" x="0" y="0" width="80" height="40" rx="5" />
+    <text class="node-text" x="40" y="25" text-anchor="middle">A, 4</text>
+
+    <line class="edge" x1="80" y1="20" x2="100" y2="20" marker-end="url(#arrowhead)" />
+    <rect class="value-node" x="100" y="0" width="80" height="40" rx="5" />
+    <text class="node-text" x="140" y="25" text-anchor="middle">C, 2</text>
   </g>
 
-  
+
   <g transform="translate(120, 120)">
-    <line x1="-20" y1="20" x2="0" y2="20" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
-    <rect x="0" y="0" width="80" height="40" rx="5" fill="#ffe1e1" stroke="#e9967a" stroke-width="2" />
-    <text x="40" y="25" font-family="Arial" font-size="12" fill="#333333" text-anchor="middle">A, 5</text>
-    
-    <line x1="80" y1="20" x2="100" y2="20" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
-    <rect x="100" y="0" width="80" height="40" rx="5" fill="#ffe1e1" stroke="#e9967a" stroke-width="2" />
-    <text x="140" y="25" font-family="Arial" font-size="12" fill="#333333" text-anchor="middle">B, 2</text>
+    <line class="edge" x1="-20" y1="20" x2="0" y2="20" marker-end="url(#arrowhead)" />
+    <rect class="value-node" x="0" y="0" width="80" height="40" rx="5" />
+    <text class="node-text" x="40" y="25" text-anchor="middle">A, 5</text>
 
-    <line x1="180" y1="20" x2="200" y2="20" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
-    <rect x="200" y="0" width="80" height="40" rx="5" fill="#ffe1e1" stroke="#e9967a" stroke-width="2" />
-    <text x="240" y="25" font-family="Arial" font-size="12" fill="#333333" text-anchor="middle">D, 4</text>
+    <line class="edge" x1="80" y1="20" x2="100" y2="20" marker-end="url(#arrowhead)" />
+    <rect class="value-node" x="100" y="0" width="80" height="40" rx="5" />
+    <text class="node-text" x="140" y="25" text-anchor="middle">B, 2</text>
+
+    <line class="edge" x1="180" y1="20" x2="200" y2="20" marker-end="url(#arrowhead)" />
+    <rect class="value-node" x="200" y="0" width="80" height="40" rx="5" />
+    <text class="node-text" x="240" y="25" text-anchor="middle">D, 4</text>
   </g>
 
-  
+
   <g transform="translate(120, 170)">
-    <line x1="-20" y1="20" x2="0" y2="20" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
-    <rect x="0" y="0" width="80" height="40" rx="5" fill="#ffe1e1" stroke="#e9967a" stroke-width="2" />
-    <text x="40" y="25" font-family="Arial" font-size="12" fill="#333333" text-anchor="middle">C, 4</text>
-    
-    <line x1="80" y1="20" x2="100" y2="20" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
-    <rect x="100" y="0" width="80" height="40" rx="5" fill="#ffe1e1" stroke="#e9967a" stroke-width="2" />
-    <text x="140" y="25" font-family="Arial" font-size="12" fill="#333333" text-anchor="middle">E, 3</text>
+    <line class="edge" x1="-20" y1="20" x2="0" y2="20" marker-end="url(#arrowhead)" />
+    <rect class="value-node" x="0" y="0" width="80" height="40" rx="5" />
+    <text class="node-text" x="40" y="25" text-anchor="middle">C, 4</text>
+
+    <line class="edge" x1="80" y1="20" x2="100" y2="20" marker-end="url(#arrowhead)" />
+    <rect class="value-node" x="100" y="0" width="80" height="40" rx="5" />
+    <text class="node-text" x="140" y="25" text-anchor="middle">E, 3</text>
   </g>
 
-  
+
   <g transform="translate(120, 220)">
-    <line x1="-20" y1="20" x2="0" y2="20" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
-    <rect x="0" y="0" width="80" height="40" rx="5" fill="#ffe1e1" stroke="#e9967a" stroke-width="2" />
-    <text x="40" y="25" font-family="Arial" font-size="12" fill="#333333" text-anchor="middle">A, 1</text>
-    
-    <line x1="80" y1="20" x2="100" y2="20" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
-    <rect x="100" y="0" width="80" height="40" rx="5" fill="#ffe1e1" stroke="#e9967a" stroke-width="2" />
-    <text x="140" y="25" font-family="Arial" font-size="12" fill="#333333" text-anchor="middle">D, 3</text>
+    <line class="edge" x1="-20" y1="20" x2="0" y2="20" marker-end="url(#arrowhead)" />
+    <rect class="value-node" x="0" y="0" width="80" height="40" rx="5" />
+    <text class="node-text" x="40" y="25" text-anchor="middle">A, 1</text>
+
+    <line class="edge" x1="80" y1="20" x2="100" y2="20" marker-end="url(#arrowhead)" />
+    <rect class="value-node" x="100" y="0" width="80" height="40" rx="5" />
+    <text class="node-text" x="140" y="25" text-anchor="middle">D, 3</text>
   </g>
 
 </svg>

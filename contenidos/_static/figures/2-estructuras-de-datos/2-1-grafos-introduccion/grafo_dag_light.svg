@@ -2,6 +2,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400">
   
   <defs>
+    <style>
+      .edge { stroke: #333333; stroke-width: 2; }
+      .weight-text { fill: #333333; font-weight: bold; font-family: Arial; font-size: 14px; }
+      .node-text { fill: #333333; font-family: Arial; font-size: 14px; }
+      .variable-node { fill: #e1f5ff; stroke: #4682b4; stroke-width: 2; }
+      .value-node { fill: #ffe1e1; stroke: #e9967a; stroke-width: 2; }
+      .highlight-edge { stroke: #ef6c00; stroke-width: 2; }
+      .highlight-text { fill: #ef6c00; font-weight: bold; font-family: Arial; font-size: 14px; }
+      .background { fill: #ffffff; }
+    </style>
     <marker id="arrowhead" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto">
       <polygon points="0 0, 6 2.5, 0 5" fill="#333333" />
     </marker>

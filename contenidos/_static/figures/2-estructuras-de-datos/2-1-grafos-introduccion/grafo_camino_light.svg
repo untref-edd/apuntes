@@ -1,59 +1,69 @@
 <?xml version='1.0' encoding='utf-8'?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 275">
   <defs>
+    <style>
+      .edge { stroke: #333333; stroke-width: 2; }
+      .weight-text { fill: #333333; font-weight: bold; font-family: Arial; font-size: 14px; }
+      .node-text { fill: #333333; font-family: Arial; font-size: 14px; }
+      .variable-node { fill: #e1f5ff; stroke: #4682b4; stroke-width: 2; }
+      .value-node { fill: #ffe1e1; stroke: #e9967a; stroke-width: 2; }
+      .highlight-edge { stroke: #ef6c00; stroke-width: 2; }
+      .highlight-text { fill: #ef6c00; font-weight: bold; font-family: Arial; font-size: 14px; }
+      .background { fill: #ffffff; }
+    </style>
     <marker id="arrowhead" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto">
       <polygon points="0 0, 6 2.5, 0 5" fill="#333333" />
     </marker>
     <marker id="arrowhead-highlight" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto">
-      <polygon points="0 0, 6 2.5, 0 5" fill="#ef6c00" />
+      <polygon points="0 0, 6 2.5, 0 5" fill="#333333" />
     </marker>
   </defs>
-  <line x1="162.13525491562422" y1="88.8167787843871" x2="213.94926638798808" y2="126.46186166561712" stroke="#ef6c00" stroke-width="2" />
-  <text x="196.85903943619326" y="99.50406530937789" font-family="Arial" font-size="14" fill="#ef6c00" text-anchor="middle" font-weight="bold">4</text>
-  <line x1="221.44926638798808" y1="149.54448819443152" x2="201.65807509902208" y2="210.45551180556848" stroke="#ef6c00" stroke-width="2" />
-  <text x="225.81951848793238" y="188.63525491562422" font-family="Arial" font-size="14" fill="#ef6c00" text-anchor="middle" font-weight="bold">2</text>
-  <line x1="182.02282018339787" y1="224.72135954999578" x2="117.97717981660216" y2="224.72135954999578" stroke="#ef6c00" stroke-width="2" />
-  <text x="150.0" y="243.72135954999578" font-family="Arial" font-size="14" fill="#ef6c00" text-anchor="middle" font-weight="bold">4</text>
-  <line x1="98.34192490097794" y1="210.45551180556848" x2="78.55073361201192" y2="149.54448819443152" stroke="#ef6c00" stroke-width="2" />
-  <text x="74.18048151206763" y="188.63525491562422" font-family="Arial" font-size="14" fill="#ef6c00" text-anchor="middle" font-weight="bold">3</text>
-  <line x1="137.86474508437578" y1="88.8167787843871" x2="86.05073361201192" y2="126.46186166561712" stroke="#333333" stroke-width="2" />
-  <text x="103.14096056380676" y="99.50406530937789" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold">3</text>
-  <line x1="154.63525491562422" y1="94.2658477444273" x2="192.38756526777365" y2="210.45551180556848" stroke="#333333" stroke-width="2" />
-  <text x="187.77725783612624" y="151.72542485937367" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold">5</text>
-  <line x1="462.1352549156242" y1="88.8167787843871" x2="513.9492663879881" y2="126.46186166561712" stroke="#ef6c00" stroke-width="2" marker-end="url(#arrowhead-highlight)" />
-  <text x="496.85903943619326" y="99.50406530937789" font-family="Arial" font-size="14" fill="#ef6c00" text-anchor="middle" font-weight="bold">4</text>
-  <line x1="521.4492663879881" y1="149.54448819443152" x2="501.6580750990221" y2="210.45551180556848" stroke="#ef6c00" stroke-width="2" marker-end="url(#arrowhead-highlight)" />
-  <text x="525.8195184879324" y="188.63525491562422" font-family="Arial" font-size="14" fill="#ef6c00" text-anchor="middle" font-weight="bold">2</text>
-  <line x1="492.38756526777365" y1="210.45551180556848" x2="454.6352549156242" y2="94.2658477444273" stroke="#ef6c00" stroke-width="2" marker-end="url(#arrowhead-highlight)" />
-  <text x="487.77725783612624" y="151.72542485937367" font-family="Arial" font-size="14" fill="#ef6c00" text-anchor="middle" font-weight="bold">5</text>
-  <line x1="482.02282018339787" y1="224.72135954999578" x2="417.9771798166022" y2="224.72135954999578" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
-  <text x="450.0" y="243.72135954999578" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold">4</text>
-  <line x1="398.341924900978" y1="210.45551180556848" x2="378.5507336120119" y2="149.54448819443152" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
-  <text x="374.1804815120677" y="188.63525491562422" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold">3</text>
-  <line x1="386.0507336120119" y1="126.46186166561712" x2="437.8647450843758" y2="88.8167787843871" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)" />
-  <text x="403.14096056380674" y="99.50406530937789" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold">3</text>
-  <text x="150" y="30" font-family="Arial" font-size="16" fill="#333333" text-anchor="middle">Camino simple</text>
-  <text x="450" y="30" font-family="Arial" font-size="16" fill="#333333" text-anchor="middle">Ciclo</text>
-  <text x="150" y="50" font-family="Arial" font-size="16" fill="#333333" text-anchor="middle">A-B-C-D-E</text>
-  <text x="450" y="50" font-family="Arial" font-size="16" fill="#333333" text-anchor="middle">A-B-C-A</text>
-  <circle cx="150.0" cy="80.0" r="15" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
-  <text x="150.0" y="85.0" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle">A</text>
-  <circle cx="226.0845213036123" cy="135.27864045000422" r="15" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
-  <text x="226.0845213036123" y="140.27864045000422" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle">B</text>
-  <circle cx="197.02282018339787" cy="224.72135954999578" r="15" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
-  <text x="197.02282018339787" y="229.72135954999578" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle">C</text>
-  <circle cx="102.97717981660216" cy="224.72135954999578" r="15" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
-  <text x="102.97717981660216" y="229.72135954999578" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle">D</text>
-  <circle cx="73.91547869638771" cy="135.27864045000422" r="15" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
-  <text x="73.91547869638771" y="140.27864045000422" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle">E</text>
-  <circle cx="450.0" cy="80.0" r="15" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
-  <text x="450.0" y="85.0" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle">A</text>
-  <circle cx="526.0845213036123" cy="135.27864045000422" r="15" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
-  <text x="526.0845213036123" y="140.27864045000422" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle">B</text>
-  <circle cx="497.02282018339787" cy="224.72135954999578" r="15" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
-  <text x="497.02282018339787" y="229.72135954999578" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle">C</text>
-  <circle cx="402.9771798166022" cy="224.72135954999578" r="15" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
-  <text x="402.9771798166022" y="229.72135954999578" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle">D</text>
-  <circle cx="373.9154786963877" cy="135.27864045000422" r="15" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
-  <text x="373.9154786963877" y="140.27864045000422" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle">E</text>
+  <line class="highlight-edge" x1="162.13525491562422" y1="88.8167787843871" x2="213.94926638798808" y2="126.46186166561712" />
+  <text class="highlight-text" x="196.85903943619326" y="99.50406530937789" text-anchor="middle">4</text>
+  <line class="highlight-edge" x1="221.44926638798808" y1="149.54448819443152" x2="201.65807509902208" y2="210.45551180556848" />
+  <text class="highlight-text" x="225.81951848793238" y="188.63525491562422" text-anchor="middle">2</text>
+  <line class="highlight-edge" x1="182.02282018339787" y1="224.72135954999578" x2="117.97717981660216" y2="224.72135954999578" />
+  <text class="highlight-text" x="150.0" y="243.72135954999578" text-anchor="middle">4</text>
+  <line class="highlight-edge" x1="98.34192490097794" y1="210.45551180556848" x2="78.55073361201192" y2="149.54448819443152" />
+  <text class="highlight-text" x="74.18048151206763" y="188.63525491562422" text-anchor="middle">3</text>
+  <line class="edge" x1="137.86474508437578" y1="88.8167787843871" x2="86.05073361201192" y2="126.46186166561712" />
+  <text class="weight-text" x="103.14096056380676" y="99.50406530937789" text-anchor="middle">3</text>
+  <line class="edge" x1="154.63525491562422" y1="94.2658477444273" x2="192.38756526777365" y2="210.45551180556848" />
+  <text class="weight-text" x="187.77725783612624" y="151.72542485937367" text-anchor="middle">5</text>
+  <line class="highlight-edge" x1="462.1352549156242" y1="88.8167787843871" x2="513.9492663879881" y2="126.46186166561712" marker-end="url(#arrowhead-highlight)" />
+  <text class="highlight-text" x="496.85903943619326" y="99.50406530937789" text-anchor="middle">4</text>
+  <line class="highlight-edge" x1="521.4492663879881" y1="149.54448819443152" x2="501.6580750990221" y2="210.45551180556848" marker-end="url(#arrowhead-highlight)" />
+  <text class="highlight-text" x="525.8195184879324" y="188.63525491562422" text-anchor="middle">2</text>
+  <line class="highlight-edge" x1="492.38756526777365" y1="210.45551180556848" x2="454.6352549156242" y2="94.2658477444273" marker-end="url(#arrowhead-highlight)" />
+  <text class="highlight-text" x="487.77725783612624" y="151.72542485937367" text-anchor="middle">5</text>
+  <line class="edge" x1="482.02282018339787" y1="224.72135954999578" x2="417.9771798166022" y2="224.72135954999578" marker-end="url(#arrowhead)" />
+  <text class="weight-text" x="450.0" y="243.72135954999578" text-anchor="middle">4</text>
+  <line class="edge" x1="398.341924900978" y1="210.45551180556848" x2="378.5507336120119" y2="149.54448819443152" marker-end="url(#arrowhead)" />
+  <text class="weight-text" x="374.1804815120677" y="188.63525491562422" text-anchor="middle">3</text>
+  <line class="edge" x1="386.0507336120119" y1="126.46186166561712" x2="437.8647450843758" y2="88.8167787843871" marker-end="url(#arrowhead)" />
+  <text class="weight-text" x="403.14096056380674" y="99.50406530937789" text-anchor="middle">3</text>
+  <text class="node-text" x="150" y="30" text-anchor="middle">Camino simple</text>
+  <text class="node-text" x="450" y="30" text-anchor="middle">Ciclo</text>
+  <text class="node-text" x="150" y="50" text-anchor="middle">A-B-C-D-E</text>
+  <text class="node-text" x="450" y="50" text-anchor="middle">A-B-C-A</text>
+  <circle class="variable-node" cx="150.0" cy="80.0" r="15" />
+  <text class="node-text" x="150.0" y="85.0" text-anchor="middle">A</text>
+  <circle class="variable-node" cx="226.0845213036123" cy="135.27864045000422" r="15" />
+  <text class="node-text" x="226.0845213036123" y="140.27864045000422" text-anchor="middle">B</text>
+  <circle class="variable-node" cx="197.02282018339787" cy="224.72135954999578" r="15" />
+  <text class="node-text" x="197.02282018339787" y="229.72135954999578" text-anchor="middle">C</text>
+  <circle class="variable-node" cx="102.97717981660216" cy="224.72135954999578" r="15" />
+  <text class="node-text" x="102.97717981660216" y="229.72135954999578" text-anchor="middle">D</text>
+  <circle class="variable-node" cx="73.91547869638771" cy="135.27864045000422" r="15" />
+  <text class="node-text" x="73.91547869638771" y="140.27864045000422" text-anchor="middle">E</text>
+  <circle class="variable-node" cx="450.0" cy="80.0" r="15" />
+  <text class="node-text" x="450.0" y="85.0" text-anchor="middle">A</text>
+  <circle class="variable-node" cx="526.0845213036123" cy="135.27864045000422" r="15" />
+  <text class="node-text" x="526.0845213036123" y="140.27864045000422" text-anchor="middle">B</text>
+  <circle class="variable-node" cx="497.02282018339787" cy="224.72135954999578" r="15" />
+  <text class="node-text" x="497.02282018339787" y="229.72135954999578" text-anchor="middle">C</text>
+  <circle class="variable-node" cx="402.9771798166022" cy="224.72135954999578" r="15" />
+  <text class="node-text" x="402.9771798166022" y="229.72135954999578" text-anchor="middle">D</text>
+  <circle class="variable-node" cx="373.9154786963877" cy="135.27864045000422" r="15" />
+  <text class="node-text" x="373.9154786963877" y="140.27864045000422" text-anchor="middle">E</text>
 </svg>

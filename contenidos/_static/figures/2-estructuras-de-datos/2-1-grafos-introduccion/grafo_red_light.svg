@@ -1,7 +1,19 @@
 <?xml version='1.0' encoding='utf-8'?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <style>
+      .edge { stroke: #333333; stroke-width: 2; }
+      .weight-text { fill: #333333; font-weight: bold; font-family: Arial; font-size: 14px; }
+      .node-text { fill: #333333; font-family: Arial; font-size: 20px; text-anchor: middle; dominant-baseline: middle; }
+      .variable-node { fill: #e1f5ff; stroke: #4682b4; stroke-width: 2; }
+      .value-node { fill: #ffe1e1; stroke: #e9967a; stroke-width: 2; }
+      .highlight-edge { stroke: #ef6c00; stroke-width: 2; }
+      .highlight-text { fill: #ef6c00; font-weight: bold; font-family: Arial; font-size: 14px; }
+      .background { fill: #ffffff; }
+    </style>
+  </defs>
   
-  <g stroke="#333333" stroke-width="2">
+  <g class="edge">
     <line x1="150" y1="120" x2="280" y2="280" />
     <line x1="400" y1="100" x2="280" y2="280" />
     <line x1="400" y1="100" x2="520" y2="280" />
@@ -16,33 +28,24 @@
     <line x1="400" y1="450" x2="550" y2="520" />
   </g>
 
-  <g font-family="Arial" font-size="20" text-anchor="middle" dominant-baseline="middle" fill="#333333">
-    
-    <circle cx="150" cy="120" r="40" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
+  <g class="node-text">
+    <circle class="variable-node" cx="150" cy="120" r="40" />
     <text x="150" y="122">Ana</text>
-
-    <circle cx="400" cy="100" r="40" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
+    <circle class="variable-node" cx="400" cy="100" r="40" />
     <text x="400" y="102">Leo</text>
-
-    <circle cx="650" cy="180" r="40" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
+    <circle class="variable-node" cx="650" cy="180" r="40" />
     <text x="650" y="182">Ben</text>
-
-    <circle cx="280" cy="280" r="45" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
+    <circle class="variable-node" cx="280" cy="280" r="45" />
     <text x="280" y="282">Zoe</text>
-
-    <circle cx="520" cy="280" r="45" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
+    <circle class="variable-node" cx="520" cy="280" r="45" />
     <text x="520" y="282">Jon</text>
-
-    <circle cx="150" cy="450" r="40" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
+    <circle class="variable-node" cx="150" cy="450" r="40" />
     <text x="150" y="452">Max</text>
-
-    <circle cx="400" cy="450" r="45" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
+    <circle class="variable-node" cx="400" cy="450" r="45" />
     <text x="400" y="452">Mia</text>
-
-    <circle cx="550" cy="520" r="40" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
+    <circle class="variable-node" cx="550" cy="520" r="40" />
     <text x="550" y="522">Eva</text>
-
-    <circle cx="700" cy="450" r="40" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
+    <circle class="variable-node" cx="700" cy="450" r="40" />
     <text x="700" y="452">Sam</text>
   </g>
 </svg>
