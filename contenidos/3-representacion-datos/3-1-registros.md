@@ -604,7 +604,7 @@ Cada una de estas formas tiene sus ventajas y desventajas, y la elección depend
 
 ## Archivos CSV
 
-Otra forma común de organizar los registros es utilizar el formato CSV (*Comma-Separated Values*). En este formato, cada registro se almacena en una línea del archivo, y los campos dentro del registro están separados por comas. Si un campo contiene una coma, se encierra entre comillas dobles. Si un campo contiene comillas dobles, se escapan con otra comilla doble.
+Otra forma común de organizar los registros es utilizar el formato CSV (_Comma-Separated Values_). En este formato, cada registro se almacena en una línea del archivo, y los campos dentro del registro están separados por comas. Si un campo contiene una coma, se encierra entre comillas dobles. Si un campo contiene comillas dobles, se escapan con otra comilla doble.
 
 Python cuenta con un módulo estándar llamado `csv` que facilita la lectura y escritura de archivos en formato CSV. Veamos cómo implementar la clase `Agenda` utilizando este formato.
 

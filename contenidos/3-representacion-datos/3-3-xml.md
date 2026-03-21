@@ -240,11 +240,11 @@ Consultas CO (Content-Only)
 : Tratan al XML como una colección de texto plano, ignorando las etiquetas para la búsqueda pero usándolas quizás para mostrar fragmentos de resultados.
 
 Consultas CAS (Content-and-Structure)
-: Permiten al usuario especificar condiciones tanto sobre el contenido como sobre la estructura. Por ejemplo: *"buscar libros sobre 'Python' donde el autor sea 'Milan Kundera'"*. XPath es la herramienta por excelencia para expresar este tipo de consultas.
+: Permiten al usuario especificar condiciones tanto sobre el contenido como sobre la estructura. Por ejemplo: _"buscar libros sobre 'Python' donde el autor sea 'Milan Kundera'"_. XPath es la herramienta por excelencia para expresar este tipo de consultas.
 
 ### El Modelo de Árbol Extendido
 
-Para procesar estas consultas, los motores de búsqueda suelen modelar el XML como un **árbol extendido** donde cada nodo es una unidad indexable. Un desafío clave es decidir la granularidad del índice: ¿deberíamos indexar el libro completo, cada capítulo o cada párrafo? Esta decisión impacta directamente en la precisión y el *recall* del sistema.
+Para procesar estas consultas, los motores de búsqueda suelen modelar el XML como un **árbol extendido** donde cada nodo es una unidad indexable. Un desafío clave es decidir la granularidad del índice: ¿deberíamos indexar el libro completo, cada capítulo o cada párrafo? Esta decisión impacta directamente en la precisión y el _recall_ del sistema.
 
 ## Características de XPath 2.0
 

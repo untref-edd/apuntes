@@ -213,7 +213,7 @@ class IndiceInvertido:
             self.indice[palabra].add(doc_id)
 
     def buscar(self, termino):
-        """Busca documentos que contienen el término 
+        """Busca documentos que contienen el término
         (normaliza a minúsculas)"""
         termino = termino.lower().strip(".,;:!?()[]{}\"'")
         return self.indice.get(termino, set())
@@ -978,6 +978,6 @@ Los índices invertidos se utilizan en:
 
 ### Bibliografía Principal
 
-- Manning, C. D., Raghavan, P., & Schütze, H. (2008). *Introduction to Information Retrieval*. Cambridge University Press. Capítulos 1, 2, 3 y 4.{cite:p}`irbook`
+- Manning, C. D., Raghavan, P., & Schütze, H. (2008). _Introduction to Information Retrieval_. Cambridge University Press. Capítulos 1, 2, 3 y 4.{cite:p}`irbook`
 - Modern Information Retrieval: The Concepts and Technology behind Search. {cite:p}`baeza2011`
 - Information Retrieval: Implementing and Evaluating Search Engines. {cite:p}`buttcher2010`

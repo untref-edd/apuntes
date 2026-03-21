@@ -354,7 +354,7 @@ print(f"Tamaño comprimido: {len(encoded_all)} bytes")
 print(f"Ratio de compresión: {len(postings) * 4 / len(encoded_all):.2f}x")
 ```
 
-## *Trade-offs* de la Compresión
+## _Trade-offs_ de la Compresión
 
 La compresión de índices implica compromisos:
 

@@ -68,7 +68,7 @@ Python es un lenguaje de programación **orientado a objetos**, **introspectivo 
 
 Permite usar diferentes estilos de programación según las necesidades del proyecto, incluso combinando varios estilos en un mismo proyecto.
 
-La programación imperativa se basa en la ejecución secuencial de instrucciones. Para realizar una tarea se debe programar paso a paso especificando *cómo* se debe hacer.
+La programación imperativa se basa en la ejecución secuencial de instrucciones. Para realizar una tarea se debe programar paso a paso especificando _cómo_ se debe hacer.
 
 ```{code-cell} python
 ---
@@ -84,7 +84,7 @@ def factorial(n):
 print(f"Factorial de 5: {factorial(5)}")
 ```
 
-La programación funcional se basa en el uso de funciones puras. Este paradigma se enfoca en *qué* se debe hacer, utilizando funciones de orden superior y minimizando la dependencia de estados mutables para evitar efectos secundarios. En el capítulo de funciones profundizaremos un poco más en este paradigma.
+La programación funcional se basa en el uso de funciones puras. Este paradigma se enfoca en _qué_ se debe hacer, utilizando funciones de orden superior y minimizando la dependencia de estados mutables para evitar efectos secundarios. En el capítulo de funciones profundizaremos un poco más en este paradigma.
 
 ```{admonition} Funciones puras
 ---

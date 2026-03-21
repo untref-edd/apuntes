@@ -28,7 +28,7 @@ os.makedirs(tmp_dir, exist_ok=True)
 os.chdir(tmp_dir)
 ```
 
-JSON (*JavaScript Object Notation*) es un formato ligero de intercambio de datos que es fácil de leer y escribir para los humanos, y fácil de parsear y generar para las máquinas. Es un formato de texto que utiliza una sintaxis basada en objetos y arrays de JavaScript.
+JSON (_JavaScript Object Notation_) es un formato ligero de intercambio de datos que es fácil de leer y escribir para los humanos, y fácil de parsear y generar para las máquinas. Es un formato de texto que utiliza una sintaxis basada en objetos y arrays de JavaScript.
 
 ## Estructura de JSON
 

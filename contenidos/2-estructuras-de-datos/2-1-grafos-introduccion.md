@@ -81,7 +81,7 @@ width: 70%
 Grafo de amistades en una red social
 ```
 
-Los grafos dirigidos permiten representar relaciones asimétricas entre dos nodos, por ejemplo en la red social X (anteriormente Twitter), si A sigue a B, las publicaciones de B aparecerán en el *feed* de A, pero si B no sigue a A, las publicaciones de A no aparecerán en el *feed* de B.
+Los grafos dirigidos permiten representar relaciones asimétricas entre dos nodos, por ejemplo en la red social X (anteriormente Twitter), si A sigue a B, las publicaciones de B aparecerán en el _feed_ de A, pero si B no sigue a A, las publicaciones de A no aparecerán en el _feed_ de B.
 
 El plan de estudios de una carrera es otro ejemplo que se puede modelar con un grafo dirigido, donde las materias son los nodos y las aristas indican las correlativas que se deben aprobar antes de cursar una materia.
 

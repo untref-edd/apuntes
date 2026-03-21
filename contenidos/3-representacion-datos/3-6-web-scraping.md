@@ -68,7 +68,7 @@ URLs semilla
 : Puntos de partida para el crawler. Una serie de URLs iniciales desde donde comenzar la exploración.
 
 Frontera de URLs
-: Estructura de datos que almacena las URLs pendientes de visitar. Cada vez que el *crawler* visita una página, extrae nuevas URLs y las añade a esta frontera.
+: Estructura de datos que almacena las URLs pendientes de visitar. Cada vez que el _crawler_ visita una página, extrae nuevas URLs y las añade a esta frontera.
 
 Obtenedor de HTML
 : Componente que realiza solicitudes HTTP para descargar el contenido HTML de las páginas web.
@@ -97,7 +97,7 @@ Resolutor DNS
 Cacheo
 : Almacena temporalmente respuestas HTTP para mejorar la eficiencia y reducir la carga en los servidores web.
 
-#### Robustez del Crawler
+## Robustez del Crawler
 
 Un crawler robusto debe estar diseñado para manejar la imprevisibilidad de la Web. Tres desafíos principales son:
 
@@ -110,13 +110,13 @@ Un crawler robusto debe estar diseñado para manejar la imprevisibilidad de la W
 **Cortesía (Politeness)**
 : Un crawler no debe saturar un servidor. Reglas como esperar un intervalo entre peticiones al mismo host y respetar el archivo `robots.txt` son obligatorias para un comportamiento ético.
 
-#### Estrategias de la Frontera de URLs
+## Estrategias de la Frontera de URLs
 
 La frontera no es simplemente una cola. En sistemas complejos {cite:p}`irbook`, se utilizan esquemas de **priorización**:
 
 - **Frescura**: Priorizar la revisión de páginas que cambian frecuentemente (como sitios de noticias).
 - **Calidad (PageRank)**: Priorizar páginas que son consideradas más importantes o autoritativas.
-- **Detección de duplicados**: Antes de añadir a la frontera, se suele calcular un *hash* (o *shingle*) del contenido para ver si la información ya fue procesada bajo una URL distinta.
+- **Detección de duplicados**: Antes de añadir a la frontera, se suele calcular un _hash_ (o _shingle_) del contenido para ver si la información ya fue procesada bajo una URL distinta.
 
 Almacenamiento de datos
 : Base de datos o archivo donde se guardan los datos extraídos del contenido web.
@@ -294,7 +294,7 @@ else:
 
 ## Scrapy
 
-Scrapy es un *framework* de Python para web scraping a gran escala. Proporciona funcionalidades avanzadas como:
+Scrapy es un _framework_ de Python para web scraping a gran escala. Proporciona funcionalidades avanzadas como:
 
 - Gestión automática de solicitudes concurrentes
 - Manejo de robots.txt
@@ -309,12 +309,12 @@ pip install scrapy
 ```
 
 ````{admonition} Anatomía de un Spider en Scrapy
-Una *spider* en Scrapy es una clase que hereda de `scrapy.Spider` y define cómo navegar y extraer información de un sitio web. Los elementos clave que se deben configurar son:
+Una _spider_ en Scrapy es una clase que hereda de `scrapy.Spider` y define cómo navegar y extraer información de un sitio web. Los elementos clave que se deben configurar son:
 
 - **name**: Identificador único de la spider dentro del proyecto.
 - **allowed_domains**: Lista de dominios permitidos para evitar que la spider navegue fuera del sitio objetivo.
 - **start_urls**: Lista de URLs iniciales desde donde comenzará el scraping.
-- **custom_settings** *(opcional)*: Permite definir configuraciones específicas para esta spider, como el retraso entre descargas, el User-Agent, el respeto a robots.txt, número de solicitudes concurrentes, etc.
+- **custom_settings** _(opcional)_: Permite definir configuraciones específicas para esta spider, como el retraso entre descargas, el User-Agent, el respeto a robots.txt, número de solicitudes concurrentes, etc.
 - **parse**: Método principal que procesa la respuesta de cada URL y define cómo extraer los datos o seguir enlaces adicionales.
 
 Ejemplo básico:

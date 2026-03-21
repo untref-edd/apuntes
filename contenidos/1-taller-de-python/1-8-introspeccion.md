@@ -23,7 +23,7 @@ Reflexión
 : Va un paso más allá: no solo inspecciona, sino que **modifica el comportamiento o la estructura** de objetos, clases o módulos en tiempo de ejecución.
 
 ```{note} Nota
-En **Java** estas capacidades existen mediante *Reflection API*, mientras que en **Go** se logran con el paquete `reflect`. En Python, estas herramientas están integradas en el propio lenguaje y son mucho más accesibles.
+En **Java** estas capacidades existen mediante _Reflection API_, mientras que en **Go** se logran con el paquete `reflect`. En Python, estas herramientas están integradas en el propio lenguaje y son mucho más accesibles.
 ```
 
 ## Herramientas comunes de introspección y reflexión

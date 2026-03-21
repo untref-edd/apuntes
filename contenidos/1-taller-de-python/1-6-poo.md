@@ -287,7 +287,7 @@ ayudante1.pagar()
 
 Hemos definido cuatro clases: `Persona`, `Docente`, `Estudiante` y `Ayudante`. `Docente` y `Estudiante` heredan de `Persona`, mientras que `Ayudante` hereda de `Estudiante` y `Docente` a través de la herencia múltiple. Lo que le permite a un `Ayudante` heredar el comportamiento de ambas clases además de sumar sus propios atributos y métodos.
 
-En el siguiente *diagrama de clases* se puede observar la relación entre las clases y los atributos y métodos de cada una.
+En el siguiente _diagrama de clases_ se puede observar la relación entre las clases y los atributos y métodos de cada una.
 
 ```{figure} ../_static/figures/1-taller-de-python/1-6-poo/diagrama_ayudante_light.svg
 ---

@@ -64,7 +64,7 @@ Desde la perspectiva de la recuperación de información, la búsqueda en la "we
 
 ### Estructura de la Web (The Bow-tie structure)
 
-A gran escala, la estructura de la Web no es una red aleatoria. Investigaciones clásicas {cite:p}`irbook` han demostrado que el grafo de la Web tiene una forma de **moño** o **corbata de moño** (*bow-tie structure*).
+A gran escala, la estructura de la Web no es una red aleatoria. Investigaciones clásicas {cite:p}`irbook` han demostrado que el grafo de la Web tiene una forma de **moño** o **corbata de moño** (_bow-tie structure_).
 
 Esta estructura se compone de tres partes principales:
 
@@ -72,15 +72,15 @@ Esta estructura se compone de tres partes principales:
 2. **SCC (Strongly Connected Component)**: El núcleo central, donde es posible llegar de cualquier página a otra siguiendo enlaces.
 3. **OUT**: Páginas a las que se llega desde el centro, pero que no tienen enlaces de regreso hacia él.
 
-Además, existen "zarcillos" (*tendrils*) y páginas aisladas que no se conectan a estos componentes principales. Entender esta estructura es vital para diseñar algoritmos de crawling eficientes.
+Además, existen "zarcillos" (_tendrils_) y páginas aisladas que no se conectan a estos componentes principales. Entender esta estructura es vital para diseñar algoritmos de crawling eficientes.
 
 ### El Protocolo HTTP
 
-HTTP (*HyperText Transfer Protocol*) es el protocolo de comunicación que permite la transferencia de información en la Web. Define cómo los clientes y servidores intercambian mensajes.
+HTTP (_HyperText Transfer Protocol_) es el protocolo de comunicación que permite la transferencia de información en la Web. Define cómo los clientes y servidores intercambian mensajes.
 
 HTTP fue diseñado para ser simple y flexible, permitiendo la transferencia de diferentes tipos de datos (HTML, JSON, imágenes, etc.) a través de una estructura de mensajes estándar.
 
-El protocolo HTTP sigue un modelo de solicitud-respuesta (*request-response*), donde el cliente envía una solicitud al servidor y este responde con el recurso solicitado o un mensaje de error.
+El protocolo HTTP sigue un modelo de solicitud-respuesta (_request-response_), donde el cliente envía una solicitud al servidor y este responde con el recurso solicitado o un mensaje de error.
 
 En el siguiente diagrama de secuencia se muestra una interacción típica entre un cliente y un servidor utilizando HTTP:
 
@@ -107,7 +107,7 @@ User-Agent: curl/8.6.0
 Accept: */*
 ```
 
-La petición HTTP consta de varias líneas, donde la primera línea indica el método HTTP (`GET`), el recurso solicitado (`/contact`) y la versión del protocolo (`HTTP/1.1`). Las líneas siguientes son las cabeceras (*headers*) que proporcionan información adicional sobre la solicitud. En este caso, se especifica el host, el agente de usuario (navegador) y los tipos de contenido aceptados.
+La petición HTTP consta de varias líneas, donde la primera línea indica el método HTTP (`GET`), el recurso solicitado (`/contact`) y la versión del protocolo (`HTTP/1.1`). Las líneas siguientes son las cabeceras (_headers_) que proporcionan información adicional sobre la solicitud. En este caso, se especifica el host, el agente de usuario (navegador) y los tipos de contenido aceptados.
 
 **Respuesta recibida:**
 
@@ -194,7 +194,7 @@ Un problema común al procesar datos de la Web es que diferentes URLs pueden apu
 - `http://google.com/`
 - `https://www.google.com:80`
 
-La **normalización de URLs** es el proceso de convertir URLs a una forma estándar o *canónica*. Esto es fundamental para evitar que un crawler descargue la misma página varias veces. Algunas reglas comunes incluyen:
+La **normalización de URLs** es el proceso de convertir URLs a una forma estándar o _canónica_. Esto es fundamental para evitar que un crawler descargue la misma página varias veces. Algunas reglas comunes incluyen:
 
 - Convertir el esquema y el host a minúsculas.
 - Eliminar el puerto si es el estandard (e.g., `:80` para HTTP).
@@ -222,7 +222,7 @@ except requests.exceptions.RequestException as e:
     print(f"No se pudo conectar a untref.edu.ar: {e}")
 ```
 
-El intercambio entre cliente y servidor puede verse en *"crudo"* utilizando herramientas como `curl` en la línea de comandos. Aquí hay un ejemplo de cómo se vería una solicitud y respuesta HTTP:
+El intercambio entre cliente y servidor puede verse en _"crudo"_ utilizando herramientas como `curl` en la línea de comandos. Aquí hay un ejemplo de cómo se vería una solicitud y respuesta HTTP:
 
 ```bash
 curl -v https://untref.edu.ar/
@@ -274,7 +274,7 @@ HTTPS (HTTP Secure) es la versión segura de HTTP que utiliza encriptación TLS/
 
 ## APIs: Interfaces de Programación de Aplicaciones
 
-Las APIs (*Application Programming Interfaces*) son interfaces que permiten que diferentes aplicaciones se comuniquen entre sí de manera programática. En el contexto web, las APIs proporcionan puntos de acceso (*endpoints*) que los desarrolladores pueden usar para acceder a datos y funcionalidades de un servicio.
+Las APIs (_Application Programming Interfaces_) son interfaces que permiten que diferentes aplicaciones se comuniquen entre sí de manera programática. En el contexto web, las APIs proporcionan puntos de acceso (_endpoints_) que los desarrolladores pueden usar para acceder a datos y funcionalidades de un servicio.
 
 ```{figure} ../_static/figures/arquitectura_api_light.svg
 ---

@@ -179,7 +179,7 @@ $$
 T(n) = O(|A|\log|V|).
 $$
 
-Otra manera de verlo: en cada iteración del bucle *MIENTRAS*, se procesan únicamente los adyacentes del vértice extraído, y a lo largo de todo el algoritmo cada arista ((u,v)) se examina una sola vez. Formalmente:
+Otra manera de verlo: en cada iteración del bucle _MIENTRAS_, se procesan únicamente los adyacentes del vértice extraído, y a lo largo de todo el algoritmo cada arista ((u,v)) se examina una sola vez. Formalmente:
 
 $$
 \sum_{v \in V} \deg(v) = 2|A| \quad \Rightarrow \quad O(|A|)\ \text{relajaciones}.
@@ -214,7 +214,7 @@ donde $w(u, v)$ es el peso de la arista $u \to w$
 
 La idea central es que, en un grafo sin ciclos negativos, el camino más corto entre dos vértices tiene a lo sumo $|V|−1$ aristas.
 
-El algoritmo realiza sucesivas iteraciones en las que intenta mejorar (*relajar*) las distancias conocidas, comparando si pasar por una nueva arista ofrece un camino más corto.
+El algoritmo realiza sucesivas iteraciones en las que intenta mejorar (_relajar_) las distancias conocidas, comparando si pasar por una nueva arista ofrece un camino más corto.
 
 Supuesto clave
 : Después de realizar $∣V∣−1$ iteraciones, todas las distancias mínimas posibles estarán correctamente calculadas.
@@ -272,7 +272,7 @@ caminos_minimos.show_bellman_ford_step_by_step(G, SOURCE)
 
 ### Complejidad del algoritmo de Bellman-Ford
 
-La complejidad temporal del **_algoritmo de Bellman-Ford_** está determinada por los dos ciclos anidados de las líneas 9 y 10. El bucle *REPETIR* se ejecuta $|V| - 1$ veces y el ciclo *PARA* se ejecuta $|A|$ veces y como adentro de los ciclos todas las operaciones son $O(1)$ queda:
+La complejidad temporal del **_algoritmo de Bellman-Ford_** está determinada por los dos ciclos anidados de las líneas 9 y 10. El bucle _REPETIR_ se ejecuta $|V| - 1$ veces y el ciclo _PARA_ se ejecuta $|A|$ veces y como adentro de los ciclos todas las operaciones son $O(1)$ queda:
 
 $$
 T(n)=O(|V|\times|A|)
