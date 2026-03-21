@@ -49,7 +49,7 @@ ORDEN TOPOLÓGICO (G: DiGrafo)
 
 Por ejemplo dado el siguiente grafo:
 
-```{figure} ../_static/figures/grafo_dag_light.svg
+```{figure} ../_static/figures/2-estructuras-de-datos/2-1-grafos-introduccion/grafo_dag_light.svg
 ---
 class: only-light-mode
 width: 60%
@@ -57,7 +57,7 @@ width: 60%
 Grafo Dirigido Acíclico
 ```
 
-```{figure} ../_static/figures/grafo_dag_dark.svg
+```{figure} ../_static/figures/2-estructuras-de-datos/2-1-grafos-introduccion/grafo_dag_dark.svg
 ---
 class: only-dark-mode
 width: 60%
@@ -67,7 +67,7 @@ Grafo Dirigido Acíclico
 
 Un orden topológico posible es: $V_2$, $V_0$, $V_1$, $V_3$, $V_4$, $V_6$, $V_5$. Como se observa a continuación.
 
-```{figure} ../_static/figures/grafo_orden_topologico_light.svg
+```{figure} ../_static/figures/2-estructuras-de-datos/2-3-grafos-orden-topologico/grafo_orden_topologico_light.svg
 ---
 class: only-light-mode
 width: 80%
@@ -75,7 +75,7 @@ width: 80%
 Ordenamiento Topológico
 ```
 
-```{figure} ../_static/figures/grafo_orden_topologico_dark.svg
+```{figure} ../_static/figures/2-estructuras-de-datos/2-3-grafos-orden-topologico/grafo_orden_topologico_dark.svg
 ---
 class: only-dark-mode
 width: 80%

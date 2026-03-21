@@ -95,7 +95,7 @@ La ventaja de este algoritmo es que encuentra el camino más corto (mínimo núm
 Grafo Bipartito
 : Un grafo **no dirigido** es bipartito si los vértices se pueden dividir en dos grupos, de modo tal que las aristas vayan siempre de un vértice de un grupo a un vértice del otro grupo.
 
-```{figure} ../_static/figures/grafo_bipartito_light.svg
+```{figure} ../_static/figures/2-estructuras-de-datos/2-2-grafos-recorridos/grafo_bipartito_light.svg
 ---
 class: only-light-mode
 width: 60%
@@ -103,7 +103,7 @@ width: 60%
 Grafo Bipartito
 ```
 
-```{figure} ../_static/figures/grafo_bipartito_dark.svg
+```{figure} ../_static/figures/2-estructuras-de-datos/2-2-grafos-recorridos/grafo_bipartito_dark.svg
 ---
 class: only-dark-mode
 width: 60%
@@ -113,7 +113,7 @@ Grafo Bipartito
 
 Reordenando los vértices de un grafo bipartito se puede ver claramente la división en dos grupos, donde las aristas van siempre de un grupo a otro y no hay aristas entre vértices del mismo grupo. En la imagen no hay aristas entre vértices azules ni tampoco entre vértices rojos.
 
-```{figure} ../_static/figures/grafo_bipartito_ordenado_light.svg
+```{figure} ../_static/figures/2-estructuras-de-datos/2-2-grafos-recorridos/grafo_bipartito_ordenado_light.svg
 ---
 class: only-light-mode
 width: 60%
@@ -121,7 +121,7 @@ width: 60%
 Grafo Bipartito Ordenado
 ```
 
-```{figure} ../_static/figures/grafo_bipartito_ordenado_dark.svg
+```{figure} ../_static/figures/2-estructuras-de-datos/2-2-grafos-recorridos/grafo_bipartito_ordenado_dark.svg
 ---
 class: only-dark-mode
 width: 60%
@@ -201,7 +201,7 @@ TIENE_CICLO(G):
     PARA CADA v EN G.vertices:
         SI detecta_ciclo(v, visitado, en_recursion):
             DEVOLVER Verdadero
-    
+
     DEVOLVER Falso
 
 detecta_ciclo(v, visitado, en_recursion):
@@ -211,7 +211,7 @@ detecta_ciclo(v, visitado, en_recursion):
     PARA CADA vecino EN v.adyacentes:
         SI vecino EN en_recursion:
             DEVOLVER Verdadero  # Ciclo encontrado
-        
+
         SI vecino NO EN visitado:
             SI detecta_ciclo(vecino, visitado, en_recursion):
                 DEVOLVER Verdadero

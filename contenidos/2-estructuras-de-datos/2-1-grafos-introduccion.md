@@ -39,7 +39,7 @@ $$
 |E| ≤ |V|^2
 $$
 
-```{figure} ../_static/figures/grafo_ejemplo_light.svg
+```{figure} ../_static/figures/2-estructuras-de-datos/2-1-grafos-introduccion/grafo_ejemplo_light.svg
 ---
 class: only-light-mode
 width: 60%
@@ -47,7 +47,7 @@ width: 60%
 Ejemplo de un grafo
 ```
 
-```{figure} ../_static/figures/grafo_ejemplo_dark.svg
+```{figure} ../_static/figures/2-estructuras-de-datos/2-1-grafos-introduccion/grafo_ejemplo_dark.svg
 ---
 class: only-dark-mode
 width: 60%
@@ -65,7 +65,7 @@ Los grafos se pueden clasificar en dirigidos y no dirigidos. En un grafo dirigid
 
 Por ejemplo, en la siguiente imagen se observa las relaciones de amistad en una red social, donde las relaciones son simétricas, es decir, si A es amigo de B, entonces B es amigo de A. Estas relaciones se pueden representar con un grafo no dirigido.
 
-```{figure} ../_static/figures/grafo_red_light.svg
+```{figure} ../_static/figures/2-estructuras-de-datos/2-1-grafos-introduccion/grafo_red_light.svg
 ---
 class: only-light-mode
 width: 70%
@@ -73,7 +73,7 @@ width: 70%
 Grafo de amistades en una red social
 ```
 
-```{figure} ../_static/figures/grafo_red_dark.svg
+```{figure} ../_static/figures/2-estructuras-de-datos/2-1-grafos-introduccion/grafo_red_dark.svg
 ---
 class: only-dark-mode
 width: 70%
@@ -85,14 +85,14 @@ Los grafos dirigidos permiten representar relaciones asimétricas entre dos nodo
 
 El plan de estudios de una carrera es otro ejemplo que se puede modelar con un grafo dirigido, donde las materias son los nodos y las aristas indican las correlativas que se deben aprobar antes de cursar una materia.
 
-```{figure} ../_static/figures/grafo_carrera_light.svg
+```{figure} ../_static/figures/2-estructuras-de-datos/2-1-grafos-introduccion/grafo_carrera_light.svg
 ---
 class: only-light-mode
 ---
 Grafo de correlativas en un plan de estudios
 ```
 
-```{figure} ../_static/figures/grafo_carrera_dark.svg
+```{figure} ../_static/figures/2-estructuras-de-datos/2-1-grafos-introduccion/grafo_carrera_dark.svg
 ---
 class: only-dark-mode
 ---
@@ -111,14 +111,14 @@ $$
 V - 1 \leq |E| \leq \frac{V \times (V - 1)}{2}
 $$
 
-```{figure} ../_static/figures/grafos_conexos_light.svg
+```{figure} ../_static/figures/2-estructuras-de-datos/2-1-grafos-introduccion/grafos_conexos_light.svg
 ---
 class: only-light-mode
 ---
 Grafos conexos no dirigidos
 ```
 
-```{figure} ../_static/figures/grafos_conexos_dark.svg
+```{figure} ../_static/figures/2-estructuras-de-datos/2-1-grafos-introduccion/grafos_conexos_dark.svg
 ---
 class: only-dark-mode
 ---
@@ -141,14 +141,14 @@ class: hint
 El **grafo subyacente** de un grafo dirigido es el grafo no dirigido que se obtiene al eliminar las direcciones de las aristas del grafo dirigido.
 ```
 
-```{figure} ../_static/figures/grafos_conexos_dirigidos_light.svg
+```{figure} ../_static/figures/2-estructuras-de-datos/2-1-grafos-introduccion/grafos_conexos_dirigidos_light.svg
 ---
 class: only-light-mode
 ---
 Grafos conexos dirigidos
 ```
 
-```{figure} ../_static/figures/grafos_conexos_dirigidos_dark.svg
+```{figure} ../_static/figures/2-estructuras-de-datos/2-1-grafos-introduccion/grafos_conexos_dirigidos_dark.svg
 ---
 class: only-dark-mode
 ---
@@ -159,7 +159,7 @@ Grafos conexos dirigidos
 
 Un grafo se dice que es **ponderado** si cada arista tiene un peso o costo asociado. Este peso puede representar diferentes cosas, como la distancia entre dos nodos o el tiempo necesario para recorrer una arista. Por otro lado, un grafo es **no ponderado** si sus aristas no tienen pesos.
 
-```{figure} ../_static/figures/grafo_con_pesos_light.svg
+```{figure} ../_static/figures/2-estructuras-de-datos/2-1-grafos-introduccion/grafo_con_pesos_light.svg
 ---
 class: only-light-mode
 width: 60%
@@ -167,7 +167,7 @@ width: 60%
 Grafo ponderado con costos en las aristas
 ```
 
-```{figure} ../_static/figures/grafo_con_pesos_dark.svg
+```{figure} ../_static/figures/2-estructuras-de-datos/2-1-grafos-introduccion/grafo_con_pesos_dark.svg
 ---
 class: only-dark-mode
 width: 60%
@@ -181,14 +181,14 @@ Grafo ponderado con costos en las aristas
 
 Un camino en un grafo (dirigido o no dirigido) es una secuencia de vértices en la que cada par de vértices adyacentes está conectado por una arista. Un camino puede ser **simple** (sin vértices repetidos) o tener **ciclos** (vértices repetidos). En general cuando se habla sólo de camino se refiere a un **camino simple** sin ciclos.
 
-```{figure} ../_static/figures/grafo_camino_light.svg
+```{figure} ../_static/figures/2-estructuras-de-datos/2-1-grafos-introduccion/grafo_camino_light.svg
 ---
 class: only-light-mode
 ---
 Caminos en grafos
 ```
 
-```{figure} ../_static/figures/grafo_camino_dark.svg
+```{figure} ../_static/figures/2-estructuras-de-datos/2-1-grafos-introduccion/grafo_camino_dark.svg
 ---
 class: only-dark-mode
 ---
@@ -221,7 +221,7 @@ Es un grafo cuyas aristas son dirigidas y no presenta ciclos, también conocidos
 
 Visto de otra forma si partimos de un vértice cualquiera del grafo no existe ningún camino que permita regresar al mismo vértice.
 
-```{figure} ../_static/figures/grafo_dag_light.svg
+```{figure} ../_static/figures/2-estructuras-de-datos/2-1-grafos-introduccion/grafo_dag_light.svg
 ---
 class: only-light-mode
 width: 60%
@@ -229,7 +229,7 @@ width: 60%
 Grafo Dirigido Acíclico
 ```
 
-```{figure} ../_static/figures/grafo_dag_dark.svg
+```{figure} ../_static/figures/2-estructuras-de-datos/2-1-grafos-introduccion/grafo_dag_dark.svg
 ---
 class: only-dark-mode
 width: 60%
@@ -288,14 +288,14 @@ A=\{(V_0, V_1, 2), (V_0, V_3, 1), (V_1, V_3, 3), (V_1, V_4, 10), (V_2, V_0, 4), 
 \end{equation*}
 $$
 
-```{figure} ../_static/figures/grafo_dirigido_light.svg
+```{figure} ../_static/figures/2-estructuras-de-datos/2-1-grafos-introduccion/grafo_dirigido_light.svg
 ---
 class: only-light-mode
 ---
 Grafo dirigido
 ```
 
-```{figure} ../_static/figures/grafo_dirigido_dark.svg
+```{figure} ../_static/figures/2-estructuras-de-datos/2-1-grafos-introduccion/grafo_dirigido_dark.svg
 ---
 class: only-dark-mode
 ---
@@ -327,7 +327,7 @@ Para representar grafos no ponderados se acostumbra poner un 1 donde hay una ari
 
 Si el grafo es no dirigido, la matriz de adyacencia será simétrica, por ejemplo la matriz de adyacencia para el siguiente grafo:
 
-```{figure} ../_static/figures/grafo_no_dirigido_light.svg
+```{figure} ../_static/figures/2-estructuras-de-datos/2-1-grafos-introduccion/grafo_no_dirigido_light.svg
 ---
 class: only-light-mode
 width: 60%
@@ -335,7 +335,7 @@ width: 60%
 Grafo no dirigido
 ```
 
-```{figure} ../_static/figures/grafo_no_dirigido_dark.svg
+```{figure} ../_static/figures/2-estructuras-de-datos/2-1-grafos-introduccion/grafo_no_dirigido_dark.svg
 ---
 class: only-dark-mode
 width: 60%
@@ -362,7 +362,7 @@ La lista de adyacencia es otra forma de representar un grafo. En lugar de usar u
 
 Para el grafo dirigido anterior la lista de adyacencia sería:
 
-```{figure} ../_static/figures/grafo_dirigido_lista_light.svg
+```{figure} ../_static/figures/2-estructuras-de-datos/2-1-grafos-introduccion/grafo_dirigido_lista_light.svg
 ---
 class: only-light-mode
 width: 80%
@@ -370,7 +370,7 @@ width: 80%
 Lista de adyacencia del grafo dirigido
 ```
 
-```{figure} ../_static/figures/grafo_dirigido_lista_dark.svg
+```{figure} ../_static/figures/2-estructuras-de-datos/2-1-grafos-introduccion/grafo_dirigido_lista_dark.svg
 ---
 class: only-dark-mode
 width: 80%
@@ -382,7 +382,7 @@ En cada nodo de la lista se almacena el par $(vecino, peso)$ que representa la a
 
 A continuación la lista de adyacencia para el grafo no dirigido del punto anterior:
 
-```{figure} ../_static/figures/grafo_no_dirigido_lista_light.svg
+```{figure} ../_static/figures/2-estructuras-de-datos/2-1-grafos-introduccion/grafo_no_dirigido_lista_light.svg
 ---
 class: only-light-mode
 width: 80%
@@ -390,7 +390,7 @@ width: 80%
 Lista de adyacencia del grafo no dirigido
 ```
 
-```{figure} ../_static/figures/grafo_no_dirigido_lista_dark.svg
+```{figure} ../_static/figures/2-estructuras-de-datos/2-1-grafos-introduccion/grafo_no_dirigido_lista_dark.svg
 ---
 class: only-dark-mode
 width: 80%
