@@ -23,12 +23,15 @@ Los recorridos de grafos son fundamentales en muchas aplicaciones, como la búsq
 
 El recorrido a lo ancho, o BFS, es un algoritmo que explora los nodos de un grafo en capas, visitando primero todos los nodos a una distancia dada antes de pasar a los nodos a una mayor distancia. Esto se logra utilizando una cola para llevar un registro de los nodos por visitar.
 
-```text
+```{code} text
+---
+linenos: true
+---
 BFS (s: Vertice):
-    q <- Cola()
+    q = Cola()
 
-    q.encolar(s)
     visitado[s] = True
+    q.encolar(s)
 
     MIENTRAS NO q.esta_vacia()
         v = q.desencolar()
@@ -67,15 +70,18 @@ Si el grafo se representa mediante una **matriz de adyacencia**, para encontrar 
 
 Supongamos que queremos calcular el camino mínimo (menor costo) desde un vértice $s$ a cualquier otro vértice alcanzable desde $s$. Si el grafo es no ponderado, podemos considerar que todas las aristas tienen peso 1, el algoritmo BFS es el más apropiado para resolver este problema. En este caso el camino mínimo entre dos vértices coincide con el camino más corto.
 
-```text
+```{code} text
+---
+linenos: true
+emphasize-lines: 5,6,15,16
+---
 CAMINO_MINIMO_BFS (s: Vertice)
-    q <- Cola()
+    q = Cola()
 
+    visitado[s] = True
     distancia[s] = 0
     previo[s] = None
-
     q.encolar(s)
-    visitado[s] = True
 
     MIENTRAS NO q.esta_vacia()
         v = q.desencolar()
@@ -88,12 +94,11 @@ CAMINO_MINIMO_BFS (s: Vertice)
                 q.encolar(w)
 ```
 
-La ventaja de este algoritmo es que encuentra el camino más corto (mínimo número de aristas) desde el vértice `s` a cualquier otro vértice alcanzable desde `s` en $O(|V| + |A|)$.
+La ventaja de este algoritmo es que encuentra el camino más corto (mínimo número de aristas) desde el vértice $s$ a cualquier otro vértice alcanzable desde $s$ en $O(|V| + |A|)$
 
 ### Grafo Bipartito
 
-Grafo Bipartito
-: Un grafo **no dirigido** es bipartito si los vértices se pueden dividir en dos grupos, de modo tal que las aristas vayan siempre de un vértice de un grupo a un vértice del otro grupo.
+Un grafo **no dirigido** es bipartito si los vértices se pueden dividir en dos grupos, de modo tal que las aristas vayan siempre de un vértice de un grupo a un vértice del otro grupo.
 
 ```{figure} ../_static/figures/2-estructuras-de-datos/2-2-grafos-recorridos/grafo_bipartito_light.svg
 ---
@@ -131,14 +136,17 @@ Grafo Bipartito Ordenado
 
 El algoritmo para verificar si un grafo es bipartito, se puede implementar usando los valores `True` y `False` para _pintar_ los vértices y verificar que no haya aristas entre vértices del mismo color. El recorrido a lo ancho es ideal para este problema ya que va visitando los vértices por capas, es decir, va visitando los vértices que están a una distancia 1, luego los vértices que están a una distancia 2, y así sucesivamente.
 
-```text
+```{code} text
+---
+linenos: true
+emphasize-lines: 5,14,16,17,18,20
+---
 ES_BIPARTITO (s: Vertice):
-    q <- Cola()
+    q = Cola()
 
-    color[s] = True
-
-    q.encolar(s)
     visitado[s] = True
+    color[s] = True
+    q.encolar(s)
 
     MIENTRAS NO q.esta_vacia()
         v = q.desencolar()
@@ -167,7 +175,10 @@ Sistemas de navegación GPS
 
 El recorrido en profundidad, o DFS, es un algoritmo que explora los nodos profundizando lo más posible en cada rama antes de retroceder. Esto se logra utilizando una pila (o la pila de llamadas del sistema si se usa recursión) para llevar un registro de los nodos que deben ser visitados. (En forma análoga a la técnica de backtracking que intenta profundizar una solución hasta que encuentra una solución válida o hasta que se queda sin opciones)
 
-```text
+```{code} text
+---
+linenos: true
+---
 DFS (v, visitado = {}, contador = 0):
     visitado[v] = True
     contador += 1
@@ -193,7 +204,10 @@ El recorrido en profundidad (DFS) es muy útil para detectar si un grafo contien
 
 En un grafo dirigido, existe un ciclo si durante el DFS encontramos una arista que va hacia un vértice que está siendo visitado actualmente (es decir, que está en la pila de recursión). Esto se conoce como una **_arista de retroceso_** (_back edge_).
 
-```text
+```{code} text
+---
+linenos: true
+---
 TIENE_CICLO(G):
     visitado = Conjunto()
     en_recursion = Conjunto()

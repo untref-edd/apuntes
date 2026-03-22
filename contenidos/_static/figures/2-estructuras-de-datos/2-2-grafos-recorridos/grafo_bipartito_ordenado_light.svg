@@ -1,19 +1,31 @@
 <?xml version='1.0' encoding='utf-8'?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
-  <line x1="100" y1="50" x2="300" y2="100" stroke="#333333" stroke-width="2" />
-  <line x1="100" y1="50" x2="300" y2="200" stroke="#333333" stroke-width="2" />
-  <line x1="100" y1="150" x2="300" y2="100" stroke="#333333" stroke-width="2" />
-  <line x1="100" y1="250" x2="300" y2="200" stroke="#333333" stroke-width="2" />
-  <line x1="100" y1="250" x2="300" y2="100" stroke="#333333" stroke-width="2" />
-  <line x1="100" y1="150" x2="300" y2="200" stroke="#333333" stroke-width="2" />
-  <circle cx="100" cy="50" r="20" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
-  <text x="100" y="55" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle">U1</text>
-  <circle cx="100" cy="150" r="20" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
-  <text x="100" y="155" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle">U2</text>
-  <circle cx="100" cy="250" r="20" fill="#e1f5ff" stroke="#4682b4" stroke-width="2" />
-  <text x="100" y="255" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle">U3</text>
-  <circle cx="300" cy="100" r="20" fill="#ffe1e1" stroke="#e9967a" stroke-width="2" />
-  <text x="300" y="105" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle">V1</text>
-  <circle cx="300" cy="200" r="20" fill="#ffe1e1" stroke="#e9967a" stroke-width="2" />
-  <text x="300" y="205" font-family="Arial" font-size="14" fill="#333333" text-anchor="middle">V2</text>
+  <defs>
+    <style>
+      .edge { stroke: #333333; stroke-width: 2; }
+      .weight-text { fill: #333333; font-weight: bold; font-family: Arial; font-size: 14px; }
+      .node-text { fill: #333333; font-family: Arial; font-size: 14px; }
+      .variable-node { fill: #e1f5ff; stroke: #4682b4; stroke-width: 2; }
+      .value-node { fill: #ffe1e1; stroke: #e9967a; stroke-width: 2; }
+      .highlight-edge { stroke: #ef6c00; stroke-width: 2; }
+      .highlight-text { fill: #ef6c00; font-weight: bold; font-family: Arial; font-size: 14px; }
+      .background { fill: #ffffff; }
+    </style>
+  </defs>
+  <line class="edge" x1="100" y1="50" x2="300" y2="100" />
+  <line class="edge" x1="100" y1="50" x2="300" y2="200" />
+  <line class="edge" x1="100" y1="150" x2="300" y2="100" />
+  <line class="edge" x1="100" y1="250" x2="300" y2="200" />
+  <line class="edge" x1="100" y1="250" x2="300" y2="100" />
+  <line class="edge" x1="100" y1="150" x2="300" y2="200" />
+  <circle class="variable-node" cx="100" cy="50" r="20" />
+  <text class="node-text" x="100" y="55" text-anchor="middle">U1</text>
+  <circle class="variable-node" cx="100" cy="150" r="20" />
+  <text class="node-text" x="100" y="155" text-anchor="middle">U2</text>
+  <circle class="variable-node" cx="100" cy="250" r="20" />
+  <text class="node-text" x="100" y="255" text-anchor="middle">U3</text>
+  <circle class="value-node" cx="300" cy="100" r="20" />
+  <text class="node-text" x="300" y="105" text-anchor="middle">V1</text>
+  <circle class="value-node" cx="300" cy="200" r="20" />
+  <text class="node-text" x="300" y="205" text-anchor="middle">V2</text>
 </svg>
