@@ -11,11 +11,11 @@ kernelspec:
 description: Obtener acceso a la API de Facebook para análisis de datos de redes sociales
 ---
 
-# Registrarse como Desarrollador de Meta (Facebook)
+# Registrarse como desarrollador de Meta (Facebook)
 
 Este instructivo detalla el proceso completo para registrarse como desarrollador de Meta (Facebook), crear una aplicación y generar el Token de Acceso de Usuario necesario para realizar análisis de datos de redes sociales, explorar grafos de amistades y acceder a información pública usando Python.
 
-## Como obtener un **_"Access Token"_** de Facebook para Análisis de Datos
+## Como obtener un **_"Access Token"_** de Facebook para análisis de datos
 
 El primer paso es crear una cuenta de desarrollador en la plataforma Meta.
 
@@ -49,7 +49,7 @@ El primer paso es crear una cuenta de desarrollador en la plataforma Meta.
 
    - Algunos casos de uso requieren verificación empresarial adicional.
 
-## Crear una Nueva Aplicación de Consumidor
+## Crear una nueva aplicación de consumidor
 
 Una vez aprobada tu cuenta de desarrollador, puedes crear aplicaciones para acceder a la Graph API.
 
@@ -87,7 +87,7 @@ Una vez aprobada tu cuenta de desarrollador, puedes crear aplicaciones para acce
 
    - Una vez creada, se abrirá el panel de control de la aplicación.
 
-## Generar y Configurar el Token de Acceso de Usuario
+## Generar y configurar el token de acceso de usuario
 
 Este es el paso más importante: obtener la **_"llave"_** para acceder a los datos de la Graph API.
 
@@ -136,11 +136,11 @@ Este es el paso más importante: obtener la **_"llave"_** para acceder a los dat
    Los tokens de usuario tienen duración limitada. Para uso prolongado, considera generar tokens de larga duración o implementar renovación automática.
    ```
 
-## Explorar la Graph API con Consultas Útiles
+## Explorar la Graph API con consultas útiles
 
 El Explorador de Graph API permite probar diferentes consultas antes de implementarlas en código.
 
-### Consultas Básicas de Usuario
+### Consultas básicas de usuario
 
 1. **Información del Usuario Actual**
 
@@ -160,7 +160,7 @@ El Explorador de Graph API permite probar diferentes consultas antes de implemen
    /me/posts?fields=message,created_time,likes.summary(true),comments.summary(true)
    ```
 
-### Consultas para Análisis de Redes
+### Consultas para análisis de redes
 
 1. **Lista de Amigos (limitada)**
 
@@ -184,7 +184,7 @@ El Explorador de Graph API permite probar diferentes consultas antes de implemen
    /{page-id}/posts?fields=message,created_time,likes.summary(true),shares.summary(true)
    ```
 
-### Consultas Avanzadas para Investigación
+### Consultas avanzadas para investigación
 
 1. **Eventos Públicos**
 
@@ -204,7 +204,7 @@ El Explorador de Graph API permite probar diferentes consultas antes de implemen
    /{post-id}?fields=reactions.summary(total_count).limit(0),comments.summary(total_count).limit(0),shares.summary(total_count).limit(0)
    ```
 
-## Configurar Permisos Avanzados y Revisión de Aplicación
+## Configurar permisos avanzados y revisión de aplicación
 
 Para acceder a datos más sensibles, Meta requiere un proceso de revisión.
 
@@ -233,36 +233,36 @@ Para acceder a datos más sensibles, Meta requiere un proceso de revisión.
 
      - Configurar URL de endpoint y eventos de interés.
 
-## Tipos de Tokens y Gestión de Autenticación
+## Tipos de tokens y gestión de autenticación
 
 Meta maneja diferentes tipos de tokens según el caso de uso:
 
-### Token de Acceso de Usuario
+### Token de acceso de usuario
 
 - **Duración**: 1-2 horas por defecto
 - **Uso**: Acceso a datos del usuario autenticado
 - **Extensión**: Puede extenderse a 60 días
 
-### Token de Acceso de Página
+### Token de acceso de página
 
 - **Duración**: No expira (mientras la aplicación tenga permisos)
 - **Uso**: Gestión y publicación en páginas
 - **Obtención**: A través del token de usuario con permisos `manage_pages`
 
-### Token de Aplicación
+### Token de aplicación
 
 - **Duración**: No expira
 - **Uso**: Acceso a datos públicos y gestión de aplicación
 - **Formato**: `{app-id}|{app-secret}`
 
-### Extender la Duración del Token
+### Extender la duración del token
 
 ```bash
 # Extender token de usuario (60 días)
 curl -i -X GET "https://graph.facebook.com/oauth/access_token?grant_type=fb_exchange_token&client_id={app-id}&client_secret={app-secret}&fb_exchange_token={short-token}"
 ```
 
-## Probar las Credenciales y Conectividad
+## Probar las credenciales y conectividad
 
 Una vez obtenido el token, es importante verificar que funciona correctamente.
 
@@ -300,40 +300,40 @@ Una vez obtenido el token, es importante verificar que funciona correctamente.
        print("✗ Error:", response.text)
    ```
 
-## Limitaciones y Restricciones Actuales
+## Limitaciones y restricciones actuales
 
 Es crucial entender las limitaciones de la Graph API tras los cambios de privacidad.
 
-### Restricciones de Datos de Usuario
+### Restricciones de datos de usuario
 
 - **Solo datos propios**: Acceso limitado a datos del usuario autenticado
 - **Amigos limitados**: Solo amigos que también usan la aplicación
 - **Revisión obligatoria**: Muchos permisos requieren proceso de revisión
 - **Rate limiting**: Límites estrictos en número de llamadas por hora
 
-### Datos Públicos Disponibles
+### Datos públicos disponibles
 
 - **Páginas públicas**: Información básica y publicaciones públicas
 - **Eventos públicos**: Eventos marcados como públicos
 - **Lugares**: Información de ubicaciones y check-ins públicos
 - **Grupos públicos**: Contenido de grupos públicos (limitado)
 
-### Rate Limits y Cuotas
+### Rate limits y cuotas
 
 - **200 llamadas por hora** por usuario para aplicaciones en desarrollo
 - **Límites más altos** para aplicaciones verificadas
 - **Throttling automático** cuando se exceden los límites
 
-## Consideraciones de Seguridad
+## Consideraciones de seguridad
 
-### Protección de Credenciales
+### Protección de credenciales
 
 1. **Nunca hardcodear** tokens en el código fuente
 2. **Usar variables de entorno** para almacenar credenciales
 3. **Implementar renovación automática** de tokens
 4. **Monitorear el uso** de tokens en el panel de desarrollador
 
-### Ejemplo de Configuración Segura
+### Ejemplo de configuración segura
 
 ```python
 import os
@@ -365,7 +365,7 @@ FACEBOOK_API_VERSION=v18.0
 FACEBOOK_RATE_LIMIT_DELAY=1
 ```
 
-### Mejores Prácticas de Seguridad
+### Mejores prácticas de seguridad
 
 1. **Rotación de tokens**: Renovar tokens periódicamente
 2. **Monitoreo de uso**: Revisar logs de API en el panel de desarrollador
@@ -373,28 +373,28 @@ FACEBOOK_RATE_LIMIT_DELAY=1
 4. **Validación de entrada**: Sanitizar datos recibidos de la API
 5. **HTTPS obligatorio**: Usar siempre conexiones seguras
 
-## Documentación y Recursos Útiles
+## Documentación y recursos útiles
 
-### Documentación Oficial
+### Documentación oficial
 
 - [Meta for Developers - Getting Started](https://developers.facebook.com/docs/development/create-an-app/)
 - [Graph API Reference](https://developers.facebook.com/docs/graph-api/)
 - [Graph API Explorer](https://developers.facebook.com/tools/explorer/)
 - [Facebook SDK for Python](https://facebook-sdk.readthedocs.io/)
 
-### Librerías de Python Recomendadas
+### Librerías de Python recomendadas
 
 - [**facebook-sdk**](https://facebook-sdk.readthedocs.io/): SDK de terceros/comunidad para interactuar con Graph API en Python
 - [**requests**](https://requests.readthedocs.io/): Para llamadas HTTP directas (recomendado para máxima compatibilidad)
 - [**python-facebook-api**](https://github.com/sns-sdks/python-facebook): Alternativa moderna mantenida por la comunidad
 
-### Herramientas de Desarrollo
+### Herramientas de desarrollo
 
 - [**Graph API Explorer**](https://developers.facebook.com/tools/explorer/): Probar consultas interactivamente
 - [**Access Token Debugger**](https://developers.facebook.com/tools/debug/accesstoken/): Verificar tokens
 - [**Sharing Debugger**](https://developers.facebook.com/tools/debug/): Probar compartir contenido
 
-### Ejemplos de Endpoints Útiles
+### Ejemplos de endpoints útiles
 
 - **Usuario actual**: `/me`
 - **Páginas favoritas**: `/me/likes`

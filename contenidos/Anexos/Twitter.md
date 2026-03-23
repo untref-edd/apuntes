@@ -11,11 +11,11 @@ kernelspec:
 description: Obtener acceso a la API de Twitter para análisis de datos de redes sociales
 ---
 
-# Registrarse como Desarrollador de X (Twitter)
+# Registrarse como desarrollador de X (Twitter)
 
 Este instructivo detalla el proceso completo para registrarse como desarrollador de X (anteriormente Twitter), crear una aplicación y generar las credenciales necesarias (Bearer Token y Access Token) para realizar análisis de datos y acceder tanto a tweets históricos como a streams en tiempo real usando Python.
 
-## Como obtener un **_"Bearer Token"_** y **_"Access Token"_** de X (Twitter) para Análisis de Datos
+## Como obtener un **_"Bearer Token"_** y **_"Access Token"_** de X (Twitter) para análisis de datos
 
 El primer paso es crear una cuenta de desarrollador en la plataforma X.
 
@@ -51,7 +51,7 @@ El primer paso es crear una cuenta de desarrollador en la plataforma X.
 
    - La aprobación puede tomar desde minutos hasta 1-2 días hábiles.
 
-## Crear una Nueva Aplicación (App)
+## Crear una nueva aplicación (App)
 
 Una vez aprobada tu cuenta de desarrollador, puedes crear aplicaciones para acceder a la API.
 
@@ -83,7 +83,7 @@ Una vez aprobada tu cuenta de desarrollador, puedes crear aplicaciones para acce
 
    - Proporcionar una descripción clara del propósito de la aplicación.
 
-## Obtener las Credenciales de Autenticación
+## Obtener las credenciales de autenticación
 
 Este es el paso más importante: generar las **_"llaves"_** para acceder a los datos de X.
 
@@ -139,7 +139,7 @@ Este es el paso más importante: generar las **_"llaves"_** para acceder a los d
 
    - **Copiar y guardar** ambas credenciales.
 
-## Configurar Permisos para Streaming y Búsqueda
+## Configurar permisos para _streaming_ y búsqueda
 
 Para acceder a diferentes funcionalidades de la API, necesitas configurar permisos específicos.
 
@@ -173,7 +173,7 @@ Para acceder a diferentes funcionalidades de la API, necesitas configurar permis
 
      - Agregar la URL de tu servidor que recibirá los datos.
 
-## Probar las Credenciales
+## Probar las credenciales
 
 Una vez obtenidas las credenciales, es importante verificar que funcionan correctamente.
 
@@ -192,11 +192,11 @@ Una vez obtenidas las credenciales, es importante verificar que funcionan correc
 
    - La librería `tweepy` de Python maneja automáticamente la autenticación.
 
-## Niveles de Acceso y Limitaciones
+## Niveles de acceso y limitaciones
 
 Es importante entender las limitaciones de cada nivel de acceso:
 
-### Free Tier (Gratuito)
+### _Free tier_ (Gratuito)
 
 - **500,000 tweets** por mes
 - **1 aplicación** por proyecto
@@ -205,7 +205,7 @@ Es importante entender las limitaciones de cada nivel de acceso:
 - **Filtered Stream** básico
 - **Sin acceso a datos históricos** completos
 
-### Basic Tier (\$100/mes)
+### _Basic tier_ (\$100/mes)
 
 - **10 millones de tweets** por mes
 - **3 aplicaciones** por proyecto
@@ -214,7 +214,7 @@ Es importante entender las limitaciones de cada nivel de acceso:
 - **Filtered Stream** avanzado
 - **Soporte estándar**
 
-### Pro Tier (\$5,000/mes)
+### _Pro tier_ (\$5,000/mes)
 
 - **50 millones de tweets** por mes
 - **Aplicaciones ilimitadas**
@@ -223,22 +223,22 @@ Es importante entender las limitaciones de cada nivel de acceso:
 - **Analytics y métricas** avanzadas
 - **Soporte prioritario**
 
-## Documentación y Recursos Útiles
+## Documentación y recursos útiles
 
-### Documentación Oficial
+### Documentación oficial
 
 - [X API Documentation](https://developer.twitter.com/en/docs/twitter-api)
 - [API v2 Quick Start Guide](https://developer.twitter.com/en/docs/twitter-api/getting-started/getting-access-to-the-twitter-api)
 - [Authentication Guide](https://developer.twitter.com/en/docs/authentication/overview)
 - [Rate Limits and Pricing](https://developer.twitter.com/en/docs/twitter-api/rate-limits)
 
-### Librerías de Python Recomendadas
+### Librerías de Python recomendadas
 
 - [**Tweepy**](https://docs.tweepy.org/): Librería de terceros (muy popular) para Python
 - [**Python-Twitter**](https://python-twitter.readthedocs.io/): Alternativa robusta
 - [**TwitterAPI**](https://github.com/geduldig/TwitterAPI): Acceso directo a endpoints
 
-### Ejemplos de Endpoints Útiles
+### Ejemplos de endpoints Útiles
 
 - **Search Recent Tweets**: `/2/tweets/search/recent`
 - **Search Historical**: `/2/tweets/search/all` (requiere Academic Research o Basic+)
@@ -246,16 +246,16 @@ Es importante entender las limitaciones de cada nivel de acceso:
 - **Filtered Stream**: `/2/tweets/search/stream`
 - **Sample Stream**: `/2/tweets/sample/stream`
 
-## Consideraciones de Seguridad
+## Consideraciones de seguridad
 
-### Protección de Credenciales
+### Protección de credenciales
 
 1. **Nunca hardcodear** las credenciales en el código fuente.
 2. **Usar variables de entorno** o archivos de configuración privados.
 3. **Agregar archivos de credenciales** al `.gitignore`.
 4. **Regenerar tokens** periódicamente por seguridad.
 
-### Ejemplo de Configuración Segura
+### Ejemplo de configuración segura
 
 ```python
 import os

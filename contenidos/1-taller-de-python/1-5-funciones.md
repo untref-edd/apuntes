@@ -52,7 +52,7 @@ Posicionales variables
 Nombrados variables
 : Se pueden pasar un número variable de argumentos nombrados utilizando `**`.
 
-### Parámetros Posicionales
+### Parámetros posicionales
 
 Los parámetros se ligan con los argumentos de la función en el orden en que están definidos. Si se pasan menos argumentos de los esperados, se generará un error.
 
@@ -68,7 +68,7 @@ print(concatenar_cadenas("Hola, ", "mundo!"))
 print(concatenar_cadenas("mundo!", "Hola, "))
 ```
 
-### Parámetros Nombrados
+### Parámetros nombrados
 
 Al momento de invocar la función se pueden nombrar los parámetros y de esa forma no es necesario respetar el orden de los parámetros. Esto es útil cuando se tienen muchos parámetros y se quiere especificar solo algunos.
 
@@ -83,7 +83,7 @@ def concatenar_cadenas(cadena1, cadena2):
 print(concatenar_cadenas(cadena2="mundo!", cadena1="Hola, "))
 ```
 
-### Parámetros Posicionales Variables
+### Parámetros posicionales variables
 
 Los parámetros posicionales variables se definen utilizando un asterisco (`*`) antes del nombre del parámetro. Esto permite pasar un número variable de argumentos posicionales a la función. Python internamente agrupa estos argumentos en una tupla.
 
@@ -104,7 +104,7 @@ print(sumar(1, 2, 3))
 print(sumar(4, 5, 6, 7, 8))
 ```
 
-### Parámetros Nombrados Variables
+### Parámetros nombrados variables
 
 Los parámetros nombrados variables se definen utilizando dos asteriscos (`**`) antes del nombre del parámetro. Esto permite pasar un número variable de argumentos nombrados a la función. Python internamente agrupa estos argumentos en un diccionario.
 
