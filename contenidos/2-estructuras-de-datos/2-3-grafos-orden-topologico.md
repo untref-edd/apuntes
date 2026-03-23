@@ -11,7 +11,7 @@ kernelspec:
 description: grafos, ordenamiento topológico, Khan
 ---
 
-# Orden Topológico
+# Orden topológico
 
 El ordenamiento topológico de un grafo es un orden lineal de sus vértices tal que, para cada arista dirigida $(u, v)$, el vértice $u$ aparece antes que el vértice $v$ en el orden. Este concepto es aplicable únicamente a grafos dirigidos acíclicos (DAG).
 
@@ -21,12 +21,12 @@ Se utiliza para resolver problemas de planificación y dependencia de tareas, do
 
 Una forma de encontrar un ordenamiento topológico es mediante el algoritmo de Kahn ([Arthur Kahn](https://en.wikipedia.org/wiki/Arthur_Kahn)), que utiliza un enfoque basado en el grado de entrada de los vértices. Los pasos son los siguientes:
 
-```{code-block}
+```{code} text
 ---
 linenos: true
 ---
 ORDEN TOPOLÓGICO (G: DiGrafo)
-    q <- Cola vacía
+    q = Cola vacía
 
     PARA CADA v EN G.nodos:
         SI v.grado_entrada == 0:
