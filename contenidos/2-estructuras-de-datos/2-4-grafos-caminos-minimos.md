@@ -11,7 +11,7 @@ kernelspec:
 description: Grafos, Algoritmo de Dikjstra, Algoritmo de Bellman-Ford
 ---
 
-# Caminos Mínimos
+# Caminos mínimos
 
 Un camino mínimo en un grafo es una secuencia de aristas que conecta dos vértices con el menor peso total posible. Este concepto es fundamental en diversas aplicaciones, como la navegación, la planificación de rutas y la optimización de redes.
 
@@ -46,7 +46,7 @@ align: center
 |   $E$   |  $A-C-D-E$    |   6   |
 ```
 
-## Algoritmos para Encontrar Caminos Mínimos
+## Algoritmos para encontrar caminos mínimos
 
 Existen varios algoritmos para encontrar caminos mínimos en grafos, entre los más conocidos se encuentran:
 
@@ -72,9 +72,9 @@ En cada ciclo se extrae el vértice con la distancia más corta desde el origen,
 
 El paso **_greedy_** del algoritmo consiste en seleccionar el vértice no visitado con la distancia más corta y **marcarlo como visitado**. Es decir el algoritmo considera que esa distancia no se podrá mejorar por ningún otro camino alternativo.
 
-```{code-block}
+```{code} text
 ---
-linenos:
+linenos: true
 ---
 DIJKSTRA (G: DiGrafo, s: Vertice)
     pq = ColaDePrioridad()
@@ -179,7 +179,7 @@ $$
 T(n) = O(|A|\log|V|).
 $$
 
-Otra manera de verlo: en cada iteración del bucle _MIENTRAS_, se procesan únicamente los adyacentes del vértice extraído, y a lo largo de todo el algoritmo cada arista ((u,v)) se examina una sola vez. Formalmente:
+Otra manera de verlo: en cada iteración del bucle _MIENTRAS_, se procesan únicamente los adyacentes del vértice extraído, y a lo largo de todo el algoritmo cada arista $(u, v)$ se examina una sola vez. Formalmente:
 
 $$
 \sum_{v \in V} \deg(v) = 2|A| \quad \Rightarrow \quad O(|A|)\ \text{relajaciones}.
@@ -225,9 +225,9 @@ Supuesto clave
 
 - Una iteración adiciónal a las $|V|-1$ iteraciones anteriores, permite detectar ciclos negativos, ya que si la distancia de un vértice se mejora es porque hay al menos un ciclo negativo en el grafo.
 
-```{code-block}
+```{code} text
 ---
-linenos:
+linenos: true
 ---
 BELLMAN_FORD (G: DiGrafo, s: Vertice)
 
