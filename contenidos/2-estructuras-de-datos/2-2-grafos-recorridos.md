@@ -66,7 +66,7 @@ Si el grafo se representa mediante una **matriz de adyacencia**, para encontrar 
 
 ### Aplicaciones del recorrido BFS
 
-#### Caminos Mínimos en grafos no ponderados
+#### Caminos mínimos en grafos no ponderados
 
 Supongamos que queremos calcular el camino mínimo (menor costo) desde un vértice $s$ a cualquier otro vértice alcanzable desde $s$. Si el grafo es no ponderado, podemos considerar que todas las aristas tienen peso 1, el algoritmo BFS es el más apropiado para resolver este problema. En este caso el camino mínimo entre dos vértices coincide con el camino más corto.
 
