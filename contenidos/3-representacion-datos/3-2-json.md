@@ -32,7 +32,37 @@ JSON (_JavaScript Object Notation_) es un formato ligero de intercambio de datos
 
 ## Estructura de JSON
 
-Un archivo JSON está compuesto por una serie de pares clave-valor, donde cada clave es una cadena de texto y cada valor puede ser un número, una cadena de texto, un booleano, un array o un objeto. Los objetos se representan mediante llaves `{}` y los arrays mediante corchetes `[]`.
+Un archivo JSON puede contener un **único valor**, de los tipos de datos existentes en JavaScript. Es decir, números, strings, booleanos, `null`, objetos y arrays.
+
+Si bien la sintaxis y los tipos soportados son los de JavaScript, existen equivalencias y/o transformaciones posible con los tipos de Python. A continuación se muestra una tabla de equivalencias:
+
+| JavaScript |     Python     |
+| :--------: | :------------: |
+|  `number`  | `int`, `float` |
+|  `string`  |     `str`      |
+|   `null`   |     `None`     |
+|  `object`  |     `dict`     |
+|  `array`   |     `list`     |
+
+````{warning} Tipos no serializables
+---
+class: dropdown
+---
+Algunos tipos nativos de Python son no serializables y deberán ser convertidos a una estructura equivalente antes de poder representarlos como tipos soportados. Por ejemplo, si quisieramos serializar un `set`, se producirá un `TypeError`, con el mensaje: `Object of type set is not JSON serializable`; pero que podríamos resolver convirtiendo el `set` en una `list`.
+
+```{code-cell} python
+import json
+
+try:
+    json.dumps({'a', 'b', 'c'})
+except TypeError as e:
+    print(e)
+```
+
+> **Tarea para el lector**: investigar que otros tipos de Python son no serializables.
+````
+
+Este formato es muy utilizado para el intercambio de datos entre aplicaciones y servidores, especialmente en la Web, ya que es fácil de parsear y generar en la mayoría de los lenguajes de programación.
 
 ```json
 {
@@ -47,8 +77,6 @@ Un archivo JSON está compuesto por una serie de pares clave-valor, donde cada c
   }
 }
 ```
-
-Este formato es muy utilizado para el intercambio de datos entre aplicaciones web y servidores, ya que es fácil de parsear y generar en la mayoría de los lenguajes de programación.
 
 En la sección de [Persistencia de Datos](../1-taller-de-python/1-10-persistencia.md) vimos cómo trabajar con archivos JSON en Python utilizando la librería estándar `json`. Aquí veremos cómo utilizar JSON para organizar registros en un archivo.
 
@@ -80,6 +108,9 @@ En Python, podemos trabajar con este archivo JSON utilizando la librería `json`
 A continuación se muestra cómo definir una clase `Agenda` que almacena los contactos en un archivo `.json`, junto con su iterador y ejemplos de uso.
 
 ```{code-cell} python
+---
+tags: remove-output
+---
 import json
 import os
 
@@ -117,6 +148,9 @@ class Agenda:
 Definimos el iterador para la agenda:
 
 ```{code-cell} python
+---
+tags: remove-output
+---
 class AgendaIterator:
     """Iterador para la agenda de contactos en formato JSON"""
 
@@ -149,9 +183,9 @@ agenda.guardar_contacto("Homero", "555-8765", "")
 agenda.guardar_contacto("Lisa", "", "lisa.simpson@example.com")
 
 print(f"Cantidad de registros: {agenda.cantidad_registros()}")
+
 for contacto in agenda:
     print(contacto)
-    print("-----")
 ```
 
 Si vemos el contenido del archivo `agenda.json`, se observa que los datos están guardados en formato de texto legible, seguiendo el estándar JSON
@@ -182,6 +216,9 @@ Si bien ambos formatos se utilizan para representar datos semi-estructurados, JS
 A continuación se define una agenda general donde solo los campos nombres y apellidos son obligatorios, y donde cada registro puede tener incluso campos diferentes.
 
 ```{code-cell} python
+---
+tags: remove-output
+---
 class AgendaGeneral:
     def __init__(self, archivo):
         self._archivo = archivo
@@ -195,9 +232,7 @@ class AgendaGeneral:
 
     def guardar_contacto(self, **kwargs):
         if "nombre" not in kwargs or "apellido" not in kwargs:
-            raise ValueError(
-                "Los campos 'nombre' y 'apellido' son obligatorios"
-            )
+            raise ValueError("Los campos 'nombre' y 'apellido' son obligatorios")
 
         self._contactos.append(kwargs)
 
@@ -217,6 +252,9 @@ Ejemplo de uso:
 ---
 tags: hide-output
 ---
+from pprint import pprint
+
+
 agenda = AgendaGeneral("agenda_general.json")
 agenda.guardar_contacto(
     nombre="Juan",
@@ -248,6 +286,7 @@ agenda.guardar_contacto(
     telefono="555-1234",
     email="bart.simpson@example.com",
 )
+
 for contacto in agenda:
     # Imprime nombre y apellido en la primera línea
     nombre = contacto.get("nombre", "")
@@ -255,27 +294,28 @@ for contacto in agenda:
     print(f"{nombre} {apellido}")
 
     # Función recursiva para imprimir campos
-    def imprimir_campos(d, indent=2):
+    def imprimir_campos(d, indent=4):
         for clave, valor in d.items():
             if clave in ("nombre", "apellido"):
                 continue
 
+            print(f"{" " * indent}{clave}:", end="")
+
             if isinstance(valor, dict):
-                print(" " * indent + f"{clave}:")
-                imprimir_campos(valor, indent + 2)
+                print()
+                imprimir_campos(valor, indent + 4)
             elif isinstance(valor, list):
-                print(" " * indent + f"{clave}: [")
+                print()
                 for item in valor:
                     if isinstance(item, dict):
                         imprimir_campos(item, indent + 4)
                     else:
-                        print(" " * (indent + 2) + f"- {item}")
-                print(" " * indent + "]")
+                        print(f"{" " * (indent + 4)}- {item}")
             else:
-                print(" " * indent + f"{clave}: {valor}")
+                print(f" {valor}")
 
     imprimir_campos(contacto)
-    print("-----")
+    print()
 ```
 
 Archivo `agenda_general.json`:
