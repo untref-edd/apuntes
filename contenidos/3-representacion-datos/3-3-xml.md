@@ -69,21 +69,21 @@ Como se puede observar XML permite estructurar la información en forma jerárqu
 
 Los atributos en XML permiten agregar metadatos o información adicional a los elementos, lo que puede ser útil para describir propiedades o características específicas de los datos. Sin embargo, es importante usarlos con moderación y de manera coherente para evitar complicaciones en la interpretación del documento.
 
-```{figure} ../_static/figures/poema_xml_light.svg
+```{figure} ../_static/figures/3-representacion-datos/3-3-xml/poema_xml_light.svg
 ---
 class: only-light-mode
 ---
 Árbol que representa la estructura del poema en XML.
 ```
 
-```{figure} ../_static/figures/poema_xml_dark.svg
+```{figure} ../_static/figures/3-representacion-datos/3-3-xml/poema_xml_dark.svg
 ---
 class: only-dark-mode
 ---
 Árbol que representa la estructura del poema en XML.
 ```
 
-Existen varios sitios en internet que permiten visualizar el árbol asociado. Por ejemplo [https://codebeautify.org/xmlviewer](https://codebeautify.org/xmlviewer?input=%3Cpoema%20fecha=%22Abril%20de%201915%22%20lugar=%22Granada%22%3E%3Ctitulo%3EAlba%3C/titulo%3E%3Cverso%3EMi%20coraz%C3%B3n%20oprimido%3C/verso%3E%3Cverso%3Esiente%20junto%20a%20la%20alborada%3C/verso%3E%3Cverso%3Eel%20dolor%20de%20sus%20amores%3C/verso%3E%3Cverso%3Ey%20el%20sue%C3%B1o%20de%20las%20distancias.%20%3C/verso%3E%3C/poema%3E).
+Existen varios sitios en internet que permiten visualizar el árbol asociado. Por ejemplo: [Code Beautify](https://codebeautify.org/xmlviewer?input=%3Cpoema%20fecha=%22Abril%20de%201915%22%20lugar=%22Granada%22%3E%3Ctitulo%3EAlba%3C/titulo%3E%3Cverso%3EMi%20coraz%C3%B3n%20oprimido%3C/verso%3E%3Cverso%3Esiente%20junto%20a%20la%20alborada%3C/verso%3E%3Cverso%3Eel%20dolor%20de%20sus%20amores%3C/verso%3E%3Cverso%3Ey%20el%20sue%C3%B1o%20de%20las%20distancias.%20%3C/verso%3E%3C/poema%3E).
 
 En el ejemplo anterior, el elemento raíz es `poema`, que contiene como elementos hijos: `titulo` y varios elementos `verso`. El elemento `poema` también tiene dos atributos: `fecha` y `lugar`, que proporcionan información adicional sobre el poema.
 
@@ -292,13 +292,13 @@ if (@precio > 500) then 'Caro' else 'Barato'
 
 Permiten verificar si alguno o todos los elementos de una secuencia cumplen una condición.
 
-- **some**: Verdadero si al menos un elemento cumple la condición.
+- `some`: Verdadero si al menos un elemento cumple la condición.
 
   ```xpath
   some $x in //precio satisfies $x > 1000
   ```
 
-- **every**: Verdadero si todos los elementos cumplen la condición.
+- `every`: Verdadero si todos los elementos cumplen la condición.
 
   ```xpath
   every $x in //precio satisfies $x > 0
@@ -336,21 +336,22 @@ root = tree.getroot()
 # Realizar una consulta XPath
 # Seleccionar todos los títulos de libros
 titulos = elementpath.select(root, "/biblioteca/libro/titulo/text()")
+
 print("Títulos de libros:")
 for titulo in titulos:
     print(titulo)
 
 # Seleccionar todos los autores con fecha de nacimiento
-autores_con_fecha = elementpath.select(
-    root, "//autor[@fechaNacimiento]/text()")
-print("\nAutores con fecha de nacimiento:")
+autores_con_fecha = elementpath.select(root, "//autor[@fechaNacimiento]/text()")
+
+print("Autores con fecha de nacimiento:")
 for autor in autores_con_fecha:
     print(autor)
 
 # Seleccionar libros con precio menor a 300
-libros_baratos = elementpath.select(
-    root, "/biblioteca/libro[precio < 300]/titulo/text()")
-print("\nLibros con precio menor a 300:")
+libros_baratos = elementpath.select( root, "/biblioteca/libro[precio < 300]/titulo/text()")
+
+print("Libros con precio menor a 300:")
 for libro in libros_baratos:
     print(libro)
 ```
@@ -365,7 +366,7 @@ tags: hide-output
 # de XPath 2.0
 total_precio = elementpath.select(root, "sum(/biblioteca/libro/precio)")
 
-print(f"\nPrecio total de todos los libros: {total_precio:.2f}")
+print(f"Precio total de todos los libros: {total_precio:.2f}")
 ```
 
 ### Ejemplos avanzados con XPath 2.0
@@ -381,31 +382,47 @@ tags: hide-output
 libros_la = elementpath.select(
     root, "/biblioteca/libro[starts-with(titulo, 'La')]/titulo/text()"
 )
+
 print("Libros que empiezan con 'La':")
 for libro in libros_la:
-    print(f"- {libro}")
+    print(f"\t- {libro}")
+```
 
-print("\n---")
-
+```{code-cell} python
+---
+tags: hide-output
+---
 # Cuantificadores: some
 # Verificar si hay algún libro con precio mayor a 500
 hay_caros = elementpath.select(root, "some $x in //precio satisfies $x > 500")
-print(f"¿Hay libros caros (>500)? {hay_caros}")
 
+print(f"¿Hay libros caros (>500)? {hay_caros}")
+```
+
+```{code-cell} python
+---
+tags: hide-output
+---
 # Cuantificadores: every
 # Verificar si todos los precios son positivos
 todos_positivos = elementpath.select(root, "every $x in //precio satisfies $x > 0")
+
 print(f"¿Todos los precios son positivos? {todos_positivos}")
+```
 
-print("\n---")
-
+```{code-cell} python
+---
+tags: hide-output
+---
 # Expresiones condicionales: if-then-else
 # Categorizar libros según su precio
-categorias = elementpath.select(root,
+categorias = elementpath.select(
+    root,
     "for $libro in /biblioteca/libro return "
     "concat($libro/titulo, ': ', "
-    "if ($libro/precio > 500) then 'Caro' else 'Barato')"
+    "if ($libro/precio > 500) then 'Caro' else 'Barato')",
 )
+
 print("Categorización de libros:")
 for cat in categorias:
     print(f"- {cat}")
@@ -419,7 +436,7 @@ La sindicación de contenidos es una forma de distribuir información actualizad
 La sindicación de contenidos es el proceso mediante el cual el contenido de un sitio web se pone a disposición de otros sitios o usuarios de forma automatizada.
 ```
 
-#### RSS (Really Simple Syndication)
+#### RSS (_Really Simple Syndication_)
 
 RSS es una familia de formatos de fuentes web estandarizados que se utilizan para publicar trabajos actualizados con frecuencia, como entradas de blogs, titulares de noticias, audio y vídeo. El formato RSS permite a los editores sindicar datos de forma automática. La versión actual es RSS 2.0.
 
@@ -462,12 +479,12 @@ rss_url = "https://www.clarin.com/rss/lo-ultimo/"
 feed = feedparser.parse(rss_url)
 
 print(f"Fuente: {feed.feed.title}")
-print("Últimas noticias:\n")
+print("Últimas noticias:")
 
 for entry in feed.entries[:3]:
+    print("-" * 80)
     print(f"Título: {entry.title}")
     print(f"Link: {entry.link}")
-    print("---")
 ```
 
 ##### Ejemplo 2: Leyendo Gmail (Atom)
@@ -475,7 +492,6 @@ for entry in feed.entries[:3]:
 Gmail proporciona un feed Atom de los correos no leídos. Dado que requiere autenticación, este ejemplo muestra cómo se estructuraría la petición (nota: por seguridad, Gmail requiere contraseñas de aplicación si tienes 2FA activado).
 
 ```{code-block} python
-
 import feedparser
 
 # Reemplazar con tus credenciales (usar contraseña de aplicación)
@@ -489,11 +505,11 @@ gmail_url = f"https://{username}:{password}@mail.google.com/mail/feed/atom"
 feed = feedparser.parse(gmail_url)
 
 print(f"Correos no leídos en: {feed.feed.title}")
-print(f"Cantidad: {feed.feed.fullcount}\n")
+print(f"Cantidad: {feed.feed.fullcount}")
 
 for entry in feed.entries[:3]:
+    print("-" * 80)
     print(f"De: {entry.author}")
     print(f"Asunto: {entry.title}")
     print(f"Resumen: {entry.summary}")
-    print("---")
 ```
