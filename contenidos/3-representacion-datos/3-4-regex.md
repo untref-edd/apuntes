@@ -18,6 +18,7 @@ description: Expresiones Regulares, regex
 tags: hide-output, remove-cell
 ---
 """Borra todos los archivos y carpetas en /tmp/edd_regex"""
+
 import os
 import shutil
 
@@ -117,27 +118,56 @@ if re.search(patron, texto):
 
 ### Ejemplos de metacaracteres
 
+Punto (`.`), cualquier caracter:
+
 ```{code-cell} python
 ---
 tags: hide-output
 ---
-import re
+re.findall(r"c.sa", "casa cosa cesa")
+```
 
-# Punto: cualquier carácter
-print(re.findall(r"c.sa", "casa cosa cesa"))  # ['casa', 'cosa', 'cesa']
+Inicio y fin de línea:
 
-# Inicio y fin de cadena
-print(re.search(r"^Hola", "Hola mundo"))  # Encuentra 'Hola'
-print(re.search(r"mundo$", "Hola mundo"))  # Encuentra 'mundo'
+```{code-cell} python
+---
+tags: hide-output
+---
+re.search(r"^Hola", "Hola mundo")
+```
 
-# Asterisco: 0 o más
-print(re.findall(r"lo*", "l lo loo looo"))  # ['l', 'lo', 'loo', 'looo']
+```{code-cell} python
+---
+tags: hide-output
+---
+re.search(r"mundo$", "Hola mundo")
+```
 
-# Más: 1 o más
-print(re.findall(r"lo+", "l lo loo looo"))  # ['lo', 'loo', 'looo']
+Asterisco (`*`), 0 o más ocurrencias:
 
-# Interrogación: 0 o 1
-print(re.findall(r"lo?", "l lo loo"))  # ['l', 'lo', 'lo']
+```{code-cell} python
+---
+tags: hide-output
+---
+re.findall(r"lo*", "l lo loo looo")
+```
+
+Más (`+`), 1 o más ocurrencias:
+
+```{code-cell} python
+---
+tags: hide-output
+---
+re.findall(r"lo+", "l lo loo looo")
+```
+
+Signo de interrogación (`?`), 0 o sólo 1 ocurrencia:
+
+```{code-cell} python
+---
+tags: hide-output
+---
+re.findall(r"lo?", "l lo loo")
 ```
 
 ### Cuantificadores
@@ -147,8 +177,32 @@ Los cuantificadores especifican cuántas veces debe aparecer el patrón anterior
 `{n}`
 : Exactamente n repeticiones
 
+```{code-cell} python
+---
+tags: hide-output
+---
+re.findall(r"\d{3}", "El código es 12, 123, 1234 y 12345")
+```
+
 `{n,}`
 : Al menos n repeticiones
+
+```{code-cell} python
+---
+tags: hide-output
+---
+re.findall(r"\d{3,}", "El código es 12, 123, 1234 y 12345")
+```
+
+`{,m}`
+: Hasta m repeticiones
+
+```{code-cell} python
+---
+tags: hide-output
+---
+re.findall(r"\d{,3}", "El código es 12, 123, 1234 y 12345")
+```
 
 `{n,m}`
 : Entre n y m repeticiones
@@ -157,18 +211,7 @@ Los cuantificadores especifican cuántas veces debe aparecer el patrón anterior
 ---
 tags: hide-output
 ---
-import re
-
-texto = "El código es 12, 123, 1234 y 12345"
-
-# Exactamente 3 dígitos
-print(re.findall(r"\d{3}", texto))  # ['123', '123']
-
-# Al menos 3 dígitos
-print(re.findall(r"\d{3,}", texto))  # ['123', '1234', '12345']
-
-# Entre 2 y 4 dígitos
-print(re.findall(r"\d{2,4}", texto))  # ['12', '123', '1234', '1234']
+re.findall(r"\d{2,4}", "El código es 12, 123, 1234 y 12345")
 ```
 
 ### Clases de caracteres
@@ -184,31 +227,42 @@ Las clases de caracteres permiten definir conjuntos de caracteres válidos:
 `[A-Z]`
 : Cualquier letra mayúscula
 
+```{code-cell} python
+---
+tags: hide-output
+---
+re.findall(r"[A-Z]", "El código postal es A1234BCZ")
+```
+
 `[0-9]`
 : Cualquier dígito
-
-`[^abc]`
-: Cualquier carácter excepto a, b o c
 
 ```{code-cell} python
 ---
 tags: hide-output
 ---
-import re
+re.findall(r"[0-9]+", "El código postal es A1234BCZ")
+```
 
-texto = "El código postal es A1234BCZ"
+`[^abc]`
+: Cualquier carácter excepto a, b o c
 
-# Letras mayúsculas
-print(re.findall(r"[A-Z]", texto))
+Letras y números
 
-# Dígitos
-print(re.findall(r"[0-9]+", texto))
+```{code-cell} python
+---
+tags: hide-output
+---
+re.findall(r"[A-Z0-9]+", "El código postal es A1234BCZ")
+```
 
-# Letras y números
-print(re.findall(r"[A-Z0-9]+", texto))
+Todo excepto espacios
 
-# Todo excepto espacios
-print(re.findall(r"[^ ]+", texto))
+```{code-cell} python
+---
+tags: hide-output
+---
+re.findall(r"[^ ]+", "El código postal es A1234BCZ")
 ```
 
 ### Secuencias especiales
@@ -218,11 +272,25 @@ Python proporciona atajos para clases de caracteres comunes:
 `\d`
 : Cualquier dígito (equivalente a `[0-9]`)
 
+```{code-cell} python
+---
+tags: hide-output
+---
+re.findall(r"\d+", "Usuario: juan_123, Email: juan@email.com")
+```
+
 `\D`
 : Cualquier no-dígito
 
 `\w`
 : Cualquier carácter de palabra: letra, dígito o guion bajo (equivalente a `[a-zA-Z0-9_]`)
+
+```{code-cell} python
+---
+tags: hide-output
+---
+re.findall(r"\w+", "Usuario: juan_123, Email: juan@email.com")
+```
 
 `\W`
 : Cualquier no-carácter de palabra
@@ -236,29 +304,22 @@ Python proporciona atajos para clases de caracteres comunes:
 `\b`
 : Límite de palabra
 
-`\B`
-: No-límite de palabra
+```{code-cell} python
+---
+tags: hide-output
+---
+re.findall(r"\bjuan\b", "Usuario: juan_123, Email: juan@email.com")
+```
 
 ```{code-cell} python
 ---
 tags: hide-output
 ---
-import re
-
-texto = "Usuario: juan_123, Email: juan@email.com"
-
-# Dígitos
-print(re.findall(r"\d+", texto))  # ['123']
-
-# Caracteres de palabra
-print(
-    re.findall(r"\w+", texto)
-)  # ['Usuario', 'juan_123', 'Email', 'juan', 'email', 'com']
-
-# Límites de palabra
-print(re.findall(r"\bjuan\b", texto))  # ['juan']
-print(re.findall(r"\bjuan", "juanito juan"))  # ['juan', 'juan']
+re.findall(r"\bjuan", "juanito juan")
 ```
+
+`\B`
+: No-límite de palabra
 
 ## El módulo `re` en Python
 
@@ -298,8 +359,7 @@ import re
 texto = "Los emails son: juan@email.com, ana@empresa.com.ar y pedro@sitio.org"
 
 # search: encuentra la primera coincidencia
-resultado = re.search(r"\w+@\w+\.\w+", texto)
-if resultado:
+if resultado := re.search(r"\w+@\w+\.\w+", texto):
     print(f"Primer email encontrado: {resultado.group()}")
 
 # findall: encuentra todas las coincidencias
@@ -331,8 +391,7 @@ textos = [
 ]
 
 for texto in textos:
-    match = patron_email.search(texto)
-    if match:
+    if match := patron_email.search(texto):
         print(f"{texto} -> {match.group()}")
 ```
 
@@ -349,8 +408,7 @@ import re
 texto = "Fecha: 15/03/2024"
 patron = r"(\d{2})/(\d{2})/(\d{4})"
 
-match = re.search(patron, texto)
-if match:
+if match := re.search(patron, texto):
     print(f"Fecha completa: {match.group(0)}")  # Toda la coincidencia
     print(f"Día: {match.group(1)}")  # Primer grupo
     print(f"Mes: {match.group(2)}")  # Segundo grupo
@@ -371,8 +429,7 @@ import re
 texto = "Producto: ABC-123 Precio: $450.50"
 patron = r"(?P<codigo>[A-Z]+-\d+).*?\$(?P<precio>\d+\.\d+)"
 
-match = re.search(patron, texto)
-if match:
+if match := re.search(patron, texto):
     print(f"Código: {match.group('codigo')}")
     print(f"Precio: {match.group('precio')}")
     print(f"Diccionario: {match.groupdict()}")
@@ -385,28 +442,30 @@ Las miradas alrededor permiten hacer coincidir un patrón solo si está precedid
 `(?=...)`
 : Mirada hacia adelante positiva (_lookahead_)
 
+```{code-cell} python
+---
+tags: hide-output
+---
+# foo seguido de un dígito
+re.findall(r"foo(?=\d)", "foo1 bar2 foo3 baz4 foo baz")
+```
+
 `(?!...)`
 : Mirada hacia adelante negativa
 
 `(?<=...)`
 : Mirada hacia atrás positiva (_lookbehind_)
 
-`(?<!...)`
-: Mirada hacia atrás negativa
-
 ```{code-cell} python
 ---
 tags: hide-output
 ---
-import re
-
-texto = "foo1 bar2 foo3 baz4"
-# Mirada hacia adelante: foo seguido de un dígito
-print(re.findall(r"foo(?=\d)", texto))  # ['foo', 'foo']
-
-# Mirada hacia atrás: dígito precedido de foo
-print(re.findall(r"(?<=foo)\d", texto))  # ['1', '3']
+# dígito precedido de foo
+re.findall(r"(?<=foo)\d", "foo1 bar2 foo3 baz4 5 6")
 ```
+
+`(?<!...)`
+: Mirada hacia atrás negativa
 
 ## Casos de uso en recuperación de información
 
@@ -463,13 +522,12 @@ log = """
 
 # Patrón para extraer información del log
 patron = (
-    r'(\d+\.\d+\.\d+\.\d+).*?\[([^\]]+)\]'  # IP y fecha
-    r'\s+"(\w+)\s+([^\s]+).*?"\s+(\d+)\s+(\d+)' # Método, ruta, código y tamaño
+    r"(\d+\.\d+\.\d+\.\d+).*?\[([^\]]+)\]"  # IP y fecha
+    r'\s+"(\w+)\s+([^\s]+).*?"\s+(\d+)\s+(\d+)'  # Método, ruta, código y tamaño
 )
 
 for linea in log.strip().split("\n"):
-    match = re.search(patron, linea)
-    if match:
+    if match := re.search(patron, linea):
         ip, fecha, metodo, ruta, codigo, tamaño = match.groups()
         print(f"IP: {ip}")
         print(f"Fecha: {fecha}")
@@ -515,7 +573,8 @@ Contacto: info@ejemplo.com
 
 print("Texto original:")
 print(texto_sucio)
-print("\nTexto limpio:")
+print()
+print("Texto limpio:")
 print(limpiar_texto(texto_sucio))
 ```
 
@@ -523,15 +582,12 @@ print(limpiar_texto(texto_sucio))
 
 ```{code-cell} python
 ---
-tags: hide-output
+tags: remove-output
 ---
-import re
-
 def tokenizar(texto):
     """Divide un texto en palabras (tokens)"""
     # Encontrar todas las secuencias de caracteres de palabra
-    tokens = re.findall(r"\b\w+\b", texto.lower())
-    return tokens
+    return re.findall(r"\b\w+\b", texto.lower())
 ```
 
 ### Desafíos en la Tokenización
@@ -545,15 +601,18 @@ Aunque parezca simple, la tokenización presenta varios "casos de borde" que deb
 
 ## Normalización y Limpieza con Regex
 
-Más allá de dividir el texto, es necesario _normalizar_ los tokens para que diferentes variantes de una palabra coincidan en el índice.
+Más allá de dividir el texto, es necesario **normalizar** los tokens para que diferentes variantes de una palabra coincidan en el índice.
 
-**Case Folding**
+_Case folding_
 : Convertir todo a minúsculas (aunque a veces se mantienen mayúsculas en acrónimos como `FED` vs `fed`).
 
-**Eliminación de puntuación y Stopwords**
+Eliminación de puntuación y _stopwords_
 : Uso de regex para limpiar caracteres no alfanuméricos redundantes.
 
 ```{code-cell} python
+---
+tags: remove-output
+---
 def normalizar_token(token):
     # Eliminar puntuación al inicio/final del token
     token = re.sub(r"^[^\w]+|[^\w]+$", "", token)
@@ -562,7 +621,7 @@ def normalizar_token(token):
 
 ### El Costo Computacional de Regex
 
-En sistemas de recuperación de información a gran escala (millones de documentos), el uso de expresiones regulares muy complejas (como las que usan _backtracking_) puede ralentizar significativamente la fase de indexación. Siempre se busca un balance entre la precisión del patrón y el tiempo de ejecución.
+En sistemas de recuperación de información a gran escala —de millones de documentos—, el uso de expresiones regulares muy complejas (como las que usan _backtracking_) puede ralentizar significativamente la fase de indexación. Siempre se busca un balance entre la precisión del patrón y el tiempo de ejecución.
 
 ```{code-cell} python
 ---
@@ -619,7 +678,7 @@ resultados = buscar_en_archivo("ejemplo.txt", patron)
 
 print("Líneas encontradas:")
 for num, linea in resultados:
-    print(f"Línea {num}: {linea}")
+    print(f"{num}: {linea}")
 ```
 
 ### Extracción de datos estructurados
@@ -648,10 +707,7 @@ html = """
 def extraer_productos(html):
     """Extrae información de productos del HTML"""
     # Patrón para encontrar bloques de productos
-    patron_producto = (
-        r'<div class="producto">.*?<h2>(.*?)</h2>.*?'
-        r'<p class="precio">\$([\d.]+)</p>'
-    )
+    patron_producto = r'<div class="producto">.*?<h2>(.*?)</h2>.*?<p class="precio">\$([\d.]+)</p>'
 
     productos = re.findall(patron_producto, html, re.DOTALL)
 
@@ -678,18 +734,13 @@ import re
 def anonimizar_datos(texto):
     """Anonimiza datos sensibles en un texto"""
     # Anonimizar emails
-    texto = re.sub(
-        r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b",
-        "[EMAIL]",
-        texto
-    )
+    texto = re.sub(r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b", "[EMAIL]", texto)
 
     # Anonimizar teléfonos (formato: xxx-xxxx o (xxx) xxx-xxxx)
     texto = re.sub(r"\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}", "[TELÉFONO]", texto)
 
     # Anonimizar números de tarjeta (grupos de 4 dígitos)
-    texto = re.sub(r"\b\d{4}[-\s]?\d{4}[-\s]?\d{4}[-\s]?\d{4}\b", "[TARJETA]",
-                   texto)
+    texto = re.sub(r"\b\d{4}[-\s]?\d{4}[-\s]?\d{4}[-\s]?\d{4}\b", "[TARJETA]", texto)
 
     return texto
 
@@ -734,8 +785,7 @@ def analizar_texto(texto):
     numeros = re.findall(r"\b\d+\b", texto)
 
     # Detectar emails
-    emails = re.findall(r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+"
-                        r"\.[A-Z|a-z]{2,}\b", texto)
+    emails = re.findall(r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b", texto)
 
     # Detectar URLs
     urls = re.findall(r"https?://[^\s]+", texto)
@@ -877,10 +927,7 @@ def extraer_informacion_contacto(texto):
     """Extrae emails, teléfonos y URLs de un texto"""
 
     # Patrón para emails
-    email_pattern = (
-        r"\b[A-Za-z0-9._%+-]+"
-        r"@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b"
-    )
+    email_pattern = r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b"
     emails = re.findall(email_pattern, texto)
 
     # Patrón para teléfonos (varios formatos)
@@ -972,17 +1019,19 @@ import time
 texto = "Python es genial. Python es versátil. Python es popular." * 1000
 
 # Sin compilar
-start = time.time()
-for _ in range(100):
+start = time.perf_counter()
+for _ in range(1000):
     re.findall(r"Python", texto)
-tiempo_sin_compilar = time.time() - start
+end = time.perf_counter()
+tiempo_sin_compilar = end - start
 
 # Con compilación
 patron = re.compile(r"Python")
-start = time.time()
-for _ in range(100):
+start = time.perf_counter()
+for _ in range(1000):
     patron.findall(texto)
-tiempo_con_compilar = time.time() - start
+end = time.perf_counter()
+tiempo_con_compilar = end - start
 
 print(f"Sin compilar: {tiempo_sin_compilar:.4f} segundos")
 print(f"Con compilar: {tiempo_con_compilar:.4f} segundos")
@@ -1108,9 +1157,7 @@ archivos = [
 def filtrar_archivos(archivos, patron):
     """Filtra archivos que coincidan con el patrón"""
     patron_compilado = re.compile(patron)
-    return [
-        archivo for archivo in archivos if patron_compilado.search(archivo)
-    ]
+    return [archivo for archivo in archivos if patron_compilado.search(archivo)]
 
 
 # Filtrar archivos de texto
