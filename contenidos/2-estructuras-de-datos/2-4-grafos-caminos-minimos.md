@@ -124,7 +124,7 @@ caminos_minimos.show_dijkstra_step_by_step(G, SOURCE)
 
 ### Aristas negativas
 
-Como el **_algoritmo de Dijkstra_** se basa en extraer de la cola de prioridad el vértice con la menor distancia provisional desde el origen y marcarlo como **visitado** —suponiendo que esa distancia ya no podrá mejorarse—, surge un problema cuando existen aristas con peso negativo ya que podría aparecer más adelante un camino más corto hacia un vértice que ya fue marcado como **visitado**, lo que rompe el supuesto fundamental del algoritmo.
+Como el **_algoritmo de Dijkstra_** se basa en extraer de la cola de prioridad el vértice con la menor distancia provisional desde el origen y marcarlo como **visitado** (suponiendo que esa distancia ya no podrá mejorarse), surge un problema cuando existen aristas con peso negativo ya que podría aparecer más adelante un camino más corto hacia un vértice que ya fue marcado como **visitado**, lo que rompe el supuesto fundamental del algoritmo.
 
 Si hay alguna arista negativa **_Dijkstra_** puede fallar o no según el vértice que se considere como origen y la topología del grafo, por lo tanto para asegurar que el algoritmo funciona siempre:
 
