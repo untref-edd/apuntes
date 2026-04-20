@@ -21,14 +21,14 @@ La Web es una de las fuentes de información más grandes y diversas disponibles
 
 La World Wide Web funciona bajo un modelo cliente-servidor. El siguiente diagrama ilustra cómo interactúan estos componentes:
 
-```{figure} ../_static/figures/arquitectura_cliente_servidor_light.svg
+```{figure} ../_static/figures/3-representacion-datos/3-5-web-apis/arquitectura_cliente_servidor_light.svg
 ---
 class: only-light-mode
 ---
 Arquitectura Cliente-Servidor
 ```
 
-```{figure} ../_static/figures/arquitectura_cliente_servidor_dark.svg
+```{figure} ../_static/figures/3-representacion-datos/3-5-web-apis/arquitectura_cliente_servidor_dark.svg
 ---
 class: only-dark-mode
 ---
@@ -84,14 +84,14 @@ El protocolo HTTP sigue un modelo de solicitud-respuesta (_request-response_), d
 
 En el siguiente diagrama de secuencia se muestra una interacción típica entre un cliente y un servidor utilizando HTTP:
 
-```{figure} ../_static/figures/secuencia_http_light.svg
+```{figure} ../_static/figures/3-representacion-datos/3-5-web-apis/secuencia_http_light.svg
 ---
 class: only-light-mode
 ---
 Interacción HTTP Cliente-Servidor
 ```
 
-```{figure} ../_static/figures/secuencia_http_dark.svg
+```{figure} ../_static/figures/3-representacion-datos/3-5-web-apis/secuencia_http_dark.svg
 ---
 class: only-dark-mode
 ---
@@ -276,14 +276,14 @@ HTTPS (HTTP Secure) es la versión segura de HTTP que utiliza encriptación TLS/
 
 Las APIs (_Application Programming Interfaces_) son interfaces que permiten que diferentes aplicaciones se comuniquen entre sí de manera programática. En el contexto web, las APIs proporcionan puntos de acceso (_endpoints_) que los desarrolladores pueden usar para acceder a datos y funcionalidades de un servicio.
 
-```{figure} ../_static/figures/arquitectura_api_light.svg
+```{figure} ../_static/figures/3-representacion-datos/3-5-web-apis/arquitectura_api_light.svg
 ---
 class: only-light-mode
 ---
 Arquitectura de una API REST
 ```
 
-```{figure} ../_static/figures/arquitectura_api_dark.svg
+```{figure} ../_static/figures/3-representacion-datos/3-5-web-apis/arquitectura_api_dark.svg
 ---
 class: only-dark-mode
 ---
