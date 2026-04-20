@@ -1,41 +1,41 @@
 <?xml version='1.0' encoding='utf-8'?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 250">
-  <rect width="600" height="250" fill="#1e1e1e" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 180">
+  <rect width="600" height="180" fill="#1e1e1e" />
   <defs>
+    <style>
+      .node { rx: 5; stroke-width: 2; }
+      .node-blue { fill: #2d3748; stroke: #4682b4; }
+      .node-green { fill: #2d3748; stroke: #2e8b57; }
+      .node-red { fill: #4a5568; stroke: #e9967a; }
+      .text { font-family: Arial; font-size: 14px; fill: #e0e0e0; text-anchor: middle; }
+      .text-small { font-family: Arial; font-size: 12px; fill: #e0e0e0; text-anchor: middle; }
+      .arrow { stroke: #e0e0e0; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+      .arrow-curve { stroke: #e0e0e0; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+    </style>
     <marker id="arrowhead" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto">
       <polygon points="0 0, 6 2.5, 0 5" fill="#e0e0e0" />
     </marker>
   </defs>
 
-  
-  
-  <rect x="50" y="100" width="120" height="60" rx="5" fill="#2d3748" stroke="#4682b4" stroke-width="2" />
-  <text x="110" y="125" font-family="Arial" font-size="14" fill="#e0e0e0" text-anchor="middle">Cliente</text>
-  <text x="110" y="145" font-family="Arial" font-size="12" fill="#e0e0e0" text-anchor="middle">Navegador</text>
+  <rect class="node node-blue" x="50" y="100" width="120" height="60" />
+  <text class="text" x="110" y="125">Cliente</text>
+  <text class="text-small" x="110" y="145">Navegador</text>
 
-  
-  <rect x="250" y="20" width="120" height="60" rx="5" fill="#2d3748" stroke="#2e8b57" stroke-width="2" />
-  <text x="310" y="55" font-family="Arial" font-size="14" fill="#e0e0e0" text-anchor="middle">Servidor DNS</text>
+  <rect class="node node-green" x="250" y="20" width="120" height="60" />
+  <text class="text" x="310" y="55">Servidor DNS</text>
 
-  
-  <rect x="450" y="100" width="120" height="60" rx="5" fill="#4a5568" stroke="#e9967a" stroke-width="2" />
-  <text x="510" y="135" font-family="Arial" font-size="14" fill="#e0e0e0" text-anchor="middle">Servidor Web</text>
+  <rect class="node node-red" x="450" y="100" width="120" height="60" />
+  <text class="text" x="510" y="135">Servidor Web</text>
 
-  
-  
-  <path d="M 110 100 Q 150 50 250 50" stroke="#e0e0e0" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
-  <text x="150" y="40" font-family="Arial" font-size="10" fill="#e0e0e0">1- Consulta DNS</text>
+  <path class="arrow-curve" d="M 100 100 Q 140 40 250 40" />
+  <text class="text-small" x="110" y="50">1: Consulta DNS</text>
 
-  
-  <path d="M 310 80 Q 250 130 170 130" stroke="#e0e0e0" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
-  <text x="250" y="145" font-family="Arial" font-size="10" fill="#e0e0e0">2- Dirección IP</text>
+  <path class="arrow-curve" d="M 250 60 Q 160 60 130 100" />
+  <text class="text-small" x="210" y="90">2: Dirección IP</text>
 
-  
-  <path d="M 170 110 L 450 110" stroke="#e0e0e0" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
-  <text x="350" y="95" font-family="Arial" font-size="10" fill="#e0e0e0" text-anchor="middle">3- Solicitud HTTP</text>
+  <path class="arrow" d="M 170 120 L 450 120" />
+  <text class="text-small" x="310" y="110">3: Solicitud HTTP</text>
 
-  
-  <path d="M 450 150 L 170 150" stroke="#e0e0e0" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
-  <text x="310" y="175" font-family="Arial" font-size="10" fill="#e0e0e0" text-anchor="middle">4- Respuesta HTTP</text>
-
+  <path class="arrow" d="M 450 140 L 170 140" />
+  <text class="text-small" x="310" y="160">4: Respuesta HTTP</text>
 </svg>
