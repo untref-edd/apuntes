@@ -50,14 +50,14 @@ Los buscadores web utilizan **_crawlers_** para indexar el contenido de la web y
 
 El siguiente diagrama ilustra la arquitectura básica de un **_crawler_**:
 
-```{figure} ../_static/figures/crawler_diagram_light.svg
+```{figure} ../_static/figures/3-representacion-datos/3-6-web-scraping/crawler_diagram_light.svg
 ---
 class: only-light-mode
 ---
 Arquitectura básica de un crawler
 ```
 
-```{figure} ../_static/figures/crawler_diagram_dark.svg
+```{figure} ../_static/figures/3-representacion-datos/3-6-web-scraping/crawler_diagram_dark.svg
 ---
 class: only-dark-mode
 ---
