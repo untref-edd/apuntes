@@ -15,7 +15,7 @@ description: La web como fuente de información, APIs,
 
 La Web es una de las fuentes de información más grandes y diversas disponibles en la actualidad. Contiene datos estructurados, semiestructurados y no estructurados que pueden ser aprovechados para múltiples propósitos: análisis de datos, investigación, monitoreo de precios, agregación de noticias, entre otros. En este capítulo exploraremos el funcionamiento de la Web y cómo acceder a información a través de APIs.
 
-## Introducción al Funcionamiento de la Web
+## Introducción al funcionamiento de la Web
 
 ### Arquitectura Cliente-Servidor
 
@@ -37,42 +37,42 @@ Arquitectura Cliente-Servidor
 
 Los componentes principales son:
 
-**Cliente (Navegador)**
+Cliente (Navegador)
 : Programa que solicita recursos web (páginas HTML, imágenes, videos, etc.). Los navegadores más comunes son Chrome, Firefox, Safari y Edge.
 
-**Servidor Web**
+Servidor Web
 : Aplicación que responde a las solicitudes de los clientes, enviando los recursos solicitados. Ejemplos incluyen Apache, Nginx, y servidores de aplicaciones como Node.js o Python con frameworks como Django o FastAPI.
 
-**DNS (Domain Name System)**
+DNS (Domain Name System)
 : Sistema que traduce nombres de dominio legibles (como `www.untref.edu.ar`) a direcciones IP numéricas que los computadores pueden entender.
 
-En primer lugar el cliente o browser realiza una consulta DNS para obtener la dirección IP del servidor web asociado al dominio. Luego, el cliente envía una solicitud HTTP al servidor, que procesa la solicitud y devuelve una respuesta con el recurso solicitado.
+En primer lugar el cliente o _browser_ realiza una consulta DNS para obtener la dirección IP del servidor web asociado al dominio. Luego, el cliente envía una solicitud HTTP al servidor, que procesa la solicitud y devuelve una respuesta con el recurso solicitado.
 
-Hoy en día a través de la web no solo se puede obtener páginas HTML, sino también se pueden ejecutar aplicaciones web completas, donde el servidor puede enviar datos y código (generalmente JavaScript) que se ejecuta en el navegador del cliente, permitiendo interfaces interactivas y dinámicas.
+Hoy en día a través de la Web no solo se puede obtener páginas HTML, sino también se pueden ejecutar aplicaciones web completas, donde el servidor puede enviar datos y código (generalmente JavaScript) que se ejecuta en el navegador del cliente, permitiendo interfaces interactivas y dinámicas.
 
-### Web Estática vs Dinámica
+### Web estática vs dinámica
 
 En los inicios de la Web, la mayoría de los sitios eran de naturaleza **estática**: el servidor simplemente enviaba archivos HTML pre-existentes al cliente. Sin embargo, la Web moderna es mayoritariamente **dinámica**.
 
-**Web Estática**
+Web estática
 : El contenido es el mismo para todos los usuarios y solo cambia cuando el desarrollador edita los archivos manualmente. Es eficiente pero limitada.
 
-**Web Dinámica**
+Web dinámica
 : El contenido se genera en tiempo real (por ejemplo, resultados de búsqueda, perfiles de usuario). El servidor utiliza lenguajes como Python, Java o PHP para consultar bases de datos y construir el HTML justo antes de enviarlo.
 
 Desde la perspectiva de la recuperación de información, la búsqueda en la "web profunda" (deep web) se refiere a este contenido generado dinámicamente que no es fácilmente accesible siguiendo enlaces estáticos.
 
-### Estructura de la Web (The Bow-tie structure)
+### Estructura de la Web (_The Bow-tie structure_)
 
 A gran escala, la estructura de la Web no es una red aleatoria. Investigaciones clásicas {cite:p}`irbook` han demostrado que el grafo de la Web tiene una forma de **moño** o **corbata de moño** (_bow-tie structure_).
 
 Esta estructura se compone de tres partes principales:
 
 1. **IN**: Páginas que tienen enlaces hacia el centro, pero no reciben enlaces desde él.
-2. **SCC (Strongly Connected Component)**: El núcleo central, donde es posible llegar de cualquier página a otra siguiendo enlaces.
+2. **SCC (_Strongly Connected Component_)**: El núcleo central, donde es posible llegar de cualquier página a otra siguiendo enlaces.
 3. **OUT**: Páginas a las que se llega desde el centro, pero que no tienen enlaces de regreso hacia él.
 
-Además, existen "zarcillos" (_tendrils_) y páginas aisladas que no se conectan a estos componentes principales. Entender esta estructura es vital para diseñar algoritmos de crawling eficientes.
+Además, existen ramas y páginas aisladas que no se conectan a estos componentes principales. Entender esta estructura es vital para diseñar algoritmos de crawling eficientes.
 
 ### El Protocolo HTTP
 
@@ -80,7 +80,7 @@ HTTP (_HyperText Transfer Protocol_) es el protocolo de comunicación que permit
 
 HTTP fue diseñado para ser simple y flexible, permitiendo la transferencia de diferentes tipos de datos (HTML, JSON, imágenes, etc.) a través de una estructura de mensajes estándar.
 
-El protocolo HTTP sigue un modelo de solicitud-respuesta (_request-response_), donde el cliente envía una solicitud al servidor y este responde con el recurso solicitado o un mensaje de error.
+El protocolo HTTP sigue un modelo de solicitud-respuesta (_request_-_response_), donde el cliente envía una solicitud al servidor y este responde con el recurso solicitado o un mensaje de error.
 
 En el siguiente diagrama de secuencia se muestra una interacción típica entre un cliente y un servidor utilizando HTTP:
 
@@ -105,6 +105,7 @@ GET /contact HTTP/1.1
 Host: example.com
 User-Agent: curl/8.6.0
 Accept: */*
+
 ```
 
 La petición HTTP consta de varias líneas, donde la primera línea indica el método HTTP (`GET`), el recurso solicitado (`/contact`) y la versión del protocolo (`HTTP/1.1`). Las líneas siguientes son las cabeceras (_headers_) que proporcionan información adicional sobre la solicitud. En este caso, se especifica el host, el agente de usuario (navegador) y los tipos de contenido aceptados.
@@ -164,29 +165,29 @@ Los métodos HTTP definen las peticiones que se puede solicitar al servidor sobr
 
 Las respuestas HTTP incluyen un código de estado que indica el resultado de la solicitud:
 
-**2xx (Éxito)**
+2xx (Éxito)
 : - `200 OK`: Solicitud exitosa
 : - `201 Created`: Recurso creado exitosamente
 : - `204 No Content`: Éxito pero sin contenido para devolver
 
-**3xx (Redirección)**
+3xx (Redirección)
 : - `301 Moved Permanently`: El recurso se ha movido permanentemente
 : - `302 Found`: Redirección temporal
 : - `304 Not Modified`: El recurso no ha sido modificado desde la última solicitud
 
-**4xx (Error del Cliente)**
+4xx (Error del Cliente)
 : - `400 Bad Request`: Solicitud mal formada
 : - `401 Unauthorized`: Autenticación requerida
 : - `403 Forbidden`: Acceso denegado
 : - `404 Not Found`: Recurso no encontrado
 : - `429 Too Many Requests`: Límite de velocidad excedido
 
-**5xx (Error del Servidor)**
+5xx (Error del Servidor)
 : - `500 Internal Server Error`: Error genérico del servidor
 : - `502 Bad Gateway`: El servidor actuó como gateway y recibió una respuesta inválida
 : - `503 Service Unavailable`: Servidor no disponible temporalmente
 
-#### URL Normalización (Canonicalización)
+#### Normalización de URLs (Canonicalización)
 
 Un problema común al procesar datos de la Web es que diferentes URLs pueden apuntar al mismo recurso. Por ejemplo:
 
@@ -214,10 +215,15 @@ try:
     response = requests.get("https://untref.edu.ar/", timeout=30)
 
     print(f"Código de estado: {response.status_code}")
+
+    print()
+    print(f"Cabeceras:")
     for k, v in response.headers.items():
-        print(f"{k}: {v}")
-    print(f"\nPrimeros 200 caracteres del contenido (página html):")
-    print(f"{response.text[:200]}")
+        print(f"  - {k}: {v}")
+
+    print()
+    print(f"Primeros 200 caracteres del contenido (página html):")
+    print(repr(response.text[:200]))
 except requests.exceptions.RequestException as e:
     print(f"No se pudo conectar a untref.edu.ar: {e}")
 ```
@@ -228,8 +234,8 @@ El intercambio entre cliente y servidor puede verse en _"crudo"_ utilizando herr
 curl -v https://untref.edu.ar/
 ```
 
-```{note} Nota
-cURL es una herramienta de línea de comandos, gratuita y de código abierto, para transferir datos usando diversas URLs y protocolos, comúnmente utilizada para interactuar con APIs, descargar archivos y probar recursos web. Es compatible con una amplia gama de protocolos como HTTP, HTTPS, FTP y SMB. cURL está disponible de forma nativa en sistemas operativos basados en Unix, incluyendo Linux y macOS, y está preinstalado en las versiones modernas de Windows.
+```{note} cURL
+cURL es una herramienta de línea de comandos para transferir datos usando diversas URLs y protocolos, comúnmente utilizada para interactuar con APIs, descargar archivos y probar recursos web. Es compatible con una amplia gama de protocolos como HTTP, HTTPS, FTP y SMB. cURL está disponible de forma nativa en sistemas operativos basados en Unix, incluyendo Linux y macOS, y está preinstalado en las versiones modernas de Windows.
 ```
 
 **Petición enviada:**
@@ -265,7 +271,7 @@ Content-Type: text/html; charset=UTF-8
 
 ### HTTPS: HTTP Seguro
 
-HTTPS (HTTP Secure) es la versión segura de HTTP que utiliza encriptación TLS/SSL para proteger la comunicación entre cliente y servidor. Es fundamental para:
+HTTPS (_HTTP Secure_) es la versión segura de HTTP que utiliza encriptación TLS/SSL para proteger la comunicación entre cliente y servidor. Es fundamental para:
 
 - Proteger datos sensibles (contraseñas, información financiera)
 - Verificar la identidad del servidor
@@ -316,33 +322,30 @@ Ante esta solicitud, la API podría devolver un JSON con los datos del usuario:
 
 ### API REST (Representational State Transfer)
 
-REST es un estilo arquitectónico para diseñar servicios web que se basa en los principios de HTTP. Una API REST expone recursos a través de URLs y utiliza los métodos HTTP estándar para operaciones CRUD (Create, Read, Update, Delete).
+REST es un estilo arquitectónico para diseñar servicios web que se basa en los principios de HTTP. Una API REST expone recursos a través de URLs y utiliza los métodos HTTP estándar para operaciones CRUD (_Create_, _Read_, _Update_, _Delete_).
 
 #### Principios de REST
 
-**Arquitectura Cliente-Servidor**
+Arquitectura Cliente-Servidor
 : Separación de responsabilidades entre interfaz de usuario y almacenamiento de datos.
 
-**Sin Estado**
+Sin estado
 : Cada solicitud contiene toda la información necesaria; el servidor no mantiene sesiones.
 
-**Cacheable**
+Cacheable
 : Las respuestas deben indicar si pueden ser almacenadas en caché.
 
-**Interfaz Uniforme**
+Interfaz uniforme
 : Uso consistente de URLs y métodos HTTP.
 
-**Sistema en Capas**
+Sistema en capas
 : La arquitectura puede tener múltiples capas intermedias.
 
 #### Ejemplo: Consumir una API REST Pública
 
-Vamos a consumir una API pública para consultar resultados electorales de Argentina, disponible en [https://resultados.mininterior.gob.ar](https://resultados.mininterior.gob.ar).
+Vamos a consumir una API pública para consultar resultados electorales de Argentina, disponible en <https://resultados.mininterior.gob.ar>.
 
-```{code-cell} python
----
-tags: hide-output
----
+```python
 import requests
 import json
 
@@ -352,7 +355,7 @@ try:
         "https://resultados.mininterior.gob.ar/api/resultados/getResultados?"
         "anioEleccion=2019&tipoRecuento=1&tipoEleccion=2&categoriaId=1&"
         "distritoId=2&seccionProvincialId=1&seccionId=118",
-        timeout=30
+        timeout=30,
     )
     if response.status_code == 200:
         datos = response.json()
@@ -384,7 +387,7 @@ La respuesta de la API es un JSON con los resultados detallados para Tres de Feb
 
 Muchas APIs REST proporcionan datos estructurados útiles. Vamos a consultar OpenStreetMap (OSM) que ofrece datos geográficos.
 
-```{note} Nota
+```{note} OpenStreetMap
  [OpenStreetMap](https://www.openstreetmap.org/about) es un proyecto colaborativo para crear un mapa libre y editable del mundo. Los datos son aportados por voluntarios y están disponibles bajo la licencia [Open Database License (ODbL)](https://es.wikipedia.org/wiki/Licencia_Abierta_de_Bases_de_Datos).
 ```
 
@@ -399,7 +402,11 @@ try:
     # Realizar una solicitud GET a la API de Open Maps
     # Way Id = 1275831310 (Sede Caseros I de la UNTREF)
     response = requests.get(
-        "https://api.openstreetmap.org/api/0.6/way/1275831310", timeout=30
+        "https://api.openstreetmap.org/api/0.6/way/1275831310",
+        timeout=30,
+        headers={
+            'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:137.0) Gecko/20100101 Firefox/137.0'
+        }
     )
     if response.status_code == 200:
         # Parsear la respuesta XML
@@ -427,7 +434,10 @@ La documentación de la API de OpenStreetMap está disponible en [https://wiki.o
 
 Con el way ID `1275831310` también se puede obtener el mapa correspondiente a través del servicio Overpass API, que permite consultas más complejas. Aquí hay un ejemplo de cómo obtener la geometría del way en formato GeoJSON y visualizarlo en un mapa interactivo usando la librería `folium`:
 
-```python
+```{code-cell} python
+---
+tags: hide-output
+---
 import requests
 import folium
 
@@ -437,13 +447,21 @@ def obtener_geojson_way(osm_way_id):
     url = "https://overpass-api.de/api/interpreter"
     # Query Overpass: way + nodos + metadata
     query = f"""
-    [out:json];
-    way({osm_way_id});
-    out body;
-    >;
-    out meta;
-    """
-    response = requests.get(url, params={"data": query}, timeout=30)
+[out:json];
+way({osm_way_id});
+out body;
+>;
+out meta;
+"""
+    response = requests.get(
+        url,
+        params={"data": query},
+        headers={
+            "Host": "overpass-api.de",
+            "Referer": "http://localhost/",
+            'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:137.0) Gecko/20100101 Firefox/137.0'
+        }
+    )
     response.raise_for_status()
     return response.json()
 
@@ -502,7 +520,7 @@ La función principal (main) obtiene el GeoJSON de un "way" específico, en este
 
 overpass-api.de es un servicio web que permite consultar y extraer datos de OpenStreetMap mediante un lenguaje de consultas específico (Overpass QL). Se usa para obtener información geográfica detallada, como nodos, caminos y relaciones, de la base de datos de OSM.
 
-```{note} Nota
+```{note} GeoJSON
 [GeoJSON](https://es.wikipedia.org/wiki/GeoJSON) es un formato basado en JSON para representar datos geográficos. Define varias estructuras como Point, LineString, Polygon, MultiPoint, MultiLineString, MultiPolygon y GeometryCollection para describir diferentes tipos de geometrías espaciales.
 ```
 
