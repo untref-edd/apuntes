@@ -248,7 +248,7 @@ BELLMAN_FORD (G: DiGrafo, s: Vertice)
             REPORTAR error: grafo con ciclos negativos
 ```
 
-A continuación se muestra un ejemplo con una arista negativa donde el algoritmo de **_Dijkstra_** falla:
+A continuación se muestra un ejemplo con una arista negativa donde el algoritmo de **_Bellman-Ford_** encuentra el camínom mínimo:
 
 ```{code-cell} python
 import networkx as nx
