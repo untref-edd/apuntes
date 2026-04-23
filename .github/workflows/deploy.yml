@@ -1,4 +1,4 @@
-name: deploy-book
+name: Deploy to GitHub Pages
 
 on:
   # Trigger the workflow on push to main branch
@@ -19,6 +19,7 @@ concurrency:
 
 jobs:
   deploy-book:
+    name: Deploy book
     runs-on: ubuntu-latest
     # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
     permissions:
