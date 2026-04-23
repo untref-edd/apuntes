@@ -160,7 +160,7 @@ Si la arista $(A, B)$ fuera la única arista negativa del grafo entonces el algo
 
 ### Complejidad del algoritmo de Dijkstra
 
-Si el grafo se representa mediante **listas de adyacencia**, recorrer todas las aristas del grafo tiene un costo de $O(|V|+|A|)$, que se simplifica a $O(|A|)$ cuando el grafo es conexo y $|A| \ge |V|$.
+Si el grafo se representa mediante **listas de adyacencia**, recorrer todas las aristas del grafo tiene un costo de $O(|V|+|E|)$, que se simplifica a $O(|E|)$ cuando el grafo es conexo y $|E| \ge |V|$.
 
 El algoritmo utiliza además una **cola de prioridad** (implementada típicamente con un **montículo binario**) donde se almacenan los vértices junto con su distancia mínima tentativa. Las operaciones críticas son:
 
@@ -170,22 +170,22 @@ El algoritmo utiliza además una **cola de prioridad** (implementada típicament
 En total, cada arista se procesa a lo sumo una vez por iteración de extracción del vértice origen, y puede generar como máximo una inserción en la cola por relajación efectiva. Por tanto, el costo total del algoritmo es:
 
 $$
-T(n) = O(|V|\log|V|) + O(|A|\log|V|).
+T(n) = O(|V|\log|V|) + O(|E|\log|V|).
 $$
 
-Como en la mayoría de los grafos de interés se cumple $|A| \ge |V|$, el primer término de la suma queda dominado por el segundo y se obtiene la cota habitual:
+Como en la mayoría de los grafos de interés se cumple $|E| \ge |V|$, el primer término de la suma queda dominado por el segundo y se obtiene la cota habitual:
 
 $$
-T(n) = O(|A|\log|V|).
+T(n) = O(|E|\log|V|).
 $$
 
 Otra manera de verlo: en cada iteración del bucle _MIENTRAS_, se procesan únicamente los adyacentes del vértice extraído, y a lo largo de todo el algoritmo cada arista $(u, v)$ se examina una sola vez. Formalmente:
 
 $$
-\sum_{v \in V} \deg(v) = 2|A| \quad \Rightarrow \quad O(|A|)\ \text{relajaciones}.
+\sum_{v \in V} \deg(v) = 2|E| \quad \Rightarrow \quad O(|E|)\ \text{relajaciones}.
 $$
 
-Cada relajación puede provocar la inserción de un nuevo elemento en la cola de prioridad, lo que explica la complejidad final de $O(|A|\log|V|)$.
+Cada relajación puede provocar la inserción de un nuevo elemento en la cola de prioridad, lo que explica la complejidad final de $O(|E|\log|V|)$.
 
 ## Algoritmo de Bellman-Ford
 
@@ -272,10 +272,10 @@ caminos_minimos.show_bellman_ford_step_by_step(G, SOURCE)
 
 ### Complejidad del algoritmo de Bellman-Ford
 
-La complejidad temporal del **_algoritmo de Bellman-Ford_** está determinada por los dos ciclos anidados de las líneas 9 y 10. El bucle _REPETIR_ se ejecuta $|V| - 1$ veces y el ciclo _PARA_ se ejecuta $|A|$ veces y como adentro de los ciclos todas las operaciones son $O(1)$ queda:
+La complejidad temporal del **_algoritmo de Bellman-Ford_** está determinada por los dos ciclos anidados de las líneas 9 y 10. El bucle _REPETIR_ se ejecuta $|V| - 1$ veces y el ciclo _PARA_ se ejecuta $|E|$ veces y como adentro de los ciclos todas las operaciones son $O(1)$ queda:
 
 $$
-T(n)=O(|V|\times|A|)
+T(n)=O(|V|\times|E|)
 $$
 
 ## Recursos para profundizar

@@ -45,17 +45,17 @@ BFS (s: Vertice):
 ### Complejidad del algoritmo BFS
 
 $$
-O(|V| + |A|)
+O(|V| + |E|)
 $$
 
-El tiempo de ejecución del algoritmo BFS es $O(|V| + |A|)$ cuando el grafo se representa mediante **listas de adyacencia**.
+El tiempo de ejecución del algoritmo BFS es $O(|V| + |E|)$ cuando el grafo se representa mediante **listas de adyacencia**.
 
 Esto se debe a que:
 
 1. Cada vértice se encola y desencola a lo sumo una vez. Las operaciones en la cola toman tiempo constante $O(1)$, por lo que el tiempo total dedicado a estas operaciones es $O(|V|)$.
-2. Al procesar un vértice $u$, el algoritmo recorre su lista de adyacencia. Como cada arista $(u, v)$ se considera una vez si el grafo es dirigido o dos veces si el grafo es no dirigido, el tiempo total dedicado a recorrer las listas de adyacencia es proporcional al número total de aristas, es decir $O(|A|)$. Esto es importante porque hace que obtener los vértices adyacentes tome tiempo proporcional al número de aristas incidentes en el vértice y no al número total de vértices.
+2. Al procesar un vértice $u$, el algoritmo recorre su lista de adyacencia. Como cada arista $(u, v)$ se considera una vez si el grafo es dirigido o dos veces si el grafo es no dirigido, el tiempo total dedicado a recorrer las listas de adyacencia es proporcional al número total de aristas, es decir $O(|E|)$. Esto es importante porque hace que obtener los vértices adyacentes tome tiempo proporcional al número de aristas incidentes en el vértice y no al número total de vértices.
 
-Por lo tanto, la complejidad total es la suma de los tiempos para procesar vértices y aristas: $O(|V| + |A|)$.
+Por lo tanto, la complejidad total es la suma de los tiempos para procesar vértices y aristas: $O(|V| + |E|)$.
 
 ```{admonition} Importante
 ---
@@ -94,7 +94,7 @@ CAMINO_MINIMO_BFS (s: Vertice)
                 q.encolar(w)
 ```
 
-La ventaja de este algoritmo es que encuentra el camino más corto (mínimo número de aristas) desde el vértice $s$ a cualquier otro vértice alcanzable desde $s$ en $O(|V| + |A|)$
+La ventaja de este algoritmo es que encuentra el camino más corto (mínimo número de aristas) desde el vértice $s$ a cualquier otro vértice alcanzable desde $s$ en $O(|V| + |E|)$
 
 ### Grafo Bipartito
 
@@ -193,7 +193,7 @@ DFS (v, visitado = {}, contador = 0):
 ### Complejidad
 
 $$
-O(|V| + |A|)
+O(|V| + |E|)
 $$
 
 ### Aplicaciones
