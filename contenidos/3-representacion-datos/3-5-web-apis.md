@@ -447,12 +447,12 @@ def obtener_geojson_way(osm_way_id):
     url = "https://overpass-api.de/api/interpreter"
     # Query Overpass: way + nodos + metadata
     query = f"""
-[out:json];
-way({osm_way_id});
-out body;
->;
-out meta;
-"""
+    [out:json];
+    way({osm_way_id});
+    out body;
+    >;
+    out meta;
+    """
     response = requests.get(
         url,
         params={"data": query},
@@ -469,27 +469,31 @@ out meta;
 def construir_mapa(geojson_data):
     # Extraer nodos del way y sus coordenadas
     # Overpass pone los nodos como elementos tipo "node" en el array "elements"
-    nodes = {}
-    for el in geojson_data.get("elements", []):
-        if el["type"] == "node":
-            nodes[el["id"]] = (el["lat"], el["lon"])
+    elements = geojson_data.get("elements", [])
+    nodes = {
+        el["id"]: (el["lat"], el["lon"])
+        for el in elements if el["type"] == "node"
+    }
+
     # Construir lista ordenada de coordenadas del way
-    coords = []
-    for el in geojson_data.get("elements", []):
-        if el["type"] == "way":
-            for nid in el["nodes"]:
-                if nid in nodes:
-                    coords.append(nodes[nid])
-    # Centrar el mapa en la primera coordenada
+    coords = [
+        nodes[nid]
+        for el in elements if el["type"] == "way"
+        for nid in el["nodes"] if nid in nodes
+    ]
+
     if not coords:
         raise RuntimeError("No se hallaron coordenadas del way")
-    centro = coords[0]
-    mapa = folium.Map(location=centro, zoom_start=18)
+
+    # Centrar el mapa en la primera coordenada
+    mapa = folium.Map(location=coords[0], zoom_start=18)
+
     # Añadir polígono (o línea) al mapa
-    folium.PolyLine(locations=coords, color="blue", weight=3).add_to(mapa)
+    poligono = folium.PolyLine(locations=coords, color="blue", weight=3)
+    poligono.add_to(mapa)
+
     # También podrías usar folium.Polygon si es cerrado
     return mapa
-    # Visualizar el mapa en el notebook
 
 
 def main():
@@ -497,12 +501,13 @@ def main():
     try:
         geojson = obtener_geojson_way(osm_way_id)
         mapa = construir_mapa(geojson)
-        # Mostrar el mapa en el notebook
-        display(mapa)
     except requests.exceptions.RequestException as e:
         print(f"No se pudo obtener datos de Overpass API: {e}")
     except RuntimeError as e:
         print(f"Error al construir el mapa: {e}")
+    else:
+        # Mostrar el mapa en el notebook
+        display(mapa)
 
 
 if __name__ == "__main__":
