@@ -12,30 +12,27 @@
     .label { font-family: Arial; font-size: 14px; text-anchor: middle; dominant-baseline: middle; fill: #333333; }
     .title { font-family: Arial; font-size: 18px; text-anchor: middle; fill: #333333; }
     .edge { fill: none; stroke: #333333; stroke-width: 2; marker-end: url(#arrowhead-light); }
-    
-    /* Grupos contenedores (Borde punteado) */
     .group-box { fill: #fff9c4; stroke: #fbc02d; stroke-width: 2; stroke-dasharray: 5,5; }
-
-    /* NUEVA PALETA PASTEL (Basada en el ejemplo) */
-    /* Verde Pastel */
     .box-green { fill: #e1ffe1; stroke: #48bb78; stroke-width: 2; }
-    /* Azul Pastel */
     .box-blue { fill: #e1f5ff; stroke: #4682b4; stroke-width: 2; }
-    /* Violeta Pastel */
     .box-purple { fill: #f5e1ff; stroke: #9f7aea; stroke-width: 2; }
-    /* Naranja/Amarillo Pastel (para almacenamiento) */
     .box-yellow { fill: #fff4e1; stroke: #f6ad55; stroke-width: 2; }
   </style>
 
   <text x="500" y="25" class="title">Diagrama de un Crawler</text>
 
-  <rect x="680" y="40" width="280" height="180" class="group-box" rx="10" /> <rect x="380" y="250" width="400" height="280" class="group-box" rx="10" /> <rect x="40" y="450" width="320" height="320" class="group-box" rx="10" /> <rect x="480" y="570" width="400" height="350" class="group-box" rx="10" /> <g>
+  <rect x="680" y="40" width="280" height="180" class="group-box" rx="10" />
+  <rect x="380" y="250" width="400" height="280" class="group-box" rx="10" />
+  <rect x="40" y="450" width="320" height="320" class="group-box" rx="10" />
+  <rect x="480" y="570" width="400" height="350" class="group-box" rx="10" />
+
+  <g>
     <path d="M 820,120 V 150" class="edge" />
     <path d="M 820,210 V 230 H 580 V 270" class="edge" />
     <path d="M 580,310 V 340" class="edge" />
     <path d="M 580,380 V 410" class="edge" />
     <path d="M 580,450 V 590" class="edge" />
-    <path d="M 480,430 H 360 V 570 H 300" class="edge" /> 
+    <path d="M 480,430 H 360 V 570 H 300" class="edge" />
     <path d="M 480,430 H 340 V 660 H 300" class="edge" />
     <path d="M 680,630 V 660" class="edge" />
     <path d="M 680,700 V 730" class="edge" />
