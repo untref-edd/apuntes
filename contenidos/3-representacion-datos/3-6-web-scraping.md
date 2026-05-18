@@ -54,18 +54,18 @@ El siguiente diagrama ilustra la arquitectura básica de un **_crawler_**:
 ---
 class: only-light-mode
 ---
-Arquitectura básica de un crawler
+Arquitectura básica de un _crawler_
 ```
 
 ```{figure} ../_static/figures/3-representacion-datos/3-6-web-scraping/crawler_diagram_dark.svg
 ---
 class: only-dark-mode
 ---
-Arquitectura básica de un crawler
+Arquitectura básica de un _crawler_
 ```
 
 URLs semilla
-: Puntos de partida para el crawler. Una serie de URLs iniciales desde donde comenzar la exploración.
+: Puntos de partida para el _crawler_. Una serie de URLs iniciales desde donde comenzar la exploración.
 
 Frontera de URLs
 : Estructura de datos que almacena las URLs pendientes de visitar. Cada vez que el _crawler_ visita una página, extrae nuevas URLs y las añade a esta frontera.
@@ -97,27 +97,6 @@ Resolutor DNS
 Cacheo
 : Almacena temporalmente respuestas HTTP para mejorar la eficiencia y reducir la carga en los servidores web.
 
-## Robustez del Crawler
-
-Un crawler robusto debe estar diseñado para manejar la imprevisibilidad de la Web. Tres desafíos principales son:
-
-**Spider Traps (Trampas de araña)**
-: Son estructuras de sitios web que causan que un crawler entre en un bucle infinito de URLs (común en calendarios generados dinámicamente o directorios anidados).
-
-**Cuellos de botella en DNS**
-: La resolución de nombres de dominio puede ser lenta. Los crawlers de alto rendimiento suelen usar resolutores multi-hilo o caches de DNS locales para evitar que la red sea el limitante.
-
-**Cortesía (Politeness)**
-: Un crawler no debe saturar un servidor. Reglas como esperar un intervalo entre peticiones al mismo host y respetar el archivo `robots.txt` son obligatorias para un comportamiento ético.
-
-## Estrategias de la Frontera de URLs
-
-La frontera no es simplemente una cola. En sistemas complejos {cite:p}`irbook`, se utilizan esquemas de **priorización**:
-
-- **Frescura**: Priorizar la revisión de páginas que cambian frecuentemente (como sitios de noticias).
-- **Calidad (PageRank)**: Priorizar páginas que son consideradas más importantes o autoritativas.
-- **Detección de duplicados**: Antes de añadir a la frontera, se suele calcular un _hash_ (o _shingle_) del contenido para ver si la información ya fue procesada bajo una URL distinta.
-
 Almacenamiento de datos
 : Base de datos o archivo donde se guardan los datos extraídos del contenido web.
 
@@ -129,7 +108,28 @@ Para gestionar la frontera de URLs, se pueden utilizar diferentes estructuras de
 
 También se pueden establecer reglas para filtrar las URLs que se añaden a la frontera, como limitar la exploración a un dominio específico o evitar ciertos tipos de contenido.
 
-## Consideraciones Legales y Éticas
+## Robustez del _crawler_
+
+Un _crawler_ robusto debe estar diseñado para manejar la imprevisibilidad de la Web. Tres desafíos principales son:
+
+_Spider traps_ (Trampas de araña)
+: Son estructuras de sitios web que causan que un _crawler_ entre en un bucle infinito de URLs (común en calendarios generados dinámicamente o directorios anidados).
+
+Cuellos de botella en DNS
+: La resolución de nombres de dominio puede ser lenta. Los crawlers de alto rendimiento suelen usar resolutores multi-hilo o caches de DNS locales para evitar que la red sea el limitante.
+
+_Politeness_ (Cortesía)
+: Un _crawler_ no debe saturar un servidor. Reglas como esperar un intervalo entre peticiones al mismo host y respetar el archivo `robots.txt` son obligatorias para un comportamiento ético.
+
+## Estrategias de la frontera de URLs
+
+La frontera no es simplemente una cola. En sistemas complejos {cite:p}`irbook`, se utilizan esquemas de **priorización**:
+
+- **Frescura**: Priorizar la revisión de páginas que cambian frecuentemente (como sitios de noticias).
+- **Calidad (PageRank)**: Priorizar páginas que son consideradas más importantes o autoritativas.
+- **Detección de duplicados**: Antes de añadir a la frontera, se suele calcular un _hash_ (o _shingle_) del contenido para ver si la información ya fue procesada bajo una URL distinta.
+
+## Consideraciones legales y éticas
 
 Antes de realizar una exploración de la web, es fundamental considerar aspectos legales y éticos. Algunos sitios web prohíben el scraping en sus términos de servicio, y es importante respetar estas políticas para evitar problemas legales.
 
@@ -139,26 +139,41 @@ Los servidores pueden tener mecanismos para detectar y bloquear actividades sosp
 
 En general las políticas de acceso a un sitio web por parte de los scrapers se regulan mediante:
 
-robots.txt
+`robots.txt`
 : Archivo en la raíz del sitio web que especifica qué partes pueden ser accedidas por robots automatizados.
 
-```{code-cell} python
+```{code} text
 ---
-tags: hide-output
+caption: https://python.org/robots.txt
 ---
-import requests
+# Directions for robots.  See this URL:
+# http://www.robotstxt.org/robotstxt.html
+# for a description of the file format.
 
-# Verificar el archivo robots.txt
-url_robots = 'https://python.org/robots.txt'
-response = requests.get(url_robots, timeout=10)
+User-agent: HTTrack
+User-agent: puf
+User-agent: MSIECrawler
+Disallow: /
 
-print("Contenido de robots.txt de python.org:")
-print('\n'.join(response.text.split('\n')))
+# The Krugle web crawler (though based on Nutch) is OK.
+User-agent: Krugle
+Allow: /
+Disallow: /~guido/orlijn/
+Disallow: /webstats/
+
+# No one should be crawling us with Nutch.
+User-agent: Nutch
+Disallow: /
+
+# Hide old versions of the documentation and various large sets of files.
+User-agent: *
+Disallow: /~guido/orlijn/
+Disallow: /webstats/
 ```
 
 El formato típico de un archivo `robots.txt` incluye directivas como `User-agent`, `Disallow`, y `Allow` para controlar el acceso de diferentes tipos de bots a distintas partes del sitio web.
 
-El protocolo Robots Exclusion Standard define cómo los bots deben interpretar estas directivas para respetar las políticas del sitio. Este protocolo se encuentra estandarizado a través de la [RFC 9309](https://www.rfc-editor.org/rfc/rfc9309.html).
+El protocolo _Robots Exclusion Protocol_ define cómo los bots deben interpretar estas directivas para respetar las políticas del sitio. Este protocolo se encuentra estandarizado a través de la [RFC 9309](https://www.rfc-editor.org/rfc/rfc9309.html).
 
 Términos de Servicio
 : Muchos sitios web prohíben explícitamente el scraping en sus términos de uso.
@@ -175,17 +190,17 @@ Identificarse correctamente
 Uso responsable de los datos
 : No usar los datos scrapeados para propósitos no éticos o ilegales.
 
-## Web Scraping Manual con Python
+## Web scraping manual con Python
 
 Python ofrece excelentes bibliotecas para web scraping. Las más populares son `requests` para realizar solicitudes HTTP y `BeautifulSoup` para parsear HTML.
 
-### Instalación de Bibliotecas
+### Instalación de paquetes
 
 ```bash
 pip install requests beautifulsoup4 lxml
 ```
 
-`BeautifulSoup` es una biblioteca para parsear documentos HTML y XML, facilitando la navegación y búsqueda de elementos dentro del árbol del documento.
+`BeautifulSoup` es un paquete para parsear documentos HTML y XML, facilitando la navegación y búsqueda de elementos dentro del árbol del documento.
 
 ### Ejemplo Básico de un crawler
 
@@ -199,14 +214,13 @@ from urllib.parse import urljoin, urlparse
 import csv
 import time
 
+
 def es_mismo_dominio(url, dominio_base):
     """Verifica si la URL pertenece al mismo dominio base."""
     return urlparse(url).netloc == dominio_base
 
-def crawler_frontera(url_semilla,
-                     max_paginas=50,
-                     retraso=1,
-                     archivo_csv='enlaces.csv'):
+
+def crawler_frontera(url_semilla, max_paginas=50, retraso=1, archivo_csv="enlaces.csv"):
     """
     Función para realizar crawling web utilizando una frontera de enlaces tipo
     FIFO (cola).
@@ -235,43 +249,47 @@ def crawler_frontera(url_semilla,
 
         print(f"Visitando: {url_actual}")
         try:
-            response = requests.get(url_actual, timeout=10, headers={
-                'User-Agent': 'MiCrawler/1.0 (contacto@ejemplo.com)'
-            })
+            response = requests.get(
+                url_actual,
+                timeout=10,
+                headers={"User-Agent": "MiCrawler/1.0 (contacto@ejemplo.com)"},
+            )
             response.raise_for_status()
         except Exception as e:
             print(f"  Error al acceder: {e}")
             continue
 
-        soup = BeautifulSoup(response.text, 'lxml')
+        soup = BeautifulSoup(response.text, "lxml")
         visitadas.add(url_actual)
 
         # Extraer y guardar enlaces
-        for enlace in soup.find_all('a', href=True):
+        for enlace in soup.find_all("a", href=True):
             # En una página html los enlaces están en etiquetas <a href="...">
-            url_encontrada = urljoin(url_actual, enlace['href'])
-            url_encontrada = url_encontrada.split('#')[0]  # Quitar fragmentos
+            url_encontrada = urljoin(url_actual, enlace["href"])
+            url_encontrada = url_encontrada.split("#")[0]  # Quitar fragmentos
             if es_mismo_dominio(url_encontrada, dominio_base):
-                if url_encontrada not in visitadas \
-                   and url_encontrada not in frontera:
+                if url_encontrada not in visitadas and url_encontrada not in frontera:
                     frontera.append(url_encontrada)
-                enlaces_extraidos.append({'pagina': url_actual,
-                                        'enlace': url_encontrada})
+                enlaces_extraidos.append(
+                    {"pagina": url_actual, "enlace": url_encontrada}
+                )
 
         time.sleep(retraso)  # Ser respetuoso con el servidor
 
     # Guardar enlaces en un archivo CSV
-    with open(archivo_csv, 'w', newline='', encoding='utf-8') as f:
-        writer = csv.DictWriter(f, fieldnames=['pagina', 'enlace'])
+    with open(archivo_csv, "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=["pagina", "enlace"])
         writer.writeheader()
         writer.writerows(enlaces_extraidos)
 
     print(f"\nTotal de páginas visitadas: {len(visitadas)}")
     print(f"Enlaces guardados en: {archivo_csv}")
 
+
 # Ejemplo de uso:
-crawler_frontera('https://quotes.toscrape.com/', max_paginas=10,
-                 archivo_csv='enlaces_quotes.csv')
+crawler_frontera(
+    "https://quotes.toscrape.com/", max_paginas=10, archivo_csv="enlaces_quotes.csv"
+)
 ```
 
 ````{dropdown} Contenido de enlaces_quotes.csv
@@ -311,11 +329,11 @@ pip install scrapy
 ````{admonition} Anatomía de un Spider en Scrapy
 Una _spider_ en Scrapy es una clase que hereda de `scrapy.Spider` y define cómo navegar y extraer información de un sitio web. Los elementos clave que se deben configurar son:
 
-- **name**: Identificador único de la spider dentro del proyecto.
-- **allowed_domains**: Lista de dominios permitidos para evitar que la spider navegue fuera del sitio objetivo.
-- **start_urls**: Lista de URLs iniciales desde donde comenzará el scraping.
-- **custom_settings** _(opcional)_: Permite definir configuraciones específicas para esta spider, como el retraso entre descargas, el User-Agent, el respeto a robots.txt, número de solicitudes concurrentes, etc.
-- **parse**: Método principal que procesa la respuesta de cada URL y define cómo extraer los datos o seguir enlaces adicionales.
+- `name`: Identificador único de la spider dentro del proyecto.
+- `allowed_domains`: Lista de dominios permitidos para evitar que la spider navegue fuera del sitio objetivo.
+- `start_urls`: Lista de URLs iniciales desde donde comenzará el scraping.
+- `custom_settings` _(opcional)_: Permite definir configuraciones específicas para esta spider, como el retraso entre descargas, el User-Agent, el respeto a robots.txt, número de solicitudes concurrentes, etc.
+- `parse`: Método principal que procesa la respuesta de cada URL y define cómo extraer los datos o seguir enlaces adicionales.
 
 Ejemplo básico:
 
@@ -355,11 +373,11 @@ class MiSpider(scrapy.Spider):
 Para spiders más avanzados, se pueden sobrescribir otros métodos o definir múltiples funciones de parseo según la estructura del sitio.
 ````
 
-## Proyecto Práctico: Spider de Libros con Scrapy
+## Proyecto práctico: spider de libros con Scrapy
 
 A continuación se presenta un tutorial paso a paso para crear un spider con **Scrapy** que visite el sitio [Books to Scrape](https://books.toscrape.com/) y genere un archivo CSV con títulos y precios de los libros de la categoría "Horror".
 
-### Paso 1: Crear un Proyecto Scrapy
+### Paso 1: Crear un proyecto Scrapy
 
 Crear un nuevo proyecto de Scrapy en el directorio actual:
 
@@ -371,7 +389,7 @@ cd books_scraper
 scrapy genspider books books.toscrape.com
 ```
 
-### Paso 2: Estructura del Proyecto
+### Paso 2: Estructura del proyecto
 
 El comando anterior crea la siguiente estructura de directorios:
 
@@ -389,7 +407,7 @@ books_scraper/
             books.py
 ```
 
-### Paso 3: Definir los Items
+### Paso 3: Definir los items
 
 Editar el archivo `items.py` para definir la estructura de datos que queremos extraer:
 
@@ -406,7 +424,7 @@ class BookItem(scrapy.Item):
     rating = scrapy.Field()
 ```
 
-### Paso 4: Implementar el Spider
+### Paso 4: Implementar el spider
 
 Editar el archivo `spiders/books.py` con la lógica de extracción:
 
@@ -472,7 +490,7 @@ class BooksSpider(scrapy.Spider):
             yield scrapy.Request(next_page_url, callback=self.parse)
 ```
 
-### Paso 5: Configurar Pipeline para CSV
+### Paso 5: Configurar un pipeline para CSV
 
 Crear un pipeline personalizado para exportar a CSV. Editar `pipelines.py`:
 
@@ -507,7 +525,7 @@ class CsvExportPipeline:
         return item
 ```
 
-### Paso 6: Configurar Settings
+### Paso 6: Configurar settings
 
 Editar `settings.py` para activar el pipeline y configurar el comportamiento del spider:
 
@@ -547,7 +565,7 @@ scrapy crawl books
 # Esto generará un archivo 'horror_books.csv' con los resultados
 ```
 
-### Paso 8: Análisis de Resultados (Opcional)
+### Paso 8: Análisis de resultados (opcional)
 
 Podemos analizar los resultados usando pandas:
 
@@ -574,7 +592,7 @@ print(df['rating'].value_counts())
 
 [Descargar código completo del Spider](https://github.com/untref-edd/apuntes/tree/main/contenidos/_static/code/scraping)
 
-### Extensiones Posibles
+### Extensiones posibles
 
 - **Múltiples categorías**: Modificar `start_urls` para incluir más categorías
 - **Imágenes**: Agregar extracción de URLs de imágenes de libros
@@ -582,7 +600,7 @@ print(df['rating'].value_counts())
 - **Base de datos**: Cambiar el pipeline para guardar en SQLite o PostgreSQL
 - **Monitoreo**: Agregar logging y métricas de rendimiento
 
-## Comparación: APIs vs Web Scraping
+## Comparación: APIs vs Web scraping
 
 ```{list-table}
 ---
@@ -614,7 +632,7 @@ header-rows: 1
   - Alto (cambios no notificados)
 ```
 
-## Mejores Prácticas para Web Scraping
+## Mejores prácticas para Web scraping
 
 1. **Verificar legalidad**: Revisar términos de servicio y robots.txt
 2. **Identificarse**: Usar un User-Agent descriptivo
@@ -623,51 +641,51 @@ header-rows: 1
 5. **Considerar alternativas**: Preferir APIs cuando estén disponibles
 6. **Mantener el código**: Si los sitios cambian, el scraper debe actualizarse
 
-## Herramientas y Bibliotecas Adicionales
+## Herramientas y paquetes adicionales
 
-### Parseo y Análisis
+### Parseo y análisis
 
-- **lxml**: Parser XML/HTML muy rápido
-- **html5lib**: Parser que simula el comportamiento de navegadores
-- **parsel**: Librería de extracción usada por Scrapy
+- `lxml`: Parser XML/HTML muy rápido
+- `html5lib`: Parser que simula el comportamiento de navegadores
+- `parsel`: Librería de extracción usada por Scrapy
 
-### Automatización de Navegadores
+### Automatización de navegadores
 
-- **Selenium**: Control de navegadores web para automatización
-- **Playwright**: Alternativa moderna a Selenium
-- **Puppeteer**: Control de Chrome/Chromium (Node.js)
+- `Selenium`: Control de navegadores web para automatización
+- `Playwright`: Alternativa moderna a Selenium
+- `Puppeteer`: Control de Chrome/Chromium (Node.js)
 
-### Gestión de Solicitudes
+### Gestión de solicitudes
 
-- **httpx**: Cliente HTTP asíncrono moderno
-- **aiohttp**: Cliente HTTP asíncrono
-- **requests-html**: Requests con soporte para JavaScript
+- `httpx`: Cliente HTTP asíncrono moderno
+- `aiohttp`: Cliente HTTP asíncrono
+- `requests-html`: Requests con soporte para JavaScript
 
-### Almacenamiento y Procesamiento
+### Almacenamiento y procesamiento
 
-- **pandas**: Análisis y manipulación de datos
-- **SQLAlchemy**: ORM para bases de datos
-- **MongoDB**: Base de datos NoSQL para datos no estructurados
+- `pandas`: Análisis y manipulación de datos
+- `SQLAlchemy`: ORM para bases de datos
+- `MongoDB`: Base de datos NoSQL para datos no estructurados
 
-## Referencias y Recursos Adicionales
+## Referencias y recursos adicionales
 
-### Documentación Oficial
+### Documentación oficial
 
 - [Beautiful Soup Documentation](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
 - [Scrapy Documentation](https://docs.scrapy.org/)
 
-### Sitios para Practicar Web Scraping
+### Sitios para practicar Web scraping
 
 - [Quotes to Scrape](https://quotes.toscrape.com/) - Sitio diseñado para practicar scraping
 - [Books to Scrape](https://books.toscrape.com/) - Tienda de libros ficticia para scraping
 - [Scrape This Site](https://www.scrapethissite.com/) - Ejercicios de scraping
 
-### Aspectos Legales
+### Aspectos legales
 
 - [Can I scrape your website?](https://blog.apify.com/is-web-scraping-legal/)
 - [Understanding robots.txt](https://developers.google.com/search/docs/crawling-indexing/robots/intro)
 
-### Libros y Referencias Académicas
+### Libros y referencias académicas
 
 - En el capítulo 20: Web crawling and indexes del libro {cite:p}`irbook` se explican los conceptos básicos de web scraping.
 - En el libro {cite:p}`Mitchell2024` se profundiza en el tema de web scraping con Python. Este libro se puede leer online en formato html, por un tiempo limitado.
