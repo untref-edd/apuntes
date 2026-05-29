@@ -306,7 +306,89 @@ Permiten verificar si alguno o todos los elementos de una secuencia cumplen una 
 
 ### Tablas de referencia rápida
 
-Descargar la [Hoja de Referencia de XPath 2.0](../_static/docs/referencias_xpath.pdf) en PDF.
+[Descargar la versión imprimible](../_static/docs/referencias_xpath.pdf)
+
+#### Selectores de nodos
+
+| Expresión | Descripción                                       | Ejemplo                    | Resultado                                |
+| :-------: | :------------------------------------------------ | :------------------------- | :--------------------------------------- |
+|    `/`    | Nodo raíz (al inicio) o separador de hijo directo | `/biblioteca`              | El nodo raíz `biblioteca`                |
+|   `//`    | Cualquier descendiente a partir del nodo actual   | `//titulo`                 | Todos los nodos `titulo` del documento   |
+|    `.`    | Nodo actual                                       | `.`                        | El nodo actual                           |
+|   `..`    | Nodo padre del nodo actual                        | `//editorial/..`           | El padre de cada nodo `editorial`        |
+|  `@attr`  | Atributo del nodo actual                          | `//autor/@fechaNacimiento` | El atributo `fechaNacimiento` de `autor` |
+
+#### Predicados
+
+|    Expresión     | Descripción                            | Ejemplo                                  |
+| :--------------: | :------------------------------------- | :--------------------------------------- |
+|      `[n]`       | El n-ésimo nodo hijo                   | `/biblioteca/libro[1]`                   |
+|    `[last()]`    | El último nodo hijo                    | `/biblioteca/libro[last()]`              |
+|   `[last()-n]`   | Nodo n-ésimo desde el final            | `/biblioteca/libro[last()-1]`            |
+| `[position()<n]` | Los primeros n-1 nodos                 | `/biblioteca/libro[position()<3]`        |
+|    `[@attr]`     | Nodos que poseen el atributo           | `//autor[@fechaNacimiento]`              |
+| `[@attr="val"]`  | Nodos con el atributo igual a un valor | `//autor[@fechaNacimiento="28/03/1936"]` |
+|   `[not(...)]`   | Negación de la condición               | `//autor[not(@fechaNacimiento)]`         |
+
+#### Comodines
+
+| Expresión | Descripción                              | Ejemplo           |
+| :-------: | :--------------------------------------- | :---------------- |
+|    `*`    | Cualquier elemento en el nivel actual    | `/biblioteca/*`   |
+|   `@*`    | Todos los atributos del nodo actual      | `//autor[@*]`     |
+| `text()`  | Contenido de texto del nodo              | `//titulo/text()` |
+| `node()`  | Todos los nodos (elementos, texto, etc.) | `node()`          |
+
+#### Comparaciones
+
+| Operador | Descripción    | Ejemplo                     |
+| :------: | :------------- | :-------------------------- |
+|   `=`    | Igualdad       | `//libro[precio = 541.78]`  |
+|   `!=`   | Distinto       | `//libro[precio != 541.78]` |
+|   `<`    | Menor estricto | `//libro[precio < 500]`     |
+|   `<=`   | Menor o igual  | `//libro[precio <= 541.78]` |
+|   `>`    | Mayor estricto | `//libro[precio > 500]`     |
+|   `>=`   | Mayor o igual  | `//libro[precio >= 541.78]` |
+
+#### Operadores
+
+| Operador | Descripción                          | Ejemplo                              |
+| :------: | :----------------------------------- | :----------------------------------- |
+|   `+`    | Suma                                 | `//libro[precio + 100 > 600]`        |
+|   `-`    | Sustracción                          | `6 - 4`                              |
+|   `*`    | Multiplicación                       | `6 * 4`                              |
+|  `div`   | División                             | `8 div 4`                            |
+|  `mod`   | Módulo (resto de la división entera) | `5 mod 2`                            |
+|   `or`   | Disyunción                           | `precio = 541.78 or precio = 214.48` |
+|  `and`   | Conjunción                           | `precio > 300 and precio <= 541.78`  |
+|   `\|`   | Unión de caminos                     | `//libro/titulo \| //libro/precio`   |
+
+#### Funciones (XPath 2.0)
+
+| Función               | Descripción                                  | Ejemplo                     |
+| :-------------------- | :------------------------------------------- | :-------------------------- |
+| `count(nodos)`        | Cantidad de nodos en una secuencia           | `count(//libro)`            |
+| `sum(nodos)`          | Suma de valores numéricos                    | `sum(//precio)`             |
+| `avg(nodos)`          | Promedio de valores                          | `avg(//precio)`             |
+| `min(nodos)`          | Valor mínimo                                 | `min(//precio)`             |
+| `max(nodos)`          | Valor máximo                                 | `max(//precio)`             |
+| `contains(s1, s2)`    | Verdadero si s1 contiene s2                  | `contains(titulo, 'XML')`   |
+| `starts-with(s1, s2)` | Verdadero si s1 empieza con s2               | `starts-with(titulo, 'La')` |
+| `ends-with(s1, s2)`   | Verdadero si s1 termina con s2               | `ends-with(titulo, '.')`    |
+| `upper-case(s)`       | Convierte la cadena a mayúsculas             | `upper-case('hola')`        |
+| `lower-case(s)`       | Convierte la cadena a minúsculas             | `lower-case('HOLA')`        |
+| `string-length(s)`    | Longitud de la cadena                        | `string-length('abc')`      |
+| `matches(s, regex)`   | Verdadero si la cadena coincide con la regex | `matches(titulo, '^\d+$')`  |
+
+#### Expresiones XPath 2.0
+
+| Expresión                        | Descripción                   | Ejemplo                                       |
+| :------------------------------- | :---------------------------- | :-------------------------------------------- |
+| `if (cond) then e1 else e2`      | Condicional                   | `if (precio > 500) then 'Caro' else 'Barato'` |
+| `some $x in seq satisfies cond`  | Alguno cumple la condición    | `some $x in //precio satisfies $x > 1000`     |
+| `every $x in seq satisfies cond` | Todos cumplen la condición    | `every $x in //precio satisfies $x > 0`       |
+| `for $x in seq return expr`      | Iteración sobre una secuencia | `for $l in //libro return $l/titulo`          |
+| `(a to b)`                       | Rango numérico                | `(1 to 5)` genera `(1, 2, 3, 4, 5)`           |
 
 ## XML y Python
 

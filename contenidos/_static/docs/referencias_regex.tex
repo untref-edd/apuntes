@@ -1,6 +1,7 @@
 \documentclass[a4paper, 8pt]{extarticle}
 % \documentclass[a4paper, 10pt]{article}
-\usepackage[margin=1cm]{geometry}          % Para márgenes razonables
+\usepackage[margin=1cm]{geometry}   % Para márgenes razonables
+\usepackage{titlesec}               % Para controlar los márgenes de las secciones.
 
 % --- PAQUETES ESENCIALES ---
 \usepackage[utf8]{inputenc}    % Para codificación UTF-8
@@ -13,6 +14,12 @@
 \usepackage{booktabs}    % Para líneas de tabla profesionales (\toprule, \midrule, \bottomrule)
 \usepackage{longtable}   % Para tablas que pueden ocupar múltiples páginas
 \usepackage{array}       % Para definir anchos de columna (p{width})
+
+
+% \titlespacing*{\section}
+%   {0pt}{2\baselineskip}{3\baselineskip}
+\titlespacing*{\subsection}
+  {0pt}{\baselineskip}{0\baselineskip}
 
 \pagestyle{empty} % Remueve números de página
 
