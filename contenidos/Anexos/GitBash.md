@@ -51,7 +51,7 @@ Simplemente ejecutando:
 deactivate
 ```
 
-## Borrar el entorno virutal
+## Borrar el entorno virtual
 
 Se debe borrar la carpeta que se había creado:
 
@@ -96,12 +96,12 @@ Cerramos todas las terminales y las volvemos a abrir.
 
 Primero es necesario decirle a nuestro programita "qué entorno queremos activar", para eso usamos un archivo oculto llamado `.python-version` (este es un nombre con convención que se usan en varias herramientas como `pyenv`). Una de las funciones creamos fue `set_local_venv`, que es utilidad que vamos a usar para "activar la activación automática en un determinado entorno virtual".
 
-Siguiengo con nuestro ejemplo, para prender el entorno `.venv`, nos paramos en la carpeta del entorno y desde ahí ejecutamos:
+Siguiendo con nuestro ejemplo, para prender el entorno `.venv`, nos paramos en la carpeta del entorno y desde ahí ejecutamos:
 
 ```console
 set_local_venv .venv
 ```
 
-Y simplemente el entorno virtual `.vevn` se activará cada vez que entremos en esa carpeta.
+Y simplemente el entorno virtual `.venv` se activará cada vez que entremos en esa carpeta.
 
-Importante: los entornos virtuales no se desactivaran automáticamente.
+Importante: los entornos virtuales no se desactivarán automáticamente.

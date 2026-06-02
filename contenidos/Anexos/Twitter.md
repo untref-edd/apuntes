@@ -15,7 +15,7 @@ description: Obtener acceso a la API de Twitter para análisis de datos de redes
 
 Este instructivo detalla el proceso completo para registrarse como desarrollador de X (anteriormente Twitter), crear una aplicación y generar las credenciales necesarias (Bearer Token y Access Token) para realizar análisis de datos y acceder tanto a tweets históricos como a streams en tiempo real usando Python.
 
-## Como obtener un **_"Bearer Token"_** y **_"Access Token"_** de X (Twitter) para análisis de datos
+## Cómo obtener un **_"Bearer Token"_** y **_"Access Token"_** de X (Twitter) para análisis de datos
 
 El primer paso es crear una cuenta de desarrollador en la plataforma X.
 
