@@ -166,7 +166,7 @@ En una aplicación comercial se deben solicitar los permisos correspondientes y 
 
 Twitter (ahora X) es una plataforma de microblogging donde los usuarios publican mensajes cortos llamados "tweets". La información de tweets se obtiene en formato JSON mediante la API oficial, tanto de streams en tiempo real como de datos históricos.
 
-A diferencia de Facebook en X las relaciones no son simétricas, por lo tanto se modelan con un grafo dirigido, ya que una persona puede seguir a otra sin que la relación sea recíproca.
+A diferencia de Facebook, en X las relaciones no son simétricas, por lo tanto se modelan con un grafo dirigido, ya que una persona puede seguir a otra sin que la relación sea recíproca.
 
 Una persona que sigue a otra recibe sus tweets en su timeline, pero la persona seguida no recibe automáticamente los tweets del seguidor a menos que también lo siga.
 
