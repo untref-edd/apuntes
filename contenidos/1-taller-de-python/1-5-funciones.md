@@ -457,7 +457,20 @@ def decorador(func):
     """
 
     def funcion_decorada(*args, **kwargs):
-        resultado = f"El resultado de la operación es: {func(*args, **kwargs)}"
+        # Al momento de invocar la función decorada, es probable que necesitemos
+        # utilizar el resultado de la función que estamos decorando, por lo que
+        # deberíamos ejecutarla y guardarnos el resultado de la misma.
+        resultado = func(*args, **kwargs)
+
+        # Antes o después de invocar a la función original, podría ser que
+        # queramos realizar acciones adicionales y/o alterar el resultado de
+        # dicha invocación. En este caso, solamente vamos a registrar por la
+        # consola que invocamos la función y cual fue el resultado.
+        print(f"{func.__name__} fue invocada y el resultado fue: {resultado}")
+
+        # Dependiendo del tipo de intervención que el decorador realiza sobre la
+        # función original, podemos o no devolver el resultado de forma
+        # transparente a quien haya utilizado la función decorada.
         return resultado
 
     return funcion_decorada
@@ -472,10 +485,10 @@ funcion_decorada = decorador(funcion_original)
 funcion_decorada(5)
 ```
 
-La función `decorador` toma una función `func` como argumento y devuelve una nueva función, `funcion_decorada` que agrega el mensaje _El resultado de la operación es:_ al resultado de la función original.
+La función `decorador` toma una función `func` como argumento y devuelve una nueva función, `funcion_decorada` que imprime el mensaje _"\<nombre_de_la_función\> fue invocada y el resultado fue: \<resultado\>"_ y devuelve el resultado original.
 
 ```{note} Nota
-En este ejemplo se utiliza `*args` y `**kwargs` para permitir que la función decorada acepte cualquier número de argumentos posicionales y nombrados, lo que la hace más flexible. En la línea 7, la expresión `func(*args, **kwargs)` invoca a la función original con los argumentos que le pasaron a la función decorada.
+En este ejemplo se utiliza `*args` y `**kwargs` para permitir que la función decorada acepte cualquier número de argumentos posicionales y nombrados, lo que la hace más flexible. La expresión `func(*args, **kwargs)` invoca a la función original con los argumentos que le pasaron a la función decorada.
 ```
 
 Python proporciona una sintaxis especial para aplicar decoradores a funciones utilizando el símbolo `@` antes de la definición de la función. Esto es equivalente a decorar la función manualmente como se mostró anteriormente.
@@ -484,9 +497,10 @@ Python proporciona una sintaxis especial para aplicar decoradores a funciones ut
 ---
 tags: remove-output
 ---
-def decorador(func):
+def registar_resultado(funcion_original):
     def funcion_decorada(*args, **kwargs):
-        resultado = f"El resultado de la operación es: {func(*args, **kwargs)}"
+        resultado = funcion_original(*args, **kwargs)
+        print(f"{funcion_original.__name__} fue invocada y el resultado fue: {resultado}")
         return resultado
 
     return funcion_decorada
@@ -496,7 +510,7 @@ def decorador(func):
 ---
 tags: hide-output
 ---
-@decorador
+@registar_resultado
 def funcion_original(x):
     return x * 2
 
@@ -508,7 +522,7 @@ funcion_original(5)
 ---
 tags: hide-output
 ---
-@decorador
+@registar_resultado
 def funcion_suma(a, b):
     return a + b
 
