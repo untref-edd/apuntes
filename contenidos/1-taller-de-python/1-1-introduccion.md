@@ -13,7 +13,7 @@ description: Introducción al lenguaje de programación Python, historia, caract
 
 # Introducción a Python
 
-Python es un lenguaje de programación multipropósito, creado a fines de los años 80 por [Guido van Rossum](https://es.wikipedia.org/wiki/Guido_van_Rossum).
+Python es un lenguaje de programación multipropósito, creado por [Guido van Rossum](https://es.wikipedia.org/wiki/Guido_van_Rossum).
 
 ```{figure} ../_static/figures/1-taller-de-python/1-1-introduccion/python-logo-generic.svg
 ---
@@ -93,7 +93,7 @@ class: hint
 Una función pura es aquella que, para los mismos argumentos de entrada, siempre produce el mismo resultado y no causa ningún efecto secundario observable fuera de su ámbito (como modificar variables externas o realizar operaciones de entrada/salida).
 ```
 
-A continuación se muestra un ejemplo de una función pura que ordena una lista de números utilizando el algoritmo Quicksort, utilizando técnicas de la programación funcional.
+A continuación se muestra un ejemplo de una función pura que ordena una lista de números mediante el algoritmo Quicksort, aplicando técnicas de la programación funcional.
 
 ```{code-cell} python
 ---
@@ -219,8 +219,8 @@ tags: raises-exception
 x = 42
 
 if es_numero_primo(x):
-    print("La identación en cada línea de un bloque")
-     print("debe ser identica, de lo contrario el código")
+    print("La indentación en cada línea de un bloque")
+     print("debe ser idéntica, de lo contrario el código")
    print("reportará un error")
 ```
 

@@ -145,7 +145,7 @@ En el ejemplo anterior, la clase `Docente` hereda de la clase `Persona`. Es deci
 
 El constructor de la clase `Docente` espera todos los parámetros para poder instanciar un nuevo objeto del tipo `Docente`, esto es el `nombre` y la `edad` de la `Persona` y la `materia` de la que es `Docente`.
 
-Lo primero que hace el constructor de la clase `Docente` es llamar al constructor de la clase base `Persona` utilizando `super().__init__(nombre, edad)` Esto asegura que los atributos `nombre` y `edad` se inicialicen correctamente en el objeto `Docente`.
+Lo primero que hace el constructor de la clase `Docente` es llamar al constructor de la clase base `Persona` utilizando `super().__init__(nombre, edad)`. Esto asegura que los atributos `nombre` y `edad` se inicialicen correctamente en el objeto `Docente`.
 
 `super()` es una función que permite llamar a métodos de la clase base desde una subclase. Cuando se invoca `super().__init__(nombre, edad)`, se está llamando al constructor de la clase base `Persona`.
 
@@ -320,7 +320,7 @@ En el ejemplo anterior, tanto `Docente` como `Estudiante` tienen un atributo `le
 
 `Ayudante` hereda de ambas clases que tienen un atributo `legajo`, sin embargo el atributo `legajo` no se duplica en un objeto de la clase `Ayudante`. Lo que permite que con el mismo `legajo` de `Estudiante` se pueda pagar al `Docente`.
 
-El siguiente fragmento de código inspecciona los atributos del objeto `ayudante1` y los imprime en la consola (En [Instrospección](1-8-introspeccion.md) veremos más en detalle como los objetos pueden observarse y modificarse a sí mismos en tiempo de ejecución)
+El siguiente fragmento de código inspecciona los atributos del objeto `ayudante1` y los imprime en la consola (En [Introspección](1-8-introspeccion.md) veremos más en detalle como los objetos pueden observarse y modificarse a sí mismos en tiempo de ejecución)
 
 ```{code-cell} python
 ---
@@ -338,7 +338,7 @@ for key, value in atributos.items():
 
 El polimorfismo es un concepto clave en la POO que permite que diferentes clases implementen métodos con el mismo nombre, pero con comportamientos diferentes. Esto significa que se puede tratar a objetos de diferentes clases de manera uniforme, utilizando el mismo nombre de método.
 
-En el ejemplo anterior el método `presentar` se define tanto en `Docente` como en `Estudiante`. La clase `Ayudante` hereda ambos métodos y además lo sobreescribe.
+En el ejemplo anterior el método `presentar` se define tanto en `Docente` como en `Estudiante`. La clase `Ayudante` hereda ambos métodos y además lo sobrescribe.
 
 Cuando hay herencia múltiple se debe tener cuidado como se resuelve el polimorfismo, ya que puede haber ambigüedades si dos clases base tienen un método con el mismo nombre. En Python, se utiliza el **Orden de Resolución de Métodos (MRO)** para determinar qué método se llama en caso de ambigüedad.
 
@@ -378,7 +378,7 @@ Este concepto es muy poderoso en Python, ya que permite que diferentes objetos p
 
 ### Ejemplo
 
-En el siguiente ejemplo, cuyo diagrama de clases se muestra a continuación. Primero se define `Punto` que representa un punto en el plano cartesiano y luego se definen las Figuras Geométricas `Cuadrado`, `Punto`, `Elipse` y `Punto` que están **_compuestas_** por `Punto`. Cada figura tiene un método `area` que calcula su área, pero cada figura lo implementa de manera diferente.
+En el siguiente ejemplo, cuyo diagrama de clases se muestra a continuación. Primero se define `Punto` que representa un punto en el plano cartesiano y luego se definen las Figuras Geométricas `Rectangulo`, `Cuadrado`, `Elipse`, `Circulo` y `Triangulo` que están **_compuestas_** por `Punto`. Cada figura tiene un método `area` que calcula su área, pero cada figura lo implementa de manera diferente.
 
 ```{figure} ../_static/figures/1-taller-de-python/1-6-poo/diagrama_figuras_light.svg
 ---

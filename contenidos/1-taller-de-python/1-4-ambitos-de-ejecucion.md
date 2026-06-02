@@ -269,7 +269,7 @@ print(incrementar_2(5))
 
 Al ejecutar el fragmento anterior ocurre lo siguiente:
 
-1. Se define la función `fabrica_incrementos` que recibe un parámetro `y`. El código de la función se guarda en memoria (como si fuera una valor más en la memoria). El nombre de la función `fabrica_incrementos` se guarda en el ámbito global; esta será la referencia que permite acceder al objeto de tipo función.
+1. Se define la función `fabrica_incrementos` que recibe un parámetro `y`. El código de la función se guarda en memoria (como si fuera un valor más en la memoria). El nombre de la función `fabrica_incrementos` se guarda en el ámbito global; esta será la referencia que permite acceder al objeto de tipo función.
 
 2. Luego se invoca `fabrica_incrementos(2)` y el resultado de esa operación (la función interna `incrementar`) se va a asignar a la variable `incrementar_2`. En este momento, `y` tiene el valor `2` y se guarda en la clausura de la función interna `incrementar`.
 
@@ -287,7 +287,7 @@ Para Python todas las variables son referencias, incluidos los nombres de las fu
 
 El ámbito global se refiere a las variables definidas en el nivel superior de un módulo. Estas variables son accesibles desde cualquier parte del módulo, incluidas las funciones.
 
-Al declarar un módulo se puede incluir variables y constantes globales que pueden ser utilizadas en todo el código del módulo. A modo de ejemplo podemos ver las constantes matemáticas definidas en el módulo `math`, como `math.pi` o `math.e`.
+Al declarar un módulo se pueden incluir variables y constantes globales que pueden ser utilizadas en todo el código del módulo. A modo de ejemplo podemos ver las constantes matemáticas definidas en el módulo `math`, como `math.pi` o `math.e`.
 
 ```{code-cell} python
 ---

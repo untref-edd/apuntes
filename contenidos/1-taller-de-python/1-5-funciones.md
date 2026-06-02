@@ -16,7 +16,7 @@ description: Funciones, paradigma funcional y funciones anónimas
 En Python las funciones son "ciudadanos de primera clase", lo que le otorga al lenguaje ciertas características del paradigma funcional. En este capítulo, exploraremos cómo definir y utilizar funciones, los diferentes tipos de pasajes de parámetros, y cómo Python implementa el paradigma funcional a través de funciones de orden superior, funciones anónimas (_lambda_), y más.
 
 ````{admonition} Ciudadano de primera clase
-Cuando decimos que las "funciones son ciudadanos de primera clase" significa que, en el lenguaje, el "código" de las funciones se almacena en memoria como un valor más, el cual puede ser referenciado, pasado como arcumentos a otra variable y devuelto como valor por otra función.
+Cuando decimos que las "funciones son ciudadanos de primera clase" significa que, en el lenguaje, el "código" de las funciones se almacena en memoria como un valor más, el cual puede ser referenciado, pasado como argumento a otra variable y devuelto como valor por otra función.
 
 En Python existe la clase `function`,  que corresponde al tipo de objeto que observamos si hacemos.
 
@@ -41,7 +41,7 @@ def funcion(posicionales, nombrados, *posicionales_variables, **nombrados_variab
 ```
 
 Posicionales
-: Los parámetros se deben pasan en el orden en que están definidos.
+: Los parámetros se deben pasar en el orden en que están definidos.
 
 Nombrados
 : Los parámetros se pasan utilizando su nombre, lo que permite especificar solo algunos de ellos.
@@ -237,7 +237,7 @@ Son aquellas que pueden:
 - Ser asignadas a variables.
 ```
 
-En el paradigma funcional en general (y a diferencia del imperativo), la programación consiste en especificar el **Qué** queremos resolver y no el **Cómo** se resuelve el problema.
+En el paradigma funcional en general (y a diferencia del imperativo), la programación consiste en especificar el *qué* queremos resolver y no el *cómo* se resuelve el problema.
 
 Por ejemplo:
 
@@ -419,7 +419,7 @@ En este caso, la función de reducción concatena las palabras en orden inverso,
 ## Funciones avanzadas
 
 Iteradores
-: Son objetos que permiten recorrer una secuencia de elementos uno a uno. En Python todas las colecciones son iterables, lo que significa que se pueden recorrer directamente utilizando un bucle `for` o se puede obtener un iterador con `iter` y luego utilizar la función `next` para obtener cada uno de los valores. Cuando `next` no tiene más elementos para devolver, lanza una excepción `StopIteration`. En los iteradores de Python no hay una función `has_next` como en otros lenguajes, sino que utiliza excepciones para detectar el final de la iteración.
+: Son objetos que permiten recorrer una secuencia de elementos uno a uno. En Python todas las colecciones son iterables, lo que significa que se pueden recorrer directamente utilizando un bucle `for` o se puede obtener un iterador con `iter` y luego utilizar la función `next` para obtener cada uno de los valores. Cuando `next` no tiene más elementos para devolver, lanza una excepción `StopIteration`. En los iteradores de Python no hay una función `has_next` como en otros lenguajes, sino que se utilizan excepciones para detectar el final de la iteración.
 
 ```{code-cell} python
 ---

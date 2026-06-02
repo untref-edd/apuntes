@@ -102,7 +102,7 @@ finally:
 ---
 class: hint
 ---
-Copia el fragmento anterior y modficalo para que divida por 0. Por ejemplo podés probar asignando distintos valores a `divisor` como ser "0", la cadena "cero", números enteros, números decimales, y todo lo que se te ocurra.
+Copia el fragmento anterior y modificalo para que divida por 0. Por ejemplo podés probar asignando distintos valores a `divisor` como ser "0", la cadena "cero", números enteros, números decimales, y todo lo que se te ocurra.
 
 ¿Qué pasa en cada caso? ¿Es buena idea tener un bloque `except` genérico?
 ```
@@ -111,7 +111,7 @@ Copia el fragmento anterior y modficalo para que divida por 0. Por ejemplo podé
 
 En Python existen muchas excepciones predefinidas que están organizadas en forma jerárquica. Es decir que algunas excepciones son subclases de otras. Por ejemplo, `ZeroDivisionError` es una subclase de `ArithmeticError`, que a su vez es una subclase de `Exception`. Esto significa que si se captura una excepción de tipo `ArithmeticError`, también se capturarán las excepciones de tipo `ZeroDivisionError`.
 
-La jerarquia de excepciones permite manejar las excepciones de manera más específica y detallada. Por ejemplo, si se desea manejar todas las excepciones relacionadas con operaciones aritméticas, se puede capturar la excepción `ArithmeticError`. Si se desea manejar solo las excepciones de división por cero, se puede capturar la excepción `ZeroDivisionError`.
+La jerarquía de excepciones permite manejar las excepciones de manera más específica y detallada. Por ejemplo, si se desea manejar todas las excepciones relacionadas con operaciones aritméticas, se puede capturar la excepción `ArithmeticError`. Si se desea manejar solo las excepciones de división por cero, se puede capturar la excepción `ZeroDivisionError`.
 
 ````{dropdown} Click para ver la jerarquía de excepciones
 ```output
@@ -251,7 +251,7 @@ Si nuestro programa lanza una excepción y la atrapa en el mismo módulo es prob
 
 Otra forma de lanzar una excepción en forma condicional es con la sentencia `assert`.
 
-`assert` es una declaración que se utiliza para realizar pruebas de afirmaciones en el código. Si la afirmación es falsa, se lanza una excepción `AssertionError`. Esto puede ser útil para verificar condiciones que deberían ser verdaderas en un punto determinado del programa. Por ejemplo para chequear se cumplan las precondiciones cuando se llama a una función.
+`assert` es una declaración que se utiliza para realizar pruebas de afirmaciones en el código. Si la afirmación es falsa, se lanza una excepción `AssertionError`. Esto puede ser útil para verificar condiciones que deberían ser verdaderas en un punto determinado del programa. Por ejemplo para chequear que se cumplan las precondiciones cuando se llama a una función.
 
 ```{code-cell} python
 ---

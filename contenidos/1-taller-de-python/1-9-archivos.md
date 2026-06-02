@@ -45,7 +45,7 @@ Carpeta (o directorio)
 
 Para que una aplicación o programa pueda crear, leer o escribir un archivo o carpeta debe realizar una solicitud al SO, principal responsable de la gestión del hardware.
 
-El SO responde a la petición con un **descriptor de archivo** (**file descriptor**\_). Este **descriptor de archivo** es un número entero que identifica de manera única un archivo abierto en ese momento.
+El SO responde a la petición con un **descriptor de archivo** (**file descriptor**). Este **descriptor de archivo** es un número entero que identifica de manera única un archivo abierto en ese momento.
 
 Mientras la aplicación tiene el archivo abierto, puede leer y escribir en él. Cuando la aplicación ya no necesita más el archivo debe _cerrarlo_. Al cerrar el archivo se notifica al SO que se terminó de utilizar y por lo tanto queda disponible para que otra aplicación o programa pueda manipularlo.
 
@@ -57,7 +57,7 @@ Cuando abrimos un archivo:
 2. Python crea un **objeto archivo** que envuelve ese descriptor.
 3. Las operaciones de lectura/escritura se hacen en **buffers** (bloques de memoria intermedia) para optimizar el rendimiento.
 
-Ejemplo: si quiere leer un archivo grande, Python no trae todo de golpe, sino trozos que se van entregando al programa. Lo mismo ocurre al escribir, en lugar de escribir todo de una vez, Python lo hace en partes.
+Ejemplo: si quiere leer un archivo grande, Python no trae todo de golpe, sino bloques que se van entregando al programa. Lo mismo ocurre al escribir, en lugar de escribir todo de una vez, Python lo hace en partes.
 
 Cuando se cierra un archivo en el que se escribieron datos, Python se asegura que todos los datos se hayan escrito correctamente en el disco, volcando toda la información de los buffers.
 

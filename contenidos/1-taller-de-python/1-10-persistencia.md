@@ -191,12 +191,10 @@ Vemos que debido a que Python es un lenguaje dinámico no tiene ningún problema
 
 ### Algunos detalles de la serialización con `pickle`
 
-- De las funciones (tanto del sistema como definidas por el usuario) lo único que se conserva es su nombre, no su valor. O sea que en el momento de recuperarlas hay que tener acceso a su valor (cuerpo de la función) para poderlas ejecutar.
+- De las funciones (tanto del sistema como definidas por el usuario) lo único que se conserva es su nombre, no su valor. Es decir, en el momento de recuperarlas hay que tener acceso a su valor (cuerpo de la función) para poderlas ejecutar.
 - Cuando se conserva una instancia de clase como `pickle`, lo único que se guardan son los valores de los atributos, no su código asociado, de modo tal que se puedan luego recuperar instancias que se crearon en versiones anteriores de la clase sin problema.
 
-### Funciones más usadas con `pickle`
-
-## Funciones más usadas del módulo `pickle`
+### Funciones más usadas del módulo `pickle`
 
 | Función / Elemento                                              | Descripción breve                                                                                                        | Documentación oficial (español)                                                                   |
 | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------- |
@@ -218,7 +216,7 @@ El módulo `dill` es una extensión del módulo `pickle` que permite la serializ
 pip install dill
 ```
 
-A continuación se serializa y persiste una función que en cuya clausura se encuentra un mensaje cifrado y la clave para descifrarlo.
+A continuación se serializa y persiste una función en cuya clausura se encuentra un mensaje cifrado y la clave para descifrarlo.
 
 ```{code-cell} python
 ---

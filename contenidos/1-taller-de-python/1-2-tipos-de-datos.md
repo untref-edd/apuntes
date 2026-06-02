@@ -569,7 +569,8 @@ coordenadas[1:]
 ### Ventajas
 
 - Más livianas que las listas.
-- Se pueden usar como claves en diccionarios y se pueden empaquetar varios valores en una sola variable, lo que permite que las funciones puedan devolver múltiples valores, o usar tuplas como claves en diccionarios, entre otros usos.
+- Por ser inmutables, se pueden usar como claves en diccionarios.
+- Se pueden empaquetar varios valores en una sola variable, lo que permite que las funciones puedan devolver múltiples valores.
 
 La forma de empaquetar y desempaquetar tuplas es similar a las listas:
 
@@ -1078,4 +1079,4 @@ La comprensión es una característica funcional de Python muy poderosa.
 - [Comprensiones de listas (Python Docs)](https://docs.python.org/es/3/tutorial/datastructures.html#list-comprehensions)
 - [Comprensión de listas (Hektor Profe)](https://hektorprofe.github.io/python/funcionalidades-avanzadas/comprension-de-listas/)
 - [Operadores Encadenados (Hektor Profe)](https://hektorprofe.github.io/python/funcionalidades-avanzadas/operadores-encadenados/)
-- [Intérprete Python, para entender como funciona](https://pythontutor.com/python-compiler.html#mode=edit)
+- [Intérprete Python, para entender cómo funciona](https://pythontutor.com/python-compiler.html#mode=edit)

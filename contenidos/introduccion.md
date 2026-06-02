@@ -15,7 +15,7 @@ description: Introducción a la materia Estructuras de Datos, objetivos, metodol
 
 ## De qué va la materia
 
-En esta asignatura estudiaremos como buscar y recuperar información, así como en las estructuras de datos necesarias para almacenarla y manipularla. La principal motivación para incursionar en esta disciplina es el constante y creciente volumen de información publicada en Internet y en redes sociales, junto con la necesidad de procesarla y analizarla para extraer conocimiento valioso. Se considera que esta disciplina es precursora de la ciencia de datos y base fundamental para el desarrollo de aplicaciones inteligentes y sistemas de toma de decisiones basados en datos y nos permitirá entender cómo funcionan una amplia gama de aplicaciones, desde sistemas de bases de datos y motores de búsqueda, hasta redes sociales y plataformas de comercio electrónico.
+En esta asignatura estudiaremos cómo buscar y recuperar información, así como las estructuras de datos necesarias para almacenarla y manipularla. La principal motivación para incursionar en esta disciplina es el constante y creciente volumen de información publicada en Internet y en redes sociales, junto con la necesidad de procesarla y analizarla para extraer conocimiento valioso. Se considera que esta disciplina es precursora de la ciencia de datos y base fundamental para el desarrollo de aplicaciones inteligentes y sistemas de toma de decisiones basados en datos y nos permitirá entender cómo funcionan una amplia gama de aplicaciones, desde sistemas de bases de datos y motores de búsqueda, hasta redes sociales y plataformas de comercio electrónico.
 
 ## Objetivos
 
