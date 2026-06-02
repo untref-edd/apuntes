@@ -84,11 +84,16 @@ contenidos/                    # Contenido principal (MyST markdown)
 │   └── ...
 ├── _static/figures/          # Imágenes y recursos estáticos
 ├── templates/                # Plantillas de exportación
-├── references.bib           # Referencias bibliográficas
+├── references.bib            # Referencias bibliográficas
 └── myst.yml                  # Configuración del proyecto
-scripts/build_pdf.py          # Script de generación PDF
-requirements.txt              # Dependencias Python
-Makefile                      # Comandos de build
+exports/                       # PDFs generados (no commitear)
+scripts/build_pdf.py           # Script de generación PDF
+requirements.txt               # Dependencias Python
+Makefile                       # Comandos de build
+.opencode/                     # Configuración de OpenCode (AI assistant)
+└── commands/                  # Comandos personalizados
+.claude/                       # Configuración de Claude Code (AI assistant)
+└── commands/                  # Comandos personalizados (ej: /revisar-libro)
 ```
 
 ______________________________________________________________________
@@ -136,7 +141,7 @@ from stack_exception import StackException
 | Clases                     | PascalCase                       | `Stack`, `Graph`      |
 | Funciones                  | snake_case                       | `dijkstra_trace_fine` |
 | Variables                  | snake_case                       | `node_colors`         |
-| Métodos privados           | snake\*case con `*`              | `_items`              |
+| Métodos privados           | snake_case con prefijo `_`       | `_items`              |
 | Constantes                 | MAYÚSCULAS_SNAKE                 | `MAX_ITERATIONS`      |
 | Excepciones personalizadas | PascalCase terminar en Exception | `StackException`      |
 
@@ -186,7 +191,16 @@ ______________________________________________________________________
 
 ```yaml
 ---
-file: ruta/al/archivo.md
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+description: Breve descripción del capítulo
 ---
 ```
 
@@ -279,7 +293,7 @@ ______________________________________________________________________
 
 ## 9. Notas Adicionales
 
-- El proyecto usa `myst-parser` y `mystmd` para construir la documentación
+- El proyecto usa el CLI `mystmd` para construir la documentación (ver https://mystmd.org/). No usa `myst-parser` (la extensión de Sphinx)
 - Los archivos Python en `_static/code/` pueden ser ejecutados como scripts o importados
 - Los paquetes locales (`grafos`, `ii`) están definidos en `pyproject.toml`
 - Python >= 3.11 requerido (ver `pyproject.toml`)
