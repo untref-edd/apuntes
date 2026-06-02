@@ -422,7 +422,7 @@ print(
 
 ## Registros de longitud variable y campos de longitud variable
 
-Para implementar este tipo de registro se puede preceder cada registro con un entero que indique la longitud del registro en bytes. De esta forma, al leer el archivo, se lee primero la longitud del registro y luego se lee el registro completo. Analogamente, se puede preceder cada campo con un entero que indique la longitud del campo en bytes.
+Para implementar este tipo de registro se puede preceder cada registro con un entero que indique la longitud del registro en bytes. De esta forma, al leer el archivo, se lee primero la longitud del registro y luego se lee el registro completo. Análogamente, se puede preceder cada campo con un entero que indique la longitud del campo en bytes.
 
 ```{code-cell} python
 ---
@@ -614,7 +614,7 @@ Archivo de índices
 
 Los índices permiten acelerar la búsqueda de registros, ya que se puede calcular la posición de un registro en función de su índice.
 
-Cada una de estas formas tiene sus ventajas y desventajas, y la elección depende de las necesidades específicas de la aplicación. En general cuanto mayor flexibilidad se requiere en función del espacio ocupado, mayor es la complejidad de la implementación.
+Cada una de estas formas tiene sus ventajas y desventajas, y la elección depende de las necesidades específicas de la aplicación. En general, cuanto mayor es la flexibilidad para minimizar el espacio ocupado, mayor es la complejidad de la implementación.
 
 ## Archivos CSV
 

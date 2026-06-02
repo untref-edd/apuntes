@@ -128,7 +128,7 @@ La respuesta HTTP también consta de varias líneas, donde la primera línea ind
 #### Características de HTTP
 
 Sin estado (stateless)
-: Cada solicitud es independiente, el servidor no mantiene información sobre solicitudes anteriores (algunos servidores implementan algunos mecanismos para manejar sesiones, pero esto no es parte del protocolo HTTP en sí).
+: Cada solicitud es independiente, el servidor no mantiene información sobre solicitudes anteriores (algunos servidores implementan ciertos mecanismos para manejar sesiones, pero esto no es parte del protocolo HTTP en sí).
 
 Basado en texto
 : Los mensajes son legibles por humanos
@@ -141,7 +141,7 @@ Cliente-Servidor
 
 #### Métodos HTTP Principales
 
-Los métodos HTTP definen las peticiones que se puede solicitar al servidor sobre un recurso específico:
+Los métodos HTTP definen las peticiones que se pueden solicitar al servidor sobre un recurso específico:
 
 `GET`
 : Solicita un recurso específico. Es el método más común para solicitar un recurso al servidor. Si no se especifica un recurso en particular, el servidor generalmente devuelve la página principal, normalmente `index.html`.
@@ -198,7 +198,7 @@ Un problema común al procesar datos de la Web es que diferentes URLs pueden apu
 La **normalización de URLs** es el proceso de convertir URLs a una forma estándar o _canónica_. Esto es fundamental para evitar que un crawler descargue la misma página varias veces. Algunas reglas comunes incluyen:
 
 - Convertir el esquema y el host a minúsculas.
-- Eliminar el puerto si es el estandard (e.g., `:80` para HTTP).
+- Eliminar el puerto si es el estándar (e.g., `:80` para HTTP).
 - Normalizar rutas (e.g., eliminar `/./` o resolver `/../`).
 - Eliminar el fragmento final (`#seccion`).
 

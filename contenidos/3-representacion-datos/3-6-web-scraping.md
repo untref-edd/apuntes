@@ -137,7 +137,7 @@ También es crucial ser respetuoso con los servidores web, evitando sobrecargar 
 
 Los servidores pueden tener mecanismos para detectar y bloquear actividades sospechosas, como un número excesivo de solicitudes en un corto período.
 
-En general las políticas de acceso a un sitio web por parte de los scrapers se regulan mediante:
+En general, las políticas de acceso a un sitio web por parte de los scrapers se regulan mediante:
 
 `robots.txt`
 : Archivo en la raíz del sitio web que especifica qué partes pueden ser accedidas por robots automatizados.

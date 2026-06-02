@@ -34,7 +34,7 @@ JSON (_JavaScript Object Notation_) es un formato ligero de intercambio de datos
 
 Un archivo JSON puede contener un **único valor**, de los tipos de datos existentes en JavaScript. Es decir, números, strings, booleanos, `null`, objetos y arrays.
 
-Si bien la sintaxis y los tipos soportados son los de JavaScript, existen equivalencias y/o transformaciones posible con los tipos de Python. A continuación se muestra una tabla de equivalencias:
+Si bien la sintaxis y los tipos soportados son los de JavaScript, existen equivalencias y/o transformaciones posibles con los tipos de Python. A continuación se muestra una tabla de equivalencias:
 
 | JavaScript |     Python     |
 | :--------: | :------------: |
@@ -48,7 +48,7 @@ Si bien la sintaxis y los tipos soportados son los de JavaScript, existen equiva
 ---
 class: dropdown
 ---
-Algunos tipos nativos de Python son no serializables y deberán ser convertidos a una estructura equivalente antes de poder representarlos como tipos soportados. Por ejemplo, si quisieramos serializar un `set`, se producirá un `TypeError`, con el mensaje: `Object of type set is not JSON serializable`; pero que podríamos resolver convirtiendo el `set` en una `list`.
+Algunos tipos nativos de Python son no serializables y deberán ser convertidos a una estructura equivalente antes de poder representarlos como tipos soportados. Por ejemplo, si quisiéramos serializar un `set`, se producirá un `TypeError`, con el mensaje: `Object of type set is not JSON serializable`; pero que podríamos resolver convirtiendo el `set` en una `list`.
 
 ```{code-cell} python
 import json
@@ -211,7 +211,7 @@ Si bien ambos formatos se utilizan para representar datos semi-estructurados, JS
 
 - **Menor sobrecarga (overhead)**: No utiliza etiquetas de cierre repetitivas, lo que reduce el tamaño del archivo y el tiempo de transferencia.
 - **Tipado nativo**: Soporta números, booleanos y arrays de forma directa, mientras que en XML todo el contenido es texto por defecto.
-- **Eficiencia de parseo**: Generalmente, parsear JSON es más rápido y requiere menos memoria que construir un árbol DOM completo de un archivo XML equivalente.
+- **Eficiencia de parseo**: Generalmente, parsear JSON es más rápido y requiere menos memoria que construir un árbol de documento completo de un archivo XML equivalente.
 
 A continuación se define una agenda general donde solo los campos nombres y apellidos son obligatorios, y donde cada registro puede tener incluso campos diferentes.
 

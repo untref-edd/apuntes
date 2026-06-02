@@ -189,7 +189,7 @@ Los predicados se escriben entre corchetes (`[`, `]`).
 
 ### Selección de varios caminos
 
-El operador `|` es el operador de unión permite seleccionar distintos caminos en el documento.
+El operador `|` es el operador de unión y permite seleccionar distintos caminos en el documento.
 
 `//libro/titulo | //libro/precio`
 : Selecciona todos los nodos titulo y todos los nodos precio hijos de libro |
