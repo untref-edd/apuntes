@@ -162,7 +162,7 @@ Se puede usar un [visualizador interactivo](https://www.cs.usfca.edu/~galles/vis
 
 ## Ejercicio interactivo
 
-En la siguiente simulación presionar en que nodo insertar el nuevo valor y observar cómo se reestructura el árbol B cuando es necesario. Al finalizar con el botón grade se puede observar los puntos obtenidos.
+En la siguiente simulación presionar en qué nodo insertar el nuevo valor y observar cómo se reestructura el árbol B cuando es necesario. Al finalizar con el botón grade se puede observar los puntos obtenidos.
 
 <iframe
     src="https://opendsa-server.cs.vt.edu/embed/bPlusTreeInsertPRO"

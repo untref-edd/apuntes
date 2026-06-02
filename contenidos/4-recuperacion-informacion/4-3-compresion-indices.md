@@ -60,7 +60,7 @@ print(f"Ahorro: {tamaño_postings_gb - tamaño_comprimido_gb:.2f} GB")
 
 Se puede comprimir tanto el diccionario de términos o Vocabulario como las listas de postings asociadas a cada término.
 
-## Compresión del Diccionario de Términios
+## Compresión del Diccionario de Términos
 
 El diccionario contiene todos los términos únicos. Aunque es relativamente pequeño comparado con las listas de postings, su compresión sigue siendo importante.
 
@@ -100,7 +100,7 @@ Front Coding es una técnica que aprovecha los prefijos comunes entre términos 
 
 Se agrupan las entradas del diccionario en bloques de k términos contiguos. En cada bloque se almacena primero el término base completo; a continuación se coloca un separador '\*' que delimita el prefijo base y marca el final de ese primer término. Para los términos restantes del bloque no se repite el prefijo: se escribe un símbolo '⋄' que indica el punto donde termina el prefijo común y, a continuación, el sufijo que completa cada término. Antes de cada término completo o de cada sufijo se guarda su longitud en un byte (1 B). En la estructura auxiliar solo se mantiene la referencia (puntero) al primer término de cada bloque; el resto de términos se recupera a partir de la cadena combinada.
 
-Por ejemplo si las palabras son: algoritmo, alguacil, alguien, algas y alguno y k=5, se alamacenan como:
+Por ejemplo, si las palabras son: algoritmo, alguacil, alguien, algas y alguno y k=5, se almacenan como:
 
 ```text
 5alg*as6•oritmo5•uacil4•uien3•uno
@@ -263,7 +263,7 @@ Otra técnica popular es Variable Byte encoding, que usa uno o más bytes para r
 - Bit de continuación = 1: hay más bytes
 - Bit de continuación = 0: es el último byte
 
-Asi por ejemplo la representación de los siguientes gaps `[15478, 396, 2076, 32173, 111, 9767]` sería:
+Así, por ejemplo, la representación de los siguientes gaps `[15478, 396, 2076, 32173, 111, 9767]` sería:
 
 - 15478 → `11111000 01110110` (2 bytes)
 - 396 → `10000011 00001100` (2 bytes)
@@ -272,13 +272,13 @@ Asi por ejemplo la representación de los siguientes gaps `[15478, 396, 2076, 32
 - 111 → `01101111` (1 byte)
 - 9767 → `11001100 00100111` (2 bytes)
 
-Se parte de la representación en binario del número y se divide en grupos de 7 bits, cada grupo se almacena en un byte. El bit más significativo, es decir el primer bit del un byte de 8 bits, se usa para indicar si hay más bytes (1) o si es el último (0).
+Se parte de la representación en binario del número y se divide en grupos de 7 bits, cada grupo se almacena en un byte. El bit más significativo, es decir el primer bit de un byte de 8 bits, se usa para indicar si hay más bytes (1) o si es el último (0).
 
 Por ejemplo 15478 en binario es `11110001110110`. Dividido en grupos de 7 bits desde la derecha:
 
 - `1111000_1110110`
 
-Se utliza el bit más significativo para indicar si hay más bytes:
+Se utiliza el bit más significativo para indicar si hay más bytes:
 
 - `11111000_01110110`
 

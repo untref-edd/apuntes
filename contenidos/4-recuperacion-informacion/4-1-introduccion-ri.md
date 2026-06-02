@@ -15,7 +15,7 @@ description: Introducción a la recuperación de la información, historia, tipo
 
 La **recuperación de la información** (_Information Retrieval_, IR) es una disciplina fundamental de las ciencias de la computación que estudia la representación, almacenamiento, organización y acceso a elementos de información. Su objetivo principal es desarrollar sistemas que permitan a los usuarios encontrar documentos o fragmentos de información que satisfagan una necesidad informativa específica dentro de grandes colecciones de datos.
 
-## Historia y Evolución
+## Historia y evolución
 
 La recuperación de la información como disciplina formal emergió en la década de 1950, impulsada por el crecimiento exponencial de la información científica después de la Segunda Guerra Mundial. Pioneros como Calvin Mooers (quien acuñó el término "Information Retrieval" en 1951) y Gerard Salton (creador del sistema SMART) establecieron las bases teóricas y prácticas de esta área.
 
@@ -39,7 +39,7 @@ Los hitos principales incluyen:
 2010s-presente
 : Integración de inteligencia artificial y aprendizaje automático
 
-## Tipos de Información
+## Tipos de información
 
 La información puede presentarse en diferentes formas, cada una con características y desafíos específicos para su recuperación:
 
@@ -73,7 +73,7 @@ Información no estructurada
 - Requiere análisis semántico y sintáctico
 - Ejemplo: documentos de texto, artículos de noticias, libros digitales
 
-## Componentes de un Sistema de Recuperación de Información
+## Componentes de un sistema de recuperación de información
 
 Un sistema de IR típico consta de varios componentes interconectados. Primero se procesan los documentos para crear un índice que facilite la búsqueda. Luego, cuando un usuario realiza una consulta, el sistema la procesa y utiliza el índice para encontrar y clasificar los documentos relevantes. El feedback del usuario ayuda a mejorar futuros resultados.
 
@@ -109,7 +109,7 @@ Motor de Búsqueda
 Ranking y Relevancia
 : El ranking y la relevancia constituyen el proceso mediante el cual un sistema de recuperación de información determina el orden en que se presentan los resultados al usuario, priorizando aquellos que mejor satisfacen su necesidad informativa. Este proceso se basa en la estimación de la pertinencia de cada documento respecto a la consulta, utilizando modelos matemáticos y algoritmos que consideran factores como la similitud entre los términos de la consulta y los documentos, la autoridad de las fuentes, la calidad del contenido y su actualidad. El objetivo es que los resultados más útiles y significativos aparezcan en las primeras posiciones, facilitando así una experiencia de búsqueda eficiente y satisfactoria.
 
-## Aplicaciones Modernas
+## Aplicaciones modernas
 
 Los sistemas de recuperación de información están presentes en numerosas aplicaciones cotidianas
 
@@ -125,7 +125,7 @@ Bibliotecas Digitales
 Motores de Búsqueda Empresariales
 : Herramientas internas que permiten buscar en documentos corporativos, bases de conocimiento y sistemas de gestión.
 
-## Tendencias Futuras
+## Tendencias futuras
 
 En la actualidad, la inteligencia artificial y el aprendizaje automático están transformando la recuperación de la información. Por ejemplo, [_deep learning_](https://es.wikipedia.org/wiki/Aprendizaje_profundo) utiliza redes neuronales para comprender mejor el significado de los textos, permitiendo que los sistemas sean más precisos al buscar información relevante. Modelos avanzados como [BERT](<https://es.wikipedia.org/wiki/BERT_(modelo_de_lenguaje)>) y los llamados [transformers](<https://es.wikipedia.org/wiki/Transformador_(modelo_de_aprendizaje_autom%C3%A1tico)>) ayudan a los sistemas a entender el contexto de las palabras en una oración, mejorando la calidad de las respuestas. Además, existen sistemas de recuperación de información basados completamente en redes neuronales, que pueden aprender de grandes cantidades de datos y adaptarse a diferentes tipos de consultas de manera automática.
 

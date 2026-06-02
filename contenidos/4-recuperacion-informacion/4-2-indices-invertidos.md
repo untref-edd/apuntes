@@ -78,7 +78,7 @@ La idea detrás de los índices invertidos es leer una sola vez todos los docume
 
 La **recuperación booleana** es el modelo más simple de recuperación de información. En este modelo, las consultas se formulan como expresiones booleanas con operadores AND, OR y NOT.
 
-Por ejemplo la siguiente matriz representa la incidencia de términos en documentos, donde las filas son términos (palbabras) y las columnas son las páginas de este apuntes (documentos), en cada celda indica si el término aparece (1) o no (0) en el documento correspondiente:
+Por ejemplo la siguiente matriz representa la incidencia de términos en documentos, donde las filas son términos (palabras) y las columnas son las páginas de este apuntes (documentos), en cada celda indica si el término aparece (1) o no (0) en el documento correspondiente:
 
 ```{table}
 ---
@@ -431,7 +431,7 @@ for linea in textwrap.wrap(texto, width=80):
 
 El proceso de stemming consiste en reducir las palabras a su raíz o forma base. La lematización es un proceso más sofisticado, que para recortar las palabras utiliza el contexto.
 
-Se muestra stemming en español con SnowballStemmer (disponible en NLTK). NLTK no ofrece un lematizador robusto en español, por lo quee incluye un ejemplo de lematización en inglés con WordNet (por si hay textos en inglés).
+Se muestra stemming en español con SnowballStemmer (disponible en NLTK). NLTK no ofrece un lematizador robusto en español, por lo que incluye un ejemplo de lematización en inglés con WordNet (por si hay textos en inglés).
 
 ```{code-cell} python
 ---
@@ -475,7 +475,7 @@ for p, l in zip(pal_en, lemmas_en):
     print(f"{p} → {l}")
 ```
 
-Tanto el stemming como la lematización ayudan a agrupar diferentes formas de una misma palabra, reduciendo el tamaño del vocabulario y mejorando la recuperación al costo de perdida de la información, ya que diferentes palabras pueden mapear al mismo stem o lema.
+Tanto el stemming como la lematización ayudan a agrupar diferentes formas de una misma palabra, reduciendo el tamaño del vocabulario y mejorando la recuperación al costo de pérdida de la información, ya que diferentes palabras pueden mapear al mismo stem o lema.
 
 En el ejemplo anterior, "programación", "programar" y "programador" se reducen al mismo stem "program". Esto puede ser beneficioso para la recuperación, pero también puede causar ambigüedad lo que conduce a resultados menos precisos. Una decisión de diseño importante en la construcción del índice es elegir entre usar stemming, lematización o ninguna de las dos técnicas, dependiendo de los requisitos específicos de la aplicación.
 
@@ -927,7 +927,7 @@ Al elegir un algoritmo de construcción de índices se debe considerar:
 
 #### Diseño del índice
 
-En general se habla de términos y documentos, en la práctica hay que definir que es un documento para la aplicación específica. Por ejemplo si se quiere indexar un libro completo, ¿se indexa como un solo documento o se divide en capítulos o páginas? La granularidad afecta el tamaño del índice y la precisión de las búsquedas.
+En general se habla de términos y documentos, en la práctica hay que definir qué es un documento para la aplicación específica. Por ejemplo si se quiere indexar un libro completo, ¿se indexa como un solo documento o se divide en capítulos o páginas? La granularidad afecta el tamaño del índice y la precisión de las búsquedas.
 
 Si por el contrario se quiere indexar una colección de tweets, cada tweet puede ser un documento individual. La elección depende del caso de uso y los requisitos de recuperación.
 
