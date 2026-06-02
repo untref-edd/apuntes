@@ -418,8 +418,9 @@ En este caso, la función de reducción concatena las palabras en orden inverso,
 
 ## Funciones avanzadas
 
-Iteradores
-: Son objetos que permiten recorrer una secuencia de elementos uno a uno. En Python todas las colecciones son iterables, lo que significa que se pueden recorrer directamente utilizando un bucle `for` o se puede obtener un iterador con `iter` y luego utilizar la función `next` para obtener cada uno de los valores. Cuando `next` no tiene más elementos para devolver, lanza una excepción `StopIteration`. En los iteradores de Python no hay una función `has_next` como en otros lenguajes, sino que se utilizan excepciones para detectar el final de la iteración.
+### Iteradores
+
+Son objetos que permiten recorrer una secuencia de elementos uno a uno. En Python todas las colecciones son iterables, lo que significa que se pueden recorrer directamente utilizando un bucle `for` o se puede obtener un iterador con `iter` y luego utilizar la función `next` para obtener cada uno de los valores. Cuando `next` no tiene más elementos para devolver, lanza una excepción `StopIteration`. En los iteradores de Python no hay una función `has_next` como en otros lenguajes, sino que se utilizan excepciones para detectar el final de la iteración.
 
 ```{code-cell} python
 ---
@@ -442,8 +443,9 @@ En el capítulo [Excepciones](1-7-excepciones.md) veremos en más detalle el man
 La sentencia `break` se utiliza para romper y salir del bucle infinito `while True`.
 ```
 
-Decoradores
-: Son funciones que modifican el comportamiento de otras funciones. Se utilizan para agregar funcionalidades adicionales a funciones existentes sin modificar su código.
+### Decoradores
+
+Son funciones que modifican el comportamiento de otras funciones. Se utilizan para agregar funcionalidades adicionales a funciones existentes sin modificar su código.
 
 ```{code-cell} python
 ---
@@ -514,8 +516,9 @@ def funcion_suma(a, b):
 funcion_suma(3, 4)
 ```
 
-Generadores
-: Son funciones que permiten crear iteradores de manera eficiente. Utilizan la palabra clave `yield` para devolver un valor y pausar la ejecución de la función, permitiendo que se reanude más tarde desde el mismo punto.
+### Generadores
+
+Son funciones que permiten crear iteradores de manera eficiente. Utilizan la palabra clave `yield` para devolver un valor y pausar la ejecución de la función, permitiendo que se reanude más tarde desde el mismo punto.
 
 ```{code-cell} python
 ---
