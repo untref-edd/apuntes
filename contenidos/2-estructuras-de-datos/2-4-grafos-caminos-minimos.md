@@ -58,7 +58,7 @@ Bellman-Ford
 
 Ambos algoritmos funcionan en grafos dirigidos y no dirigidos.
 
-Cuando se trata de algoritmos sin pesos en las aristas, se acostumbra definir el camino mínimo como el que tiene la menor cantidad de aristas, lo que se logra asigando un costo de 1 a cada arista.
+Cuando se trata de algoritmos sin pesos en las aristas, se acostumbra definir el camino mínimo como el que tiene la menor cantidad de aristas, lo que se logra asignando un costo de 1 a cada arista.
 
 ## Algoritmo de Dijkstra
 
@@ -66,7 +66,7 @@ El **_algoritmo de Dijkstra_** fue propuesto por [Edsger W. Dijkstra](https://es
 
 Sigue una estrategia de exploración de los nodos más cercanos al origen, actualizando las distancias mínimas a medida que avanza.
 
-La inicialización del algoritmo consiste a marcar a todos los vértices con distancia infinita, excepto el vértice de origen que se marca con distancia 0 y se encola en una **cola de prioridad de mínimos**.
+La inicialización del algoritmo consiste en marcar a todos los vértices con distancia infinita, excepto el vértice de origen que se marca con distancia 0 y se encola en una **cola de prioridad de mínimos**.
 
 En cada ciclo se extrae el vértice con la distancia más corta desde el origen, se lo marca como visitado y se exploran sus vecinos. Si se encuentra un vecino ya visitado, se ignora, ya que no se puede mejorar su distancia. A cada vecino se le actualiza su distancia si se encuentra un camino más corto y se encola.
 
@@ -156,7 +156,7 @@ caminos_minimos.show_dijkstra_step_by_step(G, SOURCE)
 
 El primer vértice que extrae de la cola de prioridad (paso 4) y marca como visitado es el vértice $B$. Luego al procesar $C$ se encuentra un camino más corto hasta $B$ con un costo total de 0, pero no puede actualizar su distancia ya que ya fue marcado como visitado (paso 7).
 
-Si la arista $(A, B)$ fuera la única arista negativa del grafo entonces el algoritmo no fallaría y encontaría correctamente los costos mínimos hacia todos los vértices.
+Si la arista $(A, B)$ fuera la única arista negativa del grafo entonces el algoritmo no fallaría y encontraría correctamente los costos mínimos hacia todos los vértices.
 
 ### Complejidad del algoritmo de Dijkstra
 
@@ -208,7 +208,7 @@ $$
 \sum_{i=0}^{k-1} w(v_i, v_{i+1}) < 0
 $$
 
-donde $w(u, v)$ es el peso de la arista $u \to w$
+donde $w(u, v)$ es el peso de la arista $u \to v$
 
 **_Bellman-Ford_** se basa en la técnica de programación dinámica y en el principio de relajación de aristas:
 
@@ -223,7 +223,7 @@ Supuesto clave
 
 - En $|V|-1$ iteraciones se habrán explorado todas las posiblidades y por lo tanto se finaliza el cálculo.
 
-- Una iteración adiciónal a las $|V|-1$ iteraciones anteriores, permite detectar ciclos negativos, ya que si la distancia de un vértice se mejora es porque hay al menos un ciclo negativo en el grafo.
+- Una iteración adicional a las $|V|-1$ iteraciones anteriores, permite detectar ciclos negativos, ya que si la distancia de un vértice se mejora es porque hay al menos un ciclo negativo en el grafo.
 
 ```{code} text
 ---
@@ -248,7 +248,7 @@ BELLMAN_FORD (G: DiGrafo, s: Vertice)
             REPORTAR error: grafo con ciclos negativos
 ```
 
-A continuación se muestra un ejemplo con una arista negativa donde el algoritmo de **_Bellman-Ford_** encuentra el camínom mínimo:
+A continuación se muestra un ejemplo con una arista negativa donde el algoritmo de **_Bellman-Ford_** encuentra el camino mínimo:
 
 ```{code-cell} python
 import networkx as nx
@@ -281,6 +281,6 @@ $$
 ## Recursos para profundizar
 
 - [Algoritmo de Dijkstra (Wikipiedia)](https://es.wikipedia.org/wiki/Algoritmo_de_Dijkstra)
-- [Agloritmo de Bellman-Ford (Wikipedia)](https://es.wikipedia.org/wiki/Algoritmo_de_Bellman-Ford)
+- [Algoritmo de Bellman-Ford (Wikipedia)](https://es.wikipedia.org/wiki/Algoritmo_de_Bellman-Ford)
 - [Algoritmo de Dijkstra en DSA](https://www.w3schools.com/dsa/dsa_algo_graphs_dijkstra.php)
 - [Algoritmo de Bellman-Ford en DSA](https://www.w3schools.com/dsa/dsa_algo_graphs_bellmanford.php)

@@ -13,7 +13,7 @@ description: Recorridos de grafos, BFS, DFS
 
 # Recorridos
 
-En esta sección veremos algoritmos para recorrer grafos. Basicamente hay dos formas de recorrer un grafo: a lo ancho y en profundidad.
+En esta sección veremos algoritmos para recorrer grafos. Básicamente hay dos formas de recorrer un grafo: a lo ancho y en profundidad.
 
 Recorrer un grafo significa visitar todos sus vértices y aristas de una manera sistemática y ordenada.
 
@@ -166,7 +166,7 @@ ES_BIPARTITO (s: Vertice):
 ### Otras Aplicaciones
 
 Web Crawler
-: Bot que utilizan los motores de búsqueda para descubrir páginas siguiendo los enlaces que hay en ella. Más adelante veremos cómo implementar un web crawler en el capítulo de [](../3-representacion-datos/3-6-web-scraping).
+: Bots que utilizan los motores de búsqueda para descubrir páginas siguiendo los enlaces que hay en ellas. Más adelante veremos cómo implementar un web crawler en el capítulo de [](../3-representacion-datos/3-6-web-scraping).
 
 Sistemas de navegación GPS
 : Para encontrar caminos entre dos puntos en un mapa ponderando distancias, tiempos, etc.

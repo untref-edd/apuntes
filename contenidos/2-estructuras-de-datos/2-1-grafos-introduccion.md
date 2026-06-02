@@ -125,14 +125,14 @@ class: only-dark-mode
 Grafos conexos no dirigidos
 ```
 
-En grafos dirigidos como las aristas tiene un sentido, se puede distinguir entre grafos dirigidos **fuertemente conexos** o **debilmente conexos**
+En grafos dirigidos como las aristas tienen un sentido, se puede distinguir entre grafos dirigidos **fuertemente conexos** o **débilmente conexos**
 
 Un grafo dirigido es **fuertemente conexo** si, para cualquier par de vértices elegidos al azar ($u$ y $v$), existe:
 
 1. Un camino dirigido que va desde $u$ hasta $v$.
 2. Un camino dirigido que va desde $v$ hasta $u$.
 
-Mientras se considera que un grafo dirigido es **debilmente conexo** si el **grafo subyacente** es conexo.
+Mientras se considera que un grafo dirigido es **débilmente conexo** si el **grafo subyacente** es conexo.
 
 ```{admonition} Definición
 ---
@@ -199,7 +199,7 @@ Caminos en grafos
 
 El costo de un camino en un grafo ponderado es la suma de los pesos de las aristas que lo componen. En un grafo no ponderado, se puede considerar que todas las aristas tienen el mismo costo (costo de 1) y el costo del camino representa la cantidad de aristas que lo componen.
 
-En la figura anterior el costo del camino $A-E$ en el grafo no dirgido es:
+En la figura anterior el costo del camino $A-E$ en el grafo no dirigido es:
 
 $$
 \begin{equation*}
@@ -219,7 +219,7 @@ $$
 
 Es un grafo cuyas aristas son dirigidas y no presenta ciclos, también conocidos como **_DAG_** por su sigla en inglés (_Directed Acyclic Graph_). Los **_DAG_** son un tipo de grafo con amplias aplicaciones y se utilizan en diversas áreas como la informática, la biología, etc.
 
-Visto de otra forma si partimos de un vértice cualquiera del grafo no existe ningún camino que permita regresar al mismo vértice.
+Visto de otra forma, si partimos de un vértice cualquiera del grafo, no existe ningún camino que permita regresar al mismo vértice.
 
 ```{figure} ../_static/figures/2-estructuras-de-datos/2-1-grafos-introduccion/grafo_dag_light.svg
 ---
@@ -420,7 +420,7 @@ Existen varias formas de crear un grafo. A continuación algunas de las más usu
 : Para crear un grafo simple, vacío y no dirigido.
 
 `DiGraph()`
-: Para crear un grafo dirigido incialmente vacío.
+: Para crear un grafo dirigido inicialmente vacío.
 
 Para agregar aristas se puede usar:
 
