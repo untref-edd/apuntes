@@ -10,7 +10,7 @@ kernelspec:
   name: python3
 ---
 
-# Árboles B - Índices ordenados
+# Árboles B: índices ordenados
 
 ```{code-cell} python
 ---

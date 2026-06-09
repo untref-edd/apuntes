@@ -10,7 +10,7 @@ kernelspec:
   name: python3
 ---
 
-# Compresión de Índices
+# Compresión de índices
 
 ```{code-cell} python
 ---

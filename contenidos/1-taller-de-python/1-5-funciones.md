@@ -485,7 +485,7 @@ funcion_decorada = decorador(funcion_original)
 funcion_decorada(5)
 ```
 
-La función `decorador` toma una función `func` como argumento y devuelve una nueva función, `funcion_decorada` que imprime el mensaje _"\<nombre_de_la_función\> fue invocada y el resultado fue: \<resultado\>"_ y devuelve el resultado original.
+La función `decorador` toma una función `func` como argumento y devuelve una nueva función, `funcion_decorada` que imprime el mensaje _"\<nombre_de_la_función> fue invocada y el resultado fue: \<resultado>"_ y devuelve el resultado original.
 
 ```{note} Nota
 En este ejemplo se utiliza `*args` y `**kwargs` para permitir que la función decorada acepte cualquier número de argumentos posicionales y nombrados, lo que la hace más flexible. La expresión `func(*args, **kwargs)` invoca a la función original con los argumentos que le pasaron a la función decorada.
