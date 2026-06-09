@@ -76,7 +76,7 @@ La idea detrás de los índices invertidos es leer una sola vez todos los docume
 
 ## Recuperación booleana
 
-La **recuperación booleana** es el modelo más simple de recuperación de información. En este modelo, las consultas se formulan como expresiones booleanas con operadores `AND`, `OR` y \`NOT.
+La **recuperación booleana** es el modelo más simple de recuperación de información. En este modelo, las consultas se formulan como expresiones booleanas con operadores `AND`, `OR` y `NOT`.
 
 Por ejemplo la siguiente matriz representa la incidencia de términos en documentos, donde las filas son términos (palabras) y las columnas son las páginas de este apuntes (documentos), en cada celda indica si el término aparece (`1`) o no (`0`) en el documento correspondiente:
 
