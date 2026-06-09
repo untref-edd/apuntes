@@ -43,8 +43,9 @@ Los hitos principales incluyen:
 
 La información puede presentarse en diferentes formas, cada una con características y desafíos específicos para su recuperación:
 
-Información estructurada
-: Datos organizados en un formato predefinido, como bases de datos relacionales, donde los datos se almacenan en tablas con filas y columnas claramente definidas. La consulta y recuperación en este contexto suele realizarse mediante lenguajes como SQL. Los registros y campos que vimos anteriormente son ejemplos de información estructurada.
+### Información estructurada
+
+Datos organizados en un formato predefinido, como bases de datos relacionales, donde los datos se almacenan en tablas con filas y columnas claramente definidas. La consulta y recuperación en este contexto suele realizarse mediante lenguajes como SQL. Los registros y campos que vimos anteriormente son ejemplos de información estructurada.
 
 **Características:**
 
@@ -53,8 +54,9 @@ Información estructurada
 - Consultas precisas y eficientes
 - Ejemplo: bases de datos relacionales, hojas de cálculo
 
-Información semi-estructurada
-: Datos que no siguen un esquema rígido, pero contienen etiquetas o marcadores que facilitan su organización y búsqueda. Ejemplos comunes incluyen documentos HTML o XML, donde la estructura es flexible pero existen elementos identificables.
+### Información semi-estructurada
+
+Datos que no siguen un esquema rígido, pero contienen etiquetas o marcadores que facilitan su organización y búsqueda. Ejemplos comunes incluyen documentos HTML o XML, donde la estructura es flexible pero existen elementos identificables.
 
 **Características:**
 
@@ -63,8 +65,9 @@ Información semi-estructurada
 - Esquema implícito o auto-descriptivo
 - Ejemplo: documentos XML, JSON, HTML, correos electrónicos
 
-Información no estructurada
-: Consiste principalmente en texto libre, como artículos, correos electrónicos o páginas web, donde la organización interna es mínima o inexistente. La recuperación en este caso requiere técnicas especializadas de procesamiento de lenguaje natural y modelado de relevancia.
+### Información no estructurada
+
+Consiste principalmente en texto libre, como artículos, correos electrónicos o páginas web, donde la organización interna es mínima o inexistente. La recuperación en este caso requiere técnicas especializadas de procesamiento de lenguaje natural y modelado de relevancia.
 
 **Características:**
 
@@ -77,37 +80,43 @@ Información no estructurada
 
 Un sistema de IR típico consta de varios componentes interconectados. Primero se procesan los documentos para crear un índice que facilite la búsqueda. Luego, cuando un usuario realiza una consulta, el sistema la procesa y utiliza el índice para encontrar y clasificar los documentos relevantes. El feedback del usuario ayuda a mejorar futuros resultados.
 
-```{figure} ../_static/figures/recuperacion_informacion_light.svg
+```{figure} ../_static/figures/4-recuperacion-informacion/4-1-introduccion-ri/recuperacion_informacion_light.svg
 ---
 class: only-light-mode
 ---
 Componentes de un sistema de recuperación de información
 ```
 
-```{figure} ../_static/figures/recuperacion_informacion_dark.svg
+```{figure} ../_static/figures/4-recuperacion-informacion/4-1-introduccion-ri/recuperacion_informacion_dark.svg
 ---
 class: only-dark-mode
 ---
 Componentes de un sistema de recuperación de información
 ```
 
-Colección de Documentos
-: Es el conjunto de información sobre el que opera un sistema de recuperación de información. Esta colección, también llamada **_corpus_**, puede estar formada por documentos de texto, páginas web, bases de datos, archivos multimedia o cualquier otro tipo de contenido digital. Su función principal es servir como fuente de datos a partir de la cual los usuarios podrán buscar y recuperar información relevante según sus necesidades, siendo fundamental que esté bien organizada y representada para facilitar el acceso eficiente a los datos.
+### Colección de documentos
 
-Preprocesamiento
-: El preprocesamiento es una etapa fundamental en los sistemas de recuperación de información, ya que transforma los documentos originales en una forma que facilita su análisis y búsqueda. Este proceso suele incluir la segmentación del texto en palabras o frases, la conversión de todos los caracteres a minúsculas y la eliminación de signos de puntuación y palabras muy comunes que no aportan significado relevante. Además, se pueden aplicar técnicas para reducir las palabras a su raíz o forma base, lo que ayuda a unificar variantes y mejorar la coincidencia entre consultas y documentos. El objetivo principal es obtener una representación más uniforme y manejable del contenido, optimizando así la eficiencia y precisión del sistema.
+Es el conjunto de información sobre el que opera un sistema de recuperación de información. Esta colección, también llamada **_corpus_**, puede estar formada por documentos de texto, páginas web, bases de datos, archivos multimedia o cualquier otro tipo de contenido digital. Su función principal es servir como fuente de datos a partir de la cual los usuarios podrán buscar y recuperar información relevante según sus necesidades, siendo fundamental que esté bien organizada y representada para facilitar el acceso eficiente a los datos.
 
-Indexación
-: La indexación es el proceso mediante el cual se crean estructuras de datos que permiten localizar rápidamente la información relevante dentro de una colección de documentos. Consiste en analizar los documentos para extraer los términos más significativos y construir un índice que asocie cada término con los documentos en los que aparece. Este índice facilita la búsqueda eficiente, ya que evita la necesidad de examinar todos los documentos cada vez que se realiza una consulta. Además, la indexación puede incorporar información adicional, como la frecuencia de los términos o relaciones semánticas, lo que mejora la precisión y relevancia de los resultados recuperados.
+### Preprocesamiento
 
-Procesamiento de Consultas
-: El procesamiento de consultas es la etapa en la que el sistema interpreta la necesidad informativa expresada por el usuario y la transforma en una forma adecuada para la búsqueda. Este proceso implica analizar la consulta para comprender su significado, identificar posibles errores o ambigüedades y, en ocasiones, enriquecerla mediante la expansión de términos o la corrección ortográfica. El objetivo es maximizar la probabilidad de recuperar información relevante, ajustando la consulta para que refleje de manera precisa la intención del usuario y se adapte a las características del sistema de recuperación.
+El preprocesamiento es una etapa fundamental en los sistemas de recuperación de información, ya que transforma los documentos originales en una forma que facilita su análisis y búsqueda. Este proceso suele incluir la segmentación del texto en palabras o frases, la conversión de todos los caracteres a minúsculas y la eliminación de signos de puntuación y palabras muy comunes que no aportan significado relevante. Además, se pueden aplicar técnicas para reducir las palabras a su raíz o forma base, lo que ayuda a unificar variantes y mejorar la coincidencia entre consultas y documentos. El objetivo principal es obtener una representación más uniforme y manejable del contenido, optimizando así la eficiencia y precisión del sistema.
 
-Motor de Búsqueda
-: El motor de búsqueda es el componente central encargado de analizar la consulta del usuario y comparar su contenido con los documentos indexados para determinar cuáles son los más relevantes. Utiliza diferentes modelos matemáticos y algoritmos para calcular la similitud o la probabilidad de relevancia entre la consulta y los documentos, considerando factores como la presencia de términos clave, la frecuencia de aparición y la importancia relativa de cada palabra. El objetivo principal del motor de búsqueda es ofrecer resultados precisos y útiles, priorizando aquellos documentos que mejor satisfacen la necesidad informativa del usuario.
+### Indexación
 
-Ranking y Relevancia
-: El ranking y la relevancia constituyen el proceso mediante el cual un sistema de recuperación de información determina el orden en que se presentan los resultados al usuario, priorizando aquellos que mejor satisfacen su necesidad informativa. Este proceso se basa en la estimación de la pertinencia de cada documento respecto a la consulta, utilizando modelos matemáticos y algoritmos que consideran factores como la similitud entre los términos de la consulta y los documentos, la autoridad de las fuentes, la calidad del contenido y su actualidad. El objetivo es que los resultados más útiles y significativos aparezcan en las primeras posiciones, facilitando así una experiencia de búsqueda eficiente y satisfactoria.
+La indexación es el proceso mediante el cual se crean estructuras de datos que permiten localizar rápidamente la información relevante dentro de una colección de documentos. Consiste en analizar los documentos para extraer los términos más significativos y construir un índice que asocie cada término con los documentos en los que aparece. Este índice facilita la búsqueda eficiente, ya que evita la necesidad de examinar todos los documentos cada vez que se realiza una consulta. Además, la indexación puede incorporar información adicional, como la frecuencia de los términos o relaciones semánticas, lo que mejora la precisión y relevancia de los resultados recuperados.
+
+### Procesamiento de consultas
+
+El procesamiento de consultas es la etapa en la que el sistema interpreta la necesidad informativa expresada por el usuario y la transforma en una forma adecuada para la búsqueda. Este proceso implica analizar la consulta para comprender su significado, identificar posibles errores o ambigüedades y, en ocasiones, enriquecerla mediante la expansión de términos o la corrección ortográfica. El objetivo es maximizar la probabilidad de recuperar información relevante, ajustando la consulta para que refleje de manera precisa la intención del usuario y se adapte a las características del sistema de recuperación.
+
+### Motor de búsqueda
+
+El motor de búsqueda es el componente central encargado de analizar la consulta del usuario y comparar su contenido con los documentos indexados para determinar cuáles son los más relevantes. Utiliza diferentes modelos matemáticos y algoritmos para calcular la similitud o la probabilidad de relevancia entre la consulta y los documentos, considerando factores como la presencia de términos clave, la frecuencia de aparición y la importancia relativa de cada palabra. El objetivo principal del motor de búsqueda es ofrecer resultados precisos y útiles, priorizando aquellos documentos que mejor satisfacen la necesidad informativa del usuario.
+
+### Ranking y relevancia
+
+El ranking y la relevancia constituyen el proceso mediante el cual un sistema de recuperación de información determina el orden en que se presentan los resultados al usuario, priorizando aquellos que mejor satisfacen su necesidad informativa. Este proceso se basa en la estimación de la pertinencia de cada documento respecto a la consulta, utilizando modelos matemáticos y algoritmos que consideran factores como la similitud entre los términos de la consulta y los documentos, la autoridad de las fuentes, la calidad del contenido y su actualidad. El objetivo es que los resultados más útiles y significativos aparezcan en las primeras posiciones, facilitando así una experiencia de búsqueda eficiente y satisfactoria.
 
 ## Aplicaciones modernas
 
