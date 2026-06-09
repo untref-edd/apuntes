@@ -10,7 +10,7 @@ kernelspec:
   name: python3
 ---
 
-# Índices Invertidos
+# Índices invertidos
 
 ```{code-cell} python
 ---
@@ -31,17 +31,17 @@ Los **índices invertidos** son la estructura de datos fundamental en los sistem
 
 La idea central es simple pero poderosa: en lugar de ir de documento a documento buscando términos (búsqueda secuencial), creamos una estructura que va de término a documentos. Es decir, para cada término del vocabulario, mantenemos una lista de los documentos donde aparece.
 
-Nos podemos imaginar que un índice invertido es una especie de diccionario, donde las claves son las palabras (términos) y los valores son listas de id de documentos (postings) que contienen esas palabras. Donde previamente, a cada documento que forma parte de la colección se le asignó un identificador único (doc_id).
+Nos podemos imaginar que un índice invertido es una especie de diccionario, donde las claves son las palabras (términos) y los valores son listas de id de documentos (postings) que contienen esas palabras. Donde previamente, a cada documento que forma parte de la colección se le asignó un identificador único (`doc_id`).
 
 ## Motivación
 
-Imaginemos que tenemos una colección de documentos y queremos buscar aquellos que contienen la palabra "Python". Sin un índice, tendríamos que:
+Imaginemos que tenemos una colección de documentos y queremos buscar aquellos que contienen la palabra `"python"`. Sin un índice, tendríamos que:
 
 1. Leer cada documento completo
-2. Buscar la palabra "Python" en cada uno
+2. Buscar la palabra `"python"` en cada uno
 3. Guardar los documentos que la contengan
 
-Este proceso es extremadamente ineficiente para colecciones grandes. Con un índice invertido, simplemente buscamos "python" en el diccionario y obtenemos directamente la lista de documentos que lo contienen.
+Este proceso es extremadamente ineficiente para colecciones grandes. Con un índice invertido, simplemente buscamos `"python"` en el diccionario y obtenemos directamente la lista de documentos que lo contienen.
 
 ```{code-cell} python
 ---
@@ -58,15 +58,15 @@ documentos = {
 
 def buscar_sin_indice(termino, documentos):
     """Busca documentos que contienen un término (búsqueda secuencial)"""
-    resultado = []
-    for doc_id, contenido in documentos.items():
-        if termino.lower() in contenido.lower():
-            resultado.append(doc_id)
-    return resultado
+    return [
+        doc_id
+        for doc_id, contenido in documentos.items()
+        if termino.lower() in contenido.lower()
+    ]
 
 
 # Buscar documentos con "Python"
-docs_con_python = buscar_sin_indice("Python", documentos)
+docs_con_python = buscar_sin_indice("python", documentos)
 print(f"Documentos con 'Python': {docs_con_python}")
 ```
 
@@ -74,24 +74,23 @@ Como se puede ver, este método requiere examinar cada documento completo. Para 
 
 La idea detrás de los índices invertidos es leer una sola vez todos los documentos para construir el índice, y luego usar ese índice para responder consultas de manera eficiente.
 
-## Recuperación Booleana
+## Recuperación booleana
 
-La **recuperación booleana** es el modelo más simple de recuperación de información. En este modelo, las consultas se formulan como expresiones booleanas con operadores AND, OR y NOT.
+La **recuperación booleana** es el modelo más simple de recuperación de información. En este modelo, las consultas se formulan como expresiones booleanas con operadores `AND`, `OR` y \`NOT.
 
-Por ejemplo la siguiente matriz representa la incidencia de términos en documentos, donde las filas son términos (palabras) y las columnas son las páginas de este apuntes (documentos), en cada celda indica si el término aparece (1) o no (0) en el documento correspondiente:
+Por ejemplo la siguiente matriz representa la incidencia de términos en documentos, donde las filas son términos (palabras) y las columnas son las páginas de este apuntes (documentos), en cada celda indica si el término aparece (`1`) o no (`0`) en el documento correspondiente:
 
 ```{table}
 ---
 name: matriz_incidiencia
 ---
-|   | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 |
-|---|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
-| XML | 1 | 0 | 0 | 1 | 0 | 1 | 1 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 |
-| regex | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 |
-| haskell | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-| invertido | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 1 | 1 | 0 | 0 | 0 | 0 | 0 |
-| java | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 |
-
+|           | 15  | 16  | 17  | 18  | 19  | 20  | 21  | 22  | 23  | 24  | 25  | 26  | 27  | 28  | 29  |
+| --------- | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| XML       | `1` | `0` | `0` | `1` | `0` | `1` | `1` | `0` | `1` | `0` | `0` | `0` | `0` | `0` | `0` |
+| regex     | `0` | `0` | `0` | `0` | `1` | `0` | `0` | `0` | `1` | `0` | `0` | `0` | `0` | `0` | `0` |
+| haskell   | `0` | `0` | `0` | `0` | `0` | `0` | `0` | `0` | `0` | `0` | `0` | `0` | `0` | `0` | `0` |
+| invertido | `0` | `0` | `0` | `0` | `1` | `0` | `0` | `0` | `1` | `1` | `0` | `0` | `0` | `0` | `0` |
+| java      | `0` | `0` | `0` | `0` | `1` | `0` | `0` | `0` | `1` | `0` | `0` | `0` | `0` | `0` | `0` |
 ```
 
 Ejemplos de consultas booleanas:
@@ -128,14 +127,14 @@ NOT java:   111101110111111
 
 El modelo booleano es determinístico: un documento o bien coincide con la consulta o no. No hay noción de "cuán bien" coincide un documento.
 
-## Estructura del Índice Invertido
+## Estructura del índice invertido
 
 Un índice invertido consta de dos componentes principales:
 
 1. **Diccionario (o vocabulario)**: Contiene todos los términos únicos que aparecen en la colección
 2. **Listas de postings**: Para cada término del diccionario, una lista de documentos donde aparece
 
-```{figure} ../_static/figures/indice_invertido_light.svg
+```{figure} ../_static/figures/4-recuperacion-informacion/4-2-indices-invertidos/indice_invertido_light.svg
 ---
 class: only-light-mode
 width: 100%
@@ -143,7 +142,7 @@ width: 100%
 Estructura de un índice invertido
 ```
 
-```{figure} ../_static/figures/indice_invertido_dark.svg
+```{figure} ../_static/figures/4-recuperacion-informacion/4-2-indices-invertidos/indice_invertido_dark.svg
 ---
 class: only-dark-mode
 width: 100%
@@ -153,10 +152,10 @@ Estructura de un índice invertido
 
 A continuación se muestra una implementación simple de un índice invertido en Python que permite agregar documentos y realizar búsquedas booleanas.
 
-En esta primera implementación, suponemos que tanto los documentos, como el índice caben en memoria. No se indexan stopwords.
+En esta primera implementación, suponemos que tanto los documentos, como el índice caben en memoria. No se indexan _stopwords_.
 
-```{admonition} Definición de Stopwords
-Las stopwords son palabras comunes que no se indexan porque aportan poco valor semántico en las búsquedas. En general no se indexan artículos, preposiciones, pronombres, adverbios comunes, algunos verbos conjugados, etc.
+```{admonition} Definición de _stopwords_
+Las _stopwords_ son palabras comunes que no se indexan porque aportan poco valor semántico en las búsquedas. En general no se indexan artículos, preposiciones, pronombres, adverbios comunes, algunos verbos conjugados, etc.
 ```
 
 ```{code-cell} python
@@ -166,22 +165,8 @@ tags: hide-output
 from collections import defaultdict
 
 # Palabras que NO se deben indexar (stopwords indicadas)
-STOPWORDS = {
-    "es",
-    "un",
-    "de",
-    "a",
-    "son",
-    "con",
-    "y",
-    "la",
-    "el",
-    "en",
-    "los",
-    "las",
-    "por",
-    "para",
-}
+STOPWORDS = { "es", "un", "de", "a", "son", "con", "y", "la", "el", "en",
+             "los", "las", "por", "para" }
 
 
 class IndiceInvertido:
@@ -206,9 +191,7 @@ class IndiceInvertido:
         for palabra in palabras:
             # Eliminar puntuación básica alrededor de la palabra
             palabra = palabra.strip(".,;:!?()[]{}\"'")
-            if not palabra:
-                continue
-            if palabra in STOPWORDS:
+            if not palabra or palabra in STOPWORDS:
                 continue
             self.indice[palabra].add(doc_id)
 
@@ -220,28 +203,22 @@ class IndiceInvertido:
 
     def buscar_and(self, termino1, termino2):
         """Busca documentos que contienen ambos términos"""
-        docs1 = self.buscar(termino1)
-        docs2 = self.buscar(termino2)
-        return docs1 & docs2
+        return self.buscar(termino1) & self.buscar(termino2)
 
     def buscar_or(self, termino1, termino2):
         """Busca documentos que contienen al menos uno de los términos"""
-        docs1 = self.buscar(termino1)
-        docs2 = self.buscar(termino2)
-        return docs1 | docs2
+        return self.buscar(termino1) | self.buscar(termino2)
 
     def buscar_not(self, termino1, termino2):
         """Busca documentos que contienen termino1 pero no termino2"""
-        docs1 = self.buscar(termino1)
-        docs2 = self.buscar(termino2)
-        return docs1 - docs2
+        return self.buscar(termino1) - self.buscar(termino2)
 
     def __repr__(self):
         """Representación del índice para inspección"""
         resultado = []
         for termino in self.indice.keys():
             docs = self.indice[termino]
-            resultado.append(f"{termino}: {docs}")
+            resultado.append(f"{termino:>20}: {docs}")
         return "\n".join(resultado)
 
 
@@ -263,7 +240,7 @@ print(indice)
 Para realizar búsquedas booleanas, conviene representar las listas de postings como conjuntos (`set`) para aprovechar las operaciones de intersección, unión y diferencia que son eficientes en conjuntos.
 ```
 
-### Búsquedas con el Índice
+### Búsquedas con el índice
 
 Ahora podemos realizar búsquedas muy eficientemente:
 
@@ -272,22 +249,27 @@ Ahora podemos realizar búsquedas muy eficientemente:
 tags: hide-output
 ---
 # Búsquedas simples
-print(f"\nDocumentos con 'python': {indice.buscar('python')}")
+print(f"Documentos con 'python': {indice.buscar('python')}")
 print(f"Documentos con 'lenguaje': {indice.buscar('lenguaje')}")
+```
 
+```{code-cell} python
+---
+tags: hide-output
+---
 # Búsquedas booleanas
-print(f"\nPython AND Java: {indice.buscar_and('python', 'java')}")
+print(f"Python AND Java: {indice.buscar_and('python', 'java')}")
 print(f"Python OR Machine: {indice.buscar_or('python', 'machine')}")
 print(f"Python AND NOT Java: {indice.buscar_not('python', 'java')}")
 ```
 
-## El Vocabulario y Procesamiento de Términos
+## El vocabulario y procesamiento de términos
 
-En la práctica, el procesamiento de términos es más sofisticado que simplemente convertir a minúsculas y separar por espacios. Los sistemas reales aplican varias técnicas para mejorar la calidad del índice y la recuperación, entre ellas "normalización", "tokenización", "eliminación de stopwords" y "stemming/lematización". A continuación se muestran ejemplos de cada técnica usando la librería NLTK en Python.
+En la práctica, el procesamiento de términos es más sofisticado que simplemente convertir a minúsculas y separar por espacios. Los sistemas reales aplican varias técnicas para mejorar la calidad del índice y la recuperación, entre ellas "normalización", "tokenización", "eliminación de _stopwords_" y "stemming/lematización". A continuación se muestran ejemplos de cada técnica usando la librería NLTK en Python.
 
 ### NLTK
 
-NLTK (Natural Language Toolkit) es una librería popular en Python para procesamiento de lenguaje natural. Proporciona herramientas para tokenización, stemming, lematización, y manejo de stopwords, entre otras funcionalidades.
+NLTK (_Natural Language Toolkit_) es una librería popular en Python para procesamiento de lenguaje natural. Proporciona herramientas para tokenización, stemming, lematización, y manejo de _stopwords_, entre otras funcionalidades.
 
 Para instalar NLTK, ejecutar en la terminal:
 
@@ -295,7 +277,7 @@ Para instalar NLTK, ejecutar en la terminal:
 pip install nltk
 ```
 
-Luego es necesario descargar algunos recursos adicionales (stopwords, modelos de tokenización) usando:
+Luego es necesario descargar algunos recursos adicionales (_stopwords_, modelos de tokenización) usando:
 
 ```python
 import nltk
@@ -312,7 +294,7 @@ nltk.download("stopwords", quiet=True)
 nltk.download("punkt_tab", quiet=True)
 ```
 
-## Procesamiento de Términos con NLTK
+## Procesamiento de términos con NLTK
 
 ### Normalización
 
@@ -351,7 +333,7 @@ print(f"Normalizado: {normalizar_texto(texto)}")
 
 ### Tokenización
 
-Es el proceso de dividir el texto en unidades (tokens).
+Es el proceso de dividir el texto en unidades (_tokens_).
 
 ```{code-cell} python
 ---
@@ -365,9 +347,7 @@ nltk.download("punkt_tab", quiet=True)
 
 def tokenizar(texto):
     """Tokeniza un texto en palabras usando NLTK (Spanish punkt)."""
-    texto_normalizado = texto.lower()
-    tokens = word_tokenize(texto_normalizado, language="spanish")
-    return tokens
+    return word_tokenize(texto.lower(), language="spanish")
 
 
 texto = "Python 3.9 es la versión más reciente"
@@ -375,9 +355,9 @@ tokens = tokenizar(texto)
 print(f"Tokens: {tokens}")
 ```
 
-### Eliminación de Stopwords
+### Eliminación de _stopwords_
 
-NLTK proporciona listas de stopwords para varios idiomas, incluyendo español.
+NLTK proporciona listas de _stopwords_ para varios idiomas, incluyendo español.
 
 ```{code-cell} python
 ---
@@ -396,7 +376,7 @@ STOPWORDS_NLTK = set(stopwords.words("spanish"))
 
 def eliminar_stopwords(tokens):
     """Elimina stopwords usando la lista de NLTK para español."""
-    return [t for t in tokens if t not in STOPWORDS_NLTK]
+    return [token for token in tokens if token not in STOPWORDS_NLTK]
 
 
 # Ejemplo
@@ -427,11 +407,11 @@ for linea in textwrap.wrap(texto, width=80):
     print(linea)
 ```
 
-### Stemming y Lematización
+### _Stemming_ y lematización
 
-El proceso de stemming consiste en reducir las palabras a su raíz o forma base. La lematización es un proceso más sofisticado, que para recortar las palabras utiliza el contexto.
+El proceso de _stemming_ consiste en reducir las palabras a su raíz o forma base. La lematización es un proceso más sofisticado, que para recortar las palabras utiliza el contexto.
 
-Se muestra stemming en español con SnowballStemmer (disponible en NLTK). NLTK no ofrece un lematizador robusto en español, por lo que incluye un ejemplo de lematización en inglés con WordNet (por si hay textos en inglés).
+Se muestra _stemming_ en español con `SnowballStemmer` (disponible en NLTK). NLTK no ofrece un lematizador robusto en español, por lo que incluye un ejemplo de lematización en inglés con WordNet (por si hay textos en inglés).
 
 ```{code-cell} python
 ---
@@ -453,12 +433,12 @@ lemmatizer_en = WordNetLemmatizer()
 
 def stem_tokens_es(tokens):
     """Aplica SnowballStemmer (español) a una lista de tokens."""
-    return [stemmer_es.stem(t) for t in tokens]
+    return [stemmer_es.stem(token) for token in tokens]
 
 
 def lemmatize_tokens_en(tokens):
     """Ejemplo de lematización en inglés con WordNetLemmatizer."""
-    return [lemmatizer_en.lemmatize(t) for t in tokens]
+    return [lemmatizer_en.lemmatize(token) for token in tokens]
 
 
 # Ejemplos
@@ -475,9 +455,9 @@ for p, l in zip(pal_en, lemmas_en):
     print(f"{p} → {l}")
 ```
 
-Tanto el stemming como la lematización ayudan a agrupar diferentes formas de una misma palabra, reduciendo el tamaño del vocabulario y mejorando la recuperación al costo de pérdida de la información, ya que diferentes palabras pueden mapear al mismo stem o lema.
+Tanto el _stemming_ como la lematización ayudan a agrupar diferentes formas de una misma palabra, reduciendo el tamaño del vocabulario y mejorando la recuperación al costo de pérdida de la información, ya que diferentes palabras pueden mapear al mismo _stem_ o lema.
 
-En el ejemplo anterior, "programación", "programar" y "programador" se reducen al mismo stem "program". Esto puede ser beneficioso para la recuperación, pero también puede causar ambigüedad lo que conduce a resultados menos precisos. Una decisión de diseño importante en la construcción del índice es elegir entre usar stemming, lematización o ninguna de las dos técnicas, dependiendo de los requisitos específicos de la aplicación.
+En el ejemplo anterior, `"programación"`, `"programar"` y `"programador"` se reducen al mismo stem `"program"`. Esto puede ser beneficioso para la recuperación, pero también puede causar ambigüedad lo que conduce a resultados menos precisos. Una decisión de diseño importante en la construcción del índice es elegir entre usar _stemming_, lematización o ninguna de las dos técnicas, dependiendo de los requisitos específicos de la aplicación.
 
 Una técnica común es experimentar con diferentes configuraciones y evaluar su impacto en la precisión y recall de las búsquedas.
 
@@ -569,9 +549,14 @@ doc = nlp(texto)
 
 # Filtrar tokens y lemas: excluir stopwords, puntuación y tokens no alfabéticos
 tokens_sin_stop = [
-    token.text for token in doc if not token.is_stop and token.is_alpha]
+    token.text
+    for token in doc
+    if not token.is_stop and token.is_alpha
+]
 lemmas_sin_stop = [
-    token.lemma_ for token in doc if not token.is_stop and token.is_alpha
+    token.lemma_
+    for token in doc
+    if not token.is_stop and token.is_alpha
 ]
 
 
@@ -592,13 +577,13 @@ print(
 )
 ```
 
-## Algoritmos de Construcción de Índices
+## Algoritmos de construcción de índices
 
 Cuando trabajamos con colecciones grandes de documentos que no caben en memoria RAM, necesitamos algoritmos especializados para construir el índice invertido. Existen tres enfoques principales: BSBI, SPIMI, y construcción distribuida con MapReduce.
 
-### BSBI (Blocked Sort-Based Indexing)
+### BSBI (_Blocked Sort-Based Indexing_)
 
-El algoritmo **BSBI** (Blocked Sort-Based Indexing) es una técnica que construye índices cuando la colección de documentos no cabe en memoria. Divide el procesamiento en dos fases:
+El algoritmo **BSBI** (_Blocked Sort-Based Indexing_) es una técnica que construye índices cuando la colección de documentos no cabe en memoria. Divide el procesamiento en dos fases:
 
 **Fase 1: Generación de bloques ordenados**
 
@@ -607,7 +592,7 @@ El algoritmo **BSBI** (Blocked Sort-Based Indexing) es una técnica que construy
 3. Ordena los pares en memoria, agrupando por términos
 4. Escribe el bloque ordenado a disco
 
-**Fase 2: Fusión de bloques (merge de k-vías)**
+**Fase 2: Fusión de bloques (merge de $k$-vías)**
 
 1. Abre todos los archivos de bloques simultáneamente
 2. Usa un heap para fusionar eficientemente
@@ -705,11 +690,11 @@ FIN FUNCIÓN
 
 #### Complejidad de BSBI
 
-- **Tiempo**: O(T log T) donde T es el número total de pares (término, doc_id)
-  - Ordenamiento de bloques: O(T log T)
-  - Merge de k bloques: O(T log k)
-- **Espacio**: O(B) donde B es el tamaño del bloque en memoria
-- **I/O**: Cada par (término, doc_id) se lee y escribe una vez
+- **Tiempo**: $O(T \log T)$ donde $T$ es el número total de pares `(termino, doc_id)`
+  - Ordenamiento de bloques: $O(T \log T)$
+  - Merge de $k$ bloques: $O(T \log k)$
+- **Espacio**: $O(B)$ donde $B$ es el tamaño del bloque en memoria
+- **I/O**: Cada par `(termino, doc_id)` se lee y escribe una vez
 
 #### Ventajas y Desventajas de BSBI
 
@@ -723,10 +708,10 @@ FIN FUNCIÓN
 **Desventajas:**
 
 - Requiere espacio en disco para bloques intermedios
-- El merge de k-vías puede ser complejo con muchos bloques
+- El merge de $k$-vías puede ser complejo con muchos bloques
 - Manejo de términos muy frecuentes puede ser ineficiente
 
-### SPIMI (Single-Pass In-Memory Indexing)
+### SPIMI (_Single-Pass In-Memory Indexing_)
 
 El algoritmo **SPIMI** mejora BSBI al generar directamente un diccionario de términos → postings en cada bloque, en lugar de generar y ordenar pares. Esto es más eficiente en memoria.
 
@@ -783,16 +768,14 @@ FIN ALGORITMO
 
 Para colecciones masivas (terabytes o petabytes), se usa procesamiento distribuido con el paradigma **MapReduce**. Este enfoque distribuye el trabajo entre múltiples máquinas.
 
-#### Diagrama MapReduce para Construcción de Índices
-
-```{figure} ../_static/figures/map_reduce_dark.svg
+```{figure} ../_static/figures/4-recuperacion-informacion/4-2-indices-invertidos/map_reduce_dark.svg
 ---
 class: only-dark-mode
 ---
 Indexado con Map-Reduce
 ```
 
-```{figure} ../_static/figures/map_reduce_light.svg
+```{figure} ../_static/figures/4-recuperacion-informacion/4-2-indices-invertidos/map_reduce_light.svg
 ---
 class: only-light-mode
 ---
@@ -805,18 +788,18 @@ Indexado con Map-Reduce
 
 - **Entrada**: Documento completo
 - **Proceso**: Tokeniza y normaliza el texto
-- **Salida**: Pares (término, doc_id) para cada término en el documento
+- **Salida**: Pares `(termino, doc_id)` para cada término en el documento
 
 **Fase Shuffle & Sort:**
 
-- **Entrada**: Todos los pares (término, doc_id) de todos los mappers
-- **Proceso**: Agrupa todos los doc_ids por término y los ordena
-- **Salida**: Pares (término, lista_doc_ids) agrupados por término
+- **Entrada**: Todos los pares `(termino, doc_id)` de todos los mappers
+- **Proceso**: Agrupa todos los `doc_ids` por término y los ordena
+- **Salida**: Pares `(termino, lista_doc_ids)` agrupados por término
 
 **Fase Reduce:**
 
-- **Entrada**: (término, lista_doc_ids) para un subconjunto de términos
-- **Proceso**: Consolida y ordena la lista de doc_ids
+- **Entrada**: `(termino, lista_doc_ids)` para un subconjunto de términos
+- **Proceso**: Consolida y ordena la lista de `doc_ids`
 - **Salida**: Entradas del índice invertido final
 
 #### Pseudocódigo MapReduce
@@ -848,22 +831,22 @@ FIN FUNCIÓN
 
 #### Proceso de Indexación Paso a Paso con MapReduce
 
-1. **Particionamiento**: La colección se divide en splits (bloques) de documentos
+1. **Particionamiento**: La colección se divide en _splits_ (bloques) de documentos
 
-2. **Map en paralelo**: Cada mapper procesa un split:
+2. **Map en paralelo**: Cada _mapper_ procesa un _split_:
 
    - Lee documentos asignados
    - Tokeniza y normaliza términos
-   - Emite pares (término, doc_id)
+   - Emite pares `(termino, doc_id)`
 
 3. **Shuffle**: El framework agrupa automáticamente:
 
    - Todos los pares con el mismo término van al mismo reducer
-   - Los doc_ids se agrupan en listas
+   - Los `doc_ids` se agrupan en listas
 
 4. **Reduce en paralelo**: Cada reducer procesa un rango de términos:
 
-   - Recibe (término, [doc_id₁, doc_id₂, ..., doc_idₙ])
+   - Recibe `(termino, [doc_id₁, doc_id₂, ..., doc_idₙ])`
    - Elimina duplicados y ordena la lista
    - Escribe el índice parcial a disco
 
@@ -941,7 +924,7 @@ En el siguiente enlace se encuentra una implementación en Python del algoritmo 
 
 La construcción de un índice tiene complejidad:
 
-- **Tiempo**: $O(n × m)$ donde n es el número de documentos y m es el promedio de términos por documento.
+- **Tiempo**: $O(n \cdot m)$ donde n es el número de documentos y m es el promedio de términos por documento.
 - **Espacio**: $O(T)$ donde T es el número total de términos únicos en la colección.
 
 Para colecciones muy grandes que no caben en memoria, se utilizan técnicas como:
@@ -956,7 +939,7 @@ Los índices invertidos son esenciales para la recuperación eficiente de inform
 
 - Permiten búsquedas rápidas al ir de término a documentos
 - Consisten en un diccionario de términos y listas de postings
-- El procesamiento de texto (normalización, tokenización, stopwords, stemming) mejora la efectividad
+- El procesamiento de texto (normalización, tokenización, _stopwords_, _stemming_) mejora la efectividad
 - Algoritmos como BSBI, SPIMI y MapReduce permiten construir índices para colecciones grandes
 - Se utilizan en todos los motores de búsqueda modernos
 - La construcción para colecciones grandes requiere técnicas especiales
