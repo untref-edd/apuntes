@@ -71,8 +71,6 @@ project:
     - title: Anexos
       children:
         - file: Anexos/GitBash.md
-        - file: Anexos/Facebook.md
-        - file: Anexos/Twitter.md
 
 site:
   template: book-theme
