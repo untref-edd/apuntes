@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg viewBox="0 0 750 260" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <rect width="750" height="260" fill="#1e1e1e" />
+
+  <defs>
+    <marker id="arrowhead-small-dark" markerWidth="5" markerHeight="5" refX="2.5" refY="2.5" orient="auto">
+      <polygon points="0 0, 5 2.5, 0 5" fill="#e0e0e0" />
+    </marker>
+  </defs>
+
+  <style>
+    .label { font-family: Arial; font-size: 14px; text-anchor: middle; dominant-baseline: middle; fill: #e0e0e0; }
+    .label-text { font-family: Arial; font-size: 16px; text-anchor: start; dominant-baseline: text-bottom; fill: #e0e0e0; }
+    .label-number { font-family: Arial; font-size: 14px; text-anchor: end; dominant-baseline: middle; fill: #e0e0e0; }
+    .edge-curve { fill: none; stroke: #e0e0e0; stroke-width: 1.2; marker-end: url(#arrowhead-small-dark); }
+    .header-box { fill: #2d3748; stroke: #4682b4; stroke-width: 2; }
+  </style>
+
+  <text x="300" y="30" class="label-text">programaprogramableprogramaciónprogramadorprogramar</text>
+
+  <g transform="translate(20,60)">
+    <rect x="0" y="0" width="80" height="25" class="header-box" />
+    <text x="40" y="14" class="label" font-size="12px">Frecuencia</text>
+  </g>
+  <g transform="translate(105,60)">
+    <rect x="0" y="0" width="70" height="25" class="header-box" />
+    <text x="35" y="14" class="label" font-size="12px">Postings</text>
+  </g>
+  <g transform="translate(180,60)">
+    <rect x="0" y="0" width="70" height="25" class="header-box" />
+    <text x="35" y="14" class="label" font-size="12px">Término</text>
+  </g>
+
+  <text x="80" y="110" class="label-number">12</text>
+  <text x="80" y="140" class="label-number">92</text>
+  <text x="80" y="170" class="label-number">17</text>
+  <text x="80" y="200" class="label-number">114</text>
+  <text x="80" y="230" class="label-number">87</text>
+
+  <text x="145" y="110" class="label-number">&#x279C;</text>
+  <text x="145" y="140" class="label-number">&#x279C;</text>
+  <text x="145" y="170" class="label-number">&#x279C;</text>
+  <text x="145" y="200" class="label-number">&#x279C;</text>
+  <text x="145" y="230" class="label-number">&#x279C;</text>
+
+  <path d="m 220,110 q 82,0 82,-72" class="edge-curve" />
+  <path d="M 220,140 Q 373,140 373,38" class="edge-curve" />
+  <path d="m 220,170 q 241,0 241,-132" class="edge-curve" />
+  <path d="m 220,200 q 338,0 338,-162" class="edge-curve" />
+  <path d="m 220,230 q 431,0 431,-192" class="edge-curve" />
+</svg>

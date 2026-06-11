@@ -17,6 +17,7 @@ kernelspec:
 tags: hide-output, remove-cell
 ---
 """Borra todos los archivos y carpetas en /tmp/edd_compresion_indices"""
+
 import os
 import shutil
 
@@ -31,260 +32,278 @@ La **compresión de índices** es una técnica fundamental para reducir el espac
 
 ## Motivación
 
-Consideremos un ejemplo real: un motor de búsqueda que indexa mil millones de páginas web. Si cada página contiene en promedio 1000 términos únicos, y cada término aparece en promedio en 10,000 páginas, el índice invertido necesitaría almacenar aproximadamente:
+Consideremos un ejemplo real: un motor de búsqueda que indexa mil millones de páginas web. Si cada página contiene en promedio $1.000$ términos únicos, y cada término aparece en promedio en $10.000$ páginas, el índice invertido necesitaría almacenar aproximadamente:
 
-- **Diccionario**: 10 millones de términos × 10 bytes = 100 MB
-- **Listas de postings**: 10 millones de términos × 10,000 documentos × 4 bytes (un entero) = 400 GB
+Diccionario
+
+$$
+10.000.000 \text{ de terminos} \times 10 \text{ bytes} = \mathbf{95{,}36} \, \mathbf{MB}
+$$
+
+Listas de postings
+
+$$
+10.000.000 \text{ de terminos} \times 10.000 \text{ documentos} \times 4 \text{ bytes} = \mathbf{372{,}53} \, \mathbf{GB}
+$$
+
+con compresión típica (factor x4):
+
+$$
+372{,}53 \, \mathrm{GB} \div 4 = \mathbf{93{,}13} \, \mathbf{GB}
+$$
+
+dando un ahorro de expación de:
+
+$$
+372{,}53 \, \mathrm{GB} - 93{,}13 \, \mathrm{GB} = \mathbf{279{,}40} \, \mathbf{GB}
+$$
 
 Esto es solo para almacenar los IDs de documentos. Agregar información adicional como frecuencias de términos o posiciones incrementa aún más el tamaño. La compresión puede reducir este espacio a una fracción del original.
 
-```{code-cell} python
----
-tags: hide-output
----
-# Ejemplo: cálculo del tamaño sin compresión
-num_terminos = 10_000_000
-docs_por_termino = 10_000
-bytes_por_id = 4  # Entero de 32 bits
+Se puede comprimir tanto el diccionario de términos o Vocabulario como las listas de _postings_ asociadas a cada término.
 
-tamaño_postings_gb =\
-    (num_terminos * docs_por_termino * bytes_por_id) / (1024**3)
-print(f"Tamaño estimado de postings sin compresión: {tamaño_postings_gb:.2f}\
-     GB")
+## Compresión del diccionario de términos
 
-# Con compresión típica (factor 4x)
-tamaño_comprimido_gb = tamaño_postings_gb / 4
-print(f"Tamaño con compresión: {tamaño_comprimido_gb:.2f} GB")
-print(f"Ahorro: {tamaño_postings_gb - tamaño_comprimido_gb:.2f} GB")
-```
+El diccionario contiene todos los términos únicos. Aunque es relativamente pequeño comparado con las listas de _postings_, su compresión sigue siendo importante.
 
-Se puede comprimir tanto el diccionario de términos o Vocabulario como las listas de postings asociadas a cada término.
+### Técnicas para comprimir el diccionario
 
-## Compresión del Diccionario de Términos
-
-El diccionario contiene todos los términos únicos. Aunque es relativamente pequeño comparado con las listas de postings, su compresión sigue siendo importante.
-
-### Técnicas para Comprimir el Diccionario
-
-#### Cadena Única de Términos
+#### Cadena única de términos
 
 La primera técnica consiste en almacenar todos los términos como si fueran una única cadena de caracteres:
 
 - Guardar todas las palabras del diccionario como una larga cadena de caracteres.
-- Se le asocia una estructura de datos de longitud fija para la frecuencia, la referencia a la lista de apariciones (postings) y la referencia al término en la cadena.
+- Se le asocia una estructura de datos de longitud fija para la frecuencia, la referencia a la lista de apariciones (_postings_) y la referencia al término en la cadena.
 - La referencia al próximo término marca el final del término corriente.
 
-```{figure} ../_static/figures/compresion_terminos_light.svg
+```{figure} ../_static/figures/4-recuperacion-informacion/4-3-compresion-indices/compresion_terminos_light.svg
 ---
 class: only-light-mode
 ---
 Compresión del diccionario de términos usando una cadena única.
 ```
 
-```{figure} ../_static/figures/compresion_terminos_dark.svg
+```{figure} ../_static/figures/4-recuperacion-informacion/4-3-compresion-indices/compresion_terminos_dark.svg
 ---
 class: only-dark-mode
 ---
 Compresión del diccionario de términos usando una cadena única.
 ```
 
-En la figura anterior se observa como se almacenan los términos "programa", **_"programable"_**, **_"programación"_**, **_"programador"_** y **_"programar"_** en una sola cadena. Cada término se referencia mediante un puntero que indica su posición inicial, la palabra termina justo antes del siguiente puntero.
+En la figura anterior se observa como se almacenan los términos `"programa"`, `"programable"`, `"programación"`, `"programador"` y `"programar"` en una sola cadena. Cada término se referencia mediante un puntero que indica su posición inicial, la palabra termina justo antes del siguiente puntero.
 
-Con este esquema si se utilizan 4 bytes para la frecuencia, 4 bytes para la referencia a la lista de postings y 4 bytes para la referencia al término, se utilizan 12 bytes por término en el diccionario. Si el diccionario tiene 1 millón de términos, se utilizan 12 MB para almacenar el diccionario más el espacio necesario para la cadena de caracteres.
+Con este esquema si se utilizan 4 bytes para la frecuencia, 4 bytes para la referencia a la lista de postings y 4 bytes para la referencia al término, se utilizan 12 bytes por término en el diccionario. Si el diccionario tiene 1 millón de términos, se utilizan 11,44 MB para almacenar el diccionario más el espacio necesario para la cadena de caracteres.
 
 En memoria se carga la cadena completa y los punteros permiten acceder a cada término. Sin embargo, aún se puede mejorar la compresión del diccionario.
 
-#### Front Coding
+#### _Front Coding_
 
-Front Coding es una técnica que aprovecha los prefijos comunes entre términos consecutivos en orden lexicográfico aprovechando el hecho que, generalmente, las palabras ordenadas alfabéticamente comparten un prefijo común.
+_Front Coding_ es una técnica que aprovecha los prefijos comunes entre términos consecutivos en orden lexicográfico aprovechando el hecho que, generalmente, las palabras ordenadas alfabéticamente comparten un prefijo común.
 
-Se agrupan las entradas del diccionario en bloques de k términos contiguos. En cada bloque se almacena primero el término base completo; a continuación se coloca un separador '\*' que delimita el prefijo base y marca el final de ese primer término. Para los términos restantes del bloque no se repite el prefijo: se escribe un símbolo '⋄' que indica el punto donde termina el prefijo común y, a continuación, el sufijo que completa cada término. Antes de cada término completo o de cada sufijo se guarda su longitud en un byte (1 B). En la estructura auxiliar solo se mantiene la referencia (puntero) al primer término de cada bloque; el resto de términos se recupera a partir de la cadena combinada.
+1. Se agrupan las entradas del diccionario en bloques de $k$ términos contiguos.
+2. En cada bloque se almacena primero el término base completo; a continuación se coloca un separador `*` que delimita el prefijo base y marca el final de ese primer término.
+3. Para los términos restantes del bloque no se repite el prefijo: se escribe un símbolo `•` que indica el punto donde termina el prefijo común y, a continuación, el sufijo que completa cada término.
+4. Antes de cada término completo o de cada sufijo se guarda su longitud en un byte (1 B). En la estructura auxiliar solo se mantiene la referencia (puntero) al primer término de cada bloque; el resto de términos se recupera a partir de la cadena combinada.
 
-Por ejemplo, si las palabras son: algoritmo, alguacil, alguien, algas y alguno y k=5, se almacenan como:
+Por ejemplo, si las palabras son: `algoritmo`, `alguacil`, `alguien`, `algas` y `alguno`, y $k=5$, se almacenan como:
 
 ```text
 5alg*as6•oritmo5•uacil4•uien3•uno
 ```
 
-- La primera palabra "algas" se almacena completa precedida por su longitud (5). Se añade un "\*" en el medio de la palabra para indicar el final del prefijo común "alg" para todo el bloque de 5 términos.
-- La segunda palabra "algoritmo" se almacena como "6•oritmo", donde "6" es la longitud del sufijo "oritmo" y "•" indica el final del prefijo común.
-- La tercera palabra "alguacil" se almacena como "5•uacil".
-- La cuarta palabra "alguien" se almacena como "4•uien".
-- La quinta palabra "alguno" se almacena como "3•uno".
+- La primera palabra `algas` se almacena completa precedida por su longitud (`5`). Se añade un `*` en el medio de la palabra para indicar el final del prefijo común `alg` para todo el bloque de 5 términos.
+- La segunda palabra `algoritmo` se almacena como `6•oritmo`, donde `6` es la longitud del sufijo `oritmo` y `•` indica el final del prefijo común.
+- La tercera palabra `alguacil` se almacena como `5•uacil`.
+- La cuarta palabra `alguien` se almacena como `4•uien`.
+- La quinta palabra `alguno` se almacena como `3•uno`.
+
+Implementación de _Front Coding_ para los bloques de ejemplo
 
 ```{code-cell} python
 ---
-tags: hide-output
+tags: remove-output
 ---
-# Implementación de Front Coding para el bloque de ejemplo
-
-
-def common_prefix(strings):
+def common_prefix(strings: list[str]) -> str:
     """Devuelve el prefijo común más largo de una lista de strings."""
     if not strings:
         return ""
+
     s1, s2 = min(strings), max(strings)
-    for i, ch in enumerate(s1):
-        if i >= len(s2) or ch != s2[i]:
+    for i, char in enumerate(s1):
+        if i >= len(s2) or char != s2[i]:
             return s1[:i]
+
     return s1
 
 
-def front_encode_block(terms):
+def front_encode_block(terms: list[str]) -> str:
     """
     Codifica un bloque de términos usando front coding.
     Formato: <len_base><prefijo>*<sufijo_base>{<len_suf>•<sufijo>}...
     """
     if not terms:
         return ""
+
     prefix = common_prefix(terms)
     base = terms[0]
     base_suffix = base[len(prefix) :]
     encoded = f"{len(base)}{prefix}*{base_suffix}"
+
     for term in terms[1:]:
         suf = term[len(prefix) :]
         encoded += f"{len(suf)}•{suf}"
+
     return encoded
 
 
 def front_decode_block(encoded):
-    """Decodifica la cadena generada por front_encode_block y
-    devuelve la lista de términos."""
+    """
+    Decodifica la cadena generada por front_encode_block y devuelve la lista de
+    términos.
+    """
     import re
 
     if not encoded:
         return []
-    m = re.match(r"(\d+)", encoded)
+
+    m = re.match(r"^(\d+)", encoded)
     if not m:
         raise ValueError(
             "Formato inválido: no se encontró la longitud del término base"
         )
+
     base_len = int(m.group(1))
     rest = encoded[m.end() :]
+
     # buscar '*' que separa prefijo y sufijo del término base
     star_idx = rest.find("*")
     if star_idx == -1:
         raise ValueError("Formato inválido: falta '*'")
     prefix = rest[:star_idx]
+
     # calcular sufijo del base usando la longitud indicada
     base_suffix_len = base_len - len(prefix)
     base_suffix = rest[star_idx + 1 : star_idx + 1 + base_suffix_len]
     base = prefix + base_suffix
     terms = [base]
     rem = rest[star_idx + 1 + base_suffix_len :]
+
     i = 0
     while i < len(rem):
         # leer número de longitud del sufijo
         j = i
         while j < len(rem) and rem[j].isdigit():
             j += 1
+
         if j == i:
             raise ValueError("Formato inválido al leer longitud de sufijo")
+
         num = int(rem[i:j])
         if j >= len(rem) or rem[j] != "•":
             raise ValueError("Formato inválido: falta '•' separador")
+
         suf = rem[j + 1 : j + 1 + num]
         terms.append(prefix + suf)
         i = j + 1 + num
+
     return terms
+```
 
+Ejemplo con las palabras solicitadas
 
-# Ejemplo con las palabras solicitadas
+```{code-cell} python
 palabras = ["algas", "algoritmo", "alguacil", "alguien", "alguno"]
-
 encoded = front_encode_block(palabras)
 decoded = front_decode_block(encoded)
 
 print("Palabras originales:", palabras)
-print("Encoded:", encoded)
-print("Decoded:", decoded)
-assert decoded == palabras, "La decodificación no coincide con las\
-     palabras originales"
-
-# Estadísticas de compresión (bytes en UTF-8)
-original_bytes = sum(len(p.encode("utf-8")) for p in palabras)
-comprimido_bytes = len(encoded.encode("utf-8"))
-print(f"\nTamaño original: {original_bytes} bytes")
-print(f"Tamaño front coding: {comprimido_bytes} bytes")
-print(f"Ratio: {original_bytes / comprimido_bytes:.2f}x")
+print("            Encoded:", encoded)
+print("            Decoded:", decoded)
 ```
 
-## Compresión de Listas de Postings
-
-Las listas de postings contienen los IDs de documentos donde aparece cada término. La compresión de las listas de postings es crucial ya que es la que tiene mayor impacto en el tamaño total del índice.
-
-### Gap Encoding (Codificación de Diferencias)
-
-En lugar de almacenar los IDs completos, almacenamos las diferencias (gaps) entre IDs consecutivos. Como los IDs están ordenados, los gaps suelen ser números pequeños.
+Estadísticas de compresión (bytes en UTF-8).
 
 ```{code-cell} python
----
-tags: hide-output
----
-# Ejemplo de gap encoding
+original_bytes = sum(len(p.encode("utf-8")) for p in palabras)
+comprimido_bytes = len(encoded.encode("utf-8"))
+
+print(f"    Tamaño original: {original_bytes} bytes")
+print(f"Tamaño front coding: {comprimido_bytes} bytes")
+print(f"              Ratio: {original_bytes / comprimido_bytes:.2f}x")
+```
+
+## Compresión de listas de postings
+
+Las listas de _postings_ contienen los IDs de documentos donde aparece cada término. La compresión de las listas de _postings_ es crucial ya que es la que tiene mayor impacto en el tamaño total del índice.
+
+### _Gap Encoding_ (Codificación de diferencias)
+
+En lugar de almacenar los IDs completos, almacenamos las diferencias (_gaps_) entre IDs consecutivos. Como los IDs están ordenados, los _gaps_ suelen ser números pequeños.
+
+Ejemplo de gap encoding
+
+```{code-cell} python
 doc_ids = [15478, 15874, 17950, 50123, 50234, 60001]
 
-print("IDs originales:")
-print(doc_ids)
-
 # Convertir a gaps
-gaps = [doc_ids[0]]  # Primer ID se mantiene
-for i in range(1, len(doc_ids)):
-    gaps.append(doc_ids[i] - doc_ids[i - 1])
+gaps = [curr - prev for prev, curr in zip([0] + doc_ids, doc_ids)]
 
-print("\nGaps (diferencias):")
-print(gaps)
+print(f"    IDs originales: {doc_ids}")
+print(f"Gaps (diferencias): {gaps}")
+```
 
+```{code-cell} python
 # Comparar tamaños (asumiendo que usamos el mínimo de bits necesarios)
 import math
 
 
-def bits_necesarios(numero):
+def bits_necesarios(n):
     """Calcula bits necesarios para representar un número"""
-    if numero == 0:
-        return 1
-    return math.ceil(math.log2(numero + 1))
+    return math.ceil(math.log2(n + 1)) if n != 0 else 1
 
 
 bits_originales = sum(bits_necesarios(id) for id in doc_ids)
 bits_gaps = sum(bits_necesarios(gap) for gap in gaps)
 
-print(f"\nBits necesarios:")
-print(f"  IDs originales: {bits_originales} bits")
-print(f"  Con gaps: {bits_gaps} bits")
-print(f"  Ahorro: {100 * (1 - bits_gaps / bits_originales):.1f}%")
+print("Bits necesarios")
+print("---------------")
+print(f"    IDs originales: {bits_originales} bits")
+print(f"    Con gaps: {bits_gaps} bits")
+print(f"    Ahorro: {100 * (1 - bits_gaps / bits_originales):.1f}%")
 ```
 
-### Variable Byte Encoding (VB)
+### _Variable Byte Encoding_ (VB)
 
-Otra técnica popular es Variable Byte encoding, que usa uno o más bytes para representar un número, dependiendo de su tamaño, así la cantidad de bytes para codificar el gap entre el id de un documento y el siguiente varía según el valor del gap.
+Otra técnica popular es Variable Byte encoding, que usa uno o más bytes para representar un número, dependiendo de su tamaño, así la cantidad de bytes para codificar el _gap_ entre el ID de un documento y el siguiente varía según el valor del _gap_.
 
-- Cada byte tiene 7 bits de datos y 1 bit de continuación
-- Bit de continuación = 1: hay más bytes
-- Bit de continuación = 0: es el último byte
+- Cada byte tiene 7 bits de datos y 1 bit de continuación (el bit más significativo).
+- Bit de continuación == `1`: hay más bytes.
+- Bit de continuación == `0`: es el último byte.
 
 Así, por ejemplo, la representación de los siguientes gaps `[15478, 396, 2076, 32173, 111, 9767]` sería:
 
-- 15478 → `11111000 01110110` (2 bytes)
-- 396 → `10000011 00001100` (2 bytes)
-- 2076 → `10010000 00011100` (2 bytes)
-- 32173 → `10000001 11111011 00101101` (3 bytes)
-- 111 → `01101111` (1 byte)
-- 9767 → `11001100 00100111` (2 bytes)
+| Número |              Codificación VB | Cantidad de bytes |
+| -----: | ---------------------------: | ----------------: |
+|  15478 |          `11111000 01110110` |                 2 |
+|    396 |          `10000011 00001100` |                 2 |
+|   2076 |          `10010000 00011100` |                 2 |
+|  32173 | `10000001 11111011 00101101` |                 3 |
+|    111 |                   `01101111` |                 1 |
+|   9767 |          `11001100 00100111` |                 2 |
 
-Se parte de la representación en binario del número y se divide en grupos de 7 bits, cada grupo se almacena en un byte. El bit más significativo, es decir el primer bit de un byte de 8 bits, se usa para indicar si hay más bytes (1) o si es el último (0).
+Se parte de la representación en binario del número y se divide en grupos de 7 bits, cada grupo se almacena en un byte. El bit más significativo, es decir el primer bit de un byte de 8 bits, se usa para indicar si hay más bytes (`1`) o si es el último (`0`).
 
-Por ejemplo 15478 en binario es `11110001110110`. Dividido en grupos de 7 bits desde la derecha:
+Por ejemplo $15478$ en binario es `11110001110110`. Dividido en grupos de 7 bits desde la derecha:
 
-- `1111000_1110110`
+- `1111000 1110110`
 
 Se utiliza el bit más significativo para indicar si hay más bytes:
 
-- `11111000_01110110`
+- `1_1111000 0_1110110`
 
 ```{code-cell} python
 ---
-tags: hide-output
+tags: remove-output
 ---
 def vb_encode(numero):
     """Codifica un número usando Variable Byte encoding"""
@@ -316,45 +335,49 @@ def vb_decode(bytes_list):
             # Hay más bytes, quitar el bit de continuación
             numero = numero * 128 + (byte - 128)
     return numero
+```
 
-
-# Ejemplos
+```{code-cell} python
 numeros = [15478, 396, 2076, 32173, 111, 9767]
 
 print("Variable Byte Encoding:")
-print(f"{'Número':<10} {'Bytes VB':<25} {'Bits originales':<20} {'Bits VB'}")
-print("-" * 75)
+print(f" {'Número':>7} {'Bytes VB':>27} {'Bits originales':>16} {'Bits VB':>8}")
+print("-" * 62)
 
+bits_orig = 32  # Entero de 32 bits típico
 for num in numeros:
     encoded = vb_encode(num)
-    bits_orig = 32  # Entero de 32 bits típico
     bits_vb = len(encoded) * 8
 
     # Mostrar en binario
-    encoded_bin = " ".join(format(b, "08b") for b in encoded)
-    print(f"{num:<10} {encoded_bin:<25} {bits_orig:<20} {bits_vb}")
-
-# Ejemplo de compresión de una lista completa
-print("\n\nCompresión de lista de postings:")
-postings = [3, 12, 15, 27, 35, 89, 142, 156, 299, 312]
-gaps = [postings[0]]
-gaps.extend(postings[i] - postings[i - 1] for i in range(1, len(postings)))
-
-print(f"Postings originales: {postings}")
-print(f"Gaps: {gaps}")
-
-# Codificar todos los gaps
-encoded_all = []
-for gap in gaps:
-    encoded_all.extend(vb_encode(gap))
-
-print(f"\nBytes VB: {encoded_all}")
-print(f"Tamaño original: {len(postings) * 4} bytes (enteros de 32 bits)")
-print(f"Tamaño comprimido: {len(encoded_all)} bytes")
-print(f"Ratio de compresión: {len(postings) * 4 / len(encoded_all):.2f}x")
+    encoded_bin = " ".join(format(byte, "08b") for byte in encoded)
+    print(f" {num:>7} {encoded_bin:>27} {bits_orig:>16} {bits_vb:>8}")
 ```
 
-## _Trade-offs_ de la Compresión
+Ejemplo de compresión de una lista completa.
+
+```{code-cell} python
+postings = [3, 12, 15, 27, 35, 89, 142, 156, 299, 312]
+gaps = [curr - prev for prev, curr in zip([0] + postings, postings)]
+
+print(f"Postings originales: {postings}")
+print(f"               Gaps: {gaps}")
+```
+
+Codificar todos los _gaps_.
+
+```{code-cell} python
+original_postings_size = len(postings) * 4  # enteros de 32 bits
+encoded_gaps = [vb_encode(gap) for gap in gaps]
+encoded_gaps_size = sum(len(encoded_gap) for encoded_gap in encoded_gaps)
+
+print(f"           Bytes VB: {encoded_gaps}")
+print(f"    Tamaño original: {original_postings_size} bytes")
+print(f"  Tamaño comprimido: {encoded_gaps_size} bytes")
+print(f"Ratio de compresión: {original_postings_size / encoded_gaps_size:.2f}x")
+```
+
+## _Trade-offs_ de la compresión
 
 La compresión de índices implica compromisos:
 
@@ -370,11 +393,11 @@ La compresión de índices implica compromisos:
 - Código más complejo
 - No se puede acceder aleatoriamente sin descomprimir
 
-En la práctica, técnicas como Variable Byte son muy populares porque ofrecen un buen balance entre compresión y velocidad de decodificación.
+En la práctica, técnicas como _Variable Byte Encoding_ son muy populares porque ofrecen un buen balance entre compresión y velocidad de decodificación.
 
 ## Resumen
 
-La compresión de índices es esencial para manejar grandes colecciones de documentos. Técnicas como front coding para el diccionario y gap encoding combinado con Variable Byte para las listas de postings permiten reducir significativamente el tamaño del índice mientras mantienen un rendimiento aceptable en las consultas.
+La compresión de índices es esencial para manejar grandes colecciones de documentos. Técnicas como _Front Coding_ para el diccionario y _gap_ encoding combinado con _Variable Byte Encoding_ para las listas de postings permiten reducir significativamente el tamaño del índice mientras mantienen un rendimiento aceptable en las consultas.
 
 La elección de técnicas depende de:
 
@@ -385,20 +408,20 @@ La elección de técnicas depende de:
 
 En sistemas reales como Lucene/Elasticsearch, se combinan múltiples técnicas para lograr compresión de 3-5x mientras mantienen excelente rendimiento de búsqueda.
 
-## Referencias y Recursos Adicionales
+## Referencias y recursos adicionales
 
-### Colecciones de Datos
+### Colecciones de datos
 
 - [ClueWeb Dataset](https://lemurproject.org/clueweb09/): Colección grande para experimentación
 - [TREC Collections](https://trec.nist.gov/data.html): Colecciones estándar para IR
 - [Lemur Project](https://www.lemurproject.org/): Herramientas y librerías para IR
 
-### Cursos y Tutoriales
+### Cursos y tutoriales
 
 - [Information Retrieval - Stanford CS276](https://web.stanford.edu/class/cs276/): Incluye material sobre compresión
 - [Text Compression - University of Melbourne](https://people.eng.unimelb.edu.au/ammoffat/): Recursos de Alistair Moffat
 
-### Bibliografía Principal
+### Bibliografía principal
 
 - El Capítulo 5 del libro {cite:p}`irbook` presenta los conceptos de compresión de índices.
 - El siguiente artículo estudia los índices para motores de búsqueda de texto.{cite:p}`zobel2006`
