@@ -13,6 +13,7 @@ install:
 .PHONY: fmt
 fmt:
 	mdformat --number contenidos/**/*.md
+	mdformat --number .claude/**/*.md
 	mdformat --number .opencode/**/*.md
 	mdformat --number *.md
 	black --line-length 120 .
