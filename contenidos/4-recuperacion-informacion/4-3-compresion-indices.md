@@ -240,7 +240,7 @@ Las listas de _postings_ contienen los IDs de documentos donde aparece cada tér
 
 En lugar de almacenar los IDs completos, almacenamos las diferencias (_gaps_) entre IDs consecutivos. Como los IDs están ordenados, los _gaps_ suelen ser números pequeños.
 
-Ejemplo de gap encoding
+Ejemplo de gap encoding:
 
 ```{code-cell} python
 doc_ids = [15478, 15874, 17950, 50123, 50234, 60001]
@@ -252,8 +252,9 @@ print(f"    IDs originales: {doc_ids}")
 print(f"Gaps (diferencias): {gaps}")
 ```
 
+Comparar tamaños (asumiendo que usamos el mínimo de bits necesarios)
+
 ```{code-cell} python
-# Comparar tamaños (asumiendo que usamos el mínimo de bits necesarios)
 import math
 
 
@@ -265,33 +266,31 @@ def bits_necesarios(n):
 bits_originales = sum(bits_necesarios(id) for id in doc_ids)
 bits_gaps = sum(bits_necesarios(gap) for gap in gaps)
 
-print("Bits necesarios")
-print("---------------")
-print(f"    IDs originales: {bits_originales} bits")
-print(f"    Con gaps: {bits_gaps} bits")
-print(f"    Ahorro: {100 * (1 - bits_gaps / bits_originales):.1f}%")
+print(f"IDs originales: {bits_originales} bits")
+print(f"      Con gaps: {bits_gaps} bits")
+print(f"        Ahorro: {100 * (1 - bits_gaps / bits_originales):.1f}%")
 ```
 
-### _Variable Byte Encoding_ (VB)
+### _Variable Byte encoding_ (VB)
 
-Otra técnica popular es Variable Byte encoding, que usa uno o más bytes para representar un número, dependiendo de su tamaño, así la cantidad de bytes para codificar el _gap_ entre el ID de un documento y el siguiente varía según el valor del _gap_.
+Otra técnica popular es _Variable Byte encoding_, que usa uno o más bytes para representar un número, dependiendo de su tamaño, así la cantidad de bytes para codificar el _gap_ entre el ID de un documento y el siguiente varía según el valor del _gap_.
 
 - Cada byte tiene 7 bits de datos y 1 bit de continuación (el bit más significativo).
-- Bit de continuación == `1`: hay más bytes.
-- Bit de continuación == `0`: es el último byte.
+- Bit de continuación == `0`: hay más bytes.
+- Bit de continuación == `1`: es el último byte.
 
 Así, por ejemplo, la representación de los siguientes gaps `[15478, 396, 2076, 32173, 111, 9767]` sería:
 
 | Número |              Codificación VB | Cantidad de bytes |
 | -----: | ---------------------------: | ----------------: |
-|  15478 |          `11111000 01110110` |                 2 |
-|    396 |          `10000011 00001100` |                 2 |
-|   2076 |          `10010000 00011100` |                 2 |
-|  32173 | `10000001 11111011 00101101` |                 3 |
-|    111 |                   `01101111` |                 1 |
-|   9767 |          `11001100 00100111` |                 2 |
+|  15478 |          `01111000 11110110` |                 2 |
+|    396 |          `00000011 10001100` |                 2 |
+|   2076 |          `00010000 10011100` |                 2 |
+|  32173 | `00000001 01111011 10101101` |                 3 |
+|    111 |                   `11101111` |                 1 |
+|   9767 |          `01001100 10100111` |                 2 |
 
-Se parte de la representación en binario del número y se divide en grupos de 7 bits, cada grupo se almacena en un byte. El bit más significativo, es decir el primer bit de un byte de 8 bits, se usa para indicar si hay más bytes (`1`) o si es el último (`0`).
+Se parte de la representación en binario del número y se divide en grupos de 7 bits, cada grupo se almacena en un byte. El bit más significativo, es decir el primer bit de un byte de 8 bits, se usa para indicar si hay más bytes (`0`) o si es el último (`1`).
 
 Por ejemplo $15478$ en binario es `11110001110110`. Dividido en grupos de 7 bits desde la derecha:
 
@@ -299,78 +298,74 @@ Por ejemplo $15478$ en binario es `11110001110110`. Dividido en grupos de 7 bits
 
 Se utiliza el bit más significativo para indicar si hay más bytes:
 
-- `1_1111000 0_1110110`
+- `0_1111000 1_1110110`
 
 ```{code-cell} python
 ---
 tags: remove-output
 ---
-def vb_encode(numero):
-    """Codifica un número usando Variable Byte encoding"""
-    if numero == 0:
-        return [0]
-
+def vb_encode_number(n: int) -> list[int]:
+    """Codifica un número usando Variable Byte Encoding"""
     bytes_list = []
-    while numero > 0:
-        bytes_list.insert(0, numero % 128)  # 7 bits de datos
-        numero //= 128
+    while True:
+        bytes_list = [n % 128] + bytes_list
+        if n < 128:
+            break
+        n //= 128
 
-    # El último byte tiene el bit de continuación en 0
-    # Los demás tienen el bit en 1 (sumamos 128)
-    for i in range(len(bytes_list) - 1):
-        bytes_list[i] += 128
+    # El último byte tiene el bit de continuación en 1.
+    bytes_list[-1] += 128
 
     return bytes_list
 
 
-def vb_decode(bytes_list):
-    """Decodifica una lista de bytes en Variable Byte encoding"""
-    numero = 0
+def vb_encode(numbers: list[int]) -> list[list[int]]:
+    return [vb_encode_number(n) for n in numbers]
+
+
+def vb_decode_number(bytes_list: list[int]) -> int:
+    """Decodifica una lista de bytes en Variable Byte Encoding"""
+    n = 0
     for byte in bytes_list:
         if byte < 128:
-            # Es el último byte
-            numero = numero * 128 + byte
-            break
+            n = n * 128 + byte
         else:
-            # Hay más bytes, quitar el bit de continuación
-            numero = numero * 128 + (byte - 128)
-    return numero
+            n = n * 128 + (byte - 128)
+
+    return n
+
+
+def vb_decode(bytestream):
+    return [vb_decode_number(bytes_list) for bytes_list in bytestream]
 ```
 
 ```{code-cell} python
-numeros = [15478, 396, 2076, 32173, 111, 9767]
+numbers = [15478, 396, 2076, 32173, 111, 9767]
 
-print("Variable Byte Encoding:")
+int_size = 32  # Enteros de 32 bits (4 bytes)
+
 print(f" {'Número':>7} {'Bytes VB':>27} {'Bits originales':>16} {'Bits VB':>8}")
 print("-" * 62)
 
-bits_orig = 32  # Entero de 32 bits típico
-for num in numeros:
-    encoded = vb_encode(num)
-    bits_vb = len(encoded) * 8
+for orig, encoded in zip(numbers, vb_encode(numbers)):
+    vb_size = len(encoded) * 8
 
     # Mostrar en binario
     encoded_bin = " ".join(format(byte, "08b") for byte in encoded)
-    print(f" {num:>7} {encoded_bin:>27} {bits_orig:>16} {bits_vb:>8}")
-```
-
-Ejemplo de compresión de una lista completa.
-
-```{code-cell} python
-postings = [3, 12, 15, 27, 35, 89, 142, 156, 299, 312]
-gaps = [curr - prev for prev, curr in zip([0] + postings, postings)]
-
-print(f"Postings originales: {postings}")
-print(f"               Gaps: {gaps}")
+    print(f" {orig:>7} {encoded_bin:>27} {int_size:>16} {vb_size:>8}")
 ```
 
 Codificar todos los _gaps_.
 
 ```{code-cell} python
+postings = [3, 12, 15, 27, 35, 89, 142, 156, 299, 312]
+gaps = [curr - prev for prev, curr in zip([0] + postings, postings)]
+
 original_postings_size = len(postings) * 4  # enteros de 32 bits
-encoded_gaps = [vb_encode(gap) for gap in gaps]
+encoded_gaps = vb_encode(gaps)
 encoded_gaps_size = sum(len(encoded_gap) for encoded_gap in encoded_gaps)
 
+print(f"               Gaps: {gaps}")
 print(f"           Bytes VB: {encoded_gaps}")
 print(f"    Tamaño original: {original_postings_size} bytes")
 print(f"  Tamaño comprimido: {encoded_gaps_size} bytes")
