@@ -164,13 +164,9 @@ Se puede usar un [visualizador interactivo](https://www.cs.usfca.edu/~galles/vis
 
 En la siguiente simulación presionar en qué nodo insertar el nuevo valor y observar cómo se reestructura el árbol B cuando es necesario. Al finalizar con el botón grade se puede observar los puntos obtenidos.
 
-<iframe
-    src="https://opendsa-server.cs.vt.edu/embed/bPlusTreeInsertPRO"
-    width="100%"
-    height="725"
-    scrolling="yes"
-    style="border: 1px solid grey"
-></iframe>
+```{figure} ../_static/figures/4-recuperacion-informacion/4-4-indices-arboles-b/b+tree-proficiency-exercise-preview.png
+[B+ Tree Proficiency Exercise](https://opendsa-server.cs.vt.edu/embed/bPlusTreeInsertPRO)
+```
 
 ## Índices con árboles B+ en Python
 
