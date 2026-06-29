@@ -65,9 +65,6 @@ project:
         - file: 4-recuperacion-informacion/4-2-indices-invertidos.md
         - file: 4-recuperacion-informacion/4-3-compresion-indices.md
         - file: 4-recuperacion-informacion/4-4-indices-arboles-b.md
-    - title: Aplicaciones
-      children:
-        - file: 5-aplicaciones/5-1-redes-sociales.md
     - title: Anexos
       children:
         - file: Anexos/GitBash.md
