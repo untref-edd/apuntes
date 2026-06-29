@@ -78,7 +78,7 @@ class: only-dark-mode
 
 En la figura se observa que los nodos internos contienen las claves que guían la búsqueda, mientras que las hojas contienen las palabras completas. Además, las hojas están enlazadas entre sí para facilitar la búsqueda secuencial, lo que facilita la búsqueda con comodines o rangos.
 
-En cada nodo pueden haber como máximo 2 claves (orden 3) y como mínimo 1 clave ($⌈ \frac{3}{2} ⌉ - 1 = 1$) y las palabras dentro de cada nodo están ordenadas alfabéticamente.
+En cada nodo pueden haber como máximo 2 claves (orden 3) y como mínimo 1 clave $(⌈ \frac{3}{2} ⌉ - 1 = 1)$ y las palabras dentro de cada nodo están ordenadas alfabéticamente.
 
 En los nodos intermedios y en la raíz se repiten palabras que ya están en las hojas, de tal manera que las palabras estrictamente menores a una clave dada se encuentran en el subárbol izquierdo y las palabras mayores o iguales a esa clave se encuentran en su subárbol derecho.
 
@@ -248,7 +248,7 @@ class: note
 
 ### Búsquedas con rangos y comodines
 
-Los árboles B+ en BTrees permiten realizar búsquedas eficientes por rangos gracias a que mantienen los datos ordenados. Podemos usar los métodos `keys()`, `values()` e `items()` con parámetros de rango:
+Los árboles B+ en `BTrees` permiten realizar búsquedas eficientes por rangos gracias a que mantienen los datos ordenados. Podemos usar los métodos `keys()`, `values()` e `items()` con parámetros de rango:
 
 ```{code-cell} python
 ---
